@@ -22,8 +22,15 @@ jobs:
           name: lint
           command: npm run lint
       - run:
+          name: test
+          command: npm test -- --ci --coverage --testResultsProcessor="jest-junit"
+      - run:
+          name: upload-to-codacy
+          command: npm run cov
+      - store_test_results:
+          path: ./junit.xml
+      - run:
           name: build
           command: npm run build
-      - run:
-          name: test
-          command: npm test -- --coverage
+      - store-artifacts:
+          path: ./dist
