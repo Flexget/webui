@@ -39,6 +39,6 @@ jobs:
           command: npm run build
       -  run:
           name: Move Dist folder
-          command: mv ./dist /dist
+          command: mv ./dist /tmp
       - store-artifacts:
-          path: /dist
+          path: /tmp/dist
