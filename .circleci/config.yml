@@ -42,3 +42,6 @@ jobs:
           command: mv ./dist /tmp
       - store-artifacts:
           path: /tmp/dist
+notify:
+  webhooks:
+    - url: https://webhooks.gitter.im/e/25d3ef56c762a262dd33
