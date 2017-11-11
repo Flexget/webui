@@ -38,10 +38,10 @@ jobs:
           name: Run Build
           command: npm run build
       -  run:
-          name: Move Dist folder
-          command: mv ./dist /tmp
+          name: Zip Dist folder
+          command: zip -r /tmp/dist.zip ./dist
       - store-artifacts:
-          path: /tmp/dist
+          path: /tmp/dist.zip
 notify:
   webhooks:
     - url: https://webhooks.gitter.im/e/25d3ef56c762a262dd33
