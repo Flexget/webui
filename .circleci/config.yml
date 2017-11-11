@@ -31,7 +31,7 @@ jobs:
           name: Move Tests
           command: |
             mkdir -p ~/junit
-            mv .junit.xml ~/junit
+            mv ./junit.xml ~/junit
       - store_test_results:
           path: ~/junit
       - run:
