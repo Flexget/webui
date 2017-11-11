@@ -12,18 +12,36 @@ jobs:
             - dependency-cache-
 
       - run:
-          name: npm-install
+          name: Install Dependencies
           command: npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:
-          name: lint
+          name: Run Linter
           command: npm run lint
       - run:
-          name: build
-          command: npm run build
+          name: Run Tests
+          command: npm test -- --ci --coverage --testResultsProcessor="jest-junit"
       - run:
-          name: test
-          command: npm test -- --coverage
+          name: Upload to Codacy
+          command: npm run cov
+      - run:
+          name: Move Tests
+          command: |
+            mkdir -p ~/junit
+            mv ./junit.xml ~/junit
+      - store_test_results:
+          path: ~/junit
+      - run:
+          name: Run Build
+          command: npm run build
+      -  run:
+          name: Move Dist folder
+          command: mv ./dist /tmp
+      - store-artifacts:
+          path: /tmp/dist
+notify:
+  webhooks:
+    - url: https://webhooks.gitter.im/e/25d3ef56c762a262dd33
