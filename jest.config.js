@@ -1,13 +1,13 @@
 module.exports = {
   collectCoverageFrom: [
     'src/**/*.{js,jsx}',
-    '!src/js/store/*.js',
-    '!src/js/store/series/*.js',
-    '!src/js/{app,history,root,theme}.{js,jsx}',
-    '!src/js/utils/*.{js,jsx}',
+    '!src/store/*.js',
+    '!src/store/series/*.js',
+    '!src/{app,history,root,theme}.{js,jsx}',
+    '!src/utils/*.{js,jsx}',
     '!**/node_modules/**',
     '!**/dist/**',
-    '!src/js/store/**/shapes.js',
+    '!src/store/**/shapes.js',
   ],
   coverageThreshold: {
     global: {
@@ -24,15 +24,14 @@ module.exports = {
   moduleDirectories: [
     'node_modules',
     'src',
-    'src/js',
   ],
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
-    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/js/__mocks__/fileMock.js',
+    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/__mocks__/fileMock.js',
   },
   setupFiles: [
     'raf/polyfill',
-    '<rootDir>/src/js/utils/tests/setupFiles.js',
+    '<rootDir>/src/utils/tests/setupFiles.js',
   ],
-  setupTestFrameworkScriptFile: '<rootDir>/src/js/utils/tests/setupTest.js',
+  setupTestFrameworkScriptFile: '<rootDir>/src/utils/tests/setupTest.js',
 };

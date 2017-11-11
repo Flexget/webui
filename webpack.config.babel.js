@@ -15,7 +15,7 @@ const entry = {
   main: [
     'babel-polyfill',
     'whatwg-fetch',
-    './src/js/app.jsx',
+    './src/app.jsx',
   ],
   vendor: [
     'redux',
