@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
-import history from 'history';
+import history from 'core/history';
 import createReducer from 'core/reducers';
 import status from 'core/status/data/middleware';
 import { ADD_ROUTE } from 'core/routes/data/actions';
@@ -25,7 +25,9 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-registry.onRegisterReducer = reducers => store.replaceReducer(createReducer(reducers));
+registry.onRegisterReducer = reducers => (
+  store.replaceReducer(connectRouter(history)(createReducer(reducers)))
+);
 registry.onRegisterSaga = saga => sagaMiddleware.run(saga);
 registry.onRegisterRoute = data => store.dispatch(action(ADD_ROUTE, data));
 
@@ -34,6 +36,6 @@ export default store;
 if (module.hot && __DEV__) {
   module.hot.accept('core/reducers', () => {
     const nextCreateReducer = require('core/reducers').default; // eslint-disable-line global-require
-    store.replaceReducer(nextCreateReducer(registry.reducers));
+    store.replaceReducer(connectRouter(history)(nextCreateReducer(registry.reducers)));
   });
 }

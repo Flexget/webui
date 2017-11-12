@@ -12,6 +12,7 @@ function renderNavbar(toggle, logout) {
     reloadServer={jest.fn()}
     shutdownServer={jest.fn()}
     classes={{}}
+    titleMap={{}}
   />));
 }
 
@@ -32,6 +33,7 @@ describe('core/layout/components/Navbar', () => {
       classes={{}}
       reloadServer={jest.fn()}
       shutdownServer={jest.fn()}
+      titleMap={{}}
     />);
 
     wrapper.find('.fa-bars').closest(NavIcon).simulate('click');
@@ -48,6 +50,7 @@ describe('core/layout/components/Navbar', () => {
       classes={{}}
       reloadServer={jest.fn()}
       shutdownServer={jest.fn()}
+      titleMap={{}}
     />);
 
     const button = wrapper.find('.fa-cog').closest(NavIcon);

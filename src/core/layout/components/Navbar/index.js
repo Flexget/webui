@@ -4,9 +4,17 @@ import { SERVER_RELOAD, SERVER_SHUTDOWN } from 'core/server/data/actions';
 import { request } from 'utils/actions';
 import Navbar from './Navbar';
 
-function mapStateToProps({ router }) {
+function mapStateToProps({ router, routes }) {
   return {
     pathname: router.location.pathname,
+    titleMap: Object.values(routes).reduce((obj, route) => ({
+      ...obj,
+      [route.path]: route.name,
+      ...(route.children ? route.children.reduce((o, r) => ({
+        ...o,
+        [r.path]: r.name,
+      }), {}) : {}),
+    }), {}),
   };
 }
 

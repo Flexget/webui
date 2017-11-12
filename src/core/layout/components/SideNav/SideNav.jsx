@@ -16,6 +16,16 @@ export default class SideNav extends Component {
   static propTypes = {
     sideBarOpen: PropTypes.bool.isRequired,
     toggle: PropTypes.func.isRequired,
+    routes: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
+      icon: PropTypes.string,
+      path: PropTypes.string,
+      children: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string,
+        icon: PropTypes.string,
+        path: PropTypes.string,
+      })),
+    })).isRequired,
   };
 
   state = {
@@ -37,15 +47,15 @@ export default class SideNav extends Component {
     }
   }
 
-  handleOnClick = ({ link, label }) => {
-    if (link) {
+  handleOnClick = ({ path, name }) => {
+    if (path) {
       return this.toggleOnMobile;
     }
     return () => {
       this.setState({
         open: {
           ...this.state.open,
-          [label]: !this.state.open[label],
+          [name]: !this.state.open[name],
         },
       });
 
@@ -56,11 +66,11 @@ export default class SideNav extends Component {
   }
 
   renderNavItems() {
-    return sideNavItems.reduce((items, props) => {
+    return this.props.routes.reduce((items, props) => {
       const list = [
         ...items,
         <SideNavEntry
-          key={props.label}
+          key={props.path}
           onClick={this.handleOnClick(props)}
           {...props}
         />,
@@ -75,7 +85,7 @@ export default class SideNav extends Component {
           >
             {props.children.map(child => (
               <NestedSideNavEntry
-                key={child.label}
+                key={child.path}
                 onClick={this.handleOnClick(child)}
                 {...child}
               />

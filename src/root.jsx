@@ -1,6 +1,6 @@
-import React from 'react';
-import createStore from 'store';
-import history from 'history';
+import React, { Component } from 'react';
+import store from 'store';
+import history from 'core/history';
 import { JssProvider } from 'react-jss';
 import { create } from 'jss';
 import preset from 'jss-preset-default';
@@ -15,6 +15,13 @@ import PrivateRoute from 'core/routes/components/PrivateRoute';
 import Layout from 'core/layout';
 import Routes from 'core/routes';
 import { createAsyncComponent } from 'utils/loading';
+import registerHistory from 'plugins/history';
+import registerLog from 'plugins/log';
+import registerSeries from 'plugins/series';
+
+registerHistory();
+registerLog();
+registerSeries();
 
 // eslint-disable-next-line no-unused-expressions
 injectGlobal`
@@ -52,18 +59,22 @@ jss.options.insertionPoint = 'material-ui';
 
 const Root = () => (
   <JssProvider jss={jss}>
-    <Provider store={createStore()}>
+    <Provider store={store}>
       <ConnectedRouter history={history}>
         <MuiThemeProvider theme={theme}>
           <div>
             <Switch>
               <Route path="/login" exact component={Login} />
-              <Layout>
-                <Switch>
-                  <PrivateRoute path="/" exact component={Home} />
-                  <Routes />
-                </Switch>
-              </Layout>
+              <Route
+                render={() => (
+                  <Layout>
+                    <Switch>
+                      <PrivateRoute path="/" exact component={Home} />
+                      <Route render={() => <Routes />} />
+                    </Switch>
+                  </Layout>
+                )}
+              />
             </Switch>
           </div>
         </MuiThemeProvider>

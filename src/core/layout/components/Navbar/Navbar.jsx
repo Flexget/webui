@@ -19,7 +19,6 @@ import {
   NavToolbar,
   NavIcon,
 } from './styles';
-import titles from './titles';
 
 export default class Navbar extends Component {
   static propTypes = {
@@ -28,6 +27,7 @@ export default class Navbar extends Component {
     logout: PropTypes.func.isRequired,
     reloadServer: PropTypes.func.isRequired,
     shutdownServer: PropTypes.func.isRequired,
+    titleMap: PropTypes.objectOf(PropTypes.string).isRequired,
   };
 
   state = {
@@ -65,7 +65,7 @@ export default class Navbar extends Component {
   });
 
   render() {
-    const { toggle, logout, pathname } = this.props;
+    const { toggle, logout, pathname, titleMap } = this.props;
     const { anchorEl, menuOpen, shutdownPrompt } = this.state;
 
     return (
@@ -75,7 +75,7 @@ export default class Navbar extends Component {
             <Icon className="fa fa-bars" />
           </NavIcon>
           <Typography type="title" color="inherit">
-            {titles[pathname]}
+            {titleMap[pathname]}
           </Typography>
           <Spacer />
           <Link to="/config">

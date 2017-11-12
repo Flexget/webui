@@ -4,7 +4,7 @@ export default {
   '/log': 'Log',
   '/movies': 'Movies',
   '/pending': 'Pending',
-  '/ssen': 'Seen',
+  '/seen': 'Seen',
   '/series': 'Series',
   '/tasks/execute': 'Execute',
   '/tasks/schedule': 'Schedule',

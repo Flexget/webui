@@ -8,16 +8,16 @@ import {
   NavItem,
 } from './styles';
 
-const SideNavEntry = ({ onClick, link, icon, label, className }) => {
+const SideNavEntry = ({ onClick, path, icon, name, className }) => {
   const item = (
     <NavItem className={className} onClick={onClick}>
       <ListItemIcon><SideNavIcon className={`fa fa-${icon}`} /></ListItemIcon>
-      <SideNavText disableTypography inset primary={label} />
+      <SideNavText disableTypography inset primary={name} />
     </NavItem>
   );
 
-  if (link) {
-    return <Link to={link}>{item}</Link>;
+  if (path) {
+    return <Link to={path}>{item}</Link>;
   }
 
   return item;
@@ -25,15 +25,15 @@ const SideNavEntry = ({ onClick, link, icon, label, className }) => {
 
 SideNavEntry.propTypes = {
   onClick: PropTypes.func.isRequired,
-  link: PropTypes.string,
+  path: PropTypes.string,
   icon: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   className: PropTypes.string,
 };
 
 SideNavEntry.defaultProps = {
   className: '',
-  link: '',
+  path: '',
 };
 
 export default SideNavEntry;

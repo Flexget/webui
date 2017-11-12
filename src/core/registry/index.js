@@ -20,6 +20,7 @@ class PluginRegistry {
 
   registerPlugin(name, {
     component,
+    children,
     routeDisplayName,
     routeIcon,
     reducer,
@@ -28,12 +29,25 @@ class PluginRegistry {
     if (!name) {
       throw Error('Plugin requires name');
     }
-    if (component) {
+    if (component || children) {
       if (!routeDisplayName || !routeIcon) {
         throw Error('Component requires routeDisplayname and routeIcon');
       }
 
-      this.routeHandler({ path: `/${name}`, component, routeDisplayName, routeIcon });
+      this.routeHandler({ path: `/${name}`, component, children, routeDisplayName, routeIcon });
+    }
+
+    if (children) {
+      children.forEach((child) => {
+        if (child.reducer) {
+          this.reducers[name] = child.reducer;
+          this.reducerHandler(this.reducers);
+        }
+
+        if (child.saga) {
+          this.sagaHandler(child.saga);
+        }
+      });
     }
 
     if (reducer) {

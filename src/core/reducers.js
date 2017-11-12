@@ -6,7 +6,7 @@ import status from 'core/status/data/reducer';
 import version from 'core/version/data/reducer';
 
 export default function createReducers(reducers) {
-  combineReducers({
+  return combineReducers({
     auth,
     form,
     routes,

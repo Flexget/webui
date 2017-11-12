@@ -9,7 +9,7 @@ function renderLayout() {
     <Layout>
       <div />
     </Layout>
-  )), { router: { location: { } }, version: {}, status: { loading: {} } });
+  )), { router: { location: { } }, version: {}, status: { loading: {} }, routes: {} });
 }
 describe('components/layout', () => {
   beforeEach(() => {

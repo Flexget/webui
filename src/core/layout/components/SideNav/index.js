@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Routes from './Routes';
+import SideNav from './SideNav';
 
 function mapStateToProps({ routes }) {
   return {
@@ -7,4 +7,4 @@ function mapStateToProps({ routes }) {
   };
 }
 
-export default connect(mapStateToProps)(Routes);
+export default connect(mapStateToProps)(SideNav);
