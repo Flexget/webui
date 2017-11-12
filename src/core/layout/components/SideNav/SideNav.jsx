@@ -10,7 +10,6 @@ import {
   NavList,
   drawerPaper,
 } from './styles';
-import sideNavItems from './items';
 
 export default class SideNav extends Component {
   static propTypes = {

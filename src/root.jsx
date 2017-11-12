@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import store from 'store';
 import history from 'core/history';
 import { JssProvider } from 'react-jss';
