@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`core/auth/components Login renders correctly when logged in 1`] = `null`;
+exports[`core/auth/components/Login Login renders correctly when logged in 1`] = `null`;
 
-exports[`core/auth/components Login renders correctly when logged out 1`] = `
+exports[`core/auth/components/Login Login renders correctly when logged out 1`] = `
 .glamor-0 {
   background: transparent url(test-file-stub) no-repeat center;
   min-height: 9rem;
@@ -182,14 +182,14 @@ exports[`core/auth/components Login renders correctly when logged out 1`] = `
 </div>
 `;
 
-exports[`core/auth/components mapStateToProps should return logged in if logged in 1`] = `
+exports[`core/auth/components/Login mapStateToProps should return logged in if logged in 1`] = `
 Object {
   "loading": false,
   "redirectToReferrer": true,
 }
 `;
 
-exports[`core/auth/components mapStateToProps should return not logged in if logged out 1`] = `
+exports[`core/auth/components/Login mapStateToProps should return not logged in if logged out 1`] = `
 Object {
   "loading": false,
   "redirectToReferrer": false,

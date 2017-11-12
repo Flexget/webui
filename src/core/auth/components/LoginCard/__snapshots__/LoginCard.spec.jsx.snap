@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`core/auth/components/LoginCard LoginCard renders correctly 1`] = `
+exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
 .glamor-5 {
   max-width: 40rem;
   margin: 0 1rem;
@@ -162,7 +162,7 @@ exports[`core/auth/components/LoginCard LoginCard renders correctly 1`] = `
 </div>
 `;
 
-exports[`core/auth/components/LoginCard mapStateToProps should return errors if there are errors 1`] = `
+exports[`core/Login/LoginCard mapStateToProps should return errors if there are errors 1`] = `
 Object {
   "errorStatus": Object {
     "message": "Invalid Credentials",
@@ -173,7 +173,7 @@ Object {
 }
 `;
 
-exports[`core/auth/components/LoginCard mapStateToProps should return no errors if there are none 1`] = `
+exports[`core/Login/LoginCard mapStateToProps should return no errors if there are none 1`] = `
 Object {
   "errorStatus": Object {},
   "initialValues": Object {
