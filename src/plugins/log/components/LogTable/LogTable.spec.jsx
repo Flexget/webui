@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { themed } from 'utils/tests';
-import { mapStateToProps, LogTable } from 'pages/Log/LogTable';
+import { mapStateToProps, LogTable } from 'plugins/log/components/LogTable';
 
 
-describe('pages/Log/LogTable', () => {
+describe('plugins/log/components/LogTable', () => {
   describe('LogTable', () => {
     it('renders correctly', () => {
       const wrapper = shallow(

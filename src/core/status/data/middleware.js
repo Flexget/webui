@@ -1,4 +1,4 @@
-import { ERROR_STATUS, INFO_STATUS } from 'store/status/actions';
+import { ERROR_STATUS, INFO_STATUS } from 'core/status/data/actions';
 
 export default store => next => (action) => {
   if (action.error && action.meta && action.payload) {

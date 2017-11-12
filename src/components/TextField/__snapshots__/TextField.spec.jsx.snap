@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`common/TextField renders correctly 1`] = `
+exports[`components/TextField renders correctly 1`] = `
 <div
   className="MuiFormControl-root-1"
   onBlur={[Function]}

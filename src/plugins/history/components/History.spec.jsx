@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { History } from 'pages/History';
+import { History } from 'plugins/history/components';
 
-describe('pages/History', () => {
+describe('plugins/history/components', () => {
   it('renders correctly', () => {
     const tree = shallow(
       <History

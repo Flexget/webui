@@ -6,7 +6,7 @@ import {
   LOG_CONNECT,
   LOG_MESSAGE,
   LOG_DISCONNECT,
-} from 'store/log/actions';
+} from 'plugins/log/data/actions';
 
 export function logStream({ lines, query }) {
   return eventChannel((emit) => {

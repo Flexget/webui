@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { GET_VERSION } from 'store/version/actions';
+import { GET_VERSION } from 'core/version/data/actions';
 import { request } from 'utils/actions';
 import Version from './Version';
 

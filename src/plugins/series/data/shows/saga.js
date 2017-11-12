@@ -3,7 +3,7 @@ import { delay } from 'redux-saga';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { action, requesting } from 'utils/actions';
 import { get } from 'utils/fetch';
-import { GET_SHOWS } from 'store/series/shows/actions';
+import { GET_SHOWS } from 'plugins/series/data/shows/actions';
 
 export const defaultOptions = {
   per_page: 10,

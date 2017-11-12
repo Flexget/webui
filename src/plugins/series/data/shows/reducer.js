@@ -1,4 +1,4 @@
-import { GET_SHOWS } from 'store/series/shows/actions';
+import { GET_SHOWS } from 'plugins/series/data/shows/actions';
 
 const initState = {
   totalCount: 0,

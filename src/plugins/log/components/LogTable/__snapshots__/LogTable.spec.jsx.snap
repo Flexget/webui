@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/Log/LogTable LogTable renders correctly 1`] = `
+exports[`plugins/log/components/LogTable LogTable renders correctly 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
@@ -406,7 +406,7 @@ ShallowWrapper {
 }
 `;
 
-exports[`pages/Log/LogTable mapStateToProps should return the right stuff 1`] = `
+exports[`plugins/log/components/LogTable mapStateToProps should return the right stuff 1`] = `
 Object {
   "messages": Array [],
 }

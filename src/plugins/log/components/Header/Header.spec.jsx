@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { mapStateToProps, Header } from 'pages/Log/Header';
+import { mapStateToProps, Header } from 'plugins/log/components/Header';
 import { themed } from 'utils/tests';
 
-describe('pages/Log/Header', () => {
+describe('plugins/log/components/Header', () => {
   describe('Header', () => {
     it('renders correctly', () => {
       const tree = renderer.create(

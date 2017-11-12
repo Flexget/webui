@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Logo from 'pages/Layout/Logo';
-import Navbar from 'pages/Layout/Navbar';
-import SideNav from 'pages/Layout/SideNav';
-import LoadingBar from 'common/LoadingBar';
-import ErrorStatus from 'common/ErrorStatus';
-import InfoStatus from 'common/InfoStatus';
+import Logo from 'core/layout/components/Logo';
+import Navbar from 'core/layout/components/Navbar';
+import SideNav from 'core/layout/components/SideNav';
+import LoadingBar from 'components/LoadingBar';
+import ErrorStatus from 'components/ErrorStatus';
+import InfoStatus from 'components/InfoStatus';
 import {
   Wrapper,
   Main,

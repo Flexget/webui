@@ -2,7 +2,7 @@ import { stringify } from 'qs';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { action, requesting } from 'utils/actions';
 import { get } from 'utils/fetch';
-import { GET_HISTORY } from 'store/history/actions';
+import { GET_HISTORY } from 'plugins/history/data/actions';
 
 export const defaultOptions = {
   page: 1,

@@ -1,9 +1,9 @@
-import reducer from 'store/history/reducer';
-import { GET_HISTORY } from 'store/history/actions';
+import reducer from 'plugins/history/data/reducer';
+import { GET_HISTORY } from 'plugins/history/data/actions';
 import { Headers } from 'utils/tests';
 
 
-describe('store/history/reducer', () => {
+describe('plugins/history/data/reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toMatchSnapshot();
   });

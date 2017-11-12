@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/Layout/Version Version renders correctly with latest version 1`] = `
+exports[`core/layout/components/Version Version renders correctly with latest version 1`] = `
 .glamor-3 {
   color: #f44336;
 }
@@ -34,7 +34,7 @@ exports[`pages/Layout/Version Version renders correctly with latest version 1`] 
 </div>
 `;
 
-exports[`pages/Layout/Version Version renders correctly without latest version 1`] = `
+exports[`core/layout/components/Version Version renders correctly without latest version 1`] = `
 .glamor-1 {
   color: #f44336;
 }
@@ -98,7 +98,7 @@ exports[`pages/Layout/Version Version renders correctly without latest version 1
 </div>
 `;
 
-exports[`pages/Layout/Version mapStateToProps should return the version 1`] = `
+exports[`core/layout/components/Version mapStateToProps should return the version 1`] = `
 Object {
   "version": Object {
     "api": "1.1.2",

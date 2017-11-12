@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Loader from 'common/Loader';
+import Loader from 'components/Loader';
 
-describe('common/Loader', () => {
+describe('components/Loader', () => {
   it('should render properly when loading', () => {
     expect(
       shallow(<Loader isLoading pastDelay />)

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import {
   GET_SHOWS,
-} from 'store/series/shows/actions';
+} from 'plugins/series/data/shows/actions';
 import { request } from 'utils/actions';
 import Series from './Series';
 

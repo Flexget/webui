@@ -1,6 +1,6 @@
-import { mapStateToProps } from 'pages/Series';
+import { mapStateToProps } from 'plugins/series/components';
 
-describe('containers/series', () => {
+describe('plugins/series/components/Series', () => {
   it('should return the right stuff', () => {
     expect(mapStateToProps({ series: {
       shows: {

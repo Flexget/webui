@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/Home/InfoCard renders correctly 1`] = `
+exports[`core/home/components/InfoCard renders correctly 1`] = `
 .glamor-3 {
   margin: 0 auto;
 }

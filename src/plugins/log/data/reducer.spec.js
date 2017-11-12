@@ -1,12 +1,12 @@
-import reducer from 'store/log/reducer';
+import reducer from 'plugins/log/data/reducer';
 import {
   LOG_CONNECT,
   LOG_MESSAGE,
   LOG_DISCONNECT,
   LOG_CLEAR,
-} from 'store/log/actions';
+} from 'plugins/log/data/actions';
 
-describe('store/log/reducer', () => {
+describe('plugins/log/data/reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toMatchSnapshot();
   });

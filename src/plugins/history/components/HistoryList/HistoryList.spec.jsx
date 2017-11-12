@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { mapStateToProps, HistoryList } from 'pages/History/HistoryList';
+import { mapStateToProps, HistoryList } from 'plugins/history/components/HistoryList';
 
-describe('pages/History/HistoryList', () => {
+describe('plugins/history/components/HistoryList', () => {
   describe('HistoryList', () => {
     it('renders correctly', () => {
       const tree = shallow(

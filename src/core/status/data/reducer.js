@@ -3,7 +3,7 @@ import {
   ERROR_STATUS,
   CLOSE_STATUS,
   INFO_STATUS,
-} from 'store/status/actions';
+} from 'core/status/data/actions';
 import { LOCATION_CHANGE } from 'connected-react-router';
 
 const initState = {

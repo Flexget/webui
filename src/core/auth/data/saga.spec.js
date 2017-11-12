@@ -2,10 +2,10 @@ import { call, put } from 'redux-saga/effects';
 import sagaHelper from 'redux-saga-testing';
 import { post } from 'utils/fetch';
 import { action } from 'utils/actions';
-import { LOGIN, LOGOUT } from 'store/auth/actions';
-import { login, logout } from 'store/auth/saga';
+import { LOGIN, LOGOUT } from 'core/auth/data/actions';
+import { login, logout } from 'core/auth/data/saga';
 
-describe('store/auth/saga', () => {
+describe('core/auth/data/saga', () => {
   describe('login', () => {
     describe('success', () => {
       const it = sagaHelper(login({

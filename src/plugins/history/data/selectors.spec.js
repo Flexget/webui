@@ -1,6 +1,6 @@
-import { getGroupedHistory } from 'store/history/selectors';
+import { getGroupedHistory } from 'plugins/history/data/selectors';
 
-describe('store/history/selectors', () => {
+describe('plugins/history/data/selectors', () => {
   describe('getGroupedHistory', () => {
     const items = [{
       time: '2017-09-10T00:21:33',

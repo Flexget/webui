@@ -1,6 +1,6 @@
-import { mapStateToProps } from 'common/InfoStatus';
+import { mapStateToProps } from 'components/InfoStatus';
 
-describe('plugins/common/InfoStatus', () => {
+describe('components/InfoStatus', () => {
   it('should be correct if an info status should be displayed', () => {
     expect(mapStateToProps({ status: { info: 'Info Status' } })).toMatchSnapshot();
   });

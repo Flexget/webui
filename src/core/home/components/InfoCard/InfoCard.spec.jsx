@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import InfoCard from 'pages/Home/InfoCard';
+import InfoCard from 'core/home/components/InfoCard';
 import { themed } from 'utils/tests';
 
-describe('pages/Home/InfoCard', () => {
+describe('core/home/components/InfoCard', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       themed(<InfoCard />),

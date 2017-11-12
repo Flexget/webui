@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Collapse from 'material-ui/transitions/Collapse';
 import Drawer from 'material-ui/Drawer';
-import SideNavEntry from 'pages/Layout/SideNavEntry';
+import SideNavEntry from 'core/layout/components/SideNavEntry';
 import {
   NestedSideNavEntry,
   DrawerInner,

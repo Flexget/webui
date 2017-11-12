@@ -11,7 +11,7 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
-import { Spacer } from 'common/styles';
+import { Spacer } from 'components/styles';
 import 'font-awesome/css/font-awesome.css';
 import {
   MenuIcon,

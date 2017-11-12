@@ -2,12 +2,12 @@ import { delay } from 'redux-saga';
 import { stringify } from 'qs';
 import { call, put } from 'redux-saga/effects';
 import sagaHelper from 'redux-saga-testing';
-import { getShows, defaultOptions } from 'store/series/shows/saga';
+import { getShows, defaultOptions } from 'plugins/series/data/shows/saga';
 import { get } from 'utils/fetch';
 import { action } from 'utils/actions';
-import { GET_SHOWS } from 'store/series/shows/actions';
+import { GET_SHOWS } from 'plugins/series/data/shows/actions';
 
-describe('store/series/shows/saga', () => {
+describe('plugins/series/data/shows/saga', () => {
   describe('getShows', () => {
     describe('success', () => {
       const it = sagaHelper(getShows());

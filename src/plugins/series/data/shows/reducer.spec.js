@@ -1,8 +1,8 @@
-import { GET_SHOWS } from 'store/series/shows/actions';
-import reducer from 'store/series/shows/reducer';
+import { GET_SHOWS } from 'plugins/series/data/shows/actions';
+import reducer from 'plugins/series/data/shows/reducer';
 import { Headers } from 'utils/tests';
 
-describe('store/series/shows/reducer', () => {
+describe('plugins/series/data/shows/reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({ totalCount: 0, items: [] });
   });

@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Layout from 'pages/Layout';
+import Layout from 'core/layout/components';
 import { themed, router, provider } from 'utils/tests';
 import fetchMock from 'fetch-mock';
 

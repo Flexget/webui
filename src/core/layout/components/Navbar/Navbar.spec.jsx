@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import { Navbar } from 'pages/Layout/Navbar';
+import { Navbar } from 'core/layout/components/Navbar';
 import { themed, router } from 'utils/tests';
 import { NavIcon } from './styles';
 
@@ -15,7 +15,7 @@ function renderNavbar(toggle, logout) {
   />));
 }
 
-describe('pages/Layout/Navbar', () => {
+describe('core/layout/components/Navbar', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       renderNavbar(jest.fn(), jest.fn())

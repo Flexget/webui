@@ -11,8 +11,9 @@ import { ConnectedRouter } from 'connected-react-router';
 import { MuiThemeProvider } from 'material-ui/styles';
 import { injectGlobal } from 'react-emotion';
 import theme from 'theme';
-import PrivateRoute from 'common/PrivateRoute';
-import Layout from 'pages/Layout';
+import PrivateRoute from 'core/routes/components/PrivateRoute';
+import Layout from 'core/layout';
+import Routes from 'core/routes';
 import { createAsyncComponent } from 'utils/loading';
 
 // eslint-disable-next-line no-unused-expressions
@@ -42,11 +43,8 @@ injectGlobal`
   }
 `;
 
-const Home = createAsyncComponent(() => import('pages/Home'));
-const Log = createAsyncComponent(() => import('pages/Log'));
-const Login = createAsyncComponent(() => import('pages/Login'));
-const Series = createAsyncComponent(() => import('pages/Series'));
-const History = createAsyncComponent(() => import('pages/History'));
+const Home = createAsyncComponent(() => import('core/home'));
+const Login = createAsyncComponent(() => import('core/auth'));
 
 const jss = create(preset());
 jss.options.createGenerateClassName = createGenerateClassName;
@@ -63,9 +61,7 @@ const Root = () => (
               <Layout>
                 <Switch>
                   <PrivateRoute path="/" exact component={Home} />
-                  <PrivateRoute path="/log" exact component={Log} />
-                  <PrivateRoute path="/series" exact component={Series} />
-                  <PrivateRoute path="/history" exact component={History} />
+                  <Routes />
                 </Switch>
               </Layout>
             </Switch>

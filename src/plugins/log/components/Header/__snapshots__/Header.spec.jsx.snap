@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/Log/Header Header renders correctly 1`] = `
+exports[`plugins/log/components/Header Header renders correctly 1`] = `
 .glamor-6 {
   display: block;
 }
@@ -127,7 +127,7 @@ exports[`pages/Log/Header Header renders correctly 1`] = `
 </div>
 `;
 
-exports[`pages/Log/Header mapStateToProps should return the right stuff 1`] = `
+exports[`plugins/log/components/Header mapStateToProps should return the right stuff 1`] = `
 Object {
   "connected": true,
 }

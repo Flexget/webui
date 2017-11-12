@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import SideNavEntry from 'pages/Layout/SideNavEntry';
+import SideNavEntry from 'core/layout/components/SideNavEntry';
 import { themed, router } from 'utils/tests';
 
-describe('pages/Layout/SideNavEntry', () => {
+describe('core/layout/components/SideNavEntry', () => {
   it('renders correctly with link', () => {
     const tree = renderer.create(
       router(themed(<SideNavEntry icon="icon" label="Test" link="/test" />)),

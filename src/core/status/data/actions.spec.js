@@ -1,6 +1,6 @@
-import { clearStatus } from 'store/status/actions';
+import { clearStatus } from 'core/status/data/actions';
 
-describe('store/status/actions', () => {
+describe('core/status/data/actions', () => {
   it('should create an action to close the status', () => {
     expect(clearStatus()).toMatchSnapshot();
   });

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import shows from 'store/series/shows/reducer';
+import shows from 'plugins/series/data/shows/reducer';
 
 export default combineReducers({
   shows,

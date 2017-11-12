@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AutoSizer, Column } from 'react-virtualized';
-import { LogShape } from 'store/log/shapes';
+import { LogShape } from 'plugins/log/data/shapes';
 import 'react-virtualized/styles.css';
 import { Table, rowClasses } from './styles';
 

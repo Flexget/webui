@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { LOGOUT } from 'store/auth/actions';
-import { SERVER_RELOAD, SERVER_SHUTDOWN } from 'store/server/actions';
+import { LOGOUT } from 'core/auth/data/actions';
+import { SERVER_RELOAD, SERVER_SHUTDOWN } from 'core/server/data/actions';
 import { request } from 'utils/actions';
 import Navbar from './Navbar';
 

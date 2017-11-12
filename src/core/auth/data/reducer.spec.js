@@ -1,10 +1,10 @@
-import reducer from 'store/auth/reducer';
+import reducer from 'core/auth/data/reducer';
 
-import { LOGIN, LOGOUT } from 'store/auth/actions';
-import { ERROR_STATUS } from 'store/status/actions';
-import { GET_VERSION } from 'store/version/actions';
+import { LOGIN, LOGOUT } from 'core/auth/data/actions';
+import { ERROR_STATUS } from 'core/status/data/actions';
+import { GET_VERSION } from 'core/version/data/actions';
 
-describe('store/auth/reducer', () => {
+describe('core/auth/data/reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toMatchSnapshot();
   });

@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { mapStateToProps, Version } from 'pages/Layout/Version';
+import { mapStateToProps, Version } from 'core/layout/components/Version';
 import { themed } from 'utils/tests';
 
-describe('pages/Layout/Version', () => {
+describe('core/layout/components/Version', () => {
   describe('Version', () => {
     it('renders correctly with latest version', () => {
       const getVersion = jest.fn();

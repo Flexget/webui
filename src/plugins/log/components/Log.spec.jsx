@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import LogPage from 'pages/Log';
+import LogPage from 'plugins/log/components';
 import { themed, provider } from 'utils/tests';
 
-describe('pages/Log', () => {
+describe('plugins/log/components', () => {
   xit('renders correctly', () => {
     jest.mock('oboe');
     const tree = renderer.create(

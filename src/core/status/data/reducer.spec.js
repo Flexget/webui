@@ -3,13 +3,13 @@ import {
   ERROR_STATUS,
   CLOSE_STATUS,
   INFO_STATUS,
-} from 'store/status/actions';
+} from 'core/status/data/actions';
 import { LOCATION_CHANGE } from 'connected-react-router';
-import reducer from 'store/status/reducer';
+import reducer from 'core/status/data/reducer';
 
 const TEST = 'TEST';
 
-describe('store/status/reducer', () => {
+describe('core/status/data/reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
       loading: {},

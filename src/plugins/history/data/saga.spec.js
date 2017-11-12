@@ -1,12 +1,12 @@
 import { stringify } from 'qs';
 import { call, put } from 'redux-saga/effects';
 import sagaHelper from 'redux-saga-testing';
-import { getHistory, defaultOptions } from 'store/history/saga';
+import { getHistory, defaultOptions } from 'plugins/history/data/saga';
 import { get } from 'utils/fetch';
 import { action } from 'utils/actions';
-import { GET_HISTORY } from 'store/history/actions';
+import { GET_HISTORY } from 'plugins/history/data/actions';
 
-describe('store/history/sagas', () => {
+describe('plugins/history/data/sagas', () => {
   describe('getHistory', () => {
     describe('success', () => {
       const it = sagaHelper(getHistory({ payload: {} }));

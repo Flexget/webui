@@ -1,8 +1,9 @@
 module.exports = {
   collectCoverageFrom: [
     'src/**/*.{js,jsx}',
-    '!src/store/*.js',
-    '!src/store/series/*.js',
+    '!src/store.js',
+    '!src/core/registry/**',
+    '!src/plugins/series/data/*.js',
     '!src/{app,history,root,theme}.{js,jsx}',
     '!src/utils/*.{js,jsx}',
     '!**/node_modules/**',

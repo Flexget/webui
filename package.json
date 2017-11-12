@@ -4,8 +4,8 @@
   "description": "Flexget Web UI",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development BABEL_ENV=development node ./server.js",
-    "build": "NODE_ENV=production BABEL_ENV=production webpack --config webpack.config.babel.js",
+    "start": "NODE_ENV=development BABEL_ENV=development babel-node ./server.js",
+    "build": "NODE_ENV=production BABEL_ENV=production webpack",
     "debug": "DEBUG=true npm run build",
     "lint": "eslint --ext .js --ext .jsx src",
     "lint:css": "stylelint './src/**/*.js'",
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Flexget/Flexget#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
@@ -86,6 +87,7 @@
     "emotion": "^8.0.6",
     "font-awesome": "^4.7.0",
     "history": "^4.7.2",
+    "invariant": "^2.2.2",
     "jss": "^8.1.0",
     "jss-preset-default": "^3.0.0",
     "loaders.css": "^0.1.2",

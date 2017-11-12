@@ -1,12 +1,12 @@
 import configureMockStore from 'redux-mock-store';
-import statusMiddleware from 'store/status/middleware';
+import statusMiddleware from 'core/status/data/middleware';
 import { action, request } from 'utils/actions';
 
 const ACTION = 'ACTION';
 const mockStore = configureMockStore([statusMiddleware]);
 const store = mockStore({});
 
-describe('store/status/middleware', () => {
+describe('core/status/data/middleware', () => {
   afterEach(() => store.clearActions());
 
   it('should dispatch LOADING_STATUS if loading', () => {

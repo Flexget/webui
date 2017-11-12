@@ -1,6 +1,6 @@
-import { mapStateToProps } from 'common/ErrorStatus';
+import { mapStateToProps } from 'components/ErrorStatus';
 
-describe('common/ErrorStatus', () => {
+describe('components/ErrorStatus', () => {
   it('should be correct if an error status should be displayed', () => {
     expect(mapStateToProps({ status: { error: 'Error Status' } })).toMatchSnapshot();
   });

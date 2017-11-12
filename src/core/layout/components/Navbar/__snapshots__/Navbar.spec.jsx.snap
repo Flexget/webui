@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/Layout/Navbar renders correctly 1`] = `
+exports[`core/layout/components/Navbar renders correctly 1`] = `
 .glamor-6 {
   position: static;
 }

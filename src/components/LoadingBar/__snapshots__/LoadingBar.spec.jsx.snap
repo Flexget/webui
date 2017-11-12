@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`common/LoadingBar Component should render properly when loading 1`] = `
+exports[`components/LoadingBar Component should render properly when loading 1`] = `
 <div
   className="MuiLinearProgress-root-1 MuiLinearProgress-accentColor-5 MuiLinearProgress-rootQuery-12"
 >
@@ -15,7 +15,7 @@ exports[`common/LoadingBar Component should render properly when loading 1`] = `
 </div>
 `;
 
-exports[`common/LoadingBar Component should render properly when not loading 1`] = `
+exports[`components/LoadingBar Component should render properly when not loading 1`] = `
 <div
   className="MuiLinearProgress-root-1 MuiLinearProgress-accentColor-5 MuiLinearProgress-rootQuery-12"
 >

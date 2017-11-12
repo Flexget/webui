@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { mapStateToProps, LoadingBar } from 'common/LoadingBar';
+import { mapStateToProps, LoadingBar } from 'components/LoadingBar';
 import { themed } from 'utils/tests';
 
-describe('common/LoadingBar', () => {
+describe('components/LoadingBar', () => {
   describe('Component', () => {
     it('should render properly when loading', () => {
       expect(

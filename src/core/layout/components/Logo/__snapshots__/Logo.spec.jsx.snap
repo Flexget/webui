@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/Layout/Logo adds logoMini class without sideBarOpen 1`] = `
+exports[`core/layout/components/Logo adds logoMini class without sideBarOpen 1`] = `
 .glamor-0 {
   background: #263238 url(test-file-stub) no-repeat center;
   background-size: 17.5rem;
@@ -27,7 +27,7 @@ exports[`pages/Layout/Logo adds logoMini class without sideBarOpen 1`] = `
 </a>
 `;
 
-exports[`pages/Layout/Logo renders correctly with sideBarOpen 1`] = `
+exports[`core/layout/components/Logo renders correctly with sideBarOpen 1`] = `
 .glamor-0 {
   background: #263238 url(test-file-stub) no-repeat center;
   background-size: 17.5rem;

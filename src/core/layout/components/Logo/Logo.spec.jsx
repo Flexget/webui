@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { themed, router } from 'utils/tests';
-import Logo from 'pages/Layout/Logo';
+import Logo from 'core/layout/components/Logo';
 
-describe('pages/Layout/Logo', () => {
+describe('core/layout/components/Logo', () => {
   it('renders correctly with sideBarOpen', () => {
     const tree = renderer.create(
       router(themed(<Logo sideBarOpen />)),
