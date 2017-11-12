@@ -14,7 +14,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       webpack: {
-        config: 'webpack.shared.js'
+        config: 'webpack.config.js'
       }
     }
   },
