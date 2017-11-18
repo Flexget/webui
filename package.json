@@ -1,6 +1,6 @@
 {
   "name": "flexget",
-  "version": "1.0.0",
+  "version": "2.0.0-beta.0",
   "description": "Flexget Web UI",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,9 @@
     "lint:css": "stylelint './src/**/*.js'",
     "test": "jest",
     "test:watch": "jest --watch",
-    "cov": "cat coverage/lcov.info | codacy-coverage"
+    "cov": "cat coverage/lcov.info | codacy-coverage",
+    "release:bump": "babel-node --presets env ./scripts/bump-version.js",
+    "release": "./scripts/release.sh"
   },
   "repository": {
     "type": "git",
@@ -111,6 +113,7 @@
     "redux-form": "^7.1.1",
     "redux-saga": "^0.15.6",
     "reselect": "^3.0.1",
+    "semver": "^5.4.1",
     "semver-compare": "^1.0.0",
     "styled-components": "^2.2.1",
     "typeface-roboto": "0.0.22",

@@ -33,10 +33,15 @@ jobs:
       - store_test_results:
           path: ~/junit
 
-  build:
+  deploy:
     docker:
       - image: circleci/node:8.7.0
     steps:
+      - run:
+          name: Setup Git
+          command: |
+            git config --global user.email ${GIT_EMAIL}
+            git config --global user.name ${GIT_USERNAME}
       - checkout
       - restore_cache:
           keys:
@@ -53,9 +58,12 @@ jobs:
       - run:
           name: Run Build
           command: npm run build
-      -  run:
+      - run:
           name: Zip Dist folder
           command: zip -r /tmp/dist.zip ./dist
+      - run:
+          name: Release
+          command: npm run release
       - store-artifacts:
           path: /tmp/dist.zip
 
@@ -64,7 +72,7 @@ workflows:
 
   run-tests:
     jobs:
-      - "test"
+      - test
 
   auto-test-build:
     triggers:
@@ -75,9 +83,10 @@ workflows:
               only:
                 - develop
     jobs:
-      - build:
+      - test
+      - deploy:
           requires:
-            - "test"
+            - test
 
 
 notify:
