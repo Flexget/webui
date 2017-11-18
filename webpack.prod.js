@@ -11,9 +11,11 @@ config.output = {
   filename: '[name].[chunkhash].js',
   publicPath: '/v2/assets/',
 };
+config.devtool = 'source-map';
 config.plugins = [
   new FaviconsWebpackPlugin(path.resolve('./src/favicon.png')),
   new webpack.DefinePlugin({
+    __DEV__: false,
     'process.env': {
       NODE_ENV: JSON.stringify('production'),
     },

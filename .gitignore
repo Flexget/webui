@@ -63,3 +63,4 @@ typings/
 dist/
 
 junit.xml
+jsconfig.json

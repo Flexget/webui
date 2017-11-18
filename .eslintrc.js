@@ -18,6 +18,9 @@ module.exports = {
       }
     }
   },
+  globals: {
+    __DEV__: true,
+  },
   rules: {
     'react/forbid-prop-types': 'off',
     'react/jsx-no-bind': 'off',

@@ -14,13 +14,14 @@ config.output = {
   filename: '[name].bundle.js',
   publicPath: '/',
 };
-config.devtool = 'source-map';
+config.devtool = 'cheap-source-map';
 config.plugins = [
   new FaviconsWebpackPlugin(path.resolve('./src/favicon.png')),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoEmitOnErrorsPlugin(),
   new webpack.NamedModulesPlugin(),
   new webpack.DefinePlugin({
+    __DEV__: true,
     'process.env': {
       NODE_ENV: JSON.stringify('development'),
     },
