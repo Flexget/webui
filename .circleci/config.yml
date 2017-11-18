@@ -37,6 +37,7 @@ jobs:
     docker:
       - image: circleci/node:8.7.0
     steps:
+      - add-ssh-keys
       - run:
           name: Setup Git
           command: |
