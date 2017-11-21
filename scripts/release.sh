@@ -8,7 +8,7 @@ set -x
 
 if git log origin/master..origin/develop|grep '^commit '; then
   # Bump the current release version
-  VERSION=$(npm run release:bump -- release)
+  VERSION=$(npm run release:bump --silent -- release)
 
   # Create the current release
   git add package.json
