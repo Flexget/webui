@@ -1,7 +1,13 @@
-#! /bin/bash
+#!/bin/bash
+
+# Exit if any command fails
+set -e
+
+# Show commands executing
+set -x
 
 if git log origin/master..origin/develop|grep '^commit '; then
-  # Bunpt the current release version
+  # Bump the current release version
   VERSION=$(npm run release:bump -- release)
 
   # Create the current release
