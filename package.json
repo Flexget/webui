@@ -13,6 +13,7 @@
     "test:watch": "jest --watch",
     "cov": "cat coverage/lcov.info | codacy-coverage",
     "release:bump": "babel-node --presets env ./scripts/bump-version.js",
+    "release:upload": "babel-node --presets env ./scripts/create-release.js",
     "release": "./scripts/release.sh"
   },
   "repository": {
@@ -54,6 +55,7 @@
     "favicons-webpack-plugin": "0.0.7",
     "fetch-mock": "^5.13.1",
     "file-loader": "^0.11.2",
+    "github": "^12.0.3",
     "html-loader": "^0.4.5",
     "html-webpack-plugin": "^2.30.1",
     "identity-obj-proxy": "^3.0.0",

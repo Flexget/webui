@@ -3,12 +3,9 @@
 # Exit if any command fails
 set -e
 
-# Show commands executing
-set -x
-
 if git log origin/master..origin/develop|grep '^commit '; then
   # Bump the current release version
-  VERSION=$(npm run release:bump --silent -- release)
+  VERSION=$(npm run release:bump -- release)
 
   # Create the current release
   git add package.json
@@ -24,6 +21,7 @@ if git log origin/master..origin/develop|grep '^commit '; then
   git branch -f master $VERSION
   git push origin master develop
   git push --tags
+  npm run release:upload
 else
   echo "No commits, skipping release"
 fi
