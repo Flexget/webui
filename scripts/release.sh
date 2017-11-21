@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if git log origin/master..origin/develop|grep '^commit '; then
+if git log --skip 1 origin/master..origin/develop|grep '^commit '; then
   # Bump the current release version
   VERSION=$(npm run release:bump --silent -- release)
 
@@ -19,7 +19,7 @@ if git log origin/master..origin/develop|grep '^commit '; then
   git push origin master develop
   git push --tags
   if [ $? -eq 0 ]; then
-    npm run release:upload
+    npm run release:upload -- $VERSION
   fi
 else
   echo "No commits, skipping release"
