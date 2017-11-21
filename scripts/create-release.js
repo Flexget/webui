@@ -1,6 +1,8 @@
 import GitHubApi from 'github';
 const github = new GitHubApi();
 
+const args = process.argv.slice(2);
+
 github.authenticate({
   type: 'token',
   token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
@@ -9,8 +11,8 @@ github.authenticate({
 github.repos.createRelease({
   owner: 'Flexget',
   repo: 'webui',
-  tag_name: `v${process.env.VERSION}`,
-  prerelease: process.env.VERSION.includes('beta'),
+  tag_name: args[0],
+  prerelease: false,
 }).then(result => {
   const id = result.data.id;
 
@@ -19,7 +21,7 @@ github.repos.createRelease({
     token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
   });
 
-  github.uploadAssets({
+  github.repos.uploadAsset({
     owner: 'Flexget',
     repo: 'webui',
     id,
