@@ -10,12 +10,12 @@ export default function reducer(state = initState, { payload, type }) {
     case actions.GET_LISTS:
       return {
         ...state,
-        lists: payload,
+        lists: payload.lists,
       };
     case actions.ADD_LIST:
       return {
         ...state,
-        lists: [...state.lists, payload],
+        lists: [...state.lists, payload.list],
       };
     case actions.REMOVE_LIST:
       return {

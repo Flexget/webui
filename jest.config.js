@@ -2,9 +2,13 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{js,jsx}',
     '!src/store.js',
+    '!src/core/reducers.js',
+    '!src/core/sagas.js',
+    '!src/core/history/**',
+    '!src/core/routes/**',
     '!src/core/registry/**',
     '!src/plugins/series/data/*.js',
-    '!src/{app,history,root,theme}.{js,jsx}',
+    '!src/{app,root,theme}.{js,jsx}',
     '!src/utils/*.{js,jsx}',
     '!**/node_modules/**',
     '!**/dist/**',
@@ -12,7 +16,6 @@ module.exports = {
   ],
   coverageThreshold: {
     global: {
-      branches: 40,
       functions: 40,
       lines: 40,
       statements: 40,
