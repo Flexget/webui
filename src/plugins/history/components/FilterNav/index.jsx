@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
-import Select from 'material-ui/Select';
-import Input, { InputLabel } from 'material-ui/Input';
+import Input from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import SecondaryNav from 'components/SecondaryNav';
 import { Spacer } from 'components/styles';
-import { RotatingIcon, PaddedFormControl } from './styles';
+import { RotatingIcon, PaddedTextField } from './styles';
 
 const ENTER_KEY = 13;
 const groupByFields = [
@@ -89,43 +88,37 @@ class FilterNav extends Component {
 
     return (
       <SecondaryNav>
-        <PaddedFormControl>
-          <InputLabel htmlFor="task-filter">
-            Filter By Task
-          </InputLabel>
-          <Input
-            id="task-filter"
-            placeholder="Task Name"
-            value={task}
-            onChange={this.handleChange}
-            onKeyPress={this.handleKeyPress}
-          />
-        </PaddedFormControl>
+        <PaddedTextField
+          label="Filter By Task"
+          id="task-filter"
+          placeholder="Task Name"
+          value={task}
+          onChange={this.handleChange}
+          onKeyPress={this.handleKeyPress}
+        />
         <Spacer />
-        <PaddedFormControl>
-          <InputLabel htmlFor="sort-by">Sort By</InputLabel>
-          <Select
-            value={sort}
-            onChange={handleChange('sort')}
-            input={<Input id="sort-by" />}
-          >
-            {sortByFields.map(({ value, label }) => (
-              <MenuItem value={value} key={value}>{label}</MenuItem>
-            ))}
-          </Select>
-        </PaddedFormControl>
-        <PaddedFormControl>
-          <InputLabel htmlFor="group-by">Group By</InputLabel>
-          <Select
-            value={grouping}
-            onChange={handleChange('grouping')}
-            input={<Input id="group-by" />}
-          >
-            {groupByFields.map(({ value, label }) => (
-              <MenuItem value={value} key={value}>{label}</MenuItem>
-            ))}
-          </Select>
-        </PaddedFormControl>
+        <PaddedTextField
+          id="sort-by"
+          select
+          label="Sort By"
+          value={sort}
+          onChange={handleChange('sort')}
+        >
+          {sortByFields.map(({ value, label }) => (
+            <MenuItem value={value} key={value}>{label}</MenuItem>
+          ))}
+        </PaddedTextField>
+        <PaddedTextField
+          id="group-by"
+          label="Group By"
+          select
+          value={grouping}
+          onChange={handleChange('grouping')}
+        >
+          {groupByFields.map(({ value, label }) => (
+            <MenuItem value={value} key={value}>{label}</MenuItem>
+          ))}
+        </PaddedTextField>
         <IconButton color="inherit" onClick={toggleOrder}>
           <RotatingIcon rotate={order === 'desc'} className="fa fa-chevron-up" />
         </IconButton>

@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 import Icon from 'material-ui/Icon';
-import { FormControl } from 'material-ui/Form';
+import TextField from 'material-ui/TextField';
 import theme from 'theme';
 
 export const RotatingIcon = styled(Icon)`
@@ -8,6 +8,6 @@ export const RotatingIcon = styled(Icon)`
   transform: ${({ rotate }) => rotate && 'rotate(180deg)'};
 `;
 
-export const PaddedFormControl = styled(FormControl)`
+export const PaddedTextField = styled(TextField)`
   margin: 0.5rem 2rem 0.5rem;
 `;
