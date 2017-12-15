@@ -27,7 +27,10 @@ export default function reducer(state = initState, { payload, type }) {
         ...state,
         entries: {
           ...state.entries,
-          [payload.listId]: payload.entries,
+          [payload.listId]: {
+            totalCount: payload.headers.get('total-count'),
+            items: payload.refresh ? payload.entries : [...state.items, ...payload.entries],
+          },
         },
       };
     case actions.ADD_ENTRY:
@@ -35,10 +38,11 @@ export default function reducer(state = initState, { payload, type }) {
         ...state,
         entries: {
           ...state.entries,
-          [payload.listId]: [
-            ...state.entries[payload.listId],
-            payload.entry,
-          ],
+          [payload.listId]: {
+            totalCount: state.entries[payload.listId].totalCount + 1,
+            // This isn't going to work right with pagination...will figure it out later
+            items: [payload.entry, ...state.entries[payload.listId].items],
+          },
         },
       };
     case actions.REMOVE_ENTRY:
@@ -46,7 +50,10 @@ export default function reducer(state = initState, { payload, type }) {
         ...state,
         entries: {
           ...state.entries,
-          [payload.listId]: state.entries[payload.listId].filter(item => item.id === payload.id),
+          [payload.listId]: {
+            totalCount: state.entries[payload.listId].totalCount - 1,
+            items: state.entries[payload.listId].items.filter(item => item.id === payload.id),
+          },
         },
       };
     case actions.REJECT_ENTRY:
@@ -55,12 +62,15 @@ export default function reducer(state = initState, { payload, type }) {
         ...state,
         entries: {
           ...state.entries,
-          [payload.listId]: state.entries[payload.listId].map((item) => {
-            if (item.id === payload.entry.id) {
-              return payload.entry;
-            }
-            return item;
-          }),
+          [payload.listId]: {
+            ...state.entries[payload.listId],
+            items: state.entries[payload.listId].items.map((item) => {
+              if (item.id === payload.entry.id) {
+                return payload.entry;
+              }
+              return item;
+            }),
+          },
         },
       };
     default:

@@ -18,10 +18,12 @@ import { createAsyncComponent } from 'utils/loading';
 import registerHistory from 'plugins/history';
 import registerLog from 'plugins/log';
 import registerSeries from 'plugins/series';
+import registerPendingList from 'plugins/pending-list';
 
 registerHistory();
 registerLog();
 registerSeries();
+registerPendingList();
 
 // eslint-disable-next-line no-unused-expressions
 injectGlobal`

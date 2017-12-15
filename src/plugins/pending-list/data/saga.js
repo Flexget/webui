@@ -1,3 +1,4 @@
+import { stringify } from 'qs';
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { action, requesting } from 'utils/actions';
 import * as fetch from 'utils/fetch';
@@ -32,12 +33,20 @@ export function* removeList({ payload }) {
   }
 }
 
+export const getEntriesOptions = {
+  page: 1,
+  sort_by: 'added',
+  order: 'desc',
+};
+
 export function* getEntries({ payload }) {
-  const { listId } = payload;
+  const { listId, params } = payload;
+  const query = { ...getEntriesOptions, ...params };
+  const refresh = query.page === 1;
 
   try {
-    const { data } = yield call(fetch.get, `/pending_list/${listId}/entries`);
-    yield put(action(actions.GET_ENTRIES, { listId, entries: data }));
+    const { data, headers } = yield call(fetch.get, `/pending_list/${listId}/entries?${stringify(query)}`);
+    yield put(action(actions.GET_ENTRIES, { listId, entries: data, refresh, headers }));
   } catch (err) {
     yield put(action(actions.GET_ENTRIES, err));
   }
