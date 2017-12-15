@@ -8,6 +8,9 @@ export default createMuiTheme({
     secondary: blueGrey,
     type: 'light',
   },
+  typography: {
+    htmlFontSize: 10,
+  },
 });
 
 export const darkTheme = createMuiTheme({
@@ -15,5 +18,8 @@ export const darkTheme = createMuiTheme({
     primary: orange,
     secondary: blueGrey,
     type: 'dark',
+  },
+  typography: {
+    htmlFontSize: 10,
   },
 });

@@ -95,7 +95,7 @@
     "jss": "^8.1.0",
     "jss-preset-default": "^3.0.0",
     "loaders.css": "^0.1.2",
-    "material-ui": "1.0.0-beta.13",
+    "material-ui": "1.0.0-beta.23",
     "normalize.css": "^7.0.0",
     "oboe": "^2.1.4",
     "prop-types": "^15.6.0",

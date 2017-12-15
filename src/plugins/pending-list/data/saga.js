@@ -101,8 +101,8 @@ export default function* saga() {
   yield takeEvery(requesting(actions.ADD_LIST), addList);
   yield takeEvery(requesting(actions.REMOVE_LIST), removeList);
   yield takeLatest(requesting(actions.GET_ENTRIES), getEntries);
-  yield takeEvery(requesting(actions.ADD_ENTRY, addEntry));
-  yield takeEvery(requesting(actions.REMOVE_ENTRY, removeEntry));
-  yield takeEvery(requesting(actions.APPROVE_ENTRY, approveEntry));
-  yield takeEvery(requesting(actions.REJECT_ENTRY, rejectEntry));
+  yield takeEvery(requesting(actions.ADD_ENTRY), addEntry);
+  yield takeEvery(requesting(actions.REMOVE_ENTRY), removeEntry);
+  yield takeEvery(requesting(actions.APPROVE_ENTRY), approveEntry);
+  yield takeEvery(requesting(actions.REJECT_ENTRY), rejectEntry);
 }
