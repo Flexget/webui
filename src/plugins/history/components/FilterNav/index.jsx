@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
-import Input from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import SecondaryNav from 'components/SecondaryNav';
 import { Spacer } from 'components/styles';
