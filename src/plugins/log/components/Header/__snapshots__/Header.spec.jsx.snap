@@ -76,6 +76,11 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
     />
     <div
       className="MuiFormControl-root-32 glamor-3"
+      inputProps={
+        Object {
+          "onKeyPress": [Function],
+        }
+      }
       onBlur={[Function]}
       onFocus={[Function]}
       required={false}
@@ -88,21 +93,20 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
         Filter
       </label>
       <div
-        className="MuiInput-root-46 MuiInput-formControl-47 MuiInput-inkbar-48 MuiInput-underline-54"
+        className="MuiInput-root-46 MuiInput-formControl-47 MuiInput-inkbar-48 MuiInput-underline-52"
         onBlur={[Function]}
         onFocus={[Function]}
       >
         <input
           autoComplete={undefined}
           autoFocus={undefined}
-          className="MuiInput-input-50 MuiInput-inputSingleline-57"
+          className="MuiInput-input-55 MuiInput-inputSingleline-58"
           defaultValue={undefined}
           disabled={false}
           id="filter"
           name={undefined}
           onChange={[Function]}
           onKeyDown={undefined}
-          onKeyPress={[Function]}
           onKeyUp={undefined}
           placeholder={undefined}
           readOnly={undefined}

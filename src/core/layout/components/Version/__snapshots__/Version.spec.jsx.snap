@@ -72,6 +72,7 @@ exports[`core/layout/components/Version Version renders correctly without latest
       onMouseLeave={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
+      onTouchMove={[Function]}
       onTouchStart={[Function]}
       tabIndex={0}
     >

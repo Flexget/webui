@@ -64,14 +64,14 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
           Username
         </label>
         <div
-          className="MuiInput-root-43 MuiInput-formControl-44 MuiInput-inkbar-45 MuiInput-underline-51"
+          className="MuiInput-root-43 MuiInput-formControl-44 MuiInput-inkbar-45 MuiInput-underline-49"
           onBlur={[Function]}
           onFocus={[Function]}
         >
           <input
             autoComplete={undefined}
             autoFocus={undefined}
-            className="MuiInput-input-47 MuiInput-inputSingleline-54"
+            className="MuiInput-input-52 MuiInput-inputSingleline-55"
             defaultValue={undefined}
             disabled={false}
             id="username"
@@ -104,14 +104,14 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
           Password
         </label>
         <div
-          className="MuiInput-root-43 MuiInput-formControl-44 MuiInput-inkbar-45 MuiInput-underline-51"
+          className="MuiInput-root-43 MuiInput-formControl-44 MuiInput-inkbar-45 MuiInput-underline-49"
           onBlur={[Function]}
           onFocus={[Function]}
         >
           <input
             autoComplete={undefined}
             autoFocus={undefined}
-            className="MuiInput-input-47 MuiInput-inputSingleline-54"
+            className="MuiInput-input-52 MuiInput-inputSingleline-55"
             defaultValue={undefined}
             disabled={false}
             id="password"
@@ -133,7 +133,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
       className="MuiCardActions-root-58"
     >
       <button
-        className="MuiButtonBase-root-74 MuiButton-root-60 MuiCardActions-actionSpacing-59 glamor-4"
+        className="MuiButtonBase-root-75 MuiButton-root-60 MuiCardActions-action-59 glamor-4"
         disabled={false}
         onBlur={[Function]}
         onFocus={[Function]}
@@ -143,6 +143,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
         onMouseLeave={[Function]}
         onMouseUp={[Function]}
         onTouchEnd={[Function]}
+        onTouchMove={[Function]}
         onTouchStart={[Function]}
         role="button"
         tabIndex={0}
@@ -154,7 +155,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
           Login
         </span>
         <span
-          className="MuiTouchRipple-root-76"
+          className="MuiTouchRipple-root-77"
         />
       </button>
     </div>

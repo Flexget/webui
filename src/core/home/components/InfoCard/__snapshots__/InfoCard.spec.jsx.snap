@@ -30,25 +30,25 @@ exports[`core/home/components/InfoCard renders correctly 1`] = `
   className="MuiPaper-root-1 MuiPaper-shadow2-5 MuiPaper-rounded-2 glamor-3"
 >
   <div
-    className="MuiCardContent-root-33 MuiCardHeader-root-28 glamor-0"
+    className="MuiCardContent-root-34 MuiCardHeader-root-28 glamor-0"
   >
     <div
-      className="MuiCardHeader-content-30"
+      className="MuiCardHeader-content-31"
     >
       <span
-        className="MuiTypography-root-34 MuiTypography-headline-39 MuiCardHeader-title-31"
+        className="MuiTypography-root-35 MuiTypography-headline-40 MuiCardHeader-title-32"
       >
         Flexget Web Interface
       </span>
       <span
-        className="MuiTypography-root-34 MuiTypography-body1-43 MuiTypography-colorSecondary-55 MuiCardHeader-subheader-32"
+        className="MuiTypography-root-35 MuiTypography-body1-44 MuiTypography-colorSecondary-56 MuiCardHeader-subheader-33"
       >
         Under Development
       </span>
     </div>
   </div>
   <div
-    className="MuiCardContent-root-33"
+    className="MuiCardContent-root-34"
   >
     <p
       className="glamor-1"
@@ -91,11 +91,11 @@ exports[`core/home/components/InfoCard renders correctly 1`] = `
     </p>
   </div>
   <div
-    className="MuiCardActions-root-58 glamor-2"
+    className="MuiCardActions-root-59 glamor-2"
   >
     <a
       aria-label="Github"
-      className="MuiButtonBase-root-69 MuiIconButton-root-60 MuiCardActions-actionSpacing-59"
+      className="MuiButtonBase-root-70 MuiIconButton-root-61 MuiCardActions-action-60"
       href="https://github.com/Flexget/Flexget"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -105,26 +105,27 @@ exports[`core/home/components/InfoCard renders correctly 1`] = `
       onMouseLeave={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
+      onTouchMove={[Function]}
       onTouchStart={[Function]}
       rel="noopener noreferrer"
       tabIndex={0}
       target="_blank"
     >
       <span
-        className="MuiIconButton-label-66"
+        className="MuiIconButton-label-67"
       >
         <span
           aria-hidden="true"
-          className="material-icons MuiIcon-root-71 MuiIconButton-icon-67 fa fa-github"
+          className="material-icons MuiIcon-root-72 MuiIconButton-icon-68 fa fa-github"
         />
       </span>
       <span
-        className="MuiTouchRipple-root-78"
+        className="MuiTouchRipple-root-79"
       />
     </a>
     <a
       aria-label="Flexget.com"
-      className="MuiButtonBase-root-69 MuiIconButton-root-60 MuiCardActions-actionSpacing-59"
+      className="MuiButtonBase-root-70 MuiIconButton-root-61 MuiCardActions-action-60"
       href="https://flexget.com"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -134,26 +135,27 @@ exports[`core/home/components/InfoCard renders correctly 1`] = `
       onMouseLeave={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
+      onTouchMove={[Function]}
       onTouchStart={[Function]}
       rel="noopener noreferrer"
       tabIndex={0}
       target="_blank"
     >
       <span
-        className="MuiIconButton-label-66"
+        className="MuiIconButton-label-67"
       >
         <span
           aria-hidden="true"
-          className="material-icons MuiIcon-root-71 MuiIconButton-icon-67 fa fa-home"
+          className="material-icons MuiIcon-root-72 MuiIconButton-icon-68 fa fa-home"
         />
       </span>
       <span
-        className="MuiTouchRipple-root-78"
+        className="MuiTouchRipple-root-79"
       />
     </a>
     <a
       aria-label="Gitter"
-      className="MuiButtonBase-root-69 MuiIconButton-root-60 MuiCardActions-actionSpacing-59"
+      className="MuiButtonBase-root-70 MuiIconButton-root-61 MuiCardActions-action-60"
       href="https://gitter.im/Flexget/Flexget"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -163,26 +165,27 @@ exports[`core/home/components/InfoCard renders correctly 1`] = `
       onMouseLeave={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
+      onTouchMove={[Function]}
       onTouchStart={[Function]}
       rel="noopener noreferrer"
       tabIndex={0}
       target="_blank"
     >
       <span
-        className="MuiIconButton-label-66"
+        className="MuiIconButton-label-67"
       >
         <span
           aria-hidden="true"
-          className="material-icons MuiIcon-root-71 MuiIconButton-icon-67 fa fa-comment"
+          className="material-icons MuiIcon-root-72 MuiIconButton-icon-68 fa fa-comment"
         />
       </span>
       <span
-        className="MuiTouchRipple-root-78"
+        className="MuiTouchRipple-root-79"
       />
     </a>
     <a
       aria-label="Forum"
-      className="MuiButtonBase-root-69 MuiIconButton-root-60 MuiCardActions-actionSpacing-59"
+      className="MuiButtonBase-root-70 MuiIconButton-root-61 MuiCardActions-action-60"
       href="https://discuss.flexget.com"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -192,21 +195,22 @@ exports[`core/home/components/InfoCard renders correctly 1`] = `
       onMouseLeave={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
+      onTouchMove={[Function]}
       onTouchStart={[Function]}
       rel="noopener noreferrer"
       tabIndex={0}
       target="_blank"
     >
       <span
-        className="MuiIconButton-label-66"
+        className="MuiIconButton-label-67"
       >
         <span
           aria-hidden="true"
-          className="material-icons MuiIcon-root-71 MuiIconButton-icon-67 fa fa-forumbee"
+          className="material-icons MuiIcon-root-72 MuiIconButton-icon-68 fa fa-forumbee"
         />
       </span>
       <span
-        className="MuiTouchRipple-root-78"
+        className="MuiTouchRipple-root-79"
       />
     </a>
   </div>

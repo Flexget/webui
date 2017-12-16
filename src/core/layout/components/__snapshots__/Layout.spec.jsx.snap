@@ -163,7 +163,7 @@ exports[`components/layout renders correctly 1`] = `
   }
 }
 
-@media (max-width:599.99px) {
+@media (max-width:599.95px) {
   .glamor-19 {
     margin-left: 0;
     opacity: 1;
@@ -211,6 +211,7 @@ exports[`components/layout renders correctly 1`] = `
             onMouseLeave={[Function]}
             onMouseUp={[Function]}
             onTouchEnd={[Function]}
+            onTouchMove={[Function]}
             onTouchStart={[Function]}
             role="button"
             tabIndex={0}
@@ -250,6 +251,7 @@ exports[`components/layout renders correctly 1`] = `
               onMouseLeave={[Function]}
               onMouseUp={[Function]}
               onTouchEnd={[Function]}
+              onTouchMove={[Function]}
               onTouchStart={[Function]}
               role="button"
               tabIndex={0}
@@ -284,6 +286,7 @@ exports[`components/layout renders correctly 1`] = `
               onMouseLeave={[Function]}
               onMouseUp={[Function]}
               onTouchEnd={[Function]}
+              onTouchMove={[Function]}
               onTouchStart={[Function]}
               role="button"
               tabIndex={0}
@@ -315,6 +318,7 @@ exports[`components/layout renders correctly 1`] = `
             onMouseLeave={[Function]}
             onMouseUp={[Function]}
             onTouchEnd={[Function]}
+            onTouchMove={[Function]}
             onTouchStart={[Function]}
             role="button"
             tabIndex={0}
@@ -346,13 +350,13 @@ exports[`components/layout renders correctly 1`] = `
         className="MuiDrawer-docked-97"
       >
         <div
-          className="MuiPaper-root-8 MuiPaper-shadow0-10 MuiDrawer-paper-98 glamor-17 MuiDrawer-paperAnchorDockedLeft-103"
+          className="MuiPaper-root-8 MuiPaper-shadow0-10 MuiDrawer-paper-98 glamor-17 MuiDrawer-paperAnchorLeft-99 MuiDrawer-paperAnchorDockedLeft-103"
         >
           <div
             className="glamor-16"
           >
             <ul
-              className="MuiList-root-106 MuiList-padding-107 glamor-11"
+              className="MuiList-root-108 MuiList-padding-109 glamor-11"
             />
             <div
               className="glamor-15"

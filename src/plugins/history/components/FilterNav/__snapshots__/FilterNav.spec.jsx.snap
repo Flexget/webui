@@ -36,6 +36,7 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       className="MuiFormControl-root-37 glamor-0"
       onBlur={[Function]}
       onFocus={[Function]}
+      onKeyPress={[Function]}
       required={false}
     >
       <label
@@ -46,15 +47,14 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
         Filter By Task
       </label>
       <div
-        className="MuiInput-root-51 MuiInput-formControl-52 MuiInput-inkbar-53 MuiInput-underline-59"
+        className="MuiInput-root-51 MuiInput-formControl-52 MuiInput-inkbar-53 MuiInput-underline-57"
         onBlur={[Function]}
         onFocus={[Function]}
-        onKeyPress={[Function]}
       >
         <input
           autoComplete={undefined}
           autoFocus={undefined}
-          className="MuiInput-input-55 MuiInput-inputSingleline-62"
+          className="MuiInput-input-60 MuiInput-inputSingleline-63"
           defaultValue={undefined}
           disabled={false}
           id="task-filter"
@@ -88,7 +88,7 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
         Sort By
       </label>
       <div
-        className="MuiInput-root-51 MuiInput-formControl-52 MuiInput-inkbar-53 MuiInput-underline-59"
+        className="MuiInput-root-51 MuiInput-formControl-52 MuiInput-inkbar-53 MuiInput-underline-57"
         onBlur={[Function]}
         onFocus={[Function]}
       >
@@ -99,7 +99,7 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
             aria-haspopup="true"
             aria-owns={null}
             aria-pressed="false"
-            className="MuiSelect-select-67 MuiSelect-selectMenu-68 MuiInput-input-55 MuiInput-inputSingleline-62"
+            className="MuiSelect-select-67 MuiSelect-selectMenu-68 MuiInput-input-60 MuiInput-inputSingleline-63"
             onBlur={[Function]}
             onClick={[Function]}
             onFocus={undefined}
@@ -151,7 +151,7 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
         Group By
       </label>
       <div
-        className="MuiInput-root-51 MuiInput-formControl-52 MuiInput-inkbar-53 MuiInput-underline-59"
+        className="MuiInput-root-51 MuiInput-formControl-52 MuiInput-inkbar-53 MuiInput-underline-57"
         onBlur={[Function]}
         onFocus={[Function]}
       >
@@ -162,7 +162,7 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
             aria-haspopup="true"
             aria-owns={null}
             aria-pressed="false"
-            className="MuiSelect-select-67 MuiSelect-selectMenu-68 MuiInput-input-55 MuiInput-inputSingleline-62"
+            className="MuiSelect-select-67 MuiSelect-selectMenu-68 MuiInput-input-60 MuiInput-inputSingleline-63"
             onBlur={[Function]}
             onClick={[Function]}
             onFocus={undefined}
@@ -201,7 +201,7 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       </div>
     </div>
     <button
-      className="MuiButtonBase-root-85 MuiIconButton-root-76 MuiIconButton-colorInherit-80"
+      className="MuiButtonBase-root-91 MuiIconButton-root-82 MuiIconButton-colorInherit-86"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
@@ -212,22 +212,23 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       onMouseLeave={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
+      onTouchMove={[Function]}
       onTouchStart={[Function]}
       role="button"
       tabIndex={0}
       type="button"
     >
       <span
-        className="MuiIconButton-label-82"
+        className="MuiIconButton-label-88"
       >
         <span
           aria-hidden="true"
-          className="material-icons MuiIcon-root-87 fa fa-chevron-up glamor-4"
+          className="material-icons MuiIcon-root-93 fa fa-chevron-up glamor-4"
           rotate={false}
         />
       </span>
       <span
-        className="MuiTouchRipple-root-94"
+        className="MuiTouchRipple-root-100"
       />
     </button>
   </div>
