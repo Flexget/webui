@@ -94,6 +94,7 @@
     "connected-react-router": "^4.2.3",
     "emotion": "^8.0.6",
     "history": "^4.7.2",
+    "humps": "^2.0.1",
     "invariant": "^2.2.2",
     "jss": "^8.1.0",
     "jss-preset-default": "^3.0.0",

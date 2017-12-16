@@ -4,12 +4,10 @@ import TabList from './TabList';
 
 export default class PendingList extends PureComponent {
   state = {
-    listId: null,
+    listId: false,
   }
 
-  selectList(listId) {
-    this.setState({ listId });
-  }
+  selectList = listId => this.setState({ listId })
 
   render() {
     const { listId } = this.state;

@@ -23,6 +23,7 @@ export const LoginCard = ({ handleSubmit, errorStatus }) => (
           component={TextField}
           id="username"
           label="Username"
+          autoFocus
         />
         <LoginField
           name="password"

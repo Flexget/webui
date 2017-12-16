@@ -1,3 +1,5 @@
+import { camelize } from 'humps';
+
 class PluginRegistry {
   constructor() {
     this.reducers = {};
@@ -40,7 +42,7 @@ class PluginRegistry {
     if (children) {
       children.forEach((child) => {
         if (child.reducer) {
-          this.reducers[name] = child.reducer;
+          this.reducers[camelize(name)] = child.reducer;
           this.reducerHandler(this.reducers);
         }
 
@@ -51,7 +53,7 @@ class PluginRegistry {
     }
 
     if (reducer) {
-      this.reducers[name] = reducer;
+      this.reducers[camelize(name)] = reducer;
       this.reducerHandler(this.reducers);
     }
 

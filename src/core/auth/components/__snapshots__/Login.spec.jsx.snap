@@ -89,7 +89,7 @@ exports[`core/auth/components/Login Login renders correctly when logged out 1`] 
           >
             <input
               autoComplete={undefined}
-              autoFocus={undefined}
+              autoFocus={true}
               className="MuiInput-input-52 MuiInput-inputSingleline-55"
               defaultValue={undefined}
               disabled={false}

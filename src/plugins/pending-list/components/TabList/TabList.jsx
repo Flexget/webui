@@ -5,17 +5,22 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 import SecondaryNav from 'components/SecondaryNav';
 import { ListShape } from 'plugins/pending-list/data/shapes';
+import AddListDialog from '../AddListDialog';
 
 class TabList extends PureComponent {
   static propTypes = {
     getLists: PropTypes.func.isRequired,
     selectList: PropTypes.func.isRequired,
     lists: PropTypes.arrayOf(ListShape).isRequired,
-    listId: PropTypes.number,
+    listId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   }
 
   static defaultProps = {
-    listId: null,
+    listId: false,
+  }
+
+  state = {
+    addDialogOpen: false,
   }
 
   componentDidMount() {
@@ -29,30 +34,39 @@ class TabList extends PureComponent {
   }
 
   handleChange = (event, value) => {
-    if (value !== '') {
-      return this.selectList(value);
+    if (value !== 'add') {
+      return this.props.selectList(value);
     }
-    return null;
-    // OPEN ADD MODAL
+    return this.openDialog();
   }
+
+  openDialog = () => this.setState({ addDialogOpen: true })
+  closeDialog = () => this.setState({ addDialogOpen: false })
 
   render() {
     const { listId, lists } = this.props;
+    const { addDialogOpen } = this.state;
 
     return (
-      <SecondaryNav
-        value={listId}
-        scrollable
-        scrollButtons="on"
-        onChange={this.handleChange}
-        tabs
-      >
-        {lists.map(({ name, id }) => <Tab label={name} value={id} />)}
-        <Tab
-          icon={<FontAwesomeIcon icon="plus-circle" />}
-          value=""
+      <div>
+        <SecondaryNav
+          value={listId}
+          scrollable
+          scrollButtons="on"
+          onChange={this.handleChange}
+          tabs
+        >
+          {lists.map(({ name, id }) => <Tab label={name} value={id} key={id} />)}
+          <Tab
+            icon={<FontAwesomeIcon icon="plus-circle" />}
+            value="add"
+          />
+        </SecondaryNav>
+        <AddListDialog
+          open={addDialogOpen}
+          onClose={this.closeDialog}
         />
-      </SecondaryNav>
+      </div>
     );
   }
 }

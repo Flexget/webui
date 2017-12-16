@@ -15,10 +15,12 @@ export function* getLists() {
 
 export function* addList({ payload }) {
   try {
-    const { data } = yield call(fetch.post, '/pending_list', payload);
+    const { data } = yield call(fetch.post, '/pending_list', payload.data);
     yield put(action(actions.ADD_LIST, { list: data }));
+    yield call(payload.resolve);
   } catch (err) {
     yield put(action(actions.ADD_LIST, err));
+    yield call(payload.reject);
   }
 }
 

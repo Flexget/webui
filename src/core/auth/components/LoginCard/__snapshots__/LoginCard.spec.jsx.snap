@@ -70,7 +70,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
         >
           <input
             autoComplete={undefined}
-            autoFocus={undefined}
+            autoFocus={true}
             className="MuiInput-input-52 MuiInput-inputSingleline-55"
             defaultValue={undefined}
             disabled={false}

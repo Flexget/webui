@@ -40,7 +40,9 @@ describe('plugins/pending-list/data/sagas', () => {
 
   describe('addList', () => {
     describe('success', () => {
-      const it = sagaHelper(addList({ payload: { name: 'list' } }));
+      const resolve = jest.fn();
+      const reject = jest.fn();
+      const it = sagaHelper(addList({ payload: { data: { name: 'list' }, resolve, reject } }));
 
       it('should call post /pending_list', (result) => {
         expect(result).toEqual(call(fetch.post, '/pending_list', { name: 'list' }));
@@ -53,10 +55,16 @@ describe('plugins/pending-list/data/sagas', () => {
           list: { id: 0, name: 'list' },
         })));
       });
+
+      it('should call the resolve', (result) => {
+        expect(result).toEqual(call(resolve));
+      });
     });
 
     describe('failure', () => {
-      const it = sagaHelper(addList({ payload: {} }));
+      const resolve = jest.fn();
+      const reject = jest.fn();
+      const it = sagaHelper(addList({ payload: { data: {}, resolve, reject } }));
 
       it('should call post /pending_list', (result) => {
         expect(result).toEqual(call(fetch.post, '/pending_list', {}));
@@ -66,6 +74,10 @@ describe('plugins/pending-list/data/sagas', () => {
 
       it('should put the failure action', (result) => {
         expect(result).toEqual(put(action(actions.ADD_LIST, new Error('ERROR'))));
+      });
+
+      it('should call the reject', (result) => {
+        expect(result).toEqual(call(reject));
       });
     });
   });
