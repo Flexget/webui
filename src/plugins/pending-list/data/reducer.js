@@ -20,7 +20,7 @@ export default function reducer(state = initState, { payload, type }) {
     case actions.REMOVE_LIST:
       return {
         ...state,
-        lists: state.lists.filter(item => item.id === payload.id),
+        lists: state.lists.filter(item => item.id !== payload.id),
       };
     case actions.GET_ENTRIES:
       return {
@@ -52,7 +52,7 @@ export default function reducer(state = initState, { payload, type }) {
           ...state.entries,
           [payload.listId]: {
             totalCount: state.entries[payload.listId].totalCount - 1,
-            items: state.entries[payload.listId].items.filter(item => item.id === payload.id),
+            items: state.entries[payload.listId].items.filter(item => item.id !== payload.id),
           },
         },
       };

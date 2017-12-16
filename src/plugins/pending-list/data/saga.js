@@ -9,7 +9,7 @@ export function* getLists() {
     const { data } = yield call(fetch.get, '/pending_list');
     yield put(action(actions.GET_LISTS, { lists: data }));
   } catch (err) {
-    yield put(action(actions.GET_LISTS), err);
+    yield put(action(actions.GET_LISTS, err));
   }
 }
 
