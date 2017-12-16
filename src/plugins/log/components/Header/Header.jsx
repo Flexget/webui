@@ -80,7 +80,7 @@ class Header extends Component {
         </div>
         <Spacer />
         <TextFieldWrapper>
-          <GreyIcon className="fa fa-filter" />
+          <GreyIcon icon="filter" />
           <FilterField
             id="filter"
             label="Filter"
@@ -91,7 +91,7 @@ class Header extends Component {
             }}
             helperText={helperText}
           />
-          <GreyClickableIcon onClick={this.handleMenuClick} className="fa fa-ellipsis-v" />
+          <GreyClickableIcon onClick={this.handleMenuClick} icon="ellipsis-v" />
         </TextFieldWrapper>
         <Menu
           id="log-menu"
@@ -112,16 +112,11 @@ class Header extends Component {
             />
           </MenuItem>
           <MenuItem onClick={this.clearLogs}>
-            <MenuIcon className="fa fa-eraser" />
+            <MenuIcon icon="eraser" />
             Clear
           </MenuItem>
           <MenuItem onClick={connected ? stop : this.reload}>
-            <MenuIcon className={
-              classNames('fa', {
-                'fa-play': !connected,
-                'fa-stop': connected,
-              })}
-            />
+            <MenuIcon icon={connected ? 'stop' : 'play'} />
             {connected ? 'Stop' : 'Start'}
           </MenuItem>
         </Menu>

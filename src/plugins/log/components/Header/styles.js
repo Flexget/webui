@@ -1,5 +1,5 @@
 import styled, { css } from 'react-emotion';
-import Icon from 'material-ui/Icon';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
 import theme from 'theme';
@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const GreyIcon = styled(Icon)`
+export const GreyIcon = styled(FontAwesomeIcon)`
   ${grey};
 `;
 
@@ -40,6 +40,6 @@ export const FilterField = styled(TextField)`
   margin-right: 1rem;
 `;
 
-export const MenuIcon = styled(Icon)`
-  padding-right: 3rem;
+export const MenuIcon = styled(FontAwesomeIcon)`
+  margin-right: 3rem;
 `;

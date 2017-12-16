@@ -2,7 +2,6 @@ import React from 'react';
 import { CardContent } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import Icon from 'material-ui/Icon';
-import 'font-awesome/css/font-awesome.css';
 import {
   InfoCardWrapper,
   InfoCardHeader,

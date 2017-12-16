@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import semver from 'semver-compare';
 import IconButton from 'material-ui/IconButton';
-import Icon from 'material-ui/Icon';
-import 'font-awesome/css/font-awesome.css';
-import { Wrapper, Line, version } from './styles';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { Wrapper, Line } from './styles';
 
 class Version extends Component {
   static propTypes = {
@@ -35,7 +34,7 @@ class Version extends Component {
         <Line>Flexget: { flexget } {
           latest && semver(latest, flexget) === 1 && (
             <IconButton href="https://flexget.com/ChangeLog">
-              <Icon className={`fa fa-question-circle-o ${version}`} />
+              <FontAwesomeIcon icon={['far', 'question-circle']} fixedWidth />
             </IconButton>
           ) } </Line>
         <Line>API: { api }</Line>

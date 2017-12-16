@@ -83,13 +83,16 @@
     "webpack-dev-server": "^2.9.2"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.0.1",
+    "@fortawesome/fontawesome-free-regular": "^5.0.1",
+    "@fortawesome/fontawesome-free-solid": "^5.0.1",
+    "@fortawesome/react-fontawesome": "0.0.16",
     "babel-plugin-emotion": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "babel-preset-flow": "^6.23.0",
     "classnames": "^2.2.5",
     "connected-react-router": "^4.2.3",
     "emotion": "^8.0.6",
-    "font-awesome": "^4.7.0",
     "history": "^4.7.2",
     "invariant": "^2.2.2",
     "jss": "^8.1.0",

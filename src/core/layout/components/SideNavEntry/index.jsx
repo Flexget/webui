@@ -11,7 +11,7 @@ import {
 const SideNavEntry = ({ onClick, path, icon, name, className }) => {
   const item = (
     <NavItem className={className} onClick={onClick}>
-      <ListItemIcon><SideNavIcon className={`fa fa-${icon}`} /></ListItemIcon>
+      <ListItemIcon><SideNavIcon icon={icon} fixedWidth /></ListItemIcon>
       <SideNavText disableTypography inset primary={name} />
     </NavItem>
   );

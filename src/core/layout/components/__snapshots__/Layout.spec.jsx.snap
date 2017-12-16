@@ -219,18 +219,13 @@ exports[`components/layout renders correctly 1`] = `
           >
             <span
               className="MuiIconButton-label-43"
-            >
-              <span
-                aria-hidden="true"
-                className="material-icons MuiIcon-root-48 MuiIconButton-icon-44 fa fa-bars"
-              />
-            </span>
+            />
             <span
-              className="MuiTouchRipple-root-55"
+              className="MuiTouchRipple-root-48"
             />
           </button>
           <h2
-            className="MuiTypography-root-62 MuiTypography-title-68 MuiTypography-colorInherit-81"
+            className="MuiTypography-root-55 MuiTypography-title-61 MuiTypography-colorInherit-74"
           />
           <div
             className="glamor-3"
@@ -259,14 +254,9 @@ exports[`components/layout renders correctly 1`] = `
             >
               <span
                 className="MuiIconButton-label-43"
-              >
-                <span
-                  aria-hidden="true"
-                  className="material-icons MuiIcon-root-48 MuiIconButton-icon-44 fa fa-pencil"
-                />
-              </span>
+              />
               <span
-                className="MuiTouchRipple-root-55"
+                className="MuiTouchRipple-root-48"
               />
             </button>
           </a>
@@ -294,14 +284,9 @@ exports[`components/layout renders correctly 1`] = `
             >
               <span
                 className="MuiIconButton-label-43"
-              >
-                <span
-                  aria-hidden="true"
-                  className="material-icons MuiIcon-root-48 MuiIconButton-icon-44 fa fa-book"
-                />
-              </span>
+              />
               <span
-                className="MuiTouchRipple-root-55"
+                className="MuiTouchRipple-root-48"
               />
             </button>
           </a>
@@ -326,14 +311,9 @@ exports[`components/layout renders correctly 1`] = `
           >
             <span
               className="MuiIconButton-label-43"
-            >
-              <span
-                aria-hidden="true"
-                className="material-icons MuiIcon-root-48 MuiIconButton-icon-44 fa fa-cog"
-              />
-            </span>
+            />
             <span
-              className="MuiTouchRipple-root-55"
+              className="MuiTouchRipple-root-48"
             />
           </button>
         </div>
@@ -347,16 +327,16 @@ exports[`components/layout renders correctly 1`] = `
       className="glamor-18"
     >
       <div
-        className="MuiDrawer-docked-97"
+        className="MuiDrawer-docked-90"
       >
         <div
-          className="MuiPaper-root-8 MuiPaper-shadow0-10 MuiDrawer-paper-98 glamor-17 MuiDrawer-paperAnchorLeft-99 MuiDrawer-paperAnchorDockedLeft-103"
+          className="MuiPaper-root-8 MuiPaper-shadow0-10 MuiDrawer-paper-91 glamor-17 MuiDrawer-paperAnchorLeft-92 MuiDrawer-paperAnchorDockedLeft-96"
         >
           <div
             className="glamor-16"
           >
             <ul
-              className="MuiList-root-108 MuiList-padding-109 glamor-11"
+              className="MuiList-root-101 MuiList-padding-102 glamor-11"
             />
             <div
               className="glamor-15"

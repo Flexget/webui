@@ -5,20 +5,38 @@ import { darkTheme } from 'theme';
 import {
   SecondaryAppBar,
   SecondaryToolbar,
+  SecondaryTabs,
 } from './styles';
 
-const SecondaryNav = ({ children }) => (
+const SecondaryNav = ({ children, tabs, ...tabProps }) => (
   <MuiThemeProvider theme={darkTheme}>
     <SecondaryAppBar>
-      <SecondaryToolbar>
-        {children}
-      </SecondaryToolbar>
+      { tabs ?
+        (
+          <SecondaryTabs
+            indicatorColor="primary"
+            {...tabProps}
+          >
+            {children}
+          </SecondaryTabs>
+        ) :
+        (
+          <SecondaryToolbar>
+            {children}
+          </SecondaryToolbar>
+        )
+      }
     </SecondaryAppBar>
   </MuiThemeProvider>
 );
 
 SecondaryNav.propTypes = {
   children: PropTypes.node.isRequired,
+  tabs: PropTypes.bool,
+};
+
+SecondaryNav.defaultProps = {
+  tabs: false,
 };
 
 export default SecondaryNav;

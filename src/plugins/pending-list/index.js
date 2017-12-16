@@ -6,7 +6,7 @@ import reducer from './data/reducer';
 export default () => registry.registerPlugin('pending-list', {
   component: createAsyncComponent(() => import('plugins/pending-list/components')),
   routeDisplayName: 'Pending List',
-  routeIcon: 'book',
+  routeIcon: 'check',
   reducer,
   saga,
 });

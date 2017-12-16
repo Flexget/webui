@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Icon from 'material-ui/Icon';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import Dialog, {
   DialogActions,
@@ -11,8 +10,8 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Spacer } from 'components/styles';
-import 'font-awesome/css/font-awesome.css';
 import {
   MenuIcon,
   NavAppBar,
@@ -72,7 +71,7 @@ export default class Navbar extends Component {
       <NavAppBar>
         <NavToolbar>
           <NavIcon onClick={toggle}>
-            <Icon className="fa fa-bars" />
+            <FontAwesomeIcon icon="bars" fixedWidth />
           </NavIcon>
           <Typography type="title" color="inherit">
             {titleMap[pathname]}
@@ -80,19 +79,19 @@ export default class Navbar extends Component {
           <Spacer />
           <Link to="/config">
             <NavIcon aria-label="Config">
-              <Icon className="fa fa-pencil" />
+              <FontAwesomeIcon icon="pencil-alt" fixedWidth />
             </NavIcon>
           </Link>
           <Link to="/log">
             <NavIcon aria-label="Log">
-              <Icon className="fa fa-book" />
+              <FontAwesomeIcon icon="book" fixedWidth />
             </NavIcon>
           </Link>
           <NavIcon
             aria-label="Manage"
             onClick={this.handleMenuClick}
           >
-            <Icon className="fa fa-cog" />
+            <FontAwesomeIcon icon="cog" fixedWidth />
           </NavIcon>
           <Menu
             id="nav-menu"
@@ -101,19 +100,19 @@ export default class Navbar extends Component {
             onRequestClose={this.handleMenuRequestClose}
           >
             <MenuItem onClick={this.handleReloadClick}>
-              <MenuIcon className="fa fa-refresh" />
+              <MenuIcon icon="sync" fixedWidth />
               Reload
             </MenuItem>
             <MenuItem onClick={this.handleShutdownPromptClick}>
-              <MenuIcon className="fa fa-power-off" />
+              <MenuIcon icon="power-off" fixedWidth />
               Shutdown
             </MenuItem>
             <MenuItem>
-              <MenuIcon className="fa fa-database" />
+              <MenuIcon icon="database" fixedWidth />
               Database
             </MenuItem>
             <MenuItem onClick={logout}>
-              <MenuIcon className="fa fa-sign-out" />
+              <MenuIcon icon="sign-out-alt" fixedWidth />
               Logout
             </MenuItem>
           </Menu>

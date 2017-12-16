@@ -47,18 +47,13 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
     >
       <span
         className="MuiIconButton-label-43"
-      >
-        <span
-          aria-hidden="true"
-          className="material-icons MuiIcon-root-48 MuiIconButton-icon-44 fa fa-bars"
-        />
-      </span>
+      />
       <span
-        className="MuiTouchRipple-root-55"
+        className="MuiTouchRipple-root-48"
       />
     </button>
     <h2
-      className="MuiTypography-root-62 MuiTypography-title-68 MuiTypography-colorInherit-81"
+      className="MuiTypography-root-55 MuiTypography-title-61 MuiTypography-colorInherit-74"
     />
     <div
       className="glamor-1"
@@ -87,14 +82,9 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
       >
         <span
           className="MuiIconButton-label-43"
-        >
-          <span
-            aria-hidden="true"
-            className="material-icons MuiIcon-root-48 MuiIconButton-icon-44 fa fa-pencil"
-          />
-        </span>
+        />
         <span
-          className="MuiTouchRipple-root-55"
+          className="MuiTouchRipple-root-48"
         />
       </button>
     </a>
@@ -122,14 +112,9 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
       >
         <span
           className="MuiIconButton-label-43"
-        >
-          <span
-            aria-hidden="true"
-            className="material-icons MuiIcon-root-48 MuiIconButton-icon-44 fa fa-book"
-          />
-        </span>
+        />
         <span
-          className="MuiTouchRipple-root-55"
+          className="MuiTouchRipple-root-48"
         />
       </button>
     </a>
@@ -154,14 +139,9 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
     >
       <span
         className="MuiIconButton-label-43"
-      >
-        <span
-          aria-hidden="true"
-          className="material-icons MuiIcon-root-48 MuiIconButton-icon-44 fa fa-cog"
-        />
-      </span>
+      />
       <span
-        className="MuiTouchRipple-root-55"
+        className="MuiTouchRipple-root-48"
       />
     </button>
   </div>
