@@ -1,4 +1,3 @@
-
 import { connect } from 'react-redux';
 import { GET_ENTRIES } from 'plugins/pending-list/data/actions';
 import { request } from 'utils/actions';

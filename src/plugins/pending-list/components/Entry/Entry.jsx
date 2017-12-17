@@ -8,7 +8,12 @@ import { EntryShape } from 'plugins/pending-list/data/shapes';
 import { ActionIcon, content, subheader, EntryCard } from './styles';
 
 /* eslint-disable camelcase */
-const Entry = ({ entry: { title, original_url, approved }, openRemoveModal }) => (
+const Entry = ({
+  entry: { title, original_url, approved },
+  openRemoveModal,
+  approveEntry,
+  rejectEntry,
+}) => (
   <EntryCard>
     <CardHeader
       title={title}
@@ -26,12 +31,12 @@ const Entry = ({ entry: { title, original_url, approved }, openRemoveModal }) =>
     <CardActions>
       {
         approved ? (
-          <Button>
+          <Button onClick={rejectEntry}>
             <ActionIcon icon="times" />
             Reject
           </Button>
         ) : (
-          <Button>
+          <Button onClick={approveEntry}>
             <ActionIcon icon="check" />
             Approve
           </Button>
@@ -45,6 +50,8 @@ const Entry = ({ entry: { title, original_url, approved }, openRemoveModal }) =>
 Entry.propTypes = {
   entry: EntryShape.isRequired,
   openRemoveModal: PropTypes.func.isRequired,
+  approveEntry: PropTypes.func.isRequired,
+  rejectEntry: PropTypes.func.isRequired,
 };
 
 export default Entry;
