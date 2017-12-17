@@ -64,6 +64,8 @@ describe('plugins/pending-list/data/sagas', () => {
       it('should put the success action', (result) => {
         expect(result).toEqual(put(action(actions.ADD_LIST, {
           list: { id: 0, name: 'list' },
+        }, {
+          message: 'Successfully added list.',
         })));
       });
 
@@ -95,7 +97,9 @@ describe('plugins/pending-list/data/sagas', () => {
 
   describe('removeList', () => {
     describe('success', () => {
-      const it = sagaHelper(removeList({ payload: { id: 0 } }));
+      const resolve = jest.fn();
+      const reject = jest.fn();
+      const it = sagaHelper(removeList({ payload: { id: 0, resolve, reject } }));
 
       it('should call del /pending_list/:id', (result) => {
         expect(result).toEqual(call(fetch.del, '/pending_list/0'));
@@ -106,12 +110,20 @@ describe('plugins/pending-list/data/sagas', () => {
       it('should put the success action', (result) => {
         expect(result).toEqual(put(action(actions.REMOVE_LIST, {
           id: 0,
+        }, {
+          message: 'Successfully removed list.',
         })));
+      });
+
+      it('should call the resolve', (result) => {
+        expect(result).toEqual(call(resolve));
       });
     });
 
     describe('failure', () => {
-      const it = sagaHelper(removeList({ payload: { id: 0 } }));
+      const resolve = jest.fn();
+      const reject = jest.fn();
+      const it = sagaHelper(removeList({ payload: { id: 0, resolve, reject } }));
 
       it('should call del /pending_list/:id', (result) => {
         expect(result).toEqual(call(fetch.del, '/pending_list/0'));
@@ -121,6 +133,10 @@ describe('plugins/pending-list/data/sagas', () => {
 
       it('should put the failure action', (result) => {
         expect(result).toEqual(put(action(actions.REMOVE_LIST, new Error('ERROR'))));
+      });
+
+      it('should call the reject', (result) => {
+        expect(result).toEqual(call(reject));
       });
     });
   });
@@ -139,7 +155,6 @@ describe('plugins/pending-list/data/sagas', () => {
       it('should put the success action', (result) => {
         expect(result).toEqual(put(action(actions.GET_ENTRIES, {
           entries: { },
-          listId: 0,
           page: 1,
           headers,
         })));
@@ -185,10 +200,6 @@ describe('plugins/pending-list/data/sagas', () => {
         }));
       });
 
-      it('should put the success action', (result) => {
-        expect(result).toEqual(put(action(actions.ADD_ENTRY)));
-      });
-
       it('should select the current page', (result) => {
         expect(result).toEqual(select(getCurrentPage));
 
@@ -204,9 +215,14 @@ describe('plugins/pending-list/data/sagas', () => {
       it('should put the success action', (result) => {
         expect(result).toEqual(put(action(actions.GET_ENTRIES, {
           entries: { },
-          listId: 0,
           page: 1,
           headers,
+        })));
+      });
+
+      it('should put the success action', (result) => {
+        expect(result).toEqual(put(action(actions.ADD_ENTRY, {}, {
+          message: 'Successfully added entry.',
         })));
       });
 
@@ -251,20 +267,20 @@ describe('plugins/pending-list/data/sagas', () => {
 
   describe('removeEntry', () => {
     describe('success', () => {
+      const resolve = jest.fn();
+      const reject = jest.fn();
       const it = sagaHelper(removeEntry({
         payload: {
           listId: 0,
           id: 1,
+          resolve,
+          reject,
         },
       }));
       const headers = new Headers({ 'total-count': 1 });
 
       it('should call del /pending_list/:listId/entries/:id', (result) => {
         expect(result).toEqual(call(fetch.del, '/pending_list/0/entries/1'));
-      });
-
-      it('should put the success action', (result) => {
-        expect(result).toEqual(put(action(actions.REMOVE_ENTRY)));
       });
 
       it('should select the current page', (result) => {
@@ -282,18 +298,31 @@ describe('plugins/pending-list/data/sagas', () => {
       it('should put the success action', (result) => {
         expect(result).toEqual(put(action(actions.GET_ENTRIES, {
           entries: { },
-          listId: 0,
           page: 1,
           headers,
         })));
       });
+
+      it('should put the success action', (result) => {
+        expect(result).toEqual(put(action(actions.REMOVE_ENTRY, {}, {
+          message: 'Successfully removed entry.',
+        })));
+      });
+
+      it('should call the resolve', (result) => {
+        expect(result).toEqual(call(resolve));
+      });
     });
 
     describe('failure', () => {
+      const resolve = jest.fn();
+      const reject = jest.fn();
       const it = sagaHelper(removeEntry({
         payload: {
           listId: 0,
           id: 1,
+          resolve,
+          reject,
         },
       }));
 
@@ -305,6 +334,10 @@ describe('plugins/pending-list/data/sagas', () => {
 
       it('should put the failure action', (result) => {
         expect(result).toEqual(put(action(actions.REMOVE_ENTRY, new Error('ERROR'))));
+      });
+
+      it('should call the reject', (result) => {
+        expect(result).toEqual(call(reject));
       });
     });
   });

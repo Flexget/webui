@@ -1,23 +1,18 @@
 import React, { PureComponent } from 'react';
-import Button from 'material-ui/Button';
 import { NoPaddingWrapper } from 'common/styles';
 import TabList from './TabList';
-import AddEntryDialog from './AddEntryDialog';
-import { ButtonWrapper, Content, AddEntryButton, Icon } from './styles';
+import EntryList from './EntryList';
+import { Content } from './styles';
 
 export default class PendingList extends PureComponent {
   state = {
     listId: false,
-    entryModalOpen: false,
   }
 
   selectList = listId => this.setState({ listId })
 
-  openModal = () => this.setState({ entryModalOpen: true })
-  closeModal = () => this.setState({ entryModalOpen: false })
-
   render() {
-    const { listId, entryModalOpen } = this.state;
+    const { listId } = this.state;
 
     return (
       <NoPaddingWrapper>
@@ -26,22 +21,8 @@ export default class PendingList extends PureComponent {
           selectList={this.selectList}
         />
         <Content>
-          <ButtonWrapper>
-            <AddEntryButton
-              color="primary"
-              dense
-              onClick={this.openModal}
-            >
-              <Icon icon="plus-circle" />
-              Add Entry
-            </AddEntryButton>
-          </ButtonWrapper>
+          <EntryList listId={listId} />
         </Content>
-        <AddEntryDialog
-          open={entryModalOpen}
-          onClose={this.closeModal}
-          listId={listId}
-        />
       </NoPaddingWrapper>
     );
   }

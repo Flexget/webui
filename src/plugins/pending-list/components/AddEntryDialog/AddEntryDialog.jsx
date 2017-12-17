@@ -16,10 +16,10 @@ const AddEntryDialog = ({ open, onClose, handleSubmit }) => (
       <DialogContent>
         <Field
           autoFocus
-          id="name"
-          label="Entry Name"
+          id="title"
+          label="Entry Title"
           fullWidth
-          name="name"
+          name="title"
           component={TextField}
         />
         <Field

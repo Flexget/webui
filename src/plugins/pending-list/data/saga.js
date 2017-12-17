@@ -16,7 +16,9 @@ export function* getLists() {
 export function* addList({ payload }) {
   try {
     const { data } = yield call(fetch.post, '/pending_list', payload.data);
-    yield put(action(actions.ADD_LIST, { list: data }));
+    yield put(action(actions.ADD_LIST, { list: data }, {
+      message: 'Successfully added list.',
+    }));
     yield call(payload.resolve);
   } catch (err) {
     yield put(action(actions.ADD_LIST, err));
@@ -25,13 +27,17 @@ export function* addList({ payload }) {
 }
 
 export function* removeList({ payload }) {
-  const { id } = payload;
+  const { id, resolve, reject } = payload;
 
   try {
     yield call(fetch.del, `/pending_list/${id}`);
-    yield put(action(actions.REMOVE_LIST, { id }));
+    yield put(action(actions.REMOVE_LIST, { id }, {
+      message: 'Successfully removed list.',
+    }));
+    yield call(resolve);
   } catch (err) {
     yield put(action(actions.REMOVE_LIST, err));
+    yield call(reject);
   }
 }
 
@@ -47,7 +53,7 @@ export function* getEntries({ payload }) {
 
   try {
     const { data, headers } = yield call(fetch.get, `/pending_list/${listId}/entries?${stringify(query)}`);
-    yield put(action(actions.GET_ENTRIES, { listId, entries: data, page: query.page, headers }));
+    yield put(action(actions.GET_ENTRIES, { entries: data, page: query.page, headers }));
   } catch (err) {
     yield put(action(actions.GET_ENTRIES, err));
   }
@@ -60,9 +66,11 @@ export function* addEntry({ payload }) {
 
   try {
     yield call(fetch.post, `/pending_list/${listId}/entries`, entry);
-    yield put(action(actions.ADD_ENTRY));
     const page = yield select(getCurrentPage);
     yield* getEntries({ payload: { listId, params: { page } } });
+    yield put(action(actions.ADD_ENTRY, {}, {
+      message: 'Successfully added entry.',
+    }));
     yield call(resolve);
   } catch (err) {
     yield put(action(actions.ADD_ENTRY, err));
@@ -71,15 +79,19 @@ export function* addEntry({ payload }) {
 }
 
 export function* removeEntry({ payload }) {
-  const { id, listId } = payload;
+  const { id, listId, resolve, reject } = payload;
 
   try {
     yield call(fetch.del, `/pending_list/${listId}/entries/${id}`);
-    yield put(action(actions.REMOVE_ENTRY));
     const page = yield select(getCurrentPage);
     yield* getEntries({ payload: { listId, params: { page } } });
+    yield put(action(actions.REMOVE_ENTRY, {}, {
+      message: 'Successfully removed entry.',
+    }));
+    yield call(resolve);
   } catch (err) {
     yield put(action(actions.REMOVE_ENTRY, err));
+    yield call(reject);
   }
 }
 
@@ -88,7 +100,7 @@ export function* approveEntry({ payload }) {
 
   try {
     yield call(fetch.put, `/pending_list/${listId}/entries/${id}`, { operation: 'approve' });
-    yield put(action(actions.APPROVE_ENTRY, { id, listId }));
+    yield put(action(actions.APPROVE_ENTRY, { id }));
   } catch (err) {
     yield put(action(actions.APPROVE_ENTRY, err));
   }
@@ -99,7 +111,7 @@ export function* rejectEntry({ payload }) {
 
   try {
     yield call(fetch.put, `/pending_list/${listId}/entries/${id}`, { operation: 'reject' });
-    yield put(action(actions.REJECT_ENTRY, { id, listId }));
+    yield put(action(actions.REJECT_ENTRY, { id }));
   } catch (err) {
     yield put(action(actions.REJECT_ENTRY, err));
   }
