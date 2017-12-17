@@ -53,13 +53,13 @@ export function* getEntries({ payload }) {
   }
 }
 
-const getCurrentPage = listId => ({ pendingList }) => pendingList.entries[listId].page;
+export const getCurrentPage = listId => ({ pendingList }) => pendingList.entries[listId].page;
 
 export function* addEntry({ payload }) {
-  const { listId } = payload;
+  const { listId, entry } = payload;
 
   try {
-    yield call(fetch.post, `/pending_list/${listId}/entries`, payload);
+    yield call(fetch.post, `/pending_list/${listId}/entries`, entry);
     yield put(action(actions.ADD_ENTRY));
     const page = yield select(getCurrentPage);
     yield* getEntries({ payload: { listId, params: { page } } });
@@ -73,7 +73,7 @@ export function* removeEntry({ payload }) {
 
   try {
     yield call(fetch.del, `/pending_list/${listId}/entries/${id}`);
-    yield put(action(actions.REMOVE_ENTRY, { id, listId }));
+    yield put(action(actions.REMOVE_ENTRY));
     const page = yield select(getCurrentPage);
     yield* getEntries({ payload: { listId, params: { page } } });
   } catch (err) {

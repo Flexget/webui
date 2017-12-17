@@ -1,9 +1,20 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import sagaHelper from 'redux-saga-testing';
-import { getLists, addList, removeList } from 'plugins/pending-list/data/saga';
+import { stringify } from 'qs';
+import {
+  getLists,
+  addList,
+  removeList,
+  getEntries,
+  getEntriesOptions,
+  getCurrentPage,
+  addEntry,
+  removeEntry,
+} from 'plugins/pending-list/data/saga';
+import * as actions from 'plugins/pending-list/data/actions';
 import * as fetch from 'utils/fetch';
 import { action } from 'utils/actions';
-import * as actions from 'plugins/pending-list/data/actions';
+import { Headers } from 'utils/tests';
 
 describe('plugins/pending-list/data/sagas', () => {
   describe('getLists', () => {
@@ -110,6 +121,174 @@ describe('plugins/pending-list/data/sagas', () => {
 
       it('should put the failure action', (result) => {
         expect(result).toEqual(put(action(actions.REMOVE_LIST, new Error('ERROR'))));
+      });
+    });
+  });
+
+  describe('getEntries', () => {
+    describe('success', () => {
+      const it = sagaHelper(getEntries({ payload: { listId: 0, params: {} } }));
+      const headers = new Headers({ 'total-count': 1 });
+
+      it('should call get /pending_list/:id/entries', (result) => {
+        expect(result).toEqual(call(fetch.get, `/pending_list/0/entries?${stringify(getEntriesOptions)}`));
+
+        return { data: { }, headers };
+      });
+
+      it('should put the success action', (result) => {
+        expect(result).toEqual(put(action(actions.GET_ENTRIES, {
+          entries: { },
+          listId: 0,
+          page: 1,
+          headers,
+        })));
+      });
+    });
+
+    describe('failure', () => {
+      const it = sagaHelper(getEntries({ payload: { listId: 0, params: {} } }));
+
+      it('should call get /pending_list/:id/entries', (result) => {
+        expect(result).toEqual(call(fetch.get, `/pending_list/0/entries?${stringify(getEntriesOptions)}`));
+
+        return new Error('ERROR');
+      });
+
+      it('should put the failure action', (result) => {
+        expect(result).toEqual(put(action(actions.GET_ENTRIES, new Error('ERROR'))));
+      });
+    });
+  });
+
+  describe('addEntry', () => {
+    describe('success', () => {
+      const it = sagaHelper(addEntry({
+        payload: {
+          listId: 0,
+          entry: {
+            title: 'title',
+            original_url: 'https://example.com',
+          },
+        },
+      }));
+      const headers = new Headers({ 'total-count': 1 });
+
+      it('should call post /pending_list/:id/entries', (result) => {
+        expect(result).toEqual(call(fetch.post, '/pending_list/0/entries', {
+          title: 'title',
+          original_url: 'https://example.com',
+        }));
+      });
+
+      it('should put the success action', (result) => {
+        expect(result).toEqual(put(action(actions.ADD_ENTRY)));
+      });
+
+      it('should select the current page', (result) => {
+        expect(result).toEqual(select(getCurrentPage));
+
+        return 1;
+      });
+
+      it('should call get /pending_list/:id/entries', (result) => {
+        expect(result).toEqual(call(fetch.get, `/pending_list/0/entries?${stringify(getEntriesOptions)}`));
+
+        return { data: { }, headers };
+      });
+
+      it('should put the success action', (result) => {
+        expect(result).toEqual(put(action(actions.GET_ENTRIES, {
+          entries: { },
+          listId: 0,
+          page: 1,
+          headers,
+        })));
+      });
+    });
+
+    describe('failure', () => {
+      const it = sagaHelper(addEntry({
+        payload: {
+          listId: 0,
+          entry: {
+            title: 'title',
+            original_url: 'https://example.com',
+          },
+        },
+      }));
+
+      it('should call post /pending_list/:id/entries', (result) => {
+        expect(result).toEqual(call(fetch.post, '/pending_list/0/entries', {
+          title: 'title',
+          original_url: 'https://example.com',
+        }));
+
+        return new Error('ERROR');
+      });
+
+      it('should put the failure action', (result) => {
+        expect(result).toEqual(put(action(actions.ADD_ENTRY, new Error('ERROR'))));
+      });
+    });
+  });
+
+  describe('removeEntry', () => {
+    describe('success', () => {
+      const it = sagaHelper(removeEntry({
+        payload: {
+          listId: 0,
+          id: 1,
+        },
+      }));
+      const headers = new Headers({ 'total-count': 1 });
+
+      it('should call del /pending_list/:listId/entries/:id', (result) => {
+        expect(result).toEqual(call(fetch.del, '/pending_list/0/entries/1'));
+      });
+
+      it('should put the success action', (result) => {
+        expect(result).toEqual(put(action(actions.REMOVE_ENTRY)));
+      });
+
+      it('should select the current page', (result) => {
+        expect(result).toEqual(select(getCurrentPage));
+
+        return 1;
+      });
+
+      it('should call get /pending_list/:id/entries', (result) => {
+        expect(result).toEqual(call(fetch.get, `/pending_list/0/entries?${stringify(getEntriesOptions)}`));
+
+        return { data: { }, headers };
+      });
+
+      it('should put the success action', (result) => {
+        expect(result).toEqual(put(action(actions.GET_ENTRIES, {
+          entries: { },
+          listId: 0,
+          page: 1,
+          headers,
+        })));
+      });
+    });
+
+    describe('failure', () => {
+      const it = sagaHelper(removeEntry({
+        payload: {
+          listId: 0,
+          id: 1,
+        },
+      }));
+
+      it('should call post /pending_list/:id/entries', (result) => {
+        expect(result).toEqual(call(fetch.del, '/pending_list/0/entries/1'));
+
+        return new Error('ERROR');
+      });
+
+      it('should put the failure action', (result) => {
+        expect(result).toEqual(put(action(actions.REMOVE_ENTRY, new Error('ERROR'))));
       });
     });
   });
