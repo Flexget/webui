@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { HistoryShape } from 'plugins/history/data/shapes';
 import InfiniteScroll from 'react-infinite-scroller';
 import List, { ListItem, ListItemText } from 'material-ui/List';
-import LoadingSpinner from 'components/LoadingSpinner';
+import LoadingSpinner from 'common/LoadingSpinner';
 import { Subheader, Wrapper } from './styles';
 
 class HistoryList extends Component {

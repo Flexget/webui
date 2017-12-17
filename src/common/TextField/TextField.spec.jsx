@@ -1,12 +1,12 @@
 import React from 'react';
-import StatusBar from 'components/StatusBar';
+import TextField from 'common/TextField';
 import renderer from 'react-test-renderer';
 import { themed } from 'utils/tests';
 
-describe('components/StatusBar', () => {
+describe('common/TextField', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
-      themed(<StatusBar open={false} clearStatus={jest.fn()} />),
+      themed(<TextField input={{}} meta={{ error: true, touched: true }} />),
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

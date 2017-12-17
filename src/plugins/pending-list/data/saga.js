@@ -56,15 +56,17 @@ export function* getEntries({ payload }) {
 export const getCurrentPage = listId => ({ pendingList }) => pendingList.entries[listId].page;
 
 export function* addEntry({ payload }) {
-  const { listId, entry } = payload;
+  const { listId, entry, resolve, reject } = payload;
 
   try {
     yield call(fetch.post, `/pending_list/${listId}/entries`, entry);
     yield put(action(actions.ADD_ENTRY));
     const page = yield select(getCurrentPage);
     yield* getEntries({ payload: { listId, params: { page } } });
+    yield call(resolve);
   } catch (err) {
     yield put(action(actions.ADD_ENTRY, err));
+    yield call(reject);
   }
 }
 

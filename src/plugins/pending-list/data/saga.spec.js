@@ -163,6 +163,8 @@ describe('plugins/pending-list/data/sagas', () => {
 
   describe('addEntry', () => {
     describe('success', () => {
+      const resolve = jest.fn();
+      const reject = jest.fn();
       const it = sagaHelper(addEntry({
         payload: {
           listId: 0,
@@ -170,6 +172,8 @@ describe('plugins/pending-list/data/sagas', () => {
             title: 'title',
             original_url: 'https://example.com',
           },
+          resolve,
+          reject,
         },
       }));
       const headers = new Headers({ 'total-count': 1 });
@@ -205,9 +209,15 @@ describe('plugins/pending-list/data/sagas', () => {
           headers,
         })));
       });
+
+      it('should call the resolve', (result) => {
+        expect(result).toEqual(call(resolve));
+      });
     });
 
     describe('failure', () => {
+      const resolve = jest.fn();
+      const reject = jest.fn();
       const it = sagaHelper(addEntry({
         payload: {
           listId: 0,
@@ -215,6 +225,8 @@ describe('plugins/pending-list/data/sagas', () => {
             title: 'title',
             original_url: 'https://example.com',
           },
+          resolve,
+          reject,
         },
       }));
 
@@ -229,6 +241,10 @@ describe('plugins/pending-list/data/sagas', () => {
 
       it('should put the failure action', (result) => {
         expect(result).toEqual(put(action(actions.ADD_ENTRY, new Error('ERROR'))));
+      });
+
+      it('should call the reject', (result) => {
+        expect(result).toEqual(call(reject));
       });
     });
   });

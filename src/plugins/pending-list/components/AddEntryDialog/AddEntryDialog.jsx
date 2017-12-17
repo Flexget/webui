@@ -9,17 +9,24 @@ import Dialog, {
 import Button from 'material-ui/Button';
 import TextField from 'common/TextField';
 
-const AddListDialog = ({ open, onClose, handleSubmit }) => (
+const AddEntryDialog = ({ open, onClose, handleSubmit }) => (
   <Dialog open={open} onRequestClose={onClose}>
-    <DialogTitle>Add New Pending List</DialogTitle>
+    <DialogTitle>Add New Entry</DialogTitle>
     <form onSubmit={handleSubmit}>
       <DialogContent>
         <Field
           autoFocus
           id="name"
-          label="List Name"
+          label="Entry Name"
           fullWidth
           name="name"
+          component={TextField}
+        />
+        <Field
+          id="entry-url"
+          label="Entry URL"
+          fullWidth
+          name="original_url"
           component={TextField}
         />
       </DialogContent>
@@ -35,16 +42,16 @@ const AddListDialog = ({ open, onClose, handleSubmit }) => (
   </Dialog>
 );
 
-AddListDialog.propTypes = {
+AddEntryDialog.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
 
-AddListDialog.defaultProps = {
+AddEntryDialog.defaultProps = {
   open: false,
 };
 
 export default reduxForm({
-  form: 'addPendingList',
-})(AddListDialog);
+  form: 'addEntry',
+})(AddEntryDialog);

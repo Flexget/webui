@@ -102,6 +102,7 @@
     "material-ui": "1.0.0-beta.23",
     "normalize.css": "^7.0.0",
     "oboe": "^2.1.4",
+    "polished": "^1.9.0",
     "prop-types": "^15.6.0",
     "qs": "^6.5.1",
     "react": "^16.0.0",

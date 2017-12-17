@@ -50,7 +50,7 @@ export const SideBar = styled.aside`
 export const Content = styled.section`
   flex: 1;
   overflow-y: auto;
-  padding: 1rem;
+  padding: ${theme.typography.pxToRem(theme.spacing.unit * 2)};
   opacity: 1;
   transition: ${theme.transitions.create(['opacity', 'margin-left'])};
 
@@ -58,5 +58,6 @@ export const Content = styled.section`
     margin-left: 0;
     opacity: ${({ open }) => (open ? 0 : 1)};
     display: ${({ open }) => (open ? 'none' : 'block')};
+    padding: ${theme.typography.pxToRem(theme.spacing.unit)};
   }
 `;

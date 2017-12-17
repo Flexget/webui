@@ -1,5 +1,5 @@
 import React from 'react';
-import { PaperWrapper } from 'components/styles';
+import { PaperWrapper } from 'common/styles';
 import Header from './Header';
 import LogTable from './LogTable';
 import { TableWrapper } from './styles';
