@@ -1,5 +1,6 @@
 import reducer from 'plugins/pending-list/data/reducer';
 import * as actions from 'plugins/pending-list/data/actions';
+import { Headers } from 'utils/tests';
 
 describe('plugins/pending-list/data/reducer', () => {
   it('should return the initial state', () => {
@@ -34,5 +35,29 @@ describe('plugins/pending-list/data/reducer', () => {
         id: 1,
       },
     })).toEqual({ lists: [{ id: 0, name: 'list' }], entries: {} });
+  });
+
+  it('should return entries on GET_ENTRIES', () => {
+    expect(reducer({
+      lists: [{ id: 0, name: 'list' }],
+      entries: {},
+    }, {
+      type: actions.GET_ENTRIES,
+      payload: {
+        headers: new Headers({ 'total-count': 1 }),
+        listId: 0,
+        page: 1,
+        entries: [{ an: 'object', id: 12 }],
+      },
+    })).toEqual({
+      lists: [{ id: 0, name: 'list' }],
+      entries: {
+        0: {
+          totalCount: 1,
+          page: 1,
+          items: [{ an: 'object', id: 12 }],
+        },
+      },
+    });
   });
 });

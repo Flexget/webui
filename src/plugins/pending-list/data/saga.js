@@ -1,5 +1,5 @@
 import { stringify } from 'qs';
-import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
+import { call, put, takeLatest, takeEvery, select } from 'redux-saga/effects';
 import { action, requesting } from 'utils/actions';
 import * as fetch from 'utils/fetch';
 import * as actions from './actions';
@@ -44,22 +44,25 @@ export const getEntriesOptions = {
 export function* getEntries({ payload }) {
   const { listId, params } = payload;
   const query = { ...getEntriesOptions, ...params };
-  const refresh = query.page === 1;
 
   try {
     const { data, headers } = yield call(fetch.get, `/pending_list/${listId}/entries?${stringify(query)}`);
-    yield put(action(actions.GET_ENTRIES, { listId, entries: data, refresh, headers }));
+    yield put(action(actions.GET_ENTRIES, { listId, entries: data, page: query.page, headers }));
   } catch (err) {
     yield put(action(actions.GET_ENTRIES, err));
   }
 }
 
+const getCurrentPage = listId => ({ pendingList }) => pendingList.entries[listId].page;
+
 export function* addEntry({ payload }) {
   const { listId } = payload;
 
   try {
-    const { data } = yield call(fetch.post, `/pending_list/${listId}/entries`, payload);
-    yield put(action(actions.ADD_ENTRY, { entry: data, listId }));
+    yield call(fetch.post, `/pending_list/${listId}/entries`, payload);
+    yield put(action(actions.ADD_ENTRY));
+    const page = yield select(getCurrentPage);
+    yield* getEntries({ payload: { listId, params: { page } } });
   } catch (err) {
     yield put(action(actions.ADD_ENTRY, err));
   }
@@ -71,6 +74,8 @@ export function* removeEntry({ payload }) {
   try {
     yield call(fetch.del, `/pending_list/${listId}/entries/${id}`);
     yield put(action(actions.REMOVE_ENTRY, { id, listId }));
+    const page = yield select(getCurrentPage);
+    yield* getEntries({ payload: { listId, params: { page } } });
   } catch (err) {
     yield put(action(actions.REMOVE_ENTRY, err));
   }
