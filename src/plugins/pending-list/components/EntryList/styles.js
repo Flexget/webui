@@ -15,7 +15,7 @@ export const EntryWrapper = styled.div`
   padding: ${theme.typography.pxToRem(theme.spacing.unit * 2)};
 
   ${theme.breakpoints.up('sm')} {
-    width: 25%;
+    width: 50%;
     padding: ${theme.typography.pxToRem(theme.spacing.unit * 2)};
   }
 `;

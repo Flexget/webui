@@ -17,8 +17,8 @@ export const subheader = css`
 `;
 
 export const EntryCard = styled(Card)`
-  height: 165px;
+  height: 220px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content:space-between;
 `;
