@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import FlexGetEntry from 'common/FlexGetEntry';
 import { EntryShape } from 'plugins/pending-list/data/shapes';
 import Entry from '../Entry';
 import AddEntryDialog from '../AddEntryDialog';
@@ -72,7 +73,7 @@ export default class EntryList extends PureComponent {
           {entries.items && entries.items.map(entry => (
             <EntryWrapper key={entry.id}>
               <Entry
-                entry={entry}
+                entry={new FlexGetEntry(entry)}
                 openRemoveModal={this.openRemoveEntryModal(entry)}
               />
             </EntryWrapper>
