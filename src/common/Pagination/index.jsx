@@ -8,7 +8,7 @@ const page = ({ isActive, value, isDisabled, onClick }) => (
   <Button
     className={isActive ? [active, link] : link}
     onClick={onClick}
-    disabled={isActive ? true : isDisabled}
+    disabled={isDisabled}
   >{value}</Button>
 );
 
