@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { GET_ENTRIES } from 'plugins/pending-list/data/actions';
 import { request } from 'utils/actions';
-import EntryList from './EntryList';
+import Pagination from './Pagination';
 
 function mapStateToProps({ pendingList }) {
   return {
@@ -15,4 +15,4 @@ function mapDispatchToProps(dispatch, { listId }) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EntryList);
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);

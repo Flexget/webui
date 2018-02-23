@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { NoPaddingWrapper } from 'common/styles';
 import TabList from './TabList';
 import EntryList from './EntryList';
+import Pagination from './Pagination';
 import { Content } from './styles';
 
 export default class PendingList extends PureComponent {
@@ -23,6 +24,7 @@ export default class PendingList extends PureComponent {
         <Content>
           <EntryList listId={listId} />
         </Content>
+        <Pagination listId={listId} />
       </NoPaddingWrapper>
     );
   }

@@ -48,9 +48,8 @@ export default class EntryList extends PureComponent {
   openAddEntryModal = () => this.setState({ entryModalOpen: true })
   closeAddEntryModal = () => this.setState({ entryModalOpen: false })
 
-
   render() {
-    const { entries, listId } = this.props;
+    const { entries: { items }, listId } = this.props;
     const { removeEntry, entryModalOpen } = this.state;
 
     if (!listId) {
@@ -62,7 +61,7 @@ export default class EntryList extends PureComponent {
         <ButtonWrapper>
           <AddEntryButton
             color="primary"
-            dense
+            size="small"
             onClick={this.openAddEntryModal}
           >
             <Icon icon="plus-circle" />
@@ -70,7 +69,7 @@ export default class EntryList extends PureComponent {
           </AddEntryButton>
         </ButtonWrapper>
         <ListWrapper>
-          {entries.items && entries.items.map(entry => (
+          {items && items.map(entry => (
             <EntryWrapper key={entry.id}>
               <Entry
                 entry={new FlexGetEntry(entry)}

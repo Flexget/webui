@@ -1,4 +1,5 @@
 import styled from 'react-emotion';
+import { css } from 'emotion';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import Button from 'material-ui/Button';
 import { lighten } from 'polished';
@@ -15,6 +16,11 @@ export const EntryWrapper = styled.div`
   padding: ${theme.typography.pxToRem(theme.spacing.unit * 2)};
 
   ${theme.breakpoints.up('sm')} {
+    width: 100%;
+    padding: ${theme.typography.pxToRem(theme.spacing.unit * 2)};
+  }
+
+  ${theme.breakpoints.up('md')} {
     width: 50%;
     padding: ${theme.typography.pxToRem(theme.spacing.unit * 2)};
   }
@@ -37,4 +43,9 @@ export const AddEntryButton = styled(Button)`
 export const Icon = styled(FontAwesomeIcon)`
   margin-right: ${theme.typography.pxToRem(theme.spacing.unit)};
   font-size: 1.6rem;
+`;
+
+export const pagination = css`
+  position: static
+  
 `;

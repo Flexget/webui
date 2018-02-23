@@ -1,10 +1,11 @@
-import { removeDupesIgnoreCase } from 'utils';
+import capitalize from 'js-capitalize';
 
 const pluginMap = {
   IMDB: {
     genre: 'imdb_genres',
     poster: 'imdb_photo',
     rating: 'imdb_score',
+    votes: 'imdb_votes',
     description: 'imdb_plot_outline',
     link: 'imdb_url',
   },
@@ -25,6 +26,7 @@ const pluginMap = {
     genre: 'trakt_genres',
     rating: 'trakt_rating',
     description: 'trakt_series_overview',
+    votes: 'trakt_series_votes',
   },
   TMDB: {
     genre: 'tmdb_genres',
@@ -60,15 +62,16 @@ export default class FlexGetEntry {
   constructor(entry) {
     this.fields = entry.entry;
     this.id = entry.id;
+    this.listId = entry.list_id;
     this.approved = entry.approved;
     this.title = entry.title;
     this.titleFormatted = this.formatTitle();
     this.quality = this.getQualities();
     this.genres = this.getGenres();
-    this.ratings = this.getRatings();
     this.posters = this.getPosters();
     this.descriptions = this.getDescriptions();
     this.links = this.getLinks();
+    this.ratings = this.getRatings();
   }
 
   formatTitle() {
@@ -85,7 +88,10 @@ export default class FlexGetEntry {
   }
 
   getRatings() {
-    return getFieldValuesMap(this.fields, 'rating');
+    const votes = getFieldValuesMap(this.fields, 'votes');
+    return Object.entries(getFieldValuesMap(this.fields, 'rating')).map(([site, rating]) => (
+      { site, rating, votes: site ? votes[site] : 0 }
+    ));
   }
 
   getQualities() {
@@ -98,8 +104,9 @@ export default class FlexGetEntry {
   }
 
   getGenres() {
-    const genres = getFieldValuesArray(this.fields, 'genre');
-    return removeDupesIgnoreCase([].concat(...genres));
+    const genres = getFieldValuesArray(this.fields, 'genre').map(g => g.toLowerCase());
+    const unique = Array.from(new Set(genres));
+    return unique.map(g => capitalize.words(g));
   }
 
   getDescriptions() {
