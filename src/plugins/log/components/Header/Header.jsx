@@ -70,10 +70,10 @@ class Header extends Component {
     return (
       <Wrapper>
         <div>
-          <Typography type="title">
+          <Typography variant="title">
             Server Log
           </Typography>
-          <GreyType type="subheading">
+          <GreyType variant="subheading">
             { connected ? 'Streaming' : 'Disconnected' }
           </GreyType>
         </div>
@@ -96,7 +96,7 @@ class Header extends Component {
           id="log-menu"
           anchorEl={anchorEl}
           open={open}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleRequestClose}
         >
           <MenuItem>
             <TextField

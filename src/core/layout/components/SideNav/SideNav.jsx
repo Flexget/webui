@@ -101,7 +101,7 @@ export default class SideNav extends Component {
     return (
       <Drawer
         open={sideBarOpen}
-        type="permanent"
+        variant="permanent"
         classes={{
           paper: drawerPaper(sideBarOpen),
         }}

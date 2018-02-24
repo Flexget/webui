@@ -73,7 +73,7 @@ export default class Navbar extends Component {
           <NavIcon onClick={toggle}>
             <FontAwesomeIcon icon="bars" fixedWidth />
           </NavIcon>
-          <Typography type="title" color="inherit">
+          <Typography variant="title" color="inherit">
             {titleMap[pathname]}
           </Typography>
           <Spacer />
@@ -97,7 +97,7 @@ export default class Navbar extends Component {
             id="nav-menu"
             anchorEl={anchorEl}
             open={menuOpen}
-            onRequestClose={this.handleMenuRequestClose}
+            onClose={this.handleMenuRequestClose}
           >
             <MenuItem onClick={this.handleReloadClick}>
               <MenuIcon icon="sync" fixedWidth />
@@ -116,7 +116,7 @@ export default class Navbar extends Component {
               Logout
             </MenuItem>
           </Menu>
-          <Dialog open={shutdownPrompt} onRequestClose={this.handleShutdownRequestClose}>
+          <Dialog open={shutdownPrompt} onClose={this.handleShutdownRequestClose}>
             <DialogTitle>Shutdown</DialogTitle>
             <DialogContent>
               <DialogContentText>

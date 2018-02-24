@@ -6,8 +6,8 @@ const LoadingBar = ({ loading }) => {
   if (loading) {
     return (
       <LinearProgress
-        mode="query"
-        color="accent"
+        variant="query"
+        color="secondary"
       />
     );
   }

@@ -35,7 +35,7 @@ injectGlobal`
     height: 100%;
     width: 100%;
     font-size: 1.6rem;
-    background-color: ${theme.palette.background.contentFrame};
+    background-color: ${theme.palette.grey['200']};
     font-family: 'Roboto';
   }
 
