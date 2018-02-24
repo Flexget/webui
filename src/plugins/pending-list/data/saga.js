@@ -96,22 +96,22 @@ export function* removeEntry({ payload }) {
 }
 
 export function* approveEntry({ payload }) {
-  const { id, listId } = payload;
+  const { entry: { id, listId } } = payload;
 
   try {
     const { data } = yield call(fetch.put, `/pending_list/${listId}/entries/${id}`, { operation: 'approve' });
-    yield put(action(actions.APPROVE_ENTRY, { entry: data }));
+    yield put(action(actions.APPROVE_ENTRY, { entry: new FlexGetEntry(data) }));
   } catch (err) {
     yield put(action(actions.APPROVE_ENTRY, err));
   }
 }
 
 export function* rejectEntry({ payload }) {
-  const { id, listId } = payload;
+  const { entry: { id, listId } } = payload;
 
   try {
     const { data } = yield call(fetch.put, `/pending_list/${listId}/entries/${id}`, { operation: 'reject' });
-    yield put(action(actions.REJECT_ENTRY, { entry: data }));
+    yield put(action(actions.REJECT_ENTRY, { entry: new FlexGetEntry(data) }));
   } catch (err) {
     yield put(action(actions.REJECT_ENTRY, err));
   }
