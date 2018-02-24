@@ -17,7 +17,7 @@ const SeriesCard = ({ show }) => (
       <Image src={blank} alt="" />
     </Media>
     <CardContent>
-      <Typography type="headline" component="h2">
+      <Typography variant="headline" component="h2">
         {show.name}
       </Typography>
     </CardContent>

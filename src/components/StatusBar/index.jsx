@@ -7,7 +7,7 @@ const StatusBar = ({ open, message, clearStatus }) => (
     anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
     open={open}
     autoHideDuration={6000}
-    onRequestClose={clearStatus}
+    onClose={clearStatus}
     SnackbarContentProps={{
       'aria-describedby': 'message-id',
     }}
