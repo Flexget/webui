@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { EntryShape } from 'plugins/pending-list/data/shapes';
+
 import Pagination from 'common/Pagination';
+import FlexgetEntry from 'common/FlexGetEntry';
 import { PaginationWrapper } from './styles';
+
 
 export default class ListPagination extends PureComponent {
   static propTypes = {
@@ -10,7 +12,7 @@ export default class ListPagination extends PureComponent {
     entries: PropTypes.shape({
       page: PropTypes.number,
       totalCount: PropTypes.number,
-      items: PropTypes.arrayOf(EntryShape),
+      items: PropTypes.arrayOf(PropTypes.instanceOf(FlexgetEntry)),
     }).isRequired,
     getEntries: PropTypes.func.isRequired,
   }

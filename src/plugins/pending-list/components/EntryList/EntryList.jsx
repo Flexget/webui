@@ -1,10 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FlexGetEntry from 'common/FlexGetEntry';
-import { EntryShape } from 'plugins/pending-list/data/shapes';
 import Entry from '../Entry';
 import AddEntryDialog from '../AddEntryDialog';
-import RemoveEntryDialog from '../RemoveEntryDialog';
 import {
   EntryWrapper,
   ListWrapper,
@@ -19,7 +17,7 @@ export default class EntryList extends PureComponent {
     entries: PropTypes.shape({
       page: PropTypes.number,
       totalCount: PropTypes.number,
-      items: PropTypes.arrayOf(EntryShape),
+      items: PropTypes.arrayOf(PropTypes.instanceOf(FlexGetEntry)),
     }).isRequired,
     getEntries: PropTypes.func.isRequired,
   }
@@ -72,16 +70,12 @@ export default class EntryList extends PureComponent {
           {items && items.map(entry => (
             <EntryWrapper key={entry.id}>
               <Entry
-                entry={new FlexGetEntry(entry)}
+                entry={entry}
                 openRemoveModal={this.openRemoveEntryModal(entry)}
               />
             </EntryWrapper>
           ))}
         </ListWrapper>
-        <RemoveEntryDialog
-          entry={removeEntry}
-          onClose={this.closeRemoveEntryModal}
-        />
         <AddEntryDialog
           open={entryModalOpen}
           onClose={this.closeAddEntryModal}

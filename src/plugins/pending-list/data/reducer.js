@@ -2,6 +2,7 @@ import * as actions from './actions';
 
 const initState = {
   lists: [],
+  selected: [],
   entries: {},
 };
 
@@ -29,6 +30,14 @@ export default function reducer(state = initState, { payload, type }) {
           totalCount: parseInt(payload.headers.get('total-count'), 10),
           page: payload.page,
           items: payload.entries,
+        },
+      };
+    case actions.REMOVE_ENTRY:
+      return {
+        ...state,
+        entries: {
+          ...state.entries,
+          items: state.entries.items.filter(entry => entry.id !== payload.entry.id),
         },
       };
     case actions.REJECT_ENTRY:

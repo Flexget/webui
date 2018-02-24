@@ -2,19 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Img from 'react-image';
 import Button from 'material-ui/Button';
-import { CardActions, CardContent } from 'material-ui/Card';
+import { CardActions } from 'material-ui/Card';
 import FlexGetEntry from 'common/FlexGetEntry';
 import EntryHeader from './EntryHeader';
-import Divider from 'material-ui/Divider';
 import { ActionIcon, EntryCard, Poster, EntryInfo, EntryPlot } from './styles';
 
 /* eslint-disable camelcase */
 class Entry extends React.PureComponent {
   static propTypes = {
     entry: PropTypes.instanceOf(FlexGetEntry).isRequired,
-    openRemoveModal: PropTypes.func.isRequired,
     approveEntry: PropTypes.func.isRequired,
     rejectEntry: PropTypes.func.isRequired,
+    removeEntry: PropTypes.func.isRequired,
   };
 
   links() {
@@ -27,7 +26,13 @@ class Entry extends React.PureComponent {
   }
 
   render() {
-    const { entry, openRemoveModal, approveEntry, rejectEntry } = this.props;
+    const {
+      entry,
+      approveEntry,
+      rejectEntry,
+      removeEntry,
+    } = this.props;
+
     const { approved, titleFormatted, posters } = entry;
 
     const { entry: { descriptions = [] } } = this.props;
@@ -53,9 +58,9 @@ class Entry extends React.PureComponent {
                 </Button>
               )
             }
-            <Button onClick={openRemoveModal}>
+            <Button onClick={removeEntry}>
               <ActionIcon icon="trash-alt" />
-              Delete
+              Remove
             </Button>
             {this.links()}
           </CardActions>

@@ -1,6 +1,8 @@
 import { stringify } from 'qs';
 import { call, put, takeLatest, takeEvery, select } from 'redux-saga/effects';
 import { action, requesting } from 'utils/actions';
+
+import FlexGetEntry from 'common/FlexGetEntry';
 import * as fetch from 'utils/fetch';
 import * as actions from './actions';
 
@@ -53,7 +55,8 @@ export function* getEntries({ payload }) {
 
   try {
     const { data, headers } = yield call(fetch.get, `/pending_list/${listId}/entries?${stringify(query)}`);
-    yield put(action(actions.GET_ENTRIES, { entries: data, page: query.page, headers }));
+    const entries = data.map(e => new FlexGetEntry(e));
+    yield put(action(actions.GET_ENTRIES, { entries, page: query.page, headers }));
   } catch (err) {
     yield put(action(actions.GET_ENTRIES, err));
   }
@@ -79,19 +82,16 @@ export function* addEntry({ payload }) {
 }
 
 export function* removeEntry({ payload }) {
-  const { id, listId, resolve, reject } = payload;
+  const { entry } = payload;
+  const { id, listId } = entry;
 
   try {
     yield call(fetch.del, `/pending_list/${listId}/entries/${id}`);
-    const page = yield select(getCurrentPage);
-    yield* getEntries({ payload: { listId, params: { page } } });
-    yield put(action(actions.REMOVE_ENTRY, {}, {
+    yield put(action(actions.REMOVE_ENTRY, { entry }, {
       message: 'Successfully removed entry.',
     }));
-    yield call(resolve);
   } catch (err) {
     yield put(action(actions.REMOVE_ENTRY, err));
-    yield call(reject);
   }
 }
 

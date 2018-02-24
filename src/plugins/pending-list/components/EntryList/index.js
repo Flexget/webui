@@ -5,7 +5,7 @@ import EntryList from './EntryList';
 
 function mapStateToProps({ pendingList }) {
   return {
-    entries: pendingList.entries,
+    entries: pendingList.entries
   };
 }
 
