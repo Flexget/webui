@@ -27,7 +27,6 @@ export default class EntryList extends PureComponent {
   }
 
   state = {
-    removeEntry: null,
     entryModalOpen: false,
   }
 
@@ -42,13 +41,12 @@ export default class EntryList extends PureComponent {
   }
 
   openRemoveEntryModal = entry => () => this.setState({ removeEntry: entry })
-  closeRemoveEntryModal = () => this.setState({ removeEntry: null })
   openAddEntryModal = () => this.setState({ entryModalOpen: true })
   closeAddEntryModal = () => this.setState({ entryModalOpen: false })
 
   render() {
     const { entries: { items }, listId } = this.props;
-    const { removeEntry, entryModalOpen } = this.state;
+    const { entryModalOpen } = this.state;
 
     if (!listId) {
       return null;
