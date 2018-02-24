@@ -19,7 +19,7 @@ class Entry extends React.PureComponent {
   links() {
     const { entry: { links } } = this.props;
     return Object.entries(links).map(([plugin, link]) => (
-      <Button key={`${plugin}-link`} variant="fab" color="primary" aria-label="add" href={link} target="_blank">
+      <Button key={`${plugin}-link`} color="primary" aria-label="add" href={link} target="_blank">
         {plugin}
       </Button>
     ));

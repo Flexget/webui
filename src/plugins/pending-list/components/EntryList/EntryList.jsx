@@ -4,7 +4,7 @@ import FlexGetEntry from 'common/FlexGetEntry';
 import Select from 'material-ui/Select';
 import { MenuItem } from 'material-ui/Menu';
 import { InputLabel } from 'material-ui/Input';
-import { FormControl, FormHelperText } from 'material-ui/Form';
+import { FormControl } from 'material-ui/Form';
 import Entry from '../Entry';
 import AddEntryDialog from '../AddEntryDialog';
 import {

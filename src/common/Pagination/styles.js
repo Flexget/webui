@@ -7,18 +7,18 @@ export const link = css`
   font-size: 16px;
   margin: 0 0 5px;
   padding: 2px 12px;
-  background-color: ${theme.palette.primary[600]}
+  background-color: ${theme.palette.primary[600]};
   min-width: 50px;
   max-width: 50px;
   border-radius: 0;
   border-right: 1px solid rgba(0,0,0,.25);
   &:hover {
-    background-color: ${theme.palette.primary[300]}
+    background-color: ${theme.palette.primary[300]};
   }
 `;
 
 export const active = css`
-  background-color: ${theme.palette.primary[300]}
+  background-color: ${theme.palette.primary[300]};
 `;
 
 export const firstLink = css`

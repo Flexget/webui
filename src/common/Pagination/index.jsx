@@ -4,12 +4,15 @@ import Button from 'material-ui/Button';
 import { createUltimatePagination } from 'react-ultimate-pagination';
 import { Pagination, firstLink, lastLink, link, active } from './styles';
 
-const page = ({ isActive, value, isDisabled, onClick }) => (
+const page = ({
+  isActive, value, isDisabled, onClick,
+}) => (
   <Button
-    className={isActive ? [active, link] : link}
+    className={isActive ? [active, link].join(' ') : link}
     onClick={onClick}
     disabled={isDisabled}
-  >{value}</Button>
+  >{value}
+  </Button>
 );
 
 page.propTypes = {
@@ -23,7 +26,7 @@ page.defaultProps = { isDisabled: false, isActive: false };
 function makeLink(styles, text) {
   const button = props => (
     <Button
-      className={props.isActive ? [active, ...styles] : styles}
+      className={props.isActive ? [active, ...styles].join(' ') : styles.join(' ')}
       onClick={props.onClick}
       disabled={props.isActive ? true : props.isDisabled}
     >

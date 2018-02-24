@@ -31,10 +31,10 @@ const AddEntryDialog = ({ open, onClose, handleSubmit }) => (
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} type="button">
+        <Button onClick={onClose} variant="button">
           Cancel
         </Button>
-        <Button type="submit" color="primary">
+        <Button variant="submit" color="primary">
           Add
         </Button>
       </DialogActions>

@@ -31,7 +31,7 @@ class EntryHeader extends React.PureComponent {
     return (
       <div>
         <div onMouseOver={this.handlePopoverOpen} onMouseOut={this.handlePopoverClose}>
-          <Typography type="title">
+          <Typography variant="title">
             {
               ratings.length > 0 && (
                 <span>
@@ -86,7 +86,7 @@ class EntryHeader extends React.PureComponent {
       <div>
         <div className={header}>
           <Tooltip enterDelay={200} title={title}>
-            <Typography type="title">{titleFormatted}</Typography>
+            <Typography variant="title">{titleFormatted}</Typography>
           </Tooltip>
           {this.ratings()}
         </div>

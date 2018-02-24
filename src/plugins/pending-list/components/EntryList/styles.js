@@ -2,7 +2,6 @@ import styled from 'react-emotion';
 import { css } from 'emotion';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import Button from 'material-ui/Button';
-import { lighten } from 'polished';
 import theme from 'theme';
 
 export const ListWrapper = styled.div`
@@ -36,7 +35,7 @@ export const AddEntryButton = styled(Button)`
   color: ${theme.palette.primary[800]};
 
   &:hover {
-    color: ${lighten(0.12, theme.palette.primary[800])};
+    color: ${theme.palette.primary[500]};
   }
 `;
 
