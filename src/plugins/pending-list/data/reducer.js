@@ -32,6 +32,7 @@ export default function reducer(state = initState, { payload, type }) {
           items: payload.entries,
         },
       };
+    case actions.INJECT_ENTRY:
     case actions.REMOVE_ENTRY:
       return {
         ...state,

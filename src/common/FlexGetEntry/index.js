@@ -60,11 +60,17 @@ export function getFieldValuesArray(fields, type) {
 
 export default class FlexGetEntry {
   constructor(entry) {
-    this.fields = entry.entry;
     this.id = entry.id;
+    this.url = entry.original_url;
     this.listId = entry.list_id;
     this.approved = entry.approved;
     this.title = entry.title;
+
+    this.fields = { ...entry.entry };
+    if ('url' in this.fields) {
+      delete this.fields.url
+    }
+
     this.titleFormatted = this.formatTitle();
     this.quality = this.getQualities();
     this.genres = this.getGenres();

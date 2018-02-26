@@ -4,6 +4,7 @@ import Img from 'react-image';
 import Button from 'material-ui/Button';
 import { CardActions } from 'material-ui/Card';
 import FlexGetEntry from 'common/FlexGetEntry';
+import TaskSelector from 'common/TaskSelector';
 import EntryHeader from './EntryHeader';
 import { ActionIcon, EntryCard, Poster, EntryInfo, EntryPlot } from './styles';
 
@@ -14,7 +15,12 @@ class Entry extends React.PureComponent {
     approveEntry: PropTypes.func.isRequired,
     rejectEntry: PropTypes.func.isRequired,
     removeEntry: PropTypes.func.isRequired,
+    injectEntry: PropTypes.func.isRequired,
   };
+
+  state = {
+    taskMenuEl: null
+  }
 
   links() {
     const { entry: { links } } = this.props;
@@ -25,6 +31,16 @@ class Entry extends React.PureComponent {
     ));
   }
 
+  handleInjectOpen = (event) =>  this.setState({ taskMenuEl: event.currentTarget });
+  handleInjectClose = () => this.setState({ taskMenuEl: null });
+
+  handleInjectClick = (task) => {
+    const { injectEntry } = this.props;
+    injectEntry(task);
+    this.handleInjectClose();
+  }
+
+
   render() {
     const {
       entry,
@@ -32,8 +48,8 @@ class Entry extends React.PureComponent {
       rejectEntry,
       removeEntry,
     } = this.props;
-
     const { approved, titleFormatted, posters } = entry;
+    const { taskMenuEl } = this.state;
 
     const { entry: { descriptions = [] } } = this.props;
     const description = descriptions.length > 0 ? descriptions[0] : '';
@@ -62,6 +78,15 @@ class Entry extends React.PureComponent {
               <ActionIcon icon="trash-alt" />
               Remove
             </Button>
+            <Button onClick={this.handleInjectOpen}>
+              <ActionIcon icon="arrows-alt" />
+              Inject
+            </Button>
+            <TaskSelector
+              anchorEl={taskMenuEl}
+              handleClick={this.handleInjectClick}
+              handleClose={this.handleInjectClose}
+            />
             {this.links()}
           </CardActions>
         </EntryInfo>

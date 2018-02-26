@@ -95,6 +95,21 @@ export function* removeEntry({ payload }) {
   }
 }
 
+export function* injectEntry({ payload }) {
+  const { entry, task } = payload;
+  const { url, title, fields, listId, id } = entry;
+
+  try {
+    yield call(fetch.post, '/inject', { tasks: [task.name], inject: [{ url, title, fields }] });
+    yield call(fetch.del, `/pending_list/${listId}/entries/${id}`);
+    yield put(action(actions.INJECT_ENTRY, { entry }, {
+      message: `Successfully injected entry into ${task.name}.`,
+    }));
+  } catch (err) {
+    yield put(action(actions.INJECT_ENTRY, err));
+  }
+}
+
 export function* approveEntry({ payload }) {
   const { entry: { id, listId } } = payload;
 
@@ -123,6 +138,7 @@ export default function* saga() {
   yield takeEvery(requesting(actions.REMOVE_LIST), removeList);
   yield takeLatest(requesting(actions.GET_ENTRIES), getEntries);
   yield takeEvery(requesting(actions.ADD_ENTRY), addEntry);
+  yield takeEvery(requesting(actions.INJECT_ENTRY), injectEntry);
   yield takeEvery(requesting(actions.REMOVE_ENTRY), removeEntry);
   yield takeEvery(requesting(actions.APPROVE_ENTRY), approveEntry);
   yield takeEvery(requesting(actions.REJECT_ENTRY), rejectEntry);

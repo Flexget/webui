@@ -5,5 +5,6 @@ export const REMOVE_LIST = `${PREFIX}REMOVE_LIST`;
 export const GET_ENTRIES = `${PREFIX}GET_ENTRIES`;
 export const ADD_ENTRY = `${PREFIX}ADD_ENTRY`;
 export const REMOVE_ENTRY = `${PREFIX}REMOVE_ENTRY`;
+export const INJECT_ENTRY = `${PREFIX}INJECT_ENTRY`;
 export const APPROVE_ENTRY = `${PREFIX}APPROVE_ENTRY`;
 export const REJECT_ENTRY = `${PREFIX}REJECT_ENTRY`;
