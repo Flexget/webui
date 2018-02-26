@@ -45,7 +45,7 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
 }
 
 <div
-  className="glamor-4"
+  className="glamor-4 e19f7qgx0"
 >
   <div>
     <h2
@@ -54,27 +54,22 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
       Server Log
     </h2>
     <h3
-      className="MuiTypography-root-1 MuiTypography-subheading-8 glamor-0"
+      className="MuiTypography-root-1 MuiTypography-subheading-8 glamor-0 e19f7qgx3"
     >
       Streaming
     </h3>
   </div>
   <div
-    className="glamor-1"
+    className="glamor-1 e19f7qgx4"
   />
   <div
-    className="glamor-3"
+    className="glamor-3 e19f7qgx5"
   >
     <div
-      className="MuiFormControl-root-25 glamor-2"
-      inputProps={
-        Object {
-          "onKeyPress": [Function],
-        }
-      }
+      aria-describedby="filter-helper-text"
+      className="MuiFormControl-root-25 glamor-2 e19f7qgx6"
       onBlur={[Function]}
       onFocus={[Function]}
-      required={false}
     >
       <label
         className="MuiFormLabel-root-35 MuiInputLabel-root-29 MuiInputLabel-formControl-30 MuiInputLabel-animated-33"
@@ -89,15 +84,18 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
         onFocus={[Function]}
       >
         <input
+          aria-invalid={false}
+          aria-required={false}
           autoComplete={undefined}
           autoFocus={undefined}
-          className="MuiInput-input-48 MuiInput-inputSingleline-51"
+          className="MuiInput-input-48"
           defaultValue={undefined}
           disabled={false}
           id="filter"
           name={undefined}
           onChange={[Function]}
           onKeyDown={undefined}
+          onKeyPress={[Function]}
           onKeyUp={undefined}
           placeholder={undefined}
           readOnly={undefined}
@@ -109,6 +107,7 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
       </div>
       <p
         className="MuiFormHelperText-root-54"
+        id="filter-helper-text"
       >
         Supports operators and, or, (), and "str"
       </p>

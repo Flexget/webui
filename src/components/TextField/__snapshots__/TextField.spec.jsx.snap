@@ -2,10 +2,10 @@
 
 exports[`components/TextField renders correctly 1`] = `
 <div
+  aria-describedby={undefined}
   className="MuiFormControl-root-1"
   onBlur={[Function]}
   onFocus={[Function]}
-  required={false}
 >
   <div
     className="MuiInput-root-5 MuiInput-error-8 MuiInput-formControl-6 MuiInput-inkbar-7 MuiInput-underline-11"
@@ -13,9 +13,11 @@ exports[`components/TextField renders correctly 1`] = `
     onFocus={[Function]}
   >
     <input
+      aria-invalid={true}
+      aria-required={false}
       autoComplete={undefined}
       autoFocus={undefined}
-      className="MuiInput-input-14 MuiInput-inputSingleline-17"
+      className="MuiInput-input-14"
       defaultValue={undefined}
       disabled={false}
       id={undefined}

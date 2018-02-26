@@ -52,12 +52,12 @@ exports[`components/layout renders correctly 1`] = `
 
 .glamor-7 {
   background-color: #ef6c00;
-  color: rgba(255,255,255,1);
+  color: #fff;
   min-height: 5rem;
 }
 
 .glamor-2 {
-  color: rgba(255,255,255,1);
+  color: #fff;
 }
 
 .glamor-3 {
@@ -116,7 +116,6 @@ exports[`components/layout renders correctly 1`] = `
 }
 
 .glamor-15 {
-  color: #f44336;
   display: none;
 }
 
@@ -163,7 +162,7 @@ exports[`components/layout renders correctly 1`] = `
   }
 }
 
-@media (max-width:599.95px) {
+@media (max-width:959.95px) {
   .glamor-19 {
     margin-left: 0;
     opacity: 1;
@@ -172,35 +171,35 @@ exports[`components/layout renders correctly 1`] = `
 }
 
 <div
-  className="glamor-21"
+  className="glamor-21 e1ovaqso0"
 >
   <header
-    className="glamor-10"
+    className="glamor-10 e1ovaqso2"
   >
     <div
-      className="glamor-1"
+      className="glamor-1 e1ovaqso3"
     >
       <a
         href="/"
         onClick={[Function]}
       >
         <div
-          className="glamor-0"
+          className="glamor-0 ee44yi0"
           open={false}
         />
       </a>
     </div>
     <nav
-      className="glamor-9"
+      className="glamor-9 e1ovaqso4"
     >
       <header
-        className="MuiPaper-root-8 MuiPaper-shadow4-14 MuiAppBar-root-1 MuiAppBar-positionFixed-2 MuiAppBar-colorPrimary-6 mui-fixed glamor-8"
+        className="MuiPaper-root-9 MuiPaper-shadow4-15 MuiAppBar-root-1 MuiAppBar-positionFixed-2 MuiAppBar-colorPrimary-7 mui-fixed glamor-8 e1pzz03b0"
       >
         <div
-          className="MuiToolbar-root-35 MuiToolbar-gutters-36 glamor-7"
+          className="MuiToolbar-root-36 MuiToolbar-gutters-37 glamor-7 e1pzz03b1"
         >
           <button
-            className="MuiButtonBase-root-46 MuiIconButton-root-37 glamor-2"
+            className="MuiButtonBase-root-44 MuiIconButton-root-38 glamor-2 e1pzz03b2"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
@@ -213,7 +212,6 @@ exports[`components/layout renders correctly 1`] = `
             onTouchEnd={[Function]}
             onTouchMove={[Function]}
             onTouchStart={[Function]}
-            role="button"
             tabIndex={0}
             type="button"
           >
@@ -221,14 +219,14 @@ exports[`components/layout renders correctly 1`] = `
               className="MuiIconButton-label-43"
             />
             <span
-              className="MuiTouchRipple-root-48"
+              className="MuiTouchRipple-root-46"
             />
           </button>
           <h2
-            className="MuiTypography-root-55 MuiTypography-title-61 MuiTypography-colorInherit-74"
+            className="MuiTypography-root-53 MuiTypography-title-59 MuiTypography-colorInherit-72"
           />
           <div
-            className="glamor-3"
+            className="glamor-3 e1vib4761"
           />
           <a
             href="/config"
@@ -236,7 +234,7 @@ exports[`components/layout renders correctly 1`] = `
           >
             <button
               aria-label="Config"
-              className="MuiButtonBase-root-46 MuiIconButton-root-37 glamor-2"
+              className="MuiButtonBase-root-44 MuiIconButton-root-38 glamor-2 e1pzz03b2"
               disabled={false}
               onBlur={[Function]}
               onFocus={[Function]}
@@ -248,7 +246,6 @@ exports[`components/layout renders correctly 1`] = `
               onTouchEnd={[Function]}
               onTouchMove={[Function]}
               onTouchStart={[Function]}
-              role="button"
               tabIndex={0}
               type="button"
             >
@@ -256,7 +253,7 @@ exports[`components/layout renders correctly 1`] = `
                 className="MuiIconButton-label-43"
               />
               <span
-                className="MuiTouchRipple-root-48"
+                className="MuiTouchRipple-root-46"
               />
             </button>
           </a>
@@ -266,7 +263,7 @@ exports[`components/layout renders correctly 1`] = `
           >
             <button
               aria-label="Log"
-              className="MuiButtonBase-root-46 MuiIconButton-root-37 glamor-2"
+              className="MuiButtonBase-root-44 MuiIconButton-root-38 glamor-2 e1pzz03b2"
               disabled={false}
               onBlur={[Function]}
               onFocus={[Function]}
@@ -278,7 +275,6 @@ exports[`components/layout renders correctly 1`] = `
               onTouchEnd={[Function]}
               onTouchMove={[Function]}
               onTouchStart={[Function]}
-              role="button"
               tabIndex={0}
               type="button"
             >
@@ -286,13 +282,13 @@ exports[`components/layout renders correctly 1`] = `
                 className="MuiIconButton-label-43"
               />
               <span
-                className="MuiTouchRipple-root-48"
+                className="MuiTouchRipple-root-46"
               />
             </button>
           </a>
           <button
             aria-label="Manage"
-            className="MuiButtonBase-root-46 MuiIconButton-root-37 glamor-2"
+            className="MuiButtonBase-root-44 MuiIconButton-root-38 glamor-2 e1pzz03b2"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
@@ -305,7 +301,6 @@ exports[`components/layout renders correctly 1`] = `
             onTouchEnd={[Function]}
             onTouchMove={[Function]}
             onTouchStart={[Function]}
-            role="button"
             tabIndex={0}
             type="button"
           >
@@ -313,7 +308,7 @@ exports[`components/layout renders correctly 1`] = `
               className="MuiIconButton-label-43"
             />
             <span
-              className="MuiTouchRipple-root-48"
+              className="MuiTouchRipple-root-46"
             />
           </button>
         </div>
@@ -321,40 +316,40 @@ exports[`components/layout renders correctly 1`] = `
     </nav>
   </header>
   <main
-    className="glamor-20"
+    className="glamor-20 e1ovaqso1"
   >
     <aside
-      className="glamor-18"
+      className="glamor-18 e1ovaqso5"
     >
       <div
-        className="MuiDrawer-docked-90"
+        className="MuiDrawer-docked-88"
       >
         <div
-          className="MuiPaper-root-8 MuiPaper-shadow0-10 MuiDrawer-paper-91 glamor-17 MuiDrawer-paperAnchorLeft-92 MuiDrawer-paperAnchorDockedLeft-96"
+          className="MuiPaper-root-9 MuiPaper-shadow0-11 MuiDrawer-paper-89 glamor-17 MuiDrawer-paperAnchorLeft-90 MuiDrawer-paperAnchorDockedLeft-94"
         >
           <div
-            className="glamor-16"
+            className="glamor-16 egdat1"
           >
             <ul
-              className="MuiList-root-101 MuiList-padding-102 glamor-11"
+              className="MuiList-root-99 MuiList-padding-100 glamor-11 egdat3"
             />
             <div
-              className="glamor-15"
+              className="egdat2 glamor-15 ekjxbjj0"
             >
               <p
-                className="glamor-12"
+                className="glamor-12 ekjxbjj1"
               >
                 Version Info
               </p>
               <p
-                className="glamor-12"
+                className="glamor-12 ekjxbjj1"
               >
                 Flexget: 
                  
                  
               </p>
               <p
-                className="glamor-12"
+                className="glamor-12 ekjxbjj1"
               >
                 API: 
               </p>
@@ -364,7 +359,7 @@ exports[`components/layout renders correctly 1`] = `
       </div>
     </aside>
     <section
-      className="glamor-19"
+      className="glamor-19 e1ovaqso6"
       open={false}
     >
       <div />

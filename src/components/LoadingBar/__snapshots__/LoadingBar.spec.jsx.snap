@@ -2,14 +2,15 @@
 
 exports[`components/LoadingBar Component should render properly when loading 1`] = `
 <div
-  className="MuiLinearProgress-root-1 MuiLinearProgress-accentColor-5 MuiLinearProgress-rootQuery-12"
+  className="MuiLinearProgress-root-1 MuiLinearProgress-secondaryColor-5 MuiLinearProgress-rootQuery-12"
+  role="progressbar"
 >
   <div
-    className="MuiLinearProgress-bar-8 MuiLinearProgress-accentColorBar-6 MuiLinearProgress-indeterminateBar1-13"
+    className="MuiLinearProgress-bar-8 MuiLinearProgress-secondaryColorBar-6 MuiLinearProgress-indeterminateBar1-13"
     style={Object {}}
   />
   <div
-    className="MuiLinearProgress-bar-8 MuiLinearProgress-accentColorBar-6 MuiLinearProgress-indeterminateBar2-14"
+    className="MuiLinearProgress-bar-8 MuiLinearProgress-secondaryColorBar-6 MuiLinearProgress-indeterminateBar2-14"
     style={Object {}}
   />
 </div>
@@ -17,14 +18,15 @@ exports[`components/LoadingBar Component should render properly when loading 1`]
 
 exports[`components/LoadingBar Component should render properly when not loading 1`] = `
 <div
-  className="MuiLinearProgress-root-1 MuiLinearProgress-accentColor-5 MuiLinearProgress-rootQuery-12"
+  className="MuiLinearProgress-root-1 MuiLinearProgress-secondaryColor-5 MuiLinearProgress-rootQuery-12"
+  role="progressbar"
 >
   <div
-    className="MuiLinearProgress-bar-8 MuiLinearProgress-accentColorBar-6 MuiLinearProgress-indeterminateBar1-13"
+    className="MuiLinearProgress-bar-8 MuiLinearProgress-secondaryColorBar-6 MuiLinearProgress-indeterminateBar1-13"
     style={Object {}}
   />
   <div
-    className="MuiLinearProgress-bar-8 MuiLinearProgress-accentColorBar-6 MuiLinearProgress-indeterminateBar2-14"
+    className="MuiLinearProgress-bar-8 MuiLinearProgress-secondaryColorBar-6 MuiLinearProgress-indeterminateBar2-14"
     style={Object {}}
   />
 </div>
