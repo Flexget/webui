@@ -64,7 +64,9 @@ export default class Navbar extends Component {
   });
 
   render() {
-    const { toggle, logout, pathname, titleMap } = this.props;
+    const {
+      toggle, logout, pathname, titleMap,
+    } = this.props;
     const { anchorEl, menuOpen, shutdownPrompt } = this.state;
 
     return (

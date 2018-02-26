@@ -64,7 +64,9 @@ class Header extends Component {
 
   render() {
     const { connected, stop } = this.props;
-    const { anchorEl, open, query, lines } = this.state;
+    const {
+      anchorEl, open, query, lines,
+    } = this.state;
     const helperText = 'Supports operators and, or, (), and "str"';
 
     return (

@@ -5,9 +5,8 @@ import { themed } from 'utils/tests';
 
 describe('components/StatusBar', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      themed(<StatusBar open={false} clearStatus={jest.fn()} />),
-    ).toJSON();
+    const statusbar = <StatusBar open={false} clearStatus={jest.fn()} />;
+    const tree = renderer.create(themed(statusbar)).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

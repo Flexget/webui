@@ -47,7 +47,9 @@ export function* getEntries({ payload }) {
 
   try {
     const { data, headers } = yield call(fetch.get, `/pending_list/${listId}/entries?${stringify(query)}`);
-    yield put(action(actions.GET_ENTRIES, { listId, entries: data, page: query.page, headers }));
+    yield put(action(actions.GET_ENTRIES, {
+      listId, entries: data, page: query.page, headers,
+    }));
   } catch (err) {
     yield put(action(actions.GET_ENTRIES, err));
   }

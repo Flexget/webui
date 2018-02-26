@@ -21,10 +21,6 @@ class Layout extends Component {
     children: PropTypes.node.isRequired,
   };
 
-  static defaultProps = {
-    loggedIn: false,
-  };
-
   state = {
     sideBarOpen: (window.matchMedia && !!window.matchMedia('(min-width: 600px)').matches) || false,
   };

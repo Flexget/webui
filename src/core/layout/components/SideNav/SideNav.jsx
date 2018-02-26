@@ -75,7 +75,7 @@ export default class SideNav extends Component {
         />,
       ];
       if (props.children) {
-        list.push(
+        const collaspe = (
           <Collapse
             in={this.state.open[props.label]}
             transitionDuration="auto"
@@ -91,6 +91,7 @@ export default class SideNav extends Component {
             ))}
           </Collapse>
         );
+        list.push(collaspe);
       }
       return list;
     }, []);

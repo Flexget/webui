@@ -8,9 +8,7 @@ import { themed, provider } from 'utils/tests';
 describe('core/Login/LoginCard', () => {
   describe('LoginCard', () => {
     it('renders correctly', () => {
-      const tree = renderer.create(
-        provider(themed(<LoginCardFull />)),
-      ).toJSON();
+      const tree = renderer.create(provider(themed(<LoginCardFull />))).toJSON();
       expect(tree).toMatchSnapshot();
     });
 

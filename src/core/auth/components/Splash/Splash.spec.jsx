@@ -5,9 +5,7 @@ import { themed } from 'utils/tests';
 
 describe('pages/splash', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      themed(<SplashScreen />),
-    ).toJSON();
+    const tree = renderer.create(themed(<SplashScreen />)).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

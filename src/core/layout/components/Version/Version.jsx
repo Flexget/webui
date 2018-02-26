@@ -36,7 +36,8 @@ class Version extends Component {
             <IconButton href="https://flexget.com/ChangeLog">
               <FontAwesomeIcon icon={['far', 'question-circle']} fixedWidth />
             </IconButton>
-          ) } </Line>
+          ) }
+        </Line>
         <Line>API: { api }</Line>
       </Wrapper>
     );

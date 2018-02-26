@@ -4,20 +4,14 @@ import Loader from 'components/Loader';
 
 describe('components/Loader', () => {
   it('should render properly when loading', () => {
-    expect(
-      shallow(<Loader isLoading pastDelay />)
-    ).toMatchSnapshot();
+    expect(shallow(<Loader isLoading pastDelay />)).toMatchSnapshot();
   });
 
   it('should render properly when timed out', () => {
-    expect(
-      shallow(<Loader isLoading timedOut />)
-    ).toMatchSnapshot();
+    expect(shallow(<Loader isLoading timedOut />)).toMatchSnapshot();
   });
 
   it('should render properly when errored', () => {
-    expect(
-      shallow(<Loader error />)
-    ).toMatchSnapshot();
+    expect(shallow(<Loader error />)).toMatchSnapshot();
   });
 });

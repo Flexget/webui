@@ -14,13 +14,11 @@ const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = (__DEV__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 const store = createStore(
   connectRouter(history)(createReducer()),
-  composeEnhancers(
-    applyMiddleware(
-      status,
-      routerMiddleware(history),
-      sagaMiddleware,
-    ),
-  ),
+  composeEnhancers(applyMiddleware(
+    status,
+    routerMiddleware(history),
+    sagaMiddleware,
+  )),
 );
 
 sagaMiddleware.run(rootSaga);

@@ -5,20 +5,18 @@ import { mapStateToProps, HistoryList } from 'plugins/history/components/History
 describe('plugins/history/components/HistoryList', () => {
   describe('HistoryList', () => {
     it('renders correctly', () => {
-      const tree = shallow(
-        <HistoryList
-          getHistory={jest.fn()}
-          history={{
+      const tree = shallow(<HistoryList
+        getHistory={jest.fn()}
+        history={{
             '2017-09-09': [{
               task: 'task',
               id: 1,
               title: 'something',
             }],
           }}
-          grouping="time"
-          hasMore
-        />
-      );
+        grouping="time"
+        hasMore
+      />);
       expect(tree).toMatchSnapshot();
     });
   });

@@ -8,16 +8,14 @@ const Component = () => <div />;
 describe('core/routes/components/PrivateRoute', () => {
   describe('PrivateRoute', () => {
     it('renders correctly when logged in', () => {
-      const tree = renderer.create(
-        router(<PrivateRoute component={Component} loggedIn />)
-      ).toJSON();
+      const privateRoute = <PrivateRoute component={Component} loggedIn />;
+      const tree = renderer.create(router(privateRoute)).toJSON();
       expect(tree).toMatchSnapshot();
     });
 
     xit('renders correctly when logged out', () => {
-      const tree = renderer.create(
-        router(<PrivateRoute component={Component} loggedIn={false} />)
-      ).toJSON();
+      const privateRoute = <PrivateRoute component={Component} loggedIn={false} />;
+      const tree = renderer.create(router(privateRoute)).toJSON();
       expect(tree).toMatchSnapshot();
     });
   });
