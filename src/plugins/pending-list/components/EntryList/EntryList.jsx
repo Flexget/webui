@@ -3,16 +3,12 @@ import PropTypes from 'prop-types';
 import FlexGetEntry from 'common/FlexGetEntry';
 import Select from 'material-ui/Select';
 import { MenuItem } from 'material-ui/Menu';
-import { InputLabel } from 'material-ui/Input';
 import { FormControl } from 'material-ui/Form';
 import Entry from '../Entry';
-import AddEntryDialog from '../AddEntryDialog';
 import {
   EntryWrapper,
   ListWrapper,
   ButtonWrapper,
-  AddEntryButton,
-  Icon,
 } from './styles';
 
 export default class EntryList extends PureComponent {
@@ -32,7 +28,6 @@ export default class EntryList extends PureComponent {
   }
 
   state = {
-    entryModalOpen: false,
     sortBy: 'added',
     sortOrder: 'desc',
   }
@@ -65,12 +60,9 @@ export default class EntryList extends PureComponent {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  openAddEntryModal = () => this.setState({ entryModalOpen: true })
-  closeAddEntryModal = () => this.setState({ entryModalOpen: false })
-
   render() {
     const { entries: { items }, listId } = this.props;
-    const { entryModalOpen, sortBy, sortOrder } = this.state;
+    const { sortBy, sortOrder } = this.state;
 
     if (!listId) {
       return null;
@@ -80,7 +72,6 @@ export default class EntryList extends PureComponent {
       <div>
         <ButtonWrapper>
           <FormControl>
-            <InputLabel htmlFor="sort-by">Sort</InputLabel>
             <Select
               value={sortBy}
               onChange={this.handleChange}
@@ -96,7 +87,6 @@ export default class EntryList extends PureComponent {
             </Select>
           </FormControl>
           <FormControl>
-            <InputLabel htmlFor="order-by">Order</InputLabel>
             <Select
               value={sortOrder}
               onChange={this.handleChange}
@@ -109,14 +99,6 @@ export default class EntryList extends PureComponent {
               <MenuItem value="asc">Asc</MenuItem>
             </Select>
           </FormControl>
-          <AddEntryButton
-            color="primary"
-            size="small"
-            onClick={this.openAddEntryModal}
-          >
-            <Icon icon="plus-circle" />
-            Add Entry
-          </AddEntryButton>
         </ButtonWrapper>
         <ListWrapper>
           {items && items.map(entry => (
@@ -125,11 +107,6 @@ export default class EntryList extends PureComponent {
             </EntryWrapper>
           ))}
         </ListWrapper>
-        <AddEntryDialog
-          open={entryModalOpen}
-          onClose={this.closeAddEntryModal}
-          listId={listId}
-        />
       </div>
     );
   }

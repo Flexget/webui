@@ -19,7 +19,7 @@ class Entry extends React.PureComponent {
   };
 
   state = {
-    taskMenuEl: null
+    taskMenuEl: null,
   }
 
   links() {
@@ -31,7 +31,7 @@ class Entry extends React.PureComponent {
     ));
   }
 
-  handleInjectOpen = (event) =>  this.setState({ taskMenuEl: event.currentTarget });
+  handleInjectOpen = event => this.setState({ taskMenuEl: event.currentTarget });
   handleInjectClose = () => this.setState({ taskMenuEl: null });
 
   handleInjectClick = (task) => {

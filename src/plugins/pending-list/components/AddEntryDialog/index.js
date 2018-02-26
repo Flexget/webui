@@ -7,7 +7,9 @@ import AddEntryDialog from './AddEntryDialog';
 function mapDispatchToProps(dispatch, { onClose, listId }) {
   return {
     onSubmit: entry => new Promise((resolve, reject) => (
-      dispatch(request(ADD_ENTRY, { listId, entry, resolve, reject }))
+      dispatch(request(ADD_ENTRY, {
+        listId, entry, resolve, reject,
+      }))
     )),
     onSubmitSuccess: () => {
       onClose();

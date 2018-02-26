@@ -16,7 +16,7 @@ class EntryHeader extends React.PureComponent {
   state = { anchorEl: null };
 
   handlePopoverOpen = (event) => {
-    //this.setState({ anchorEl: event.target });
+    // this.setState({ anchorEl: event.target });
   };
 
   handlePopoverClose = () => {

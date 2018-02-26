@@ -1,7 +1,5 @@
 import styled from 'react-emotion';
 import { css } from 'emotion';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import Button from 'material-ui/Button';
 import theme from 'theme';
 
 export const ListWrapper = styled.div`
@@ -27,24 +25,13 @@ export const EntryWrapper = styled.div`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`;
-
-export const AddEntryButton = styled(Button)`
-  color: ${theme.palette.primary[800]};
-
-  &:hover {
-    color: ${theme.palette.primary[500]};
+  justify-content: center;
+  > div {
+    margin-left: 2em;
+    margin-right: 2em;
   }
 `;
 
-export const Icon = styled(FontAwesomeIcon)`
-  margin-right: ${theme.typography.pxToRem(theme.spacing.unit)};
-  font-size: 1.6rem;
-`;
-
 export const pagination = css`
-  position: static
-  
+  position: static;
 `;

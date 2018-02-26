@@ -65,7 +65,9 @@ export function* getEntries({ payload }) {
 export const getCurrentPage = listId => ({ pendingList }) => pendingList.entries[listId].page;
 
 export function* addEntry({ payload }) {
-  const { listId, entry, resolve, reject } = payload;
+  const {
+    listId, entry, resolve, reject,
+  } = payload;
 
   try {
     yield call(fetch.post, `/pending_list/${listId}/entries`, entry);
@@ -97,7 +99,9 @@ export function* removeEntry({ payload }) {
 
 export function* injectEntry({ payload }) {
   const { entry, task } = payload;
-  const { url, title, fields, listId, id } = entry;
+  const {
+    url, title, fields, listId, id,
+  } = entry;
 
   try {
     yield call(fetch.post, '/inject', { tasks: [task.name], inject: [{ url, title, fields }] });

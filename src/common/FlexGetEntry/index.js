@@ -68,7 +68,7 @@ export default class FlexGetEntry {
 
     this.fields = { ...entry.entry };
     if ('url' in this.fields) {
-      delete this.fields.url
+      delete this.fields.url;
     }
 
     this.titleFormatted = this.formatTitle();
