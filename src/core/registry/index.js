@@ -36,7 +36,9 @@ class PluginRegistry {
         throw Error('Component requires routeDisplayname and routeIcon');
       }
 
-      this.routeHandler({ path: `/${name}`, component, children, routeDisplayName, routeIcon });
+      this.routeHandler({
+        path: `/${name}`, component, children, routeDisplayName, routeIcon,
+      });
     }
 
     if (children) {

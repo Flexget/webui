@@ -5,16 +5,12 @@ import Logo from 'core/layout/components/Logo';
 
 describe('core/layout/components/Logo', () => {
   it('renders correctly with sideBarOpen', () => {
-    const tree = renderer.create(
-      router(themed(<Logo sideBarOpen />)),
-    ).toJSON();
+    const tree = renderer.create(router(themed(<Logo sideBarOpen />))).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('adds logoMini class without sideBarOpen', () => {
-    const tree = renderer.create(
-      router(themed(<Logo sideBarOpen={false} />)),
-    ).toJSON();
+    const tree = renderer.create(router(themed(<Logo sideBarOpen={false} />))).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

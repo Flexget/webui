@@ -7,12 +7,12 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
 
 .glamor-5 {
   background-color: #ef6c00;
-  color: rgba(255,255,255,1);
+  color: #fff;
   min-height: 5rem;
 }
 
 .glamor-0 {
-  color: rgba(255,255,255,1);
+  color: #fff;
 }
 
 .glamor-1 {
@@ -22,16 +22,16 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
 }
 
 <header
-  className="MuiPaper-root-8 MuiPaper-shadow4-14 MuiAppBar-root-1 MuiAppBar-positionFixed-2 MuiAppBar-colorPrimary-6 mui-fixed glamor-6"
+  className="MuiPaper-root-9 MuiPaper-shadow4-15 MuiAppBar-root-1 MuiAppBar-positionFixed-2 MuiAppBar-colorPrimary-7 mui-fixed glamor-6 e1pzz03b0"
 >
   <div
-    className="MuiToolbar-root-35 MuiToolbar-gutters-36 glamor-5"
+    className="MuiToolbar-root-36 MuiToolbar-gutters-37 glamor-5 e1pzz03b1"
   >
     <button
-      className="MuiButtonBase-root-46 MuiIconButton-root-37 glamor-0"
+      className="MuiButtonBase-root-44 MuiIconButton-root-38 glamor-0 e1pzz03b2"
       disabled={false}
       onBlur={[Function]}
-      onClick={[Function]}
+      onClick={[MockFunction]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -41,7 +41,6 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      role="button"
       tabIndex={0}
       type="button"
     >
@@ -49,14 +48,14 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
         className="MuiIconButton-label-43"
       />
       <span
-        className="MuiTouchRipple-root-48"
+        className="MuiTouchRipple-root-46"
       />
     </button>
     <h2
-      className="MuiTypography-root-55 MuiTypography-title-61 MuiTypography-colorInherit-74"
+      className="MuiTypography-root-53 MuiTypography-title-59 MuiTypography-colorInherit-72"
     />
     <div
-      className="glamor-1"
+      className="glamor-1 e1vib4761"
     />
     <a
       href="/config"
@@ -64,7 +63,7 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
     >
       <button
         aria-label="Config"
-        className="MuiButtonBase-root-46 MuiIconButton-root-37 glamor-0"
+        className="MuiButtonBase-root-44 MuiIconButton-root-38 glamor-0 e1pzz03b2"
         disabled={false}
         onBlur={[Function]}
         onFocus={[Function]}
@@ -76,7 +75,6 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
         onTouchEnd={[Function]}
         onTouchMove={[Function]}
         onTouchStart={[Function]}
-        role="button"
         tabIndex={0}
         type="button"
       >
@@ -84,7 +82,7 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
           className="MuiIconButton-label-43"
         />
         <span
-          className="MuiTouchRipple-root-48"
+          className="MuiTouchRipple-root-46"
         />
       </button>
     </a>
@@ -94,7 +92,7 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
     >
       <button
         aria-label="Log"
-        className="MuiButtonBase-root-46 MuiIconButton-root-37 glamor-0"
+        className="MuiButtonBase-root-44 MuiIconButton-root-38 glamor-0 e1pzz03b2"
         disabled={false}
         onBlur={[Function]}
         onFocus={[Function]}
@@ -106,7 +104,6 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
         onTouchEnd={[Function]}
         onTouchMove={[Function]}
         onTouchStart={[Function]}
-        role="button"
         tabIndex={0}
         type="button"
       >
@@ -114,13 +111,13 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
           className="MuiIconButton-label-43"
         />
         <span
-          className="MuiTouchRipple-root-48"
+          className="MuiTouchRipple-root-46"
         />
       </button>
     </a>
     <button
       aria-label="Manage"
-      className="MuiButtonBase-root-46 MuiIconButton-root-37 glamor-0"
+      className="MuiButtonBase-root-44 MuiIconButton-root-38 glamor-0 e1pzz03b2"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
@@ -133,7 +130,6 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
       onTouchStart={[Function]}
-      role="button"
       tabIndex={0}
       type="button"
     >
@@ -141,7 +137,7 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
         className="MuiIconButton-label-43"
       />
       <span
-        className="MuiTouchRipple-root-48"
+        className="MuiTouchRipple-root-46"
       />
     </button>
   </div>

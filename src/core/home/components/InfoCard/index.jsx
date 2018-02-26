@@ -31,21 +31,22 @@ const InfoCard = () => (
         There is a functional API with documentation available at <a href="/api">/api</a>
       </p>
       <p>
-        More information: <a
+        More information:
+        <a
           href="http://flexget.com/wiki/Web-UI/v2"
           target="_blank"
           rel="noopener noreferrer"
-        >
-          http://flexget.com/wiki/Web-UI/v2
+        >http://flexget.com/wiki/Web-UI/v2
         </a>
       </p>
       <p>
-        Gitter Chat: <a
+        Gitter Chat:
+        <a
           href="https://gitter.im/Flexget/Flexget"
           target="_blank"
           rel="noopener noreferrer"
         >
-          https://gitter.im/Flexget/Flexget
+        https://gitter.im/Flexget/Flexget
         </a>
       </p>
     </CardContent>

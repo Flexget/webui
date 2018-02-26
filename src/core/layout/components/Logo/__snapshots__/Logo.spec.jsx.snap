@@ -21,7 +21,7 @@ exports[`core/layout/components/Logo adds logoMini class without sideBarOpen 1`]
   onClick={[Function]}
 >
   <div
-    className="glamor-0"
+    className="glamor-0 ee44yi0"
     open={false}
   />
 </a>
@@ -48,7 +48,7 @@ exports[`core/layout/components/Logo renders correctly with sideBarOpen 1`] = `
   onClick={[Function]}
 >
   <div
-    className="glamor-0"
+    className="glamor-0 ee44yi0"
     open={true}
   />
 </a>

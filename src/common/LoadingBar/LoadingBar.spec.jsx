@@ -6,15 +6,11 @@ import { themed } from 'utils/tests';
 describe('common/LoadingBar', () => {
   describe('Component', () => {
     it('should render properly when loading', () => {
-      expect(
-        renderer.create(themed(<LoadingBar loading />))
-      ).toMatchSnapshot();
+      expect(renderer.create(themed(<LoadingBar loading />))).toMatchSnapshot();
     });
 
     it('should render properly when not loading', () => {
-      expect(
-        renderer.create(themed(<LoadingBar loading />))
-      ).toMatchSnapshot();
+      expect(renderer.create(themed(<LoadingBar loading />))).toMatchSnapshot();
     });
   });
 

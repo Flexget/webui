@@ -82,25 +82,25 @@ exports[`pages/splash renders correctly 1`] = `
 
 <div>
   <div
-    className="glamor-0"
+    className="glamor-0 e17spyuc0"
   />
   <div
-    className="glamor-6"
+    className="glamor-6 eu1xpai0"
   >
     <div
-      className="glamor-1"
+      className="glamor-1 eu1xpai1"
     />
     <div
-      className="glamor-2"
+      className="glamor-2 eu1xpai2"
     />
     <div
-      className="glamor-3"
+      className="glamor-3 eu1xpai3"
     />
     <div
-      className="glamor-4"
+      className="glamor-4 eu1xpai4"
     />
     <div
-      className="glamor-5"
+      className="glamor-5 eu1xpai5"
     />
   </div>
 </div>

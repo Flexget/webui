@@ -17,7 +17,6 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
 }
 
 .glamor-0 {
-  color: #f44336;
   text-align: center;
   padding: 1rem;
 }
@@ -37,24 +36,24 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
 }
 
 <div
-  className="MuiPaper-root-1 MuiPaper-shadow2-5 MuiPaper-rounded-2 glamor-5"
+  className="MuiPaper-root-1 MuiPaper-shadow2-5 MuiPaper-rounded-2 glamor-5 egcdk620"
 >
   <form
     onSubmit={[Function]}
   >
     <div
-      className="MuiCardContent-root-28 glamor-3"
+      className="MuiCardContent-root-28 glamor-3 egcdk623"
     >
       <div
-        className="glamor-0"
+        className="glamor-0 egcdk621"
       />
       <div
-        className="MuiFormControl-root-29 glamor-1"
+        aria-describedby={undefined}
+        className="MuiFormControl-root-29 glamor-1 egcdk624"
         onBlur={[Function]}
         onDragStart={[Function]}
         onDrop={[Function]}
         onFocus={[Function]}
-        required={false}
       >
         <label
           className="MuiFormLabel-root-39 MuiInputLabel-root-33 MuiInputLabel-formControl-34 MuiInputLabel-animated-37"
@@ -69,9 +68,11 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
           onFocus={[Function]}
         >
           <input
+            aria-invalid={false}
+            aria-required={false}
             autoComplete={undefined}
             autoFocus={true}
-            className="MuiInput-input-52 MuiInput-inputSingleline-55"
+            className="MuiInput-input-52"
             defaultValue={undefined}
             disabled={false}
             id="username"
@@ -89,12 +90,12 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
         </div>
       </div>
       <div
-        className="MuiFormControl-root-29 glamor-1"
+        aria-describedby={undefined}
+        className="MuiFormControl-root-29 glamor-1 egcdk624"
         onBlur={[Function]}
         onDragStart={[Function]}
         onDrop={[Function]}
         onFocus={[Function]}
-        required={false}
       >
         <label
           className="MuiFormLabel-root-39 MuiInputLabel-root-33 MuiInputLabel-formControl-34 MuiInputLabel-animated-37"
@@ -109,9 +110,11 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
           onFocus={[Function]}
         >
           <input
+            aria-invalid={false}
+            aria-required={false}
             autoComplete={undefined}
             autoFocus={undefined}
-            className="MuiInput-input-52 MuiInput-inputSingleline-55"
+            className="MuiInput-input-52 MuiInput-inputType-55"
             defaultValue={undefined}
             disabled={false}
             id="password"
@@ -133,7 +136,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
       className="MuiCardActions-root-58"
     >
       <button
-        className="MuiButtonBase-root-75 MuiButton-root-60 MuiCardActions-action-59 glamor-4"
+        className="MuiButtonBase-root-75 MuiButton-root-60 MuiCardActions-action-59 glamor-4 egcdk622"
         disabled={false}
         onBlur={[Function]}
         onFocus={[Function]}
@@ -145,12 +148,11 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
         onTouchEnd={[Function]}
         onTouchMove={[Function]}
         onTouchStart={[Function]}
-        role="button"
         tabIndex={0}
         type="submit"
       >
         <span
-          className="MuiButton-label-62"
+          className="MuiButton-label-61"
         >
           Login
         </span>

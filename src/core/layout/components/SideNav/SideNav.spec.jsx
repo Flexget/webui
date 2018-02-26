@@ -11,16 +11,14 @@ describe('core/layout/components/Sidenav', () => {
   });
 
   xit('renders correctly with sideBarOpen', () => {
-    const tree = renderer.create(
-      provider(router(themed(<SideNav sideBarOpen />)), { version: {} }),
-    ).toJSON();
+    const sideNav = <SideNav sideBarOpen />;
+    const tree = renderer.create(provider(router(themed(sideNav)), { version: {} })).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   xit('adds mini classes without sideBarOpen', () => {
-    const tree = renderer.create(
-      provider(router(themed(<SideNav sideBarOpen={false} />)), { version: {} }),
-    ).toJSON();
+    const sideNav = <SideNav sideBarOpen={false} />;
+    const tree = renderer.create(provider(router(themed(sideNav)), { version: {} })).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

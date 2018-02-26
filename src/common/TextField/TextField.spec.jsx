@@ -5,9 +5,8 @@ import { themed } from 'utils/tests';
 
 describe('common/TextField', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      themed(<TextField input={{}} meta={{ error: true, touched: true }} />),
-    ).toJSON();
+    const textFied = <TextField input={{}} meta={{ error: true, touched: true }} />;
+    const tree = renderer.create(themed(textFied)).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

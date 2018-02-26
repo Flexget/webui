@@ -5,9 +5,7 @@ import HomePage from 'core/home/components';
 
 describe('core/home/components/Home', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      themed(<HomePage />),
-    ).toJSON();
+    const tree = renderer.create(themed(<HomePage />)).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

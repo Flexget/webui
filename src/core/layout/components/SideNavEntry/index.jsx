@@ -8,7 +8,9 @@ import {
   NavItem,
 } from './styles';
 
-const SideNavEntry = ({ onClick, path, icon, name, className }) => {
+const SideNavEntry = ({
+  onClick, path, icon, name, className,
+}) => {
   const item = (
     <NavItem className={className} onClick={onClick}>
       <ListItemIcon><SideNavIcon icon={icon} fixedWidth /></ListItemIcon>

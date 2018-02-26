@@ -1,32 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core/layout/components/Version Version renders correctly with latest version 1`] = `
-.glamor-3 {
-  color: #f44336;
-}
-
 .glamor-0 {
   margin: 0;
 }
 
 <div
-  className="glamor-3"
+  className="glamor-3 ekjxbjj0"
 >
   <p
-    className="glamor-0"
+    className="glamor-0 ekjxbjj1"
   >
     Version Info
   </p>
   <p
-    className="glamor-0"
+    className="glamor-0 ekjxbjj1"
   >
     Flexget: 
     2.10.60
      
-     
   </p>
   <p
-    className="glamor-0"
+    className="glamor-0 ekjxbjj1"
   >
     API: 
     1.1.2
@@ -35,30 +30,26 @@ exports[`core/layout/components/Version Version renders correctly with latest ve
 `;
 
 exports[`core/layout/components/Version Version renders correctly without latest version 1`] = `
-.glamor-3 {
-  color: #f44336;
-}
-
 .glamor-0 {
   margin: 0;
 }
 
 <div
-  className="glamor-3"
+  className="glamor-3 ekjxbjj0"
 >
   <p
-    className="glamor-0"
+    className="glamor-0 ekjxbjj1"
   >
     Version Info
   </p>
   <p
-    className="glamor-0"
+    className="glamor-0 ekjxbjj1"
   >
     Flexget: 
     2.10.11
      
     <a
-      className="MuiButtonBase-root-10 MuiIconButton-root-1"
+      className="MuiButtonBase-root-7 MuiIconButton-root-1"
       href="https://flexget.com/ChangeLog"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -73,16 +64,15 @@ exports[`core/layout/components/Version Version renders correctly without latest
       tabIndex={0}
     >
       <span
-        className="MuiIconButton-label-7"
+        className="MuiIconButton-label-6"
       />
       <span
-        className="MuiTouchRipple-root-12"
+        className="MuiTouchRipple-root-9"
       />
     </a>
-     
   </p>
   <p
-    className="glamor-0"
+    className="glamor-0 ekjxbjj1"
   >
     API: 
     1.1.2

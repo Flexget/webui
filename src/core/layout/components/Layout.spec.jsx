@@ -5,11 +5,9 @@ import { themed, router, provider } from 'utils/tests';
 import fetchMock from 'fetch-mock';
 
 function renderLayout() {
-  return provider(router(themed(
-    <Layout>
-      <div />
-    </Layout>
-  )), { router: { location: { } }, version: {}, status: { loading: {} }, routes: {} });
+  return provider(router(themed(<Layout><div /></Layout>)), {
+    router: { location: { } }, version: {}, status: { loading: {} }, routes: {},
+  });
 }
 describe('common/layout', () => {
   beforeEach(() => {

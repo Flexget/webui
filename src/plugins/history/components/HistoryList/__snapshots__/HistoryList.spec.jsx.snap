@@ -5,7 +5,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <HistoryList
-    getHistory={[Function]}
+    getHistory={[MockFunction]}
     grouping="time"
     hasMore={true}
     history={
@@ -29,7 +29,7 @@ ShallowWrapper {
   },
   Symbol(enzyme.__node__): Object {
     "instance": null,
-    "key": null,
+    "key": undefined,
     "nodeType": "class",
     "props": Object {
       "children": <InfiniteScroll
@@ -37,68 +37,70 @@ ShallowWrapper {
         hasMore={true}
         initialLoad={true}
         isReverse={false}
-        loadMore={[Function]}
+        loadMore={[MockFunction]}
         loader={
           <LoadingBar
             loading={true}
           />
         }
         pageStart={0}
+        ref={null}
         threshold={250}
         useCapture={false}
         useWindow={false}
       >
-        <withStyles(List)
+        <WithStyles(List)
           subheader={
-            <Styled(withStyles(ListSubheader))
+            <Styled(WithStyles(ListSubheader))
               color="primary"
             >
               2017-09-09
-            </Styled(withStyles(ListSubheader))>
+            </Styled(WithStyles(ListSubheader))>
           }
         >
-          <withStyles(ListItem)>
-            <withStyles(ListItemText)
+          <WithStyles(ListItem)>
+            <WithStyles(ListItemText)
               primary="something"
               secondary="task"
             />
-          </withStyles(ListItem)>
-        </withStyles(List)>
+          </WithStyles(ListItem)>
+        </WithStyles(List)>
       </InfiniteScroll>,
     },
     "ref": null,
     "rendered": Object {
       "instance": null,
-      "key": null,
+      "key": undefined,
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <withStyles(List)
+          <WithStyles(List)
             subheader={
-              <Styled(withStyles(ListSubheader))
+              <Styled(WithStyles(ListSubheader))
                 color="primary"
               >
                 2017-09-09
-              </Styled(withStyles(ListSubheader))>
+              </Styled(WithStyles(ListSubheader))>
             }
           >
-            <withStyles(ListItem)>
-              <withStyles(ListItemText)
+            <WithStyles(ListItem)>
+              <WithStyles(ListItemText)
                 primary="something"
                 secondary="task"
               />
-            </withStyles(ListItem)>
-          </withStyles(List)>,
+            </WithStyles(ListItem)>
+          </WithStyles(List)>,
         ],
         "element": "div",
         "hasMore": true,
         "initialLoad": true,
         "isReverse": false,
-        "loadMore": [Function],
+        "loadMore": [MockFunction],
         "loader": <LoadingBar
           loading={true}
         />,
         "pageStart": 0,
+        "ref": null,
         "threshold": 250,
         "useCapture": false,
         "useWindow": false,
@@ -111,18 +113,18 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <withStyles(ListItem)>
-                <withStyles(ListItemText)
+              <WithStyles(ListItem)>
+                <WithStyles(ListItemText)
                   primary="something"
                   secondary="task"
                 />
-              </withStyles(ListItem)>,
+              </WithStyles(ListItem)>,
             ],
-            "subheader": <Styled(withStyles(ListSubheader))
+            "subheader": <Styled(WithStyles(ListSubheader))
               color="primary"
             >
               2017-09-09
-            </Styled(withStyles(ListSubheader))>,
+            </Styled(WithStyles(ListSubheader))>,
           },
           "ref": null,
           "rendered": Array [
@@ -131,7 +133,7 @@ ShallowWrapper {
               "key": "1",
               "nodeType": "class",
               "props": Object {
-                "children": <withStyles(ListItemText)
+                "children": <WithStyles(ListItemText)
                   primary="something"
                   secondary="task"
                 />,
@@ -139,7 +141,7 @@ ShallowWrapper {
               "ref": null,
               "rendered": Object {
                 "instance": null,
-                "key": null,
+                "key": undefined,
                 "nodeType": "class",
                 "props": Object {
                   "primary": "something",
@@ -162,7 +164,7 @@ ShallowWrapper {
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
-      "key": null,
+      "key": undefined,
       "nodeType": "class",
       "props": Object {
         "children": <InfiniteScroll
@@ -170,68 +172,70 @@ ShallowWrapper {
           hasMore={true}
           initialLoad={true}
           isReverse={false}
-          loadMore={[Function]}
+          loadMore={[MockFunction]}
           loader={
             <LoadingBar
               loading={true}
             />
           }
           pageStart={0}
+          ref={null}
           threshold={250}
           useCapture={false}
           useWindow={false}
         >
-          <withStyles(List)
+          <WithStyles(List)
             subheader={
-              <Styled(withStyles(ListSubheader))
+              <Styled(WithStyles(ListSubheader))
                 color="primary"
               >
                 2017-09-09
-              </Styled(withStyles(ListSubheader))>
+              </Styled(WithStyles(ListSubheader))>
             }
           >
-            <withStyles(ListItem)>
-              <withStyles(ListItemText)
+            <WithStyles(ListItem)>
+              <WithStyles(ListItemText)
                 primary="something"
                 secondary="task"
               />
-            </withStyles(ListItem)>
-          </withStyles(List)>
+            </WithStyles(ListItem)>
+          </WithStyles(List)>
         </InfiniteScroll>,
       },
       "ref": null,
       "rendered": Object {
         "instance": null,
-        "key": null,
+        "key": undefined,
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <withStyles(List)
+            <WithStyles(List)
               subheader={
-                <Styled(withStyles(ListSubheader))
+                <Styled(WithStyles(ListSubheader))
                   color="primary"
                 >
                   2017-09-09
-                </Styled(withStyles(ListSubheader))>
+                </Styled(WithStyles(ListSubheader))>
               }
             >
-              <withStyles(ListItem)>
-                <withStyles(ListItemText)
+              <WithStyles(ListItem)>
+                <WithStyles(ListItemText)
                   primary="something"
                   secondary="task"
                 />
-              </withStyles(ListItem)>
-            </withStyles(List)>,
+              </WithStyles(ListItem)>
+            </WithStyles(List)>,
           ],
           "element": "div",
           "hasMore": true,
           "initialLoad": true,
           "isReverse": false,
-          "loadMore": [Function],
+          "loadMore": [MockFunction],
           "loader": <LoadingBar
             loading={true}
           />,
           "pageStart": 0,
+          "ref": null,
           "threshold": 250,
           "useCapture": false,
           "useWindow": false,
@@ -244,18 +248,18 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": Array [
-                <withStyles(ListItem)>
-                  <withStyles(ListItemText)
+                <WithStyles(ListItem)>
+                  <WithStyles(ListItemText)
                     primary="something"
                     secondary="task"
                   />
-                </withStyles(ListItem)>,
+                </WithStyles(ListItem)>,
               ],
-              "subheader": <Styled(withStyles(ListSubheader))
+              "subheader": <Styled(WithStyles(ListSubheader))
                 color="primary"
               >
                 2017-09-09
-              </Styled(withStyles(ListSubheader))>,
+              </Styled(WithStyles(ListSubheader))>,
             },
             "ref": null,
             "rendered": Array [
@@ -264,7 +268,7 @@ ShallowWrapper {
                 "key": "1",
                 "nodeType": "class",
                 "props": Object {
-                  "children": <withStyles(ListItemText)
+                  "children": <WithStyles(ListItemText)
                     primary="something"
                     secondary="task"
                   />,
@@ -272,7 +276,7 @@ ShallowWrapper {
                 "ref": null,
                 "rendered": Object {
                   "instance": null,
-                  "key": null,
+                  "key": undefined,
                   "nodeType": "class",
                   "props": Object {
                     "primary": "something",

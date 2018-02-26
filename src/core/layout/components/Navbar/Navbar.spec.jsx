@@ -18,9 +18,7 @@ function renderNavbar(toggle, logout) {
 
 describe('core/layout/components/Navbar', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
-      renderNavbar(jest.fn(), jest.fn())
-    ).toJSON();
+    const tree = renderer.create(renderNavbar(jest.fn(), jest.fn())).toJSON();
     expect(tree).toMatchSnapshot();
   });
 

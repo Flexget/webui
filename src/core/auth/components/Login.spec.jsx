@@ -7,24 +7,20 @@ const Component = () => <div />;
 describe('core/auth/components/Login', () => {
   describe('Login', () => {
     it('renders correctly when logged in', () => {
-      const tree = renderer.create(
-        router(themed(<Login
-          component={Component}
-          redirectToReferrer
-          location={{}}
-        />))
-      ).toJSON();
+      const tree = renderer.create(router(themed(<Login
+        component={Component}
+        redirectToReferrer
+        location={{}}
+      />))).toJSON();
       expect(tree).toMatchSnapshot();
     });
 
     it('renders correctly when logged out', () => {
-      const tree = renderer.create(
-        provider(router(themed(<Login
-          component={Component}
-          redirectToReferrer={false}
-          location={{}}
-        />)), { status: {} })
-      ).toJSON();
+      const tree = renderer.create(provider(router(themed(<Login
+        component={Component}
+        redirectToReferrer={false}
+        location={{}}
+      />)), { status: {} })).toJSON();
       expect(tree).toMatchSnapshot();
     });
   });
