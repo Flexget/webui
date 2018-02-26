@@ -70,7 +70,7 @@ exports[`core/home/components/InfoCard renders correctly 1`] = `
       </a>
     </p>
     <p>
-      More information: 
+      More information:
       <a
         href="http://flexget.com/wiki/Web-UI/v2"
         rel="noopener noreferrer"
@@ -80,7 +80,7 @@ exports[`core/home/components/InfoCard renders correctly 1`] = `
       </a>
     </p>
     <p>
-      Gitter Chat: 
+      Gitter Chat:
       <a
         href="https://gitter.im/Flexget/Flexget"
         rel="noopener noreferrer"

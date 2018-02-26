@@ -19,7 +19,6 @@ exports[`core/layout/components/Version Version renders correctly with latest ve
     Flexget: 
     2.10.60
      
-     
   </p>
   <p
     className="glamor-0 ekjxbjj1"
@@ -71,7 +70,6 @@ exports[`core/layout/components/Version Version renders correctly without latest
         className="MuiTouchRipple-root-9"
       />
     </a>
-     
   </p>
   <p
     className="glamor-0 ekjxbjj1"
