@@ -44,10 +44,15 @@ export default class EntryList extends PureComponent {
     this.updateEntries();
   }
 
-  componentWillReceiveProps({ listId, getEntries }) {
+  componentDidUpdate(prevProps, prevState) {
+    const { listId } = this.props;
     const { sortBy, sortOrder } = this.state;
-    if (this.props.listId !== listId) {
-      getEntries({ sort_by: sortBy, order: sortOrder });
+    if (
+      listId !== prevProps.listId ||
+      sortBy !== prevState.sortBy ||
+      sortOrder !== prevState.sortOrder
+    ) {
+      this.updateEntries();
     }
   }
 
@@ -58,7 +63,6 @@ export default class EntryList extends PureComponent {
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
-    this.updateEntries();
   };
 
   openAddEntryModal = () => this.setState({ entryModalOpen: true })
