@@ -16,9 +16,9 @@ const server = new WebpackDevServer(webpack(config), {
   },
 });
 
-server.listen(process.env.PORT || 8000, 'localhost', (err) => {
+server.listen(process.env.PORT || 8000, process.env.HOST || 'localhost', (err) => {
   if (err) {
     console.log(err);
   }
-  console.log(`Listening at localhost:${process.env.PORT || 8000}`);
+  console.log(`Listening at ${process.env.HOST || 'localhost'}:${process.env.PORT || 8000}`);
 });
