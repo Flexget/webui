@@ -5,9 +5,11 @@ const defaultState = { configs: [], recent: [] };
 export default function reducer(state = defaultState, { payload, type }) {
   switch (type) {
     case GET_TASKS: {
+      const tasks = [...payload.tasks];
+      tasks.sort((a, b) => a.name.localeCompare(b.name));
       return {
         ...state,
-        configs: [...payload.tasks],
+        configs: tasks,
       };
     }
 
