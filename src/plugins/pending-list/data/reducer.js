@@ -2,7 +2,6 @@ import * as actions from './actions';
 
 const initState = {
   lists: [],
-  selected: [],
   entries: {},
 };
 
