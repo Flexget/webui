@@ -51,7 +51,6 @@ export const getEntriesOptions = {
 
 export function* getEntries({ payload }) {
   const { listId, params } = payload;
-  console.log(params);
   const query = { ...getEntriesOptions, ...params };
 
   try {
