@@ -101,8 +101,11 @@ export default class FlexGetEntry {
   }
 
   getQualities() {
-    const quality = this.fields.quality || '';
-    return quality.split(' ');
+    const quality = (this.fields.quality || '').trim();
+    if (quality) {
+      return quality.split(' ');
+    }
+    return [];
   }
 
   getPosters() {
