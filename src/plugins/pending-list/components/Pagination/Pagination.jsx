@@ -8,29 +8,25 @@ import { PaginationWrapper } from './styles';
 
 export default class ListPagination extends PureComponent {
   static propTypes = {
-    listId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     entries: PropTypes.shape({
       page: PropTypes.number,
       totalCount: PropTypes.number,
       items: PropTypes.arrayOf(PropTypes.instanceOf(FlexgetEntry)),
     }).isRequired,
-    getEntries: PropTypes.func.isRequired,
+    onPageUpdate: PropTypes.func.isRequired,
+    perPage: PropTypes.number.isRequired,
   }
 
-  static defaultProps = {
-    listId: false,
-  }
-
-  updatePage = page => this.props.getEntries({ page });
+  onPageUpdate = page => this.props.onPageUpdate(Number(page));
 
   render() {
-    const { entries: { totalCount, page }, listId } = this.props;
+    const { entries: { totalCount, page }, perPage } = this.props;
 
-    if (!listId) {
+    if (!totalCount) {
       return null;
     }
 
-    const totalPages = Math.ceil(totalCount / 50);
+    const totalPages = Math.ceil(totalCount / perPage);
 
     return (
       <PaginationWrapper>
@@ -38,7 +34,7 @@ export default class ListPagination extends PureComponent {
           <Pagination
             currentPage={page}
             totalPages={totalPages}
-            onChange={this.updatePage}
+            onChange={this.onPageUpdate}
           />
         )}
       </PaginationWrapper>
