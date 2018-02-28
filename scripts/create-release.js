@@ -1,3 +1,4 @@
+import fs from 'fs';
 import GitHubApi from 'github';
 
 const github = new GitHubApi();
@@ -15,6 +16,7 @@ github.repos.createRelease({
   tag_name: args[0],
   prerelease: false,
 }).then(result => {
+  console.log(result);
   const id = result.data.id;
 
   github.authenticate({
@@ -22,11 +24,14 @@ github.repos.createRelease({
     token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
   });
 
-  github.repos.uploadAsset({
-    owner: 'Flexget',
-    repo: 'webui',
-    id,
-    filePath: '/tmp/dist.zip',
+  const fileStream = fs.createReadStream('/tmp/dist.zip');
+  const stats = fs.statSync('/tmp/dist.zip');
+
+  return github.repos.uploadAsset({
+    url: result.data.upload_url,
+    file: fileStream,
+    contentType: 'application/zip',
+    contentLength: stats.size,
     name: 'dist.zip',
     label: 'Production Build',
   });
@@ -34,4 +39,5 @@ github.repos.createRelease({
   .catch((err) => {
     console.log('Problem creating release');
     console.log(err);
+    process.exit(1);
   });
