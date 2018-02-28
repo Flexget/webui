@@ -64,7 +64,8 @@ jobs:
           command: zip -r /tmp/dist.zip ./dist
       - run:
           name: Release
-          command: npm run release
+          command: |
+            scripts/release.sh
 
 workflows:
   version: 2

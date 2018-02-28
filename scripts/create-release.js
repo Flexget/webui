@@ -1,4 +1,5 @@
 import GitHubApi from 'github';
+
 const github = new GitHubApi();
 
 const args = process.argv.slice(2);
@@ -29,4 +30,8 @@ github.repos.createRelease({
     name: 'dist.zip',
     label: 'Production Build',
   });
-});
+})
+  .catch((err) => {
+    console.log('Problem creating release');
+    console.log(err);
+  });

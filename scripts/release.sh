@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Exit if any command fails
+set -e
+
+# Show commands executing
+set -x
+
 if git log --skip 1 origin/master..origin/develop|grep '^commit '; then
   # Bump the current release version
   VERSION=$(npm run release:bump --silent -- release)
