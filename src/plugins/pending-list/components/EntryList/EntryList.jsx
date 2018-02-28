@@ -41,15 +41,22 @@ export default class EntryList extends PureComponent {
 
     const { entries: { items: preItems = [] } } = prevProps;
 
+    // If list of sort options have changes
     if (
       listId !== prevProps.listId ||
       page !== prevProps.page ||
       sortBy !== prevProps.sortBy ||
       sortOrder !== prevProps.sortOrder ||
-      perPage !== prevProps.perPage ||
-      items.length !== preItems.length
+      perPage !== prevProps.perPage
     ) {
       this.updateEntries();
+    }
+
+    // Check if entries were removed, probably due to an action such as remove
+    // Delay the update for 100ms
+    if (preItems.length > items.length) {
+      if (this.timer) clearTimeout(this.timer);
+      this.timer = setTimeout(() => this.updateEntries(), 1000);
     }
   }
 
