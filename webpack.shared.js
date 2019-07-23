@@ -3,7 +3,6 @@ const path = require('path');
 module.exports = {
   entry: {
     main: [
-      '@babel/polyfill',
       'whatwg-fetch',
       './src/app.jsx',
     ],

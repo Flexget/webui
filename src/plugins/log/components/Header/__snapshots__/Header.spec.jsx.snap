@@ -86,21 +86,11 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
         <input
           aria-invalid={false}
           aria-required={false}
-          autoComplete={undefined}
-          autoFocus={undefined}
           className="MuiInput-input-48"
-          defaultValue={undefined}
           disabled={false}
           id="filter"
-          name={undefined}
           onChange={[Function]}
-          onKeyDown={undefined}
           onKeyPress={[Function]}
-          onKeyUp={undefined}
-          placeholder={undefined}
-          readOnly={undefined}
-          required={undefined}
-          rows={undefined}
           type="text"
           value=""
         />

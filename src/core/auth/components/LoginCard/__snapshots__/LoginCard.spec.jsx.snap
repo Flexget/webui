@@ -48,7 +48,6 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
         className="glamor-0 egcdk621"
       />
       <div
-        aria-describedby={undefined}
         className="MuiFormControl-root-29 glamor-1 egcdk624"
         onBlur={[Function]}
         onDragStart={[Function]}
@@ -70,27 +69,18 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
           <input
             aria-invalid={false}
             aria-required={false}
-            autoComplete={undefined}
             autoFocus={true}
             className="MuiInput-input-52"
-            defaultValue={undefined}
             disabled={false}
             id="username"
             name="username"
             onChange={[Function]}
-            onKeyDown={undefined}
-            onKeyUp={undefined}
-            placeholder={undefined}
-            readOnly={undefined}
-            required={undefined}
-            rows={undefined}
             type="text"
             value=""
           />
         </div>
       </div>
       <div
-        aria-describedby={undefined}
         className="MuiFormControl-root-29 glamor-1 egcdk624"
         onBlur={[Function]}
         onDragStart={[Function]}
@@ -112,20 +102,11 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
           <input
             aria-invalid={false}
             aria-required={false}
-            autoComplete={undefined}
-            autoFocus={undefined}
             className="MuiInput-input-52 MuiInput-inputType-55"
-            defaultValue={undefined}
             disabled={false}
             id="password"
             name="password"
             onChange={[Function]}
-            onKeyDown={undefined}
-            onKeyUp={undefined}
-            placeholder={undefined}
-            readOnly={undefined}
-            required={undefined}
-            rows={undefined}
             type="Password"
             value=""
           />
