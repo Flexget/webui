@@ -38,4 +38,5 @@ module.exports = {
     '<rootDir>/src/utils/tests/setupFiles.js',
   ],
   setupTestFrameworkScriptFile: '<rootDir>/src/utils/tests/setupTest.js',
+  testURL: 'http://localhost/',
 };
