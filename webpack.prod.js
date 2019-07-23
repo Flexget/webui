@@ -1,5 +1,5 @@
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
@@ -30,7 +30,7 @@ config.plugins = [
     template: './src/index.ejs',
     base: '/v2/',
   }),
-  new ExtractTextPlugin({
+  new MiniCssExtractPlugin({
     filename: '[name].[chunkhash].css',
     allChunks: true,
   }),
@@ -40,7 +40,7 @@ config.plugins = [
 ];
 config.module.rules.push({
   test: /\.css$/,
-  loader: ExtractTextPlugin.extract(['css-loader']),
+  use: [MiniCssExtractPlugin.loader, 'css-loader'],
 });
 
 module.exports = config;
