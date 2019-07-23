@@ -3,7 +3,6 @@ const path = require('path');
 module.exports = {
   entry: {
     main: [
-      'babel-polyfill',
       'whatwg-fetch',
       './src/app.jsx',
     ],
@@ -30,10 +29,6 @@ module.exports = {
         test: /\.jsx?$/,
         loaders: ['babel-loader'],
         exclude: /node_modules/,
-      },
-      {
-        test: /\.md$/,
-        loaders: ['html-loader', 'markdown-loader'],
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,

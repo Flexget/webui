@@ -2,18 +2,18 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/node:8.7.0
+      - image: circleci/node:12.6.0
     steps:
       - checkout
       - restore_cache:
           keys:
-            - dependency-cache-{{ checksum "package.json" }}
-            - dependency-cache-
+            - dependency-cache-v2-{{ checksum "package.json" }}
+            - dependency-cache-v2-
       - run:
           name: Install Dependencies
           command: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-v2-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:
@@ -35,7 +35,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/node:8.7.0
+      - image: circleci/node:12.6.0
     steps:
       - add-ssh-keys
       - run:
@@ -46,14 +46,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependency-cache-{{ checksum "package.json" }}
+            - dependency-cache-v2-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - dependency-cache-
+            - dependency-cache-v2
       - run:
           name: Install Dependencies
           command: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-v2-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:

@@ -17,7 +17,6 @@ exports[`core/layout/components/SideNavEntry renders correctly with link 1`] = `
 <li
   className="MuiListItem-root-1 MuiListItem-default-4 MuiListItem-gutters-8 glamor-1 e1vhtnjr2"
   disabled={false}
-  onClick={undefined}
 >
   <div
     className="MuiListItemText-root-12 MuiListItemText-inset-13 glamor-0 e1vhtnjr1"
@@ -42,7 +41,6 @@ exports[`core/layout/components/SideNavEntry renders correctly without link 1`] 
 <li
   className="MuiListItem-root-1 MuiListItem-default-4 MuiListItem-gutters-8 glamor-1 e1vhtnjr2"
   disabled={false}
-  onClick={undefined}
 >
   <div
     className="MuiListItemText-root-12 MuiListItemText-inset-13 glamor-0 e1vhtnjr1"

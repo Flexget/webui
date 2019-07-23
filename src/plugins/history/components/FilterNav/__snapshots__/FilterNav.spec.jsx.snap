@@ -33,7 +33,6 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
     className="MuiToolbar-root-36 MuiToolbar-gutters-37 glamor-5 e1j0gihi1"
   >
     <div
-      aria-describedby={undefined}
       className="MuiFormControl-root-38 glamor-0 ecdi3071"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -54,20 +53,11 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
         <input
           aria-invalid={false}
           aria-required={false}
-          autoComplete={undefined}
-          autoFocus={undefined}
           className="MuiInput-input-61"
-          defaultValue={undefined}
           disabled={false}
           id="task-filter"
-          name={undefined}
           onChange={[Function]}
-          onKeyDown={undefined}
-          onKeyUp={undefined}
           placeholder="Task Name"
-          readOnly={undefined}
-          required={undefined}
-          rows={undefined}
           type="text"
           value=""
         />
@@ -77,7 +67,6 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       className="glamor-1 e1vib4761"
     />
     <div
-      aria-describedby={undefined}
       className="MuiFormControl-root-38 glamor-0 ecdi3071"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -104,7 +93,6 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
             className="MuiSelect-select-68 MuiSelect-selectMenu-69 MuiInput-input-61"
             onBlur={[Function]}
             onClick={[Function]}
-            onFocus={undefined}
             onKeyDown={[Function]}
             role="button"
             tabIndex={0}
@@ -114,24 +102,13 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
           <input
             aria-invalid={false}
             aria-required={false}
-            autoComplete={undefined}
-            autoFocus={undefined}
-            defaultValue={undefined}
             id="sort-by"
-            name={undefined}
-            onKeyDown={undefined}
-            onKeyUp={undefined}
-            placeholder={undefined}
-            readOnly={undefined}
-            required={undefined}
-            rows={undefined}
             type="hidden"
             value="time"
           />
           <svg
             aria-hidden="true"
             className="MuiSvgIcon-root-72 MuiSelect-icon-71"
-            color={undefined}
             focusable="false"
             viewBox="0 0 24 24"
           >
@@ -143,7 +120,6 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       </div>
     </div>
     <div
-      aria-describedby={undefined}
       className="MuiFormControl-root-38 glamor-0 ecdi3071"
       onBlur={[Function]}
       onFocus={[Function]}
@@ -170,7 +146,6 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
             className="MuiSelect-select-68 MuiSelect-selectMenu-69 MuiInput-input-61"
             onBlur={[Function]}
             onClick={[Function]}
-            onFocus={undefined}
             onKeyDown={[Function]}
             role="button"
             tabIndex={0}
@@ -180,24 +155,13 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
           <input
             aria-invalid={false}
             aria-required={false}
-            autoComplete={undefined}
-            autoFocus={undefined}
-            defaultValue={undefined}
             id="group-by"
-            name={undefined}
-            onKeyDown={undefined}
-            onKeyUp={undefined}
-            placeholder={undefined}
-            readOnly={undefined}
-            required={undefined}
-            rows={undefined}
             type="hidden"
             value="time"
           />
           <svg
             aria-hidden="true"
             className="MuiSvgIcon-root-72 MuiSelect-icon-71"
-            color={undefined}
             focusable="false"
             viewBox="0 0 24 24"
           >
