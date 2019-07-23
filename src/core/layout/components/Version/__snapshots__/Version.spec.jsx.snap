@@ -16,14 +16,14 @@ exports[`core/layout/components/Version Version renders correctly with latest ve
   <p
     className="glamor-0 ekjxbjj1"
   >
-    Flexget: 
+    Flexget:
     2.10.60
      
   </p>
   <p
     className="glamor-0 ekjxbjj1"
   >
-    API: 
+    API:
     1.1.2
   </p>
 </div>
@@ -45,7 +45,7 @@ exports[`core/layout/components/Version Version renders correctly without latest
   <p
     className="glamor-0 ekjxbjj1"
   >
-    Flexget: 
+    Flexget:
     2.10.11
      
     <a
@@ -74,7 +74,7 @@ exports[`core/layout/components/Version Version renders correctly without latest
   <p
     className="glamor-0 ekjxbjj1"
   >
-    API: 
+    API:
     1.1.2
   </p>
 </div>
