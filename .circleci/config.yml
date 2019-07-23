@@ -21,7 +21,7 @@ jobs:
           command: npm run lint
       - run:
           name: Run Tests
-          command: npm test -- --ci --coverage --testResultsProcessor="jest-junit"
+          command: npm test -- --ci --coverage --testResultsProcessor="jest-junit" -i
       - run:
           name: Upload to Codacy
           command: npm run cov
