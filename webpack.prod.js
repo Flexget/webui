@@ -6,41 +6,29 @@ const webpack = require('webpack');
 const path = require('path');
 const config = require('./webpack.shared');
 
+config.mode = 'production';
+
 config.output = {
   path: path.join(__dirname, 'dist', 'assets'),
   filename: '[name].[chunkhash].js',
   publicPath: '/v2/assets/',
+};
+config.optimization = {
+  splitChunks: {
+    chunks: 'all',
+  },
 };
 config.devtool = 'source-map';
 config.plugins = [
   new FaviconsWebpackPlugin(path.resolve('./src/favicon.png')),
   new webpack.DefinePlugin({
     __DEV__: false,
-    'process.env': {
-      NODE_ENV: JSON.stringify('production'),
-    },
   }),
-  new webpack.optimize.CommonsChunkPlugin({ name: ['vendor', 'manifest'], minChunks: Infinity }),
-  new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 8192 }),
   new HtmlWebpackPlugin({
     title: 'FlexGet Manager v2',
     filename: '../index.html',
     template: './src/index.ejs',
     base: '/v2/',
-  }),
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      screw_ie8: true,
-      warnings: false,
-    },
-    mangle: {
-      screw_ie8: true,
-    },
-    output: {
-      comments: false,
-      screw_ie8: true,
-    },
-    sourceMap: false,
   }),
   new ExtractTextPlugin({
     filename: '[name].[chunkhash].css',
@@ -51,8 +39,8 @@ config.plugins = [
   })] : [],
 ];
 config.module.rules.push({
-  test: /\.s?css$/,
-  loader: ExtractTextPlugin.extract(['css-loader', 'resolve-url-loader']),
+  test: /\.css$/,
+  loader: ExtractTextPlugin.extract(['css-loader']),
 });
 
 module.exports = config;
