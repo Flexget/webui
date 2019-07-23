@@ -24,6 +24,7 @@ export default class HistoryPage extends Component {
   });
 
   setScroll = (node) => { this.scroll = node; }
+
   restartLoader = () => {
     findDOMNode(this.scroll).scrollIntoView(); // eslint-disable-line react/no-find-dom-node
     this.getHistory(1);
@@ -31,9 +32,10 @@ export default class HistoryPage extends Component {
   }
 
   handleChange = key => event => this.setState({ [key]: event.target.value }, this.restartLoader)
-  toggleOrder = () => this.setState({
-    order: (this.state.order === 'asc' ? 'desc' : 'asc'),
-  }, this.restartLoader)
+
+  toggleOrder = () => this.setState(({ order }) => ({
+    order: (order === 'asc' ? 'desc' : 'asc'),
+  }), this.restartLoader)
 
   render() {
     const { grouping } = this.state;

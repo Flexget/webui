@@ -2,19 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CircularProgress } from 'material-ui/Progress';
 
-const Loader = (props) => {
-  if (props.isLoading) {
+const Loader = ({
+  isLoading,
+  timedOut,
+  pastDelay,
+  error,
+}) => {
+  if (isLoading) {
     // While our other component is loading...
-    if (props.timedOut) {
+    if (timedOut) {
       // In case we've timed out loading our other component.
       return <div>Loader timed out!</div>;
-    } else if (props.pastDelay) {
+    } if (pastDelay) {
       // Display a loading screen after a set delay.
       return <CircularProgress />;
     }
     // Don't flash "Loading..." when we don't need to.
     return null;
-  } else if (props.error) {
+  }
+
+  if (error) {
     // If we aren't loading, maybe
     return <div>Error! Component failed to load</div>;
   }

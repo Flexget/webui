@@ -8,12 +8,12 @@ describe('plugins/history/components/HistoryList', () => {
       const tree = shallow(<HistoryList
         getHistory={jest.fn()}
         history={{
-            '2017-09-09': [{
-              task: 'task',
-              id: 1,
-              title: 'something',
-            }],
-          }}
+          '2017-09-09': [{
+            task: 'task',
+            id: 1,
+            title: 'something',
+          }],
+        }}
         grouping="time"
         hasMore
       />);

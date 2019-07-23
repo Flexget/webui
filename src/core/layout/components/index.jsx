@@ -26,9 +26,9 @@ class Layout extends Component {
   };
 
   toggleSideBar = () => {
-    this.setState({
-      sideBarOpen: !this.state.sideBarOpen,
-    });
+    this.setState(({ sideBarOpen }) => ({
+      sideBarOpen: !sideBarOpen,
+    }));
   }
 
   render() {

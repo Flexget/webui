@@ -36,11 +36,11 @@ class HistoryList extends Component {
           { Object.entries(history).map(([subheader, histories]) => (
             <List key={subheader} subheader={<Subheader color="primary">{subheader}</Subheader>}>
               {histories.map(({
- id, title, time, task,
-}) => (
-  <ListItem key={id}>
-    <ListItemText primary={title} secondary={grouping === 'time' ? task : new Date(time).toString()} />
-  </ListItem>
+                id, title, time, task,
+              }) => (
+                <ListItem key={id}>
+                  <ListItemText primary={title} secondary={grouping === 'time' ? task : new Date(time).toString()} />
+                </ListItem>
               ))}
             </List>
           ))}

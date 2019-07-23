@@ -67,8 +67,9 @@ class FilterNav extends Component {
   }
 
   handleKeyPress = (event) => {
+    const { handleChange } = this.props;
     if (event.which === ENTER_KEY) {
-      this.props.handleChange('task')(event);
+      handleChange('task')(event);
     }
   }
 

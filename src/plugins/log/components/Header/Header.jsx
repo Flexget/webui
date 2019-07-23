@@ -36,7 +36,8 @@ class Header extends Component {
   }
 
   componentWillUnmount() {
-    this.props.stop();
+    const { stop } = this.props;
+    stop();
   }
 
   reload = () => {
@@ -48,10 +49,15 @@ class Header extends Component {
     }
     start({ lines, query });
   }
+
   clearLogs = () => this.props.clearLogs()
+
   handleLines = event => this.setState({ lines: event.target.value })
+
   handleQuery = event => this.setState({ query: event.target.value })
+
   handleKeyPress = event => event.which === ENTER_KEY && this.reload()
+
   handleRequestClose = () => this.setState({
     open: false,
     anchorEl: undefined,

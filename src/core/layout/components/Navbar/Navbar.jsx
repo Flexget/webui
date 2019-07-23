@@ -45,7 +45,8 @@ export default class Navbar extends Component {
   })
 
   handleReloadClick = () => {
-    this.props.reloadServer();
+    const { reloadServer } = this.props;
+    reloadServer();
     this.handleMenuRequestClose();
   }
 
@@ -55,7 +56,8 @@ export default class Navbar extends Component {
   }
 
   handleShutdownClick = () => {
-    this.props.shutdownServer();
+    const { shutdownServer } = this.props;
+    shutdownServer();
     this.handleShutdownRequestClose();
   }
 

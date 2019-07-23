@@ -24,7 +24,7 @@ const AddListDialog = ({ open, onClose, handleSubmit }) => (
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={this.onClose} type="button">
+        <Button onClick={onClose} type="button">
           Cancel
         </Button>
         <Button type="submit" color="primary">

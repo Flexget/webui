@@ -24,6 +24,7 @@ module.exports = {
   rules: {
     'react/forbid-prop-types': 'off',
     'react/jsx-no-bind': 'off',
+     'react/destructuring-assignment': ['error', 'always', { ignoreClassFields: true }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/prefer-default-export': 'off',
     'comma-dangle': ['error', {
@@ -36,10 +37,10 @@ module.exports = {
     'import/no-named-as-default': 'off',
     'react/no-array-index-key': 'off',
     'no-constant-condition': 'off',
-    "jsx-a11y/anchor-is-valid": ["error", {
-      "components": ["Link"],
-      "specialLink": ["to", "hrefLeft", "hrefRight"],
-      "aspects": ["noHref", "invalidHref", "preferButton"]
+    'jsx-a11y/anchor-is-valid': ['error', {
+      'components': ['Link'],
+      'specialLink': ["to", 'hrefLeft', 'hrefRight'],
+      'aspects': ['noHref', 'invalidHref', 'preferButton']
     }]
   },
 };

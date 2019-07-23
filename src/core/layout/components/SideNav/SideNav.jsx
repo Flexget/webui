@@ -32,40 +32,46 @@ export default class SideNav extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.sideBarOpen && !nextProps.sideBarOpen) {
+    const { sideBarOpen } = this.props;
+    if (sideBarOpen && !nextProps.sideBarOpen) {
       this.setState({ open: {} });
     }
   }
 
   toggleOnMobile = () => {
+    const { toggle } = this.props;
     if (
-      window.matchMedia &&
-      window.matchMedia('(max-width: 600px)').matches
+      window.matchMedia
+      && window.matchMedia('(max-width: 600px)').matches
     ) {
-      this.props.toggle();
+      toggle();
     }
   }
 
   handleOnClick = ({ path, name }) => {
+    const { sideBarOpen, toggle } = this.props;
     if (path) {
       return this.toggleOnMobile;
     }
     return () => {
-      this.setState({
+      this.setState(({ open }) => ({
         open: {
-          ...this.state.open,
-          [name]: !this.state.open[name],
+          ...open,
+          [name]: !open[name],
         },
-      });
+      }));
 
-      if (!this.props.sideBarOpen) {
-        this.props.toggle();
+      if (!sideBarOpen) {
+        toggle();
       }
     };
   }
 
   renderNavItems() {
-    return this.props.routes.reduce((items, props) => {
+    const { routes } = this.props;
+    const { open } = this.state;
+
+    return routes.reduce((items, props) => {
       const list = [
         ...items,
         <SideNavEntry
@@ -77,7 +83,7 @@ export default class SideNav extends Component {
       if (props.children) {
         const collaspe = (
           <Collapse
-            in={this.state.open[props.label]}
+            in={open[props.label]}
             transitionDuration="auto"
             unmountOnExit
             key={`${props.label}-collapse`}

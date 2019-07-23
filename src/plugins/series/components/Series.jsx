@@ -11,7 +11,8 @@ class SeriesPage extends Component {
   };
 
   componentDidMount() {
-    this.props.getShows();
+    const { getShows } = this.props;
+    getShows();
   }
 
   render() {

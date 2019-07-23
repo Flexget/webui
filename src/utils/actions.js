@@ -18,6 +18,6 @@ export const request = (type, payload = {}) => ({
 });
 
 export const requesting = type => act => (
-  act.type === LOADING_STATUS &&
-    act.meta.type === type
+  act.type === LOADING_STATUS
+    && act.meta.type === type
 );

@@ -24,12 +24,14 @@ class TabList extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.getLists();
+    const { getLists } = this.props;
+    getLists();
   }
 
   componentWillReceiveProps({ lists }) {
-    if (this.props.lists.length === 0 && lists.length !== 0) {
-      this.props.selectList(lists[0].id);
+    const { selectList, lists: prevLists } = this.props;
+    if (prevLists.length === 0 && lists.length !== 0) {
+      selectList(lists[0].id);
     }
   }
 
@@ -41,6 +43,7 @@ class TabList extends PureComponent {
   }
 
   openDialog = () => this.setState({ addDialogOpen: true })
+
   closeDialog = () => this.setState({ addDialogOpen: false })
 
   render() {
