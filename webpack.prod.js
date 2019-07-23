@@ -1,6 +1,5 @@
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
@@ -20,7 +19,6 @@ config.optimization = {
 };
 config.devtool = 'source-map';
 config.plugins = [
-  new FaviconsWebpackPlugin(path.resolve('./src/favicon.png')),
   new webpack.DefinePlugin({
     __DEV__: false,
   }),

@@ -67,7 +67,6 @@
     "eslint-plugin-jest": "^21.27.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
-    "favicons-webpack-plugin": "0.0.9",
     "fetch-mock": "^6.5.2",
     "file-loader": "^1.1.11",
     "github": "^13.1.1",

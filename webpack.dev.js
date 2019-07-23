@@ -1,7 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const webpack = require('webpack');
-const path = require('path');
 const config = require('./webpack.shared');
 
 config.entry.main.push(
@@ -18,7 +16,6 @@ config.output = {
 };
 config.devtool = 'cheap-source-map';
 config.plugins = [
-  new FaviconsWebpackPlugin(path.resolve('./src/favicon.png')),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.DefinePlugin({
     __DEV__: true,
