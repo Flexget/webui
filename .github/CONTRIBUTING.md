@@ -10,7 +10,7 @@ Technologies we use:
 Requirements:
 * Node 8+
 
-1. Fork the repo
+1. Fork the repo (Once we see any semi-serious input from a developer we will grant write permissions to our central repository. You can also request this earlier if you wish.)
 2. Install dependencies
 ```bash
 $ npm install
