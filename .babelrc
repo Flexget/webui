@@ -55,6 +55,17 @@
         "@babel/plugin-transform-modules-commonjs",
         "dynamic-import-node"
       ]
+    },
+    "release": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "loose": true,
+            "modules": "commonjs"
+          }
+        ],
+      ]
     }
   }
 }

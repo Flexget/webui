@@ -11,16 +11,16 @@ import {
 const SecondaryNav = ({ children, tabs, ...tabProps }) => (
   <MuiThemeProvider theme={darkTheme}>
     <SecondaryAppBar>
-      { tabs ?
-        (
+      { tabs
+        ? (
           <SecondaryTabs
             indicatorColor="primary"
             {...tabProps}
           >
             {children}
           </SecondaryTabs>
-        ) :
-        (
+        )
+        : (
           <SecondaryToolbar>
             {children}
           </SecondaryToolbar>

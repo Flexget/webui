@@ -28,7 +28,9 @@ const InfoCard = () => (
         ideas etc...
       </p>
       <p>
-        There is a functional API with documentation available at <a href="/api">/api</a>
+        There is a functional API with documentation available at
+        {' '}
+        <a href="/api">/api</a>
       </p>
       <p>
         More information:
@@ -36,7 +38,8 @@ const InfoCard = () => (
           href="http://flexget.com/wiki/Web-UI/v2"
           target="_blank"
           rel="noopener noreferrer"
-        >http://flexget.com/wiki/Web-UI/v2
+        >
+http://flexget.com/wiki/Web-UI/v2
         </a>
       </p>
       <p>

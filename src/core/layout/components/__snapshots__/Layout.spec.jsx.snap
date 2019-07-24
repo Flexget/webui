@@ -344,13 +344,13 @@ exports[`components/layout renders correctly 1`] = `
               <p
                 className="glamor-12 ekjxbjj1"
               >
-                Flexget: 
+                Flexget:
                  
               </p>
               <p
                 className="glamor-12 ekjxbjj1"
               >
-                API: 
+                API:
               </p>
             </div>
           </div>

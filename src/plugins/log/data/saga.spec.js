@@ -1,6 +1,8 @@
 import { eventChannel } from 'redux-saga';
 import { createMockTask } from 'redux-saga/utils';
-import { take, fork, cancel, cancelled, call, put } from 'redux-saga/effects';
+import {
+  take, fork, cancel, cancelled, call, put,
+} from 'redux-saga/effects';
 import sagaHelper from 'redux-saga-testing';
 import { LOG_CONNECT, LOG_DISCONNECT } from 'plugins/log/data/actions';
 import saga, { log, logStream } from 'plugins/log/data/saga';

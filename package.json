@@ -12,8 +12,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "cov": "cat coverage/lcov.info | codacy-coverage",
-    "release:bump": "babel-node --presets env ./scripts/bump-version.js",
-    "release:upload": "babel-node --presets env ./scripts/create-release.js"
+    "release:bump": "NODE_ENV=release babel-node ./scripts/bump-version.js",
+    "release:upload": "NODE_ENV=release babel-node ./scripts/create-release.js"
   },
   "repository": {
     "type": "git",
@@ -60,8 +60,8 @@
     "css-loader": "^3.1.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.1",
     "eslint-import-resolver-webpack": "^0.8.4",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^21.27.2",

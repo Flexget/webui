@@ -62,7 +62,8 @@ exports[`core/home/components/InfoCard renders correctly 1`] = `
       If you still use it anyways, please report back to us on how well it works, issues, ideas etc...
     </p>
     <p>
-      There is a functional API with documentation available at 
+      There is a functional API with documentation available at
+       
       <a
         href="/api"
       >

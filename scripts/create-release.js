@@ -15,9 +15,8 @@ github.repos.createRelease({
   repo: 'webui',
   tag_name: args[0],
   prerelease: false,
-}).then(result => {
+}).then((result) => {
   console.log(result);
-  const id = result.data.id;
 
   github.authenticate({
     type: 'token',

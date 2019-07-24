@@ -21,8 +21,9 @@ class Version extends Component {
   };
 
   componentDidMount() {
-    if (process.env.NODE_ENV === 'production' || !this.props.version.api) {
-      this.props.getVersion();
+    const { version, getVersion } = this.props;
+    if (process.env.NODE_ENV === 'production' || !version.api) {
+      getVersion();
     }
   }
 
@@ -31,14 +32,21 @@ class Version extends Component {
     return (
       <Wrapper className={className}>
         <Line>Version Info</Line>
-        <Line>Flexget: { flexget } {
+        <Line>
+Flexget:
+          { flexget }
+          {' '}
+          {
           latest && semver(latest, flexget) === 1 && (
             <IconButton href="https://flexget.com/ChangeLog">
               <FontAwesomeIcon icon={['far', 'question-circle']} fixedWidth />
             </IconButton>
           ) }
         </Line>
-        <Line>API: { api }</Line>
+        <Line>
+API:
+          { api }
+        </Line>
       </Wrapper>
     );
   }

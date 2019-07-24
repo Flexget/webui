@@ -1,5 +1,7 @@
 import { stringify } from 'qs';
-import { call, put, takeLatest, takeEvery, select } from 'redux-saga/effects';
+import {
+  call, put, takeLatest, takeEvery, select,
+} from 'redux-saga/effects';
 import { action, requesting } from 'utils/actions';
 import * as fetch from 'utils/fetch';
 import * as actions from './actions';

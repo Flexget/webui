@@ -9,7 +9,7 @@ const mockStore = configureMockStore();
 
 export function themed(component) {
   return (
-    <MuiThemeProvider theme={theme} >
+    <MuiThemeProvider theme={theme}>
       { component }
     </MuiThemeProvider>
   );

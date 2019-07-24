@@ -11,7 +11,7 @@ export default store => next => (action) => {
         type: action.type,
       },
     });
-  } else if (action.meta && action.meta.message) {
+  } if (action.meta && action.meta.message) {
     store.dispatch({
       type: INFO_STATUS,
       payload: {

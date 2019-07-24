@@ -1,6 +1,8 @@
 import oboe from 'oboe';
 import { eventChannel } from 'redux-saga';
-import { call, take, put, cancel, cancelled, fork } from 'redux-saga/effects';
+import {
+  call, take, put, cancel, cancelled, fork,
+} from 'redux-saga/effects';
 import { action, requesting } from 'utils/actions';
 import {
   LOG_CONNECT,
