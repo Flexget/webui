@@ -11,7 +11,7 @@ A new web interface for configuring and viewing FlexGet settings
 
 ---
 
-** This repo and documentation is for the new WebUI v2. If you are looking for WebUI v1, you can find documentation here: https://flexget.com/Web-UI and report issues to the main [FlexGet repo](https://github.com/Flexget/Flexget).**
+**This repo and documentation is for the new WebUI v2. If you are looking for WebUI v1, you can find documentation here: https://flexget.com/Web-UI and report issues to the main [FlexGet repo](https://github.com/Flexget/Flexget).**
 
 ---
 
