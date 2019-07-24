@@ -27,7 +27,7 @@ See [CONTRIBUTING.md](https://github.com/Flexget/webui/blob/develop/.github/CONT
 
 ## Authors
 
-- Kristen Mills [@jaredpalmer](https://github.com/kristenmills)
+- Kristen Mills [@kristenmills](https://github.com/kristenmills)
 - Steve Adams [@stevezau](https://github.com/stevezau)
 
 ---
