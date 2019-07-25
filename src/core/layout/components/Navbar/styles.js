@@ -1,7 +1,7 @@
 import styled, { css } from 'react-emotion';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import theme from 'theme';
 

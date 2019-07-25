@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import TextField from 'material-ui/TextField';
-import Typography from 'material-ui/Typography';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import {
   Wrapper,
   GreyIcon,
@@ -78,7 +79,7 @@ class Header extends Component {
     return (
       <Wrapper>
         <div>
-          <Typography variant="title">
+          <Typography variant="h6">
             Server Log
           </Typography>
           <GreyType variant="subheading">

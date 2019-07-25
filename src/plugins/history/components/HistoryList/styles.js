@@ -1,5 +1,5 @@
 import styled from 'react-emotion';
-import { ListSubheader } from 'material-ui/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
 
 export const Subheader = styled(ListSubheader)`
   background-color: white;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import semver from 'semver-compare';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Wrapper, Line } from './styles';
 

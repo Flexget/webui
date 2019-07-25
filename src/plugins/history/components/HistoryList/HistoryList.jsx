@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { HistoryShape } from 'plugins/history/data/shapes';
 import InfiniteScroll from 'react-infinite-scroller';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { Subheader, Wrapper } from './styles';
 

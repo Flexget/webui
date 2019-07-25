@@ -1,5 +1,7 @@
 import styled from 'react-emotion';
-import Card, { CardActions, CardHeader } from 'material-ui/Card';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
 import theme from 'theme';
 
 export const InfoCardWrapper = styled(Card)`

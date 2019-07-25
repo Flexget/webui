@@ -1,5 +1,5 @@
 import styled from 'react-emotion';
-import { CardMedia } from 'material-ui/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import theme from 'theme';
 
 export const Media = styled(CardMedia)`

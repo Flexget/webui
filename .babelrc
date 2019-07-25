@@ -64,7 +64,7 @@
             "loose": true,
             "modules": "commonjs"
           }
-        ],
+        ]
       ]
     }
   }

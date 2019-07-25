@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from 'material-ui/Dialog';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import Dialog from '@material-ui/core/Dialog';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Spacer } from 'components/styles';
 import {
@@ -77,7 +77,7 @@ export default class Navbar extends Component {
           <NavIcon onClick={toggle}>
             <FontAwesomeIcon icon="bars" fixedWidth />
           </NavIcon>
-          <Typography variant="title" color="inherit">
+          <Typography variant="h6" color="inherit">
             {titleMap[pathname]}
           </Typography>
           <Spacer />

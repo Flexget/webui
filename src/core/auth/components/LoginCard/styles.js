@@ -1,7 +1,8 @@
 import styled from 'react-emotion';
 import { Field } from 'redux-form';
-import MUICard, { CardContent } from 'material-ui/Card';
-import Button from 'material-ui/Button';
+import MUICard from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
 import theme from 'theme';
 
 export const Card = styled(MUICard)`
