@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
-import Icon from 'material-ui/Icon';
-import TextField from 'material-ui/TextField';
+import Icon from '@material-ui/core/Icon';
+import TextField from '@material-ui/core/TextField';
 import theme from 'theme';
 
 export const RotatingIcon = styled(Icon)`

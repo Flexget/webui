@@ -1,6 +1,6 @@
 import styled, { css } from 'react-emotion';
 import theme from 'theme';
-import List from 'material-ui/List';
+import List from '@material-ui/core/List';
 import SideNavEntry from 'core/layout/components/SideNavEntry';
 import Version from 'core/layout/components/Version';
 

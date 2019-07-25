@@ -27,28 +27,28 @@ exports[`core/home/components/Home renders correctly 1`] = `
 }
 
 <div
-  className="MuiPaper-root-1 MuiPaper-shadow2-5 MuiPaper-rounded-2 glamor-3 e17d04jh0"
+  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root glamor-3 e17d04jh0 MuiPaper-rounded"
 >
   <div
-    className="MuiCardHeader-root-28 glamor-0 e17d04jh1"
+    className="MuiCardHeader-root glamor-0 e17d04jh1"
   >
     <div
-      className="MuiCardHeader-content-31"
+      className="MuiCardHeader-content"
     >
       <span
-        className="MuiTypography-root-34 MuiTypography-headline-39 MuiCardHeader-title-32"
+        className="MuiTypography-root MuiCardHeader-title MuiTypography-h5 MuiTypography-displayBlock"
       >
         Flexget Web Interface
       </span>
       <span
-        className="MuiTypography-root-34 MuiTypography-body1-43 MuiTypography-colorTextSecondary-56 MuiCardHeader-subheader-33"
+        className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
       >
         Under Development
       </span>
     </div>
   </div>
   <div
-    className="MuiCardContent-root-58"
+    className="MuiCardContent-root"
   >
     <p
       className="glamor-1 e17d04jh2"
@@ -92,13 +92,15 @@ exports[`core/home/components/Home renders correctly 1`] = `
     </p>
   </div>
   <div
-    className="MuiCardActions-root-59 glamor-2 e17d04jh3"
+    className="MuiCardActions-root glamor-2 e17d04jh3 MuiCardActions-spacing"
   >
     <a
+      aria-disabled={false}
       aria-label="Github"
-      className="MuiButtonBase-root-67 MuiIconButton-root-61 MuiCardActions-action-60"
+      className="MuiButtonBase-root MuiIconButton-root"
       href="https://github.com/Flexget/Flexget"
       onBlur={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -113,22 +115,21 @@ exports[`core/home/components/Home renders correctly 1`] = `
       target="_blank"
     >
       <span
-        className="MuiIconButton-label-66"
+        className="MuiIconButton-label"
       >
         <span
-          aria-hidden="true"
-          className="material-icons MuiIcon-root-69 MuiIcon-fontSize-75 fa fa-github"
+          aria-hidden={true}
+          className="material-icons MuiIcon-root fa fa-github"
         />
       </span>
-      <span
-        className="MuiTouchRipple-root-76"
-      />
     </a>
     <a
+      aria-disabled={false}
       aria-label="Flexget.com"
-      className="MuiButtonBase-root-67 MuiIconButton-root-61 MuiCardActions-action-60"
+      className="MuiButtonBase-root MuiIconButton-root"
       href="https://flexget.com"
       onBlur={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -143,22 +144,21 @@ exports[`core/home/components/Home renders correctly 1`] = `
       target="_blank"
     >
       <span
-        className="MuiIconButton-label-66"
+        className="MuiIconButton-label"
       >
         <span
-          aria-hidden="true"
-          className="material-icons MuiIcon-root-69 MuiIcon-fontSize-75 fa fa-home"
+          aria-hidden={true}
+          className="material-icons MuiIcon-root fa fa-home"
         />
       </span>
-      <span
-        className="MuiTouchRipple-root-76"
-      />
     </a>
     <a
+      aria-disabled={false}
       aria-label="Gitter"
-      className="MuiButtonBase-root-67 MuiIconButton-root-61 MuiCardActions-action-60"
+      className="MuiButtonBase-root MuiIconButton-root"
       href="https://gitter.im/Flexget/Flexget"
       onBlur={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -173,22 +173,21 @@ exports[`core/home/components/Home renders correctly 1`] = `
       target="_blank"
     >
       <span
-        className="MuiIconButton-label-66"
+        className="MuiIconButton-label"
       >
         <span
-          aria-hidden="true"
-          className="material-icons MuiIcon-root-69 MuiIcon-fontSize-75 fa fa-comment"
+          aria-hidden={true}
+          className="material-icons MuiIcon-root fa fa-comment"
         />
       </span>
-      <span
-        className="MuiTouchRipple-root-76"
-      />
     </a>
     <a
+      aria-disabled={false}
       aria-label="Forum"
-      className="MuiButtonBase-root-67 MuiIconButton-root-61 MuiCardActions-action-60"
+      className="MuiButtonBase-root MuiIconButton-root"
       href="https://discuss.flexget.com"
       onBlur={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -203,16 +202,13 @@ exports[`core/home/components/Home renders correctly 1`] = `
       target="_blank"
     >
       <span
-        className="MuiIconButton-label-66"
+        className="MuiIconButton-label"
       >
         <span
-          aria-hidden="true"
-          className="material-icons MuiIcon-root-69 MuiIcon-fontSize-75 fa fa-forumbee"
+          aria-hidden={true}
+          className="material-icons MuiIcon-root fa fa-forumbee"
         />
       </span>
-      <span
-        className="MuiTouchRipple-root-76"
-      />
     </a>
   </div>
 </div>

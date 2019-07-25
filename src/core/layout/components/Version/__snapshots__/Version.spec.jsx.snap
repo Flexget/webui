@@ -49,9 +49,11 @@ exports[`core/layout/components/Version Version renders correctly without latest
     2.10.11
      
     <a
-      className="MuiButtonBase-root-7 MuiIconButton-root-1"
+      aria-disabled={false}
+      className="MuiButtonBase-root MuiIconButton-root"
       href="https://flexget.com/ChangeLog"
       onBlur={[Function]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -64,10 +66,7 @@ exports[`core/layout/components/Version Version renders correctly without latest
       tabIndex={0}
     >
       <span
-        className="MuiIconButton-label-6"
-      />
-      <span
-        className="MuiTouchRipple-root-9"
+        className="MuiIconButton-label"
       />
     </a>
   </p>

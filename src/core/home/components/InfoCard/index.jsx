@@ -1,7 +1,7 @@
 import React from 'react';
-import { CardContent } from 'material-ui/Card';
-import IconButton from 'material-ui/IconButton';
-import Icon from 'material-ui/Icon';
+import CardContent from '@material-ui/core/CardContent';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
 import {
   InfoCardWrapper,
   InfoCardHeader,

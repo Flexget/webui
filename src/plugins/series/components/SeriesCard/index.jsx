@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card, { CardContent } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 import blank from 'images/blank-banner.png';
 import {
   Media,
@@ -17,7 +18,7 @@ const SeriesCard = ({ show }) => (
       <Image src={blank} alt="" />
     </Media>
     <CardContent>
-      <Typography variant="headline" component="h2">
+      <Typography variant="h5" component="h2">
         {show.name}
       </Typography>
     </CardContent>

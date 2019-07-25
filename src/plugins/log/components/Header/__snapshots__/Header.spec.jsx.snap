@@ -48,16 +48,16 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
   className="glamor-4 e19f7qgx0"
 >
   <div>
-    <h2
-      className="MuiTypography-root-1 MuiTypography-title-7"
+    <h6
+      className="MuiTypography-root MuiTypography-h6"
     >
       Server Log
-    </h2>
-    <h3
-      className="MuiTypography-root-1 MuiTypography-subheading-8 glamor-0 e19f7qgx3"
+    </h6>
+    <span
+      className="MuiTypography-root glamor-0 e19f7qgx3"
     >
       Streaming
-    </h3>
+    </span>
   </div>
   <div
     className="glamor-1 e19f7qgx4"
@@ -66,37 +66,36 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
     className="glamor-3 e19f7qgx5"
   >
     <div
-      aria-describedby="filter-helper-text"
-      className="MuiFormControl-root-25 glamor-2 e19f7qgx6"
-      onBlur={[Function]}
-      onFocus={[Function]}
+      className="MuiFormControl-root MuiTextField-root glamor-2 e19f7qgx6"
     >
       <label
-        className="MuiFormLabel-root-35 MuiInputLabel-root-29 MuiInputLabel-formControl-30 MuiInputLabel-animated-33"
+        className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
         data-shrink={false}
         htmlFor="filter"
       >
         Filter
       </label>
       <div
-        className="MuiInput-root-39 MuiInput-formControl-40 MuiInput-inkbar-41 MuiInput-underline-45"
-        onBlur={[Function]}
-        onFocus={[Function]}
+        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+        onClick={[Function]}
       >
         <input
+          aria-describedby="filter-helper-text"
           aria-invalid={false}
-          aria-required={false}
-          className="MuiInput-input-48"
+          className="MuiInputBase-input MuiInput-input"
           disabled={false}
           id="filter"
+          onBlur={[Function]}
           onChange={[Function]}
+          onFocus={[Function]}
           onKeyPress={[Function]}
+          required={false}
           type="text"
           value=""
         />
       </div>
       <p
-        className="MuiFormHelperText-root-54"
+        className="MuiFormHelperText-root"
         id="filter-helper-text"
       >
         Supports operators and, or, (), and "str"

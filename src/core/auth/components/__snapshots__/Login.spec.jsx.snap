@@ -55,77 +55,75 @@ exports[`core/auth/components/Login Login renders correctly when logged out 1`] 
     className="glamor-0 e1lalxx70"
   />
   <div
-    className="MuiPaper-root-1 MuiPaper-shadow2-5 MuiPaper-rounded-2 glamor-6 egcdk620"
+    className="MuiPaper-root MuiPaper-elevation1 MuiCard-root glamor-6 egcdk620 MuiPaper-rounded"
   >
     <form
       onSubmit={[Function]}
     >
       <div
-        className="MuiCardContent-root-28 glamor-4 egcdk623"
+        className="MuiCardContent-root glamor-4 egcdk623"
       >
         <div
           className="glamor-1 egcdk621"
         />
         <div
-          className="MuiFormControl-root-29 glamor-2 egcdk624"
-          onBlur={[Function]}
+          className="MuiFormControl-root MuiTextField-root glamor-2 egcdk624"
           onDragStart={[Function]}
           onDrop={[Function]}
-          onFocus={[Function]}
         >
           <label
-            className="MuiFormLabel-root-39 MuiInputLabel-root-33 MuiInputLabel-formControl-34 MuiInputLabel-animated-37"
+            className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
             data-shrink={false}
             htmlFor="username"
           >
             Username
           </label>
           <div
-            className="MuiInput-root-43 MuiInput-formControl-44 MuiInput-inkbar-45 MuiInput-underline-49"
-            onBlur={[Function]}
-            onFocus={[Function]}
+            className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+            onClick={[Function]}
           >
             <input
               aria-invalid={false}
-              aria-required={false}
               autoFocus={true}
-              className="MuiInput-input-52"
+              className="MuiInputBase-input MuiInput-input"
               disabled={false}
               id="username"
               name="username"
+              onBlur={[Function]}
               onChange={[Function]}
+              onFocus={[Function]}
+              required={false}
               type="text"
               value=""
             />
           </div>
         </div>
         <div
-          className="MuiFormControl-root-29 glamor-2 egcdk624"
-          onBlur={[Function]}
+          className="MuiFormControl-root MuiTextField-root glamor-2 egcdk624"
           onDragStart={[Function]}
           onDrop={[Function]}
-          onFocus={[Function]}
         >
           <label
-            className="MuiFormLabel-root-39 MuiInputLabel-root-33 MuiInputLabel-formControl-34 MuiInputLabel-animated-37"
+            className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
             data-shrink={false}
             htmlFor="password"
           >
             Password
           </label>
           <div
-            className="MuiInput-root-43 MuiInput-formControl-44 MuiInput-inkbar-45 MuiInput-underline-49"
-            onBlur={[Function]}
-            onFocus={[Function]}
+            className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+            onClick={[Function]}
           >
             <input
               aria-invalid={false}
-              aria-required={false}
-              className="MuiInput-input-52 MuiInput-inputType-55"
+              className="MuiInputBase-input MuiInput-input"
               disabled={false}
               id="password"
               name="password"
+              onBlur={[Function]}
               onChange={[Function]}
+              onFocus={[Function]}
+              required={false}
               type="Password"
               value=""
             />
@@ -133,12 +131,13 @@ exports[`core/auth/components/Login Login renders correctly when logged out 1`] 
         </div>
       </div>
       <div
-        className="MuiCardActions-root-58"
+        className="MuiCardActions-root MuiCardActions-spacing"
       >
         <button
-          className="MuiButtonBase-root-75 MuiButton-root-60 MuiCardActions-action-59 glamor-5 egcdk622"
+          className="MuiButtonBase-root MuiButton-root glamor-5 egcdk622 MuiButton-text"
           disabled={false}
           onBlur={[Function]}
+          onDragLeave={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
           onKeyUp={[Function]}
@@ -152,13 +151,10 @@ exports[`core/auth/components/Login Login renders correctly when logged out 1`] 
           type="submit"
         >
           <span
-            className="MuiButton-label-61"
+            className="MuiButton-label"
           >
             Login
           </span>
-          <span
-            className="MuiTouchRipple-root-77"
-          />
         </button>
       </div>
     </form>

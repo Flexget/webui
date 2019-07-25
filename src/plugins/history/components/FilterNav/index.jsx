@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import IconButton from 'material-ui/IconButton';
-import { MenuItem } from 'material-ui/Menu';
+import IconButton from '@material-ui/core/IconButton';
+import MenuItem from '@material-ui/core/MenuItem';
 import SecondaryNav from 'components/SecondaryNav';
 import { Spacer } from 'components/styles';
 import { RotatingIcon, PaddedTextField } from './styles';

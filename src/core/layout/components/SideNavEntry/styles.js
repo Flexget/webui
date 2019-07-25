@@ -1,7 +1,8 @@
 import styled, { css } from 'react-emotion';
 import theme from 'theme';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { ListItem, ListItemText } from 'material-ui/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const colorClass = css`color: ${theme.palette.secondary[200]};`;
 

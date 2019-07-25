@@ -1,14 +1,11 @@
 import React from 'react';
 import store from 'store';
 import history from 'core/history';
-import { JssProvider } from 'react-jss';
-import { create } from 'jss';
-import preset from 'jss-preset-default';
-import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
+import { StylesProvider } from '@material-ui/styles';
 import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
-import { MuiThemeProvider } from 'material-ui/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import { injectGlobal } from 'react-emotion';
 import theme from 'theme';
 import PrivateRoute from 'core/routes/components/PrivateRoute';
@@ -55,12 +52,8 @@ injectGlobal`
 const Home = createAsyncComponent(() => import('core/home'));
 const Login = createAsyncComponent(() => import('core/auth'));
 
-const jss = create(preset());
-jss.options.createGenerateClassName = createGenerateClassName;
-jss.options.insertionPoint = 'material-ui';
-
 const Root = () => (
-  <JssProvider jss={jss}>
+  <StylesProvider injectFirst>
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <MuiThemeProvider theme={theme}>
@@ -82,7 +75,7 @@ const Root = () => (
         </MuiThemeProvider>
       </ConnectedRouter>
     </Provider>
-  </JssProvider>
+  </StylesProvider>
 );
 
 export default Root;

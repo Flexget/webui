@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { ListItemIcon } from 'material-ui/List';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import {
   SideNavIcon,
   SideNavText,
@@ -14,7 +14,7 @@ const SideNavEntry = ({
   const item = (
     <NavItem className={className} onClick={onClick}>
       <ListItemIcon><SideNavIcon icon={icon} fixedWidth /></ListItemIcon>
-      <SideNavText disableTypography inset primary={name} />
+      <SideNavText disableTypography primary={name} />
     </NavItem>
   );
 

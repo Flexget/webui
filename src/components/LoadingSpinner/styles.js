@@ -1,5 +1,5 @@
 import styled from 'react-emotion';
-import { CircularProgress } from 'material-ui/Progress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export const Spinner = styled(CircularProgress)`
   margin: 0 auto;

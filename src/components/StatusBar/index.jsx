@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SnackBar from 'material-ui/Snackbar';
+import SnackBar from '@material-ui/core/Snackbar';
 
 const StatusBar = ({ open, message, clearStatus }) => (
   <SnackBar

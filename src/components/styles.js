@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 import theme from 'theme';
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 
 export const PaperWrapper = styled(Paper)`
   padding: 2.4rem;

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Tab } from 'material-ui/Tabs';
+import Tab from '@material-ui/core/Tab';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 import SecondaryNav from 'components/SecondaryNav';
