@@ -193,16 +193,17 @@ exports[`components/layout renders correctly 1`] = `
       className="glamor-9 e1ovaqso4"
     >
       <header
-        className="MuiPaper-root-9 MuiPaper-shadow4-15 MuiAppBar-root-1 MuiAppBar-positionFixed-2 MuiAppBar-colorPrimary-7 mui-fixed glamor-8 e1pzz03b0"
+        className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed glamor-8 e1pzz03b0 MuiAppBar-colorPrimary mui-fixed"
       >
         <div
-          className="MuiToolbar-root-36 MuiToolbar-gutters-37 glamor-7 e1pzz03b1"
+          className="MuiToolbar-root MuiToolbar-regular glamor-7 e1pzz03b1 MuiToolbar-gutters"
         >
           <button
-            className="MuiButtonBase-root-44 MuiIconButton-root-38 glamor-2 e1pzz03b2"
+            className="MuiButtonBase-root MuiIconButton-root glamor-2 e1pzz03b2"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
+            onDragLeave={[Function]}
             onFocus={[Function]}
             onKeyDown={[Function]}
             onKeyUp={[Function]}
@@ -216,14 +217,11 @@ exports[`components/layout renders correctly 1`] = `
             type="button"
           >
             <span
-              className="MuiIconButton-label-43"
-            />
-            <span
-              className="MuiTouchRipple-root-46"
+              className="MuiIconButton-label"
             />
           </button>
-          <h2
-            className="MuiTypography-root-53 MuiTypography-title-59 MuiTypography-colorInherit-72"
+          <h6
+            className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit"
           />
           <div
             className="glamor-3 e1vib4761"
@@ -234,9 +232,10 @@ exports[`components/layout renders correctly 1`] = `
           >
             <button
               aria-label="Config"
-              className="MuiButtonBase-root-44 MuiIconButton-root-38 glamor-2 e1pzz03b2"
+              className="MuiButtonBase-root MuiIconButton-root glamor-2 e1pzz03b2"
               disabled={false}
               onBlur={[Function]}
+              onDragLeave={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
@@ -250,10 +249,7 @@ exports[`components/layout renders correctly 1`] = `
               type="button"
             >
               <span
-                className="MuiIconButton-label-43"
-              />
-              <span
-                className="MuiTouchRipple-root-46"
+                className="MuiIconButton-label"
               />
             </button>
           </a>
@@ -263,9 +259,10 @@ exports[`components/layout renders correctly 1`] = `
           >
             <button
               aria-label="Log"
-              className="MuiButtonBase-root-44 MuiIconButton-root-38 glamor-2 e1pzz03b2"
+              className="MuiButtonBase-root MuiIconButton-root glamor-2 e1pzz03b2"
               disabled={false}
               onBlur={[Function]}
+              onDragLeave={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
@@ -279,19 +276,17 @@ exports[`components/layout renders correctly 1`] = `
               type="button"
             >
               <span
-                className="MuiIconButton-label-43"
-              />
-              <span
-                className="MuiTouchRipple-root-46"
+                className="MuiIconButton-label"
               />
             </button>
           </a>
           <button
             aria-label="Manage"
-            className="MuiButtonBase-root-44 MuiIconButton-root-38 glamor-2 e1pzz03b2"
+            className="MuiButtonBase-root MuiIconButton-root glamor-2 e1pzz03b2"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
+            onDragLeave={[Function]}
             onFocus={[Function]}
             onKeyDown={[Function]}
             onKeyUp={[Function]}
@@ -305,10 +300,7 @@ exports[`components/layout renders correctly 1`] = `
             type="button"
           >
             <span
-              className="MuiIconButton-label-43"
-            />
-            <span
-              className="MuiTouchRipple-root-46"
+              className="MuiIconButton-label"
             />
           </button>
         </div>
@@ -322,16 +314,16 @@ exports[`components/layout renders correctly 1`] = `
       className="glamor-18 e1ovaqso5"
     >
       <div
-        className="MuiDrawer-docked-88"
+        className="MuiDrawer-root MuiDrawer-docked"
       >
         <div
-          className="MuiPaper-root-9 MuiPaper-shadow0-11 MuiDrawer-paper-89 glamor-17 MuiDrawer-paperAnchorLeft-90 MuiDrawer-paperAnchorDockedLeft-94"
+          className="MuiPaper-root MuiPaper-elevation0 MuiDrawer-paper glamor-17 MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft"
         >
           <div
             className="glamor-16 egdat1"
           >
             <ul
-              className="MuiList-root-99 MuiList-padding-100 glamor-11 egdat3"
+              className="MuiList-root glamor-11 egdat3 MuiList-padding"
             />
             <div
               className="egdat2 glamor-15 ekjxbjj0"

@@ -27,37 +27,36 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
 }
 
 <header
-  className="MuiPaper-root-9 MuiPaper-shadow4-15 MuiAppBar-root-1 MuiAppBar-positionFixed-2 MuiAppBar-colorPrimary-7 mui-fixed glamor-6 e1j0gihi0"
+  className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed glamor-6 e1j0gihi0 MuiAppBar-colorPrimary mui-fixed"
 >
   <div
-    className="MuiToolbar-root-36 MuiToolbar-gutters-37 glamor-5 e1j0gihi1"
+    className="MuiToolbar-root MuiToolbar-regular glamor-5 e1j0gihi1 MuiToolbar-gutters"
   >
     <div
-      className="MuiFormControl-root-38 glamor-0 ecdi3071"
-      onBlur={[Function]}
-      onFocus={[Function]}
+      className="MuiFormControl-root MuiTextField-root glamor-0 ecdi3071"
       onKeyPress={[Function]}
     >
       <label
-        className="MuiFormLabel-root-48 MuiInputLabel-root-42 MuiInputLabel-formControl-43 MuiInputLabel-animated-46"
+        className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
         data-shrink={false}
         htmlFor="task-filter"
       >
         Filter By Task
       </label>
       <div
-        className="MuiInput-root-52 MuiInput-formControl-53 MuiInput-inkbar-54 MuiInput-underline-58"
-        onBlur={[Function]}
-        onFocus={[Function]}
+        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+        onClick={[Function]}
       >
         <input
           aria-invalid={false}
-          aria-required={false}
-          className="MuiInput-input-61"
+          className="MuiInputBase-input MuiInput-input"
           disabled={false}
           id="task-filter"
+          onBlur={[Function]}
           onChange={[Function]}
+          onFocus={[Function]}
           placeholder="Task Name"
+          required={false}
           type="text"
           value=""
         />
@@ -67,116 +66,101 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       className="glamor-1 e1vib4761"
     />
     <div
-      className="MuiFormControl-root-38 glamor-0 ecdi3071"
-      onBlur={[Function]}
-      onFocus={[Function]}
+      className="MuiFormControl-root MuiTextField-root glamor-0 ecdi3071"
     >
       <label
-        className="MuiFormLabel-root-48 MuiInputLabel-root-42 MuiInputLabel-formControl-43 MuiInputLabel-animated-46 MuiInputLabel-shrink-45"
+        className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
         data-shrink={true}
         htmlFor="sort-by"
       >
         Sort By
       </label>
       <div
-        className="MuiInput-root-52 MuiInput-formControl-53 MuiInput-inkbar-54 MuiInput-underline-58"
-        onBlur={[Function]}
-        onFocus={[Function]}
+        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+        onClick={[Function]}
       >
         <div
-          className="MuiSelect-root-67"
+          aria-haspopup="true"
+          aria-pressed="false"
+          className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input MuiInputBase-inputSelect"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
-          <div
-            aria-haspopup="true"
-            aria-owns={null}
-            aria-pressed="false"
-            className="MuiSelect-select-68 MuiSelect-selectMenu-69 MuiInput-input-61"
-            onBlur={[Function]}
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            role="button"
-            tabIndex={0}
-          >
-            Time
-          </div>
-          <input
-            aria-invalid={false}
-            aria-required={false}
-            id="sort-by"
-            type="hidden"
-            value="time"
-          />
-          <svg
-            aria-hidden="true"
-            className="MuiSvgIcon-root-72 MuiSelect-icon-71"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7 10l5 5 5-5z"
-            />
-          </svg>
+          Time
         </div>
+        <input
+          id="sort-by"
+          type="hidden"
+          value="time"
+        />
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root MuiSelect-icon"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
       </div>
     </div>
     <div
-      className="MuiFormControl-root-38 glamor-0 ecdi3071"
-      onBlur={[Function]}
-      onFocus={[Function]}
+      className="MuiFormControl-root MuiTextField-root glamor-0 ecdi3071"
     >
       <label
-        className="MuiFormLabel-root-48 MuiInputLabel-root-42 MuiInputLabel-formControl-43 MuiInputLabel-animated-46 MuiInputLabel-shrink-45"
+        className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
         data-shrink={true}
         htmlFor="group-by"
       >
         Group By
       </label>
       <div
-        className="MuiInput-root-52 MuiInput-formControl-53 MuiInput-inkbar-54 MuiInput-underline-58"
-        onBlur={[Function]}
-        onFocus={[Function]}
+        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+        onClick={[Function]}
       >
         <div
-          className="MuiSelect-root-67"
+          aria-haspopup="true"
+          aria-pressed="false"
+          className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input MuiInputBase-inputSelect"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
         >
-          <div
-            aria-haspopup="true"
-            aria-owns={null}
-            aria-pressed="false"
-            className="MuiSelect-select-68 MuiSelect-selectMenu-69 MuiInput-input-61"
-            onBlur={[Function]}
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            role="button"
-            tabIndex={0}
-          >
-            Time
-          </div>
-          <input
-            aria-invalid={false}
-            aria-required={false}
-            id="group-by"
-            type="hidden"
-            value="time"
-          />
-          <svg
-            aria-hidden="true"
-            className="MuiSvgIcon-root-72 MuiSelect-icon-71"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7 10l5 5 5-5z"
-            />
-          </svg>
+          Time
         </div>
+        <input
+          id="group-by"
+          type="hidden"
+          value="time"
+        />
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root MuiSelect-icon"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
       </div>
     </div>
     <button
-      className="MuiButtonBase-root-89 MuiIconButton-root-83 MuiIconButton-colorInherit-84"
+      className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
       disabled={false}
       onBlur={[Function]}
       onClick={[MockFunction]}
+      onDragLeave={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -190,17 +174,14 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       type="button"
     >
       <span
-        className="MuiIconButton-label-88"
+        className="MuiIconButton-label"
       >
         <span
-          aria-hidden="true"
-          className="material-icons MuiIcon-root-91 fa fa-chevron-up glamor-4 ecdi3070"
+          aria-hidden={true}
+          className="material-icons MuiIcon-root fa fa-chevron-up glamor-4 ecdi3070"
           rotate={false}
         />
       </span>
-      <span
-        className="MuiTouchRipple-root-98"
-      />
     </button>
   </div>
 </header>

@@ -2,21 +2,20 @@
 
 exports[`components/TextField renders correctly 1`] = `
 <div
-  className="MuiFormControl-root-1"
-  onBlur={[Function]}
-  onFocus={[Function]}
+  className="MuiFormControl-root MuiTextField-root"
 >
   <div
-    className="MuiInput-root-5 MuiInput-error-8 MuiInput-formControl-6 MuiInput-inkbar-7 MuiInput-underline-11"
-    onBlur={[Function]}
-    onFocus={[Function]}
+    className="MuiInputBase-root MuiInput-root MuiInput-underline Mui-error Mui-error MuiInputBase-formControl MuiInput-formControl"
+    onClick={[Function]}
   >
     <input
       aria-invalid={true}
-      aria-required={false}
-      className="MuiInput-input-14"
+      className="MuiInputBase-input MuiInput-input"
       disabled={false}
+      onBlur={[Function]}
       onChange={[Function]}
+      onFocus={[Function]}
+      required={false}
       type="text"
     />
   </div>

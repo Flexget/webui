@@ -15,11 +15,14 @@ exports[`core/layout/components/SideNavEntry renders correctly with link 1`] = `
 }
 
 <li
-  className="MuiListItem-root-1 MuiListItem-default-4 MuiListItem-gutters-8 glamor-1 e1vhtnjr2"
+  className="MuiListItem-root glamor-1 e1vhtnjr2 MuiListItem-gutters"
   disabled={false}
 >
   <div
-    className="MuiListItemText-root-12 MuiListItemText-inset-13 glamor-0 e1vhtnjr1"
+    className="MuiListItemIcon-root"
+  />
+  <div
+    className="MuiListItemText-root glamor-0 e1vhtnjr1"
   />
 </li>
 `;
@@ -39,11 +42,14 @@ exports[`core/layout/components/SideNavEntry renders correctly without link 1`] 
 }
 
 <li
-  className="MuiListItem-root-1 MuiListItem-default-4 MuiListItem-gutters-8 glamor-1 e1vhtnjr2"
+  className="MuiListItem-root glamor-1 e1vhtnjr2 MuiListItem-gutters"
   disabled={false}
 >
   <div
-    className="MuiListItemText-root-12 MuiListItemText-inset-13 glamor-0 e1vhtnjr1"
+    className="MuiListItemIcon-root"
+  />
+  <div
+    className="MuiListItemText-root glamor-0 e1vhtnjr1"
   />
 </li>
 `;
