@@ -1,3 +1,6 @@
+<p align="center">
+  <a href="https://flexget.com/" rel="noopener" target="_blank"><img src="https://flexget.com/_static/flexget.png" alt="Flexget logo"></a>
+</p>
 <h1 align="center">FlexGet Web UI</h1>
 
 <div align="center">
