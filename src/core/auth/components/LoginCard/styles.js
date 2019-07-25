@@ -1,4 +1,4 @@
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import { Field } from 'redux-form';
 import MUICard from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';

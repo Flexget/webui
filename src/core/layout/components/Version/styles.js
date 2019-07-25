@@ -1,8 +1,8 @@
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import theme from 'theme';
 
 export const Wrapper = styled.div`
-  color: ${theme.palette.error[500]};
+  color: ${theme.palette.primary[800]};
 `;
 
 export const Line = styled.p`

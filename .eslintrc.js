@@ -5,6 +5,7 @@ module.exports = {
   parser: "babel-eslint",
   plugins: [
     'jest',
+    'emotion',
   ],
   env: {
     browser: true,
@@ -41,6 +42,10 @@ module.exports = {
       'components': ['Link'],
       'specialLink': ["to", 'hrefLeft', 'hrefRight'],
       'aspects': ['noHref', 'invalidHref', 'preferButton']
-    }]
+    }],
+    'emotion/jsx-import': 'error',
+    'emotion/no-vanilla': 'error',
+    'emotion/import-from-emotion': 'error',
+    'emotion/styled-import': 'error'
   },
 };

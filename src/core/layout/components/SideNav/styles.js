@@ -1,24 +1,27 @@
-import styled, { css } from 'react-emotion';
+import styled from '@emotion/styled';
 import theme from 'theme';
+import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import SideNavEntry from 'core/layout/components/SideNavEntry';
 import Version from 'core/layout/components/Version';
 
 export const NestedSideNavEntry = styled(SideNavEntry)`
-  padding-left: ${theme.spacing.unit * 0.4}rem;
+  padding-left: ${theme.spacing(0.4)}rem;
 `;
 
-export const drawerPaper = open => css`
-  position: relative;
-  background-color: ${theme.palette.secondary[900]};
-  height: calc(100vh - 10rem);
-  width: ${open ? '100vw' : 0};
-  transition: ${theme.transitions.create('width')};
-  border-right: none !important;
+export const NavDrawer = styled(Drawer)`
+  & .MuiDrawer-paper {
+    position: relative;
+    background-color: ${theme.palette.secondary[900]};
+    height: calc(100vh - 10rem);
+    width: ${({ open }) => (open ? '100vw' : 0)};
+    transition: ${theme.transitions.create('width')};
+    border-right: none !important;
 
-  ${theme.breakpoints.up('sm')} {
-    height: calc(100vh - 5rem);
-    width: ${open ? '19rem' : '6rem'}
+    ${theme.breakpoints.up('sm')} {
+      height: calc(100vh - 5rem);
+      width: ${({ open }) => (open ? '19rem' : '6rem')}
+    }
   }
 `;
 

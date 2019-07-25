@@ -1,12 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
-.glamor-5 {
+.emotion-10 {
   max-width: 40rem;
   margin: 0 1rem;
 }
 
-.glamor-3 {
+@media (min-width:600px) {
+  .emotion-10 {
+    margin: 0 auto;
+  }
+}
+
+.emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -16,39 +22,33 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
   flex-direction: column;
 }
 
-.glamor-0 {
+.emotion-0 {
   text-align: center;
   padding: 1rem;
 }
 
-.glamor-1 {
+.emotion-2 {
   padding-bottom: 1rem;
 }
 
-.glamor-4 {
+.emotion-8 {
   width: 100%;
 }
 
-@media (min-width:600px) {
-  .glamor-5 {
-    margin: 0 auto;
-  }
-}
-
 <div
-  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root glamor-5 egcdk620 MuiPaper-rounded"
+  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root emotion-10 emotion-11 MuiPaper-rounded"
 >
   <form
     onSubmit={[Function]}
   >
     <div
-      className="MuiCardContent-root glamor-3 egcdk623"
+      className="MuiCardContent-root emotion-6 emotion-7"
     >
       <div
-        className="glamor-0 egcdk621"
+        className="emotion-0 emotion-1"
       />
       <div
-        className="MuiFormControl-root MuiTextField-root glamor-1 egcdk624"
+        className="MuiFormControl-root MuiTextField-root emotion-2 emotion-3"
         onDragStart={[Function]}
         onDrop={[Function]}
       >
@@ -80,7 +80,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
         </div>
       </div>
       <div
-        className="MuiFormControl-root MuiTextField-root glamor-1 egcdk624"
+        className="MuiFormControl-root MuiTextField-root emotion-2 emotion-3"
         onDragStart={[Function]}
         onDrop={[Function]}
       >
@@ -115,7 +115,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
       className="MuiCardActions-root MuiCardActions-spacing"
     >
       <button
-        className="MuiButtonBase-root MuiButton-root glamor-4 egcdk622 MuiButton-text"
+        className="MuiButtonBase-root MuiButton-root emotion-8 emotion-9 MuiButton-text"
         disabled={false}
         onBlur={[Function]}
         onDragLeave={[Function]}

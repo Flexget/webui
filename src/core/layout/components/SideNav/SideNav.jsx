@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Collapse from '@material-ui/core/Collapse';
-import Drawer from '@material-ui/core/Drawer';
 import SideNavEntry from 'core/layout/components/SideNavEntry';
 import {
   NestedSideNavEntry,
   DrawerInner,
   NavVersion,
   NavList,
-  drawerPaper,
+  NavDrawer,
 } from './styles';
 
 export default class SideNav extends Component {
@@ -106,18 +105,15 @@ export default class SideNav extends Component {
   render() {
     const { sideBarOpen } = this.props;
     return (
-      <Drawer
+      <NavDrawer
         open={sideBarOpen}
         variant="permanent"
-        classes={{
-          paper: drawerPaper(sideBarOpen),
-        }}
       >
         <DrawerInner>
           <NavList>{this.renderNavItems()}</NavList>
           <NavVersion hide={!sideBarOpen} />
         </DrawerInner>
-      </Drawer>
+      </NavDrawer>
     );
   }
 }

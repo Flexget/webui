@@ -3,19 +3,31 @@
 exports[`core/auth/components/Login Login renders correctly when logged in 1`] = `null`;
 
 exports[`core/auth/components/Login Login renders correctly when logged out 1`] = `
-.glamor-0 {
+.emotion-0 {
   background: transparent url(test-file-stub) no-repeat center;
   min-height: 9rem;
   background-size: 100% auto;
   margin: 0 1rem;
 }
 
-.glamor-6 {
+@media (min-width:600px) {
+  .emotion-0 {
+    background-size: auto;
+  }
+}
+
+.emotion-12 {
   max-width: 40rem;
   margin: 0 1rem;
 }
 
-.glamor-4 {
+@media (min-width:600px) {
+  .emotion-12 {
+    margin: 0 auto;
+  }
+}
+
+.emotion-8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -25,49 +37,37 @@ exports[`core/auth/components/Login Login renders correctly when logged out 1`] 
   flex-direction: column;
 }
 
-.glamor-1 {
+.emotion-2 {
   text-align: center;
   padding: 1rem;
 }
 
-.glamor-2 {
+.emotion-4 {
   padding-bottom: 1rem;
 }
 
-.glamor-5 {
+.emotion-10 {
   width: 100%;
-}
-
-@media (min-width:600px) {
-  .glamor-0 {
-    background-size: auto;
-  }
-}
-
-@media (min-width:600px) {
-  .glamor-6 {
-    margin: 0 auto;
-  }
 }
 
 <div>
   <div
-    className="glamor-0 e1lalxx70"
+    className="emotion-0 emotion-1"
   />
   <div
-    className="MuiPaper-root MuiPaper-elevation1 MuiCard-root glamor-6 egcdk620 MuiPaper-rounded"
+    className="MuiPaper-root MuiPaper-elevation1 MuiCard-root emotion-12 emotion-13 MuiPaper-rounded"
   >
     <form
       onSubmit={[Function]}
     >
       <div
-        className="MuiCardContent-root glamor-4 egcdk623"
+        className="MuiCardContent-root emotion-8 emotion-9"
       >
         <div
-          className="glamor-1 egcdk621"
+          className="emotion-2 emotion-3"
         />
         <div
-          className="MuiFormControl-root MuiTextField-root glamor-2 egcdk624"
+          className="MuiFormControl-root MuiTextField-root emotion-4 emotion-5"
           onDragStart={[Function]}
           onDrop={[Function]}
         >
@@ -99,7 +99,7 @@ exports[`core/auth/components/Login Login renders correctly when logged out 1`] 
           </div>
         </div>
         <div
-          className="MuiFormControl-root MuiTextField-root glamor-2 egcdk624"
+          className="MuiFormControl-root MuiTextField-root emotion-4 emotion-5"
           onDragStart={[Function]}
           onDrop={[Function]}
         >
@@ -134,7 +134,7 @@ exports[`core/auth/components/Login Login renders correctly when logged out 1`] 
         className="MuiCardActions-root MuiCardActions-spacing"
       >
         <button
-          className="MuiButtonBase-root MuiButton-root glamor-5 egcdk622 MuiButton-text"
+          className="MuiButtonBase-root MuiButton-root emotion-10 emotion-11 MuiButton-text"
           disabled={false}
           onBlur={[Function]}
           onDragLeave={[Function]}

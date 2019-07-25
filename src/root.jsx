@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { injectGlobal } from 'react-emotion';
+import { Global, css } from '@emotion/core';
 import theme from 'theme';
 import PrivateRoute from 'core/routes/components/PrivateRoute';
 import Layout from 'core/layout';
@@ -22,8 +22,7 @@ registerLog();
 registerSeries();
 registerPendingList();
 
-// eslint-disable-next-line no-unused-expressions
-injectGlobal`
+const globals = css`
   html {
     font-size: 10px;
   }
@@ -53,29 +52,32 @@ const Home = createAsyncComponent(() => import('core/home'));
 const Login = createAsyncComponent(() => import('core/auth'));
 
 const Root = () => (
-  <StylesProvider injectFirst>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <MuiThemeProvider theme={theme}>
-          <div>
-            <Switch>
-              <Route path="/login" exact component={Login} />
-              <Route
-                render={() => (
-                  <Layout>
-                    <Switch>
-                      <PrivateRoute path="/" exact component={Home} />
-                      <Route render={() => <Routes />} />
-                    </Switch>
-                  </Layout>
-                )}
-              />
-            </Switch>
-          </div>
-        </MuiThemeProvider>
-      </ConnectedRouter>
-    </Provider>
-  </StylesProvider>
+  <div>
+    <Global styles={globals} />
+    <StylesProvider injectFirst>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <MuiThemeProvider theme={theme}>
+            <div>
+              <Switch>
+                <Route path="/login" exact component={Login} />
+                <Route
+                  render={() => (
+                    <Layout>
+                      <Switch>
+                        <PrivateRoute path="/" exact component={Home} />
+                        <Route render={() => <Routes />} />
+                      </Switch>
+                    </Layout>
+                  )}
+                />
+              </Switch>
+            </div>
+          </MuiThemeProvider>
+        </ConnectedRouter>
+      </Provider>
+    </StylesProvider>
+  </div>
 );
 
 export default Root;

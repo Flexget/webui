@@ -54,7 +54,7 @@ class TabList extends PureComponent {
       <div>
         <SecondaryNav
           value={listId}
-          scrollable
+          variant="scrollable"
           scrollButtons="on"
           onChange={this.handleChange}
           tabs

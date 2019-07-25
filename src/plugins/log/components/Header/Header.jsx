@@ -82,7 +82,7 @@ class Header extends Component {
           <Typography variant="h6">
             Server Log
           </Typography>
-          <GreyType variant="subheading">
+          <GreyType variant="subtitle1">
             { connected ? 'Streaming' : 'Disconnected' }
           </GreyType>
         </div>

@@ -1,14 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`pages/splash renders correctly 1`] = `
-.glamor-0 {
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+.emotion-0 {
   background: transparent url(test-file-stub) no-repeat center;
   min-height: 9rem;
   background-size: 100% auto;
   margin: 0 1rem;
 }
 
-.glamor-6 {
+@media (min-width:600px) {
+  .emotion-0 {
+    background-size: auto;
+  }
+}
+
+.emotion-12 {
   margin: 10rem auto;
   width: 5rem;
   height: 4rem;
@@ -16,91 +92,85 @@ exports[`pages/splash renders correctly 1`] = `
   font-size: 1rem;
 }
 
-.glamor-1 {
+.emotion-2 {
   background-color: #ff9800;
   height: 100%;
   width: 0.6rem;
   display: inline-block;
   margin: 0.1rem;
-  -webkit-animation: animation-16m634m 1.2s infinite ease-in-out;
-  animation: animation-16m634m 1.2s infinite ease-in-out;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
 }
 
-.glamor-2 {
+.emotion-4 {
   background-color: #ff9800;
   height: 100%;
   width: 0.6rem;
   display: inline-block;
   margin: 0.1rem;
-  -webkit-animation: animation-16m634m 1.2s infinite ease-in-out;
-  animation: animation-16m634m 1.2s infinite ease-in-out;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
   -webkit-animation-delay: -1.1s;
   animation-delay: -1.1s;
 }
 
-.glamor-3 {
+.emotion-6 {
   background-color: #ff9800;
   height: 100%;
   width: 0.6rem;
   display: inline-block;
   margin: 0.1rem;
-  -webkit-animation: animation-16m634m 1.2s infinite ease-in-out;
-  animation: animation-16m634m 1.2s infinite ease-in-out;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
   -webkit-animation-delay: -1.0s;
   animation-delay: -1.0s;
 }
 
-.glamor-4 {
+.emotion-8 {
   background-color: #ff9800;
   height: 100%;
   width: 0.6rem;
   display: inline-block;
   margin: 0.1rem;
-  -webkit-animation: animation-16m634m 1.2s infinite ease-in-out;
-  animation: animation-16m634m 1.2s infinite ease-in-out;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
   -webkit-animation-delay: -0.9s;
   animation-delay: -0.9s;
 }
 
-.glamor-5 {
+.emotion-10 {
   background-color: #ff9800;
   height: 100%;
   width: 0.6rem;
   display: inline-block;
   margin: 0.1rem;
-  -webkit-animation: animation-16m634m 1.2s infinite ease-in-out;
-  animation: animation-16m634m 1.2s infinite ease-in-out;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
   -webkit-animation-delay: -0.8s;
   animation-delay: -0.8s;
 }
 
-@media (min-width:600px) {
-  .glamor-0 {
-    background-size: auto;
-  }
-}
-
 <div>
   <div
-    className="glamor-0 e17spyuc0"
+    className="emotion-0 emotion-1"
   />
   <div
-    className="glamor-6 eu1xpai0"
+    className="emotion-12 emotion-13"
   >
     <div
-      className="glamor-1 eu1xpai1"
+      className="emotion-2 emotion-3"
     />
     <div
-      className="glamor-2 eu1xpai2"
+      className="emotion-4 emotion-5"
     />
     <div
-      className="glamor-3 eu1xpai3"
+      className="emotion-6 emotion-7"
     />
     <div
-      className="glamor-4 eu1xpai4"
+      className="emotion-8 emotion-9"
     />
     <div
-      className="glamor-5 eu1xpai5"
+      className="emotion-10 emotion-11"
     />
   </div>
 </div>

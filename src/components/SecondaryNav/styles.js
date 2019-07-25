@@ -1,4 +1,4 @@
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';

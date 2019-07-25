@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { AutoSizer, Column } from 'react-virtualized';
 import { LogShape } from 'plugins/log/data/shapes';
 import 'react-virtualized/styles.css';
-import { Table, rowClasses } from './styles';
+import { Table } from './styles';
 
 const LogTable = ({ messages }) => (
   <AutoSizer>
@@ -15,8 +15,8 @@ const LogTable = ({ messages }) => (
         width={width}
         height={height}
         rowGetter={({ index }) => messages[index]}
-        rowClassName={({ index }) => messages[index] && rowClasses[messages[index]
-          .log_level.toLowerCase()]}
+        rowClassName={({ index }) => messages[index] && messages[index]
+          .log_level.toLowerCase()}
       >
         <Column
           label="Time"

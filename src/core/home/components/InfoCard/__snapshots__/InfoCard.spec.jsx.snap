@@ -1,36 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core/home/components/InfoCard renders correctly 1`] = `
-.glamor-3 {
+.emotion-6 {
   margin: 0 auto;
 }
 
-.glamor-0 {
+@media (min-width:600px) {
+  .emotion-6 {
+    width: 50%;
+  }
+}
+
+.emotion-0 {
   background-color: #ef6c00;
 }
 
-.glamor-1 {
+.emotion-2 {
   font-weight: bold;
 }
 
-.glamor-2 {
+.emotion-4 {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
 }
 
-@media (min-width:600px) {
-  .glamor-3 {
-    width: 50%;
-  }
-}
-
 <div
-  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root glamor-3 e17d04jh0 MuiPaper-rounded"
+  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root emotion-6 emotion-7 MuiPaper-rounded"
 >
   <div
-    className="MuiCardHeader-root glamor-0 e17d04jh1"
+    className="MuiCardHeader-root emotion-0 emotion-1"
   >
     <div
       className="MuiCardHeader-content"
@@ -51,7 +51,7 @@ exports[`core/home/components/InfoCard renders correctly 1`] = `
     className="MuiCardContent-root"
   >
     <p
-      className="glamor-1 e17d04jh2"
+      className="emotion-2 emotion-3"
     >
       We need your help! If you are a React developer or can help with the layout/design/css then please join in the effort!
     </p>
@@ -92,7 +92,7 @@ exports[`core/home/components/InfoCard renders correctly 1`] = `
     </p>
   </div>
   <div
-    className="MuiCardActions-root glamor-2 e17d04jh3 MuiCardActions-spacing"
+    className="MuiCardActions-root emotion-4 emotion-5 MuiCardActions-spacing"
   >
     <a
       aria-disabled={false}

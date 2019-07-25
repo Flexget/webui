@@ -1,4 +1,4 @@
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import theme from 'theme';
 
 const HEADER_HEIGHT = 5;
@@ -16,7 +16,7 @@ export const Main = styled.main`
   flex-direction: row;
   padding-top: ${MOBILE_HEADER_HEIGHT}rem;
   flex: 1;
-  height: 100vh;
+  max-height: 100vh;
   ${theme.breakpoints.up('sm')} {
     padding-top: ${HEADER_HEIGHT}rem;
   }

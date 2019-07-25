@@ -1,38 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`plugins/log/components/Header Header renders correctly 1`] = `
-.glamor-4 {
+.emotion-8 {
   display: block;
 }
 
-.glamor-0 {
-  color: #757575;
-}
-
-.glamor-1 {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.glamor-3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: baseline;
-  -webkit-box-align: baseline;
-  -ms-flex-align: baseline;
-  align-items: baseline;
-}
-
-.glamor-2 {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
 @media (min-width:600px) {
-  .glamor-4 {
+  .emotion-8 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -44,8 +18,34 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
   }
 }
 
+.emotion-0 {
+  color: #757575label:grey;
+}
+
+.emotion-2 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.emotion-6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: baseline;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+}
+
+.emotion-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 <div
-  className="glamor-4 e19f7qgx0"
+  className="emotion-8 emotion-9"
 >
   <div>
     <h6
@@ -53,20 +53,20 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
     >
       Server Log
     </h6>
-    <span
-      className="MuiTypography-root glamor-0 e19f7qgx3"
+    <h6
+      className="MuiTypography-root emotion-0 emotion-1 MuiTypography-subtitle1"
     >
       Streaming
-    </span>
+    </h6>
   </div>
   <div
-    className="glamor-1 e19f7qgx4"
+    className="emotion-2 emotion-3"
   />
   <div
-    className="glamor-3 e19f7qgx5"
+    className="emotion-6 emotion-7"
   >
     <div
-      className="MuiFormControl-root MuiTextField-root glamor-2 e19f7qgx6"
+      className="MuiFormControl-root MuiTextField-root emotion-4 emotion-5"
     >
       <label
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
