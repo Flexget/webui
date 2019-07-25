@@ -10,6 +10,10 @@ export default class HistoryPage extends Component {
     getHistory: PropTypes.func.isRequired,
   };
 
+  scroll = React.createRef()
+
+  list = React.createRef()
+
   state = {
     grouping: 'time',
     sort: 'time',
@@ -22,8 +26,6 @@ export default class HistoryPage extends Component {
     order: this.state.order,
     task: this.state.task,
   });
-
-  setScroll = (node) => { this.scroll = node; }
 
   restartLoader = () => {
     findDOMNode(this.scroll).scrollIntoView(); // eslint-disable-line react/no-find-dom-node
@@ -50,8 +52,10 @@ export default class HistoryPage extends Component {
         <HistoryList
           grouping={grouping}
           getHistory={this.getHistory}
-          setScroll={this.setScroll}
-          ref={(node) => { this.list = node; }}
+          ref={{
+            listRef: this.list,
+            scrollRef: this.scroll,
+          }}
         />
       </NoPaddingWrapper>
     );

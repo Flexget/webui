@@ -1,4 +1,5 @@
-import serializer from 'jest-glamor-react';
-import { sheet } from 'emotion';
+import { createSerializer as createEnzymeSerializer } from 'enzyme-to-json';
+import { createSerializer } from 'jest-emotion';
 
-expect.addSnapshotSerializer(serializer(sheet));
+expect.addSnapshotSerializer(createEnzymeSerializer());
+expect.addSnapshotSerializer(createSerializer());

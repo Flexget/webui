@@ -14,7 +14,7 @@ class HistoryList extends Component {
     history: PropTypes.objectOf(PropTypes.arrayOf(HistoryShape)).isRequired,
     hasMore: PropTypes.bool,
     getHistory: PropTypes.func.isRequired,
-    setScroll: PropTypes.func.isRequired,
+    scrollRef: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -23,7 +23,11 @@ class HistoryList extends Component {
 
   render() {
     const {
-      grouping, history, hasMore, getHistory, setScroll,
+      grouping,
+      history,
+      hasMore,
+      getHistory,
+      scrollRef,
     } = this.props;
 
     return (
@@ -32,7 +36,7 @@ class HistoryList extends Component {
           hasMore={hasMore}
           loadMore={getHistory}
           loader={<LoadingSpinner loading />}
-          ref={setScroll}
+          ref={scrollRef}
           useWindow={false}
         >
           { Object.entries(history).map(([subheader, histories]) => (

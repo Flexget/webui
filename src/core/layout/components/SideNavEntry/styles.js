@@ -1,4 +1,5 @@
-import styled, { css } from 'react-emotion';
+import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import theme from 'theme';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import ListItem from '@material-ui/core/ListItem';

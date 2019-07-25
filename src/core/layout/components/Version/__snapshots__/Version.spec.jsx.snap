@@ -1,27 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core/layout/components/Version Version renders correctly with latest version 1`] = `
-.glamor-0 {
+.emotion-6 {
+  color: #ef6c00;
+}
+
+.emotion-0 {
   margin: 0;
 }
 
 <div
-  className="glamor-3 ekjxbjj0"
+  className=" emotion-6 emotion-7"
 >
   <p
-    className="glamor-0 ekjxbjj1"
+    className="emotion-0 emotion-1"
   >
     Version Info
   </p>
   <p
-    className="glamor-0 ekjxbjj1"
+    className="emotion-0 emotion-1"
   >
     Flexget:
     2.10.60
      
   </p>
   <p
-    className="glamor-0 ekjxbjj1"
+    className="emotion-0 emotion-1"
   >
     API:
     1.1.2
@@ -30,20 +34,24 @@ exports[`core/layout/components/Version Version renders correctly with latest ve
 `;
 
 exports[`core/layout/components/Version Version renders correctly without latest version 1`] = `
-.glamor-0 {
+.emotion-6 {
+  color: #ef6c00;
+}
+
+.emotion-0 {
   margin: 0;
 }
 
 <div
-  className="glamor-3 ekjxbjj0"
+  className=" emotion-6 emotion-7"
 >
   <p
-    className="glamor-0 ekjxbjj1"
+    className="emotion-0 emotion-1"
   >
     Version Info
   </p>
   <p
-    className="glamor-0 ekjxbjj1"
+    className="emotion-0 emotion-1"
   >
     Flexget:
     2.10.11
@@ -71,7 +79,7 @@ exports[`core/layout/components/Version Version renders correctly without latest
     </a>
   </p>
   <p
-    className="glamor-0 ekjxbjj1"
+    className="emotion-0 emotion-1"
   >
     API:
     1.1.2

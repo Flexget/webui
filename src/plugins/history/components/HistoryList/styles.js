@@ -1,4 +1,4 @@
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
 export const Subheader = styled(ListSubheader)`

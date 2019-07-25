@@ -1,4 +1,5 @@
-import styled, { css } from 'react-emotion';
+import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
