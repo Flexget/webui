@@ -1,4 +1,5 @@
 const path = require('path');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -48,6 +49,9 @@ if (__DEV__) {
 
 const plugins = [
   new webpack.DefinePlugin({ __DEV__ }),
+  new ForkTsCheckerWebpackPlugin({
+    tsconfig: path.resolve('tsconfig.json'),
+  }),
   new HtmlWebpackPlugin(htmlConfig),
   ...(__DEV__ ? [new webpack.HotModuleReplacementPlugin()] : [
     new MiniCssExtractPlugin({
@@ -76,8 +80,17 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        loaders: ['babel-loader'],
+        test: /\.(t|j)sx?$/,
+        loaders: [
+          'babel-loader',
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              happyPackMode: true,
+            },
+          },
+        ],
         exclude: /node_modules/,
       },
       {
