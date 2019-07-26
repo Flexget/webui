@@ -1,6 +1,6 @@
 const webpack = require('webpack');
-const config = require('./webpack.dev');
 const WebpackDevServer = require('webpack-dev-server');
+const config = require('./webpack.config');
 
 const server = new WebpackDevServer(webpack(config), {
   contentBase: './app',

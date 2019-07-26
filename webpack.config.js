@@ -1,0 +1,111 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const webpack = require('webpack');
+
+const __DEBUG__ = !!process.env.DEBUG;
+const __DEV__ = process.env.NODE_ENV !== 'production';
+const mode = __DEV__ ? 'development' : 'production';
+
+const entry = {
+  main: [
+    'whatwg-fetch',
+    './src/app.jsx',
+    ...(__DEV__ ? [
+      'webpack/hot/dev-server',
+      `webpack-dev-server/client?http://localhost:${process.env.PORT || 8000}`,
+    ] : []),
+  ],
+  vendor: [
+    'redux',
+    'react-redux',
+    'react-router',
+    'react-router-dom',
+    'react',
+    'react-dom',
+    'redux-saga',
+  ],
+};
+
+const output = {
+  path: __DEV__ ? __dirname : path.join(__dirname, 'dist', 'assets'),
+  filename: __DEV__ ? '[name].bundle.js' : '[name].[chunkhash].js',
+  publicPath: __DEV__ ? '/' : '/v2/assets/',
+};
+
+const htmlConfig = {
+  title: 'FlexGet Manager v2',
+  template: './src/index.ejs',
+};
+
+if (__DEV__) {
+  htmlConfig.base = '/';
+} else {
+  htmlConfig.filename = '../index.html';
+  htmlConfig.base = '/v2/';
+}
+
+const plugins = [
+  new webpack.DefinePlugin({ __DEV__ }),
+  new HtmlWebpackPlugin(htmlConfig),
+  ...(__DEV__ ? [new webpack.HotModuleReplacementPlugin()] : [
+    new MiniCssExtractPlugin({
+      filename: '[name].[chunkhash].css',
+      allChunks: true,
+    }),
+  ]),
+  ...(__DEBUG__ ? [new BundleAnalyzerPlugin({
+    analyzerMode: 'server',
+  })] : []),
+];
+
+const config = {
+  mode,
+  entry,
+  output,
+  plugins,
+  devtool: __DEV__ ? 'cheap-source-map' : 'source-map',
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    modules: [
+      path.resolve('./src'),
+      'node_modules',
+    ],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        loaders: ['babel-loader'],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader',
+      },
+      {
+        test: /\.(gif|png|jpg|jpeg)(\?[a-z0-9]+)?$/,
+        loader: 'url-loader?limit=8192',
+      },
+      {
+        test: /\.css$/,
+        use: [...(__DEV__ ? ['style-loader'] : [MiniCssExtractPlugin.loader]), 'css-loader'],
+      },
+    ],
+  },
+};
+
+if (!__DEV__) {
+  config.optimization = {
+    splitChunks: {
+      chunks: 'all',
+    },
+  };
+}
+
+module.exports = config;

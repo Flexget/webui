@@ -15,7 +15,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       webpack: {
-        config: 'webpack.shared.js'
+        config: 'webpack.config.js'
       }
     }
   },
@@ -23,6 +23,7 @@ module.exports = {
     __DEV__: true,
   },
   rules: {
+    'no-underscore-dangle': 'off',
     'react/forbid-prop-types': 'off',
     'react/jsx-no-bind': 'off',
      'react/destructuring-assignment': ['error', 'always', { ignoreClassFields: true }],

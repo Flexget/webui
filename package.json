@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development BABEL_ENV=development babel-node ./server.js",
-    "build": "NODE_ENV=production BABEL_ENV=production webpack --config webpack.prod.js",
+    "build": "NODE_ENV=production BABEL_ENV=production webpack",
     "debug": "DEBUG=true npm run build",
     "lint": "eslint --ext .js --ext .jsx src",
     "lint:css": "stylelint './src/**/*.js'",
