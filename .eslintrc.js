@@ -27,7 +27,7 @@ module.exports = {
     'react/forbid-prop-types': 'off',
     'react/jsx-no-bind': 'off',
     'react/destructuring-assignment': ['error', 'always', { ignoreClassFields: true }],
-    'react/jsx-filename-extension': ['error', { 'extensions': ['.tsx', '.jsx'] }]
+    'react/jsx-filename-extension': ['error', { 'extensions': ['.tsx', '.jsx'] }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/prefer-default-export': 'off',
     'comma-dangle': ['error', {
