@@ -12,7 +12,7 @@ const mode = __DEV__ ? 'development' : 'production';
 const entry = {
   main: [
     'whatwg-fetch',
-    './src/app.jsx',
+    './src/app.tsx',
     ...(__DEV__ ? [
       'webpack/hot/dev-server',
       `webpack-dev-server/client?http://localhost:${process.env.PORT || 8000}`,
@@ -71,7 +71,7 @@ const config = {
   plugins,
   devtool: __DEV__ ? 'cheap-source-map' : 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [
       path.resolve('./src'),
       'node_modules',

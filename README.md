@@ -4,9 +4,9 @@
 <h1 align="center">FlexGet Web UI</h1>
 
 <div align="center">
-  
+
 A new web interface for configuring and viewing FlexGet settings
-  
+
 [![CircleCI](https://circleci.com/gh/Flexget/webui.svg?style=svg)](https://circleci.com/gh/Flexget/webui)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/Flexget/Flexget)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8da2001257724ba0a1721c52b32741fa)](https://www.codacy.com/app/Flexget/webui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Flexget/webui&amp;utm_campaign=Badge_Grade)
@@ -24,10 +24,10 @@ See [flexget.com](https://flexget.com/Web-UI/v2#enabling-web-ui) for usage instr
 
 ## Questions
 - **Forum**: https://discuss.flexget.com/
-- **Chat**: https://flexget.slack.com or http://webchat.freenode.net/?channels=#flexget or https://gitter.im/Flexget/Flexget
+- **Chat**: https://flexget.com/Chat
 
 ## Contributing
-See [CONTRIBUTING.md](https://github.com/Flexget/webui/blob/develop/.github/CONTRIBUTING.md). We welcome any contributions. 
+See [CONTRIBUTING.md](https://github.com/Flexget/webui/blob/develop/.github/CONTRIBUTING.md). We welcome any contributions.
 
 ## Authors
 

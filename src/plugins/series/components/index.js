@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { hot } from 'react-hot-loader';
 import { GET_SHOWS } from 'plugins/series/data/shows/actions';
 import { request } from 'utils/actions';
 import Series from './Series';
@@ -15,5 +16,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Series);
+export default hot(module)(connect(mapStateToProps, mapDispatchToProps)(Series));
 export { Series };

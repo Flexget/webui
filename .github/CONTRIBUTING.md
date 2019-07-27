@@ -1,6 +1,6 @@
 ## How to Contribute
 
-The UI has a solid base but we need help building the plugins and maintaining. If you would like to get your hands dirty in React, CSS or UX Design then please read below and join our chat on [Gitter](https://gitter.im/Flexget/Flexget).
+The UI has a solid base but we need help building the plugins and maintaining. If you would like to get your hands dirty in React, CSS or UX Design then please read below and join our [chat](https://flexget.com/Chat).
 
 Technologies we use:
 * [React](https://reactjs.org)
