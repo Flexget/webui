@@ -1,8 +1,8 @@
 module.exports = {
   extends: [
-    'airbnb',
+    'airbnb', 'plugin:@typescript-eslint/recommended',
   ],
-  parser: "babel-eslint",
+  parser: '@typescript-eslint/parser',
   plugins: [
     'jest',
     'emotion',
@@ -48,6 +48,15 @@ module.exports = {
     'emotion/jsx-import': 'error',
     'emotion/no-vanilla': 'error',
     'emotion/import-from-emotion': 'error',
-    'emotion/styled-import': 'error'
+    'emotion/styled-import': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
+    '@typescript-eslint/indent': ['error', 2],
+    '@typescript-eslint/camelcase': ['error', { 'properties': 'never' }],
+    '@typescript-eslint/no-unused-vars': ['error', {
+      'vars': 'all',
+      'args': 'after-used',
+      'ignoreRestSiblings': true
+    }]
   },
 };

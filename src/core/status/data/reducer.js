@@ -24,7 +24,7 @@ export default (state = initState, action) => {
       };
     case ERROR_STATUS: {
       const {
-        [action.payload.type]: omit,
+        [action.payload.type]: _,
         ...loading
       } = state.loading;
       return {
@@ -47,7 +47,7 @@ export default (state = initState, action) => {
     default:
       if (state.loading[action.type]) {
         const {
-          [action.type]: omit,
+          [action.type]: _,
           ...loading
         } = state.loading;
         return {

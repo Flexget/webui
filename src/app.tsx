@@ -12,4 +12,3 @@ import 'normalize.css';
 fontawesome.library.add(regular, solid);
 
 ReactDOM.render(<Root />, document.getElementById('react'));
-

@@ -33,20 +33,14 @@ class Version extends Component {
       <Wrapper className={className}>
         <Line>Version Info</Line>
         <Line>
-Flexget:
-          { flexget }
-          {' '}
-          {
-          latest && semver(latest, flexget) === 1 && (
+          {`Flexget: ${flexget} `}
+          {latest && semver(latest, flexget) === 1 && (
             <IconButton href="https://flexget.com/ChangeLog">
               <FontAwesomeIcon icon={['far', 'question-circle']} fixedWidth />
             </IconButton>
           ) }
         </Line>
-        <Line>
-API:
-          { api }
-        </Line>
+        <Line>{`API: ${api}`}</Line>
       </Wrapper>
     );
   }
