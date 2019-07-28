@@ -337,13 +337,12 @@ exports[`components/layout renders correctly 1`] = `
               <p
                 className="emotion-24 emotion-25"
               >
-                Flexget:
-                 
+                Flexget: undefined 
               </p>
               <p
                 className="emotion-24 emotion-25"
               >
-                API:
+                API: undefined
               </p>
             </div>
           </div>
