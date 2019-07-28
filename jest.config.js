@@ -21,10 +21,22 @@ module.exports = {
       statements: 40,
     },
   },
+  globals: {
+    __DEV__: false,
+    'ts-jest': {
+      tsConfig: 'tsconfig.jest.json',
+      babelConfig: true,
+    },
+  },
   moduleFileExtensions: [
     'js',
     'jsx',
+    'ts',
+    'tsx',
   ],
+  transform: {
+    '\\.(t|j)sx?$': 'ts-jest',
+  },
   moduleDirectories: [
     'node_modules',
     'src',
@@ -37,6 +49,9 @@ module.exports = {
     'raf/polyfill',
     '<rootDir>/src/utils/tests/setupFiles.js',
   ],
-  setupFilesAfterEnv: ['<rootDir>/src/utils/tests/setupTest.js'],
+  setupFilesAfterEnv: [
+    '<rootDir>/src/utils/tests/setupTest.js',
+  ],
   testURL: 'http://localhost/',
+  preset: 'ts-jest/presets/js-with-ts',
 };

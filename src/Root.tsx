@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { hot } from 'react-hot-loader';
 import store from 'store';
 import history from 'core/history';
 import { StylesProvider } from '@material-ui/styles';
@@ -80,4 +81,4 @@ const Root = () => (
   </div>
 );
 
-export default Root;
+export default hot(module)(Root);

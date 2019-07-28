@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
+import { hot } from 'react-hot-loader';
 import { NoPaddingWrapper } from 'components/styles';
 import TabList from './TabList';
 
-export default class PendingList extends PureComponent {
+class PendingList extends PureComponent {
   state = {
     listId: false,
   }
@@ -22,3 +23,5 @@ export default class PendingList extends PureComponent {
     );
   }
 }
+
+export default hot(module)(PendingList);

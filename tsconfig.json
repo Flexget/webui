@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "pretty": true,
+    "outDir": "./dist/",
+    "strictNullChecks": true,
+    "target": "esnext",
+    "module": "esnext",
+    "baseUrl": "./src",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "jsx": "preserve",
+    "allowJs": true,
+    "typeRoots": ["./node_modules/@types"],
+    "skipLibCheck": true,
+    "lib": [
+      "esnext",
+      "webworker.importscripts",
+      "dom",
+      "scripthost",
+      "dom.iterable"
+    ]
+  },
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

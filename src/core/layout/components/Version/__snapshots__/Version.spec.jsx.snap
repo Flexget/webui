@@ -20,15 +20,12 @@ exports[`core/layout/components/Version Version renders correctly with latest ve
   <p
     className="emotion-0 emotion-1"
   >
-    Flexget:
-    2.10.60
-     
+    Flexget: 2.10.60 
   </p>
   <p
     className="emotion-0 emotion-1"
   >
-    API:
-    1.1.2
+    API: 1.1.2
   </p>
 </div>
 `;
@@ -53,9 +50,7 @@ exports[`core/layout/components/Version Version renders correctly without latest
   <p
     className="emotion-0 emotion-1"
   >
-    Flexget:
-    2.10.11
-     
+    Flexget: 2.10.11 
     <a
       aria-disabled={false}
       className="MuiButtonBase-root MuiIconButton-root"
@@ -81,8 +76,7 @@ exports[`core/layout/components/Version Version renders correctly without latest
   <p
     className="emotion-0 emotion-1"
   >
-    API:
-    1.1.2
+    API: 1.1.2
   </p>
 </div>
 `;

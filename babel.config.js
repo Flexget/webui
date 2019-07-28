@@ -5,7 +5,8 @@ module.exports = function config(api) {
     [
       '@babel/preset-env',
       {
-        loose: true,
+        corejs: 3,
+        useBuiltIns: 'entry',
         modules: false,
       },
     ],
@@ -39,10 +40,6 @@ module.exports = function config(api) {
     '@babel/plugin-proposal-nullish-coalescing-operator',
     '@babel/plugin-proposal-do-expressions',
     '@babel/plugin-proposal-function-bind',
-    ['@babel/plugin-transform-runtime', {
-      corejs: 3,
-      regenerator: true,
-    }],
   ];
 
   return {
@@ -59,7 +56,8 @@ module.exports = function config(api) {
           [
             '@babel/preset-env',
             {
-              loose: true,
+              useBuiltIns: 'usage',
+              corejs: 3,
               modules: 'commonjs',
             },
 
@@ -74,7 +72,8 @@ module.exports = function config(api) {
           [
             '@babel/preset-env',
             {
-              loose: true,
+              useBuiltIns: 'usage',
+              corejs: 3,
               modules: 'commonjs',
             },
           ],

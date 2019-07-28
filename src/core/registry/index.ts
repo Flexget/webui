@@ -1,6 +1,21 @@
 import { camelize } from 'humps';
+import { ReducersMapObject } from 'redux';
+import {
+  ReducerHandler,
+  SagaHandler,
+  RouteHandler,
+  Plugin,
+} from './types';
 
-class PluginRegistry {
+export class PluginRegistry {
+  reducers: ReducersMapObject;
+
+  reducerHandler: ReducerHandler;
+
+  sagaHandler: SagaHandler;
+
+  routeHandler: RouteHandler;
+
   constructor() {
     this.reducers = {};
     this.reducerHandler = () => {};
@@ -8,26 +23,26 @@ class PluginRegistry {
     this.routeHandler = () => {};
   }
 
-  set onRegisterReducer(fn) {
+  set onRegisterReducer(fn: ReducerHandler) {
     this.reducerHandler = fn;
   }
 
-  set onRegisterSaga(fn) {
+  set onRegisterSaga(fn: SagaHandler) {
     this.sagaHandler = fn;
   }
 
-  set onRegisterRoute(fn) {
+  set onRegisterRoute(fn: RouteHandler) {
     this.routeHandler = fn;
   }
 
-  registerPlugin(name, {
+  registerPlugin(name: string, {
     component,
     children,
     routeDisplayName,
     routeIcon,
     reducer,
     saga,
-  } = {}) {
+  }: Plugin = {}) {
     if (!name) {
       throw Error('Plugin requires name');
     }
@@ -68,6 +83,7 @@ class PluginRegistry {
 const registry = new PluginRegistry();
 
 // Exposed on window so that custom plugins can be registered
+
 window.registerFlexgetPlugin = registry.registerPlugin;
 
 export default registry;

@@ -1,8 +1,8 @@
 module.exports = {
   extends: [
-    'airbnb',
+    'airbnb', 'plugin:@typescript-eslint/recommended',
   ],
-  parser: "babel-eslint",
+  parser: '@typescript-eslint/parser',
   plugins: [
     'jest',
     'emotion',
@@ -15,7 +15,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       webpack: {
-        config: 'webpack.shared.js'
+        config: 'webpack.config.js'
       }
     }
   },
@@ -23,9 +23,11 @@ module.exports = {
     __DEV__: true,
   },
   rules: {
+    'no-underscore-dangle': 'off',
     'react/forbid-prop-types': 'off',
     'react/jsx-no-bind': 'off',
-     'react/destructuring-assignment': ['error', 'always', { ignoreClassFields: true }],
+    'react/destructuring-assignment': ['error', 'always', { ignoreClassFields: true }],
+    'react/jsx-filename-extension': ['error', { 'extensions': ['.tsx', '.jsx'] }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/prefer-default-export': 'off',
     'comma-dangle': ['error', {
@@ -46,6 +48,15 @@ module.exports = {
     'emotion/jsx-import': 'error',
     'emotion/no-vanilla': 'error',
     'emotion/import-from-emotion': 'error',
-    'emotion/styled-import': 'error'
+    'emotion/styled-import': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
+    '@typescript-eslint/indent': ['error', 2],
+    '@typescript-eslint/camelcase': ['error', { 'properties': 'never' }],
+    '@typescript-eslint/no-unused-vars': ['error', {
+      'vars': 'all',
+      'args': 'after-used',
+      'ignoreRestSiblings': true
+    }]
   },
 };
