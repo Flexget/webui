@@ -34,22 +34,24 @@ const InfoCard = () => (
       </p>
       <p>
         More information:
+        {' '}
         <a
-          href="http://flexget.com/wiki/Web-UI/v2"
+          href="http://flexget.com/Web-UI/v2"
           target="_blank"
           rel="noopener noreferrer"
         >
-http://flexget.com/wiki/Web-UI/v2
+          http://flexget.com/Web-UI/v2
         </a>
       </p>
       <p>
-        Gitter Chat:
+        Chat:
+        {' '}
         <a
-          href="https://gitter.im/Flexget/Flexget"
+          href="https://flexget.com/Chat"
           target="_blank"
           rel="noopener noreferrer"
         >
-        https://gitter.im/Flexget/Flexget
+          https://flexget.com/Chat
         </a>
       </p>
     </CardContent>
