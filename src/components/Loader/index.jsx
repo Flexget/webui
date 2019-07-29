@@ -23,7 +23,7 @@ const Loader = ({
 
   if (error) {
     if (__DEV__) {
-      console.error(error);
+      console.error(error); // eslint-disable-line no-console
     }
     return <div>Error! Component failed to load</div>;
   }
