@@ -1,0 +1,366 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+<<<<<<< HEAD:src/core/layout/components/__snapshots__/Layout.spec.jsx.snap
+exports[`common/layout renders correctly 1`] = `
+.glamor-21 {
+=======
+exports[`components/layout renders correctly 1`] = `
+.emotion-43 {
+>>>>>>> develop:src/core/layout/Layout/__snapshots__/Layout.spec.jsx.snap
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.emotion-20 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 5rem;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  z-index: 2;
+  position: fixed;
+  width: 100%;
+}
+
+@media (min-width:600px) {
+  .emotion-20 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+.emotion-2 {
+  height: 5rem;
+}
+
+.emotion-0 {
+  background: #263238 url(test-file-stub) no-repeat center;
+  background-size: 17.5rem;
+  height: 100%;
+  -webkit-transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms,background-size 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
+  transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms,background-size 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    width: 6rem;
+    background-size: 25rem;
+  }
+}
+
+.emotion-18 {
+  height: 5rem;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.emotion-16 {
+  position: static;
+}
+
+.emotion-14 {
+  background-color: #ef6c00;
+  color: #fff;
+  min-height: 5rem;
+}
+
+.emotion-4 {
+  color: #fff;
+}
+
+.emotion-6 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.emotion-41 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding-top: 10rem;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  max-height: 100vh;
+}
+
+@media (min-width:600px) {
+  .emotion-41 {
+    padding-top: 5rem;
+  }
+}
+
+.emotion-37 {
+  overflow-y: auto;
+}
+
+.emotion-35 .MuiDrawer-paper {
+  position: relative;
+  background-color: #263238;
+  height: calc(100vh - 10rem);
+  width: 0;
+  -webkit-transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
+  transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
+  border-right: none !important;
+}
+
+@media (min-width:600px) {
+  .emotion-35 .MuiDrawer-paper {
+    height: calc(100vh - 5rem);
+    width: 6rem;
+  }
+}
+
+.emotion-33 {
+  width: inherit;
+  height: inherit;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.emotion-22 {
+  width: inherit;
+}
+
+.emotion-31 {
+  color: #ef6c00;
+  display: none;
+}
+
+.emotion-24 {
+  margin: 0;
+}
+
+.emotion-39 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.6rem;
+  opacity: 1;
+  -webkit-transition: opacity 300ms cubic-bezier(0.4,0,0.2,1) 0ms,margin-left 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
+  transition: opacity 300ms cubic-bezier(0.4,0,0.2,1) 0ms,margin-left 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
+}
+
+@media (max-width:959.95px) {
+  .emotion-39 {
+    margin-left: 0;
+    opacity: 1;
+    display: block;
+    padding: 0.8rem;
+  }
+}
+
+<div
+  className="emotion-43 emotion-44"
+>
+  <header
+    className="emotion-20 emotion-21"
+  >
+    <div
+      className="emotion-2 emotion-3"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <div
+          className="emotion-0 emotion-1"
+          open={false}
+        />
+      </a>
+    </div>
+    <nav
+      className="emotion-18 emotion-19"
+    >
+      <header
+        className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed emotion-16 emotion-17 MuiAppBar-colorPrimary mui-fixed"
+      >
+        <div
+          className="MuiToolbar-root MuiToolbar-regular emotion-14 emotion-15 MuiToolbar-gutters"
+        >
+          <button
+            className="MuiButtonBase-root MuiIconButton-root emotion-4 emotion-5"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiIconButton-label"
+            />
+          </button>
+          <h6
+            className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit"
+          />
+          <div
+            className="emotion-6 emotion-7"
+          />
+          <a
+            href="/config"
+            onClick={[Function]}
+          >
+            <button
+              aria-label="Config"
+              className="MuiButtonBase-root MuiIconButton-root emotion-4 emotion-5"
+              disabled={false}
+              onBlur={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="button"
+            >
+              <span
+                className="MuiIconButton-label"
+              />
+            </button>
+          </a>
+          <a
+            href="/log"
+            onClick={[Function]}
+          >
+            <button
+              aria-label="Log"
+              className="MuiButtonBase-root MuiIconButton-root emotion-4 emotion-5"
+              disabled={false}
+              onBlur={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="button"
+            >
+              <span
+                className="MuiIconButton-label"
+              />
+            </button>
+          </a>
+          <button
+            aria-label="Manage"
+            className="MuiButtonBase-root MuiIconButton-root emotion-4 emotion-5"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiIconButton-label"
+            />
+          </button>
+        </div>
+      </header>
+    </nav>
+  </header>
+  <main
+    className="emotion-41 emotion-42"
+  >
+    <aside
+      className="emotion-37 emotion-38"
+    >
+      <div
+        className="MuiDrawer-root MuiDrawer-docked emotion-35 emotion-36"
+      >
+        <div
+          className="MuiPaper-root MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft"
+        >
+          <div
+            className="emotion-33 emotion-34"
+          >
+            <ul
+              className="MuiList-root emotion-22 emotion-23 MuiList-padding"
+            />
+            <div
+              className="emotion-30 emotion-31 emotion-32"
+            >
+              <p
+                className="emotion-24 emotion-25"
+              >
+                Version Info
+              </p>
+              <p
+                className="emotion-24 emotion-25"
+              >
+                Flexget: undefined 
+              </p>
+              <p
+                className="emotion-24 emotion-25"
+              >
+                API: undefined
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <section
+      className="emotion-39 emotion-40"
+      open={false}
+    >
+      <div />
+    </section>
+  </main>
+</div>
+`;

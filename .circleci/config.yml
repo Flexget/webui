@@ -2,29 +2,29 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/node:8.7.0
+      - image: circleci/node:12.6.0
     steps:
       - checkout
       - restore_cache:
           keys:
-            - dependency-cache-{{ checksum "package.json" }}
-            - dependency-cache-
+            - dependency-cache-v3-{{ checksum "package.json" }}
+            - dependency-cache-v3-
       - run:
           name: Install Dependencies
-          command: npm install
+          command: yarn install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-v3-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:
           name: Run Linter
-          command: npm run lint
+          command: yarn lint
       - run:
           name: Run Tests
-          command: npm test -- --ci --coverage --testResultsProcessor="jest-junit"
+          command: yarn test --ci --coverage --testResultsProcessor="jest-junit" -i
       - run:
           name: Upload to Codacy
-          command: npm run cov
+          command: yarn cov
       - run:
           name: Move Tests
           command: |
@@ -35,7 +35,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/node:8.7.0
+      - image: circleci/node:12.6.0
     steps:
       - add-ssh-keys
       - run:
@@ -46,25 +46,26 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependency-cache-{{ checksum "package.json" }}
+            - dependency-cache-v3-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - dependency-cache-
+            - dependency-cache-v3
       - run:
           name: Install Dependencies
-          command: npm install
+          command: yarn install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-v3-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:
           name: Run Build
-          command: npm run build
+          command: yarn build
       - run:
           name: Zip Dist folder
           command: zip -r /tmp/dist.zip ./dist
       - run:
           name: Release
-          command: npm run release
+          command: |
+            scripts/release.sh
 
 workflows:
   version: 2

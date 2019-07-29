@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`plugins/history/components renders correctly 1`] = `
+<NoPaddingWrapper>
+  <FilterNav
+    grouping="time"
+    handleChange={[Function]}
+    order="desc"
+    sort="time"
+    toggleOrder={[Function]}
+  />
+  <ForwardRef
+    getHistory={[Function]}
+    grouping="time"
+  />
+</NoPaddingWrapper>
+`;

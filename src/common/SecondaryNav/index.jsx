@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MuiThemeProvider } from 'material-ui/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import { darkTheme } from 'theme';
 import {
   SecondaryAppBar,
@@ -11,16 +11,16 @@ import {
 const SecondaryNav = ({ children, tabs, ...tabProps }) => (
   <MuiThemeProvider theme={darkTheme}>
     <SecondaryAppBar>
-      { tabs ?
-        (
+      { tabs
+        ? (
           <SecondaryTabs
             indicatorColor="primary"
             {...tabProps}
           >
             {children}
           </SecondaryTabs>
-        ) :
-        (
+        )
+        : (
           <SecondaryToolbar>
             {children}
           </SecondaryToolbar>

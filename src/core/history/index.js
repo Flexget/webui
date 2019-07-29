@@ -1,5 +1,5 @@
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 
-export default createHistory({
+export default createBrowserHistory({
   basename: process.env.NODE_ENV === 'production' ? '/v2/' : '',
 });

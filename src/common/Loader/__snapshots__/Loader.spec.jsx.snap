@@ -1,5 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+<<<<<<< HEAD:src/common/Loader/__snapshots__/Loader.spec.jsx.snap
 exports[`common/Loader should render properly when errored 1`] = `
 ShallowWrapper {
   "length": 1,
@@ -145,4 +146,18 @@ ShallowWrapper {
     },
   },
 }
+=======
+exports[`components/Loader should render properly when errored 1`] = `
+<div>
+  Error! Component failed to load
+</div>
+`;
+
+exports[`components/Loader should render properly when loading 1`] = `<WithStyles(ForwardRef(CircularProgress)) />`;
+
+exports[`components/Loader should render properly when timed out 1`] = `
+<div>
+  Loader timed out!
+</div>
+>>>>>>> develop:src/components/Loader/__snapshots__/Loader.spec.jsx.snap
 `;

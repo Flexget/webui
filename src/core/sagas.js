@@ -1,8 +1,8 @@
 import { fork } from 'redux-saga/effects';
-import authSaga from './auth/data/saga';
-import serverSaga from './server/data/saga';
-import versionSaga from './version/data/saga';
-import tasksSaga from './tasks/data/saga';
+import authSaga from './auth/state/saga';
+import serverSaga from './server/state/saga';
+import tasksSaga from './tasks/state/saga';
+import versionSaga from './version/state/saga';
 
 export default function* rootSaga() {
   yield fork(authSaga);

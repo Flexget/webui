@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
+.emotion-10 {
+  max-width: 40rem;
+  margin: 0 1rem;
+}
+
+@media (min-width:600px) {
+  .emotion-10 {
+    margin: 0 auto;
+  }
+}
+
+.emotion-6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-0 {
+  text-align: center;
+  padding: 1rem;
+}
+
+.emotion-2 {
+  padding-bottom: 1rem;
+}
+
+.emotion-8 {
+  width: 100%;
+}
+
+<div
+  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root emotion-10 emotion-11 MuiPaper-rounded"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="MuiCardContent-root emotion-6 emotion-7"
+    >
+      <div
+        className="emotion-0 emotion-1"
+      />
+      <div
+        className="MuiFormControl-root MuiTextField-root emotion-2 emotion-3"
+        onDragStart={[Function]}
+        onDrop={[Function]}
+      >
+        <label
+          className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+          data-shrink={false}
+          htmlFor="username"
+        >
+          Username
+        </label>
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+          onClick={[Function]}
+        >
+          <input
+            aria-invalid={false}
+            autoFocus={true}
+            className="MuiInputBase-input MuiInput-input"
+            disabled={false}
+            id="username"
+            name="username"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={false}
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="MuiFormControl-root MuiTextField-root emotion-2 emotion-3"
+        onDragStart={[Function]}
+        onDrop={[Function]}
+      >
+        <label
+          className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+          data-shrink={false}
+          htmlFor="password"
+        >
+          Password
+        </label>
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+          onClick={[Function]}
+        >
+          <input
+            aria-invalid={false}
+            className="MuiInputBase-input MuiInput-input"
+            disabled={false}
+            id="password"
+            name="password"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={false}
+            type="Password"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiCardActions-root MuiCardActions-spacing"
+    >
+      <button
+        className="MuiButtonBase-root MuiButton-root emotion-8 emotion-9 MuiButton-text"
+        disabled={false}
+        onBlur={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="submit"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Login
+        </span>
+      </button>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`core/Login/LoginCard mapStateToProps should return errors if there are errors 1`] = `
+Object {
+  "errorStatus": Object {
+    "message": "Invalid Credentials",
+  },
+  "initialValues": Object {
+    "username": "flexget",
+  },
+}
+`;
+
+exports[`core/Login/LoginCard mapStateToProps should return no errors if there are none 1`] = `
+Object {
+  "errorStatus": Object {},
+  "initialValues": Object {
+    "username": "flexget",
+  },
+}
+`;

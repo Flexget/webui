@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`core/layout/components/Navbar renders correctly 1`] = `
+.emotion-12 {
+  position: static;
+}
+
+.emotion-10 {
+  background-color: #ef6c00;
+  color: #fff;
+  min-height: 5rem;
+}
+
+.emotion-0 {
+  color: #fff;
+}
+
+.emotion-2 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+<header
+  className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed emotion-12 emotion-13 MuiAppBar-colorPrimary mui-fixed"
+>
+  <div
+    className="MuiToolbar-root MuiToolbar-regular emotion-10 emotion-11 MuiToolbar-gutters"
+  >
+    <button
+      className="MuiButtonBase-root MuiIconButton-root emotion-0 emotion-1"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[MockFunction]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiIconButton-label"
+      />
+    </button>
+    <h6
+      className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit"
+    />
+    <div
+      className="emotion-2 emotion-3"
+    />
+    <a
+      href="/config"
+      onClick={[Function]}
+    >
+      <button
+        aria-label="Config"
+        className="MuiButtonBase-root MuiIconButton-root emotion-0 emotion-1"
+        disabled={false}
+        onBlur={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiIconButton-label"
+        />
+      </button>
+    </a>
+    <a
+      href="/log"
+      onClick={[Function]}
+    >
+      <button
+        aria-label="Log"
+        className="MuiButtonBase-root MuiIconButton-root emotion-0 emotion-1"
+        disabled={false}
+        onBlur={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiIconButton-label"
+        />
+      </button>
+    </a>
+    <button
+      aria-label="Manage"
+      className="MuiButtonBase-root MuiIconButton-root emotion-0 emotion-1"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiIconButton-label"
+      />
+    </button>
+  </div>
+</header>
+`;

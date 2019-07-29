@@ -1,7 +1,7 @@
-import styled, { css } from 'react-emotion';
+import styled, { css } from '@emotion/styled';
 import theme from 'theme';
-import Paper from 'material-ui/Paper';
-import MUIButton from 'material-ui/Button';
+import Paper from '@material-ui/core/Paper';
+import MUIButton from '@material-ui/core/Button';
 
 export const PaperWrapper = styled(Paper)`
   padding: 2.4rem;
@@ -20,13 +20,13 @@ export const Spacer = styled.div`
 `;
 
 export const NoPaddingWrapper = styled.div`
-  height: calc(100% + ${theme.typography.pxToRem(theme.spacing.unit * 2)});
+  height: calc(100% + ${theme.typography.pxToRem(theme.spacing.unit(2))});
   margin: -${theme.typography.pxToRem(theme.spacing.unit)};
   display: flex;
   flex-direction: column;
 
   ${theme.breakpoints.up('sm')} {
-    height: calc(100% + ${theme.typography.pxToRem(theme.spacing.unit * 4)});
+    height: calc(100% + ${theme.typography.pxToRem(theme.spacing.unit(4))});
     margin: -${theme.typography.pxToRem(theme.spacing.unit * 2)};
   }
 `;

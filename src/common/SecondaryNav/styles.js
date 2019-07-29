@@ -1,7 +1,7 @@
-import styled from 'react-emotion';
-import Toolbar from 'material-ui/Toolbar';
-import AppBar from 'material-ui/AppBar';
-import Tabs from 'material-ui/Tabs';
+import styled from '@emotion/styled';
+import Toolbar from '@material-ui/core/Toolbar';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
 import theme from 'theme';
 
 export const SecondaryAppBar = styled(AppBar)`

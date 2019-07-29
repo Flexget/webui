@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`plugins/history/components/HistoryList HistoryList renders correctly 1`] = `
+<Wrapper>
+  <InfiniteScroll
+    element="div"
+    getScrollParent={null}
+    hasMore={true}
+    initialLoad={true}
+    isReverse={false}
+    loadMore={[MockFunction]}
+    loader={
+      <LoadingBar
+        loading={true}
+      />
+    }
+    pageStart={0}
+    ref={null}
+    threshold={250}
+    useCapture={false}
+    useWindow={false}
+  >
+    <WithStyles(ForwardRef(List))
+      key="2017-09-09"
+      subheader={
+        <ForwardRef(render)
+          color="primary"
+        >
+          2017-09-09
+        </ForwardRef(render)>
+      }
+    >
+      <WithStyles(ForwardRef(ListItem))
+        key="1"
+      >
+        <WithStyles(ForwardRef(ListItemText))
+          primary="something"
+          secondary="task"
+        />
+      </WithStyles(ForwardRef(ListItem))>
+    </WithStyles(ForwardRef(List))>
+  </InfiniteScroll>
+</Wrapper>
+`;
+
+exports[`plugins/history/components/HistoryList mapStateToProps should return the right params if there are more 1`] = `
+Object {
+  "task_name": Array [
+    Object {
+      "task": "task_name",
+    },
+  ],
+}
+`;
+
+exports[`plugins/history/components/HistoryList mapStateToProps should return the right params if there are not more 1`] = `
+Object {
+  "task_name": Array [
+    Object {
+      "task": "task_name",
+    },
+  ],
+}
+`;

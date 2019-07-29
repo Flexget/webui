@@ -1,4 +1,4 @@
-import { LOADING_STATUS } from 'core/status/data/actions';
+import { LOADING_STATUS } from 'core/status/state/actions';
 
 export const action = (type, payload, {
   message,
@@ -18,6 +18,6 @@ export const request = (type, payload = {}) => ({
 });
 
 export const requesting = type => act => (
-  act.type === LOADING_STATUS &&
-    act.meta.type === type
+  act.type === LOADING_STATUS
+    && act.meta.type === type
 );

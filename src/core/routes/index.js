@@ -1,1 +1,3 @@
-export default from './components';
+import Routes from './Routes';
+
+export default Routes;
