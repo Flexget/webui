@@ -1,4 +1,4 @@
-import { LOADING_STATUS } from 'core/status/data/actions';
+import { LOADING_STATUS } from 'core/status/state/actions';
 
 export const action = (type, payload, {
   message,

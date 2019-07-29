@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { hot } from 'react-hot-loader';
+import { hot } from 'react-hot-loader/root';
 import store from 'store';
 import history from 'core/history';
 import { StylesProvider } from '@material-ui/styles';
@@ -9,7 +9,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Global, css } from '@emotion/core';
 import theme from 'theme';
-import PrivateRoute from 'core/routes/components/PrivateRoute';
+import PrivateRoute from 'core/routes/PrivateRoute';
 import Layout from 'core/layout';
 import Routes from 'core/routes';
 import { createAsyncComponent } from 'utils/loading';
@@ -81,4 +81,4 @@ const Root = () => (
   </div>
 );
 
-export default hot(module)(Root);
+export default hot(Root);

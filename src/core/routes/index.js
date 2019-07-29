@@ -1,3 +1,3 @@
-import components from './components';
+import Routes from './Routes';
 
-export default components;
+export default Routes;

@@ -1,10 +1,10 @@
 import { createAsyncComponent } from 'utils/loading';
 import registry from 'core/registry';
-import saga from './data/saga';
-import reducer from './data/reducer';
+import saga from './state/saga';
+import reducer from './state/reducer';
 
 export default () => registry.registerPlugin('series', {
-  component: createAsyncComponent(() => import('plugins/series/components')),
+  component: createAsyncComponent(() => import('plugins/series/Series')),
   routeDisplayName: 'Series',
   routeIcon: 'tv',
   reducer,
