@@ -1,4 +1,4 @@
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import theme from 'theme';
 
 export const ListWrapper = styled.div`
@@ -9,15 +9,13 @@ export const ListWrapper = styled.div`
 
 export const EntryWrapper = styled.div`
   width: 100%;
-  padding: ${theme.typography.pxToRem(theme.spacing.unit * 2)};
+  padding: ${theme.typography.pxToRem(theme.spacing(2))};
 
   ${theme.breakpoints.up('sm')} {
     width: 100%;
-    padding: ${theme.typography.pxToRem(theme.spacing.unit * 2)};
   }
 
   ${theme.breakpoints.up('md')} {
     width: 50%;
-    padding: ${theme.typography.pxToRem(theme.spacing.unit * 2)};
   }
 `;

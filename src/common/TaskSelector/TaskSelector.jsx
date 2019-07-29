@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import ListSubheader from 'material-ui/List/ListSubheader';
-import Divider from 'material-ui/Divider';
-import Fade from 'material-ui/transitions/Fade';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import Divider from '@material-ui/core/Divider';
+import Fade from '@material-ui/core/Fade';
 
 class TaskSelector extends PureComponent {
   static propTypes = {

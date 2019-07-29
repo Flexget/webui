@@ -1,7 +1,6 @@
-import styled from 'react-emotion';
-import { css } from 'emotion';
+import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import theme from 'theme';
-
 
 export const link = css`
   font-size: 16px;

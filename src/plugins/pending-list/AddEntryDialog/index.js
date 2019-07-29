@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { reset } from 'redux-form';
-import { ADD_ENTRY } from 'plugins/pending-list/data/actions';
+import { ADD_ENTRY } from 'plugins/pending-list/state/actions';
 import { request } from 'utils/actions';
 import AddEntryDialog from './AddEntryDialog';
 

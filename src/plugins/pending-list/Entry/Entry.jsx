@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Img from 'react-image';
-import Button from 'material-ui/Button';
-import { CardActions } from 'material-ui/Card';
+import Button from '@material-ui/core/Button';
+import CardActions from '@material-ui/core/CardActions';
 import FlexGetEntry from 'common/FlexGetEntry';
 import TaskSelector from 'common/TaskSelector';
 import EntryHeader from './EntryHeader';
-import { ActionIcon, EntryCard, Poster, EntryInfo, EntryPlot } from './styles';
+import {
+  ActionIcon, EntryCard, Poster, EntryInfo, EntryPlot,
+} from './styles';
 
 /* eslint-disable camelcase */
 class Entry extends React.PureComponent {
@@ -22,16 +24,8 @@ class Entry extends React.PureComponent {
     taskMenuEl: null,
   }
 
-  links() {
-    const { entry: { links } } = this.props;
-    return Object.entries(links).map(([plugin, link]) => (
-      <Button key={`${plugin}-link`} color="primary" aria-label="add" href={link} target="_blank">
-        {plugin}
-      </Button>
-    ));
-  }
-
   handleInjectOpen = event => this.setState({ taskMenuEl: event.currentTarget });
+
   handleInjectClose = () => this.setState({ taskMenuEl: null });
 
   handleInjectClick = (task) => {
@@ -40,6 +34,14 @@ class Entry extends React.PureComponent {
     this.handleInjectClose();
   }
 
+  links() {
+    const { entry: { links } } = this.props;
+    return Object.entries(links).map(([plugin, link]) => (
+      <Button key={`${plugin}-link`} color="primary" aria-label="add" href={link} target="_blank">
+        {plugin}
+      </Button>
+    ));
+  }
 
   render() {
     const {

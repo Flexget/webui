@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 import { createUltimatePagination } from 'react-ultimate-pagination';
-import { Pagination, firstLink, lastLink, link, active } from './styles';
+import {
+  Pagination, firstLink, lastLink, link, active,
+} from './styles';
 
 const page = ({
   isActive, value, isDisabled, onClick,
@@ -11,7 +13,8 @@ const page = ({
     className={isActive ? [active, link].join(' ') : link}
     onClick={onClick}
     disabled={isDisabled}
-  >{value}
+  >
+    {value}
   </Button>
 );
 
@@ -24,11 +27,11 @@ page.propTypes = {
 page.defaultProps = { isDisabled: false, isActive: false };
 
 function makeLink(styles, text) {
-  const button = props => (
+  const button = ({ isActive, onClick, isDisabled }) => (
     <Button
-      className={props.isActive ? [active, ...styles].join(' ') : styles.join(' ')}
-      onClick={props.onClick}
-      disabled={props.isActive ? true : props.isDisabled}
+      className={isActive ? [active, ...styles].join(' ') : styles.join(' ')}
+      onClick={onClick}
+      disabled={isActive ? true : isDisabled}
     >
       {text}
     </Button>
@@ -44,8 +47,8 @@ function makeLink(styles, text) {
   return button;
 }
 
-function wrapper(props) {
-  return <Pagination>{props.children}</Pagination>;
+function wrapper({ children }) {
+  return <Pagination>{children}</Pagination>;
 }
 
 wrapper.propTypes = { children: PropTypes.node.isRequired };

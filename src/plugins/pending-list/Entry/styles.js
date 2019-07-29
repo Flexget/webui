@@ -1,8 +1,9 @@
-import styled, { css } from 'react-emotion';
-import Card from 'material-ui/Card';
+import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import Chip from 'material-ui/Chip';
 import theme from 'theme';
+
+import { Card, Chip } from '@material-ui/core';
 
 export const EntryCard = styled(Card)`
   height: 300px;
@@ -68,7 +69,7 @@ export const EntryPlot = styled.p`
 
 
 export const ActionIcon = styled(FontAwesomeIcon)`
-  margin-right: ${theme.typography.pxToRem(theme.spacing.unit)};
+  margin-right: ${theme.typography.pxToRem(theme.spacing(1))};
   font-size: 1.6rem;
 `;
 
@@ -86,7 +87,7 @@ export const header = css`
   h2 {
     word-wrap: break-word;
   }
-  
+
 `;
 
 export const rating = css`

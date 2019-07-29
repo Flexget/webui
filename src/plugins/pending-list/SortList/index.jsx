@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Select from 'material-ui/Select';
-import { MenuItem } from 'material-ui/Menu';
-import { FormControl } from 'material-ui/Form';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
 import { ButtonWrapper } from './styles';
 
 export default class SortList extends PureComponent {

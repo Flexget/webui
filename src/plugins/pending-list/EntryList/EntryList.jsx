@@ -43,11 +43,11 @@ export default class EntryList extends PureComponent {
 
     // If list of sort options have changes
     if (
-      listId !== prevProps.listId ||
-      page !== prevProps.page ||
-      sortBy !== prevProps.sortBy ||
-      sortOrder !== prevProps.sortOrder ||
-      perPage !== prevProps.perPage
+      listId !== prevProps.listId
+      || page !== prevProps.page
+      || sortBy !== prevProps.sortBy
+      || sortOrder !== prevProps.sortOrder
+      || perPage !== prevProps.perPage
     ) {
       this.updateEntries();
     }
@@ -62,11 +62,18 @@ export default class EntryList extends PureComponent {
 
   updateEntries() {
     const {
-      sortBy, sortOrder, page, perPage,
+      sortBy,
+      sortOrder,
+      page,
+      perPage,
+      getEntries,
     } = this.props;
 
-    this.props.getEntries({
-      sort_by: sortBy, order: sortOrder, per_page: perPage, page,
+    getEntries({
+      sort_by: sortBy,
+      order: sortOrder,
+      per_page: perPage,
+      page,
     });
   }
 

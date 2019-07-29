@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Popover from 'material-ui/Popover';
-import Typography from 'material-ui/Typography';
-import Tooltip from 'material-ui/Tooltip';
+import Popover from '@material-ui/core/Popover';
+import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 import FlexGetEntry from 'common/FlexGetEntry';
-import Divider from 'material-ui/Divider';
+import Divider from '@material-ui/core/Divider';
 
-import { Chips, GenreChip, QualityChip, StarIcon, header } from './styles';
+import {
+  Chips, GenreChip, QualityChip, StarIcon, header,
+} from './styles';
 
 class EntryHeader extends React.PureComponent {
   static propTypes = {
@@ -16,11 +18,11 @@ class EntryHeader extends React.PureComponent {
   state = { anchorEl: null };
 
   handlePopoverOpen = (event) => {
-    // this.setState({ anchorEl: event.target });
+    this.setState({ anchorEl: event.target });
   };
 
   handlePopoverClose = () => {
-    // this.setState({ anchorEl: null });
+    this.setState({ anchorEl: null });
   };
 
   ratings() {
@@ -30,15 +32,28 @@ class EntryHeader extends React.PureComponent {
 
     return (
       <div>
-        <div onMouseOver={this.handlePopoverOpen} onMouseOut={this.handlePopoverClose}>
-          <Typography variant="title">
+        <div
+          onMouseOver={this.handlePopoverOpen}
+          onFocus={this.handlePopoverOpen}
+          onMouseOut={this.handlePopoverClose}
+          onBlur={this.handlePopoverClose}
+        >
+          <Typography variant="h6">
             {
               ratings.length > 0 && (
                 <span>
-                  <StarIcon icon="star" alt={ratings[0].site} />{ratings[0].rating}
+                  <StarIcon icon="star" alt={ratings[0].site} />
+                  {ratings[0].rating}
                   {
-                    ratings[0].votes > 0 &&
-                    <span> ({ratings[0].votes})</span>
+                    ratings[0].votes > 0
+                    && (
+                      <span>
+                        {' '}
+(
+                        {ratings[0].votes}
+)
+                      </span>
+                    )
                   }
                 </span>
               )
@@ -86,7 +101,7 @@ class EntryHeader extends React.PureComponent {
       <div>
         <div className={header}>
           <Tooltip enterDelay={200} title={title}>
-            <Typography variant="title">{titleFormatted}</Typography>
+            <Typography variant="h6">{titleFormatted}</Typography>
           </Tooltip>
           {this.ratings()}
         </div>

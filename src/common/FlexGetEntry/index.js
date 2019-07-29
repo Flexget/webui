@@ -51,7 +51,7 @@ export function getFieldValuesArray(fields, type) {
   Object.values(pluginMap).forEach((map) => {
     if (map[type] && fields[map[type]]) {
       const value = fields[map[type]];
-      values.push(...Array.isArray(value) ? value : [value]);
+      values.push(...(Array.isArray(value) ? value : [value]));
     }
   });
   return values;

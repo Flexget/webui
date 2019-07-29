@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import theme from 'theme';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
 import SideNavEntry from 'core/layout/SideNavEntry';
 import Version from 'core/layout/Version';
+
+import { Drawer, List } from '@material-ui/core';
 
 export const NestedSideNavEntry = styled(SideNavEntry)`
   padding-left: ${theme.spacing(0.4)}rem;

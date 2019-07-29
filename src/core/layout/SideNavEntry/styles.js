@@ -2,8 +2,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import theme from 'theme';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import { ListItem, ListItemText } from '@material-ui/core';
 
 const colorClass = css`color: ${theme.palette.secondary[200]};`;
 

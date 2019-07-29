@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import TaskSelector from 'common/TaskSelector/TaskSelector';
 import { action } from 'utils/actions';
-import { RECENT_TASK } from 'core/tasks/data/actions';
+import { RECENT_TASK } from 'core/tasks/state/actions';
 
 export function mapStateToProps({ tasks }) {
   return {
