@@ -15,11 +15,11 @@ module.exports = {
     '!src/store/**/shapes.js',
   ],
   coverageThreshold: {
-    global: {
-      functions: 40,
-      lines: 40,
-      statements: 40,
-    },
+    // global: {
+    // functions: 40,
+    // lines: 40,
+    // statements: 40,
+    // },
   },
   globals: {
     __DEV__: false,
