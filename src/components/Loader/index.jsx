@@ -22,7 +22,9 @@ const Loader = ({
   }
 
   if (error) {
-    // If we aren't loading, maybe
+    if (__DEV__) {
+      console.error(error);
+    }
     return <div>Error! Component failed to load</div>;
   }
   // This case shouldn't happen... but we'll return null anyways.

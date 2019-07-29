@@ -5,18 +5,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const webpack = require('webpack');
 
-const __DEBUG__ = !!process.env.DEBUG;
-const __DEV__ = process.env.NODE_ENV !== 'production';
+const __DEBUG__ = !!process.env.DEBUG; const __DEV__ = process.env.NODE_ENV !== 'production';
 const mode = __DEV__ ? 'development' : 'production';
 
 const entry = {
   main: [
+    ...(__DEV__ ? [
+      'react-hot-loader/patch',
+    ] : []),
     'whatwg-fetch',
     './src/app.tsx',
-    ...(__DEV__ ? [
-      'webpack/hot/dev-server',
-      `webpack-dev-server/client?http://localhost:${process.env.PORT || 8000}`,
-    ] : []),
   ],
   vendor: [
     'redux',
@@ -69,13 +67,16 @@ const config = {
   entry,
   output,
   plugins,
-  devtool: __DEV__ ? 'cheap-source-map' : 'source-map',
+  devtool: __DEV__ ? 'eval-source-map' : 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [
       path.resolve('./src'),
       'node_modules',
     ],
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
   },
   module: {
     rules: [
