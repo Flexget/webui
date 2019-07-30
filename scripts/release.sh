@@ -8,7 +8,7 @@ set -x
 
 if git log --skip 1 origin/master..origin/develop|grep '^commit '; then
   # Bump the current release version
-  VERSION=$(yarn release:bump --silent release)
+  VERSION=$(yarn release:bump release)
 
   # Create the current release
   git add package.json
@@ -16,7 +16,7 @@ if git log --skip 1 origin/master..origin/develop|grep '^commit '; then
   git tag -a -f "$VERSION" -m "$VERSION release"
 
   # Create dev release
-  DEV_VERSION=$(yarn release:bump --silent dev)
+  DEV_VERSION=$(yarn release:bump dev)
   git add package.json
   git commit -m "Prepare v$DEV_VERSION"
 
