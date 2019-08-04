@@ -1,6 +1,6 @@
 import * as humps from 'humps';
 
-class StatusError extends Error {
+export class StatusError extends Error {
   status?: number;
 }
 
