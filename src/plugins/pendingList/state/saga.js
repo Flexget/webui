@@ -47,7 +47,7 @@ export function* removeList({ payload }) {
 
 export const getEntriesOptions = {
   page: 1,
-  sort_by: 'added',
+  sortBy: 'added',
   order: 'desc',
 };
 

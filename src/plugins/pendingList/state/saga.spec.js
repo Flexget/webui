@@ -17,7 +17,7 @@ import {
 } from './saga';
 import * as actions from './actions';
 
-xdescribe('plugins/pending-list/data/sagas', () => {
+xdescribe('plugins/pendingList/data/sagas', () => {
   describe('getLists', () => {
     describe('success', () => {
       const it = sagaHelper(getLists({ payload: {} }));
@@ -186,7 +186,7 @@ xdescribe('plugins/pending-list/data/sagas', () => {
           listId: 0,
           entry: {
             title: 'title',
-            original_url: 'https://example.com',
+            originalUrl: 'https://example.com',
           },
           resolve,
           reject,
@@ -197,7 +197,7 @@ xdescribe('plugins/pending-list/data/sagas', () => {
       it('should call post /pending_list/:id/entries', (result) => {
         expect(result).toEqual(call(fetch.post, '/pending_list/0/entries', {
           title: 'title',
-          original_url: 'https://example.com',
+          originalUrl: 'https://example.com',
         }));
       });
 
@@ -240,7 +240,7 @@ xdescribe('plugins/pending-list/data/sagas', () => {
           listId: 0,
           entry: {
             title: 'title',
-            original_url: 'https://example.com',
+            originalUrl: 'https://example.com',
           },
           resolve,
           reject,
@@ -250,7 +250,7 @@ xdescribe('plugins/pending-list/data/sagas', () => {
       it('should call post /pending_list/:id/entries', (result) => {
         expect(result).toEqual(call(fetch.post, '/pending_list/0/entries', {
           title: 'title',
-          original_url: 'https://example.com',
+          originalUrl: 'https://example.com',
         }));
 
         return new Error('ERROR');

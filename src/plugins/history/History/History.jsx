@@ -20,7 +20,7 @@ export default class HistoryPage extends Component {
 
   getHistory = page => this.props.getHistory({
     page,
-    sort_by: this.state.sort,
+    sortBy: this.state.sort,
     order: this.state.order,
     task: this.state.task,
   });

@@ -2,7 +2,7 @@ import { Headers } from 'utils/tests';
 import reducer from './reducer';
 import * as actions from './actions';
 
-describe('plugins/pending-list/data/reducer', () => {
+describe('plugins/pendingList/data/reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({ lists: [], entries: {} });
   });

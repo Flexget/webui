@@ -6,7 +6,7 @@ import { GET_HISTORY } from './actions';
 
 export const defaultOptions = {
   page: 1,
-  sort_by: 'time',
+  sortBy: 'time',
   order: 'desc',
 };
 

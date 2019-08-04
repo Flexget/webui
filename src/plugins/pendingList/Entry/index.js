@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import {
   APPROVE_ENTRY, REJECT_ENTRY, REMOVE_ENTRY, INJECT_ENTRY,
-} from 'plugins/pending-list/state/actions';
+} from 'plugins/pendingList/state/actions';
 import { request } from 'utils/actions';
 import Entry from './Entry';
 

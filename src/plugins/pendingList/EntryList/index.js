@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { GET_TASKS } from 'core/tasks/state/actions';
-import { GET_ENTRIES } from 'plugins/pending-list/state/actions';
+import { GET_ENTRIES } from 'plugins/pendingList/state/actions';
 import { request } from 'utils/actions';
 import EntryList from './EntryList';
 

@@ -4,6 +4,6 @@ export const LogShape = PropTypes.shape({
   timestamp: PropTypes.string,
   message: PropTypes.string,
   task: PropTypes.string,
-  log_level: PropTypes.string,
+  logLevel: PropTypes.string,
   plugin: PropTypes.string,
 });

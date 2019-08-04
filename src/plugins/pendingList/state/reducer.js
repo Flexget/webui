@@ -11,6 +11,12 @@ export default function reducer(state = initState, { payload, type }) {
       return {
         ...state,
         lists: payload.lists,
+        selected: (payload.lists.length ? payload.lists[0].id : undefined),
+      };
+    case actions.SELECT_LIST:
+      return {
+        ...state,
+        selected: payload.selected,
       };
     case actions.ADD_LIST:
       return {
