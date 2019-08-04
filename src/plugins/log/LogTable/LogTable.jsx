@@ -25,7 +25,7 @@ const LogTable = ({ messages }) => (
         />
         <Column
           label="Level"
-          dataKey="log_level"
+          dataKey="logLevel"
           width={100}
         />
         <Column

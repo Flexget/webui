@@ -1,4 +1,4 @@
-const PREFIX = '@flextget/pending-list/';
+const PREFIX = '@flextget/pendingList/';
 export const GET_LISTS = `${PREFIX}GET_LISTS`;
 export const ADD_LIST = `${PREFIX}ADD_LISTS`;
 export const REMOVE_LIST = `${PREFIX}REMOVE_LIST`;
@@ -8,3 +8,4 @@ export const REMOVE_ENTRY = `${PREFIX}REMOVE_ENTRY`;
 export const INJECT_ENTRY = `${PREFIX}INJECT_ENTRY`;
 export const APPROVE_ENTRY = `${PREFIX}APPROVE_ENTRY`;
 export const REJECT_ENTRY = `${PREFIX}REJECT_ENTRY`;
+export const SELECT_LIST = `${PREFIX}SELECT_LIST`;

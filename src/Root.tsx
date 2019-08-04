@@ -16,7 +16,7 @@ import { createAsyncComponent } from 'utils/loading';
 import registerHistory from 'plugins/history';
 import registerLog from 'plugins/log';
 import registerSeries from 'plugins/series';
-import registerPendingList from 'plugins/pending-list';
+import registerPendingList from 'plugins/pendingList';
 
 registerHistory();
 registerLog();

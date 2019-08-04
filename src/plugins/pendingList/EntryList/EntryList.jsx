@@ -70,9 +70,9 @@ export default class EntryList extends PureComponent {
     } = this.props;
 
     getEntries({
-      sort_by: sortBy,
+      sortBy,
       order: sortOrder,
-      per_page: perPage,
+      perPage,
       page,
     });
   }

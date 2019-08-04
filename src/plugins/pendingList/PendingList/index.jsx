@@ -4,7 +4,7 @@ import TabList from '../TabList';
 import SortList from '../SortList';
 import EntryList from '../EntryList';
 import Pagination from '../Pagination';
-import { Content } from '../styles';
+import { Content } from './styles';
 
 class PendingList extends PureComponent {
   state = {

@@ -6,10 +6,10 @@ import { get } from 'utils/fetch';
 import { GET_SHOWS } from './actions';
 
 export const defaultOptions = {
-  per_page: 10,
+  perPage: 10,
   lookup: 'tvdb',
   order: 'asc',
-  sort_by: 'show_name',
+  sortBy: 'show_name',
 };
 
 export function* getShows({ payload } = {}) {
