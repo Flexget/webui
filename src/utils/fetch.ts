@@ -7,7 +7,7 @@ export class StatusError extends Error {
 enum Method {
   Get = 'get',
   Post = 'post',
-  Put ='put',
+  Put = 'put',
   Patch = 'patch',
   Delete = 'delete',
 }
@@ -21,13 +21,15 @@ interface ErrorBody {
   message: string;
 }
 
-const camelize = <T>(obj: Object | Object[]) => humps.camelizeKeys<Object, T>(obj, {
-  separator: '_',
-});
+const camelize = <T>(obj: Object | Object[]) =>
+  humps.camelizeKeys<Object, T>(obj, {
+    separator: '_',
+  });
 
-const snakeCase = <T>(obj: Object | Object[]): T => humps.decamelizeKeys(obj, {
-  split: /(?=[A-Z0-9])/,
-});
+const snakeCase = <T>(obj: Object | Object[]): T =>
+  humps.decamelizeKeys(obj, {
+    split: /(?=[A-Z0-9])/,
+  });
 
 function isError<T>(data: T | ErrorBody, s): data is ErrorBody {
   return !(s >= 200 && s < 300) && typeof data === 'object';
@@ -71,8 +73,7 @@ function request<PayloadType, BodyType>(
     headers,
     body,
     credentials: 'same-origin',
-  })
-    .then((response: Response) => status<PayloadType>(response));
+  }).then((response: Response) => status<PayloadType>(response));
 }
 
 export function get(resource) {

@@ -1,4 +1,4 @@
-import { action, ActionsUnion } from 'utils/actions';
+import { action, ActionsUnion, Action } from 'utils/actions';
 import { StatusError } from 'utils/fetch';
 
 export const enum Constants {
@@ -14,9 +14,16 @@ export function clearStatus() {
   };
 }
 
+function load<T extends string, P>(type: T, payload: P): Action<Constants.LOADING_STATUS, P, T>;
+function load<T extends string>(type: T): Action<Constants.LOADING_STATUS, undefined, T>;
+function load(type: any, payload = undefined) {
+  return action(Constants.LOADING_STATUS, payload, {
+    type,
+  });
+}
+
 const actions = {
-  load: <T extends string, P>(type: T, payload?: P) =>
-    action(Constants.LOADING_STATUS, payload, { type }),
+  load,
   error: <T extends string>(type: T, err: StatusError) =>
     action(Constants.ERROR_STATUS, {
       message: err.message,
