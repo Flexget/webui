@@ -1,4 +1,4 @@
-import { action, ActionsUnion } from 'utils/actions';
+import { action, ActionsUnion, RequestsOfType as ROT } from 'utils/actions';
 import FlexGetEntry from 'common/FlexGetEntry';
 import { StatusError } from 'utils/fetch';
 import statusActions from 'core/status/state/actions';
@@ -40,8 +40,9 @@ interface AddEntryRequest {
 }
 
 interface GetEntriesOptions {
-  page: number;
-  sortBy: SortBy;
+  page?: number;
+  sortBy?: SortBy;
+  order?: Direction;
 }
 
 interface EntryRequest {
@@ -53,54 +54,55 @@ const actions = {
   getLists: {
     request: () => statusActions.load(Constants.GET_LISTS),
     success: (lists: List[]) => action(Constants.GET_LISTS, { lists }),
-    failed: (err: StatusError) => statusActions.error(Constants.GET_LISTS, err),
+    failure: (err: StatusError) => statusActions.error(Constants.GET_LISTS, err),
   },
   addList: {
     request: (data: AddListRequest) => statusActions.load(Constants.ADD_LIST, { data }),
     success: (list: List) => action(Constants.ADD_LIST, { list }),
-    failed: (err: StatusError) => statusActions.error(Constants.ADD_LIST, err),
+    failure: (err: StatusError) => statusActions.error(Constants.ADD_LIST, err),
   },
   removeList: {
     request: (id: number) => statusActions.load(Constants.REMOVE_LIST, { id }),
     success: (id: number) => action(Constants.REMOVE_LIST, { id }),
-    failed: (err: StatusError) => statusActions.error(Constants.REMOVE_LIST, err),
+    failure: (err: StatusError) => statusActions.error(Constants.REMOVE_LIST, err),
   },
   getEntries: {
     request: (listId: number, params: GetEntriesOptions) =>
       statusActions.load(Constants.GET_ENTRIES, { listId, params }),
-    success: (entries: FlexGetEntry[], page, headers: Headers) =>
+    success: (entries: FlexGetEntry[], page: number, headers: Headers) =>
       action(Constants.GET_ENTRIES, { entries, page, headers }),
-    failed: (err: StatusError) => statusActions.error(Constants.GET_ENTRIES, err),
+    failure: (err: StatusError) => statusActions.error(Constants.GET_ENTRIES, err),
   },
   addEntry: {
     request: (data: AddEntryRequest) => statusActions.load(Constants.ADD_ENTRY, data),
     success: () => action(Constants.ADD_ENTRY),
-    failed: (err: StatusError) => statusActions.error(Constants.ADD_ENTRY, err),
+    failure: (err: StatusError) => statusActions.error(Constants.ADD_ENTRY, err),
   },
   removeEntry: {
     request: (entry: FlexGetEntry) => statusActions.load(Constants.REMOVE_ENTRY, { entry }),
     success: (entry: FlexGetEntry) => action(Constants.REMOVE_ENTRY, { entry }),
-    failed: (err: StatusError) => statusActions.error(Constants.REMOVE_ENTRY, err),
+    failure: (err: StatusError) => statusActions.error(Constants.REMOVE_ENTRY, err),
   },
   injectEntry: {
     request: (entry: FlexGetEntry, taskName: string) =>
       statusActions.load(Constants.INJECT_ENTRY, { entry, task: { name: taskName } }),
     success: (entry: FlexGetEntry) => action(Constants.INJECT_ENTRY, { entry }),
-    failed: (err: StatusError) => statusActions.error(Constants.INJECT_ENTRY, err),
+    failure: (err: StatusError) => statusActions.error(Constants.INJECT_ENTRY, err),
   },
   approveEntry: {
     request: (entry: EntryRequest) => statusActions.load(Constants.APPROVE_ENTRY, { entry }),
     success: (entry: FlexGetEntry) => action(Constants.APPROVE_ENTRY, { entry }),
-    failed: (err: StatusError) => statusActions.error(Constants.APPROVE_ENTRY, err),
+    failure: (err: StatusError) => statusActions.error(Constants.APPROVE_ENTRY, err),
   },
   rejectEntry: {
     request: (entry: EntryRequest) => statusActions.load(Constants.REJECT_ENTRY, { entry }),
     success: (entry: FlexGetEntry) => action(Constants.REJECT_ENTRY, { entry }),
-    failed: (err: StatusError) => statusActions.error(Constants.REJECT_ENTRY, err),
+    failure: (err: StatusError) => statusActions.error(Constants.REJECT_ENTRY, err),
   },
   selectList: (selected: number) => action(Constants.SELECT_LIST, { selected }),
 };
 
 export type ActionTypes = ActionsUnion<typeof actions>;
+export type RequestsOfType<T extends Constants> = ROT<ActionsUnion, T>:
 
 export default actions;
