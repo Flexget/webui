@@ -3,6 +3,7 @@ import { reducer as form } from 'redux-form';
 import auth from 'core/auth/state/reducer';
 import routes from 'core/routes/state/reducer';
 import status from 'core/status/state/reducer';
+import tasks from 'core/tasks/state/reducer';
 import version from 'core/version/state/reducer';
 
 export default function createReducers(reducers) {
@@ -12,6 +13,7 @@ export default function createReducers(reducers) {
     routes,
     status,
     version,
+    tasks,
     ...reducers,
   });
 }

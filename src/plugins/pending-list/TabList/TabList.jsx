@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Tab from '@material-ui/core/Tab';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
-import SecondaryNav from 'components/SecondaryNav';
+import SecondaryNav from 'common/SecondaryNav';
 import { ListShape } from '../state/shapes';
 import AddListDialog from '../AddListDialog';
 

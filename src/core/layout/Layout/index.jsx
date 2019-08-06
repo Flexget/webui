@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Logo from 'core/layout/Logo';
 import Navbar from 'core/layout/Navbar';
 import SideNav from 'core/layout/SideNav';
-import LoadingBar from 'components/LoadingBar';
-import ErrorStatus from 'components/ErrorStatus';
-import InfoStatus from 'components/InfoStatus';
+import LoadingBar from 'common/LoadingBar';
+import ErrorStatus from 'common/ErrorStatus';
+import InfoStatus from 'common/InfoStatus';
 import {
   Wrapper,
   Main,

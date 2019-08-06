@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import LoadingSpinner from 'components/LoadingSpinner';
+import LoadingSpinner from 'common/LoadingSpinner';
 import { Subheader, Wrapper } from './styles';
 
 class HistoryList extends Component {

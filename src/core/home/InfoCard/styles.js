@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardHeader from '@material-ui/core/CardHeader';
 import theme from 'theme';
+
+import { Card, CardActions, CardHeader } from '@material-ui/core';
 
 export const InfoCardWrapper = styled(Card)`
   margin: 0 auto;

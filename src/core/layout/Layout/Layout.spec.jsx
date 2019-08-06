@@ -9,7 +9,7 @@ function renderLayout() {
     router: { location: { } }, version: {}, status: { loading: {} }, routes: {},
   });
 }
-describe('components/layout', () => {
+describe('common/layout', () => {
   beforeEach(() => {
     fetchMock
       .get('/api/server/version', {});

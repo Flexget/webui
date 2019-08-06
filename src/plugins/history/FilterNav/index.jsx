@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
-import SecondaryNav from 'components/SecondaryNav';
-import { Spacer } from 'components/styles';
+import SecondaryNav from 'common/SecondaryNav';
+import { Spacer } from 'common/styles';
 import { RotatingIcon, PaddedTextField } from './styles';
 
 const ENTER_KEY = 13;

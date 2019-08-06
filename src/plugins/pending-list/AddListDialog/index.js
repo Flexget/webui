@@ -1,21 +1,23 @@
 import { connect } from 'react-redux';
+import { reset } from 'redux-form';
 import { request } from 'utils/actions';
 import { ADD_LIST } from '../state/actions';
 import AddListDialog from './AddListDialog';
 
-export function mapStateToProps({ status }) {
-  return {
-    errorStatus: status.error || {},
-  };
-}
-
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch, { onClose }) {
   return {
     onSubmit: data => new Promise((resolve, reject) => (
       dispatch(request(ADD_LIST, { data, resolve, reject }))
     )),
-    onSubmitSuccess: ownProps.onClose,
+    onSubmitSuccess: () => {
+      onClose();
+      dispatch(reset('addPendingList'));
+    },
+    onClose: () => {
+      onClose();
+      dispatch(reset('addPendingList'));
+    },
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddListDialog);
+export default connect(null, mapDispatchToProps)(AddListDialog);

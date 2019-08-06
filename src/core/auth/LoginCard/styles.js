@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import { Field } from 'redux-form';
-import MUICard from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import theme from 'theme';
+
+import { Card as MUICard, CardContent, Button } from '@material-ui/core';
 
 export const Card = styled(MUICard)`
   max-width: 40rem;

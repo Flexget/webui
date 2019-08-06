@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import theme from 'theme';
+
+import { Typography, TextField } from '@material-ui/core';
 
 const grey = css`color: ${theme.palette.grey[600]}`;
 

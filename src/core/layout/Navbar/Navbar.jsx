@@ -11,7 +11,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Spacer } from 'components/styles';
+import { Spacer } from 'common/styles';
 import {
   MenuIcon,
   NavAppBar,

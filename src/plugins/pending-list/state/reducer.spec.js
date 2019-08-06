@@ -45,18 +45,15 @@ describe('plugins/pending-list/data/reducer', () => {
       type: actions.GET_ENTRIES,
       payload: {
         headers: new Headers({ 'total-count': 1 }),
-        listId: 0,
         page: 1,
         entries: [{ an: 'object', id: 12 }],
       },
     })).toEqual({
       lists: [{ id: 0, name: 'list' }],
       entries: {
-        0: {
-          totalCount: 1,
-          page: 1,
-          items: [{ an: 'object', id: 12 }],
-        },
+        totalCount: 1,
+        page: 1,
+        items: [{ an: 'object', id: 12 }],
       },
     });
   });

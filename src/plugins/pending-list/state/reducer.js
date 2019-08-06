@@ -26,12 +26,18 @@ export default function reducer(state = initState, { payload, type }) {
       return {
         ...state,
         entries: {
+          totalCount: parseInt(payload.headers.get('total-count'), 10),
+          page: payload.page,
+          items: payload.entries,
+        },
+      };
+    case actions.INJECT_ENTRY:
+    case actions.REMOVE_ENTRY:
+      return {
+        ...state,
+        entries: {
           ...state.entries,
-          [payload.listId]: {
-            totalCount: payload.headers.get('total-count'),
-            page: payload.page,
-            items: payload.entries,
-          },
+          items: state.entries.items.filter(entry => entry.id !== payload.entry.id),
         },
       };
     case actions.REJECT_ENTRY:
@@ -40,15 +46,12 @@ export default function reducer(state = initState, { payload, type }) {
         ...state,
         entries: {
           ...state.entries,
-          [payload.listId]: {
-            ...state.entries[payload.listId],
-            items: state.entries[payload.listId].items.map((item) => {
-              if (item.id === payload.entry.id) {
-                return payload.entry;
-              }
-              return item;
-            }),
-          },
+          items: state.entries.items.map((item) => {
+            if (item.id === payload.entry.id) {
+              return payload.entry;
+            }
+            return item;
+          }),
         },
       };
     default:

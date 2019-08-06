@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`common/Loader should render properly when errored 1`] = `
+<div>
+  Error! Component failed to load
+</div>
+`;
+
+exports[`common/Loader should render properly when loading 1`] = `<WithStyles(ForwardRef(CircularProgress)) />`;
+
+exports[`common/Loader should render properly when timed out 1`] = `
+<div>
+  Loader timed out!
+</div>
+`;

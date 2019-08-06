@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import TextField from 'components/TextField';
+import TextField from 'common/TextField';
 
 const AddListDialog = ({ open, onClose, handleSubmit }) => (
   <Dialog open={open} onRequestClose={onClose}>
@@ -26,7 +26,7 @@ const AddListDialog = ({ open, onClose, handleSubmit }) => (
         <Button onClick={onClose} type="button">
           Cancel
         </Button>
-        <Button type="submit" color="primary">
+        <Button variant="submit" color="primary">
           Add
         </Button>
       </DialogActions>

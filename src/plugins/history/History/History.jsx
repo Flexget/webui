@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import HistoryList from 'plugins/history/HistoryList';
 import FilterNav from 'plugins/history/FilterNav';
-import { NoPaddingWrapper } from 'components/styles';
+import { NoPaddingWrapper } from 'common/styles';
 
 export default class HistoryPage extends Component {
   static propTypes = {
