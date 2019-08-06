@@ -19,7 +19,7 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
 }
 
 .emotion-0 {
-  color: #757575label:grey;
+  color: #757575;
 }
 
 .emotion-2 {

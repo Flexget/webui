@@ -122,8 +122,8 @@ exports[`pages/splash renders correctly 1`] = `
   margin: 0.1rem;
   -webkit-animation: animation-0 1.2s infinite ease-in-out;
   animation: animation-0 1.2s infinite ease-in-out;
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
 }
 
 .emotion-8 {
