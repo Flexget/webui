@@ -5,7 +5,9 @@ import theme from 'theme';
 
 import { Typography, TextField } from '@material-ui/core';
 
-const grey = css`color: ${theme.palette.grey[600]}`;
+const grey = css`
+  color: ${theme.palette.grey[600]};
+`;
 
 export const Wrapper = styled.div`
   display: block;

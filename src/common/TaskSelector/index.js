@@ -16,4 +16,7 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskSelector);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TaskSelector);

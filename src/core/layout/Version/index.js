@@ -15,5 +15,8 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Version);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Version);
 export { Version };

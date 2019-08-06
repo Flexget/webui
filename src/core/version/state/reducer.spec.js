@@ -7,13 +7,15 @@ describe('core/version/data/reducer', () => {
   });
 
   it('should get version on GET_VERSION', () => {
-    expect(reducer(undefined, {
-      type: GET_VERSION,
-      payload: {
-        api_version: '1.1.2',
-        flexget_version: '2.10.11',
-        latest_version: '2.10.60',
-      },
-    })).toMatchSnapshot();
+    expect(
+      reducer(undefined, {
+        type: GET_VERSION,
+        payload: {
+          apiVersion: '1.1.2',
+          flexgetVersion: '2.10.11',
+          latestVersion: '2.10.60',
+        },
+      }),
+    ).toMatchSnapshot();
   });
 });

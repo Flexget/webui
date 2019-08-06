@@ -21,7 +21,9 @@ describe('common/LoadingBar', () => {
       });
 
       it('should return loading if something is loading with types', () => {
-        expect(mapStateToProps({ status: { loading: { abracadabra: true } } }, { prefix: 'a' }).loading).toBe(true);
+        expect(
+          mapStateToProps({ status: { loading: { abracadabra: true } } }, { prefix: 'a' }).loading,
+        ).toBe(true);
       });
     });
 
@@ -31,7 +33,9 @@ describe('common/LoadingBar', () => {
       });
 
       it('should return not loading if something is loading with the wrong types', () => {
-        expect(mapStateToProps({ status: { loading: { a: true } } }, { prefix: 'b' }).loading).toBe(false);
+        expect(mapStateToProps({ status: { loading: { a: true } } }, { prefix: 'b' }).loading).toBe(
+          false,
+        );
       });
     });
   });

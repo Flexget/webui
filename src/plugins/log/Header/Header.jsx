@@ -31,7 +31,6 @@ class Header extends Component {
     query: '',
   };
 
-
   componentDidMount() {
     this.reload();
   }
@@ -49,42 +48,38 @@ class Header extends Component {
       stop();
     }
     start({ lines, query });
-  }
+  };
 
-  clearLogs = () => this.props.clearLogs()
+  clearLogs = () => this.props.clearLogs();
 
-  handleLines = event => this.setState({ lines: event.target.value })
+  handleLines = event => this.setState({ lines: event.target.value });
 
-  handleQuery = event => this.setState({ query: event.target.value })
+  handleQuery = event => this.setState({ query: event.target.value });
 
-  handleKeyPress = event => event.which === ENTER_KEY && this.reload()
+  handleKeyPress = event => event.which === ENTER_KEY && this.reload();
 
-  handleRequestClose = () => this.setState({
-    open: false,
-    anchorEl: undefined,
-  })
+  handleRequestClose = () =>
+    this.setState({
+      open: false,
+      anchorEl: undefined,
+    });
 
-  handleMenuClick = event => this.setState({
-    open: true,
-    anchorEl: event.currentTarget,
-  })
+  handleMenuClick = event =>
+    this.setState({
+      open: true,
+      anchorEl: event.currentTarget,
+    });
 
   render() {
     const { connected, stop } = this.props;
-    const {
-      anchorEl, open, query, lines,
-    } = this.state;
+    const { anchorEl, open, query, lines } = this.state;
     const helperText = 'Supports operators and, or, (), and "str"';
 
     return (
       <Wrapper>
         <div>
-          <Typography variant="h6">
-            Server Log
-          </Typography>
-          <GreyType variant="subtitle1">
-            { connected ? 'Streaming' : 'Disconnected' }
-          </GreyType>
+          <Typography variant="h6">Server Log</Typography>
+          <GreyType variant="subtitle1">{connected ? 'Streaming' : 'Disconnected'}</GreyType>
         </div>
         <Spacer />
         <TextFieldWrapper>
@@ -101,12 +96,7 @@ class Header extends Component {
           />
           <GreyClickableIcon onClick={this.handleMenuClick} icon="ellipsis-v" />
         </TextFieldWrapper>
-        <Menu
-          id="log-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={this.handleRequestClose}
-        >
+        <Menu id="log-menu" anchorEl={anchorEl} open={open} onClose={this.handleRequestClose}>
           <MenuItem>
             <TextField
               id="lines"

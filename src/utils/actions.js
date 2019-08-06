@@ -1,11 +1,9 @@
 import { LOADING_STATUS } from 'core/status/state/actions';
 
-export const action = (type, payload, {
-  message,
-} = {}) => ({
+export const action = (type, payload, { message } = {}) => ({
   type,
   payload,
-  error: (payload instanceof Error),
+  error: payload instanceof Error,
   meta: {
     message,
   },
@@ -17,7 +15,4 @@ export const request = (type, payload = {}) => ({
   meta: { type },
 });
 
-export const requesting = type => act => (
-  act.type === LOADING_STATUS
-    && act.meta.type === type
-);
+export const requesting = type => act => act.type === LOADING_STATUS && act.meta.type === type;

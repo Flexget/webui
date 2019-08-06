@@ -18,5 +18,8 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginCard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LoginCard);
 export { LoginCard };

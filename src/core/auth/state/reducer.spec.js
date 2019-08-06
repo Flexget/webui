@@ -21,20 +21,30 @@ describe('core/auth/data/reducer', () => {
   });
 
   it('should logout on a 401 ERROR_STATUS', () => {
-    expect(reducer({ loggedIn: true }, {
-      type: ERROR_STATUS,
-      payload: {
-        statusCode: 401,
-      },
-    })).toMatchSnapshot();
+    expect(
+      reducer(
+        { loggedIn: true },
+        {
+          type: ERROR_STATUS,
+          payload: {
+            statusCode: 401,
+          },
+        },
+      ),
+    ).toMatchSnapshot();
   });
 
   it('should stay logged In on a non 401 ERROR_STATUS', () => {
-    expect(reducer({ loggedIn: true }, {
-      type: ERROR_STATUS,
-      payload: {
-        statusCode: 404,
-      },
-    })).toMatchSnapshot();
+    expect(
+      reducer(
+        { loggedIn: true },
+        {
+          type: ERROR_STATUS,
+          payload: {
+            statusCode: 404,
+          },
+        },
+      ),
+    ).toMatchSnapshot();
   });
 });

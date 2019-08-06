@@ -14,13 +14,13 @@ class TaskSelector extends PureComponent {
     tasks: PropTypes.array.isRequired,
     recent: PropTypes.array.isRequired,
     anchorEl: PropTypes.object,
-  }
+  };
 
   static defaultProps = {
     anchorEl: null,
-  }
+  };
 
-  handleClick = (event) => {
+  handleClick = event => {
     const { handleClick, recentTask, tasks } = this.props;
     const taskName = event.target.getAttribute('value');
     const task = tasks.reduce((accum, t) => {
@@ -31,14 +31,8 @@ class TaskSelector extends PureComponent {
     handleClick(task);
   };
 
-
   render() {
-    const {
-      tasks,
-      recent,
-      anchorEl,
-      handleClose,
-    } = this.props;
+    const { tasks, recent, anchorEl, handleClose } = this.props;
 
     return (
       <Menu
@@ -52,17 +46,19 @@ class TaskSelector extends PureComponent {
           <div>
             <ListSubheader>Recent</ListSubheader>
             {recent.map(t => (
-              <MenuItem onClick={this.handleClick} value={t.name} key={t.name}>{t.name}</MenuItem>
+              <MenuItem onClick={this.handleClick} value={t.name} key={t.name}>
+                {t.name}
+              </MenuItem>
             ))}
             <Divider />
           </div>
         )}
         <span>Recent</span>
-        {
-          tasks.map(t => (
-            <MenuItem onClick={this.handleClick} value={t.name} key={t.name}>{t.name}</MenuItem>
-          ))
-        }
+        {tasks.map(t => (
+          <MenuItem onClick={this.handleClick} value={t.name} key={t.name}>
+            {t.name}
+          </MenuItem>
+        ))}
       </Menu>
     );
   }

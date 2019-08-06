@@ -48,7 +48,7 @@ export function getFieldValuesMap(fields, type) {
 
 export function getFieldValuesArray(fields, type) {
   const values = [];
-  Object.values(pluginMap).forEach((map) => {
+  Object.values(pluginMap).forEach(map => {
     if (map[type] && fields[map[type]]) {
       const value = fields[map[type]];
       values.push(...(Array.isArray(value) ? value : [value]));
@@ -56,7 +56,6 @@ export function getFieldValuesArray(fields, type) {
   });
   return values;
 }
-
 
 export default class FlexGetEntry {
   constructor(entry) {
@@ -95,9 +94,11 @@ export default class FlexGetEntry {
 
   getRatings() {
     const votes = getFieldValuesMap(this.fields, 'votes');
-    return Object.entries(getFieldValuesMap(this.fields, 'rating')).map(([site, rating]) => (
-      { site, rating, votes: site ? votes[site] : 0 }
-    ));
+    return Object.entries(getFieldValuesMap(this.fields, 'rating')).map(([site, rating]) => ({
+      site,
+      rating,
+      votes: site ? votes[site] : 0,
+    }));
   }
 
   getQualities() {

@@ -26,7 +26,7 @@ describe('core/routes/components/PrivateRoute', () => {
     });
 
     it('should return not logged in if logged out', () => {
-      expect(mapStateToProps({ auth: { } })).toMatchSnapshot();
+      expect(mapStateToProps({ auth: {} })).toMatchSnapshot();
     });
   });
 });

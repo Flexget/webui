@@ -10,7 +10,7 @@ export const link = css`
   min-width: 50px;
   max-width: 50px;
   border-radius: 0;
-  border-right: 1px solid rgba(0,0,0,.25);
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
   &:hover {
     background-color: ${theme.palette.primary[300]};
   }

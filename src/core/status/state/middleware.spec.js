@@ -14,7 +14,6 @@ describe('core/status/data/middleware', () => {
     expect(store.getActions()).toMatchSnapshot();
   });
 
-
   it('should dispatch ERROR_STATUS if error and not ignore', () => {
     const err = new Error('Unauthorized');
     err.status = 401;

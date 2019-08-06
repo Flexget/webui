@@ -28,7 +28,10 @@ class Version extends Component {
   }
 
   render() {
-    const { version: { api, flexget, latest }, className } = this.props;
+    const {
+      version: { api, flexget, latest },
+      className,
+    } = this.props;
     return (
       <Wrapper className={className}>
         <Line>Version Info</Line>
@@ -38,7 +41,7 @@ class Version extends Component {
             <IconButton href="https://flexget.com/ChangeLog">
               <FontAwesomeIcon icon={['far', 'question-circle']} fixedWidth />
             </IconButton>
-          ) }
+          )}
         </Line>
         <Line>{`API: ${api}`}</Line>
       </Wrapper>

@@ -13,8 +13,5 @@ const getHistoryGroupedByTask = createSelector(
   historyGroupBy,
 );
 
-export const getGroupedHistory = (history, grouping) => (
-  grouping === 'time'
-    ? getHistoryGroupedByTime
-    : getHistoryGroupedByTask
-)(history, grouping);
+export const getGroupedHistory = (history, grouping) =>
+  (grouping === 'time' ? getHistoryGroupedByTime : getHistoryGroupedByTask)(history, grouping);

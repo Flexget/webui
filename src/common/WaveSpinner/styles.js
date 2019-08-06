@@ -34,7 +34,7 @@ export const Rect2 = styled(Rect1)`
 `;
 
 export const Rect3 = styled(Rect1)`
-  animation-delay: -1.0s;
+  animation-delay: -1s;
 `;
 
 export const Rect4 = styled(Rect1)`

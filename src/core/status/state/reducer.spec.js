@@ -1,10 +1,5 @@
 import { LOCATION_CHANGE } from 'connected-react-router';
-import {
-  LOADING_STATUS,
-  ERROR_STATUS,
-  CLOSE_STATUS,
-  INFO_STATUS,
-} from './actions';
+import { LOADING_STATUS, ERROR_STATUS, CLOSE_STATUS, INFO_STATUS } from './actions';
 import reducer from './reducer';
 
 const TEST = 'TEST';
@@ -20,60 +15,76 @@ describe('core/status/data/reducer', () => {
 
   describe('LOADING_STATUS', () => {
     it('should set loading status when initially empty', () => {
-      expect(reducer(undefined, {
-        type: LOADING_STATUS,
-        meta: {
-          type: TEST,
-        },
-      })).toMatchSnapshot();
+      expect(
+        reducer(undefined, {
+          type: LOADING_STATUS,
+          meta: {
+            type: TEST,
+          },
+        }),
+      ).toMatchSnapshot();
     });
 
     it('should set loading status when not empty', () => {
-      expect(reducer({
-        loading: {
-          TEST: true,
-        },
-        error: null,
-        info: null,
-      }, {
-        type: LOADING_STATUS,
-        meta: {
-          type: 'OTHER',
-        },
-      })).toMatchSnapshot();
+      expect(
+        reducer(
+          {
+            loading: {
+              TEST: true,
+            },
+            error: null,
+            info: null,
+          },
+          {
+            type: LOADING_STATUS,
+            meta: {
+              type: 'OTHER',
+            },
+          },
+        ),
+      ).toMatchSnapshot();
     });
     it('should not change if already loading that action', () => {
-      expect(reducer({
-        loading: {
-          TEST: true,
-        },
-        error: null,
-        info: null,
-      }, {
-        type: LOADING_STATUS,
-        meta: {
-          type: TEST,
-        },
-      })).toMatchSnapshot();
+      expect(
+        reducer(
+          {
+            loading: {
+              TEST: true,
+            },
+            error: null,
+            info: null,
+          },
+          {
+            type: LOADING_STATUS,
+            meta: {
+              type: TEST,
+            },
+          },
+        ),
+      ).toMatchSnapshot();
     });
   });
 
   it('should handle ERROR_STATUS', () => {
-    expect(reducer(undefined, {
-      type: ERROR_STATUS,
-      payload: {
-        message: 'something',
-      },
-    })).toMatchSnapshot();
+    expect(
+      reducer(undefined, {
+        type: ERROR_STATUS,
+        payload: {
+          message: 'something',
+        },
+      }),
+    ).toMatchSnapshot();
   });
 
   it('should handle INFO_STATUS', () => {
-    expect(reducer(undefined, {
-      type: INFO_STATUS,
-      payload: {
-        message: 'something',
-      },
-    })).toMatchSnapshot();
+    expect(
+      reducer(undefined, {
+        type: INFO_STATUS,
+        payload: {
+          message: 'something',
+        },
+      }),
+    ).toMatchSnapshot();
   });
 
   it('should clear state on CLOSE_STATUS', () => {
@@ -85,14 +96,19 @@ describe('core/status/data/reducer', () => {
   });
 
   it('should handle loding done', () => {
-    expect(reducer({
-      loading: {
-        TEST: true,
-      },
-      error: null,
-      info: null,
-    }, {
-      type: TEST,
-    })).toMatchSnapshot();
+    expect(
+      reducer(
+        {
+          loading: {
+            TEST: true,
+          },
+          error: null,
+          info: null,
+        },
+        {
+          type: TEST,
+        },
+      ),
+    ).toMatchSnapshot();
   });
 });

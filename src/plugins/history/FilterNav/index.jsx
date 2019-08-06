@@ -60,31 +60,23 @@ class FilterNav extends Component {
 
   state = {
     task: '',
-  }
+  };
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({ task: event.target.value });
-  }
+  };
 
-  handleKeyPress = (event) => {
+  handleKeyPress = event => {
     const { handleChange } = this.props;
     if (event.which === ENTER_KEY) {
       handleChange('task')(event);
     }
-  }
+  };
 
   render() {
-    const {
-      order,
-      grouping,
-      sort,
-      toggleOrder,
-      handleChange,
-    } = this.props;
+    const { order, grouping, sort, toggleOrder, handleChange } = this.props;
 
-    const {
-      task,
-    } = this.state;
+    const { task } = this.state;
 
     return (
       <SecondaryNav>
@@ -105,7 +97,9 @@ class FilterNav extends Component {
           onChange={handleChange('sort')}
         >
           {sortByFields.map(({ value, label }) => (
-            <MenuItem value={value} key={value}>{label}</MenuItem>
+            <MenuItem value={value} key={value}>
+              {label}
+            </MenuItem>
           ))}
         </PaddedTextField>
         <PaddedTextField
@@ -116,7 +110,9 @@ class FilterNav extends Component {
           onChange={handleChange('grouping')}
         >
           {groupByFields.map(({ value, label }) => (
-            <MenuItem value={value} key={value}>{label}</MenuItem>
+            <MenuItem value={value} key={value}>
+              {label}
+            </MenuItem>
           ))}
         </PaddedTextField>
         <IconButton color="inherit" onClick={toggleOrder}>

@@ -5,7 +5,9 @@ import { themed, router } from 'utils/tests';
 
 describe('core/layout/components/SideNavEntry', () => {
   it('renders correctly with link', () => {
-    const tree = renderer.create(router(themed(<SideNavEntry icon="icon" label="Test" link="/test" />))).toJSON();
+    const tree = renderer
+      .create(router(themed(<SideNavEntry icon="icon" label="Test" link="/test" />)))
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 

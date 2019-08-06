@@ -11,37 +11,41 @@ describe('core/version/data/saga', () => {
     describe('success', () => {
       const it = sagaHelper(getVersion());
 
-      it('should delay for 500 ms', (result) => {
+      it('should delay for 500 ms', result => {
         expect(result).toEqual(call(delay, 500));
       });
 
-      it('should call get /server/version', (result) => {
+      it('should call get /server/version', result => {
         expect(result).toEqual(call(get, '/server/version'));
 
         return { data: { c: 'd' } };
       });
 
-      it('should put the success action', (result) => {
-        expect(result).toEqual(put(action(GET_VERSION, {
-          c: 'd',
-        })));
+      it('should put the success action', result => {
+        expect(result).toEqual(
+          put(
+            action(GET_VERSION, {
+              c: 'd',
+            }),
+          ),
+        );
       });
     });
 
     describe('failure', () => {
       const it = sagaHelper(getVersion());
 
-      it('should delay for 500 ms', (result) => {
+      it('should delay for 500 ms', result => {
         expect(result).toEqual(call(delay, 500));
       });
 
-      it('should call get /server/version', (result) => {
+      it('should call get /server/version', result => {
         expect(result).toEqual(call(get, '/server/version'));
 
         return new Error('ERROR');
       });
 
-      it('should put the failure action', (result) => {
+      it('should put the failure action', result => {
         expect(result).toEqual(put(action(GET_VERSION, new Error('ERROR'))));
       });
     });

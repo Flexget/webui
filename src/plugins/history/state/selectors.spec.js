@@ -2,16 +2,20 @@ import { getGroupedHistory } from './selectors';
 
 describe('plugins/history/data/selectors', () => {
   describe('getGroupedHistory', () => {
-    const items = [{
-      time: '2017-09-10T00:21:33',
-      task: 'task1',
-    }, {
-      time: '2017-09-10T12:21:33',
-      task: 'task2',
-    }, {
-      time: '2017-08-10T00:21:33',
-      task: 'task1',
-    }];
+    const items = [
+      {
+        time: '2017-09-10T00:21:33',
+        task: 'task1',
+      },
+      {
+        time: '2017-09-10T12:21:33',
+        task: 'task2',
+      },
+      {
+        time: '2017-08-10T00:21:33',
+        task: 'task1',
+      },
+    ];
 
     it('should group properly based on time', () => {
       expect(getGroupedHistory({ items }, 'time')).toEqual({

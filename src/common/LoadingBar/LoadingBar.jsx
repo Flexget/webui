@@ -4,12 +4,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 const LoadingBar = ({ loading }) => {
   if (loading) {
-    return (
-      <LinearProgress
-        variant="query"
-        color="secondary"
-      />
-    );
+    return <LinearProgress variant="query" color="secondary" />;
   }
   return null;
 };

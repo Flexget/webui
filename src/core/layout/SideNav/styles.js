@@ -20,7 +20,7 @@ export const NavDrawer = styled(Drawer)`
 
     ${theme.breakpoints.up('sm')} {
       height: calc(100vh - 5rem);
-      width: ${({ open }) => (open ? '19rem' : '6rem')}
+      width: ${({ open }) => (open ? '19rem' : '6rem')};
     }
   }
 `;

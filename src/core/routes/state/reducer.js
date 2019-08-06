@@ -10,15 +10,18 @@ export default function reducer(state = {}, { type, payload }) {
           name: payload.routeDisplayName,
           icon: payload.routeIcon,
           path: !payload.children && payload.path,
-          children: payload.children && payload.children.map(child => ({
-            component: child.component,
-            name: child.routeDisplayName,
-            icon: child.routeIcon,
-            path: `${payload.path}/${child.name}`,
-          })),
+          children:
+            payload.children &&
+            payload.children.map(child => ({
+              component: child.component,
+              name: child.routeDisplayName,
+              icon: child.routeIcon,
+              path: `${payload.path}/${child.name}`,
+            })),
         },
       };
-    default: // eslint-disable-line no-fallthrough
+    default:
+      // eslint-disable-line no-fallthrough
       return state;
   }
 }

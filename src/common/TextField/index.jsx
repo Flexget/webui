@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
 const CustomTextField = ({ input, meta: { touched, error }, ...custom }) => (
-  <TextField
-    error={touched && error}
-    {...input}
-    {...custom}
-  />
+  <TextField error={touched && error} {...input} {...custom} />
 );
 
 CustomTextField.propTypes = {

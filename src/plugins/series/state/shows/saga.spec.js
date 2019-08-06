@@ -12,38 +12,42 @@ describe('plugins/series/data/shows/saga', () => {
     describe('success', () => {
       const it = sagaHelper(getShows());
 
-      it('should call delay', (result) => {
+      it('should call delay', result => {
         expect(result).toEqual(call(delay, 500));
       });
 
-      it('should call get /series', (result) => {
+      it('should call get /series', result => {
         expect(result).toEqual(call(get, `/series?${stringify(defaultOptions)}`));
 
         return { data: { c: 'd' }, headers: { a: 'b' } };
       });
 
-      it('should put the success action', (result) => {
-        expect(result).toEqual(put(action(GET_SHOWS, {
-          data: { c: 'd' },
-          headers: { a: 'b' },
-        })));
+      it('should put the success action', result => {
+        expect(result).toEqual(
+          put(
+            action(GET_SHOWS, {
+              data: { c: 'd' },
+              headers: { a: 'b' },
+            }),
+          ),
+        );
       });
     });
 
     describe('failure', () => {
       const it = sagaHelper(getShows());
 
-      it('should call delay', (result) => {
+      it('should call delay', result => {
         expect(result).toEqual(call(delay, 500));
       });
 
-      it('should call get /series', (result) => {
+      it('should call get /series', result => {
         expect(result).toEqual(call(get, `/series?${stringify(defaultOptions)}`));
 
         return new Error('ERROR');
       });
 
-      it('should put the failure action', (result) => {
+      it('should put the failure action', result => {
         expect(result).toEqual(put(action(GET_SHOWS, new Error('ERROR'))));
       });
     });
