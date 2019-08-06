@@ -13,7 +13,7 @@ describe('plugins/pendingList/data/reducer', () => {
       payload: {
         lists: [{ id: 0, name: 'list' }],
       },
-    })).toEqual({ lists: [{ id: 0, name: 'list' }], entries: {} });
+    })).toEqual({ lists: [{ id: 0, name: 'list' }], entries: {}, selected: 0 });
   });
 
   it('should add list on ADD_LIST', () => {
