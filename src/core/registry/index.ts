@@ -1,11 +1,6 @@
 import { camelize } from 'humps';
 import { ReducersMapObject } from 'redux';
-import {
-  ReducerHandler,
-  SagaHandler,
-  RouteHandler,
-  Plugin,
-} from './types';
+import { ReducerHandler, SagaHandler, RouteHandler, Plugin } from './types';
 
 export class PluginRegistry {
   reducers: ReducersMapObject;
@@ -35,14 +30,10 @@ export class PluginRegistry {
     this.routeHandler = fn;
   }
 
-  registerPlugin(name: string, {
-    component,
-    children,
-    routeDisplayName,
-    routeIcon,
-    reducer,
-    saga,
-  }: Plugin = {}) {
+  registerPlugin(
+    name: string,
+    { component, children, routeDisplayName, routeIcon, reducer, saga }: Plugin = {},
+  ) {
     if (!name) {
       throw Error('Plugin requires name');
     }
@@ -52,12 +43,16 @@ export class PluginRegistry {
       }
 
       this.routeHandler({
-        path: `/${name}`, component, children, routeDisplayName, routeIcon,
+        path: `/${name}`,
+        component,
+        children,
+        routeDisplayName,
+        routeIcon,
       });
     }
 
     if (children) {
-      children.forEach((child) => {
+      children.forEach(child => {
         if (child.reducer) {
           this.reducers[camelize(name)] = child.reducer;
           this.reducerHandler(this.reducers);

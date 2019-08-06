@@ -1,9 +1,4 @@
-import {
-  LOG_CONNECT,
-  LOG_MESSAGE,
-  LOG_DISCONNECT,
-  LOG_CLEAR,
-} from './actions';
+import { LOG_CONNECT, LOG_MESSAGE, LOG_DISCONNECT, LOG_CLEAR } from './actions';
 
 const initState = {
   messages: [],

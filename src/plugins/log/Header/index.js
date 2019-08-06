@@ -1,9 +1,5 @@
 import { connect } from 'react-redux';
-import {
-  LOG_CONNECT,
-  LOG_DISCONNECT,
-  LOG_CLEAR,
-} from 'plugins/log/state/actions';
+import { LOG_CONNECT, LOG_DISCONNECT, LOG_CLEAR } from 'plugins/log/state/actions';
 import { action, request } from 'utils/actions';
 import Header from './Header';
 
@@ -21,5 +17,8 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Header);
 export { Header };

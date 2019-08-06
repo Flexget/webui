@@ -10,15 +10,17 @@ describe('core/server/data/sage', () => {
     describe('success', () => {
       const it = sagaHelper(manageServer('reload', request(SERVER_RELOAD)));
 
-      it('should call /server/manage', (result) => {
-        expect(result).toEqual(call(post, '/server/manage', {
-          operation: 'reload',
-        }));
+      it('should call /server/manage', result => {
+        expect(result).toEqual(
+          call(post, '/server/manage', {
+            operation: 'reload',
+          }),
+        );
 
         return { data: { message: 'message' } };
       });
 
-      it('should put the success action', (result) => {
+      it('should put the success action', result => {
         expect(result).toEqual(put(action(SERVER_RELOAD, {}, { message: 'message' })));
       });
     });
@@ -26,15 +28,17 @@ describe('core/server/data/sage', () => {
     describe('failure', () => {
       const it = sagaHelper(manageServer('shutdown', request(SERVER_SHUTDOWN)));
 
-      it('should call /server/manage', (result) => {
-        expect(result).toEqual(call(post, '/server/manage', {
-          operation: 'shutdown',
-        }));
+      it('should call /server/manage', result => {
+        expect(result).toEqual(
+          call(post, '/server/manage', {
+            operation: 'shutdown',
+          }),
+        );
 
         return new Error('ERROR');
       });
 
-      it('should put the failure action', (result) => {
+      it('should put the failure action', result => {
         expect(result).toEqual(put(action(SERVER_SHUTDOWN, new Error('ERROR'))));
       });
     });

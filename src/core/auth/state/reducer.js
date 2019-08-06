@@ -15,7 +15,9 @@ export default function reducer(state = {}, action) {
       if (action.payload.statusCode === 401) {
         return {};
       }
-    default: // eslint-disable-line no-fallthrough
+
+    // falls through
+    default:
       return state;
   }
 }

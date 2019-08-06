@@ -1,6 +1,6 @@
 import { ERROR_STATUS, INFO_STATUS } from './actions';
 
-export default store => next => (action) => {
+export default store => next => action => {
   if (action.error && action.meta && action.payload) {
     return next({
       type: ERROR_STATUS,
@@ -11,7 +11,8 @@ export default store => next => (action) => {
         type: action.type,
       },
     });
-  } if (action.meta && action.meta.message) {
+  }
+  if (action.meta && action.meta.message) {
     store.dispatch({
       type: INFO_STATUS,
       payload: {

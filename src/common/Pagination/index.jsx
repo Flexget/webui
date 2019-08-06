@@ -2,13 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { createUltimatePagination } from 'react-ultimate-pagination';
-import {
-  Pagination, firstLink, lastLink, link, active,
-} from './styles';
+import { Pagination, firstLink, lastLink, link, active } from './styles';
 
-const page = ({
-  isActive, value, isDisabled, onClick,
-}) => (
+const page = ({ isActive, value, isDisabled, onClick }) => (
   <Button
     className={isActive ? [active, link].join(' ') : link}
     onClick={onClick}

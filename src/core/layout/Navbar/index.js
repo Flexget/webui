@@ -7,14 +7,22 @@ import Navbar from './Navbar';
 function mapStateToProps({ router, routes }) {
   return {
     pathname: router.location.pathname,
-    titleMap: Object.values(routes).reduce((obj, route) => ({
-      ...obj,
-      [route.path]: route.name,
-      ...(route.children ? route.children.reduce((o, r) => ({
-        ...o,
-        [r.path]: r.name,
-      }), {}) : {}),
-    }), {}),
+    titleMap: Object.values(routes).reduce(
+      (obj, route) => ({
+        ...obj,
+        [route.path]: route.name,
+        ...(route.children
+          ? route.children.reduce(
+              (o, r) => ({
+                ...o,
+                [r.path]: r.name,
+              }),
+              {},
+            )
+          : {}),
+      }),
+      {},
+    ),
   };
 }
 
@@ -26,5 +34,8 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Navbar);
 export { Navbar };

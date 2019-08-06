@@ -11,12 +11,10 @@ export default class SortList extends PureComponent {
     sortBy: PropTypes.string.isRequired,
     sortOrder: PropTypes.string.isRequired,
     perPage: PropTypes.number.isRequired,
-  }
+  };
 
-  handleChange = (event) => {
-    const {
-      onSortUpdate, sortBy, sortOrder, perPage,
-    } = this.props;
+  handleChange = event => {
+    const { onSortUpdate, sortBy, sortOrder, perPage } = this.props;
 
     const data = {
       sortBy,

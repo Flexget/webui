@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from '@material-ui/core/Dialog';
+import Dialog, { DialogActions, DialogContent, DialogTitle } from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import TextField from 'common/TextField';
 

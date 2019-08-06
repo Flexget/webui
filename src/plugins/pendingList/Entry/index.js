@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import {
-  APPROVE_ENTRY, REJECT_ENTRY, REMOVE_ENTRY, INJECT_ENTRY,
+  APPROVE_ENTRY,
+  REJECT_ENTRY,
+  REMOVE_ENTRY,
+  INJECT_ENTRY,
 } from 'plugins/pendingList/state/actions';
 import { request } from 'utils/actions';
 import Entry from './Entry';
@@ -14,4 +17,7 @@ function mapDispatchToProps(dispatch, { entry }) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(Entry);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Entry);

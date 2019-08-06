@@ -8,27 +8,15 @@ import theme from 'theme';
 const mockStore = configureMockStore();
 
 export function themed(component) {
-  return (
-    <MuiThemeProvider theme={theme}>
-      { component }
-    </MuiThemeProvider>
-  );
+  return <MuiThemeProvider theme={theme}>{component}</MuiThemeProvider>;
 }
 
 export function router(component) {
-  return (
-    <MemoryRouter>
-      { component }
-    </MemoryRouter>
-  );
+  return <MemoryRouter>{component}</MemoryRouter>;
 }
 
 export function provider(component, state = {}) {
-  return (
-    <Provider store={mockStore(state)}>
-      { component }
-    </Provider>
-  );
+  return <Provider store={mockStore(state)}>{component}</Provider>;
 }
 
 export class Headers {

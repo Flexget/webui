@@ -15,35 +15,13 @@ const LogTable = ({ messages }) => (
         width={width}
         height={height}
         rowGetter={({ index }) => messages[index]}
-        rowClassName={({ index }) => messages[index] && messages[index]
-          .log_level.toLowerCase()}
+        rowClassName={({ index }) => messages[index] && messages[index].log_level.toLowerCase()}
       >
-        <Column
-          label="Time"
-          dataKey="timestamp"
-          width={100}
-        />
-        <Column
-          label="Level"
-          dataKey="logLevel"
-          width={100}
-        />
-        <Column
-          label="Plugin"
-          dataKey="plugin"
-          width={100}
-        />
-        <Column
-          label="Task"
-          dataKey="task"
-          width={100}
-        />
-        <Column
-          label="Message"
-          dataKey="message"
-          width={100}
-          flexGrow={1}
-        />
+        <Column label="Time" dataKey="timestamp" width={100} />
+        <Column label="Level" dataKey="logLevel" width={100} />
+        <Column label="Plugin" dataKey="plugin" width={100} />
+        <Column label="Task" dataKey="task" width={100} />
+        <Column label="Message" dataKey="message" width={100} flexGrow={1} />
       </Table>
     )}
   </AutoSizer>

@@ -7,4 +7,7 @@ function mapStateToProps({ pendingList }) {
   };
 }
 
-export default connect(mapStateToProps, null)(Pagination);
+export default connect(
+  mapStateToProps,
+  null,
+)(Pagination);

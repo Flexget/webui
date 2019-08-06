@@ -5,7 +5,6 @@ import Pagination from 'common/Pagination';
 import FlexgetEntry from 'common/FlexGetEntry';
 import { PaginationWrapper } from './styles';
 
-
 export default class ListPagination extends PureComponent {
   static propTypes = {
     entries: PropTypes.shape({
@@ -15,12 +14,15 @@ export default class ListPagination extends PureComponent {
     }).isRequired,
     onPageUpdate: PropTypes.func.isRequired,
     perPage: PropTypes.number.isRequired,
-  }
+  };
 
   onPageUpdate = page => this.props.onPageUpdate(Number(page));
 
   render() {
-    const { entries: { totalCount, page }, perPage } = this.props;
+    const {
+      entries: { totalCount, page },
+      perPage,
+    } = this.props;
 
     if (!totalCount) {
       return null;
@@ -31,11 +33,7 @@ export default class ListPagination extends PureComponent {
     return (
       <PaginationWrapper>
         {totalPages > 1 && (
-          <Pagination
-            currentPage={page}
-            totalPages={totalPages}
-            onChange={this.onPageUpdate}
-          />
+          <Pagination currentPage={page} totalPages={totalPages} onChange={this.onPageUpdate} />
         )}
       </PaginationWrapper>
     );

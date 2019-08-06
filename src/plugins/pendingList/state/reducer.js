@@ -11,7 +11,7 @@ export default function reducer(state = initState, { payload, type }) {
       return {
         ...state,
         lists: payload.lists,
-        selected: (payload.lists.length ? payload.lists[0].id : undefined),
+        selected: payload.lists.length ? payload.lists[0].id : undefined,
       };
     case actions.SELECT_LIST:
       return {
@@ -52,7 +52,7 @@ export default function reducer(state = initState, { payload, type }) {
         ...state,
         entries: {
           ...state.entries,
-          items: state.entries.items.map((item) => {
+          items: state.entries.items.map(item => {
             if (item.id === payload.entry.id) {
               return payload.entry;
             }

@@ -6,15 +6,7 @@ import SideNav from 'core/layout/SideNav';
 import LoadingBar from 'common/LoadingBar';
 import ErrorStatus from 'common/ErrorStatus';
 import InfoStatus from 'common/InfoStatus';
-import {
-  Wrapper,
-  Main,
-  Header,
-  LogoWrapper,
-  Nav,
-  SideBar,
-  Content,
-} from './styles';
+import { Wrapper, Main, Header, LogoWrapper, Nav, SideBar, Content } from './styles';
 
 class Layout extends Component {
   static propTypes = {
@@ -29,7 +21,7 @@ class Layout extends Component {
     this.setState(({ sideBarOpen }) => ({
       sideBarOpen: !sideBarOpen,
     }));
-  }
+  };
 
   render() {
     const { children } = this.props;
@@ -48,14 +40,9 @@ class Layout extends Component {
         </Header>
         <Main>
           <SideBar>
-            <SideNav
-              sideBarOpen={sideBarOpen}
-              toggle={this.toggleSideBar}
-            />
+            <SideNav sideBarOpen={sideBarOpen} toggle={this.toggleSideBar} />
           </SideBar>
-          <Content open={sideBarOpen}>
-            { children }
-          </Content>
+          <Content open={sideBarOpen}>{children}</Content>
           <ErrorStatus />
           <InfoStatus />
         </Main>

@@ -16,10 +16,10 @@ export default function reducer(state = defaultState, { payload, type }) {
     case RECENT_TASK: {
       return {
         ...state,
-        recent: [
-          payload.task,
-          ...state.recent.filter(t => t.name !== payload.task.name),
-        ].slice(0, 3),
+        recent: [payload.task, ...state.recent.filter(t => t.name !== payload.task.name)].slice(
+          0,
+          3,
+        ),
       };
     }
 

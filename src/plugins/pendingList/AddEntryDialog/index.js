@@ -6,11 +6,17 @@ import AddEntryDialog from './AddEntryDialog';
 
 function mapDispatchToProps(dispatch, { onClose, listId }) {
   return {
-    onSubmit: entry => new Promise((resolve, reject) => (
-      dispatch(request(ADD_ENTRY, {
-        listId, entry, resolve, reject,
-      }))
-    )),
+    onSubmit: entry =>
+      new Promise((resolve, reject) =>
+        dispatch(
+          request(ADD_ENTRY, {
+            listId,
+            entry,
+            resolve,
+            reject,
+          }),
+        ),
+      ),
     onSubmitSuccess: () => {
       onClose();
       dispatch(reset('addEntry'));
@@ -22,4 +28,7 @@ function mapDispatchToProps(dispatch, { onClose, listId }) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(AddEntryDialog);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(AddEntryDialog);

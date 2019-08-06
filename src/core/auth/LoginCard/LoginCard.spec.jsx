@@ -14,24 +14,22 @@ describe('core/Login/LoginCard', () => {
 
     it('should call handleSubmit on submit', () => {
       const handleSubmit = jest.fn();
-      const wrapper = shallow(<LoginCard
-        handleSubmit={handleSubmit}
-        classes={{}}
-      />);
+      const wrapper = shallow(<LoginCard handleSubmit={handleSubmit} classes={{}} />);
 
       wrapper.find('form').simulate('submit');
       expect(handleSubmit).toHaveBeenCalled();
     });
   });
 
-
   describe('mapStateToProps', () => {
     it('should return no errors if there are none', () => {
-      expect(mapStateToProps({ status: { } })).toMatchSnapshot();
+      expect(mapStateToProps({ status: {} })).toMatchSnapshot();
     });
 
     it('should return errors if there are errors', () => {
-      expect(mapStateToProps({ status: { error: { message: 'Invalid Credentials' } } })).toMatchSnapshot();
+      expect(
+        mapStateToProps({ status: { error: { message: 'Invalid Credentials' } } }),
+      ).toMatchSnapshot();
     });
   });
 });

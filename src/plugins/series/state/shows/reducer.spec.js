@@ -8,12 +8,14 @@ describe('plugins/series/data/shows/reducer', () => {
   });
 
   it('should add shows on GET_SHOWS', () => {
-    expect(reducer(undefined, {
-      type: GET_SHOWS,
-      payload: {
-        headers: new Headers({ 'total-count': 1 }),
-        data: [{ item: 'an item' }],
-      },
-    })).toEqual({ totalCount: 1, items: [{ item: 'an item' }] });
+    expect(
+      reducer(undefined, {
+        type: GET_SHOWS,
+        payload: {
+          headers: new Headers({ 'total-count': 1 }),
+          data: [{ item: 'an item' }],
+        },
+      }),
+    ).toEqual({ totalCount: 1, items: [{ item: 'an item' }] });
   });
 });

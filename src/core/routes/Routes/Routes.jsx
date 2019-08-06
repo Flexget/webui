@@ -7,9 +7,7 @@ const Routes = ({ routes }) => (
   <Switch>
     {routes.map(({ children, ...pr }) => {
       if (children) {
-        return (
-          (children || []).map(p => <PrivateRoute exact {...p} key={p.path} />)
-        );
+        return (children || []).map(p => <PrivateRoute exact {...p} key={p.path} />);
       }
       return <PrivateRoute exact {...pr} key={pr.path} />;
     })}
@@ -17,12 +15,16 @@ const Routes = ({ routes }) => (
 );
 
 Routes.propTypes = {
-  routes: PropTypes.arrayOf(PropTypes.shape({
-    path: PropTypes.string.isRequired,
-    children: PropTypes.arrayOf(PropTypes.shape({
-      path: PropTypes.string,
-    })),
-  })).isRequired,
+  routes: PropTypes.arrayOf(
+    PropTypes.shape({
+      path: PropTypes.string.isRequired,
+      children: PropTypes.arrayOf(
+        PropTypes.shape({
+          path: PropTypes.string,
+        }),
+      ),
+    }),
+  ).isRequired,
 };
 
 export default Routes;

@@ -6,7 +6,9 @@ import { backgroundColor } from 'common/styles';
 
 import { AppBar, Toolbar, IconButton } from '@material-ui/core';
 
-export const menuIcon = css`padding-right: 3rem`;
+export const menuIcon = css`
+  padding-right: 3rem;
+`;
 
 export const NavAppBar = styled(AppBar)`
   position: static;

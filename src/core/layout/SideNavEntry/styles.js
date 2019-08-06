@@ -4,7 +4,9 @@ import theme from 'theme';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { ListItem, ListItemText } from '@material-ui/core';
 
-const colorClass = css`color: ${theme.palette.secondary[200]};`;
+const colorClass = css`
+  color: ${theme.palette.secondary[200]};
+`;
 
 export const SideNavIcon = styled(FontAwesomeIcon)`
   ${colorClass};

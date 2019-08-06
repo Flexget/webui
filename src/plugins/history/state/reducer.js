@@ -4,7 +4,6 @@ const initState = {
   items: [],
 };
 
-
 export default function reducer(state = initState, { type, payload }) {
   switch (type) {
     case GET_HISTORY:

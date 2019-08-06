@@ -13,14 +13,7 @@ const AddListDialog = ({ open, onClose, handleSubmit }) => (
     <DialogTitle>Add New Pending List</DialogTitle>
     <form onSubmit={handleSubmit}>
       <DialogContent>
-        <Field
-          autoFocus
-          id="name"
-          label="List Name"
-          fullWidth
-          name="name"
-          component={TextField}
-        />
+        <Field autoFocus id="name" label="List Name" fullWidth name="name" component={TextField} />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} type="button">

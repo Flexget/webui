@@ -2,10 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import FlexGetEntry from 'common/FlexGetEntry';
 import Entry from '../Entry';
-import {
-  EntryWrapper,
-  ListWrapper,
-} from './styles';
+import { EntryWrapper, ListWrapper } from './styles';
 
 export default class EntryList extends PureComponent {
   static propTypes = {
@@ -21,11 +18,11 @@ export default class EntryList extends PureComponent {
     sortOrder: PropTypes.string.isRequired,
     perPage: PropTypes.number.isRequired,
     page: PropTypes.number.isRequired,
-  }
+  };
 
   static defaultProps = {
     listId: false,
-  }
+  };
 
   componentDidMount() {
     const { getTasks } = this.props;
@@ -36,18 +33,25 @@ export default class EntryList extends PureComponent {
 
   componentDidUpdate(prevProps) {
     const {
-      listId, sortBy, sortOrder, page, perPage, entries: { items = [] },
+      listId,
+      sortBy,
+      sortOrder,
+      page,
+      perPage,
+      entries: { items = [] },
     } = this.props;
 
-    const { entries: { items: preItems = [] } } = prevProps;
+    const {
+      entries: { items: preItems = [] },
+    } = prevProps;
 
     // If list of sort options have changes
     if (
-      listId !== prevProps.listId
-      || page !== prevProps.page
-      || sortBy !== prevProps.sortBy
-      || sortOrder !== prevProps.sortOrder
-      || perPage !== prevProps.perPage
+      listId !== prevProps.listId ||
+      page !== prevProps.page ||
+      sortBy !== prevProps.sortBy ||
+      sortOrder !== prevProps.sortOrder ||
+      perPage !== prevProps.perPage
     ) {
       this.updateEntries();
     }
@@ -61,13 +65,7 @@ export default class EntryList extends PureComponent {
   }
 
   updateEntries() {
-    const {
-      sortBy,
-      sortOrder,
-      page,
-      perPage,
-      getEntries,
-    } = this.props;
+    const { sortBy, sortOrder, page, perPage, getEntries } = this.props;
 
     getEntries({
       sortBy,
@@ -78,19 +76,21 @@ export default class EntryList extends PureComponent {
   }
 
   render() {
-    const { entries: { items = [] }, listId } = this.props;
+    const {
+      entries: { items = [] },
+      listId,
+    } = this.props;
 
     return (
       <div>
         <ListWrapper>
-          {listId === null && (
-            <div>Please Select List</div>
-          )}
-          {items && items.map(entry => (
-            <EntryWrapper key={entry.id}>
-              <Entry entry={entry} />
-            </EntryWrapper>
-          ))}
+          {listId === null && <div>Please Select List</div>}
+          {items &&
+            items.map(entry => (
+              <EntryWrapper key={entry.id}>
+                <Entry entry={entry} />
+              </EntryWrapper>
+            ))}
         </ListWrapper>
       </div>
     );

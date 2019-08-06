@@ -1,10 +1,5 @@
 import reducer from './reducer';
-import {
-  LOG_CONNECT,
-  LOG_MESSAGE,
-  LOG_DISCONNECT,
-  LOG_CLEAR,
-} from './actions';
+import { LOG_CONNECT, LOG_MESSAGE, LOG_DISCONNECT, LOG_CLEAR } from './actions';
 
 describe('plugins/log/data/reducer', () => {
   it('should return the initial state', () => {

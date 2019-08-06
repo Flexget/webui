@@ -2,28 +2,26 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Collapse from '@material-ui/core/Collapse';
 import SideNavEntry from 'core/layout/SideNavEntry';
-import {
-  NestedSideNavEntry,
-  DrawerInner,
-  NavVersion,
-  NavList,
-  NavDrawer,
-} from './styles';
+import { NestedSideNavEntry, DrawerInner, NavVersion, NavList, NavDrawer } from './styles';
 
 export default class SideNav extends Component {
   static propTypes = {
     sideBarOpen: PropTypes.bool.isRequired,
     toggle: PropTypes.func.isRequired,
-    routes: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string,
-      icon: PropTypes.string,
-      path: PropTypes.string,
-      children: PropTypes.arrayOf(PropTypes.shape({
+    routes: PropTypes.arrayOf(
+      PropTypes.shape({
         name: PropTypes.string,
         icon: PropTypes.string,
         path: PropTypes.string,
-      })),
-    })).isRequired,
+        children: PropTypes.arrayOf(
+          PropTypes.shape({
+            name: PropTypes.string,
+            icon: PropTypes.string,
+            path: PropTypes.string,
+          }),
+        ),
+      }),
+    ).isRequired,
   };
 
   state = {
@@ -39,13 +37,10 @@ export default class SideNav extends Component {
 
   toggleOnMobile = () => {
     const { toggle } = this.props;
-    if (
-      window.matchMedia
-      && window.matchMedia('(max-width: 600px)').matches
-    ) {
+    if (window.matchMedia && window.matchMedia('(max-width: 600px)').matches) {
       toggle();
     }
-  }
+  };
 
   handleOnClick = ({ path, name }) => {
     const { sideBarOpen, toggle } = this.props;
@@ -64,7 +59,7 @@ export default class SideNav extends Component {
         toggle();
       }
     };
-  }
+  };
 
   renderNavItems() {
     const { routes } = this.props;
@@ -73,11 +68,7 @@ export default class SideNav extends Component {
     return routes.reduce((items, props) => {
       const list = [
         ...items,
-        <SideNavEntry
-          key={props.path}
-          onClick={this.handleOnClick(props)}
-          {...props}
-        />,
+        <SideNavEntry key={props.path} onClick={this.handleOnClick(props)} {...props} />,
       ];
       if (props.children) {
         const collaspe = (
@@ -88,11 +79,7 @@ export default class SideNav extends Component {
             key={`${props.label}-collapse`}
           >
             {props.children.map(child => (
-              <NestedSideNavEntry
-                key={child.path}
-                onClick={this.handleOnClick(child)}
-                {...child}
-              />
+              <NestedSideNavEntry key={child.path} onClick={this.handleOnClick(child)} {...child} />
             ))}
           </Collapse>
         );
@@ -105,10 +92,7 @@ export default class SideNav extends Component {
   render() {
     const { sideBarOpen } = this.props;
     return (
-      <NavDrawer
-        open={sideBarOpen}
-        variant="permanent"
-      >
+      <NavDrawer open={sideBarOpen} variant="permanent">
         <DrawerInner>
           <NavList>{this.renderNavItems()}</NavList>
           <NavVersion hide={!sideBarOpen} />

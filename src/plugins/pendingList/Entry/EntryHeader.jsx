@@ -6,9 +6,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import FlexGetEntry from 'common/FlexGetEntry';
 import Divider from '@material-ui/core/Divider';
 
-import {
-  Chips, GenreChip, QualityChip, StarIcon, header,
-} from './styles';
+import { Chips, GenreChip, QualityChip, StarIcon, header } from './styles';
 
 class EntryHeader extends React.PureComponent {
   static propTypes = {
@@ -17,7 +15,7 @@ class EntryHeader extends React.PureComponent {
 
   state = { anchorEl: null };
 
-  handlePopoverOpen = (event) => {
+  handlePopoverOpen = event => {
     this.setState({ anchorEl: event.target });
   };
 
@@ -27,7 +25,9 @@ class EntryHeader extends React.PureComponent {
 
   ratings() {
     const { anchorEl } = this.state;
-    const { entry: { ratings = [] } } = this.props;
+    const {
+      entry: { ratings = [] },
+    } = this.props;
     const open = !!anchorEl;
 
     return (
@@ -39,25 +39,13 @@ class EntryHeader extends React.PureComponent {
           onBlur={this.handlePopoverClose}
         >
           <Typography variant="h6">
-            {
-              ratings.length > 0 && (
-                <span>
-                  <StarIcon icon="star" alt={ratings[0].site} />
-                  {ratings[0].rating}
-                  {
-                    ratings[0].votes > 0
-                    && (
-                      <span>
-                        {' '}
-(
-                        {ratings[0].votes}
-)
-                      </span>
-                    )
-                  }
-                </span>
-              )
-            }
+            {ratings.length > 0 && (
+              <span>
+                <StarIcon icon="star" alt={ratings[0].site} />
+                {ratings[0].rating}
+                {ratings[0].votes > 0 && <span> ({ratings[0].votes})</span>}
+              </span>
+            )}
           </Typography>
         </div>
         <Popover
@@ -80,22 +68,26 @@ class EntryHeader extends React.PureComponent {
   }
 
   chips() {
-    const { entry: { genres = [], quality = [] } } = this.props;
+    const {
+      entry: { genres = [], quality = [] },
+    } = this.props;
 
     return (
       <Chips>
-        {
-          genres.map(g => <GenreChip label={g} key={`${g}-genre`} />)
-        }
-        {
-          quality.map(q => <QualityChip label={q} key={`${q}-quality`} />)
-        }
+        {genres.map(g => (
+          <GenreChip label={g} key={`${g}-genre`} />
+        ))}
+        {quality.map(q => (
+          <QualityChip label={q} key={`${q}-quality`} />
+        ))}
       </Chips>
     );
   }
 
   render() {
-    const { entry: { title, titleFormatted = [] } } = this.props;
+    const {
+      entry: { title, titleFormatted = [] },
+    } = this.props;
 
     return (
       <div>

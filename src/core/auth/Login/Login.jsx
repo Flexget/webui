@@ -9,9 +9,7 @@ const LoginPage = ({ redirectToReferrer, location, loading }) => {
   const { from } = location.state || { from: { pathname: '/' } };
 
   if (redirectToReferrer) {
-    return (
-      <Redirect to={from} />
-    );
+    return <Redirect to={from} />;
   }
 
   if (loading) {

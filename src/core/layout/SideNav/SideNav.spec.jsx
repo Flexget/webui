@@ -6,8 +6,7 @@ import fetchMock from 'fetch-mock';
 
 describe('core/layout/components/Sidenav', () => {
   beforeEach(() => {
-    fetchMock
-      .get('/api/server/version', {});
+    fetchMock.get('/api/server/version', {});
   });
 
   xit('renders correctly with sideBarOpen', () => {

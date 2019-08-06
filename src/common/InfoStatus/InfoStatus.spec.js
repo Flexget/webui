@@ -6,6 +6,6 @@ describe('common/InfoStatus', () => {
   });
 
   it('should be correct if an info status should not be displayed', () => {
-    expect(mapStateToProps({ status: { } })).toMatchSnapshot();
+    expect(mapStateToProps({ status: {} })).toMatchSnapshot();
   });
 });

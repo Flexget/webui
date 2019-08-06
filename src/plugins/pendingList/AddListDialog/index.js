@@ -6,9 +6,8 @@ import AddListDialog from './AddListDialog';
 
 function mapDispatchToProps(dispatch, { onClose }) {
   return {
-    onSubmit: data => new Promise((resolve, reject) => (
-      dispatch(request(ADD_LIST, { data, resolve, reject }))
-    )),
+    onSubmit: data =>
+      new Promise((resolve, reject) => dispatch(request(ADD_LIST, { data, resolve, reject }))),
     onSubmitSuccess: () => {
       onClose();
       dispatch(reset('addPendingList'));
@@ -20,4 +19,7 @@ function mapDispatchToProps(dispatch, { onClose }) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(AddListDialog);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(AddListDialog);

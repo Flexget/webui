@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import theme from 'theme';
 
 const HEADER_HEIGHT = 5;
-const MOBILE_HEADER_HEIGHT = (HEADER_HEIGHT * 2);
+const MOBILE_HEADER_HEIGHT = HEADER_HEIGHT * 2;
 
 export const Wrapper = styled.div`
   display: flex;
