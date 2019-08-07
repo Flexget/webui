@@ -9,6 +9,8 @@ import AddListDialog from '../AddListDialog';
 import { List, SelectedListID } from '../state/types';
 import { GET_LISTS, SELECT_LIST } from '../state/actions';
 
+const ALD = AddListDialog as any; // eslint-disable-line @typescript-eslint/no-explicit-any
+
 interface SelectorProps {
   lists: List[];
   listId?: SelectedListID;
@@ -58,7 +60,7 @@ const TabList: React.FC<{}> = () => {
         ))}
         <Tab icon={<FontAwesomeIcon icon="plus-circle" />} value="add" />
       </SecondaryNav>
-      <AddListDialog open={addDialog.isOpen} onClose={addDialog.closeOverlay} />
+      <ALD open={addDialog.isOpen} onClose={addDialog.closeOverlay} />
     </div>
   );
 };

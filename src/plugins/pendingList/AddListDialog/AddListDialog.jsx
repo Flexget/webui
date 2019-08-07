@@ -30,11 +30,12 @@ const AddListDialog = ({ open, onClose, handleSubmit }) => (
 AddListDialog.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func,
 };
 
 AddListDialog.defaultProps = {
   open: false,
+  handleSubmit: () => {},
 };
 
 export default reduxForm({
