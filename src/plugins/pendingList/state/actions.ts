@@ -1,7 +1,8 @@
-import { action, ActionsUnion, RequestsOfType as ROT } from 'utils/actions';
+import { action, ActionsUnion, ActionsOfType, Action, Meta } from 'utils/actions';
 import FlexGetEntry from 'common/FlexGetEntry';
 import { StatusError } from 'utils/fetch';
-import statusActions from 'core/status/state/actions';
+import statusActions, { Constants as sConstants, TypeMeta } from 'core/status/state/actions';
+import { RequestsOfType as ROT } from 'core/status/state/types';
 
 import { List } from './types';
 
@@ -103,6 +104,6 @@ const actions = {
 };
 
 export type ActionTypes = ActionsUnion<typeof actions>;
-export type RequestsOfType<T extends Constants> = ROT<ActionsUnion, T>:
+export type RequestsOfType<T extends Constants> = ROT<ActionTypes, T>;
 
 export default actions;

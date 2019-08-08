@@ -1,15 +1,19 @@
 import { LOCATION_CHANGE } from 'connected-react-router';
-import { LOADING_STATUS, ERROR_STATUS, CLOSE_STATUS, INFO_STATUS } from './actions';
+import { Constants, ActionTypes } from './actions';
 
-const initState = {
+export interface StatusState {
+  loading: Record<string, boolean>;
+  info?: string;
+  error?: Error;
+}
+
+const initState: StatusState = {
   loading: {},
-  info: null,
-  error: null,
 };
 
-export default (state = initState, action) => {
+export default (state = initState, action: ActionTypes) => {
   switch (action.type) {
-    case LOADING_STATUS:
+    case Constants.LOADING_STATUS:
       return {
         ...state,
         loading: {
@@ -17,7 +21,7 @@ export default (state = initState, action) => {
           [action.meta.type]: true,
         },
       };
-    case ERROR_STATUS: {
+    case Constants.ERROR_STATUS: {
       const { [action.payload.type]: _, ...loading } = state.loading;
       return {
         ...state,
@@ -25,12 +29,12 @@ export default (state = initState, action) => {
         loading,
       };
     }
-    case INFO_STATUS:
+    case Constants.INFO_STATUS:
       return {
         ...state,
         info: action.payload.message,
       };
-    case CLOSE_STATUS:
+    case Constants.CLOSE_STATUS:
     // falls through
     case LOCATION_CHANGE:
       return {

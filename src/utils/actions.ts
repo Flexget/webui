@@ -1,16 +1,15 @@
-import actions, { Constants } from 'core/status/state/actions';
 import { requesting } from 'core/status/state/util';
 import is from './is';
 
-interface Meta<T extends string = string> {
+export interface Meta<T extends string = string> {
   readonly message?: string;
   readonly type?: T;
   readonly statusCode?: string;
 }
 
-export interface Action<T extends string, P = undefined, U extends string = string> {
+export interface Action<T extends string, P = undefined, U extends string | Meta<string> = string> {
   readonly type: T;
-  readonly meta: Meta<U>;
+  readonly meta: U extends string ? Meta<U> : U;
   readonly payload: P;
 }
 
@@ -34,22 +33,19 @@ export type ActionsUnion<T extends ActionCreatorsDictionary> = ReturnType<
       : never;
   }[keyof T]
 >;
-export type ActionsOfType<T, U extends string, M extends string = string> = T extends Action<
-  U,
-  any,
-  M
->
-  ? T
-  : never;
 
-export type RequestsOfType<T, U extends string> = ActionsOfType<T, Constants.LOADING_STATUS, U>;
+export type ActionsOfType<
+  ActionUnion,
+  Type extends string,
+  MetaType extends string | Meta<string> = string
+> = ActionUnion extends Action<Type, any, MetaType> ? ActionUnion : never;
 
 export function action<T extends string>(type: T): Action<T>;
 export function action<T extends string, P>(type: T, payload: P): Action<T, P>;
-export function action<T extends string, P, U extends string = string>(
+export function action<T extends string, P, U extends string | Meta<string> = string>(
   type: T,
   payload: P,
-  meta: Meta<U>,
+  meta: U extends string ? Meta<U> : U,
 ): Action<T, P, U>;
 export function action(type, payload = undefined, meta = {}) {
   return is.undef(payload)
@@ -64,8 +60,6 @@ export function action(type, payload = undefined, meta = {}) {
         meta,
       };
 }
-
-export const request = actions.load;
 
 export { requesting };
 
