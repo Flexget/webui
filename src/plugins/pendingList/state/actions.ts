@@ -1,6 +1,7 @@
-import { action, ActionsUnion, ActionsOfType, Action, Meta } from 'utils/actions';
+import { action, ActionsUnion } from 'utils/actions';
 import FlexGetEntry from 'common/FlexGetEntry';
 import { StatusError } from 'utils/fetch';
+import { Direction } from 'utils/query';
 import statusActions, { Constants as sConstants, TypeMeta } from 'core/status/state/actions';
 import { RequestsOfType as ROT } from 'core/status/state/types';
 
@@ -17,11 +18,6 @@ export const enum Constants {
   APPROVE_ENTRY = '@flexget/pendingList/APPROVE_ENTRY',
   REJECT_ENTRY = '@flexget/pendingList/REJECT_ENTRY',
   SELECT_LIST = '@flexget/pendingList/SELECT_LIST',
-}
-
-export const enum Direction {
-  Desc = 'desc',
-  Asc = 'asc',
 }
 
 export const enum SortBy {

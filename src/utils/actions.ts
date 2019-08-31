@@ -1,4 +1,3 @@
-import { requesting } from 'core/status/state/util';
 import is from './is';
 
 export interface Meta<T extends string = string> {
@@ -7,14 +6,18 @@ export interface Meta<T extends string = string> {
   readonly statusCode?: string;
 }
 
-export interface Action<T extends string, P = undefined, U extends string | Meta<string> = string> {
+export interface Action<
+  T extends string = string,
+  P = undefined,
+  U extends string | Meta<string> = string
+> {
   readonly type: T;
   readonly meta: U extends string ? Meta<U> : U;
   readonly payload: P;
 }
 
-type ActionCreator = (...args: any[]) => any;
-interface AsyncActionCreator {
+export type ActionCreator = (...args: any[]) => any;
+export interface AsyncActionCreator {
   request: ActionCreator;
   success: ActionCreator;
   failure: ActionCreator;
@@ -38,7 +41,7 @@ export type ActionsOfType<
   ActionUnion,
   Type extends string,
   MetaType extends string | Meta<string> = string
-> = ActionUnion extends Action<Type, any, MetaType> ? ActionUnion : never;
+> = Extract<ActionUnion, Action<Type, any, MetaType>>;
 
 export function action<T extends string>(type: T): Action<T>;
 export function action<T extends string, P>(type: T, payload: P): Action<T, P>;
@@ -60,8 +63,6 @@ export function action(type, payload = undefined, meta = {}) {
         meta,
       };
 }
-
-export { requesting };
 
 export function withMeta<T extends string, P, U extends string>(
   act: Action<T, P, U>,

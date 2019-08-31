@@ -4,12 +4,12 @@ import { ReducersMapObject, Reducer } from 'redux';
 export type ReducerHandler = (reducers?: ReducersMapObject) => void;
 export type SagaHandler = (saga?: Function) => void;
 
-export interface Plugin {
+export interface Plugin<S = any> {
   component?: React.Component;
   children?: Plugin[];
   routeDisplayName?: string;
   routeIcon?: string;
-  reducer?: Reducer;
+  reducer?: Reducer<S>;
   saga?: Function;
 }
 

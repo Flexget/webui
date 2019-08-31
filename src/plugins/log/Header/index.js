@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-import { LOG_CONNECT, LOG_DISCONNECT, LOG_CLEAR } from 'plugins/log/state/actions';
-import { action, request } from 'utils/actions';
+import actions from 'plugins/log/state/actions';
 import Header from './Header';
 
 export function mapStateToProps({ log }) {
@@ -11,9 +10,9 @@ export function mapStateToProps({ log }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    start: payload => dispatch(request(LOG_CONNECT, payload)),
-    stop: () => dispatch(request(LOG_DISCONNECT)),
-    clearLogs: () => dispatch(action(LOG_CLEAR)),
+    start: payload => dispatch(actions.connect.request(payload)),
+    stop: () => dispatch(actions.disconnect()),
+    clearLogs: () => dispatch(actions.clear()),
   };
 }
 

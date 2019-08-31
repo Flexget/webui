@@ -1,4 +1,5 @@
-import { LOCATION_CHANGE } from 'connected-react-router';
+import { LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router';
+import { Action } from 'utils/actions';
 import { Constants, ActionTypes } from './actions';
 
 export interface StatusState {
@@ -11,7 +12,7 @@ const initState: StatusState = {
   loading: {},
 };
 
-export default (state = initState, action: ActionTypes) => {
+export default (state = initState, action: ActionTypes | LocationChangeAction | Action<''>) => {
   switch (action.type) {
     case Constants.LOADING_STATUS:
       return {

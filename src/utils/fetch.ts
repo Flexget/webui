@@ -2,6 +2,11 @@ import * as humps from 'humps';
 
 export class StatusError extends Error {
   status?: number;
+
+  constructor(message: string, s?: number) {
+    super(message);
+    this.status = s;
+  }
 }
 
 enum Method {

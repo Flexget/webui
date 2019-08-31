@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-import { request } from 'utils/actions';
-import { GET_SHOWS } from '../state/shows/actions';
+import actions from '../state/shows/actions';
 import Series from './Series';
 
 export function mapStateToProps({ series }) {
@@ -11,7 +10,7 @@ export function mapStateToProps({ series }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getShows: payload => dispatch(request(GET_SHOWS, payload)),
+    getShows: payload => dispatch(actions.getShows.request(payload)),
   };
 }
 

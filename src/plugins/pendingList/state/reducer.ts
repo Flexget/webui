@@ -8,13 +8,13 @@ interface Entries {
   items: FlexGetEntry[];
 }
 
-export interface PendingListState {
+export interface State {
   entries: Entries;
   lists: List[];
   selected?: number;
 }
 
-const initState: PendingListState = {
+const initState: State = {
   lists: [],
   entries: {
     totalCount: 0,
@@ -23,7 +23,7 @@ const initState: PendingListState = {
   },
 };
 
-export default function reducer(state = initState, action: ActionTypes) {
+export default function reducer(state = initState, action: ActionTypes): State {
   switch (action.type) {
     case Constants.GET_LISTS: {
       const {

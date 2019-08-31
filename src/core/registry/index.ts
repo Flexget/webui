@@ -30,9 +30,9 @@ export class PluginRegistry {
     this.routeHandler = fn;
   }
 
-  registerPlugin(
+  registerPlugin<S = any>(
     name: string,
-    { component, children, routeDisplayName, routeIcon, reducer, saga }: Plugin = {},
+    { component, children, routeDisplayName, routeIcon, reducer, saga }: Plugin<S> = {},
   ) {
     if (!name) {
       throw Error('Plugin requires name');

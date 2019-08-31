@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
-import { request } from 'utils/actions';
-import { GET_HISTORY } from '../state/actions';
+import actions from '../state/actions';
 import History from './History';
 
 function mapDispatchToProps(dispatch) {
   return {
-    getHistory: data => dispatch(request(GET_HISTORY, data)),
+    getHistory: data => dispatch(actions.getHistory.request(data)),
   };
 }
 

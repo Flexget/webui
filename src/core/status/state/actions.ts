@@ -41,7 +41,9 @@ const actions = {
       statusCode: err.status,
       type,
     }),
-  clearStatus: () => action(Constants.CLOSE_STATUS),
+  clear: () => action(Constants.CLOSE_STATUS),
+  info: <T extends string>(type: T, message: string) =>
+    action(Constants.INFO_STATUS, { type, message }),
 };
 
 export type ActionTypes = ActionsUnion<typeof actions>;
