@@ -1,29 +1,35 @@
-import { LOG_CONNECT, LOG_MESSAGE, LOG_DISCONNECT, LOG_CLEAR } from './actions';
+import { Constants, ActionTypes } from './actions';
+import { LogMessage } from './types';
 
-const initState = {
+interface State {
+  messages: LogMessage[];
+  connected: Boolean;
+}
+
+const initState: State = {
   messages: [],
   connected: false,
 };
 
-export default function reducer(state = initState, action) {
+export default function reducer(state = initState, action: ActionTypes): State {
   switch (action.type) {
-    case LOG_CONNECT:
+    case Constants.LOG_CONNECT:
       return {
         ...state,
         messages: [],
         connected: true,
       };
-    case LOG_MESSAGE:
+    case Constants.LOG_MESSAGE:
       return {
         ...state,
         messages: [action.payload, ...state.messages],
       };
-    case LOG_DISCONNECT:
+    case Constants.LOG_DISCONNECT:
       return {
         ...state,
         connected: false,
       };
-    case LOG_CLEAR:
+    case Constants.LOG_CLEAR:
       return {
         ...state,
         messages: [],

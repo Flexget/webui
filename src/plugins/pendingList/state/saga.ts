@@ -5,7 +5,7 @@ import { requesting } from 'core/status/state/util';
 
 import FlexGetEntry from 'common/FlexGetEntry';
 import * as fetch from 'utils/fetch';
-import { PendingListState } from './reducer';
+import { State } from './reducer';
 import actions, { Constants, RequestsOfType } from './actions';
 
 export function* getLists() {
@@ -71,9 +71,8 @@ export function* getEntries({ payload }: RequestsOfType<Constants.GET_ENTRIES>) 
   }
 }
 
-export const getCurrentPage = (listId: number) => ({
-  pendingList,
-}: Record<'pendingList', PendingListState>) => pendingList.entries[listId].page;
+export const getCurrentPage = (listId: number) => ({ pendingList }: Record<'pendingList', State>) =>
+  pendingList.entries[listId].page;
 
 export function* addEntry({ payload }: RequestsOfType<Constants.ADD_ENTRY>) {
   const { listId, entry } = payload;

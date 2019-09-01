@@ -2,7 +2,7 @@ import { action, ActionsUnion } from 'utils/actions';
 import FlexGetEntry from 'common/FlexGetEntry';
 import { StatusError } from 'utils/fetch';
 import { Direction } from 'utils/query';
-import statusActions, { Constants as sConstants, TypeMeta } from 'core/status/state/actions';
+import statusActions, from 'core/status/state/actions';
 import { RequestsOfType as ROT } from 'core/status/state/types';
 
 import { List } from './types';
