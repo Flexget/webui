@@ -32,7 +32,7 @@ const usePendingList = openDialog => {
 
   const { lists, listId }: SelectorProps = useSelector(
     ({ pendingList }) => ({
-      lists: pendingList.list,
+      lists: pendingList.lists,
       listId: pendingList.selected,
     }),
     shallowEqual,
