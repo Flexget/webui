@@ -7,13 +7,14 @@ import EntryList from './EntryList';
 function mapStateToProps({ pendingList }) {
   return {
     entries: pendingList.entries,
+    listId: pendingList.selected,
   };
 }
 
-function mapDispatchToProps(dispatch, { listId }) {
+function mapDispatchToProps(dispatch) {
   return {
     getTasks: () => dispatch(request(GET_TASKS)),
-    getEntries: params => listId && dispatch(request(GET_ENTRIES, { listId, params })),
+    getEntries: (listId, params) => dispatch(request(GET_ENTRIES, { listId, params })),
   };
 }
 

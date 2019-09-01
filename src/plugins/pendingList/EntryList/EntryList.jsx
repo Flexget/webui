@@ -65,9 +65,9 @@ export default class EntryList extends PureComponent {
   }
 
   updateEntries() {
-    const { sortBy, sortOrder, page, perPage, getEntries } = this.props;
+    const { sortBy, sortOrder, page, perPage, getEntries, listId } = this.props;
 
-    getEntries({
+    getEntries(listId, {
       sortBy,
       order: sortOrder,
       perPage,
