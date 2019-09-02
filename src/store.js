@@ -4,10 +4,9 @@ import { routerMiddleware } from 'connected-react-router';
 import history from 'core/history';
 import createReducer from 'core/reducers';
 import status from 'core/status/state/middleware';
-import { ADD_ROUTE } from 'core/routes/state/actions';
+import actions from 'core/routes/state/actions';
 import rootSaga from 'core/sagas';
 import registry from 'core/registry';
-import { action } from 'utils/actions';
 
 const sagaMiddleware = createSagaMiddleware();
 // eslint-disable-next-line no-underscore-dangle
@@ -21,7 +20,7 @@ sagaMiddleware.run(rootSaga);
 
 registry.onRegisterReducer = reducers => store.replaceReducer(createReducer(reducers));
 registry.onRegisterSaga = saga => sagaMiddleware.run(saga);
-registry.onRegisterRoute = data => store.dispatch(action(ADD_ROUTE, data));
+registry.onRegisterRoute = data => store.dispatch(actions.addRoute(data));
 
 export default store;
 

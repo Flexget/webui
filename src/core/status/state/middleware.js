@@ -1,9 +1,9 @@
-import { ERROR_STATUS, INFO_STATUS } from './actions';
+import { Constants } from './actions';
 
 export default store => next => action => {
   if (action.error && action.meta && action.payload) {
     return next({
-      type: ERROR_STATUS,
+      type: Constants.ERROR_STATUS,
       error: true,
       payload: {
         message: action.payload.message,
@@ -14,7 +14,7 @@ export default store => next => action => {
   }
   if (action.meta && action.meta.message) {
     store.dispatch({
-      type: INFO_STATUS,
+      type: Constants.INFO_STATUS,
       payload: {
         type: action.type,
         message: action.meta.message,

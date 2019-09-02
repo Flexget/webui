@@ -7,10 +7,11 @@ export type SagaHandler = (saga?: Function) => void;
 export interface Plugin<S = any> {
   component?: React.Component;
   children?: Plugin[];
-  routeDisplayName?: string;
-  routeIcon?: string;
+  routeDisplayName: string;
+  routeIcon: string;
   reducer?: Reducer<S>;
   saga?: Function;
+  name?: string;
 }
 
 export interface RouteConfig {

@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-import { GET_VERSION } from 'core/version/state/actions';
-import { request } from 'utils/actions';
+import actions from 'core/version/state/actions';
 import Version from './Version';
 
 export function mapStateToProps({ version }) {
@@ -11,7 +10,7 @@ export function mapStateToProps({ version }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getVersion: () => dispatch(request(GET_VERSION)),
+    getVersion: () => dispatch(actions.getVersion.request()),
   };
 }
 

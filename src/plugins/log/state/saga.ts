@@ -29,8 +29,8 @@ export function logStream({ payload }: RequestsOfType<Constants.LOG_CONNECT>) {
   });
 }
 
-export function* log({ payload }) {
-  const chan = yield call(logStream, payload);
+export function* log(action: RequestsOfType<Constants.LOG_CONNECT>) {
+  const chan = yield call(logStream, action);
 
   try {
     while (true) {

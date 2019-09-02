@@ -1,4 +1,4 @@
-import { Action, AsyncActionCreator } from 'utils/actions';
+import { Action } from 'utils/actions';
 import { Constants } from './actions';
 
 export const requesting = <T extends string, P>(type: string) => (

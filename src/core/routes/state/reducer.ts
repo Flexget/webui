@@ -1,15 +1,23 @@
-import { ADD_ROUTE } from './actions';
+import { Constants, ActionTypes } from './actions';
+import { Route } from './types';
 
-export default function reducer(state = {}, { type, payload }) {
-  switch (type) {
-    case ADD_ROUTE:
+export interface State {
+  [k: string]: Route;
+}
+
+const initState: State = {};
+
+export default function reducer(state = initState, action: ActionTypes): State {
+  switch (action.type) {
+    case Constants.ADD_ROUTE: {
+      const { payload } = action;
       return {
         ...state,
         [payload.path]: {
           component: payload.component,
           name: payload.routeDisplayName,
           icon: payload.routeIcon,
-          path: !payload.children && payload.path,
+          path: payload.children ? undefined : payload.path,
           children:
             payload.children &&
             payload.children.map(child => ({
@@ -20,8 +28,8 @@ export default function reducer(state = {}, { type, payload }) {
             })),
         },
       };
+    }
     default:
-      // eslint-disable-line no-fallthrough
       return state;
   }
 }

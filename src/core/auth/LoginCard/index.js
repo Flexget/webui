@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-import { LOGIN } from 'core/auth/state/actions';
-import { request } from 'utils/actions';
+import actions from 'core/auth/state/actions';
 import LoginCard from './LoginCard';
 
 export function mapStateToProps({ status }) {
@@ -14,7 +13,7 @@ export function mapStateToProps({ status }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSubmit: credentials => dispatch(request(LOGIN, credentials)),
+    onSubmit: credentials => dispatch(actions.login.request(credentials)),
   };
 }
 

@@ -2,20 +2,23 @@ import statusActions from 'core/status/state/actions';
 import { RequestsOfType as ROT } from 'core/status/state/types';
 import { action, ActionsUnion } from 'utils/actions';
 import { StatusError } from 'utils/fetch';
-import { Task } from './types';
 
 export const enum Constants {
-  GET_TASKS = '@flexget/tasks/GET_TASKS',
-  RECENT_TASK = '@flexget/tasks/RECENT_TASK',
+  SERVER_OPERATION = '@flexget/server/SERVER_OPERATION',
+}
+
+export const enum Operation {
+  Reload = 'reload',
+  Shutdown = 'shutdown',
 }
 
 const actions = {
-  getTasks: {
-    request: () => statusActions.load(Constants.GET_TASKS),
-    success: (tasks: Task[]) => action(Constants.GET_TASKS, { tasks }),
-    failure: (err: StatusError) => statusActions.error(Constants.GET_TASKS, err),
+  serverOperation: {
+    request: (operation: Operation) =>
+      statusActions.load(Constants.SERVER_OPERATION, { operation }),
+    success: () => action(Constants.SERVER_OPERATION),
+    failure: (err: StatusError) => statusActions.error(Constants.SERVER_OPERATION, err),
   },
-  recent: (task: Task) => action(Constants.RECENT_TASK, { task }),
 };
 
 export type ActionTypes = ActionsUnion<typeof actions>;

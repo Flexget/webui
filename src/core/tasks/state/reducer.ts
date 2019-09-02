@@ -1,7 +1,7 @@
 import { Constants, ActionTypes } from './actions';
 import { Task } from './types';
 
-interface State {
+export interface State {
   configs: Task[];
   recent: Task[];
 }

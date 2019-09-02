@@ -11,10 +11,14 @@ export const enum Constants {
   LOG_CLEAR = '@flexget/log/LOG_CLEAR',
 }
 
+interface ConnectParams {
+  query: string;
+  lines: string;
+}
+
 const actions = {
   connect: {
-    request: (query: string, lines: number) =>
-      statusActions.load(Constants.LOG_CONNECT, { query, lines }),
+    request: (params: ConnectParams) => statusActions.load(Constants.LOG_CONNECT, params),
     success: () => action(Constants.LOG_CONNECT),
     failure: (err: StatusError) => statusActions.error(Constants.LOG_CONNECT, err),
   },

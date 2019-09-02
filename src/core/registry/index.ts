@@ -32,7 +32,7 @@ export class PluginRegistry {
 
   registerPlugin<S = any>(
     name: string,
-    { component, children, routeDisplayName, routeIcon, reducer, saga }: Plugin<S> = {},
+    { component, children, routeDisplayName, routeIcon, reducer, saga }: Plugin<S>,
   ) {
     if (!name) {
       throw Error('Plugin requires name');
