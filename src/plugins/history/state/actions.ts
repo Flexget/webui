@@ -11,7 +11,7 @@ export const enum Constants {
 const actions = {
   getHistory: {
     request: (data: GetHistoryOptions) => statusActions.load(Constants.GET_HISTORY, data),
-    success: (data: History[], headers: Headers, refresh: boolean) =>
+    success: (data: History[], headers: Headers, refresh?: boolean) =>
       action(Constants.GET_HISTORY, { data, headers, refresh }),
     failure: (err: StatusError) => statusActions.error(Constants.GET_HISTORY, err),
   },

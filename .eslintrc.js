@@ -63,6 +63,7 @@ module.exports = {
         vars: 'all',
         args: 'after-used',
         ignoreRestSiblings: true,
+        argsIgnorePattern: '^_',
       },
     ],
     '@typescript-eslint/ban-types': 'off',

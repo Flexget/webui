@@ -1,6 +1,7 @@
 import { JSDOM } from 'jsdom';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import fetch from 'jest-fetch-mock';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -16,6 +17,7 @@ function copyProps(src, target) {
 
 global.window = window;
 global.document = window.document;
+global.fetch = fetch;
 global.navigator = {
   userAgent: 'node.js',
 };

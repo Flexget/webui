@@ -3,7 +3,7 @@ import { RequestsOfType as ROT } from 'core/status/state/types';
 import { action, ActionsUnion } from 'utils/actions';
 import { StatusError } from 'utils/fetch';
 
-export const enum Constants {
+export enum Constants {
   GET_VERSION = '@flexget/version/GET_VERSION',
 }
 
