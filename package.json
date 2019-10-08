@@ -87,7 +87,7 @@
     "react-test-renderer": "^16.8.6",
     "redux-devtools": "^3.5.0",
     "redux-mock-store": "^1.5.3",
-    "redux-saga-test-plan": "kristenmills/redux-saga-test-plan#fix-channel-typing",
+    "redux-saga-test-plan": "^4.0.0-rc.3",
     "redux-saga-testing": "^1.0.5",
     "style-loader": "^0.20.3",
     "stylelint": "^9.10.1",

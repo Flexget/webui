@@ -35,7 +35,8 @@ describe('plugins/log/data/saga', () => {
     const mainSaga = testSaga(log, connectAction);
     const fn = jest.fn();
 
-    const channel = eventChannel(emit => {
+    // TODO(kristen): https://github.com/jfairbank/redux-saga-test-plan/pull/313 fixes typings here
+    const channel: any = eventChannel(emit => {
       emit(connectAction);
       emit(messageAction);
 

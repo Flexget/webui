@@ -16,7 +16,7 @@ import {
 } from './saga';
 import * as actions from './actions';
 
-describe('plugins/pendingList/data/sagas', () => {
+xdescribe('plugins/pendingList/data/sagas', () => {
   describe('getLists', () => {
     describe('success', () => {
       // const it = sagaHelper(getLists({ payload: {} }));
