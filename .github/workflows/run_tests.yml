@@ -36,4 +36,4 @@ jobs:
       - name: Run Tests
         run: yarn test --ci --coverage --testResultsProcessor="jest-junit" -i
       - name: Upload to Codacy
-        ryn: yarn cov
+        run: yarn cov
