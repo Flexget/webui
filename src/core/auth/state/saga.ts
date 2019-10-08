@@ -14,7 +14,7 @@ export function* login({ payload }: RequestsOfType<Constants.LOGIN>) {
 
 export function* logout() {
   try {
-    yield call(post, '/auth/logout');
+    yield call(post, '/auth/logout', {});
     yield put(actions.logout.success());
   } catch (err) {
     yield put(actions.logout.failure(err));
