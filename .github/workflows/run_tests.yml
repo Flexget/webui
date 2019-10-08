@@ -1,0 +1,39 @@
+name: Node CI
+
+on:
+  push:
+    branches:
+      - develop
+      - master
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
+      - '*'
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+      - name: Run Linter
+        run: yarn lint
+      - name: Run Tests
+        run: yarn test --ci --coverage --testResultsProcessor="jest-junit" -i
+      - name: Upload to Codacy
+        ryn: yarn cov
