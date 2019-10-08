@@ -1,15 +1,15 @@
 module.exports = {
   collectCoverageFrom: [
-    'src/**/*.{js,jsx}',
+    'src/**/*.{js,jsx,ts,tsx}',
     '!src/store.js',
-    '!src/core/reducers.js',
-    '!src/core/sagas.js',
+    '!src/core/reducers.ts',
+    '!src/core/sagas.ts',
     '!src/core/history/**',
     '!src/core/routes/**',
     '!src/core/registry/**',
-    '!src/plugins/series/data/*.js',
-    '!src/{app,root,theme}.{js,jsx}',
-    '!src/utils/*.{js,jsx}',
+    '!src/plugins/series/data/*.ts',
+    '!src/{app,root,theme}.{ts,tsx,js,jsx}',
+    '!src/utils/*.{js,jsx,ts,tsx}',
     '!**/node_modules/**',
     '!**/dist/**',
     '!src/store/**/shapes.js',
@@ -26,6 +26,9 @@ module.exports = {
     'ts-jest': {
       tsConfig: 'tsconfig.jest.json',
       babelConfig: require('./babel.config.js'),
+      diagnostics: {
+        warnOnly: true,
+      },
     },
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
