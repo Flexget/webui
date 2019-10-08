@@ -7,7 +7,7 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    setps:
+    steps:
       - name: Setup Git
         run: |
           git config --global user.email ${GIT_EMAIL}
