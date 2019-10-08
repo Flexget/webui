@@ -1,0 +1,17 @@
+name: Nightly Cron
+
+on:
+  schedule:
+    - cron: 0 1 * * *
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Github Deployment
+        uses: NiklasMerz/github-deployment-action@v1.0.0
+        with:
+          args: -o Flexget -r webui -c ${GITHUB_REF}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
