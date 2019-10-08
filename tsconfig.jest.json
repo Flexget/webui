@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "moduleResolution": "classic"
+    "esModuleInterop": true,
+    "jsx": "react"
   }
 }

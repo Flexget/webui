@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
-import { request, action } from 'utils/actions';
 import Tab from '@material-ui/core/Tab';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import SecondaryNav from 'common/SecondaryNav';
 import { useOverlayState } from 'utils/hooks';
 import AddListDialog from '../AddListDialog';
 import { List, SelectedListID } from '../state/types';
-import { GET_LISTS, SELECT_LIST } from '../state/actions';
+import actions from '../state/actions';
 
 const ALD = AddListDialog as any; // eslint-disable-line @typescript-eslint/no-explicit-any
 
@@ -19,12 +18,12 @@ interface SelectorProps {
 const usePendingList = openDialog => {
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(request(GET_LISTS));
+    dispatch(actions.getLists.request());
   }, [dispatch]);
   const handleChange = React.useCallback(
     (_, selected: SelectedListID) => {
       if (selected !== 'add') {
-        return dispatch(action(SELECT_LIST, { selected }));
+        return dispatch(actions.selectList(selected));
       }
       return openDialog();
     },

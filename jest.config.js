@@ -25,33 +25,20 @@ module.exports = {
     __DEV__: false,
     'ts-jest': {
       tsConfig: 'tsconfig.jest.json',
-      babelConfig: true,
+      babelConfig: require('./babel.config.js'),
     },
   },
-  moduleFileExtensions: [
-    'js',
-    'jsx',
-    'ts',
-    'tsx',
-  ],
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  preset: 'ts-jest/presets/js-with-ts',
   transform: {
-    '\\.(t|j)sx?$': 'ts-jest',
+    '^.+\\.jsx?$': './babel-jest',
   },
-  moduleDirectories: [
-    'node_modules',
-    'src',
-  ],
+  moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/__mocks__/fileMock.js',
   },
-  setupFiles: [
-    'raf/polyfill',
-    '<rootDir>/src/utils/tests/setupFiles.js',
-  ],
-  setupFilesAfterEnv: [
-    '<rootDir>/src/utils/tests/setupTest.js',
-  ],
+  setupFiles: ['raf/polyfill', '<rootDir>/src/utils/tests/setupFiles.js'],
+  setupFilesAfterEnv: ['<rootDir>/src/utils/tests/setupTest.js'],
   testURL: 'http://localhost/',
-  preset: 'ts-jest/presets/js-with-ts',
 };

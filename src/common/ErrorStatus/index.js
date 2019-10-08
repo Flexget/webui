@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import StatusBar from 'common/StatusBar';
-import { clearStatus } from 'core/status/state/actions';
+import actions from 'core/status/state/actions';
 
 export function mapStateToProps({ status }) {
   return {
@@ -11,7 +11,7 @@ export function mapStateToProps({ status }) {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    clearStatus: () => dispatch(clearStatus()),
+    clearStatus: () => dispatch(actions.clear()),
   };
 }
 
