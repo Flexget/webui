@@ -24,5 +24,8 @@ export function* getHistory({ payload }: RequestsOfType<Constants.GET_HISTORY>) 
 }
 
 export default function* saga() {
-  yield takeLatest(requesting(Constants.GET_HISTORY), getHistory);
+  yield takeLatest(
+    requesting<RequestsOfType<Constants.GET_HISTORY>>(Constants.GET_HISTORY),
+    getHistory,
+  );
 }

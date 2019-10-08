@@ -1,5 +1,4 @@
 import { call, put, select } from 'redux-saga/effects';
-import sagaHelper from 'redux-saga-testing';
 import { stringify } from 'qs';
 import { Headers } from 'utils/tests';
 import * as fetch from 'utils/fetch';
@@ -20,7 +19,7 @@ import * as actions from './actions';
 xdescribe('plugins/pendingList/data/sagas', () => {
   describe('getLists', () => {
     describe('success', () => {
-      const it = sagaHelper(getLists({ payload: {} }));
+      // const it = sagaHelper(getLists({ payload: {} }));
 
       it('should call get /pending_list', result => {
         expect(result).toEqual(call(fetch.get, '/pending_list'));
@@ -40,7 +39,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     });
 
     describe('failure', () => {
-      const it = sagaHelper(getLists({ payload: {} }));
+      // const it = sagaHelper(getLists({ payload: {} }));
 
       it('should call get /pending_list', result => {
         expect(result).toEqual(call(fetch.get, '/pending_list'));
@@ -58,7 +57,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     describe('success', () => {
       const resolve = jest.fn();
       const reject = jest.fn();
-      const it = sagaHelper(addList({ payload: { data: { name: 'list' }, resolve, reject } }));
+      // const it = sagaHelper(addList({ payload: { data: { name: 'list' }, resolve, reject } }));
 
       it('should call post /pending_list', result => {
         expect(result).toEqual(call(fetch.post, '/pending_list', { name: 'list' }));
@@ -90,7 +89,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     describe('failure', () => {
       const resolve = jest.fn();
       const reject = jest.fn();
-      const it = sagaHelper(addList({ payload: { data: {}, resolve, reject } }));
+      // const it = sagaHelper(addList({ payload: { data: {}, resolve, reject } }));
 
       it('should call post /pending_list', result => {
         expect(result).toEqual(call(fetch.post, '/pending_list', {}));
@@ -112,7 +111,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     describe('success', () => {
       const resolve = jest.fn();
       const reject = jest.fn();
-      const it = sagaHelper(removeList({ payload: { id: 0, resolve, reject } }));
+      // const it = sagaHelper(removeList({ payload: { id: 0, resolve, reject } }));
 
       it('should call del /pending_list/:id', result => {
         expect(result).toEqual(call(fetch.del, '/pending_list/0'));
@@ -144,7 +143,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     describe('failure', () => {
       const resolve = jest.fn();
       const reject = jest.fn();
-      const it = sagaHelper(removeList({ payload: { id: 0, resolve, reject } }));
+      // const it = sagaHelper(removeList({ payload: { id: 0, resolve, reject } }));
 
       it('should call del /pending_list/:id', result => {
         expect(result).toEqual(call(fetch.del, '/pending_list/0'));
@@ -164,7 +163,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
 
   describe('getEntries', () => {
     describe('success', () => {
-      const it = sagaHelper(getEntries({ payload: { listId: 0, params: {} } }));
+      // const it = sagaHelper(getEntries({ payload: { listId: 0, params: {} } }));
       const headers = new Headers({ 'total-count': 1 });
 
       it('should call get /pending_list/:id/entries', result => {
@@ -189,7 +188,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     });
 
     describe('failure', () => {
-      const it = sagaHelper(getEntries({ payload: { listId: 0, params: {} } }));
+      // const it = sagaHelper(getEntries({ payload: { listId: 0, params: {} } }));
 
       it('should call get /pending_list/:id/entries', result => {
         expect(result).toEqual(
@@ -209,19 +208,19 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     describe('success', () => {
       const resolve = jest.fn();
       const reject = jest.fn();
-      const it = sagaHelper(
-        addEntry({
-          payload: {
-            listId: 0,
-            entry: {
-              title: 'title',
-              originalUrl: 'https://example.com',
-            },
-            resolve,
-            reject,
-          },
-        }),
-      );
+      // const it = sagaHelper(
+      // addEntry({
+      // payload: {
+      // listId: 0,
+      // entry: {
+      // title: 'title',
+      // originalUrl: 'https://example.com',
+      // },
+      // resolve,
+      // reject,
+      // },
+      // }),
+      // );
       const headers = new Headers({ 'total-count': 1 });
 
       it('should call post /pending_list/:id/entries', result => {
@@ -281,19 +280,19 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     describe('failure', () => {
       const resolve = jest.fn();
       const reject = jest.fn();
-      const it = sagaHelper(
-        addEntry({
-          payload: {
-            listId: 0,
-            entry: {
-              title: 'title',
-              originalUrl: 'https://example.com',
-            },
-            resolve,
-            reject,
-          },
-        }),
-      );
+      // const it = sagaHelper(
+      // addEntry({
+      // payload: {
+      // listId: 0,
+      // entry: {
+      // title: 'title',
+      // originalUrl: 'https://example.com',
+      // },
+      // resolve,
+      // reject,
+      // },
+      // }),
+      // );
 
       it('should call post /pending_list/:id/entries', result => {
         expect(result).toEqual(
@@ -320,18 +319,18 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     describe('success', () => {
       const resolve = jest.fn();
       const reject = jest.fn();
-      const it = sagaHelper(
-        removeEntry({
-          payload: {
-            entry: {
-              listId: 0,
-              id: 1,
-              resolve,
-              reject,
-            },
-          },
-        }),
-      );
+      // const it = sagaHelper(
+      // removeEntry({
+      // payload: {
+      // entry: {
+      // listId: 0,
+      // id: 1,
+      // resolve,
+      // reject,
+      // },
+      // },
+      // }),
+      // );
       const headers = new Headers({ 'total-count': 1 });
 
       it('should call del /pending_list/:listId/entries/:id', result => {
@@ -386,16 +385,16 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     describe('failure', () => {
       const resolve = jest.fn();
       const reject = jest.fn();
-      const it = sagaHelper(
-        removeEntry({
-          payload: {
-            listId: 0,
-            id: 1,
-            resolve,
-            reject,
-          },
-        }),
-      );
+      // const it = sagaHelper(
+      // removeEntry({
+      // payload: {
+      // listId: 0,
+      // id: 1,
+      // resolve,
+      // reject,
+      // },
+      // }),
+      // );
 
       it('should call post /pending_list/:id/entries', result => {
         expect(result).toEqual(call(fetch.del, '/pending_list/0/entries/1'));

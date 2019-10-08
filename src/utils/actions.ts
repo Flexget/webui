@@ -59,7 +59,6 @@ export function action(type, payload = undefined, meta = {}) {
     : {
         type,
         payload,
-        error: is.instanceOf(payload, Error),
         meta,
       };
 }

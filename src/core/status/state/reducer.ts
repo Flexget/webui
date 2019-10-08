@@ -1,11 +1,12 @@
 import { LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router';
 import { Action } from 'utils/actions';
+import { ErrorPayload } from './types';
 import { Constants, ActionTypes } from './actions';
 
 export interface StatusState {
   loading: Record<string, boolean>;
   info?: string;
-  error?: Error;
+  error?: ErrorPayload;
 }
 
 const initState: StatusState = {

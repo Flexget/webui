@@ -32,7 +32,6 @@ module.exports = {
   preset: 'ts-jest/presets/js-with-ts',
   transform: {
     '^.+\\.jsx?$': './babel-jest',
-    '^.+\\.tsx?$': 'ts-jest',
   },
   moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {

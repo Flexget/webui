@@ -1,6 +1,5 @@
 import { stringify } from 'qs';
-import { delay } from 'redux-saga';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, delay } from 'redux-saga/effects';
 import { requesting } from 'core/status/state/util';
 import { get } from 'utils/fetch';
 import { Direction } from 'utils/query';
@@ -17,7 +16,7 @@ export const defaultOptions: GetShowOptions = {
 export function* getShows({ payload }: RequestsOfType<Constants.GET_SHOWS>) {
   const query = { ...defaultOptions, ...payload };
 
-  yield call(delay, 500);
+  yield delay(500);
 
   try {
     const { data, headers } = yield call(get, `/series?${stringify(query)}`);

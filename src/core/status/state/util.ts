@@ -1,7 +1,7 @@
 import { Action } from 'utils/actions';
-import { Constants } from './actions';
+import { Constants, TypeMeta } from './actions';
 
-export const requesting = <T extends string, P>(type: string) => (
-  act: Action<string, P>,
-): act is Action<Constants.LOADING_STATUS, P, T> =>
+export type BaseAction = Action<string, unknown, TypeMeta<string>>;
+
+export const requesting = <T extends BaseAction>(type: string) => (act: BaseAction): act is T =>
   act.type === Constants.LOADING_STATUS && act.meta.type === type;

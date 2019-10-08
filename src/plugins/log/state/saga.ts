@@ -37,6 +37,8 @@ export function* log(action: RequestsOfType<Constants.LOG_CONNECT>) {
       const logAction = yield take(chan);
       yield put(logAction);
     }
+  } catch {
+    //
   } finally {
     if (yield cancelled()) {
       chan.close();
@@ -47,11 +49,12 @@ export function* log(action: RequestsOfType<Constants.LOG_CONNECT>) {
 
 export default function* saga() {
   while (true) {
-    const connectAction = yield take(requesting(Constants.LOG_CONNECT));
+    const connectAction = yield take(
+      requesting<RequestsOfType<Constants.LOG_CONNECT>>(Constants.LOG_CONNECT),
+    );
     const logStreamTask = yield fork(log, connectAction);
 
-    yield take(requesting(Constants.LOG_DISCONNECT));
-
+    yield take(Constants.LOG_DISCONNECT);
     yield cancel(logStreamTask);
   }
 }

@@ -1,8 +1,8 @@
 import reducer from './reducer';
 import actions from './actions';
-import makeHistory from './util/test';
+import { makeHistory } from './fixtures';
 
-describe('plugins/history/data/reducer', () => {
+describe('plugins/history/state/reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {} as any)).toEqual({ items: [] });
   });

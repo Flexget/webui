@@ -13,7 +13,7 @@ export interface TVDB extends Lookup {
 
 export interface Show {
   name: string;
-  lookup: Record<LookupType, Lookup>;
+  lookup: Partial<Record<LookupType, Lookup>>;
 }
 
 export interface GetShowOptions {
