@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import theme from 'theme';
 import { BaseAction } from 'core/status/state/util';
-import { GuardPredicate } from '@redux-saga/types';
+import { GuardPredicate } from '@redux-saga/types'; // eslint-disable-line import/no-unresolved
 import { TakeEffect } from 'redux-saga/effects';
 
 const mockStore = configureMockStore();

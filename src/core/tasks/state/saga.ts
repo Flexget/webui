@@ -13,5 +13,5 @@ export function* getTasks() {
 }
 
 export default function* saga() {
-  yield takeLatest(requesting(Constants.GET_TASKS), getTasks, 'reload');
+  yield takeLatest(requesting(Constants.GET_TASKS), getTasks);
 }

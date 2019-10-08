@@ -83,7 +83,7 @@ describe('core/status/data/reducer', () => {
             [TEST]: true,
           },
           error: {
-            status: 401,
+            statusCode: 401,
             type: OTHER,
             message: 'Unauthorized',
           },
@@ -101,7 +101,7 @@ describe('core/status/data/reducer', () => {
             [TEST]: true,
           },
           error: {
-            status: 401,
+            statusCode: 401,
             type: OTHER,
             message: 'Unauthorized',
           },

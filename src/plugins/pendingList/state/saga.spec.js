@@ -5,18 +5,18 @@ import * as fetch from 'utils/fetch';
 import { action } from 'utils/actions';
 import FlexGetEntry from 'common/FlexGetEntry';
 import {
-  getLists,
-  addList,
-  removeList,
-  getEntries,
+  // getLists,
+  // addList,
+  // removeList,
+  // getEntries,
   getEntriesOptions,
   getCurrentPage,
-  addEntry,
-  removeEntry,
+  // addEntry,
+  // removeEntry,
 } from './saga';
 import * as actions from './actions';
 
-xdescribe('plugins/pendingList/data/sagas', () => {
+describe('plugins/pendingList/data/sagas', () => {
   describe('getLists', () => {
     describe('success', () => {
       // const it = sagaHelper(getLists({ payload: {} }));
@@ -56,7 +56,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
   describe('addList', () => {
     describe('success', () => {
       const resolve = jest.fn();
-      const reject = jest.fn();
+      // const reject = jest.fn();
       // const it = sagaHelper(addList({ payload: { data: { name: 'list' }, resolve, reject } }));
 
       it('should call post /pending_list', result => {
@@ -87,7 +87,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     });
 
     describe('failure', () => {
-      const resolve = jest.fn();
+      // const resolve = jest.fn();
       const reject = jest.fn();
       // const it = sagaHelper(addList({ payload: { data: {}, resolve, reject } }));
 
@@ -110,7 +110,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
   describe('removeList', () => {
     describe('success', () => {
       const resolve = jest.fn();
-      const reject = jest.fn();
+      // const reject = jest.fn();
       // const it = sagaHelper(removeList({ payload: { id: 0, resolve, reject } }));
 
       it('should call del /pending_list/:id', result => {
@@ -141,7 +141,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     });
 
     describe('failure', () => {
-      const resolve = jest.fn();
+      // const resolve = jest.fn();
       const reject = jest.fn();
       // const it = sagaHelper(removeList({ payload: { id: 0, resolve, reject } }));
 
@@ -207,7 +207,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
   describe('addEntry', () => {
     describe('success', () => {
       const resolve = jest.fn();
-      const reject = jest.fn();
+      // const reject = jest.fn();
       // const it = sagaHelper(
       // addEntry({
       // payload: {
@@ -278,7 +278,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     });
 
     describe('failure', () => {
-      const resolve = jest.fn();
+      // const resolve = jest.fn();
       const reject = jest.fn();
       // const it = sagaHelper(
       // addEntry({
@@ -318,7 +318,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
   describe('removeEntry', () => {
     describe('success', () => {
       const resolve = jest.fn();
-      const reject = jest.fn();
+      // const reject = jest.fn();
       // const it = sagaHelper(
       // removeEntry({
       // payload: {
@@ -383,7 +383,7 @@ xdescribe('plugins/pendingList/data/sagas', () => {
     });
 
     describe('failure', () => {
-      const resolve = jest.fn();
+      // const resolve = jest.fn();
       const reject = jest.fn();
       // const it = sagaHelper(
       // removeEntry({
