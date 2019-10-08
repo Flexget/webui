@@ -13,7 +13,7 @@ export function mapStateToProps({ status }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSubmit: credentials => dispatch(actions.login.request(credentials)),
+    onSubmit: ({ username, password }) => dispatch(actions.login.request(username, password)),
   };
 }
 
