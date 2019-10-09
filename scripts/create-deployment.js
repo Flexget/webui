@@ -11,7 +11,7 @@ github.repos
   .createDeployment({
     owner: 'FlexGet',
     repo: 'webui',
-    ref: process.ENV.GITHUB_REF,
+    ref: process.env.GITHUB_REF,
     task: 'deploy',
     environment: 'production',
   })

@@ -8,10 +8,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Github Deployment
-        uses: NiklasMerz/github-deployment-action@v1.0.0
+      - uses: actions/checkout@v1
+      - name: Use Node.js
+        uses: actions/setup-node@v1
         with:
-          args: -o Flexget -r webui -c ${GITHUB_REF}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          node-version: 12.x
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+      - name: Create Deployment
+        run: yarn deploy
 
