@@ -1,8 +1,10 @@
 import Octokit from '@octokit/rest';
 
-const github = new Octokit();
+const github = new Octokit({
+  auth: `token ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
+});
 
-github.authenticate({
+github.auth({
   type: 'token',
   token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
 });

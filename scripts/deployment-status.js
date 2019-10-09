@@ -1,14 +1,11 @@
 import fs from 'fs';
 import Octokit from '@octokit/rest';
 
-const github = new Octokit();
+const github = new Octokit({
+  auth: `token ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
+});
 
 const args = process.argv.slice(2);
-
-github.authenticate({
-  type: 'token',
-  token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
-});
 
 const file = fs.readFileSync(process.env.GITHUB_EVENT_PATH, { encoding: 'utf8' });
 
