@@ -17,7 +17,7 @@ github.repos
     owner: 'Flexget',
     repo: 'webui',
     deployment_id: deploymentId,
-    status: args[0],
+    state: args[0],
   })
   .catch(err => {
     console.log('Problem creating release');
