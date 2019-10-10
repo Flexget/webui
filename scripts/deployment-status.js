@@ -3,6 +3,7 @@ import Octokit from '@octokit/rest';
 
 const github = new Octokit({
   auth: `token ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
+  previews: ['flash'],
 });
 
 const args = process.argv.slice(2);
