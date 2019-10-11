@@ -12,9 +12,9 @@ export interface ErrorPayload {
 }
 
 export const enum RequestState {
-  InProgress,
-  Success,
-  Error,
+  InProgress = 'in_progress',
+  Success = 'success',
+  Error = 'error',
 }
 
 interface BaseRequest {
@@ -45,6 +45,20 @@ export interface Requests {
 
 export type RequestAction = Action<string, unknown, Request>;
 
-export type InProgressAction<T extends string> = Action<T, unknown, InProgressRequest>;
-export type ErrorAction<T extends string> = Action<T, unknown, ErrorRequest>;
-export type SuccessAction<T extends string> = Action<T, unknown, SuccessRequest>;
+export type MetaFromState<U extends RequestState> = U extends RequestState.InProgress
+  ? InProgressRequest
+  : U extends RequestState.Error
+  ? ErrorRequest
+  : U extends RequestState.Success
+  ? SuccessRequest
+  : never;
+
+export type ActionFromState<T extends string, U extends RequestState> = Action<
+  T,
+  unknown,
+  MetaFromState<U>
+>;
+
+export type InProgressAction<T extends string> = ActionFromState<T, RequestState.InProgress>;
+export type ErrorAction<T extends string> = ActionFromState<T, RequestState.Error>;
+export type SuccessAction<T extends string> = ActionFromState<T, RequestState.Success>;

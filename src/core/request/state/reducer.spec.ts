@@ -2,127 +2,186 @@ import { LOCATION_CHANGE } from 'connected-react-router';
 import { StatusError } from 'utils/fetch';
 import actions from './actions';
 import reducer from './reducer';
+import { RequestState } from './types';
+import { requestLoad, requestSuccess, requestError } from './util';
 
 const TEST = 'TEST';
 const OTHER = 'OTHER';
 
-describe('core/status/data/reducer', () => {
+const testActions = {
+  test: {
+    request: () => requestLoad(TEST),
+    success: () => requestSuccess(TEST),
+    failure: (err: StatusError) => requestError(TEST, err),
+  },
+  other: {
+    request: (param: string) => requestLoad(OTHER, { param }),
+    success: (val: string) => requestSuccess(OTHER, undefined, val),
+    failure: (err: StatusError) => requestError(OTHER, err),
+  },
+};
+
+describe('core/request/data/reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {} as any)).toEqual({
-      loading: {},
+      requests: {},
     });
   });
 
-  describe('LOADING_STATUS', () => {
-    it('should set loading status when initially empty', () => {
-      expect(reducer(undefined, actions.load(TEST))).toEqual({
-        loading: {
-          [TEST]: true,
+  it('should set loading status when initially empty', () => {
+    expect(reducer(undefined, testActions.test.request())).toEqual({
+      requests: {
+        [TEST]: {
+          state: RequestState.InProgress,
         },
-      });
-    });
-
-    it('should set loading status when not empty', () => {
-      expect(
-        reducer(
-          {
-            loading: {
-              [TEST]: true,
-            },
-          },
-          actions.load(OTHER),
-        ),
-      ).toEqual({
-        loading: {
-          [TEST]: true,
-          [OTHER]: true,
-        },
-      });
-    });
-    it('should not change if already loading that action', () => {
-      expect(
-        reducer(
-          {
-            loading: {
-              [TEST]: true,
-            },
-          },
-          actions.load(TEST),
-        ),
-      ).toEqual({
-        loading: {
-          [TEST]: true,
-        },
-      });
-    });
-  });
-
-  it('should handle ERROR_STATUS', () => {
-    expect(reducer(undefined, actions.error(TEST, new StatusError('Unauthorized', 401)))).toEqual({
-      loading: {},
-      error: {
-        statusCode: 401,
-        type: TEST,
-        message: 'Unauthorized',
       },
     });
   });
 
-  it('should handle INFO_STATUS', () => {
-    expect(reducer(undefined, actions.info(TEST, 'something'))).toEqual({
-      loading: {},
-      info: 'something',
-    });
-  });
-
-  it('should clear state on CLOSE_STATUS', () => {
+  it('should set loading status when not empty', () => {
     expect(
       reducer(
         {
-          loading: {
-            [TEST]: true,
-          },
-          error: {
-            statusCode: 401,
-            type: OTHER,
-            message: 'Unauthorized',
+          requests: {
+            [TEST]: {
+              state: RequestState.InProgress,
+            },
           },
         },
-        actions.clear(),
+        testActions.other.request('test'),
       ),
-    ).toEqual({ loading: { [TEST]: true } });
+    ).toEqual({
+      requests: {
+        [TEST]: {
+          state: RequestState.InProgress,
+        },
+        [OTHER]: {
+          state: RequestState.InProgress,
+        },
+      },
+    });
+  });
+  it('should not change if already loading that action', () => {
+    expect(
+      reducer(
+        {
+          requests: {
+            [TEST]: {
+              state: RequestState.InProgress,
+            },
+          },
+        },
+        testActions.test.request(),
+      ),
+    ).toEqual({
+      requests: {
+        [TEST]: {
+          state: RequestState.InProgress,
+        },
+      },
+    });
+  });
+
+  it('should handle errors', () => {
+    expect(
+      reducer(undefined, testActions.test.failure(new StatusError('Unauthorized', 401))),
+    ).toEqual({
+      requests: {
+        [TEST]: {
+          state: RequestState.Error,
+          statusCode: 401,
+          message: 'Unauthorized',
+        },
+      },
+    });
+  });
+
+  it('should handle info', () => {
+    expect(reducer(undefined, testActions.test.success())).toEqual({
+      requests: {
+        [TEST]: {
+          state: RequestState.Success,
+        },
+      },
+    });
+  });
+
+  it('should handle info with message', () => {
+    expect(reducer(undefined, testActions.other.success('something'))).toEqual({
+      requests: {
+        [OTHER]: {
+          state: RequestState.Success,
+          message: 'something',
+        },
+      },
+    });
+  });
+
+  it('should clear state on CLEAR_ALL_REQUESTS', () => {
+    expect(
+      reducer(
+        {
+          requests: {
+            [TEST]: {
+              state: RequestState.InProgress,
+            },
+            [OTHER]: {
+              statusCode: 401,
+              state: RequestState.Error,
+              message: 'Unauthorized',
+            },
+          },
+        },
+        actions.clearAll(),
+      ),
+    ).toEqual({ requests: {} });
   });
 
   it('should clear state on LOCATION_CHANGE', () => {
     expect(
       reducer(
         {
-          loading: {
-            [TEST]: true,
-          },
-          error: {
-            statusCode: 401,
-            type: OTHER,
-            message: 'Unauthorized',
+          requests: {
+            [TEST]: {
+              state: RequestState.InProgress,
+            },
+            [OTHER]: {
+              statusCode: 401,
+              state: RequestState.Error,
+              message: 'Unauthorized',
+            },
           },
         },
         { type: LOCATION_CHANGE } as any,
       ),
-    ).toEqual({ loading: { [TEST]: true } });
+    ).toEqual({ requests: {} });
   });
 
-  it('should handle loding done', () => {
+  it('should clear partial state on CLEAR_REQUESTS', () => {
     expect(
       reducer(
         {
-          loading: {
-            TEST: true,
+          requests: {
+            [TEST]: {
+              state: RequestState.InProgress,
+            },
+            [OTHER]: {
+              statusCode: 401,
+              state: RequestState.Error,
+              message: 'Unauthorized',
+            },
           },
         },
-        {
-          type: TEST,
-        } as any,
+        actions.clear([TEST]),
       ),
-    ).toEqual({ loading: {} });
+    ).toEqual({
+      requests: {
+        [OTHER]: {
+          statusCode: 401,
+          state: RequestState.Error,
+          message: 'Unauthorized',
+        },
+      },
+    });
   });
 });

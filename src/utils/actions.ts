@@ -1,12 +1,15 @@
 import is from './is';
 
-export interface Action<T extends string = string, P = undefined, U extends {} = {}> {
+export interface Action<T extends string = string, P = undefined, U = {}> {
   readonly type: T;
-  readonly meta: U;
   readonly payload: P;
+  readonly meta: U;
 }
 
+export type UnknownAction<T extends string = string> = Action<T, unknown, unknown>;
+
 export type ActionCreator = (...args: any[]) => any;
+
 export interface AsyncActionCreator {
   request: ActionCreator;
   success: ActionCreator;
@@ -34,7 +37,7 @@ export type ActionsOfType<ActionUnion, Type extends string, Meta extends {} = {}
 
 export function action<T extends string>(type: T): Action<T>;
 export function action<T extends string, P>(type: T, payload: P): Action<T, P>;
-export function action<T extends string, P, U extends {} = {}>(
+export function action<T extends string, P, U extends {}>(
   type: T,
   payload: P,
   meta: U,
