@@ -1,18 +1,8 @@
 import is from './is';
 
-export interface Meta<T extends string = string> {
-  readonly message?: string;
-  readonly type?: T;
-  readonly statusCode?: string;
-}
-
-export interface Action<
-  T extends string = string,
-  P = undefined,
-  U extends string | Meta<string> = string
-> {
+export interface Action<T extends string = string, P = undefined, U extends {} = {}> {
   readonly type: T;
-  readonly meta: U extends string ? Meta<U> : U;
+  readonly meta: U;
   readonly payload: P;
 }
 
@@ -37,18 +27,17 @@ export type ActionsUnion<T extends ActionCreatorsDictionary> = ReturnType<
   }[keyof T]
 >;
 
-export type ActionsOfType<
+export type ActionsOfType<ActionUnion, Type extends string, Meta extends {} = {}> = Extract<
   ActionUnion,
-  Type extends string,
-  MetaType extends string | Meta<string> = string
-> = Extract<ActionUnion, Action<Type, any, MetaType>>;
+  Action<Type, any, Meta>
+>;
 
 export function action<T extends string>(type: T): Action<T>;
 export function action<T extends string, P>(type: T, payload: P): Action<T, P>;
-export function action<T extends string, P, U extends string | Meta<string> = string>(
+export function action<T extends string, P, U extends {} = {}>(
   type: T,
   payload: P,
-  meta: U extends string ? Meta<U> : U,
+  meta: U,
 ): Action<T, P, U>;
 export function action(type, payload = undefined, meta = {}) {
   return is.undef(payload)
@@ -63,10 +52,7 @@ export function action(type, payload = undefined, meta = {}) {
       };
 }
 
-export function withMeta<T extends string, P, U extends string>(
-  act: Action<T, P, U>,
-  meta: Partial<Meta<U>>,
-): Action<T, P, U> {
+export function withMeta<T extends string, P, U>(act: Action<T, P>, meta: U): Action<T, P, U> {
   return {
     ...act,
     meta: {
