@@ -1,6 +1,6 @@
-import statusActions from 'core/status/state/actions';
-import { RequestsOfType as ROT } from 'core/status/state/types';
-import { action, ActionsUnion } from 'utils/actions';
+import { requestLoad, requestError, requestSuccess } from 'core/request/state/util';
+import { RequestsOfType as ROT } from 'core/request/state/types';
+import { ActionsUnion } from 'utils/actions';
 import { StatusError } from 'utils/fetch';
 
 export const enum Constants {
@@ -11,14 +11,14 @@ export const enum Constants {
 const actions = {
   login: {
     request: (username: string, password: string) =>
-      statusActions.load(Constants.LOGIN, { username, password }),
-    success: () => action(Constants.LOGIN),
-    failure: (err: StatusError) => statusActions.error(Constants.LOGIN, err),
+      requestLoad(Constants.LOGIN, { username, password }),
+    success: () => requestSuccess(Constants.LOGIN),
+    failure: (err: StatusError) => requestError(Constants.LOGIN, err),
   },
   logout: {
-    request: () => statusActions.load(Constants.LOGOUT),
-    success: () => action(Constants.LOGOUT),
-    failure: (err: StatusError) => statusActions.error(Constants.LOGOUT, err),
+    request: () => requestLoad(Constants.LOGOUT),
+    success: () => requestSuccess(Constants.LOGOUT),
+    failure: (err: StatusError) => requestError(Constants.LOGOUT, err),
   },
 };
 

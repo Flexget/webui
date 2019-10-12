@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { post } from 'utils/fetch';
-import { requesting } from 'core/status/state/util';
+import { requesting } from 'core/request/state/util';
 import actions, { Constants, RequestsOfType } from './actions';
 
 export function* login({ payload }: RequestsOfType<Constants.LOGIN>) {

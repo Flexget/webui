@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { Action, action } from 'utils/actions';
+import { Action, action, UnknownAction } from 'utils/actions';
 import { StatusError } from 'utils/fetch';
 import {
   InProgressAction,
@@ -11,6 +11,8 @@ import {
   Request,
   ActionFromState,
   ErrorRequest,
+  SuccessAction,
+  ErrorAction,
 } from './types';
 import { State } from './reducer';
 
@@ -36,22 +38,39 @@ export const getInfo = (requests: Requests) =>
 export const anyInState = (requests: Requests, state: RequestState) =>
   Object.values(requests).some(request => request.state === state);
 
-export const isInState = <T extends string, U extends RequestState>(
-  act: RequestAction,
-  state: U,
-): act is ActionFromState<T, U> => act.meta.state === state;
-
-export const requesting = <T extends string>(type: T) => (
-  act: RequestAction,
-): act is InProgressAction<T> => act.type === type && isInState(act, RequestState.InProgress);
-
-export const checkState = <T extends string, U extends RequestState>(
-  act: RequestAction,
-  state: U,
-) => (type: T) => act.type === type && isInState<T, U>(act, state);
-
-export const isRequestAction = (act: Action<string, unknown, unknown>): act is RequestAction =>
+export const isRequestAction = (act: UnknownAction): act is RequestAction =>
   !!(act.meta && (act.meta as Request).state);
+
+const isInStateHelper = <T extends string, U extends RequestState>(
+  state: U,
+  act: UnknownAction,
+  type?: T,
+): act is ActionFromState<typeof type extends undefined ? string : T, U> =>
+  isRequestAction(act) && act.meta.state === state && (type ? act.type === type : true);
+
+export const isInState = {
+  [RequestState.InProgress]: <T extends string = string>(
+    act: UnknownAction,
+    type?: T,
+  ): act is InProgressAction<T> => isInStateHelper(RequestState.InProgress, act, type),
+  [RequestState.Success]: <T extends string = string>(
+    act: UnknownAction,
+    type?: T,
+  ): act is SuccessAction<T> => isInStateHelper(RequestState.Success, act, type),
+  [RequestState.Error]: <T extends string = string>(
+    act: UnknownAction,
+    type?: T,
+  ): act is ErrorAction<T> => isInStateHelper(RequestState.Error, act, type),
+};
+/**
+ * Used for checking if an action is in progress in sagas
+ */
+export const requesting = <T extends string>(type: T) => (
+  act: UnknownAction,
+): act is InProgressAction<T> => isInState.inProgress(act, type);
+
+export const createSuccessCheck = <T extends string>(act: UnknownAction) => (type: T) =>
+  isInState.success(act, type);
 
 interface LoadFunc {
   <T extends string, P>(type: T, payload: P, id?: string): Action<T, P, InProgressRequest>;
@@ -68,7 +87,7 @@ interface SuccessFunc {
 }
 
 interface ErrorFunc {
-  <T extends string, P>(type: T, err: StatusError, payload: P, id?: string): Action<
+  <T extends string, P>(type: T, err: StatusError, payload?: P, id?: string): Action<
     T,
     P,
     ErrorRequest

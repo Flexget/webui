@@ -1,7 +1,7 @@
-import statusActions from 'core/status/state/actions';
-import { RequestsOfType as ROT } from 'core/status/state/types';
-import { action, ActionsUnion } from 'utils/actions';
+import { RequestsOfType as ROT } from 'core/request/state/types';
+import { ActionsUnion } from 'utils/actions';
 import { StatusError } from 'utils/fetch';
+import { requestLoad, requestSuccess, requestError } from 'core/request/state/util';
 
 export const enum Constants {
   SERVER_OPERATION = '@flexget/server/SERVER_OPERATION',
@@ -14,10 +14,9 @@ export const enum Operation {
 
 const actions = {
   serverOperation: {
-    request: (operation: Operation) =>
-      statusActions.load(Constants.SERVER_OPERATION, { operation }),
-    success: () => action(Constants.SERVER_OPERATION),
-    failure: (err: StatusError) => statusActions.error(Constants.SERVER_OPERATION, err),
+    request: (operation: Operation) => requestLoad(Constants.SERVER_OPERATION, { operation }),
+    success: () => requestSuccess(Constants.SERVER_OPERATION),
+    failure: (err: StatusError) => requestError(Constants.SERVER_OPERATION, err),
   },
 };
 

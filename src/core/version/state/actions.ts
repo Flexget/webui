@@ -1,7 +1,7 @@
-import statusActions from 'core/status/state/actions';
 import { RequestsOfType as ROT } from 'core/status/state/types';
-import { action, ActionsUnion } from 'utils/actions';
+import { ActionsUnion } from 'utils/actions';
 import { StatusError } from 'utils/fetch';
+import { requestLoad, requestError, requestSuccess } from 'core/request/state/util';
 
 export enum Constants {
   GET_VERSION = '@flexget/version/GET_VERSION',
@@ -15,9 +15,9 @@ export interface Version {
 
 const actions = {
   getVersion: {
-    request: () => statusActions.load(Constants.GET_VERSION),
-    success: (data: Version) => action(Constants.GET_VERSION, data),
-    failure: (err: StatusError) => statusActions.error(Constants.GET_VERSION, err),
+    request: () => requestLoad(Constants.GET_VERSION),
+    success: (data: Version) => requestSuccess(Constants.GET_VERSION, data),
+    failure: (err: StatusError) => requestError(Constants.GET_VERSION, err),
   },
 };
 
