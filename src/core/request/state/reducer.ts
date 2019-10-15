@@ -1,8 +1,7 @@
 import { LOCATION_CHANGE, LocationChangePayload } from 'connected-react-router';
-import { Action, UnknownAction } from 'utils/actions';
 import { Requests } from './types';
 import { Constants, ActionTypes } from './actions';
-import { isRequestAction } from './util';
+import { isRequestAction, Action, UnknownAction } from './util';
 
 export interface State {
   requests: Requests;

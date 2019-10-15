@@ -6,6 +6,7 @@ declare global {
   }
 
   type Optional<T> = T | undefined;
+  type ArgType<T> = T extends (...args: infer R) => any ? R : any;
 }
 
 export {};

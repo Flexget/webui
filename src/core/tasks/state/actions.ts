@@ -1,7 +1,7 @@
-import statusActions from 'core/status/state/actions';
-import { RequestsOfType as ROT } from 'core/status/state/types';
+import { RequestsOfType as ROT } from 'core/request/state/types';
 import { action, ActionsUnion } from 'utils/actions';
 import { StatusError } from 'utils/fetch';
+import { requestLoad, requestError, requestSuccess } from 'core/request/state/util';
 import { Task } from './types';
 
 export const enum Constants {
@@ -11,9 +11,9 @@ export const enum Constants {
 
 const actions = {
   getTasks: {
-    request: () => statusActions.load(Constants.GET_TASKS),
-    success: (tasks: Task[]) => action(Constants.GET_TASKS, { tasks }),
-    failure: (err: StatusError) => statusActions.error(Constants.GET_TASKS, err),
+    request: () => requestLoad(Constants.GET_TASKS),
+    success: (tasks: Task[]) => requestSuccess(Constants.GET_TASKS, { tasks }),
+    failure: (err: StatusError) => requestError(Constants.GET_TASKS, err),
   },
   recent: (task: Task) => action(Constants.RECENT_TASK, { task }),
 };
