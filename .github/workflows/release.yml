@@ -1,0 +1,61 @@
+name: Build Release
+on:
+  deployment: {}
+jobs:
+  did-test-pass:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Skip Deployment'
+        uses: './actions/skip-deployment'
+        env:
+          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # release:
+    # runs-on: ubuntu-latest
+    # strategy:
+      # matrix:
+        # node: [12.x]
+    # steps:
+      # - name: Setup Git
+        # run: |
+          # git config --global user.email ${GIT_EMAIL}
+          # git config --global user.name ${GIT_USERNAME}
+        # env:
+          # GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+          # GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+      # - uses: actions/checkout@v1
+      # - name: Use Node.js
+        # uses: actions/setup-node@v1
+        # with:
+          # node-version: ${{ matrix.node }}
+      # - name: Cache Dependencies
+        # id: cache-dependencies
+        # uses: actions/cache@v1
+        # with:
+          # path: node_modules
+          # key: ${{ matrix.node }}-deps-${{ hashFiles('yarn.lock') }}
+          # restore-keys: |
+            # ${{ matrix.node }}-deps-
+      # - name: Install Dependencies
+        # run: yarn install --frozen-lockfile
+      # - name: Set Deployment Status In Progress
+        # run: yarn deploy:status in_progress
+        # env:
+          # GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Run Build
+        # run: yarn build
+      # - name: Zip Dist Folder
+        # run: zip -r /tmp/dist.zip ./dist
+      # - name: Release
+        # run: scripts/release.sh
+        # env:
+          # GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Set Deployment Status Success
+        # run: yarn deploy:status success
+        # env:
+          # GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Set Deployment Status Failure
+        # run: yarn deploy:status failure
+        # if: cancelled()
+        # env:
+          # GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
