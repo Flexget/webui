@@ -12,7 +12,6 @@ on:
       - '*'
     paths-ignore:
       - '**.md'
-  deployment: {}
 
 jobs:
   tests:

@@ -5,6 +5,7 @@ jobs:
   did-test-pass:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - name: 'Skip Deployment'
         uses: './actions/skip-deployment'
         env:
