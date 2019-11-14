@@ -23,6 +23,10 @@ jobs:
         node: [10.x, 12.x]
     steps:
       - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
       - name: Cache Dependencies
         id: cache-dependencies
         uses: actions/cache@v1
@@ -31,10 +35,6 @@ jobs:
           key: ${{ matrix.node }}-deps-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ matrix.node }}-deps-
-      - name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
       - name: Install Dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
