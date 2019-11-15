@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "package": "yarn package:skip",
-    "package:skip": "ncc build skip-deployment/index.js -o skip-deployment/dist"
+    "package:skip": "ncc build skip-deployment/index.js -o skip-deployment/lib"
   },
   "dependencies": {
     "@actions/core": "^1.2.0",

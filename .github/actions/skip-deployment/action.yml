@@ -5,4 +5,4 @@ outputs:
     description: A boolean to indicate whether to skip
 runs:
   using: 'node12'
-  main: 'skip-deployment/dist/index.js'
+  main: 'lib/index.js'
