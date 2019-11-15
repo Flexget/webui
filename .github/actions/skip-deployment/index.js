@@ -11,7 +11,13 @@ async function run() {
       ...repo,
       ref,
     });
-    console.log(JSON.stringify(data, null, 4));
+    const check = data.check_suites.find((s) => (
+      s.app.slug === 'github-actions' && s.status === 'completed'
+    ));
+    if (!check || check.conclusion !== 'success') {
+      return core.setFailed(`Skipping deployment because tests failed to pass`);
+    }
+
   } catch(e) {
     core.setFailed(`Action failed with error ${err}`);
   }
