@@ -34,7 +34,7 @@ module.exports =
 /******/ 	// the startup function
 /******/ 	function startup() {
 /******/ 		// Load entry module and return exports
-/******/ 		return __webpack_require__(845);
+/******/ 		return __webpack_require__(573);
 /******/ 	};
 /******/
 /******/ 	// run startup
@@ -9831,6 +9831,35 @@ module.exports = parse;
 
 /***/ }),
 
+/***/ 573:
+/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
+
+const { getInput, setFailed } = __webpack_require__(470);
+const { GitHub, context } = __webpack_require__(469);
+
+async function run() {
+  const myToken = getInput('token');
+  const state = getInput('status');
+
+  const { repo, payload } = context;
+  const { repos } = new GitHub(myToken, { previews: ['flash'] });
+
+  try {
+    await repos.createDeploymentStatus({
+      ...repo,
+      deployment_id: payload.deployment.id,
+      state,
+    });
+  } catch(err) {
+    setFailed(`Action failed with err ${err}`);
+  }
+}
+
+run();
+
+
+/***/ }),
+
 /***/ 577:
 /***/ (function(module) {
 
@@ -11759,35 +11788,6 @@ if (nodeVer) {
 }
 
 if (false) {}
-
-
-/***/ }),
-
-/***/ 845:
-/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
-
-const { getInput, setFailed } = __webpack_require__(470);
-const { GitHub, context } = __webpack_require__(469);
-
-async function run() {
-  const myToken = getInput('token');
-
-  const { repo, ref } = context;
-  const { repos } = new GitHub(myToken);
-
-  try {
-    await repos.createDeployment({
-      ...repo,
-      ref,
-      task: 'deploy',
-      environment: 'production',
-    });
-  } catch(err) {
-    setFailed(`Action failed with err ${err}`);
-  }
-}
-
-run();
 
 
 /***/ }),

@@ -3,16 +3,16 @@ const { GitHub, context } = require('@actions/github');
 
 async function run() {
   const myToken = getInput('token');
+  const state = getInput('status');
 
-  const { repo, ref } = context;
-  const { repos } = new GitHub(myToken);
+  const { repo, payload } = context;
+  const { repos } = new GitHub(myToken, { previews: ['flash'] });
 
   try {
-    await repos.createDeployment({
+    await repos.createDeploymentStatus({
       ...repo,
-      ref,
-      task: 'deploy',
-      environment: 'production',
+      deployment_id: payload.deployment.id,
+      state,
     });
   } catch(err) {
     setFailed(`Action failed with err ${err}`);

@@ -14,11 +14,10 @@
     "cov": "cat coverage/lcov.info | codacy-coverage",
     "release:bump": "NODE_ENV=release babel-node ./scripts/bump-version.js",
     "release:upload": "NODE_ENV=release babel-node ./scripts/create-release.js",
-    "deploy": "NODE_ENV=release babel-node ./scripts/create-deployment.js",
-    "deploy:status": "NODE_ENV=release babel-node ./scripts/deployment-status.js",
-    "package": "yarn package:skip && yarn package:deploy",
+    "package": "yarn package:skip && yarn package:deploy && yarn package:status",
     "package:skip": "ncc build .github/actions/skip-deployment/index.js -o .github/actions/skip-deployment/lib",
-    "package:deploy": "ncc build .github/actions/deployment/index.js -o .github/actions/deployment/lib"
+    "package:deploy": "ncc build .github/actions/deployment/index.js -o .github/actions/deployment/lib",
+    "package:status": "ncc build .github/actions/deployment-status/index.js -o .github/actions/deployment-status/lib"
   },
   "repository": {
     "type": "git",
