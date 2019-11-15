@@ -14,9 +14,10 @@ async function run() {
     const check = data.check_suites.find((s) => (
       s.app.slug === 'github-actions' && s.status === 'completed'
     ));
-    if (!(!check || check.conclusion !== 'success')) {
+    if (!check || check.conclusion !== 'success') {
       setOutput('skip', 'true');
-      return core.setFailed(`Skipping deployment because tests failed to pass`);
+      setFailed(`Skipping deployment because tests failed to pass`);
+      return;
     }
 
     console.log('Not skipping deployment');
