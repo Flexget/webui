@@ -16,11 +16,10 @@ async function run() {
     ));
     if (!(!check || check.conclusion !== 'success')) {
       core.setOutput('skip', 'true');
-      console.log('here');
       return core.setFailed(`Skipping deployment because tests failed to pass`);
     }
 
-    console.log(' or here');
+    console.log('Not skipping deployment');
     core.setOutput('skip', 'false');
 
   } catch(err) {
