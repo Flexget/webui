@@ -33,7 +33,7 @@ jobs:
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
       - uses: actions/checkout@v1
         with:
-          ref: ${{ github.ref }}
+          ref: develop
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
