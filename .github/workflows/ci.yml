@@ -49,5 +49,5 @@ jobs:
       - uses: actions/checkout@v1
       - name: 'Skip Deployment'
         uses: './.github/actions/skip-deployment'
-        env:
-          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

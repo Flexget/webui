@@ -1,5 +1,9 @@
 name: Skip Deployment
 description: Checks whether or not we should do the deployment
+inputs:
+  token:
+    description: 'Github access token'
+    required: true
 outputs:
   skip:
     description: A boolean to indicate whether to skip
