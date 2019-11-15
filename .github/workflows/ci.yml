@@ -42,3 +42,12 @@ jobs:
         run: yarn lint
       - name: Run Tests
         run: yarn test --ci --coverage --testResultsProcessor="jest-junit" -i
+  did-test-pass:
+    runs-on: ubuntu-latest
+    needs: tests
+    steps:
+      - uses: actions/checkout@v1
+      - name: 'Skip Deployment'
+        uses: './.github/actions/skip-deployment'
+        env:
+          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
