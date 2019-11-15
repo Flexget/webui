@@ -36,6 +36,8 @@ module.exports =
 /******/ 		// Load entry module and return exports
 /******/ 		return __webpack_require__(941);
 /******/ 	};
+/******/ 	// initialize runtime
+/******/ 	runtime(__webpack_require__);
 /******/
 /******/ 	// run startup
 /******/ 	return startup();
@@ -14004,16 +14006,22 @@ function hasNextPage (link) {
 /***/ }),
 
 /***/ 941:
-/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
+/***/ (function(__unusedmodule, __webpack_exports__, __webpack_require__) {
 
-const github = __webpack_require__(469);
-const core = __webpack_require__(470);
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(469);
+/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_actions_github__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(470);
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_1__);
+
+
 
 async function run() {
-  const myToken = core.getInput('token');
+  const myToken = _actions_core__WEBPACK_IMPORTED_MODULE_1___default().getInput('token');
 
-  const { repo, ref } = github.context;
-  const octokit = new github.GitHub(myToken);
+  const { repo, ref } = _actions_github__WEBPACK_IMPORTED_MODULE_0___default.a.context;
+  const octokit = new _actions_github__WEBPACK_IMPORTED_MODULE_0___default.a.GitHub(myToken);
   try {
     const { data } = await octokit.checks.listSuitesForRef({
       ...repo,
@@ -14023,14 +14031,16 @@ async function run() {
       s.app.slug === 'github-actions' && s.status === 'completed'
     ));
     if (!(!check || check.conclusion !== 'success')) {
-      core.setOutput('skip', 'true');
-      return core.setFailed(`Skipping deployment because tests failed to pass`);
+      _actions_core__WEBPACK_IMPORTED_MODULE_1___default().setOutput('skip', 'true');
+      console.log('here');
+      return _actions_core__WEBPACK_IMPORTED_MODULE_1___default().setFailed(`Skipping deployment because tests failed to pass`);
     }
 
-    core.setOutput('skip', 'false');
+    console.log(' or here');
+    _actions_core__WEBPACK_IMPORTED_MODULE_1___default().setOutput('skip', 'false');
 
   } catch(err) {
-    core.setFailed(`Action failed with error ${err}`);
+    _actions_core__WEBPACK_IMPORTED_MODULE_1___default().setFailed(`Action failed with error ${err}`);
   }
 }
 
@@ -14736,4 +14746,43 @@ exports.request = request;
 
 /***/ })
 
-/******/ });
+/******/ },
+/******/ function(__webpack_require__) { // webpackRuntimeModules
+/******/ 	"use strict";
+/******/ 
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function getDefault() { return module['default']; } :
+/******/ 				function getModuleExports() { return module; };
+/******/ 			__webpack_require__.d(getter, 'a', getter);
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getter */
+/******/ 	!function() {
+/******/ 		// define getter function for harmony exports
+/******/ 		var hasOwnProperty = Object.prototype.hasOwnProperty;
+/******/ 		__webpack_require__.d = function(exports, name, getter) {
+/******/ 			if(!hasOwnProperty.call(exports, name)) {
+/******/ 				Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ }
+);

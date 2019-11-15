@@ -1,5 +1,5 @@
-const github = require('@actions/github');
-const core = require('@actions/core');
+import github from '@actions/github';
+import core from '@actions/core';
 
 async function run() {
   const myToken = core.getInput('token');
@@ -16,9 +16,11 @@ async function run() {
     ));
     if (!(!check || check.conclusion !== 'success')) {
       core.setOutput('skip', 'true');
+      console.log('here');
       return core.setFailed(`Skipping deployment because tests failed to pass`);
     }
 
+    console.log(' or here');
     core.setOutput('skip', 'false');
 
   } catch(err) {
