@@ -14022,7 +14022,7 @@ async function run() {
     const check = data.check_suites.find((s) => (
       s.app.slug === 'github-actions' && s.status === 'completed'
     ));
-    if (!(!check || check.conclusion !== 'success')) {
+    if (!check || check.conclusion !== 'success') {
       setOutput('skip', 'true');
       setFailed(`Skipping deployment because tests failed to pass`);
       return;
