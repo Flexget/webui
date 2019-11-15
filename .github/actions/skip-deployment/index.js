@@ -15,8 +15,11 @@ async function run() {
       s.app.slug === 'github-actions' && s.status === 'completed'
     ));
     if (!check || check.conclusion !== 'success') {
+      core.setOutput('skip', 'true');
       return core.setFailed(`Skipping deployment because tests failed to pass`);
     }
+
+    core.setOutput('skip', 'false');
 
   } catch(e) {
     core.setFailed(`Action failed with error ${err}`);
