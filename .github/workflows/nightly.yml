@@ -1,0 +1,15 @@
+name: Nightly Cron
+
+on:
+  schedule:
+    - cron: 0 1 * * *
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./.github/actions/deployment
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+

@@ -1,0 +1,44 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - develop
+      - master
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
+      - '*'
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node:
+          - 12.x
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Cache Dependencies
+        id: cache-dependencies
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ matrix.node }}-deps-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ matrix.node }}-deps-
+      - name: Install Dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+      - name: Run Linter
+        run: yarn lint
+      - name: Run Tests
+        run: yarn test --ci --coverage --testResultsProcessor="jest-junit" -i
