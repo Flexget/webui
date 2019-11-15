@@ -1,13 +1,13 @@
-import github from '@actions/github';
-import core from '@actions/core';
+const { getInput, setOutput, setFailed } = require('@actions/core');
+const { GitHub, context } = require('@actions/github');
 
 async function run() {
-  const myToken = core.getInput('token');
+  const myToken = getInput('token');
 
-  const { repo, ref } = github.context;
-  const octokit = new github.GitHub(myToken);
+  const { repo, ref } = context;
+  const { checks } = new GitHub(myToken);
   try {
-    const { data } = await octokit.checks.listSuitesForRef({
+    const { data } = await checks.listSuitesForRef({
       ...repo,
       ref,
     });
@@ -15,15 +15,15 @@ async function run() {
       s.app.slug === 'github-actions' && s.status === 'completed'
     ));
     if (!(!check || check.conclusion !== 'success')) {
-      core.setOutput('skip', 'true');
+      setOutput('skip', 'true');
       return core.setFailed(`Skipping deployment because tests failed to pass`);
     }
 
     console.log('Not skipping deployment');
-    core.setOutput('skip', 'false');
+    setOutput('skip', 'false');
 
   } catch(err) {
-    core.setFailed(`Action failed with error ${err}`);
+    setFailed(`Action failed with error ${err}`);
   }
 }
 
