@@ -61,7 +61,6 @@ jobs:
           GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./.github/actions/deployment-status
         name: Set Deployment Status Success
-        if: failure()
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           status: success
