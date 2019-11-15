@@ -2,8 +2,9 @@
   "name": "flexget-webui-actions",
   "version": "1.0.0",
   "scripts": {
-    "package": "yarn package:skip",
-    "package:skip": "ncc build skip-deployment/index.js -o skip-deployment/lib"
+    "package": "yarn package:skip && yarn package:deploy",
+    "package:skip": "ncc build skip-deployment/index.js -o skip-deployment/lib",
+    "package:deploy": "ncc build deployment/index.js -o deployment/lib"
   },
   "dependencies": {
     "@actions/core": "^1.2.0",

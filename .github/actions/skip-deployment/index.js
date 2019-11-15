@@ -21,7 +21,7 @@ async function run() {
 
     core.setOutput('skip', 'false');
 
-  } catch(e) {
+  } catch(err) {
     core.setFailed(`Action failed with error ${err}`);
   }
 }

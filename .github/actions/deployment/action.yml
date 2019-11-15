@@ -1,0 +1,12 @@
+name: Deployment
+description: Creates a deployment
+inputs:
+  token:
+    description: 'Github access token'
+    required: true
+outputs:
+  skip:
+    description: A boolean to indicate whether to skip
+runs:
+  using: 'node12'
+  main: 'lib/index.js'
