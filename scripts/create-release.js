@@ -2,7 +2,7 @@ import fs from 'fs';
 import Octokit from '@octokit/rest';
 
 const github = new Octokit({
-  auth: `token ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
+  auth: `token ${process.env.GITHUB_TOKEN}`,
 });
 
 const args = process.argv.slice(2);

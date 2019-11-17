@@ -59,7 +59,7 @@ jobs:
       - name: Release
         run: scripts/release.sh
         env:
-          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./.github/actions/deployment-status
         name: Set Deployment Status Success
         with:
