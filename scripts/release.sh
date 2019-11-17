@@ -7,8 +7,6 @@ set -e
 set -x
 
 if git log --skip 1 origin/master..origin/develop|grep '^commit '; then
-  git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
-
   # Bump the current release version
   VERSION=$(yarn -s release:bump release)
 

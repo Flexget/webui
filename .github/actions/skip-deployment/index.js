@@ -1,4 +1,4 @@
-const { getInput, setOutput, setFailed } = require('@actions/core');
+const { getInput, setOutput, setFailed, info} = require('@actions/core');
 const { GitHub, context } = require('@actions/github');
 
 async function run() {
@@ -20,7 +20,7 @@ async function run() {
       return;
     }
 
-    console.log('Not skipping deployment');
+    info('Not skipping deployment');
     setOutput('skip', 'false');
 
   } catch(err) {

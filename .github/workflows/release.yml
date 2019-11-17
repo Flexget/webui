@@ -27,12 +27,14 @@ jobs:
       - uses: actions/checkout@v1
       - name: Setup Git
         run: |
-          git config --local user.email ${GIT_EMAIL}
-          git config --local user.name ${GIT_USERNAME}
+          git config --local user.email $GIT_EMAIL
+          git config --local user.name $GIT_USERNAME
           git checkout ${GITHUB_REF:11}
+          git remote set-url origin https://$GIT_USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
         env:
           GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
