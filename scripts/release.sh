@@ -7,6 +7,8 @@ set -e
 set -x
 
 if git log --skip 1 origin/master..origin/develop|grep '^commit '; then
+  git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
+
   # Bump the current release version
   VERSION=$(yarn -s release:bump release)
 
@@ -22,8 +24,7 @@ if git log --skip 1 origin/master..origin/develop|grep '^commit '; then
 
   # Push to master
   git branch -f master $VERSION
-  git push origin master develop
-  git push --tags
+  git push origin master develop --follow-tags
   if [ $? -eq 0 ]; then
     yarn release:upload $VERSION
   fi
