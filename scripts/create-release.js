@@ -18,12 +18,15 @@ async function run() {
 
     const fileStream = fs.createReadStream('/tmp/dist.zip');
     const stats = fs.statSync('/tmp/dist.zip');
+    const headers = {
+      'content-type': 'application/zip',
+      'content-length': stats.size,
+    };
 
-    await github.repos.uploadAsset({
+    await github.repos.uploadReleaseAsset({
       url: data.upload_url,
       file: fileStream,
-      contentType: 'application/zip',
-      contentLength: stats.size,
+      headers,
       name: 'dist.zip',
       label: 'Production Build',
     });
