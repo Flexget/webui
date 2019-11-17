@@ -24,16 +24,15 @@ jobs:
       matrix:
         node: [12.x]
     steps:
+      - uses: actions/checkout@v1
       - name: Setup Git
         run: |
           git config --local user.email ${GIT_EMAIL}
           git config --local user.name ${GIT_USERNAME}
+          git checkout ${GITHUB_REF:11}
         env:
           GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
-      - uses: actions/checkout@v1
-      - name: Checkout Branch
-        run: git checkout ${GITHUB_REF:11}
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
