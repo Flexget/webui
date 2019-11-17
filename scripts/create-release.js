@@ -1,36 +1,34 @@
 import fs from 'fs';
-import Octokit from '@octokit/rest';
+import { debug, setFailed } from '@actions/core';
+import { GitHub, context } from '@actions/github';
 
-const github = new Octokit({
-  auth: `token ${process.env.GITHUB_TOKEN}`,
-});
+async function run() {
+  const { repo } = context;
+  const github = new GitHub(process.env.GITHUB_TOKEN);
 
-const args = process.argv.slice(2);
+  const args = process.argv.slice(2);
+  try {
+    const { data } = await github.repos.createRelease({
+      ...repo,
+      tag_name: args[0],
+      prerelease: false,
+    });
 
-github.repos
-  .createRelease({
-    owner: 'Flexget',
-    repo: 'webui',
-    tag_name: args[0],
-    prerelease: false,
-  })
-  .then(result => {
-    console.log(result);
+    debug(data);
 
     const fileStream = fs.createReadStream('/tmp/dist.zip');
     const stats = fs.statSync('/tmp/dist.zip');
 
-    return github.repos.uploadAsset({
-      url: result.data.upload_url,
+    await github.repos.uploadAsset({
+      url: data.upload_url,
       file: fileStream,
       contentType: 'application/zip',
       contentLength: stats.size,
       name: 'dist.zip',
       label: 'Production Build',
     });
-  })
-  .catch(err => {
-    console.log('Problem creating release');
-    console.log(err);
-    process.exit(1);
-  });
+  } catch (err) {
+    setFailed(`Problem uploading release ${err}`);
+  }
+}
+run();
