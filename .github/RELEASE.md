@@ -4,7 +4,7 @@ Currently the webui is built nightly at 1am UTC as long as there are changes on 
 
 If you have write access to this repo, you can also trigger a manual release in slack or using the github api directly to create a deployment.
 
-To trigger a manula release in slack:
+To trigger a manual release in slack:
 
 1. Go to the #development channel
 2. Run the folllowing slash command (it will ask you to auth with github to link to your slack account if you haven't already)
