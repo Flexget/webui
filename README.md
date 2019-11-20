@@ -9,8 +9,7 @@ A new web interface for configuring and viewing FlexGet settings
 
 [![Github Actions](https://github.com/Flexget/webui/workflows/Continuous%20Integration/badge.svg)](https://github.com/Flexget/webui/actions?query=workflow%3A%22Continuous+Integration%22)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/Flexget/Flexget)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8da2001257724ba0a1721c52b32741fa)](https://www.codacy.com/app/Flexget/webui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Flexget/webui&amp;utm_campaign=Badge_Grade)
-[![Codacy Coverage](https://api.codacy.com/project/badge/Coverage/8da2001257724ba0a1721c52b32741fa)](https://www.codacy.com/app/Flexget/webui?utm_source=github.com&utm_medium=referral&utm_content=Flexget/webui&utm_campaign=Badge_Coverage)
+[![codecov](https://codecov.io/gh/Flexget/webui/branch/develop/graph/badge.svg)](https://codecov.io/gh/Flexget/webui)
 </div>
 
 ---
