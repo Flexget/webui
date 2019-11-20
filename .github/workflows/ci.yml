@@ -21,9 +21,6 @@ jobs:
           - 12.x
     steps:
       - uses: actions/checkout@v1
-      - name: Setup Git
-        run: |
-          git checkout ${GITHUB_REF:11}
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v1
         with:
@@ -44,7 +41,7 @@ jobs:
       - name: Run Tests
         run: yarn test --ci --coverage -i
       - name: Send to Code Cov
-        run: yarn exec codecov
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
