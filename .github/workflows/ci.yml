@@ -39,4 +39,9 @@ jobs:
       - name: Run Linter
         run: yarn lint
       - name: Run Tests
-        run: yarn test --ci --coverage --testResultsProcessor="jest-junit" -i
+        run: yarn test --ci --coverage -i
+      - name: Send to Code Cov
+        run: yarn exec codecov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
