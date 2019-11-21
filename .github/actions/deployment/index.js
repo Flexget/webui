@@ -8,16 +8,10 @@ async function run() {
   const { repos } = new GitHub(myToken);
 
   try {
-    const req = {
-      ...repo,
-      ref: ref.slice(11),
-    };
-    info(JSON.stringify(req, null, 2));
     const data = await repos.createDeployment({
       ...repo,
       ref: ref.slice(11),
     });
-    info(JSON.stringify(data, null, 2));
   } catch(err) {
     setFailed(`Action failed with err ${err}`);
   }
