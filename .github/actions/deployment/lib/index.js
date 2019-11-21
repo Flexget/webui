@@ -11776,13 +11776,16 @@ async function run() {
   const { repos } = new GitHub(myToken);
 
   try {
+    const req = {
+      ...repo,
+      ref,
+    };
+    info(JSON.stringify(req, null, 2));
     const data = await repos.createDeployment({
       ...repo,
       ref,
-      task: 'deploy',
-      environment: 'production',
     });
-    info(data);
+    info(JSON.stringify(data, null, 2));
   } catch(err) {
     setFailed(`Action failed with err ${err}`);
   }
