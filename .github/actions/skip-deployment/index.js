@@ -1,4 +1,4 @@
-const { getInput, setOutput, setFailed, info} = require('@actions/core');
+const { getInput, setOutput, setFailed, info } = require('@actions/core');
 const { GitHub, context } = require('@actions/github');
 
 async function run() {

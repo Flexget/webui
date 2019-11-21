@@ -1,4 +1,4 @@
-const { getInput, setFailed } = require('@actions/core');
+const { getInput, setFailed, info } = require('@actions/core');
 const { GitHub, context } = require('@actions/github');
 
 async function run() {
@@ -8,12 +8,13 @@ async function run() {
   const { repos } = new GitHub(myToken);
 
   try {
-    await repos.createDeployment({
+    const data = await repos.createDeployment({
       ...repo,
       ref,
       task: 'deploy',
       environment: 'production',
     });
+    info(data);
   } catch(err) {
     setFailed(`Action failed with err ${err}`);
   }

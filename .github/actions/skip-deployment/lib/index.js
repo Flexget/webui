@@ -14006,7 +14006,7 @@ function hasNextPage (link) {
 /***/ 941:
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
-const { getInput, setOutput, setFailed } = __webpack_require__(470);
+const { getInput, setOutput, setFailed, info } = __webpack_require__(470);
 const { GitHub, context } = __webpack_require__(469);
 
 async function run() {
@@ -14028,7 +14028,7 @@ async function run() {
       return;
     }
 
-    console.log('Not skipping deployment');
+    info('Not skipping deployment');
     setOutput('skip', 'false');
 
   } catch(err) {

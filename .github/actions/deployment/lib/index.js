@@ -11766,7 +11766,7 @@ if (false) {}
 /***/ 845:
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
-const { getInput, setFailed } = __webpack_require__(470);
+const { getInput, setFailed, info } = __webpack_require__(470);
 const { GitHub, context } = __webpack_require__(469);
 
 async function run() {
@@ -11776,12 +11776,13 @@ async function run() {
   const { repos } = new GitHub(myToken);
 
   try {
-    await repos.createDeployment({
+    const data = await repos.createDeployment({
       ...repo,
       ref,
       task: 'deploy',
       environment: 'production',
     });
+    info(data);
   } catch(err) {
     setFailed(`Action failed with err ${err}`);
   }
