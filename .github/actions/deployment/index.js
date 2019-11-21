@@ -10,12 +10,12 @@ async function run() {
   try {
     const req = {
       ...repo,
-      ref,
+      ref: ref.slice(11),
     };
     info(JSON.stringify(req, null, 2));
     const data = await repos.createDeployment({
       ...repo,
-      ref,
+      ref: ref.slice(11),
     });
     info(JSON.stringify(data, null, 2));
   } catch(err) {
