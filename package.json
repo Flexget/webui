@@ -1,6 +1,6 @@
 {
   "name": "flexget",
-  "version": "2.0.0-beta.17.dev",
+  "version": "2.0.0-beta.21.dev",
   "description": "Flexget Web UI",
   "main": "index.js",
   "scripts": {
@@ -11,9 +11,12 @@
     "lint:css": "stylelint './src/**/*.js'",
     "test": "NODE_ENV=test jest",
     "test:watch": "jest --watch",
-    "cov": "cat coverage/lcov.info | codacy-coverage",
     "release:bump": "NODE_ENV=release babel-node ./scripts/bump-version.js",
-    "release:upload": "NODE_ENV=release babel-node ./scripts/create-release.js"
+    "release:upload": "NODE_ENV=release babel-node ./scripts/create-release.js",
+    "package": "yarn package:skip && yarn package:deploy && yarn package:status",
+    "package:skip": "ncc build .github/actions/skip-deployment/index.js -o .github/actions/skip-deployment/lib",
+    "package:deploy": "ncc build .github/actions/deployment/index.js -o .github/actions/deployment/lib",
+    "package:status": "ncc build .github/actions/deployment-status/index.js -o .github/actions/deployment-status/lib"
   },
   "repository": {
     "type": "git",
@@ -29,6 +32,8 @@
   },
   "homepage": "https://github.com/Flexget/webui",
   "devDependencies": {
+    "@actions/core": "^1.2.0",
+    "@actions/github": "^1.1.0",
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
     "@babel/node": "^7.0.0",
@@ -37,6 +42,7 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@emotion/babel-preset-css-prop": "^10.0.14",
+    "@octokit/rest": "^16.33.0",
     "@types/faker": "^4.1.5",
     "@types/jest": "^24.0.18",
     "@types/oboe": "^2.0.28",
@@ -46,6 +52,7 @@
     "@types/redux-mock-store": "^1.0.1",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
+    "@zeit/ncc": "^0.20.5",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^24.8.0",
@@ -53,6 +60,7 @@
     "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "codacy-coverage": "^2.1.1",
+    "codecov": "^3.6.1",
     "css-loader": "^3.1.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -72,7 +80,6 @@
     "fetch-mock": "^6.5.2",
     "file-loader": "^1.1.11",
     "fork-ts-checker-webpack-plugin": "^1.4.3",
-    "github": "^13.1.1",
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",

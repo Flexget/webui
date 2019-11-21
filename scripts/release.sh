@@ -22,8 +22,7 @@ if git log --skip 1 origin/master..origin/develop|grep '^commit '; then
 
   # Push to master
   git branch -f master $VERSION
-  git push origin master develop
-  git push --tags
+  git push origin master develop --follow-tags
   if [ $? -eq 0 ]; then
     yarn release:upload $VERSION
   fi

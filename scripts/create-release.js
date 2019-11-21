@@ -1,42 +1,37 @@
 import fs from 'fs';
-import GitHubApi from 'github';
+import { debug, setFailed } from '@actions/core';
+import { GitHub, context } from '@actions/github';
 
-const github = new GitHubApi();
+async function run() {
+  const { repo } = context;
+  const github = new GitHub(process.env.GITHUB_TOKEN);
 
-const args = process.argv.slice(2);
+  const args = process.argv.slice(2);
+  try {
+    const { data } = await github.repos.createRelease({
+      ...repo,
+      tag_name: args[0],
+      prerelease: false,
+    });
 
-github.authenticate({
-  type: 'token',
-  token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
-});
+    debug(data);
 
-github.repos.createRelease({
-  owner: 'Flexget',
-  repo: 'webui',
-  tag_name: args[0],
-  prerelease: false,
-}).then((result) => {
-  console.log(result);
+    const fileStream = fs.createReadStream('/tmp/dist.zip');
+    const stats = fs.statSync('/tmp/dist.zip');
+    const headers = {
+      'content-type': 'application/zip',
+      'content-length': stats.size,
+    };
 
-  github.authenticate({
-    type: 'token',
-    token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
-  });
-
-  const fileStream = fs.createReadStream('/tmp/dist.zip');
-  const stats = fs.statSync('/tmp/dist.zip');
-
-  return github.repos.uploadAsset({
-    url: result.data.upload_url,
-    file: fileStream,
-    contentType: 'application/zip',
-    contentLength: stats.size,
-    name: 'dist.zip',
-    label: 'Production Build',
-  });
-})
-  .catch((err) => {
-    console.log('Problem creating release');
-    console.log(err);
-    process.exit(1);
-  });
+    await github.repos.uploadReleaseAsset({
+      url: data.upload_url,
+      file: fileStream,
+      headers,
+      name: 'dist.zip',
+      label: 'Production Build',
+    });
+  } catch (err) {
+    setFailed(`Problem uploading release ${err}`);
+  }
+}
+run();
