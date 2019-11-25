@@ -1,6 +1,6 @@
 import { stringify } from 'qs';
 import { call, put, takeLatest, delay } from 'redux-saga/effects';
-import { requesting } from 'core/status/state/util';
+import { requesting } from 'core/request/state/util';
 import { get } from 'utils/fetch';
 import { Direction } from 'utils/query';
 import actions, { Constants, RequestsOfType } from './actions';

@@ -1,6 +1,6 @@
 import versionActions from 'core/version/state/actions';
 import { StatusError } from 'utils/fetch';
-import { requestLoad, requestSuccess, requestError } from 'core/request/state/util';
+import { requestAction, successAction, errorAction } from 'core/request/state/util';
 import reducer from './reducer';
 import actions from './actions';
 
@@ -9,14 +9,14 @@ const OTHER = 'OTHER';
 
 const testActions = {
   test: {
-    request: () => requestLoad(TEST),
-    success: () => requestSuccess(TEST),
-    failure: (err: StatusError) => requestError(TEST, err),
+    request: () => requestAction(TEST),
+    success: () => successAction(TEST),
+    failure: (err: StatusError) => errorAction(TEST, err),
   },
   other: {
-    request: (param: string) => requestLoad(OTHER, { param }),
-    success: (val: string) => requestSuccess(OTHER, undefined, val),
-    failure: (err: StatusError) => requestError(OTHER, err),
+    request: (param: string) => requestAction(OTHER, { param }),
+    success: (val: string) => successAction(OTHER, undefined, val),
+    failure: (err: StatusError) => errorAction(OTHER, err),
   },
 };
 

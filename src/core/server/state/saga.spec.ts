@@ -1,7 +1,7 @@
 import { call } from 'redux-saga/effects';
 import { expectSaga } from 'redux-saga-test-plan';
 import { post } from 'utils/fetch';
-import { withMeta } from 'utils/actions';
+import { withMeta } from 'core/request/state/util';
 import actions, { Operation } from './actions';
 import { manageServer } from './saga';
 

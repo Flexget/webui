@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { withMeta } from 'utils/actions';
-import { requesting } from 'core/request/state/util';
+import { withMeta, requesting } from 'core/request/state/util';
+
 import { post } from 'utils/fetch';
 import actions, { Constants, RequestsOfType } from './actions';
 

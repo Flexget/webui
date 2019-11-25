@@ -1,9 +1,7 @@
-import { action, ActionsUnion } from 'utils/actions';
+import { asyncAction, action, ActionsUnion, RequestsOfType as ROT } from 'core/request/state/util';
 import FlexGetEntry from 'common/FlexGetEntry';
 import { StatusError } from 'utils/fetch';
 import { Direction } from 'utils/query';
-import statusActions from 'core/status/state/actions';
-import { RequestsOfType as ROT } from 'core/status/state/types';
 
 import { List } from './types';
 
@@ -49,52 +47,52 @@ interface EntryRequest {
 
 const actions = {
   getLists: {
-    request: () => statusActions.load(Constants.GET_LISTS),
-    success: (lists: List[]) => action(Constants.GET_LISTS, { lists }),
-    failure: (err: StatusError) => statusActions.error(Constants.GET_LISTS, err),
+    request: () => asyncAction.request(Constants.GET_LISTS),
+    success: (lists: List[]) => asyncAction.success(Constants.GET_LISTS, { lists }),
+    failure: (err: StatusError) => asyncAction.failure(Constants.GET_LISTS, err),
   },
   addList: {
-    request: (data: AddListRequest) => statusActions.load(Constants.ADD_LIST, { data }),
-    success: (list: List) => action(Constants.ADD_LIST, { list }),
-    failure: (err: StatusError) => statusActions.error(Constants.ADD_LIST, err),
+    request: (data: AddListRequest) => asyncAction.request(Constants.ADD_LIST, { data }),
+    success: (list: List) => asyncAction.success(Constants.ADD_LIST, { list }),
+    failure: (err: StatusError) => asyncAction.failure(Constants.ADD_LIST, err),
   },
   removeList: {
-    request: (id: number) => statusActions.load(Constants.REMOVE_LIST, { id }),
-    success: (id: number) => action(Constants.REMOVE_LIST, { id }),
-    failure: (err: StatusError) => statusActions.error(Constants.REMOVE_LIST, err),
+    request: (id: number) => asyncAction.request(Constants.REMOVE_LIST, { id }),
+    success: (id: number) => asyncAction.success(Constants.REMOVE_LIST, { id }),
+    failure: (err: StatusError) => asyncAction.failure(Constants.REMOVE_LIST, err),
   },
   getEntries: {
     request: (listId: number, params: GetEntriesOptions) =>
-      statusActions.load(Constants.GET_ENTRIES, { listId, params }),
+      asyncAction.request(Constants.GET_ENTRIES, { listId, params }),
     success: (entries: FlexGetEntry[], page: number, headers: Headers) =>
-      action(Constants.GET_ENTRIES, { entries, page, headers }),
-    failure: (err: StatusError) => statusActions.error(Constants.GET_ENTRIES, err),
+      asyncAction.success(Constants.GET_ENTRIES, { entries, page, headers }),
+    failure: (err: StatusError) => asyncAction.failure(Constants.GET_ENTRIES, err),
   },
   addEntry: {
-    request: (data: AddEntryRequest) => statusActions.load(Constants.ADD_ENTRY, data),
-    success: () => action(Constants.ADD_ENTRY),
-    failure: (err: StatusError) => statusActions.error(Constants.ADD_ENTRY, err),
+    request: (data: AddEntryRequest) => asyncAction.request(Constants.ADD_ENTRY, data),
+    success: () => asyncAction.success(Constants.ADD_ENTRY),
+    failure: (err: StatusError) => asyncAction.failure(Constants.ADD_ENTRY, err),
   },
   removeEntry: {
-    request: (entry: FlexGetEntry) => statusActions.load(Constants.REMOVE_ENTRY, { entry }),
-    success: (entry: FlexGetEntry) => action(Constants.REMOVE_ENTRY, { entry }),
-    failure: (err: StatusError) => statusActions.error(Constants.REMOVE_ENTRY, err),
+    request: (entry: FlexGetEntry) => asyncAction.request(Constants.REMOVE_ENTRY, { entry }),
+    success: (entry: FlexGetEntry) => asyncAction.success(Constants.REMOVE_ENTRY, { entry }),
+    failure: (err: StatusError) => asyncAction.failure(Constants.REMOVE_ENTRY, err),
   },
   injectEntry: {
     request: (entry: FlexGetEntry, taskName: string) =>
-      statusActions.load(Constants.INJECT_ENTRY, { entry, task: { name: taskName } }),
-    success: (entry: FlexGetEntry) => action(Constants.INJECT_ENTRY, { entry }),
-    failure: (err: StatusError) => statusActions.error(Constants.INJECT_ENTRY, err),
+      asyncAction.request(Constants.INJECT_ENTRY, { entry, task: { name: taskName } }),
+    success: (entry: FlexGetEntry) => asyncAction.success(Constants.INJECT_ENTRY, { entry }),
+    failure: (err: StatusError) => asyncAction.failure(Constants.INJECT_ENTRY, err),
   },
   approveEntry: {
-    request: (entry: EntryRequest) => statusActions.load(Constants.APPROVE_ENTRY, { entry }),
-    success: (entry: FlexGetEntry) => action(Constants.APPROVE_ENTRY, { entry }),
-    failure: (err: StatusError) => statusActions.error(Constants.APPROVE_ENTRY, err),
+    request: (entry: EntryRequest) => asyncAction.request(Constants.APPROVE_ENTRY, { entry }),
+    success: (entry: FlexGetEntry) => asyncAction.success(Constants.APPROVE_ENTRY, { entry }),
+    failure: (err: StatusError) => asyncAction.failure(Constants.APPROVE_ENTRY, err),
   },
   rejectEntry: {
-    request: (entry: EntryRequest) => statusActions.load(Constants.REJECT_ENTRY, { entry }),
-    success: (entry: FlexGetEntry) => action(Constants.REJECT_ENTRY, { entry }),
-    failure: (err: StatusError) => statusActions.error(Constants.REJECT_ENTRY, err),
+    request: (entry: EntryRequest) => asyncAction.request(Constants.REJECT_ENTRY, { entry }),
+    success: (entry: FlexGetEntry) => asyncAction.success(Constants.REJECT_ENTRY, { entry }),
+    failure: (err: StatusError) => asyncAction.failure(Constants.REJECT_ENTRY, err),
   },
   selectList: (selected: number) => action(Constants.SELECT_LIST, { selected }),
 };

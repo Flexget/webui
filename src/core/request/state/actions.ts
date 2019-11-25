@@ -1,4 +1,4 @@
-import { action, ActionsUnion } from 'utils/actions';
+import { action, ActionsUnion } from './util';
 
 export const enum Constants {
   CLEAR_ALL_REQUESTS = '@flexget/request/CLEAR_ALL_REQUESTS',

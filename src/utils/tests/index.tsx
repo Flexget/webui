@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import theme from 'theme';
-import { BaseAction } from 'core/status/state/util';
+import { Action } from 'core/request/state/util';
 import { GuardPredicate } from '@redux-saga/types'; // eslint-disable-line import/no-unresolved
 import { TakeEffect } from 'redux-saga/effects';
 
@@ -22,7 +22,7 @@ export function provider(component: React.ReactNode, state = {}) {
   return <Provider store={mockStore(state)}>{component}</Provider>;
 }
 
-export const takeRequest = <T extends BaseAction>(action: BaseAction) => (ef: TakeEffect) => {
-  const fn = ef.payload.pattern as GuardPredicate<T, BaseAction>;
+export const takeRequest = <T extends Action>(action: Action) => (ef: TakeEffect) => {
+  const fn = ef.payload.pattern as GuardPredicate<T, Action>;
   expect(fn(action)).toBe(true);
 };

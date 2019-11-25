@@ -1,6 +1,6 @@
 import { stringify } from 'qs';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { requesting } from 'core/status/state/util';
+import { requesting } from 'core/request/state/util';
 import { get } from 'utils/fetch';
 import { Direction } from 'utils/query';
 import actions, { Constants, RequestsOfType } from './actions';
@@ -24,8 +24,5 @@ export function* getHistory({ payload }: RequestsOfType<Constants.GET_HISTORY>) 
 }
 
 export default function* saga() {
-  yield takeLatest(
-    requesting<RequestsOfType<Constants.GET_HISTORY>>(Constants.GET_HISTORY),
-    getHistory,
-  );
+  yield takeLatest(requesting(Constants.GET_HISTORY), getHistory);
 }

@@ -1,7 +1,7 @@
 import * as oboe from 'oboe';
 import { eventChannel } from 'redux-saga';
 import { call, take, put, cancel, cancelled, fork } from 'redux-saga/effects';
-import { requesting } from 'core/status/state/util';
+import { requesting } from 'core/request/state/util';
 import { StatusError } from 'utils/fetch';
 import actions, { Constants, RequestsOfType } from './actions';
 import { LogMessage } from './types';
@@ -49,9 +49,7 @@ export function* log(action: RequestsOfType<Constants.LOG_CONNECT>) {
 
 export default function* saga() {
   while (true) {
-    const connectAction = yield take(
-      requesting<RequestsOfType<Constants.LOG_CONNECT>>(Constants.LOG_CONNECT),
-    );
+    const connectAction = yield take(requesting(Constants.LOG_CONNECT));
     const logStreamTask = yield fork(log, connectAction);
 
     yield take(Constants.LOG_DISCONNECT);

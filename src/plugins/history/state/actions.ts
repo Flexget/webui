@@ -1,7 +1,6 @@
-import statusActions from 'core/status/state/actions';
+import { asyncAction, ActionsUnion, RequestsOfType as ROT } from 'core/request/state/util';
 import { StatusError } from 'utils/fetch';
-import { action, ActionsUnion } from 'utils/actions';
-import { RequestsOfType as ROT } from 'core/status/state/types';
+
 import { GetHistoryOptions, History } from './types';
 
 export const enum Constants {
@@ -10,10 +9,10 @@ export const enum Constants {
 
 const actions = {
   getHistory: {
-    request: (data: GetHistoryOptions) => statusActions.load(Constants.GET_HISTORY, data),
+    request: (data: GetHistoryOptions) => asyncAction.request(Constants.GET_HISTORY, data),
     success: (data: History[], headers: Headers, refresh?: boolean) =>
-      action(Constants.GET_HISTORY, { data, headers, refresh }),
-    failure: (err: StatusError) => statusActions.error(Constants.GET_HISTORY, err),
+      asyncAction.success(Constants.GET_HISTORY, { data, headers, refresh }),
+    failure: (err: StatusError) => asyncAction.failure(Constants.GET_HISTORY, err),
   },
 };
 

@@ -1,7 +1,6 @@
 import { stringify } from 'qs';
 import { call, put, takeLatest, takeEvery, select } from 'redux-saga/effects';
-import { withMeta } from 'utils/actions';
-import { requesting } from 'core/status/state/util';
+import { withMeta, requesting } from 'core/request/state/util';
 
 import FlexGetEntry from 'common/FlexGetEntry';
 import * as fetch from 'utils/fetch';

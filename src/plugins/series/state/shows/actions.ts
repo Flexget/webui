@@ -1,7 +1,6 @@
-import statusActions from 'core/status/state/actions';
-import { action, ActionsUnion } from 'utils/actions';
+import { asyncAction, ActionsUnion, RequestsOfType as ROT } from 'core/request/state/util';
 import { StatusError } from 'utils/fetch';
-import { RequestsOfType as ROT } from 'core/status/state/types';
+
 import { Show, GetShowOptions } from './types';
 
 export const enum Constants {
@@ -11,9 +10,10 @@ export const enum Constants {
 
 const actions = {
   getShows: {
-    request: (data: GetShowOptions) => statusActions.load(Constants.GET_SHOWS, data),
-    success: (data: Show[], headers: Headers) => action(Constants.GET_SHOWS, { data, headers }),
-    failure: (err: StatusError) => statusActions.error(Constants.GET_SHOWS, err),
+    request: (data: GetShowOptions) => asyncAction.request(Constants.GET_SHOWS, data),
+    success: (data: Show[], headers: Headers) =>
+      asyncAction.success(Constants.GET_SHOWS, { data, headers }),
+    failure: (err: StatusError) => asyncAction.failure(Constants.GET_SHOWS, err),
   },
 };
 

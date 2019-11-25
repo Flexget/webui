@@ -1,13 +1,14 @@
-export interface Action<T extends symbol | string = symbol, P = undefined, U = {}> {
+export interface Action<T extends string = string, P = undefined, U = {}> {
   readonly type: T;
   readonly payload: P;
   readonly meta: U;
 }
 
-export type UnknownAction<T extends symbol = symbol> = Action<T, unknown, unknown>;
+export type UnknownAction<T extends string = string> = Action<T, unknown, unknown>;
 
-export type ActionCreator<T extends symbol = symbol> = (...args: any[]) => UnknownAction<T>;
+export type ActionCreator<T extends string = string> = (...args: any[]) => UnknownAction<T>;
 
+// TODO: request | Receive | error
 export const enum AsyncKeys {
   Request = 'request',
   Success = 'success',
@@ -15,9 +16,9 @@ export const enum AsyncKeys {
 }
 
 export interface AsyncActionCreator<
-  Tr extends symbol = symbol,
-  Ts extends symbol = symbol,
-  Tf extends symbol = symbol
+  Tr extends string = string,
+  Ts extends string = string,
+  Tf extends string = string
 > {
   [AsyncKeys.Request]: ActionCreator<Tr>;
   [AsyncKeys.Success]: ActionCreator<Ts>;
@@ -38,7 +39,7 @@ export type ActionsUnion<T extends ActionCreatorsDictionary> = ReturnType<
   }[keyof T]
 >;
 
-export type ActionsOfType<ActionUnion, Type extends symbol, Meta extends {} = {}> = Extract<
+export type ActionsOfType<ActionUnion, Type extends string, Meta extends {} = {}> = Extract<
   ActionUnion,
   Action<Type, unknown, Meta>
 >;
@@ -71,7 +72,7 @@ export interface SuccessMeta extends BaseMeta {
 
 export type RequestMeta = SuccessMeta | InProgressMeta | ErrorMeta;
 
-export type AsyncAction<T extends symbol = symbol> = Action<T, unknown, RequestMeta>;
+export type AsyncAction<T extends string = string> = Action<T, unknown, RequestMeta>;
 
 export type MetaFromState<U extends RequestState> = U extends RequestState.InProgress
   ? InProgressMeta
@@ -81,14 +82,29 @@ export type MetaFromState<U extends RequestState> = U extends RequestState.InPro
   ? SuccessMeta
   : never;
 
-export type ActionFromState<T extends symbol, U extends RequestState> = Action<
-  T,
-  unknown,
-  MetaFromState<U>
->;
-export type InProgressAction<T extends symbol = symbol> = ActionFromState<
+export type ActionFromState<
+  ActionUnion,
+  ActionType extends string,
+  State extends RequestState
+> = ActionsOfType<ActionUnion, ActionType, MetaFromState<State>>;
+
+export type InProgressAction<ActionUnion, T extends string = string> = ActionFromState<
+  ActionUnion,
   T,
   RequestState.InProgress
 >;
-export type ErrorAction<T extends symbol = symbol> = ActionFromState<T, RequestState.Error>;
-export type SuccessAction<T extends symbol = symbol> = ActionFromState<T, RequestState.Success>;
+export type ErrorAction<ActionUnion, T extends string = string> = ActionFromState<
+  ActionUnion,
+  T,
+  RequestState.Error
+>;
+export type SuccessAction<ActionUnion, T extends string = string> = ActionFromState<
+  ActionUnion,
+  T,
+  RequestState.Success
+>;
+
+export type RequestsOfType<ActionUnion, ActionType extends string> = InProgressAction<
+  ActionUnion,
+  ActionType
+>;

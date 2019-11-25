@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { reset } from 'redux-form';
 import { ADD_ENTRY } from 'plugins/pendingList/state/actions';
-import { request } from 'utils/actions';
+import { request } from 'core/request/state/util';
 import AddEntryDialog from './AddEntryDialog';
 
 function mapDispatchToProps(dispatch, { onClose, listId }) {

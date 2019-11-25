@@ -2,8 +2,7 @@ import {
   Constants as VersionConstants,
   ActionTypes as VersionActionTypes,
 } from 'core/version/state/actions';
-import { isInState } from 'core/request/state/util';
-import { UnknownAction } from 'utils/actions';
+import { isInState, UnknownAction } from 'core/request/state/util';
 import { Constants, ActionTypes } from './actions';
 
 export interface State {

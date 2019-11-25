@@ -1,6 +1,5 @@
-import { action, ActionsUnion } from 'utils/actions';
-import statusActions from 'core/status/state/actions';
-import { RequestsOfType as ROT } from 'core/status/state/types';
+import { asyncAction, ActionsUnion, action, RequestsOfType as ROT } from 'core/request/state/util';
+
 import { StatusError } from 'utils/fetch';
 import { LogMessage } from './types';
 
@@ -18,9 +17,9 @@ interface ConnectParams {
 
 const actions = {
   connect: {
-    request: (params: ConnectParams) => statusActions.load(Constants.LOG_CONNECT, params),
-    success: () => action(Constants.LOG_CONNECT),
-    failure: (err: StatusError) => statusActions.error(Constants.LOG_CONNECT, err),
+    request: (params: ConnectParams) => asyncAction.request(Constants.LOG_CONNECT, params),
+    success: () => asyncAction.success(Constants.LOG_CONNECT),
+    failure: (err: StatusError) => asyncAction.failure(Constants.LOG_CONNECT, err),
   },
   message: (message: LogMessage) => action(Constants.LOG_MESSAGE, message),
   disconnect: () => action(Constants.LOG_DISCONNECT),

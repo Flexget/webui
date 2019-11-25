@@ -2,22 +2,21 @@ import { LOCATION_CHANGE } from 'connected-react-router';
 import { StatusError } from 'utils/fetch';
 import actions from './actions';
 import reducer from './reducer';
-import { RequestState } from './types';
-import { requestLoad, requestSuccess, requestError } from './util';
+import { requestAction, successAction, errorAction, RequestState } from './util';
 
 const TEST = 'TEST';
 const OTHER = 'OTHER';
 
 const testActions = {
   test: {
-    request: () => requestLoad(TEST),
-    success: () => requestSuccess(TEST),
-    failure: (err: StatusError) => requestError(TEST, err),
+    request: () => requestAction(TEST),
+    success: () => successAction(TEST),
+    failure: (err: StatusError) => errorAction(TEST, err),
   },
   other: {
-    request: (param: string) => requestLoad(OTHER, { param }),
-    success: (val: string) => requestSuccess(OTHER, undefined, val),
-    failure: (err: StatusError) => requestError(OTHER, err),
+    request: (param: string) => requestAction(OTHER, { param }),
+    success: (val: string) => successAction(OTHER, undefined, val),
+    failure: (err: StatusError) => errorAction(OTHER, err),
   },
 };
 

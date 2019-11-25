@@ -2,7 +2,7 @@ import { call, put, select } from 'redux-saga/effects';
 import { stringify } from 'qs';
 import { Headers } from 'utils/tests';
 import * as fetch from 'utils/fetch';
-import { action } from 'utils/actions';
+import { action } from 'core/request/state/util';
 import FlexGetEntry from 'common/FlexGetEntry';
 import {
   // getLists,

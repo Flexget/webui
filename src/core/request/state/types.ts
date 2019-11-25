@@ -1,10 +1,4 @@
-import { ActionsOfType, InProgressMeta, RequestMeta } from '../utils/actions/types';
-
-export type RequestsOfType<ActionUnion, ActionType extends symbol> = ActionsOfType<
-  ActionUnion,
-  ActionType,
-  InProgressMeta
->;
+import { RequestMeta } from './util';
 
 export interface ErrorPayload {
   message: string;

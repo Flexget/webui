@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import StatusBar from 'common/StatusBar';
-import actions from 'core/status/state/actions';
+import actions from 'core/request/state/actions';
 
 export function mapStateToProps({ status }) {
   return {
