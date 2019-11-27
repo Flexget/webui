@@ -19,7 +19,8 @@
       "dom",
       "scripthost",
       "dom.iterable"
-    ]
+    ],
+    "esModuleInterop": true
   },
   "include": [
     "./src"

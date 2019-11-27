@@ -17,7 +17,7 @@ enum Method {
   Delete = 'delete',
 }
 
-interface APIResponse<T> {
+export interface APIResponse<T> {
   data: T;
   headers: Headers;
 }
