@@ -1,8 +1,8 @@
 import React from 'react';
 import semver from 'semver-compare';
 import styled from '@emotion/styled';
-import { SerializedStyles } from '@emotion/core';
-import { useFetchData } from 'core/request';
+import { useFetch } from 'utils/hooks/fetch';
+import { Method } from 'utils/fetch';
 import theme from 'theme';
 import { IconButton } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +26,7 @@ const Line = styled.p`
 `;
 
 const Version: React.FC<Props> = ({ className }) => {
-  const [state] = useFetchData<VersionResponse>('/server/version');
+  const [state] = useFetch<VersionResponse>(Method.Get, '/server/version');
 
   if (state.isLoading) {
     // showProgress

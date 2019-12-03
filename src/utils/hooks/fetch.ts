@@ -1,5 +1,5 @@
 import { Reducer, useReducer, useEffect, useState } from 'react';
-import { StatusError, get, APIResponse } from 'utils/fetch';
+import request, { Method, StatusError, APIResponse } from 'utils/fetch';
 import { Action } from 'utils/hooks/actions';
 
 interface LoadingState<T> {
@@ -58,9 +58,9 @@ const dataFetchReducer = <T>(state: State<T>, action: Actions<T>): State<T> => {
   }
 };
 
-export const useFetchData = <T>(initialUrl: string) => {
-  const [url, setUrl] = useState(initialUrl);
-  const [state, dispatch] = useReducer<Reducer<State<T>, Actions<T>>>(dataFetchReducer, {
+export const useFetch = <Res, Req>(method: Method, url, initialBody?: Req) => {
+  const [body, setBody] = useState<Req | undefined>(initialBody);
+  const [state, dispatch] = useReducer<Reducer<State<Res>, Actions<Res>>>(dataFetchReducer, {
     isLoading: true,
   });
 
@@ -71,7 +71,12 @@ export const useFetchData = <T>(initialUrl: string) => {
       dispatch({ type: Constants.START });
 
       try {
-        const payload = await get<T>(url);
+        let payload: APIResponse<Res>;
+        if (method !== Method.Get && method !== Method.Delete) {
+          payload = await request[method]<Req | undefined, Res>(url, body);
+        } else {
+          payload = await request[method]<Res>(url);
+        }
 
         if (!cancelled) {
           dispatch({ type: Constants.SUCCESS, payload });
@@ -89,7 +94,7 @@ export const useFetchData = <T>(initialUrl: string) => {
     return () => {
       cancelled = true;
     };
-  }, [url]);
+  }, [body, method, url]);
 
-  return [state, setUrl] as const;
+  return [state, setBody] as const;
 };

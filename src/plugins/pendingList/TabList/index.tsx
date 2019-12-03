@@ -3,7 +3,7 @@ import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import Tab from '@material-ui/core/Tab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SecondaryNav from 'common/SecondaryNav';
-import { useOverlayState } from 'utils/hooks';
+import { useOverlayState } from 'utils/hooks/useOverlayState';
 import AddListDialog from '../AddListDialog';
 import { List, SelectedListID } from '../state/types';
 import actions from '../state/actions';

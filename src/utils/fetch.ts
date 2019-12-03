@@ -9,7 +9,7 @@ export class StatusError extends Error {
   }
 }
 
-enum Method {
+export const enum Method {
   Get = 'get',
   Post = 'post',
   Put = 'put',
@@ -91,12 +91,26 @@ export function post<Req, Res>(resource: string, body = undefined) {
   return request<Req, Res>(resource, Method.Post, body);
 }
 
+export function patch<T>(resource: string): Promise<APIResponse<T>>;
+export function patch<Req, Res>(resource: string, body: Req): Promise<APIResponse<Res>>;
+export function patch<Req, Res>(resource: string, body = undefined) {
+  return request<Req, Res>(resource, Method.Patch, body);
+}
+
 export function put<T>(resource: string): Promise<APIResponse<T>>;
 export function put<Req, Res>(resource: string, body: Req): Promise<APIResponse<Res>>;
 export function put<Req, Res>(resource: string, body = undefined) {
-  return request<Req, Res>(resource, Method.Put, body);
+  return request<Req, Res>(resource, Method.Post, body);
 }
 
-export function del(resource: string) {
-  return request(resource, Method.Delete);
+export function del<T>(resource: string) {
+  return request<undefined, T>(resource, Method.Delete);
 }
+
+export default {
+  get,
+  post,
+  put,
+  patch,
+  delete: del,
+};
