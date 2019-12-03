@@ -28,7 +28,7 @@ export default class SideNav extends Component {
     open: {},
   };
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { sideBarOpen } = this.props;
     if (sideBarOpen && !nextProps.sideBarOpen) {
       this.setState({ open: {} });

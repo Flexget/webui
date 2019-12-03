@@ -6,11 +6,11 @@ import FilterNav from 'plugins/history/FilterNav';
 import { NoPaddingWrapper } from 'common/styles';
 
 export default class HistoryPage extends Component {
+  scroll = React.createRef();
+
   static propTypes = {
     getHistory: PropTypes.func.isRequired,
   };
-
-  scroll = React.createRef();
 
   state = {
     grouping: 'time',

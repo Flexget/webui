@@ -1,8 +1,7 @@
 import React from 'react';
 import semver from 'semver-compare';
 import styled from '@emotion/styled';
-import { useFetch } from 'utils/hooks/fetch';
-import { Method } from 'utils/fetch';
+import { useFlexgetAPI } from 'utils/hooks/api';
 import theme from 'theme';
 import { IconButton } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,18 +25,18 @@ const Line = styled.p`
 `;
 
 const Version: React.FC<Props> = ({ className }) => {
-  const [state] = useFetch<VersionResponse>(Method.Get, '/server/version');
+  const { loading, error, data } = useFlexgetAPI<VersionResponse>('/server/version', []);
 
-  if (state.isLoading) {
+  if (loading || !data) {
     // showProgress
     return null;
   }
 
-  if (state.error) {
+  if (error) {
     return null;
   }
 
-  const { flexgetVersion, apiVersion, latestVersion } = state.resp.data;
+  const { flexgetVersion, apiVersion, latestVersion } = data;
 
   return (
     <Wrapper className={className}>

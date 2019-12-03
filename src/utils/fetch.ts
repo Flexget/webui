@@ -26,7 +26,7 @@ interface ErrorBody {
   message: string;
 }
 
-const camelize = <T>(obj: Object | Object[]) =>
+export const camelize = <T>(obj: Object | Object[]) =>
   humps.camelizeKeys<Object, T>(obj, {
     separator: '_',
   });
@@ -36,32 +36,29 @@ const snakeCase = <T>(obj: Object | Object[]): T =>
     split: /(?=[A-Z0-9])/,
   });
 
-function isError<T>(data: T | ErrorBody, s: number): data is ErrorBody {
-  return !(s >= 200 && s < 300) && typeof data === 'object';
-}
+export const isError = <T>(data: T | ErrorBody, s: number): data is ErrorBody =>
+  !(s >= 200 && s < 300) && typeof data === 'object';
 
 interface TypedResponse<T = Object> extends Response {
   json(): Promise<T | ErrorBody>;
 }
 
-async function status<T>(response: TypedResponse<T>): Promise<APIResponse<T>> {
+export const prepareResponse = <T>(data: Object, response: TypedResponse<T>) => ({
+  data: camelize<T>(data),
+  headers: response.headers,
+});
+
+const status = async <T>(response: TypedResponse<T>): Promise<APIResponse<T>> => {
   const data: T | ErrorBody = await response.json();
   if (!isError(data, response.status)) {
-    return {
-      data: camelize<T>(data),
-      headers: response.headers,
-    };
+    return prepareResponse(data, response);
   }
   const err = new StatusError(data.message);
   err.status = response.status;
   throw err;
-}
+};
 
-async function request<BodyType, PayloadType>(
-  resource: string,
-  method: Method,
-  rawBody?: BodyType,
-): Promise<APIResponse<PayloadType>> {
+export const prepareRequest = <BodyType>(method: Method, rawBody?: BodyType) => {
   const headers: Record<string, string> = {
     Accept: 'application/json',
   };
@@ -72,14 +69,22 @@ async function request<BodyType, PayloadType>(
 
   const body = rawBody ? JSON.stringify(snakeCase(rawBody)) : undefined;
 
-  const response = await fetch(`/api${resource}`, {
+  return {
     method,
     headers,
     body,
     credentials: 'same-origin',
-  });
+  } as const;
+};
+
+const request = async <BodyType, PayloadType>(
+  resource: string,
+  method: Method,
+  rawBody?: BodyType,
+): Promise<APIResponse<PayloadType>> => {
+  const response = await fetch(`/api${resource}`, prepareRequest(method, rawBody));
   return status<PayloadType>(response);
-}
+};
 
 export function get<T>(resource: string) {
   return request<undefined, T>(resource, Method.Get);
