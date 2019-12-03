@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import theme from 'theme';
 import headerImage from 'images/header.png';
 
-const BaseLogo = styled.div`
+const logo = css`
   background: ${theme.palette.secondary[900]} url(${headerImage}) no-repeat center;
   background-size: 17.5rem;
   height: 100%;
@@ -25,7 +25,7 @@ interface Props {
 
 const Logo: React.FC<Props> = ({ sidebarOpen }) => (
   <Link to="/">
-    <BaseLogo css={openCss(sidebarOpen)} />
+    <div css={[logo, openCss(sidebarOpen)]} />
   </Link>
 );
 

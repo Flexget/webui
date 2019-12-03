@@ -1,39 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core/layout/components/Logo adds logoMini class without sideBarOpen 1`] = `
-.emotion-0 {
-  background: #263238 url(test-file-stub) no-repeat center;
-  background-size: 17.5rem;
-  height: 100%;
-  -webkit-transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms,background-size 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
-  transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms,background-size 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
-}
-
 <a
   href="/"
   onClick={[Function]}
 >
   <div
-    className="emotion-0"
+    css={
+      Array [
+        Object {
+          "map": undefined,
+          "name": "1w2nirn",
+          "next": undefined,
+          "styles": "
+  background: #263238 url(test-file-stub) no-repeat center;
+  background-size: 17.5rem;
+  height: 100%;
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,background-size 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+",
+        },
+        Object {
+          "map": undefined,
+          "name": "1af4v5",
+          "next": undefined,
+          "styles": "
+  @media (min-width:600px) {
+    width: 6rem;
+    background-size: 25rem;
+  }
+",
+        },
+      ]
+    }
   />
 </a>
 `;
 
 exports[`core/layout/components/Logo renders correctly with sideBarOpen 1`] = `
-.emotion-0 {
-  background: #263238 url(test-file-stub) no-repeat center;
-  background-size: 17.5rem;
-  height: 100%;
-  -webkit-transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms,background-size 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
-  transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms,background-size 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
-}
-
 <a
   href="/"
   onClick={[Function]}
 >
   <div
-    className="emotion-0"
+    css={
+      Array [
+        Object {
+          "map": undefined,
+          "name": "1w2nirn",
+          "next": undefined,
+          "styles": "
+  background: #263238 url(test-file-stub) no-repeat center;
+  background-size: 17.5rem;
+  height: 100%;
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,background-size 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+",
+        },
+        Object {
+          "map": undefined,
+          "name": "tfhydr",
+          "next": undefined,
+          "styles": "
+  @media (min-width:600px) {
+    width: 19rem;
+    background-size: 17.5rem;
+  }
+",
+        },
+      ]
+    }
   />
 </a>
 `;

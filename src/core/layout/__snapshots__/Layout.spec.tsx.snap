@@ -1,35 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`common/layout renders correctly 1`] = `
-.emotion-0 {
-  background: #263238 url(test-file-stub) no-repeat center;
-  background-size: 17.5rem;
-  height: 100%;
-  -webkit-transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms,background-size 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
-  transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms,background-size 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
-}
-
-.emotion-13 {
+.emotion-12 {
   position: static;
 }
 
-.emotion-11 {
+.emotion-10 {
   background-color: #ef6c00;
   color: #fff;
   min-height: 5rem;
 }
 
-.emotion-1 {
+.emotion-0 {
   color: #fff;
 }
 
-.emotion-3 {
+.emotion-2 {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
-.emotion-24 .MuiDrawer-paper {
+.emotion-23 .MuiDrawer-paper {
   position: relative;
   background-color: #263238;
   height: calc(100vh - 10rem);
@@ -40,13 +32,13 @@ exports[`common/layout renders correctly 1`] = `
 }
 
 @media (min-width:600px) {
-  .emotion-24 .MuiDrawer-paper {
+  .emotion-23 .MuiDrawer-paper {
     height: calc(100vh - 5rem);
     width: 6rem;
   }
 }
 
-.emotion-22 {
+.emotion-21 {
   width: inherit;
   height: inherit;
   display: -webkit-box;
@@ -62,16 +54,16 @@ exports[`common/layout renders correctly 1`] = `
   justify-content: space-between;
 }
 
-.emotion-15 {
+.emotion-14 {
   width: inherit;
 }
 
-.emotion-21 {
+.emotion-20 {
   color: #ef6c00;
   display: none;
 }
 
-.emotion-17 {
+.emotion-16 {
   margin: 0;
 }
 
@@ -127,7 +119,32 @@ exports[`common/layout renders correctly 1`] = `
         onClick={[Function]}
       >
         <div
-          className="emotion-0"
+          css={
+            Array [
+              Object {
+                "map": undefined,
+                "name": "1w2nirn",
+                "next": undefined,
+                "styles": "
+  background: #263238 url(test-file-stub) no-repeat center;
+  background-size: 17.5rem;
+  height: 100%;
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,background-size 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+",
+              },
+              Object {
+                "map": undefined,
+                "name": "1af4v5",
+                "next": undefined,
+                "styles": "
+  @media (min-width:600px) {
+    width: 6rem;
+    background-size: 25rem;
+  }
+",
+              },
+            ]
+          }
         />
       </a>
     </div>
@@ -145,13 +162,13 @@ exports[`common/layout renders correctly 1`] = `
       }
     >
       <header
-        className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed emotion-13 emotion-14 MuiAppBar-colorPrimary mui-fixed"
+        className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed emotion-12 emotion-13 MuiAppBar-colorPrimary mui-fixed"
       >
         <div
-          className="MuiToolbar-root MuiToolbar-regular emotion-11 emotion-12 MuiToolbar-gutters"
+          className="MuiToolbar-root MuiToolbar-regular emotion-10 emotion-11 MuiToolbar-gutters"
         >
           <button
-            className="MuiButtonBase-root MuiIconButton-root emotion-1 emotion-2"
+            className="MuiButtonBase-root MuiIconButton-root emotion-0 emotion-1"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
@@ -179,7 +196,7 @@ exports[`common/layout renders correctly 1`] = `
             className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit"
           />
           <div
-            className="emotion-3 emotion-4"
+            className="emotion-2 emotion-3"
           />
           <a
             href="/config"
@@ -187,7 +204,7 @@ exports[`common/layout renders correctly 1`] = `
           >
             <button
               aria-label="Config"
-              className="MuiButtonBase-root MuiIconButton-root emotion-1 emotion-2"
+              className="MuiButtonBase-root MuiIconButton-root emotion-0 emotion-1"
               disabled={false}
               onBlur={[Function]}
               onDragLeave={[Function]}
@@ -217,7 +234,7 @@ exports[`common/layout renders correctly 1`] = `
           >
             <button
               aria-label="Log"
-              className="MuiButtonBase-root MuiIconButton-root emotion-1 emotion-2"
+              className="MuiButtonBase-root MuiIconButton-root emotion-0 emotion-1"
               disabled={false}
               onBlur={[Function]}
               onDragLeave={[Function]}
@@ -243,7 +260,7 @@ exports[`common/layout renders correctly 1`] = `
           </a>
           <button
             aria-label="Manage"
-            className="MuiButtonBase-root MuiIconButton-root emotion-1 emotion-2"
+            className="MuiButtonBase-root MuiIconButton-root emotion-0 emotion-1"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
@@ -303,32 +320,32 @@ exports[`common/layout renders correctly 1`] = `
       }
     >
       <div
-        className="MuiDrawer-root MuiDrawer-docked emotion-24 emotion-25"
+        className="MuiDrawer-root MuiDrawer-docked emotion-23 emotion-24"
       >
         <div
           className="MuiPaper-root MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft"
         >
           <div
-            className="emotion-22 emotion-23"
+            className="emotion-21 emotion-22"
           >
             <ul
-              className="MuiList-root emotion-15 emotion-16 MuiList-padding"
+              className="MuiList-root emotion-14 emotion-15 MuiList-padding"
             />
             <div
-              className="emotion-20 emotion-21"
+              className="emotion-19 emotion-20"
             >
               <p
-                className="emotion-17"
+                className="emotion-16"
               >
                 Version Info
               </p>
               <p
-                className="emotion-17"
+                className="emotion-16"
               >
                 Flexget: 2.10.60 
               </p>
               <p
-                className="emotion-17"
+                className="emotion-16"
               >
                 API: 1.1.2
               </p>
