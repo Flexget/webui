@@ -28,7 +28,4 @@ function mapDispatchToProps(dispatch, { onClose, listId }) {
   };
 }
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(AddEntryDialog);
+export default connect(null, mapDispatchToProps)(AddEntryDialog);

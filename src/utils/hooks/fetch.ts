@@ -1,4 +1,4 @@
-import { Reducer, useReducer, useEffect, useState } from 'react';
+import { Reducer, useReducer, useEffect, useState, Dispatch, SetStateAction } from 'react';
 import request, { Method, StatusError, APIResponse } from 'utils/fetch';
 import { Action } from 'utils/hooks/actions';
 
@@ -58,7 +58,15 @@ const dataFetchReducer = <T>(state: State<T>, action: Actions<T>): State<T> => {
   }
 };
 
-export const useFetch = <Res, Req>(method: Method, url, initialBody?: Req) => {
+interface UseFetch {
+  <Res>(method: Method, url: string): readonly [State<Res>, Dispatch<SetStateAction<undefined>>];
+  <Req, Res>(method: Method, url: string, initialBody: Req): readonly [
+    State<Res>,
+    Dispatch<SetStateAction<Req>>,
+  ];
+}
+
+export const useFetch: UseFetch = <Req, Res>(method: Method, url: string, initialBody?: Req) => {
   const [body, setBody] = useState<Req | undefined>(initialBody);
   const [state, dispatch] = useReducer<Reducer<State<Res>, Actions<Res>>>(dataFetchReducer, {
     isLoading: true,

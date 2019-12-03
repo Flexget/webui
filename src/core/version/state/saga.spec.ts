@@ -14,7 +14,10 @@ describe('core/version/data/saga', () => {
           latestVersion: '1.3.1',
         };
         return expectSaga(getVersion)
-          .provide([[call(get, '/server/version'), { data: version }], [delay(500), {}]])
+          .provide([
+            [call(get, '/server/version'), { data: version }],
+            [delay(500), {}],
+          ])
           .delay(500)
           .call(get, '/server/version')
           .put(actions.getVersion.success(version))

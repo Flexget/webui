@@ -33,8 +33,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
 export { Navbar };

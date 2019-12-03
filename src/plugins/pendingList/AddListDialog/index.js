@@ -20,7 +20,4 @@ function mapDispatchToProps(dispatch, { onClose }) {
   };
 }
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(AddListDialog);
+export default connect(null, mapDispatchToProps)(AddListDialog);

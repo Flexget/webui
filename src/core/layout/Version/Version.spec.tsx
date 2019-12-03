@@ -18,11 +18,11 @@ describe('core/layout/Version', () => {
         latestVersion: '2.10.60',
       }),
     );
-    let tree: ReactTestRenderer;
+    let tree: ReactTestRenderer | undefined;
     await act(async () => {
       tree = create(themed(<Version />));
     });
-    expect(tree!.toJSON()).toMatchSnapshot();
+    expect(tree && tree.toJSON()).toMatchSnapshot();
   });
 
   it('renders correctly without latest version', async () => {
@@ -33,10 +33,10 @@ describe('core/layout/Version', () => {
         latestVersion: '2.10.60',
       }),
     );
-    let tree: ReactTestRenderer;
+    let tree: ReactTestRenderer | undefined;
     await act(async () => {
       tree = create(themed(<Version />));
     });
-    expect(tree!.toJSON()).toMatchSnapshot();
+    expect(tree && tree.toJSON()).toMatchSnapshot();
   });
 });

@@ -17,7 +17,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(EntryList);
+export default connect(mapStateToProps, mapDispatchToProps)(EntryList);

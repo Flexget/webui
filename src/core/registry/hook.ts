@@ -46,9 +46,9 @@ const registryReducer = (state: PluginMap, action: Actions): PluginMap => {
 };
 
 export const useRegistry = (initialState: PluginMap) => {
-  const [pluginMap, dispatch] = useReducer(registryReducer, initialState);
+  const [pluginMap] = useReducer(registryReducer, initialState);
 
-  return [pluginMap, registerPlugin];
+  return [pluginMap];
 };
 
 const Container = createContainer(useRegistry);

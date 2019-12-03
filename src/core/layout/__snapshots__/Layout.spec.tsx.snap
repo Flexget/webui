@@ -1,44 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`common/layout renders correctly 1`] = `
-.emotion-38 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  height: 100%;
-  min-height: 100vh;
-}
-
-.emotion-19 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  min-height: 5rem;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  z-index: 2;
-  position: fixed;
-  width: 100%;
-}
-
-@media (min-width:600px) {
-  .emotion-19 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-  }
-}
-
-.emotion-1 {
-  height: 5rem;
-}
-
 .emotion-0 {
   background: #263238 url(test-file-stub) no-repeat center;
   background-size: 17.5rem;
@@ -47,59 +9,27 @@ exports[`common/layout renders correctly 1`] = `
   transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms,background-size 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
 }
 
-.emotion-17 {
-  height: 5rem;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.emotion-15 {
+.emotion-13 {
   position: static;
 }
 
-.emotion-13 {
+.emotion-11 {
   background-color: #ef6c00;
   color: #fff;
   min-height: 5rem;
 }
 
-.emotion-3 {
+.emotion-1 {
   color: #fff;
 }
 
-.emotion-5 {
+.emotion-3 {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
-.emotion-36 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  padding-top: 10rem;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  max-height: 100vh;
-}
-
-@media (min-width:600px) {
-  .emotion-36 {
-    padding-top: 5rem;
-  }
-}
-
-.emotion-32 {
-  overflow-y: auto;
-}
-
-.emotion-30 .MuiDrawer-paper {
+.emotion-24 .MuiDrawer-paper {
   position: relative;
   background-color: #263238;
   height: calc(100vh - 10rem);
@@ -110,13 +40,13 @@ exports[`common/layout renders correctly 1`] = `
 }
 
 @media (min-width:600px) {
-  .emotion-30 .MuiDrawer-paper {
+  .emotion-24 .MuiDrawer-paper {
     height: calc(100vh - 5rem);
     width: 6rem;
   }
 }
 
-.emotion-28 {
+.emotion-22 {
   width: inherit;
   height: inherit;
   display: -webkit-box;
@@ -132,47 +62,65 @@ exports[`common/layout renders correctly 1`] = `
   justify-content: space-between;
 }
 
-.emotion-21 {
+.emotion-15 {
   width: inherit;
 }
 
-.emotion-34 {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  overflow-y: auto;
-  padding: 1.6rem;
-  opacity: 1;
-  -webkit-transition: opacity 300ms cubic-bezier(0.4,0,0.2,1) 0ms,margin-left 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
-  transition: opacity 300ms cubic-bezier(0.4,0,0.2,1) 0ms,margin-left 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
-}
-
-@media (max-width:959.95px) {
-  .emotion-34 {
-    margin-left: 0;
-    opacity: 1;
-    display: block;
-    padding: 0.8rem;
-  }
-}
-
-.emotion-27 {
+.emotion-21 {
   color: #ef6c00;
   display: none;
 }
 
-.emotion-23 {
+.emotion-17 {
   margin: 0;
 }
 
 <div
-  className="emotion-38 emotion-39"
+  css={
+    Object {
+      "map": undefined,
+      "name": "oh8avo",
+      "next": undefined,
+      "styles": "
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+",
+    }
+  }
 >
   <header
-    className="emotion-19 emotion-20"
+    css={
+      Object {
+        "map": undefined,
+        "name": "1mfkpn7",
+        "next": undefined,
+        "styles": "
+  display: flex;
+  min-height: 5rem;
+  flex-direction: column;
+  z-index: 2;
+  position: fixed;
+  width: 100%;
+  @media (min-width:600px) {
+    flex-direction: row;
+  }
+",
+      }
+    }
   >
     <div
-      className="emotion-1 emotion-2"
+      css={
+        Object {
+          "map": undefined,
+          "name": "1r0czf3",
+          "next": undefined,
+          "styles": "
+  height: 5rem;
+",
+        }
+      }
     >
       <a
         href="/"
@@ -184,16 +132,26 @@ exports[`common/layout renders correctly 1`] = `
       </a>
     </div>
     <nav
-      className="emotion-17 emotion-18"
+      css={
+        Object {
+          "map": undefined,
+          "name": "jdqp6j",
+          "next": undefined,
+          "styles": "
+  height: 5rem;
+  flex: 1;
+",
+        }
+      }
     >
       <header
-        className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed emotion-15 emotion-16 MuiAppBar-colorPrimary mui-fixed"
+        className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed emotion-13 emotion-14 MuiAppBar-colorPrimary mui-fixed"
       >
         <div
-          className="MuiToolbar-root MuiToolbar-regular emotion-13 emotion-14 MuiToolbar-gutters"
+          className="MuiToolbar-root MuiToolbar-regular emotion-11 emotion-12 MuiToolbar-gutters"
         >
           <button
-            className="MuiButtonBase-root MuiIconButton-root emotion-3 emotion-4"
+            className="MuiButtonBase-root MuiIconButton-root emotion-1 emotion-2"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
@@ -221,7 +179,7 @@ exports[`common/layout renders correctly 1`] = `
             className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit"
           />
           <div
-            className="emotion-5 emotion-6"
+            className="emotion-3 emotion-4"
           />
           <a
             href="/config"
@@ -229,7 +187,7 @@ exports[`common/layout renders correctly 1`] = `
           >
             <button
               aria-label="Config"
-              className="MuiButtonBase-root MuiIconButton-root emotion-3 emotion-4"
+              className="MuiButtonBase-root MuiIconButton-root emotion-1 emotion-2"
               disabled={false}
               onBlur={[Function]}
               onDragLeave={[Function]}
@@ -259,7 +217,7 @@ exports[`common/layout renders correctly 1`] = `
           >
             <button
               aria-label="Log"
-              className="MuiButtonBase-root MuiIconButton-root emotion-3 emotion-4"
+              className="MuiButtonBase-root MuiIconButton-root emotion-1 emotion-2"
               disabled={false}
               onBlur={[Function]}
               onDragLeave={[Function]}
@@ -285,7 +243,7 @@ exports[`common/layout renders correctly 1`] = `
           </a>
           <button
             aria-label="Manage"
-            className="MuiButtonBase-root MuiIconButton-root emotion-3 emotion-4"
+            className="MuiButtonBase-root MuiIconButton-root emotion-1 emotion-2"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
@@ -314,38 +272,63 @@ exports[`common/layout renders correctly 1`] = `
     </nav>
   </header>
   <main
-    className="emotion-36 emotion-37"
+    css={
+      Object {
+        "map": undefined,
+        "name": "fpd4ie",
+        "next": undefined,
+        "styles": "
+  display: flex;
+  flex-direction: row;
+  padding-top: 10rem;
+  flex: 1;
+  max-height: 100vh;
+  @media (min-width:600px) {
+    padding-top: 5rem;
+  }
+",
+      }
+    }
   >
     <aside
-      className="emotion-32 emotion-33"
+      css={
+        Object {
+          "map": undefined,
+          "name": "qdovln",
+          "next": undefined,
+          "styles": "
+  overflow-y: auto;
+",
+        }
+      }
     >
       <div
-        className="MuiDrawer-root MuiDrawer-docked emotion-30 emotion-31"
+        className="MuiDrawer-root MuiDrawer-docked emotion-24 emotion-25"
       >
         <div
           className="MuiPaper-root MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft"
         >
           <div
-            className="emotion-28 emotion-29"
+            className="emotion-22 emotion-23"
           >
             <ul
-              className="MuiList-root emotion-21 emotion-22 MuiList-padding"
+              className="MuiList-root emotion-15 emotion-16 MuiList-padding"
             />
             <div
-              className="emotion-26 emotion-27"
+              className="emotion-20 emotion-21"
             >
               <p
-                className="emotion-23"
+                className="emotion-17"
               >
                 Version Info
               </p>
               <p
-                className="emotion-23"
+                className="emotion-17"
               >
                 Flexget: 2.10.60 
               </p>
               <p
-                className="emotion-23"
+                className="emotion-17"
               >
                 API: 1.1.2
               </p>
@@ -355,8 +338,38 @@ exports[`common/layout renders correctly 1`] = `
       </div>
     </aside>
     <section
-      className="emotion-34 emotion-35"
-      open={false}
+      css={
+        Array [
+          Object {
+            "map": undefined,
+            "name": "12lzmjs",
+            "next": undefined,
+            "styles": "
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.6rem;
+  opacity: 1;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  @media (max-width:959.95px) {
+    margin-left: 0;
+    padding: 0.8rem;
+  }
+",
+          },
+          Object {
+            "map": undefined,
+            "name": "leo25p",
+            "next": undefined,
+            "styles": "
+  @media (max-width:959.95px) {
+    opacity: 1;
+    display: block;
+  }
+",
+          },
+        ]
+      }
     >
       <div />
     </section>

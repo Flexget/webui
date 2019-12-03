@@ -15,7 +15,4 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(StatusBar);
+export default connect(mapStateToProps, mapDispatchToProps)(StatusBar);
