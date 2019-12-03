@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`core/layout/components/Version Version renders correctly with latest version 1`] = `
-.emotion-6 {
+exports[`core/layout/Version renders correctly with latest version 1`] = `
+.emotion-3 {
   color: #ef6c00;
 }
 
@@ -10,28 +10,28 @@ exports[`core/layout/components/Version Version renders correctly with latest ve
 }
 
 <div
-  className=" emotion-6 emotion-7"
+  className="emotion-3"
 >
   <p
-    className="emotion-0 emotion-1"
+    className="emotion-0"
   >
     Version Info
   </p>
   <p
-    className="emotion-0 emotion-1"
+    className="emotion-0"
   >
     Flexget: 2.10.60 
   </p>
   <p
-    className="emotion-0 emotion-1"
+    className="emotion-0"
   >
     API: 1.1.2
   </p>
 </div>
 `;
 
-exports[`core/layout/components/Version Version renders correctly without latest version 1`] = `
-.emotion-6 {
+exports[`core/layout/Version renders correctly without latest version 1`] = `
+.emotion-3 {
   color: #ef6c00;
 }
 
@@ -40,15 +40,15 @@ exports[`core/layout/components/Version Version renders correctly without latest
 }
 
 <div
-  className=" emotion-6 emotion-7"
+  className="emotion-3"
 >
   <p
-    className="emotion-0 emotion-1"
+    className="emotion-0"
   >
     Version Info
   </p>
   <p
-    className="emotion-0 emotion-1"
+    className="emotion-0"
   >
     Flexget: 2.10.11 
     <a
@@ -71,22 +71,15 @@ exports[`core/layout/components/Version Version renders correctly without latest
       <span
         className="MuiIconButton-label"
       />
+      <span
+        className="MuiTouchRipple-root"
+      />
     </a>
   </p>
   <p
-    className="emotion-0 emotion-1"
+    className="emotion-0"
   >
     API: 1.1.2
   </p>
 </div>
-`;
-
-exports[`core/layout/components/Version mapStateToProps should return the version 1`] = `
-Object {
-  "version": Object {
-    "api": "1.1.2",
-    "flexget": "2.10.11",
-    "latest": "2.10.60",
-  },
-}
 `;

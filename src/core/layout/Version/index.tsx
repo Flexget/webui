@@ -8,7 +8,7 @@ import { IconButton } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Props {
-  css: SerializedStyles;
+  className?: string;
 }
 
 interface VersionResponse {
@@ -25,7 +25,7 @@ const Line = styled.p`
   margin: 0;
 `;
 
-const Version: React.FC<Props> = ({ css }) => {
+const Version: React.FC<Props> = ({ className }) => {
   const [state] = useFetchData<VersionResponse>('/server/version');
 
   if (state.isLoading) {
@@ -40,7 +40,7 @@ const Version: React.FC<Props> = ({ css }) => {
   const { flexgetVersion, apiVersion, latestVersion } = state.resp.data;
 
   return (
-    <Wrapper css={css}>
+    <Wrapper className={className}>
       <Line>Version Info</Line>
       <Line>
         {`Flexget: ${flexgetVersion} `}

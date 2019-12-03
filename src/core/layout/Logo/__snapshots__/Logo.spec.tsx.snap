@@ -9,20 +9,12 @@ exports[`core/layout/components/Logo adds logoMini class without sideBarOpen 1`]
   transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms,background-size 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
 }
 
-@media (min-width:600px) {
-  .emotion-0 {
-    width: 6rem;
-    background-size: 25rem;
-  }
-}
-
 <a
   href="/"
   onClick={[Function]}
 >
   <div
-    className="emotion-0 emotion-1"
-    open={false}
+    className="emotion-0"
   />
 </a>
 `;
@@ -36,20 +28,12 @@ exports[`core/layout/components/Logo renders correctly with sideBarOpen 1`] = `
   transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms,background-size 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
 }
 
-@media (min-width:600px) {
-  .emotion-0 {
-    width: 19rem;
-    background-size: 17.5rem;
-  }
-}
-
 <a
   href="/"
   onClick={[Function]}
 >
   <div
-    className="emotion-0 emotion-1"
-    open={true}
+    className="emotion-0"
   />
 </a>
 `;

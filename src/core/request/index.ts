@@ -1,5 +1,6 @@
 import { Reducer, useReducer, useEffect, useState } from 'react';
 import { StatusError, get, APIResponse } from 'utils/fetch';
+import { Action } from 'utils/hooks/actions';
 
 interface LoadingState<T> {
   isLoading: true;
@@ -26,25 +27,15 @@ const enum Constants {
   FAILURE = '@flexget/request/FAILURE',
 }
 
-interface StartAction {
-  type: Constants.START;
-}
+type StartAction = Action<Constants.START>;
+type SuccessAction<T> = Action<Constants.SUCCESS, APIResponse<T>>;
+type FailAction = Action<Constants.FAILURE, StatusError>;
 
-interface SuccessAction<T> {
-  type: Constants.SUCCESS;
-  payload: APIResponse<T>;
-}
-
-interface FailAction {
-  type: Constants.FAILURE;
-  payload: Error;
-}
-
-type Action<T> = StartAction | SuccessAction<T> | FailAction;
+type Actions<T> = StartAction | SuccessAction<T> | FailAction;
 
 export type ResponseMapper<I, O> = (s: State<I>) => O;
 
-const dataFetchReducer = <T>(state: State<T>, action: Action<T>): State<T> => {
+const dataFetchReducer = <T>(state: State<T>, action: Actions<T>): State<T> => {
   switch (action.type) {
     case Constants.START:
       return {
@@ -63,14 +54,14 @@ const dataFetchReducer = <T>(state: State<T>, action: Action<T>): State<T> => {
         error: action.payload,
       };
     default:
-      throw new Error();
+      return state;
   }
 };
 
 export const useFetchData = <T>(initialUrl: string) => {
   const [url, setUrl] = useState(initialUrl);
-  const [state, dispatch] = useReducer<Reducer<State<T>, Action<T>>>(dataFetchReducer, {
-    isLoading: false,
+  const [state, dispatch] = useReducer<Reducer<State<T>, Actions<T>>>(dataFetchReducer, {
+    isLoading: true,
   });
 
   useEffect(() => {

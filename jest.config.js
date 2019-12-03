@@ -41,7 +41,7 @@ module.exports = {
     '\\.css$': 'identity-obj-proxy',
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/__mocks__/fileMock.js',
   },
-  setupFiles: ['raf/polyfill', '<rootDir>/src/utils/tests/setupFiles.js'],
+  setupFiles: ['raf/polyfill', '<rootDir>/src/utils/tests/setupFiles.ts'],
   setupFilesAfterEnv: ['<rootDir>/src/utils/tests/setupTest.js'],
   testURL: 'http://localhost/',
 };

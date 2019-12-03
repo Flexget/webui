@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import theme from 'theme';
 
@@ -39,12 +38,12 @@ export const logoWrapper = css`
   height: ${HEADER_HEIGHT}rem;
 `;
 
-export const nav = styled.nav`
+export const nav = css`
   height: ${HEADER_HEIGHT}rem;
   flex: 1;
 `;
 
-export const sideBar = css`
+export const sidebar = css`
   overflow-y: auto;
 `;
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import Tab from '@material-ui/core/Tab';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SecondaryNav from 'common/SecondaryNav';
 import { useOverlayState } from 'utils/hooks';
 import AddListDialog from '../AddListDialog';

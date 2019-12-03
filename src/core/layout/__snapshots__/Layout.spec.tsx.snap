@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`common/layout renders correctly 1`] = `
-.emotion-43 {
+.emotion-38 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -13,7 +13,7 @@ exports[`common/layout renders correctly 1`] = `
   min-height: 100vh;
 }
 
-.emotion-20 {
+.emotion-19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -28,14 +28,14 @@ exports[`common/layout renders correctly 1`] = `
 }
 
 @media (min-width:600px) {
-  .emotion-20 {
+  .emotion-19 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
   }
 }
 
-.emotion-2 {
+.emotion-1 {
   height: 5rem;
 }
 
@@ -47,41 +47,34 @@ exports[`common/layout renders correctly 1`] = `
   transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms,background-size 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
 }
 
-@media (min-width:600px) {
-  .emotion-0 {
-    width: 6rem;
-    background-size: 25rem;
-  }
-}
-
-.emotion-18 {
+.emotion-17 {
   height: 5rem;
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
-.emotion-16 {
+.emotion-15 {
   position: static;
 }
 
-.emotion-14 {
+.emotion-13 {
   background-color: #ef6c00;
   color: #fff;
   min-height: 5rem;
 }
 
-.emotion-4 {
+.emotion-3 {
   color: #fff;
 }
 
-.emotion-6 {
+.emotion-5 {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
-.emotion-41 {
+.emotion-36 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -97,16 +90,16 @@ exports[`common/layout renders correctly 1`] = `
 }
 
 @media (min-width:600px) {
-  .emotion-41 {
+  .emotion-36 {
     padding-top: 5rem;
   }
 }
 
-.emotion-37 {
+.emotion-32 {
   overflow-y: auto;
 }
 
-.emotion-35 .MuiDrawer-paper {
+.emotion-30 .MuiDrawer-paper {
   position: relative;
   background-color: #263238;
   height: calc(100vh - 10rem);
@@ -117,13 +110,13 @@ exports[`common/layout renders correctly 1`] = `
 }
 
 @media (min-width:600px) {
-  .emotion-35 .MuiDrawer-paper {
+  .emotion-30 .MuiDrawer-paper {
     height: calc(100vh - 5rem);
     width: 6rem;
   }
 }
 
-.emotion-33 {
+.emotion-28 {
   width: inherit;
   height: inherit;
   display: -webkit-box;
@@ -139,20 +132,11 @@ exports[`common/layout renders correctly 1`] = `
   justify-content: space-between;
 }
 
-.emotion-22 {
+.emotion-21 {
   width: inherit;
 }
 
-.emotion-31 {
-  color: #ef6c00;
-  display: none;
-}
-
-.emotion-24 {
-  margin: 0;
-}
-
-.emotion-39 {
+.emotion-34 {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
@@ -164,7 +148,7 @@ exports[`common/layout renders correctly 1`] = `
 }
 
 @media (max-width:959.95px) {
-  .emotion-39 {
+  .emotion-34 {
     margin-left: 0;
     opacity: 1;
     display: block;
@@ -172,36 +156,44 @@ exports[`common/layout renders correctly 1`] = `
   }
 }
 
+.emotion-27 {
+  color: #ef6c00;
+  display: none;
+}
+
+.emotion-23 {
+  margin: 0;
+}
+
 <div
-  className="emotion-43 emotion-44"
+  className="emotion-38 emotion-39"
 >
   <header
-    className="emotion-20 emotion-21"
+    className="emotion-19 emotion-20"
   >
     <div
-      className="emotion-2 emotion-3"
+      className="emotion-1 emotion-2"
     >
       <a
         href="/"
         onClick={[Function]}
       >
         <div
-          className="emotion-0 emotion-1"
-          open={false}
+          className="emotion-0"
         />
       </a>
     </div>
     <nav
-      className="emotion-18 emotion-19"
+      className="emotion-17 emotion-18"
     >
       <header
-        className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed emotion-16 emotion-17 MuiAppBar-colorPrimary mui-fixed"
+        className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed emotion-15 emotion-16 MuiAppBar-colorPrimary mui-fixed"
       >
         <div
-          className="MuiToolbar-root MuiToolbar-regular emotion-14 emotion-15 MuiToolbar-gutters"
+          className="MuiToolbar-root MuiToolbar-regular emotion-13 emotion-14 MuiToolbar-gutters"
         >
           <button
-            className="MuiButtonBase-root MuiIconButton-root emotion-4 emotion-5"
+            className="MuiButtonBase-root MuiIconButton-root emotion-3 emotion-4"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
@@ -221,12 +213,15 @@ exports[`common/layout renders correctly 1`] = `
             <span
               className="MuiIconButton-label"
             />
+            <span
+              className="MuiTouchRipple-root"
+            />
           </button>
           <h6
             className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit"
           />
           <div
-            className="emotion-6 emotion-7"
+            className="emotion-5 emotion-6"
           />
           <a
             href="/config"
@@ -234,7 +229,7 @@ exports[`common/layout renders correctly 1`] = `
           >
             <button
               aria-label="Config"
-              className="MuiButtonBase-root MuiIconButton-root emotion-4 emotion-5"
+              className="MuiButtonBase-root MuiIconButton-root emotion-3 emotion-4"
               disabled={false}
               onBlur={[Function]}
               onDragLeave={[Function]}
@@ -252,6 +247,9 @@ exports[`common/layout renders correctly 1`] = `
             >
               <span
                 className="MuiIconButton-label"
+              />
+              <span
+                className="MuiTouchRipple-root"
               />
             </button>
           </a>
@@ -261,7 +259,7 @@ exports[`common/layout renders correctly 1`] = `
           >
             <button
               aria-label="Log"
-              className="MuiButtonBase-root MuiIconButton-root emotion-4 emotion-5"
+              className="MuiButtonBase-root MuiIconButton-root emotion-3 emotion-4"
               disabled={false}
               onBlur={[Function]}
               onDragLeave={[Function]}
@@ -280,11 +278,14 @@ exports[`common/layout renders correctly 1`] = `
               <span
                 className="MuiIconButton-label"
               />
+              <span
+                className="MuiTouchRipple-root"
+              />
             </button>
           </a>
           <button
             aria-label="Manage"
-            className="MuiButtonBase-root MuiIconButton-root emotion-4 emotion-5"
+            className="MuiButtonBase-root MuiIconButton-root emotion-3 emotion-4"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
@@ -304,46 +305,49 @@ exports[`common/layout renders correctly 1`] = `
             <span
               className="MuiIconButton-label"
             />
+            <span
+              className="MuiTouchRipple-root"
+            />
           </button>
         </div>
       </header>
     </nav>
   </header>
   <main
-    className="emotion-41 emotion-42"
+    className="emotion-36 emotion-37"
   >
     <aside
-      className="emotion-37 emotion-38"
+      className="emotion-32 emotion-33"
     >
       <div
-        className="MuiDrawer-root MuiDrawer-docked emotion-35 emotion-36"
+        className="MuiDrawer-root MuiDrawer-docked emotion-30 emotion-31"
       >
         <div
           className="MuiPaper-root MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft"
         >
           <div
-            className="emotion-33 emotion-34"
+            className="emotion-28 emotion-29"
           >
             <ul
-              className="MuiList-root emotion-22 emotion-23 MuiList-padding"
+              className="MuiList-root emotion-21 emotion-22 MuiList-padding"
             />
             <div
-              className="emotion-30 emotion-31 emotion-32"
+              className="emotion-26 emotion-27"
             >
               <p
-                className="emotion-24 emotion-25"
+                className="emotion-23"
               >
                 Version Info
               </p>
               <p
-                className="emotion-24 emotion-25"
+                className="emotion-23"
               >
-                Flexget: undefined 
+                Flexget: 2.10.60 
               </p>
               <p
-                className="emotion-24 emotion-25"
+                className="emotion-23"
               >
-                API: undefined
+                API: 1.1.2
               </p>
             </div>
           </div>
@@ -351,7 +355,7 @@ exports[`common/layout renders correctly 1`] = `
       </div>
     </aside>
     <section
-      className="emotion-39 emotion-40"
+      className="emotion-34 emotion-35"
       open={false}
     >
       <div />
