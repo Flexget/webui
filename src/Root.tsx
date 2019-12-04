@@ -17,6 +17,7 @@ import registerHistory from 'plugins/history';
 import registerLog from 'plugins/log';
 import registerSeries from 'plugins/series';
 import registerPendingList from 'plugins/pendingList';
+import { AuthContainter } from 'core/auth/container';
 
 registerHistory();
 registerLog();
@@ -57,25 +58,27 @@ const Root = () => (
     <Global styles={globals} />
     <StylesProvider injectFirst>
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <MuiThemeProvider theme={theme}>
-            <div>
-              <Switch>
-                <Route path="/login" exact component={Login} />
-                <Route
-                  render={() => (
-                    <Layout>
-                      <Switch>
-                        <PrivateRoute path="/" exact component={Home} />
-                        <Route render={() => <Routes />} />
-                      </Switch>
-                    </Layout>
-                  )}
-                />
-              </Switch>
-            </div>
-          </MuiThemeProvider>
-        </ConnectedRouter>
+        <AuthContainter.Provider>
+          <ConnectedRouter history={history}>
+            <MuiThemeProvider theme={theme}>
+              <div>
+                <Switch>
+                  <Route path="/login" exact component={Login} />
+                  <Route
+                    render={() => (
+                      <Layout>
+                        <Switch>
+                          <PrivateRoute path="/" exact component={Home} />
+                          <Route render={() => <Routes />} />
+                        </Switch>
+                      </Layout>
+                    )}
+                  />
+                </Switch>
+              </div>
+            </MuiThemeProvider>
+          </ConnectedRouter>
+        </AuthContainter.Provider>
       </Provider>
     </StylesProvider>
   </div>

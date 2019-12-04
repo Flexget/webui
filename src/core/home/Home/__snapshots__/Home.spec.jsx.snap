@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core/home/components/Home renders correctly 1`] = `
-.emotion-6 {
+.emotion-3 {
   margin: 0 auto;
 }
 
 @media (min-width:600px) {
-  .emotion-6 {
+  .emotion-3 {
     width: 50%;
   }
 }
@@ -15,11 +15,11 @@ exports[`core/home/components/Home renders correctly 1`] = `
   background-color: #ef6c00;
 }
 
-.emotion-2 {
+.emotion-1 {
   font-weight: bold;
 }
 
-.emotion-4 {
+.emotion-2 {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -27,10 +27,10 @@ exports[`core/home/components/Home renders correctly 1`] = `
 }
 
 <div
-  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root emotion-6 emotion-7 MuiPaper-rounded"
+  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root emotion-3 MuiPaper-rounded"
 >
   <div
-    className="MuiCardHeader-root emotion-0 emotion-1"
+    className="MuiCardHeader-root emotion-0"
   >
     <div
       className="MuiCardHeader-content"
@@ -51,7 +51,7 @@ exports[`core/home/components/Home renders correctly 1`] = `
     className="MuiCardContent-root"
   >
     <p
-      className="emotion-2 emotion-3"
+      className="emotion-1"
     >
       We need your help! If you are a React developer or can help with the layout/design/css then please join in the effort!
     </p>
@@ -93,7 +93,7 @@ exports[`core/home/components/Home renders correctly 1`] = `
     </p>
   </div>
   <div
-    className="MuiCardActions-root emotion-4 emotion-5 MuiCardActions-spacing"
+    className="MuiCardActions-root emotion-2 MuiCardActions-spacing"
   >
     <a
       aria-disabled={false}

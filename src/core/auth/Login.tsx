@@ -2,11 +2,10 @@ import React, { FC } from 'react';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
 import { AuthContainter } from 'core/auth/container';
 import { useFlexgetAPI } from 'core/api';
-import LoginCard from '../LoginCard';
-import SplashScreen from '../Splash';
+import LoginCard from './LoginCard';
+import SplashScreen from './Splash';
 import { Logo } from './styles';
 import { LoginReq } from './types';
-
 
 const LoginPage: FC<RouteComponentProps> = ({ location }) => {
   const { from } = location.state || { from: { pathname: '/' } };

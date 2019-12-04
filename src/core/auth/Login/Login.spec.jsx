@@ -1,7 +1,7 @@
 import React from 'react';
-import { Login, mapStateToProps } from 'core/auth/Login';
 import renderer from 'react-test-renderer';
 import { provider, router, themed } from 'utils/tests';
+import { Login, mapStateToProps } from './index';
 
 const Component = () => <div />;
 describe('core/auth/components/Login', () => {

@@ -25,7 +25,7 @@ module.exports = {
     __DEV__: false,
     'ts-jest': {
       tsConfig: 'tsconfig.jest.json',
-      babelConfig: require('./babel.config.js'),
+      babelConfig: true,
       diagnostics: {
         warnOnly: true,
       },
@@ -33,9 +33,6 @@ module.exports = {
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
   preset: 'ts-jest/presets/js-with-ts',
-  transform: {
-    '^.+\\.jsx?$': './babel-jest',
-  },
   moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',

@@ -3,7 +3,7 @@ import * as humps from 'humps';
 export class StatusError extends Error {
   status?: number;
 
-  constructor(message: string, s?: number) {
+  constructor(message = 'Error', s?: number) {
     super(message);
     this.status = s;
   }
@@ -15,11 +15,6 @@ export const enum Method {
   Put = 'put',
   Patch = 'patch',
   Delete = 'delete',
-}
-
-export interface APIResponse<T> extends Response {
-  data?: T;
-  headers: Headers;
 }
 
 interface ErrorBody {
@@ -36,28 +31,36 @@ const snakeCase = <T>(obj: Object | Object[]): T =>
     split: /(?=[A-Z0-9])/,
   });
 
-export const isError = <T>(data: T | ErrorBody, s: number): data is ErrorBody =>
-  !(s >= 200 && s < 300) && typeof data === 'object';
-
-interface TypedResponse<T = Object> extends Response {
-  data?: T;
-  json(): Promise<T | ErrorBody>;
+export interface ErrorResponse extends TypedResponse<ErrorBody> {
+  error: StatusError;
 }
+
+export type APIResponse<T> = TypedResponse<T> | ErrorResponse;
+
+export interface TypedResponse<T = Object> extends Response {
+  data: T;
+  json(): Promise<T>;
+}
+
+type PartialResponse<T> = Partial<APIResponse<T>> & Response;
+
+export const isError = <T>(resp: PartialResponse<T>): resp is Partial<ErrorResponse> & Response =>
+  !(resp.status >= 200 && resp.status < 300);
 
 export const prepareResponse = <T>(data: Object, response: TypedResponse<T>) => ({
   data: camelize<T>(data),
   headers: response.headers,
 });
 
-const status = async <T>(response: TypedResponse<T>): Promise<APIResponse<T>> => {
-  const data: T | ErrorBody = await response.json();
-  if (!isError<T>(data, response.status)) {
-    response.data = camelize<T>(data);
-    return response;
+const status = async <T>(response: PartialResponse<T>): Promise<APIResponse<T>> => {
+  response.data = await response.json();
+
+  if (!isError(response)) {
+    response.data = response.data && camelize<T>(response.data);
+  } else {
+    response.error = new StatusError(response.data?.message, response.status);
   }
-  const err = new StatusError(data.message);
-  err.status = response.status;
-  throw err;
+  return response as APIResponse<T>;
 };
 
 export const prepareRequest = <BodyType>(method: Method, rawBody?: BodyType) => {
@@ -79,39 +82,54 @@ export const prepareRequest = <BodyType>(method: Method, rawBody?: BodyType) => 
   } as const;
 };
 
-export const request = async <BodyType, PayloadType>(
+export const request = async <PayloadType, BodyType = undefined>(
+  resource: string,
+  method: Method,
+  rawBody: BodyType,
+): Promise<APIResponse<PayloadType>> => {
+  const response: PartialResponse<PayloadType> = await fetch(
+    resource,
+    prepareRequest(method, rawBody),
+  );
+  return status<PayloadType>(response);
+};
+
+const requestOld = async <BodyType, PayloadType>(
   resource: string,
   method: Method,
   rawBody?: BodyType,
 ): Promise<APIResponse<PayloadType>> => {
-  const response = await fetch(`/api${resource}`, prepareRequest(method, rawBody));
-  return status<PayloadType>(response);
+  const response = await request<PayloadType, typeof rawBody>(`/api${resource}`, method, rawBody);
+  if ('error' in response) {
+    throw response.error;
+  }
+  return response;
 };
 
 export function get<T>(resource: string) {
-  return request<undefined, T>(resource, Method.Get);
+  return requestOld<undefined, T>(resource, Method.Get);
 }
 
 export function post<T>(resource: string): Promise<APIResponse<T>>;
 export function post<Req, Res>(resource: string, body: Req): Promise<APIResponse<Res>>;
 export function post<Req, Res>(resource: string, body = undefined) {
-  return request<Req, Res>(resource, Method.Post, body);
+  return requestOld<Req, Res>(resource, Method.Post, body);
 }
 
 export function patch<T>(resource: string): Promise<APIResponse<T>>;
 export function patch<Req, Res>(resource: string, body: Req): Promise<APIResponse<Res>>;
 export function patch<Req, Res>(resource: string, body = undefined) {
-  return request<Req, Res>(resource, Method.Patch, body);
+  return requestOld<Req, Res>(resource, Method.Patch, body);
 }
 
 export function put<T>(resource: string): Promise<APIResponse<T>>;
 export function put<Req, Res>(resource: string, body: Req): Promise<APIResponse<Res>>;
 export function put<Req, Res>(resource: string, body = undefined) {
-  return request<Req, Res>(resource, Method.Post, body);
+  return requestOld<Req, Res>(resource, Method.Post, body);
 }
 
 export function del<T>(resource: string) {
-  return request<undefined, T>(resource, Method.Delete);
+  return requestOld<undefined, T>(resource, Method.Delete);
 }
 
 export default {

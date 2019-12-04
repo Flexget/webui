@@ -38,6 +38,7 @@
     "@babel/core": "^7.0.0",
     "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.4",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
@@ -102,7 +103,7 @@
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.3.0",
     "stylelint-processor-styled-components": "^1.8.0",
-    "ts-jest": "^24.1.0",
+    "ts-jest": "^24.2.0",
     "ts-loader": "^6.0.4",
     "typescript": "^3.7.2",
     "url-loader": "^0.6.2",
@@ -166,7 +167,6 @@
     "typeface-roboto": "0.0.54",
     "typesafe-actions": "^4.4.2",
     "unstated-next": "^1.1.0",
-    "use-http": "^0.2.4",
     "whatwg-fetch": "^2.0.4"
   }
 }

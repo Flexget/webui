@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
-.emotion-10 {
+.emotion-5 {
   max-width: 40rem;
   margin: 0 1rem;
 }
 
 @media (min-width:600px) {
-  .emotion-10 {
+  .emotion-5 {
     margin: 0 auto;
   }
 }
 
-.emotion-6 {
+.emotion-3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -27,28 +27,28 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
   padding: 1rem;
 }
 
-.emotion-2 {
+.emotion-1 {
   padding-bottom: 1rem;
 }
 
-.emotion-8 {
+.emotion-4 {
   width: 100%;
 }
 
 <div
-  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root emotion-10 emotion-11 MuiPaper-rounded"
+  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root emotion-5 MuiPaper-rounded"
 >
   <form
     onSubmit={[Function]}
   >
     <div
-      className="MuiCardContent-root emotion-6 emotion-7"
+      className="MuiCardContent-root emotion-3"
     >
       <div
-        className="emotion-0 emotion-1"
+        className="emotion-0"
       />
       <div
-        className="MuiFormControl-root MuiTextField-root emotion-2 emotion-3"
+        className="MuiFormControl-root MuiTextField-root emotion-1"
         onDragStart={[Function]}
         onDrop={[Function]}
       >
@@ -80,7 +80,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
         </div>
       </div>
       <div
-        className="MuiFormControl-root MuiTextField-root emotion-2 emotion-3"
+        className="MuiFormControl-root MuiTextField-root emotion-1"
         onDragStart={[Function]}
         onDrop={[Function]}
       >
@@ -115,7 +115,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
       className="MuiCardActions-root MuiCardActions-spacing"
     >
       <button
-        className="MuiButtonBase-root MuiButton-root emotion-8 emotion-9 MuiButton-text"
+        className="MuiButtonBase-root MuiButton-root emotion-4 MuiButton-text"
         disabled={false}
         onBlur={[Function]}
         onDragLeave={[Function]}

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import semver from 'semver-compare';
 import styled from '@emotion/styled';
-import { useFlexgetAPI } from 'utils/hooks/api';
+// import { useFlexgetAPI } from 'utils/hooks/api';
 import theme from 'theme';
 import { IconButton } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useFlexgetAPI } from 'core/api';
+import { AuthContainter } from 'core/auth/container';
 
 interface Props {
   className?: string;
@@ -24,8 +26,25 @@ const Line = styled.p`
   margin: 0;
 `;
 
+const useVersion = () => {
+  const [loggedIn, { login }] = AuthContainter.useContainer();
+  const [{ loading, error, data }, { get }] = useFlexgetAPI<VersionResponse>('/server/version');
+
+  useEffect(() => {
+    get();
+  }, [get]);
+
+  useEffect(() => {
+    if (data && !loggedIn && !loading) {
+      login();
+    }
+  }, [data, loggedIn, loading, login]);
+
+  return { loading, error, data };
+};
+
 const Version: React.FC<Props> = ({ className }) => {
-  const { loading, error, data } = useFlexgetAPI<VersionResponse>('/server/version', []);
+  const { loading, error, data } = useVersion();
 
   if (loading || !data) {
     // showProgress

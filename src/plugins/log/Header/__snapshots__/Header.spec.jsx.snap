@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`plugins/log/components/Header Header renders correctly 1`] = `
-.emotion-8 {
+.emotion-4 {
   display: block;
 }
 
 @media (min-width:600px) {
-  .emotion-8 {
+  .emotion-4 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -22,13 +22,13 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
   color: #757575;
 }
 
-.emotion-2 {
+.emotion-1 {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
-.emotion-6 {
+.emotion-3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -39,13 +39,13 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
   align-items: baseline;
 }
 
-.emotion-4 {
+.emotion-2 {
   margin-left: 1rem;
   margin-right: 1rem;
 }
 
 <div
-  className="emotion-8 emotion-9"
+  className="emotion-4"
 >
   <div>
     <h6
@@ -54,19 +54,19 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
       Server Log
     </h6>
     <h6
-      className="MuiTypography-root emotion-0 emotion-1 MuiTypography-subtitle1"
+      className="MuiTypography-root emotion-0 MuiTypography-subtitle1"
     >
       Streaming
     </h6>
   </div>
   <div
-    className="emotion-2 emotion-3"
+    className="emotion-1"
   />
   <div
-    className="emotion-6 emotion-7"
+    className="emotion-3"
   >
     <div
-      className="MuiFormControl-root MuiTextField-root emotion-4 emotion-5"
+      className="MuiFormControl-root MuiTextField-root emotion-2"
     >
       <label
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
