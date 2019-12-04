@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
 import { AuthContainter } from 'core/auth/container';
 import { useFlexgetAPI } from 'core/api';
@@ -9,22 +9,41 @@ import { LoginReq } from './types';
 
 const LoginPage: FC<RouteComponentProps> = ({ location }) => {
   const { from } = location.state || { from: { pathname: '/' } };
-  const [loggedIn] = AuthContainter.useContainer();
+  const [loggedIn, { login }] = AuthContainter.useContainer();
 
-  const { post, loading } = useFlexgetAPI('/auth/login');
+  const [loginState, { post: postLogin }] = useFlexgetAPI('/auth/login');
+  const [versionState, { get: getVersion }] = useFlexgetAPI('/server/version');
+
+  const handleSubmit = async (req: LoginReq) => {
+    const response = await postLogin(req);
+    if (response?.ok) {
+      login();
+    }
+  };
+
+  useEffect(() => {
+    const fetch = async () => {
+      const response = await getVersion();
+      if (response?.ok) {
+        login();
+      }
+    };
+
+    fetch();
+  }, [getVersion, login]);
 
   if (loggedIn) {
     return <Redirect to={from} />;
   }
 
-  if (loading) {
+  if (versionState.loading) {
     return <SplashScreen />;
   }
 
   return (
     <div>
       <Logo />
-      <LoginCard onSubmit={post} />
+      <LoginCard onSubmit={handleSubmit} errorStatus={loginState.error} />
     </div>
   );
 };

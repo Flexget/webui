@@ -26,7 +26,6 @@ const enum Constants {
 type StartAction = Action<Constants.START>;
 type SuccessAction<T> = Action<Constants.SUCCESS, TypedResponse<T>>;
 type FailAction = Action<Constants.FAILURE, ErrorResponse>;
-
 type Actions<T> = StartAction | SuccessAction<T> | FailAction;
 
 export type ResponseMapper<I, O> = (s: State<I>) => O;
@@ -70,16 +69,17 @@ export const useFlexgetAPI = <Res>(url: string) => {
         const payload = await request<Res, Req>(`/api${url}`, method, body);
 
         if (cancelled.current) {
-          return;
+          return undefined;
         }
         if ('error' in payload) {
-          dispatch({ type: Constants.FAILURE, payload });
-        } else {
           if (payload.status === 401) {
             logout();
           }
+          dispatch({ type: Constants.FAILURE, payload });
+        } else {
           dispatch({ type: Constants.SUCCESS, payload });
         }
+        return payload;
       };
       return fn();
     },

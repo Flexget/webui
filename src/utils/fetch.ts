@@ -94,7 +94,7 @@ export const request = async <PayloadType, BodyType = undefined>(
   return status<PayloadType>(response);
 };
 
-const requestOld = async <BodyType, PayloadType>(
+const requestOld = async <PayloadType, BodyType = undefined>(
   resource: string,
   method: Method,
   rawBody?: BodyType,
@@ -107,25 +107,25 @@ const requestOld = async <BodyType, PayloadType>(
 };
 
 export function get<T>(resource: string) {
-  return requestOld<undefined, T>(resource, Method.Get);
+  return requestOld<T>(resource, Method.Get);
 }
 
 export function post<T>(resource: string): Promise<APIResponse<T>>;
 export function post<Req, Res>(resource: string, body: Req): Promise<APIResponse<Res>>;
-export function post<Req, Res>(resource: string, body = undefined) {
-  return requestOld<Req, Res>(resource, Method.Post, body);
+export function post(resource: string, body = undefined) {
+  return requestOld(resource, Method.Post, body);
 }
 
 export function patch<T>(resource: string): Promise<APIResponse<T>>;
 export function patch<Req, Res>(resource: string, body: Req): Promise<APIResponse<Res>>;
-export function patch<Req, Res>(resource: string, body = undefined) {
-  return requestOld<Req, Res>(resource, Method.Patch, body);
+export function patch(resource: string, body = undefined) {
+  return requestOld(resource, Method.Patch, body);
 }
 
 export function put<T>(resource: string): Promise<APIResponse<T>>;
 export function put<Req, Res>(resource: string, body: Req): Promise<APIResponse<Res>>;
-export function put<Req, Res>(resource: string, body = undefined) {
-  return requestOld<Req, Res>(resource, Method.Post, body);
+export function put(resource: string, body = undefined) {
+  return requestOld(resource, Method.Post, body);
 }
 
 export function del<T>(resource: string) {

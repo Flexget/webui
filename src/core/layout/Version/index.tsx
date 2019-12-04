@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import semver from 'semver-compare';
 import styled from '@emotion/styled';
-// import { useFlexgetAPI } from 'utils/hooks/api';
 import theme from 'theme';
 import { IconButton } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useFlexgetAPI } from 'core/api';
 import { AuthContainter } from 'core/auth/container';
+import { useFlexgetAPI } from 'core/api';
 
 interface Props {
   className?: string;
@@ -27,18 +26,19 @@ const Line = styled.p`
 `;
 
 const useVersion = () => {
-  const [loggedIn, { login }] = AuthContainter.useContainer();
+  const [, { login }] = AuthContainter.useContainer();
   const [{ loading, error, data }, { get }] = useFlexgetAPI<VersionResponse>('/server/version');
 
   useEffect(() => {
-    get();
-  }, [get]);
+    const fetch = async () => {
+      const response = await get();
+      if (response?.ok) {
+        login();
+      }
+    };
 
-  useEffect(() => {
-    if (data && !loggedIn && !loading) {
-      login();
-    }
-  }, [data, loggedIn, loading, login]);
+    fetch();
+  }, [get, login]);
 
   return { loading, error, data };
 };

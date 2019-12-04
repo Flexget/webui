@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import actions from 'core/auth/state/actions';
+// import actions from 'core/auth/state/actions';
 import LoginCard from './LoginCard';
 
 export function mapStateToProps({ status }) {
@@ -7,13 +7,13 @@ export function mapStateToProps({ status }) {
     initialValues: {
       username: 'flexget',
     },
-    errorStatus: status.error || {},
+    // errorStatus: status.error || {},
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSubmit: ({ username, password }) => dispatch(actions.login.request(username, password)),
+    // onSubmit: ({ username, password }) => dispatch(actions.login.request(username, password)),
   };
 }
 
