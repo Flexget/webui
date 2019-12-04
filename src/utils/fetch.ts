@@ -17,8 +17,8 @@ export const enum Method {
   Delete = 'delete',
 }
 
-export interface APIResponse<T> {
-  data: T;
+export interface APIResponse<T> extends Response {
+  data?: T;
   headers: Headers;
 }
 
@@ -40,6 +40,7 @@ export const isError = <T>(data: T | ErrorBody, s: number): data is ErrorBody =>
   !(s >= 200 && s < 300) && typeof data === 'object';
 
 interface TypedResponse<T = Object> extends Response {
+  data?: T;
   json(): Promise<T | ErrorBody>;
 }
 
@@ -50,8 +51,9 @@ export const prepareResponse = <T>(data: Object, response: TypedResponse<T>) => 
 
 const status = async <T>(response: TypedResponse<T>): Promise<APIResponse<T>> => {
   const data: T | ErrorBody = await response.json();
-  if (!isError(data, response.status)) {
-    return prepareResponse(data, response);
+  if (!isError<T>(data, response.status)) {
+    response.data = camelize<T>(data);
+    return response;
   }
   const err = new StatusError(data.message);
   err.status = response.status;
@@ -77,7 +79,7 @@ export const prepareRequest = <BodyType>(method: Method, rawBody?: BodyType) => 
   } as const;
 };
 
-const request = async <BodyType, PayloadType>(
+export const request = async <BodyType, PayloadType>(
   resource: string,
   method: Method,
   rawBody?: BodyType,

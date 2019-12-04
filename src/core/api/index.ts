@@ -1,11 +1,10 @@
 import { useFetch, Options } from 'use-http';
 import { isError, prepareRequest, Method, camelize } from 'utils/fetch';
+import { AuthContainter } from 'core/auth/container';
 
-export const useFlexgetAPIRaw = <PayloadType>(
-  url: string,
-  onMount: boolean,
-  logout: () => void,
-) => {
+export const useFlexgetAPI = <PayloadType>(url: string, onMount = false) => {
+  const [, { logout }] = AuthContainter.useContainer();
+
   const options: Options = {
     interceptors: {
       request: (opts: Options) => ({
@@ -27,10 +26,4 @@ export const useFlexgetAPIRaw = <PayloadType>(
   };
 
   return useFetch<PayloadType>(`/api/${url}`, options, onMount ? [] : undefined);
-};
-
-export const useFlexgetAPI = <PayloadType>(url: string, onMount: boolean) => {
-  const logout = () => {};
-
-  return useFlexgetAPIRaw<PayloadType>(url, onMount, logout);
 };
