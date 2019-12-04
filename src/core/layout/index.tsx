@@ -16,6 +16,9 @@ import {
   content,
 } from './styles';
 
+const Error = ErrorStatus as any;
+const Info = InfoStatus as any;
+
 const Layout: React.FC = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(
     (window.matchMedia && !!window.matchMedia('(min-width: 600px)').matches) || false,
@@ -41,8 +44,8 @@ const Layout: React.FC = ({ children }) => {
           <SideNav sideBarOpen={sidebarOpen} toggle={toggleSidebar} />
         </aside>
         <section css={[content, contentCssFn()]}>{children}</section>
-        <ErrorStatus />
-        <InfoStatus />
+        <Error />
+        <Info />
       </main>
     </div>
   );

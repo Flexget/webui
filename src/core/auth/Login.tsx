@@ -9,6 +9,8 @@ import { LoginReq } from './types';
 
 type Props = Partial<RouteComponentProps>;
 
+const Card = LoginCard as any;
+
 const LoginPage: FC<Props> = ({ location }) => {
   const { from } = location?.state || { from: { pathname: '/' } };
   const [loggedIn, { login }] = AuthContainter.useContainer();
@@ -45,7 +47,7 @@ const LoginPage: FC<Props> = ({ location }) => {
   return (
     <div>
       <Logo />
-      <LoginCard onSubmit={handleSubmit} errorStatus={loginState.error} />
+      <Card onSubmit={handleSubmit} errorStatus={loginState.error} />
     </div>
   );
 };
