@@ -144,9 +144,6 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
 
 exports[`core/Login/LoginCard mapStateToProps should return errors if there are errors 1`] = `
 Object {
-  "errorStatus": Object {
-    "message": "Invalid Credentials",
-  },
   "initialValues": Object {
     "username": "flexget",
   },
@@ -155,7 +152,6 @@ Object {
 
 exports[`core/Login/LoginCard mapStateToProps should return no errors if there are none 1`] = `
 Object {
-  "errorStatus": Object {},
   "initialValues": Object {
     "username": "flexget",
   },

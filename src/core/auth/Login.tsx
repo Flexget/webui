@@ -7,8 +7,10 @@ import SplashScreen from './Splash';
 import { Logo } from './styles';
 import { LoginReq } from './types';
 
-const LoginPage: FC<RouteComponentProps> = ({ location }) => {
-  const { from } = location.state || { from: { pathname: '/' } };
+type Props = Partial<RouteComponentProps>;
+
+const LoginPage: FC<Props> = ({ location }) => {
+  const { from } = location?.state || { from: { pathname: '/' } };
   const [loggedIn, { login }] = AuthContainter.useContainer();
 
   const [loginState, { post: postLogin }] = useFlexgetAPI('/auth/login');

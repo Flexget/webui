@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { ReactNode } from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -11,11 +11,11 @@ import { AuthContainter } from 'core/auth/container';
 
 const mockStore = configureMockStore();
 
-export const themed = (component: React.ReactNode) => (
+export const themed = (component: ReactNode) => (
   <MuiThemeProvider theme={theme}>{component}</MuiThemeProvider>
 );
 
-export const router = (component: React.ReactNode) => <MemoryRouter>{component}</MemoryRouter>;
+export const router = (component: ReactNode) => <MemoryRouter>{component}</MemoryRouter>;
 
 export const provider = (component: React.ReactNode, state = {}) => (
   <Provider store={mockStore(state)}>{component}</Provider>
@@ -26,6 +26,6 @@ export const takeRequest = <T extends BaseAction>(action: BaseAction) => (ef: Ta
   expect(fn(action)).toBe(true);
 };
 
-export const authProvider = (component: React.ReactNode) => (
-  <AuthContainter.Provider>{component}</AuthContainter.Provider>
+export const authProvider = (component: React.ReactNode, initialValue = false) => (
+  <AuthContainter.Provider initialState={initialValue}>{component}</AuthContainter.Provider>
 );

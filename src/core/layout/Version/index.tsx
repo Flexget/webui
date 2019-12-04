@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import theme from 'theme';
 import { IconButton } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AuthContainter } from 'core/auth/container';
 import { useFlexgetAPI } from 'core/api';
 
 interface Props {
@@ -26,19 +25,11 @@ const Line = styled.p`
 `;
 
 const useVersion = () => {
-  const [, { login }] = AuthContainter.useContainer();
   const [{ loading, error, data }, { get }] = useFlexgetAPI<VersionResponse>('/server/version');
 
   useEffect(() => {
-    const fetch = async () => {
-      const response = await get();
-      if (response?.ok) {
-        login();
-      }
-    };
-
-    fetch();
-  }, [get, login]);
+    get();
+  }, [get]);
 
   return { loading, error, data };
 };
