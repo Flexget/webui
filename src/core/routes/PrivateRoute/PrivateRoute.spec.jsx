@@ -1,5 +1,5 @@
 import React from 'react';
-import { mapStateToProps, PrivateRoute } from 'core/routes/PrivateRoute';
+import PrivateRoute from 'core/routes/PrivateRoute';
 import renderer from 'react-test-renderer';
 import { router, authProvider } from 'utils/tests';
 
@@ -17,16 +17,6 @@ describe('core/routes/components/PrivateRoute', () => {
       const privateRoute = <PrivateRoute component={Component} />;
       const tree = renderer.create(authProvider(router(privateRoute))).toJSON();
       expect(tree).toMatchSnapshot();
-    });
-  });
-
-  describe('mapStateToProps', () => {
-    it('should return logged in if logged in', () => {
-      expect(mapStateToProps({ auth: { loggedIn: true } })).toMatchSnapshot();
-    });
-
-    it('should return not logged in if logged out', () => {
-      expect(mapStateToProps({ auth: {} })).toMatchSnapshot();
     });
   });
 });

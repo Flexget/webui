@@ -55,7 +55,7 @@ const dataFetchReducer = <T>(state: State<T>, action: Actions<T>): State<T> => {
 };
 
 export const useFlexgetAPI = <Res>(url: string) => {
-  const [, { logout }] = AuthContainter.useContainer();
+  const [, setLoggedIn] = AuthContainter.useContainer();
   const [state, dispatch] = useReducer<Reducer<State<Res>, Actions<Res>>>(dataFetchReducer, {
     loading: false,
   });
@@ -73,7 +73,7 @@ export const useFlexgetAPI = <Res>(url: string) => {
         }
         if ('error' in payload) {
           if (payload.status === 401) {
-            logout();
+            setLoggedIn(false);
           }
           dispatch({ type: Constants.FAILURE, payload });
         } else {
@@ -83,7 +83,7 @@ export const useFlexgetAPI = <Res>(url: string) => {
       };
       return fn();
     },
-    [logout, url],
+    [setLoggedIn, url],
   );
 
   useEffect(
@@ -95,9 +95,9 @@ export const useFlexgetAPI = <Res>(url: string) => {
 
   const req = {
     get: useCallback(() => requestFn(Method.Get, undefined), [requestFn]),
-    post: useCallback(<T>(body: T) => requestFn(Method.Post, body), [requestFn]),
-    put: useCallback(<T>(body: T) => requestFn(Method.Put, body), [requestFn]),
-    patch: useCallback(<T>(body: T) => requestFn(Method.Patch, body), [requestFn]),
+    post: useCallback(<T>(body?: T) => requestFn(Method.Post, body), [requestFn]),
+    put: useCallback(<T>(body?: T) => requestFn(Method.Put, body), [requestFn]),
+    patch: useCallback(<T>(body?: T) => requestFn(Method.Patch, body), [requestFn]),
     del: useCallback(() => requestFn(Method.Delete, undefined), [requestFn]),
   };
 

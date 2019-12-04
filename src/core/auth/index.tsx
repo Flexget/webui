@@ -13,7 +13,7 @@ const Card = LoginCard as any;
 
 const LoginPage: FC<Props> = ({ location }) => {
   const { from } = location?.state || { from: { pathname: '/' } };
-  const [loggedIn, { login }] = AuthContainter.useContainer();
+  const [loggedIn, setLoggedIn] = AuthContainter.useContainer();
 
   const [loginState, { post: postLogin }] = useFlexgetAPI('/auth/login');
   const [versionState, { get: getVersion }] = useFlexgetAPI('/server/version');
@@ -21,7 +21,7 @@ const LoginPage: FC<Props> = ({ location }) => {
   const handleSubmit = async (req: LoginReq) => {
     const response = await postLogin(req);
     if (response?.ok) {
-      login();
+      setLoggedIn(true);
     }
   };
 
@@ -29,12 +29,12 @@ const LoginPage: FC<Props> = ({ location }) => {
     const fetch = async () => {
       const response = await getVersion();
       if (response?.ok) {
-        login();
+        setLoggedIn(true);
       }
     };
 
     fetch();
-  }, [getVersion, login]);
+  }, [getVersion, setLoggedIn]);
 
   if (loggedIn) {
     return <Redirect to={from} />;
