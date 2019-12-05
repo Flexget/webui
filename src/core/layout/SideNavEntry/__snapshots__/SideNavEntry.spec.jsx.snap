@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core/layout/components/SideNavEntry renders correctly with link 1`] = `
-.emotion-2 {
+.emotion-1 {
   border-left: 3px solid transparent;
   cursor: pointer;
 }
 
-.emotion-2:hover {
+.emotion-1:hover {
   border-left: 3px solid #ff9800;
 }
 
@@ -15,25 +15,25 @@ exports[`core/layout/components/SideNavEntry renders correctly with link 1`] = `
 }
 
 <li
-  className="MuiListItem-root  emotion-2 emotion-3 MuiListItem-gutters"
+  className="MuiListItem-root  emotion-1 MuiListItem-gutters"
   disabled={false}
 >
   <div
     className="MuiListItemIcon-root"
   />
   <div
-    className="MuiListItemText-root emotion-0 emotion-1"
+    className="MuiListItemText-root emotion-0"
   />
 </li>
 `;
 
 exports[`core/layout/components/SideNavEntry renders correctly without link 1`] = `
-.emotion-2 {
+.emotion-1 {
   border-left: 3px solid transparent;
   cursor: pointer;
 }
 
-.emotion-2:hover {
+.emotion-1:hover {
   border-left: 3px solid #ff9800;
 }
 
@@ -42,14 +42,14 @@ exports[`core/layout/components/SideNavEntry renders correctly without link 1`] 
 }
 
 <li
-  className="MuiListItem-root  emotion-2 emotion-3 MuiListItem-gutters"
+  className="MuiListItem-root  emotion-1 MuiListItem-gutters"
   disabled={false}
 >
   <div
     className="MuiListItemIcon-root"
   />
   <div
-    className="MuiListItemText-root emotion-0 emotion-1"
+    className="MuiListItemText-root emotion-0"
   />
 </li>
 `;

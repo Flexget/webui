@@ -14,8 +14,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Series);
+export default connect(mapStateToProps, mapDispatchToProps)(Series);
 export { Series };

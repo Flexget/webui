@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core/layout/components/Navbar renders correctly 1`] = `
-.emotion-12 {
+.emotion-6 {
   position: static;
 }
 
-.emotion-10 {
+.emotion-5 {
   background-color: #ef6c00;
   color: #fff;
   min-height: 5rem;
@@ -15,20 +15,20 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
   color: #fff;
 }
 
-.emotion-2 {
+.emotion-1 {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
 <header
-  className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed emotion-12 emotion-13 MuiAppBar-colorPrimary mui-fixed"
+  className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed emotion-6 MuiAppBar-colorPrimary mui-fixed"
 >
   <div
-    className="MuiToolbar-root MuiToolbar-regular emotion-10 emotion-11 MuiToolbar-gutters"
+    className="MuiToolbar-root MuiToolbar-regular emotion-5 MuiToolbar-gutters"
   >
     <button
-      className="MuiButtonBase-root MuiIconButton-root emotion-0 emotion-1"
+      className="MuiButtonBase-root MuiIconButton-root emotion-0"
       disabled={false}
       onBlur={[Function]}
       onClick={[MockFunction]}
@@ -53,7 +53,7 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
       className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit"
     />
     <div
-      className="emotion-2 emotion-3"
+      className="emotion-1"
     />
     <a
       href="/config"
@@ -61,7 +61,7 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
     >
       <button
         aria-label="Config"
-        className="MuiButtonBase-root MuiIconButton-root emotion-0 emotion-1"
+        className="MuiButtonBase-root MuiIconButton-root emotion-0"
         disabled={false}
         onBlur={[Function]}
         onDragLeave={[Function]}
@@ -88,7 +88,7 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
     >
       <button
         aria-label="Log"
-        className="MuiButtonBase-root MuiIconButton-root emotion-0 emotion-1"
+        className="MuiButtonBase-root MuiIconButton-root emotion-0"
         disabled={false}
         onBlur={[Function]}
         onDragLeave={[Function]}
@@ -111,7 +111,7 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
     </a>
     <button
       aria-label="Manage"
-      className="MuiButtonBase-root MuiIconButton-root emotion-0 emotion-1"
+      className="MuiButtonBase-root MuiIconButton-root emotion-0"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}

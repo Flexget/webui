@@ -25,7 +25,7 @@ module.exports = {
     __DEV__: false,
     'ts-jest': {
       tsConfig: 'tsconfig.jest.json',
-      babelConfig: require('./babel.config.js'),
+      babelConfig: true,
       diagnostics: {
         warnOnly: true,
       },
@@ -33,15 +33,12 @@ module.exports = {
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
   preset: 'ts-jest/presets/js-with-ts',
-  transform: {
-    '^.+\\.jsx?$': './babel-jest',
-  },
   moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/__mocks__/fileMock.js',
   },
-  setupFiles: ['raf/polyfill', '<rootDir>/src/utils/tests/setupFiles.js'],
+  setupFiles: ['raf/polyfill', '<rootDir>/src/utils/tests/setupFiles.ts'],
   setupFilesAfterEnv: ['<rootDir>/src/utils/tests/setupTest.js'],
   testURL: 'http://localhost/',
 };

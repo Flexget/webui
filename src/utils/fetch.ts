@@ -3,13 +3,13 @@ import * as humps from 'humps';
 export class StatusError extends Error {
   status?: number;
 
-  constructor(message: string, s?: number) {
+  constructor(message = 'Error', s?: number) {
     super(message);
     this.status = s;
   }
 }
 
-enum Method {
+export const enum Method {
   Get = 'get',
   Post = 'post',
   Put = 'put',
@@ -17,16 +17,11 @@ enum Method {
   Delete = 'delete',
 }
 
-interface APIResponse<T> {
-  data: T;
-  headers: Headers;
-}
-
 interface ErrorBody {
   message: string;
 }
 
-const camelize = <T>(obj: Object | Object[]) =>
+export const camelize = <T>(obj: Object | Object[]) =>
   humps.camelizeKeys<Object, T>(obj, {
     separator: '_',
   });
@@ -36,32 +31,39 @@ const snakeCase = <T>(obj: Object | Object[]): T =>
     split: /(?=[A-Z0-9])/,
   });
 
-function isError<T>(data: T | ErrorBody, s: number): data is ErrorBody {
-  return !(s >= 200 && s < 300) && typeof data === 'object';
+export interface ErrorResponse extends TypedResponse<ErrorBody> {
+  error: StatusError;
 }
 
-interface TypedResponse<T = Object> extends Response {
-  json(): Promise<T | ErrorBody>;
+export type APIResponse<T> = TypedResponse<T> | ErrorResponse;
+
+export interface TypedResponse<T = Object> extends Response {
+  data: T;
+  json(): Promise<T>;
 }
 
-async function status<T>(response: TypedResponse<T>): Promise<APIResponse<T>> {
-  const data: T | ErrorBody = await response.json();
-  if (!isError(data, response.status)) {
-    return {
-      data: camelize<T>(data),
-      headers: response.headers,
-    };
+type PartialResponse<T> = Partial<APIResponse<T>> & Response;
+
+export const isError = <T>(resp: PartialResponse<T>): resp is Partial<ErrorResponse> & Response =>
+  !(resp.status >= 200 && resp.status < 300);
+
+export const prepareResponse = <T>(data: Object, response: TypedResponse<T>) => ({
+  data: camelize<T>(data),
+  headers: response.headers,
+});
+
+const status = async <T>(response: PartialResponse<T>): Promise<APIResponse<T>> => {
+  response.data = await response.json();
+
+  if (!isError(response)) {
+    response.data = response.data && camelize<T>(response.data);
+  } else {
+    response.error = new StatusError(response.data?.message, response.status);
   }
-  const err = new StatusError(data.message);
-  err.status = response.status;
-  throw err;
-}
+  return response as APIResponse<T>;
+};
 
-async function request<BodyType, PayloadType>(
-  resource: string,
-  method: Method,
-  rawBody?: BodyType,
-): Promise<APIResponse<PayloadType>> {
+export const prepareRequest = <BodyType>(method: Method, rawBody?: BodyType) => {
   const headers: Record<string, string> = {
     Accept: 'application/json',
   };
@@ -72,31 +74,68 @@ async function request<BodyType, PayloadType>(
 
   const body = rawBody ? JSON.stringify(snakeCase(rawBody)) : undefined;
 
-  const response = await fetch(`/api${resource}`, {
+  return {
     method,
     headers,
     body,
     credentials: 'same-origin',
-  });
+  } as const;
+};
+
+export const request = async <PayloadType, BodyType = undefined>(
+  resource: string,
+  method: Method,
+  rawBody: BodyType,
+): Promise<APIResponse<PayloadType>> => {
+  const response: PartialResponse<PayloadType> = await fetch(
+    resource,
+    prepareRequest(method, rawBody),
+  );
   return status<PayloadType>(response);
-}
+};
+
+const requestOld = async <PayloadType, BodyType = undefined>(
+  resource: string,
+  method: Method,
+  rawBody?: BodyType,
+): Promise<APIResponse<PayloadType>> => {
+  const response = await request<PayloadType, typeof rawBody>(`/api${resource}`, method, rawBody);
+  if ('error' in response) {
+    throw response.error;
+  }
+  return response;
+};
 
 export function get<T>(resource: string) {
-  return request<undefined, T>(resource, Method.Get);
+  return requestOld<T>(resource, Method.Get);
 }
 
 export function post<T>(resource: string): Promise<APIResponse<T>>;
 export function post<Req, Res>(resource: string, body: Req): Promise<APIResponse<Res>>;
-export function post<Req, Res>(resource: string, body = undefined) {
-  return request<Req, Res>(resource, Method.Post, body);
+export function post(resource: string, body = undefined) {
+  return requestOld(resource, Method.Post, body);
+}
+
+export function patch<T>(resource: string): Promise<APIResponse<T>>;
+export function patch<Req, Res>(resource: string, body: Req): Promise<APIResponse<Res>>;
+export function patch(resource: string, body = undefined) {
+  return requestOld(resource, Method.Patch, body);
 }
 
 export function put<T>(resource: string): Promise<APIResponse<T>>;
 export function put<Req, Res>(resource: string, body: Req): Promise<APIResponse<Res>>;
-export function put<Req, Res>(resource: string, body = undefined) {
-  return request<Req, Res>(resource, Method.Put, body);
+export function put(resource: string, body = undefined) {
+  return requestOld(resource, Method.Post, body);
 }
 
-export function del(resource: string) {
-  return request(resource, Method.Delete);
+export function del<T>(resource: string) {
+  return requestOld<undefined, T>(resource, Method.Delete);
 }
+
+export default {
+  get,
+  post,
+  put,
+  patch,
+  delete: del,
+};

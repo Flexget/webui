@@ -8,8 +8,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(History);
+export default connect(null, mapDispatchToProps)(History);
 export { History };

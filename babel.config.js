@@ -1,6 +1,4 @@
 module.exports = function config(api) {
-  api.cache(true);
-
   const presets = [
     [
       '@babel/preset-env',
@@ -11,10 +9,13 @@ module.exports = function config(api) {
       },
     ],
     '@babel/preset-react',
-    '@emotion/babel-preset-css-prop',
+    ...(api.env() !== 'test'
+      ? ['@emotion/babel-preset-css-prop', { sourceMap: api.env() !== 'test' }]
+      : []),
   ];
   const plugins = [
     '@babel/plugin-syntax-dynamic-import',
+    '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-class-properties',
     'react-hot-loader/babel',
   ];
@@ -24,9 +25,7 @@ module.exports = function config(api) {
     plugins,
     env: {
       production: {
-        plugins: [
-          'transform-react-remove-prop-types',
-        ],
+        plugins: ['transform-react-remove-prop-types'],
       },
       test: {
         presets: [
@@ -37,12 +36,9 @@ module.exports = function config(api) {
               corejs: 3,
               modules: 'commonjs',
             },
-
           ],
         ],
-        plugins: [
-          'dynamic-import-node',
-        ],
+        plugins: ['dynamic-import-node'],
       },
       release: {
         presets: [

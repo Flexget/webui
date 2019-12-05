@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import authActions from 'core/auth/state/actions';
 import actions, { Operation } from 'core/server/state/actions';
 import Navbar from './Navbar';
 
@@ -27,14 +26,10 @@ function mapStateToProps({ router, routes }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    logout: () => dispatch(authActions.logout.request()),
     reloadServer: () => dispatch(actions.serverOperation.request(Operation.Reload)),
     shutdownServer: () => dispatch(actions.serverOperation.request(Operation.Shutdown)),
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
 export { Navbar };

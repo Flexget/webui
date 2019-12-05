@@ -1,17 +1,17 @@
-import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import theme from 'theme';
 
 const HEADER_HEIGHT = 5;
 const MOBILE_HEADER_HEIGHT = HEADER_HEIGHT * 2;
 
-export const Wrapper = styled.div`
+export const wrapper = css`
   display: flex;
   flex-direction: column;
   height: 100%;
   min-height: 100vh;
 `;
 
-export const Main = styled.main`
+export const main = css`
   display: flex;
   flex-direction: row;
   padding-top: ${MOBILE_HEADER_HEIGHT}rem;
@@ -22,7 +22,7 @@ export const Main = styled.main`
   }
 `;
 
-export const Header = styled.header`
+export const header = css`
   display: flex;
   min-height: ${HEADER_HEIGHT}rem;
   flex-direction: column;
@@ -34,20 +34,20 @@ export const Header = styled.header`
   }
 `;
 
-export const LogoWrapper = styled.div`
+export const logoWrapper = css`
   height: ${HEADER_HEIGHT}rem;
 `;
 
-export const Nav = styled.nav`
+export const nav = css`
   height: ${HEADER_HEIGHT}rem;
   flex: 1;
 `;
 
-export const SideBar = styled.aside`
+export const sidebar = css`
   overflow-y: auto;
 `;
 
-export const Content = styled.section`
+export const content = css`
   flex: 1;
   overflow-y: auto;
   padding: ${theme.typography.pxToRem(theme.spacing(2))};
@@ -56,8 +56,13 @@ export const Content = styled.section`
 
   ${theme.breakpoints.down('sm')} {
     margin-left: 0;
-    opacity: ${({ open }) => (open ? 0 : 1)};
-    display: ${({ open }) => (open ? 'none' : 'block')};
     padding: ${theme.typography.pxToRem(theme.spacing(1))};
+  }
+`;
+
+export const contentWithSidebar = (open: boolean) => css`
+  ${theme.breakpoints.down('sm')} {
+    opacity: ${open ? 0 : 1};
+    display: ${open ? 'none' : 'block'};
   }
 `;
