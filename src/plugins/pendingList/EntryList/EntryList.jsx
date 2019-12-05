@@ -85,12 +85,11 @@ export default class EntryList extends PureComponent {
       <div>
         <ListWrapper>
           {listId === null && <div>Please Select List</div>}
-          {items &&
-            items.map(entry => (
-              <EntryWrapper key={entry.id}>
-                <Entry entry={entry} />
-              </EntryWrapper>
-            ))}
+          {items?.map(entry => (
+            <EntryWrapper key={entry.id}>
+              <Entry entry={entry} />
+            </EntryWrapper>
+          ))}
         </ListWrapper>
       </div>
     );

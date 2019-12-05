@@ -16,7 +16,7 @@ export default function reducer(state = initState, action: ActionTypes): State {
     case Constants.GET_SHOWS: {
       const { payload } = action;
       return {
-        totalCount: parseInt(payload.headers.get('total-count') || '0', 10),
+        totalCount: parseInt(payload.headers.get('total-count') ?? '0', 10),
         items: payload.data,
       };
     }

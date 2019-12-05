@@ -69,7 +69,7 @@ export default function reducer(state = initState, action: ActionTypes): State {
       return {
         ...state,
         entries: {
-          totalCount: parseInt(headers.get('total-count') || '0', 10),
+          totalCount: parseInt(headers.get('total-count') ?? '0', 10),
           page,
           items: entries,
         },
