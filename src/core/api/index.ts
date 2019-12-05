@@ -9,6 +9,7 @@ import {
 } from 'utils/fetch';
 import { Action } from 'utils/hooks/actions';
 import { AuthContainter } from 'core/auth/container';
+import { uriParser } from 'utils';
 
 interface State<T> {
   loading: boolean;
@@ -60,13 +61,18 @@ export const useFlexgetAPI = <Res>(url: string) => {
     loading: false,
   });
   const cancelled = useRef(false);
+  const baseURI = useRef(uriParser(document.baseURI));
 
   const requestFn = useCallback(
     <Req = undefined>(method: Method, body: Req) => {
       const fn = async () => {
         dispatch({ type: Constants.START });
 
-        const payload = await request<Res, Req>(`/api${url}`, method, body);
+        const payload = await request<Res, Req>(
+          `${baseURI.current.pathname}api${url}`,
+          method,
+          body,
+        );
 
         if (cancelled.current) {
           return undefined;

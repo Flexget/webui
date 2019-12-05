@@ -5,17 +5,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const webpack = require('webpack');
 
-const __DEBUG__ = !!process.env.DEBUG; const __DEV__ = process.env.NODE_ENV !== 'production';
+const __DEBUG__ = !!process.env.DEBUG;
+const __DEV__ = process.env.NODE_ENV !== 'production';
 const mode = __DEV__ ? 'development' : 'production';
+const PATH_PREFIX = 'v2';
 
 const entry = {
-  main: [
-    ...(__DEV__ ? [
-      'react-hot-loader/patch',
-    ] : []),
-    'whatwg-fetch',
-    './src/app.tsx',
-  ],
+  main: [...(__DEV__ ? ['react-hot-loader/patch'] : []), 'whatwg-fetch', './src/app.tsx'],
   vendor: [
     'redux',
     'react-redux',
@@ -30,7 +26,7 @@ const entry = {
 const output = {
   path: __DEV__ ? __dirname : path.join(__dirname, 'dist', 'assets'),
   filename: __DEV__ ? '[name].bundle.js' : '[name].[chunkhash].js',
-  publicPath: __DEV__ ? '/' : '/v2/assets/',
+  publicPath: __DEV__ ? '/' : `${PATH_PREFIX}/assets/`,
 };
 
 const htmlConfig = {
@@ -42,7 +38,7 @@ if (__DEV__) {
   htmlConfig.base = '/';
 } else {
   htmlConfig.filename = '../index.html';
-  htmlConfig.base = '/v2/';
+  htmlConfig.base = `{{ base_url }}/`;
 }
 
 const plugins = [
@@ -51,15 +47,21 @@ const plugins = [
     tsconfig: path.resolve('tsconfig.json'),
   }),
   new HtmlWebpackPlugin(htmlConfig),
-  ...(__DEV__ ? [new webpack.HotModuleReplacementPlugin()] : [
-    new MiniCssExtractPlugin({
-      filename: '[name].[chunkhash].css',
-      allChunks: true,
-    }),
-  ]),
-  ...(__DEBUG__ ? [new BundleAnalyzerPlugin({
-    analyzerMode: 'server',
-  })] : []),
+  ...(__DEV__
+    ? [new webpack.HotModuleReplacementPlugin()]
+    : [
+        new MiniCssExtractPlugin({
+          filename: '[name].[chunkhash].css',
+          allChunks: true,
+        }),
+      ]),
+  ...(__DEBUG__
+    ? [
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'server',
+        }),
+      ]
+    : []),
 ];
 
 const config = {
@@ -70,10 +72,7 @@ const config = {
   devtool: __DEV__ ? 'eval-source-map' : 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    modules: [
-      path.resolve('./src'),
-      'node_modules',
-    ],
+    modules: [path.resolve('./src'), 'node_modules'],
     alias: {
       'react-dom': '@hot-loader/react-dom',
     },
@@ -108,7 +107,19 @@ const config = {
       },
       {
         test: /\.css$/,
-        use: [...(__DEV__ ? ['style-loader'] : [MiniCssExtractPlugin.loader]), 'css-loader'],
+        use: [
+          ...(__DEV__
+            ? ['style-loader']
+            : [
+                {
+                  loader: MiniCssExtractPlugin.loader,
+                  options: {
+                    publicPath: '',
+                  },
+                },
+              ]),
+          'css-loader',
+        ],
       },
     ],
   },
