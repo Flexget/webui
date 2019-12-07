@@ -1,4 +1,5 @@
 import * as humps from 'humps';
+import { uriParser } from 'utils';
 
 export class StatusError extends Error {
   status?: number;
@@ -99,7 +100,11 @@ const requestOld = async <PayloadType, BodyType = undefined>(
   method: Method,
   rawBody?: BodyType,
 ): Promise<APIResponse<PayloadType>> => {
-  const response = await request<PayloadType, typeof rawBody>(`/api${resource}`, method, rawBody);
+  const response = await request<PayloadType, typeof rawBody>(
+    `${uriParser(document.baseURI).pathname}api${resource}`,
+    method,
+    rawBody,
+  );
   if ('error' in response) {
     throw response.error;
   }
