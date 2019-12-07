@@ -10,8 +10,10 @@ exports[`common/TextField renders correctly 1`] = `
   >
     <input
       aria-invalid={true}
+      autoFocus={false}
       className="MuiInputBase-input MuiInput-input"
       disabled={false}
+      onAnimationStart={[Function]}
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
