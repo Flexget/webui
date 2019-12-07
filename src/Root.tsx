@@ -17,7 +17,7 @@ import registerHistory from 'plugins/history';
 import registerLog from 'plugins/log';
 import registerSeries from 'plugins/series';
 import registerPendingList from 'plugins/pendingList';
-import { AuthContainter } from 'core/auth/container';
+import { AuthContainer } from 'core/auth/container';
 
 registerHistory();
 registerLog();
@@ -59,7 +59,7 @@ const Root = () => (
     <Global styles={globals} />
     <StylesProvider injectFirst>
       <Provider store={store}>
-        <AuthContainter.Provider>
+        <AuthContainer.Provider>
           <ConnectedRouter history={history}>
             <MuiThemeProvider theme={theme}>
               <div>
@@ -79,7 +79,7 @@ const Root = () => (
               </div>
             </MuiThemeProvider>
           </ConnectedRouter>
-        </AuthContainter.Provider>
+        </AuthContainer.Provider>
       </Provider>
     </StylesProvider>
   </div>

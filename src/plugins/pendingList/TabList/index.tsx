@@ -1,49 +1,23 @@
-import * as React from 'react';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import React, { FC, useState } from 'react';
 import Tab from '@material-ui/core/Tab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SecondaryNav from 'common/SecondaryNav';
-import { useOverlayState } from 'utils/hooks/useOverlayState';
+import { ListContiner, actions } from 'plugins/pendingList/hooks/list';
 import AddListDialog from '../AddListDialog';
-import { List, SelectedListID } from '../state/types';
-import actions from '../state/actions';
+import { SelectedListID } from '../types';
 
-const ALD = AddListDialog as any; // eslint-disable-line @typescript-eslint/no-explicit-any
+const ALD = AddListDialog as any;
 
-interface SelectorProps {
-  lists: List[];
-  listId?: SelectedListID;
-}
+const TabList: FC<{}> = () => {
+  const [isOpen, setOpen] = useState(false);
+  const [{ lists, listId }, dispatch] = ListContiner.useContainer();
 
-const usePendingList = openDialog => {
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(actions.getLists.request());
-  }, [dispatch]);
-  const handleChange = React.useCallback(
-    (_, selected: SelectedListID) => {
-      if (selected !== 'add') {
-        return dispatch(actions.selectList(selected));
-      }
-      return openDialog();
-    },
-    [dispatch, openDialog],
-  );
-
-  const { lists, listId }: SelectorProps = useSelector(
-    ({ pendingList }) => ({
-      lists: pendingList.lists,
-      listId: pendingList.selected,
-    }),
-    shallowEqual,
-  );
-
-  return { handleChange, lists, listId };
-};
-
-const TabList: React.FC<{}> = () => {
-  const addDialog = useOverlayState(false);
-  const { handleChange, lists, listId } = usePendingList(addDialog.openOverlay);
+  const handleChange = (_, selected: SelectedListID) => {
+    if (selected !== 'add') {
+      return dispatch(actions.selectList(selected));
+    }
+    return setOpen(true);
+  };
 
   return (
     <div>
@@ -59,7 +33,7 @@ const TabList: React.FC<{}> = () => {
         ))}
         <Tab icon={<FontAwesomeIcon icon="plus-circle" />} value="add" />
       </SecondaryNav>
-      <ALD open={addDialog.isOpen} onClose={addDialog.closeOverlay} />
+      <ALD open={isOpen} onClose={() => setOpen(false)} />
     </div>
   );
 };

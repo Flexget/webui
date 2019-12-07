@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
-import { AuthContainter } from 'core/auth/container';
+import { AuthContainer } from 'core/auth/container';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const [loggedIn] = AuthContainter.useContainer();
+  const [loggedIn] = AuthContainer.useContainer();
   return (
     <Route
       {...rest}

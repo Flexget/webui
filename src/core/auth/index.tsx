@@ -1,11 +1,12 @@
 import React, { FC, useEffect } from 'react';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
-import { AuthContainter } from 'core/auth/container';
+import { AuthContainer } from 'core/auth/container';
 import { useFlexgetAPI } from 'core/api';
+import { Method } from 'utils/fetch';
+import { LoginReq } from 'core/auth/types';
 import LoginCard from './LoginCard';
 import SplashScreen from './Splash';
 import { Logo } from './styles';
-import { LoginReq } from './types';
 
 type Props = Partial<RouteComponentProps>;
 
@@ -13,27 +14,26 @@ const Card = LoginCard as any;
 
 const LoginPage: FC<Props> = ({ location }) => {
   const { from } = location?.state || { from: { pathname: '/' } };
-  const [loggedIn, setLoggedIn] = AuthContainter.useContainer();
+  const [loggedIn, setLoggedIn] = AuthContainer.useContainer();
 
-  const [loginState, { post: postLogin }] = useFlexgetAPI('/auth/login');
-  const [versionState, { get: getVersion }] = useFlexgetAPI('/server/version');
+  const [loginState, postLogin] = useFlexgetAPI('/auth/login', Method.Post);
+  const [versionState, getVersion] = useFlexgetAPI('/server/version');
 
-  const handleSubmit = async (req: LoginReq) => {
-    const response = await postLogin(req);
-    if (response?.ok) {
+  const login = async (req: LoginReq) => {
+    const resp = await postLogin(req);
+    if (resp) {
       setLoggedIn(true);
     }
   };
 
   useEffect(() => {
-    const fetch = async () => {
-      const response = await getVersion();
-      if (response?.ok) {
+    const fn = async () => {
+      const resp = await getVersion();
+      if (resp) {
         setLoggedIn(true);
       }
     };
-
-    fetch();
+    fn();
   }, [getVersion, setLoggedIn]);
 
   if (loggedIn) {
@@ -47,7 +47,7 @@ const LoginPage: FC<Props> = ({ location }) => {
   return (
     <div>
       <Logo />
-      <Card onSubmit={handleSubmit} errorStatus={loginState.error} />
+      <Card onSubmit={login} errorStatus={loginState.error} />
     </div>
   );
 };

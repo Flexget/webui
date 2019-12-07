@@ -32,21 +32,26 @@ const snakeCase = <T>(obj: Object | Object[]): T =>
     split: /(?=[A-Z0-9])/,
   });
 
-export interface ErrorResponse extends TypedResponse<ErrorBody> {
-  error: StatusError;
-}
-
-export type APIResponse<T> = TypedResponse<T> | ErrorResponse;
-
-export interface TypedResponse<T = Object> extends Response {
+export interface TypedResponse<T, U = undefined> extends Response {
   data: T;
   json(): Promise<T>;
+  error: U;
 }
+
+export type ErrorResponse = TypedResponse<ErrorBody, StatusError>;
+
+export type SuccessResponse<T> = OptionalProps<TypedResponse<T>, 'error'>;
+
+export type APIResponse<T> = SuccessResponse<T> | ErrorResponse;
 
 type PartialResponse<T> = Partial<APIResponse<T>> & Response;
 
-export const isError = <T>(resp: PartialResponse<T>): resp is Partial<ErrorResponse> & Response =>
-  !(resp.status >= 200 && resp.status < 300);
+interface IsError {
+  <T>(resp: PartialResponse<T>): resp is PartialResponse<ErrorResponse> & Response;
+  <T>(resp: APIResponse<T>): resp is ErrorResponse;
+}
+
+export const isError: IsError = (resp: Response): resp is ErrorResponse => !resp.ok;
 
 export const prepareResponse = <T>(data: Object, response: TypedResponse<T>) => ({
   data: camelize<T>(data),
@@ -112,7 +117,7 @@ const requestOld = async <PayloadType, BodyType = undefined>(
 };
 
 export function get<T>(resource: string) {
-  return requestOld<T>(resource, Method.Get);
+  return requestOld<T>(resource, Method.Get, undefined);
 }
 
 export function post<T>(resource: string): Promise<APIResponse<T>>;
@@ -134,7 +139,7 @@ export function put(resource: string, body = undefined) {
 }
 
 export function del<T>(resource: string) {
-  return requestOld<undefined, T>(resource, Method.Delete);
+  return requestOld<undefined, T>(resource, Method.Delete, undefined);
 }
 
 export default {

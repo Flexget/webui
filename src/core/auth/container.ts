@@ -5,4 +5,4 @@ const useAuth = (initialState = false) => {
   return useState(initialState);
 };
 
-export const AuthContainter = createContainer(useAuth);
+export const AuthContainer = createContainer(useAuth);

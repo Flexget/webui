@@ -7,7 +7,7 @@ import theme from 'theme';
 import { BaseAction } from 'core/status/state/util';
 import { GuardPredicate } from '@redux-saga/types'; // eslint-disable-line import/no-unresolved
 import { TakeEffect } from 'redux-saga/effects';
-import { AuthContainter } from 'core/auth/container';
+import { AuthContainer } from 'core/auth/container';
 
 const mockStore = configureMockStore();
 
@@ -27,5 +27,5 @@ export const takeRequest = <T extends BaseAction>(action: BaseAction) => (ef: Ta
 };
 
 export const authProvider = (component: React.ReactNode, initialValue = false) => (
-  <AuthContainter.Provider initialState={initialValue}>{component}</AuthContainter.Provider>
+  <AuthContainer.Provider initialState={initialValue}>{component}</AuthContainer.Provider>
 );
