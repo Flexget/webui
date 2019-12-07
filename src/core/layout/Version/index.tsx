@@ -31,7 +31,7 @@ const useVersion = () => {
   useEffect(() => {
     const fn = async () => {
       const resp = await getVersion();
-      if (resp) {
+      if (resp.ok) {
         setVersion(resp.data);
       }
     };

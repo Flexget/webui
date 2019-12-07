@@ -3,7 +3,7 @@ import { useFlexgetAPI } from 'core/api';
 import { action } from 'utils/hooks/actions';
 import { Method } from 'utils/fetch';
 import { createContainer } from 'unstated-next';
-import { List } from '../types';
+import { List, AddListRequest } from '../types';
 
 export const enum Constants {
   GET_LISTS = '@flexget/pedingList/GET_LISTS',
@@ -64,7 +64,7 @@ const useLists = () => {
     const fn = async () => {
       const resp = await getLists();
 
-      if (resp) {
+      if (resp.ok) {
         dispatch(actions.getLists(resp.data));
       }
     };
@@ -81,11 +81,12 @@ export const useAddList = () => {
 
   const [state, request] = useFlexgetAPI<List>('/pending_list', Method.Post);
 
-  const addList = async () => {
-    const resp = await request();
-    if (resp) {
+  const addList = async (req: AddListRequest) => {
+    const resp = await request(req);
+    if (resp.ok) {
       dispatch(actions.addList(resp.data));
     }
+    return resp;
   };
 
   return [state, addList] as const;
@@ -98,9 +99,10 @@ export const useRemoveList = (id: number) => {
 
   const removeList = async () => {
     const resp = await request();
-    if (resp) {
+    if (resp.ok) {
       dispatch(actions.removeList(id));
     }
+    return resp;
   };
 
   return [state, removeList] as const;

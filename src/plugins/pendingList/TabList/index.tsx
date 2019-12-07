@@ -6,7 +6,6 @@ import { ListContiner, actions } from 'plugins/pendingList/hooks/list';
 import AddListDialog from '../AddListDialog';
 import { SelectedListID } from '../types';
 
-const ALD = AddListDialog as any;
 
 const TabList: FC<{}> = () => {
   const [isOpen, setOpen] = useState(false);
@@ -33,7 +32,7 @@ const TabList: FC<{}> = () => {
         ))}
         <Tab icon={<FontAwesomeIcon icon="plus-circle" />} value="add" />
       </SecondaryNav>
-      <ALD open={isOpen} onClose={() => setOpen(false)} />
+      <AddListDialog open={isOpen} onClose={() => setOpen(false)} />
     </div>
   );
 };

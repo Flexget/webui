@@ -32,7 +32,7 @@ const Layout: React.FC = ({ children }) => {
 
   const handleLogout = async () => {
     const response = await logout();
-    if (response?.ok) {
+    if (response.ok) {
       setLoggedIn(false);
     }
   };

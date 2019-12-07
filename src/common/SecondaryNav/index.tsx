@@ -1,10 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { darkTheme } from 'theme';
+import { TabsTypeMap } from '@material-ui/core/Tabs';
 import { SecondaryAppBar, SecondaryToolbar, SecondaryTabs } from './styles';
 
-const SecondaryNav = ({ children, tabs, ...tabProps }) => (
+type Props = TabsTypeMap['props'] & { tabs: boolean };
+
+const SecondaryNav: FC<Props> = ({ children, tabs = false, ...tabProps }) => (
   <MuiThemeProvider theme={darkTheme}>
     <SecondaryAppBar>
       {tabs ? (
@@ -17,14 +19,5 @@ const SecondaryNav = ({ children, tabs, ...tabProps }) => (
     </SecondaryAppBar>
   </MuiThemeProvider>
 );
-
-SecondaryNav.propTypes = {
-  children: PropTypes.node.isRequired,
-  tabs: PropTypes.bool,
-};
-
-SecondaryNav.defaultProps = {
-  tabs: false,
-};
 
 export default SecondaryNav;

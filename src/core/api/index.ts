@@ -1,10 +1,10 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
-import { Method, APIResponse, request, isError, StatusError } from 'utils/fetch';
-import { AuthContainter } from 'core/auth/container';
+import { Method, APIResponse, request, StatusError } from 'utils/fetch';
+import { AuthContainer } from 'core/auth/container';
 import { uriParser } from 'utils';
 
 export const useFlexgetAPI = <Res>(url: string, method: Method = Method.Get) => {
-  const [, setLoggedIn] = AuthContainter.useContainer();
+  const [, setLoggedIn] = AuthContainer.useContainer();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<StatusError | undefined>();
   const cancelled = useRef(false);
@@ -20,15 +20,14 @@ export const useFlexgetAPI = <Res>(url: string, method: Method = Method.Get) => 
       );
 
       if (cancelled.current) {
-        return undefined;
+        return payload;
       }
       if (payload.status === 401) {
         setLoggedIn(false);
       }
       setLoading(false);
-      if (isError(payload)) {
+      if (!payload.ok) {
         setError(payload.error);
-        return undefined;
       }
       return payload;
     },

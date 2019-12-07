@@ -38,27 +38,25 @@ export interface TypedResponse<T, U = undefined> extends Response {
   error: U;
 }
 
-export type ErrorResponse = TypedResponse<ErrorBody, StatusError>;
+export interface ErrorResponse extends TypedResponse<ErrorBody, StatusError> {
+  ok: false;
+}
 
-export type SuccessResponse<T> = OptionalProps<TypedResponse<T>, 'error'>;
+export interface SuccessResponse<T> extends OptionalProps<TypedResponse<T>, 'error'> {
+  ok: true;
+}
 
 export type APIResponse<T> = SuccessResponse<T> | ErrorResponse;
 
-type PartialResponse<T> = Partial<APIResponse<T>> & Response;
-
-interface IsError {
-  <T>(resp: PartialResponse<T>): resp is PartialResponse<ErrorResponse> & Response;
-  <T>(resp: APIResponse<T>): resp is ErrorResponse;
-}
-
-export const isError: IsError = (resp: Response): resp is ErrorResponse => !resp.ok;
+export const isError = <T>(resp: APIResponse<T>): resp is ErrorResponse => !resp.ok;
 
 export const prepareResponse = <T>(data: Object, response: TypedResponse<T>) => ({
   data: camelize<T>(data),
   headers: response.headers,
 });
 
-const status = async <T>(response: PartialResponse<T>): Promise<APIResponse<T>> => {
+const status = async <T>(r: Response): Promise<APIResponse<T>> => {
+  const response = r as APIResponse<T>;
   response.data = await response.json();
 
   if (!isError(response)) {
@@ -93,10 +91,7 @@ export const request = async <PayloadType, BodyType = undefined>(
   method: Method,
   rawBody: BodyType,
 ): Promise<APIResponse<PayloadType>> => {
-  const response: PartialResponse<PayloadType> = await fetch(
-    resource,
-    prepareRequest(method, rawBody),
-  );
+  const response: Response = await fetch(resource, prepareRequest(method, rawBody));
   return status<PayloadType>(response);
 };
 

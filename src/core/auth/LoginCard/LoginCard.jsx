@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
 import CardActions from '@material-ui/core/CardActions';
-import TextField from 'common/TextField';
+import TextField from 'common/TextField/old';
 import { Card, ErrorMessage, LoginButton, Content, LoginField } from './styles';
 
 export const LoginCard = ({ handleSubmit, errorStatus }) => (

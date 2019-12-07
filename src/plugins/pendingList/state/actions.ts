@@ -1,11 +1,15 @@
 import { action, ActionsUnion } from 'utils/actions';
 import FlexGetEntry from 'common/FlexGetEntry';
 import { StatusError } from 'utils/fetch';
-import { Direction } from 'utils/query';
 import statusActions from 'core/status/state/actions';
 import { RequestsOfType as ROT } from 'core/status/state/types';
 
-import { List } from './types';
+import {
+  AddListRequest,
+  GetEntriesOptions,
+  AddEntryRequest,
+  List,
+} from 'plugins/pendingList/types';
 
 export const enum Constants {
   GET_LISTS = '@flexget/pendingList/GET_LISTS',
@@ -18,33 +22,6 @@ export const enum Constants {
   APPROVE_ENTRY = '@flexget/pendingList/APPROVE_ENTRY',
   REJECT_ENTRY = '@flexget/pendingList/REJECT_ENTRY',
   SELECT_LIST = '@flexget/pendingList/SELECT_LIST',
-}
-
-export const enum SortBy {
-  Added = 'added',
-  Title = 'title',
-  OriginalUrl = 'original_url',
-  Approved = 'approved',
-}
-
-interface AddListRequest {
-  name: string;
-}
-
-interface AddEntryRequest {
-  listId: number;
-  entry: FlexGetEntry;
-}
-
-interface GetEntriesOptions {
-  page?: number;
-  sortBy?: SortBy;
-  order?: Direction;
-}
-
-interface EntryRequest {
-  id: number;
-  listId: number;
 }
 
 const actions = {

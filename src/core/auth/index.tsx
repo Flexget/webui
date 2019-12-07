@@ -21,7 +21,7 @@ const LoginPage: FC<Props> = ({ location }) => {
 
   const login = async (req: LoginReq) => {
     const resp = await postLogin(req);
-    if (resp) {
+    if (resp.ok) {
       setLoggedIn(true);
     }
   };
@@ -29,7 +29,7 @@ const LoginPage: FC<Props> = ({ location }) => {
   useEffect(() => {
     const fn = async () => {
       const resp = await getVersion();
-      if (resp) {
+      if (resp.ok) {
         setLoggedIn(true);
       }
     };

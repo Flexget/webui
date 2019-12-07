@@ -1,7 +1,7 @@
 import React, { FC, useState, useReducer } from 'react';
-import { SortOrder } from 'utils/sort';
 import { NoPaddingWrapper } from 'common/styles';
 import TabList from 'plugins/pendingList/TabList';
+import { Direction } from 'utils/query';
 import Pagination from '../Pagination';
 import EntryList from '../EntryList';
 import SortList from '../SortList';
@@ -20,7 +20,7 @@ const PendingList: FC<{}> = () => {
   const [{ perPage, sortBy, sortOrder }, dispatch] = useReducer(reducer, {
     perPage: 50,
     sortBy: SortBy.Added,
-    sortOrder: SortOrder.Desc,
+    sortOrder: Direction.Desc,
   });
 
   return (
