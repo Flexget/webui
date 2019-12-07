@@ -6,7 +6,7 @@ exports[`common/LoadingBar Component should render properly when loading 1`] = `
   role="progressbar"
 >
   <div
-    className="MuiLinearProgress-bar MuiLinearProgress-bar1Indeterminate MuiLinearProgress-barColorSecondary"
+    className="MuiLinearProgress-bar MuiLinearProgress-barColorSecondary MuiLinearProgress-bar1Indeterminate"
     style={Object {}}
   />
   <div
@@ -22,7 +22,7 @@ exports[`common/LoadingBar Component should render properly when not loading 1`]
   role="progressbar"
 >
   <div
-    className="MuiLinearProgress-bar MuiLinearProgress-bar1Indeterminate MuiLinearProgress-barColorSecondary"
+    className="MuiLinearProgress-bar MuiLinearProgress-barColorSecondary MuiLinearProgress-bar1Indeterminate"
     style={Object {}}
   />
   <div
