@@ -40,6 +40,7 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
         data-shrink={false}
         htmlFor="task-filter"
+        id="task-filter-label"
       >
         Filter By Task
       </label>
@@ -49,9 +50,11 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       >
         <input
           aria-invalid={false}
+          autoFocus={false}
           className="MuiInputBase-input MuiInput-input"
           disabled={false}
           id="task-filter"
+          onAnimationStart={[Function]}
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
@@ -72,6 +75,7 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
         data-shrink={true}
         htmlFor="sort-by"
+        id="sort-by-label"
       >
         Sort By
       </label>
@@ -81,18 +85,21 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       >
         <div
           aria-haspopup="listbox"
-          className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input MuiInputBase-inputSelect"
+          aria-labelledby="sort-by-label sort-by"
+          className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+          id="sort-by"
           onBlur={[Function]}
-          onClick={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
+          onMouseDown={[Function]}
           role="button"
           tabIndex={0}
         >
           Time
         </div>
         <input
-          id="sort-by"
+          autoFocus={false}
+          onAnimationStart={[Function]}
           type="hidden"
           value="time"
         />
@@ -116,6 +123,7 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
         data-shrink={true}
         htmlFor="group-by"
+        id="group-by-label"
       >
         Group By
       </label>
@@ -125,18 +133,21 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       >
         <div
           aria-haspopup="listbox"
-          className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input MuiInputBase-inputSelect"
+          aria-labelledby="group-by-label group-by"
+          className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+          id="group-by"
           onBlur={[Function]}
-          onClick={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
+          onMouseDown={[Function]}
           role="button"
           tabIndex={0}
         >
           Time
         </div>
         <input
-          id="group-by"
+          autoFocus={false}
+          onAnimationStart={[Function]}
           type="hidden"
           value="time"
         />

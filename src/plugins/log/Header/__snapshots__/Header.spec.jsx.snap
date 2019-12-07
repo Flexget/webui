@@ -72,6 +72,7 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
         data-shrink={false}
         htmlFor="filter"
+        id="filter-label"
       >
         Filter
       </label>
@@ -82,9 +83,11 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
         <input
           aria-describedby="filter-helper-text"
           aria-invalid={false}
+          autoFocus={false}
           className="MuiInputBase-input MuiInput-input"
           disabled={false}
           id="filter"
+          onAnimationStart={[Function]}
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}

@@ -56,6 +56,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
           className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
           data-shrink={false}
           htmlFor="username"
+          id="username-label"
         >
           Username
         </label>
@@ -70,6 +71,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
             disabled={false}
             id="username"
             name="username"
+            onAnimationStart={[Function]}
             onBlur={[Function]}
             onChange={[Function]}
             onFocus={[Function]}
@@ -88,6 +90,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
           className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
           data-shrink={false}
           htmlFor="password"
+          id="password-label"
         >
           Password
         </label>
@@ -97,10 +100,12 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
         >
           <input
             aria-invalid={false}
+            autoFocus={false}
             className="MuiInputBase-input MuiInput-input"
             disabled={false}
             id="password"
             name="password"
+            onAnimationStart={[Function]}
             onBlur={[Function]}
             onChange={[Function]}
             onFocus={[Function]}
@@ -115,7 +120,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
       className="MuiCardActions-root MuiCardActions-spacing"
     >
       <button
-        className="MuiButtonBase-root MuiButton-root emotion-4 MuiButton-text"
+        className="MuiButtonBase-root MuiButton-root MuiButton-text emotion-4"
         disabled={false}
         onBlur={[Function]}
         onDragLeave={[Function]}
