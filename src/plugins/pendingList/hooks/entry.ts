@@ -5,7 +5,7 @@ import { action } from 'utils/hooks/actions';
 import { Method } from 'utils/fetch';
 import FlexGetEntry from 'common/FlexGetEntry';
 import { stringify } from 'qs';
-import { Options, AddEntryRequest, Operation } from '../types';
+import { Options, AddEntryRequest, Operation, InjectRequest } from '../types';
 
 export const enum Constants {
   GET_ENTRIES = '@flexget/pendingList/GET_ENTRIES',
@@ -98,22 +98,29 @@ export const useAddEntry = (listId: number | undefined, setPage: SetState<number
   return [state, addEntry] as const;
 };
 
-export const useRemoveEntry = (listId: number, entryId: number) => {
+export const useInjectEntry = (listId: number, entryId: number) => {
   const [, dispatch] = EntryContainter.useContainer();
   const [state, request] = useFlexgetAPI(
     `/pending_list/${listId}/entries/${entryId}`,
     Method.Delete,
   );
 
-  const removeEntry = async () => {
-    const resp = await request();
+  const [inejectState, inject] = useFlexgetAPI('/tasks/execute');
+
+  const removeEntry = async (req: InjectRequest) => {
+    const injectResp = await inject(req);
+    if (!injectResp.ok) {
+      return [injectResp];
+    }
+    const resp = await request(req);
     if (resp.ok) {
       dispatch(actions.removeEntry(entryId));
     }
-    return resp;
+
+    return [injectResp, resp];
   };
 
-  return [state, removeEntry] as const;
+  return [[inejectState, state], removeEntry] as const;
 };
 
 export const useEntryOperation = (listId: number, entryId: number) => {

@@ -18,6 +18,7 @@ import registerLog from 'plugins/log';
 import registerSeries from 'plugins/series';
 import registerPendingList from 'plugins/pendingList';
 import { AuthContainer } from 'core/auth/container';
+import { TaskContainer } from 'core/tasks/hooks';
 
 registerHistory();
 registerLog();
@@ -67,12 +68,14 @@ const Root = () => (
                   <Route path="/login" exact component={Login} />
                   <Route
                     render={() => (
-                      <Layout>
-                        <Switch>
-                          <PrivateRoute path="/" exact component={Home} />
-                          <Route render={() => <Routes />} />
-                        </Switch>
-                      </Layout>
+                      <TaskContainer.Provider>
+                        <Layout>
+                          <Switch>
+                            <PrivateRoute path="/" exact component={Home} />
+                            <Route render={() => <Routes />} />
+                          </Switch>
+                        </Layout>
+                      </TaskContainer.Provider>
                     )}
                   />
                 </Switch>

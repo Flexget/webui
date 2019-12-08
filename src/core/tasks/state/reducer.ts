@@ -1,5 +1,5 @@
 import { Constants, ActionTypes } from './actions';
-import { Task } from './types';
+import { Task } from '../types';
 
 export interface State {
   configs: Task[];

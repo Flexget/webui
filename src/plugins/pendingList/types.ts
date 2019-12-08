@@ -43,4 +43,9 @@ export const enum Operation {
   Reject = 'reject',
 }
 
+export interface InjectRequest {
+  tasks: string[];
+  inject: FlexGetEntry[];
+}
+
 export type SelectedListID = number | 'add';

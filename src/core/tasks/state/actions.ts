@@ -2,7 +2,7 @@ import statusActions from 'core/status/state/actions';
 import { RequestsOfType as ROT } from 'core/status/state/types';
 import { action, ActionsUnion } from 'utils/actions';
 import { StatusError } from 'utils/fetch';
-import { Task } from './types';
+import { Task } from '../types';
 
 export const enum Constants {
   GET_TASKS = '@flexget/tasks/GET_TASKS',
