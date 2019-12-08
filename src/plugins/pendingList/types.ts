@@ -29,14 +29,18 @@ export interface AddEntryRequest {
   entry: FlexGetEntry;
 }
 
-export interface GetEntriesOptions {
+export interface GetEntriesOptions extends Partial<Options> {
   page?: number;
-  sortBy?: SortBy;
 }
 
 export interface EntryRequest {
   id: number;
   listId: number;
+}
+
+export const enum Operation {
+  Approve = 'approve',
+  Reject = 'reject',
 }
 
 export type SelectedListID = number | 'add';

@@ -54,10 +54,13 @@ const listReducer: Reducer<State, Actions> = (state, act) => {
   }
 };
 
-const useLists = () => {
-  const [listState, dispatch] = useReducer(listReducer, { lists: [] });
+const useLists = () => useReducer(listReducer, { lists: [] });
+export const ListContiner = createContainer(useLists);
 
-  const [{ loading }, getLists] = useFlexgetAPI<List[]>('/pending_list');
+export const useGetLists = () => {
+  const [, dispatch] = ListContiner.useContainer();
+
+  const [state, getLists] = useFlexgetAPI<List[]>('/pending_list');
 
   // Fetch Lists
   useEffect(() => {
@@ -69,12 +72,10 @@ const useLists = () => {
       }
     };
     fn();
-  }, [getLists]);
+  }, [dispatch, getLists]);
 
-  return [{ ...listState, loading }, dispatch] as const;
+  return state;
 };
-
-export const ListContiner = createContainer(useLists);
 
 export const useAddList = () => {
   const [, dispatch] = ListContiner.useContainer();

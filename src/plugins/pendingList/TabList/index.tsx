@@ -2,10 +2,9 @@ import React, { FC, useState } from 'react';
 import Tab from '@material-ui/core/Tab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SecondaryNav from 'common/SecondaryNav';
-import { ListContiner, actions } from 'plugins/pendingList/hooks/list';
+import { ListContiner, actions, useGetLists } from 'plugins/pendingList/hooks/list';
 import AddListDialog from '../AddListDialog';
 import { SelectedListID } from '../types';
-
 
 const TabList: FC<{}> = () => {
   const [isOpen, setOpen] = useState(false);
@@ -17,6 +16,8 @@ const TabList: FC<{}> = () => {
     }
     return setOpen(true);
   };
+
+  useGetLists();
 
   return (
     <div>
