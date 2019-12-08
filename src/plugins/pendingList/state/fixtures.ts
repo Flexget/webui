@@ -1,5 +1,5 @@
 import { random, date } from 'faker';
-import { List } from './types';
+import { List } from '../types';
 
 export const makeList = (): List => ({
   id: random.number(),

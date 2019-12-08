@@ -67,8 +67,16 @@ const status = async <T>(r: Response): Promise<APIResponse<T>> => {
   return response as APIResponse<T>;
 };
 
-export const prepareRequest = <BodyType>(method: Method, rawBody?: BodyType) => {
-  const headers: Record<string, string> = {
+export const request = async <PayloadType, BodyType = undefined>(
+  resource: string,
+  method: Method,
+  rawBody: BodyType,
+  opts: RequestInit = {},
+): Promise<APIResponse<PayloadType>> => {
+  const options: RequestInit = { method };
+
+  const headers = {
+    ...opts.headers,
     Accept: 'application/json',
   };
 
@@ -76,22 +84,10 @@ export const prepareRequest = <BodyType>(method: Method, rawBody?: BodyType) => 
     headers['Content-Type'] = 'application/json';
   }
 
-  const body = rawBody ? JSON.stringify(snakeCase(rawBody)) : undefined;
+  options.body = rawBody ? JSON.stringify(snakeCase(rawBody)) : undefined;
+  options.credentials = 'same-origin';
 
-  return {
-    method,
-    headers,
-    body,
-    credentials: 'same-origin',
-  } as const;
-};
-
-export const request = async <PayloadType, BodyType = undefined>(
-  resource: string,
-  method: Method,
-  rawBody: BodyType,
-): Promise<APIResponse<PayloadType>> => {
-  const response: Response = await fetch(resource, prepareRequest(method, rawBody));
+  const response: Response = await fetch(resource, { ...options, ...opts, headers });
   return status<PayloadType>(response);
 };
 

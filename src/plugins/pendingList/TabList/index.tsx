@@ -6,7 +6,7 @@ import { ListContiner, actions, useGetLists } from 'plugins/pendingList/hooks/li
 import AddListDialog from '../AddListDialog';
 import { SelectedListID } from '../types';
 
-const TabList: FC<{}> = () => {
+const TabList: FC = () => {
   const [isOpen, setOpen] = useState(false);
   const [{ lists, listId }, dispatch] = ListContiner.useContainer();
 

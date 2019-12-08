@@ -1,9 +1,9 @@
-import Loadable from 'react-loadable';
-import Loading from 'common/Loader';
+import React from 'react';
+import Loadable from '@loadable/component';
+import { CircularProgress } from '@material-ui/core';
 
 export function createAsyncComponent(loader) {
-  return Loadable({
-    loading: Loading,
-    loader,
+  return Loadable(loader, {
+    fallback: <CircularProgress />,
   });
 }

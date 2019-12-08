@@ -1,6 +1,6 @@
 import FlexGetEntry from 'common/FlexGetEntry';
 import { Constants, ActionTypes } from './actions';
-import { List } from './types';
+import { List } from '../types';
 
 interface Entries {
   totalCount: number;

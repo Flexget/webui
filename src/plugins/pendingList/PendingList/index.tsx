@@ -2,6 +2,7 @@ import React, { FC, useState, useReducer } from 'react';
 import { NoPaddingWrapper } from 'common/styles';
 import TabList from 'plugins/pendingList/TabList';
 import { Direction } from 'utils/query';
+import { EntryContainter } from 'plugins/pendingList/hooks/entry';
 import Pagination from '../Pagination';
 import EntryList from '../EntryList';
 import SortList from '../SortList';
@@ -17,7 +18,7 @@ const PendingList: FC<{}> = () => {
       ...partialState,
     };
   };
-  const [{ perPage, sortBy, sortOrder }, dispatch] = useReducer(reducer, {
+  const [options, dispatch] = useReducer(reducer, {
     perPage: 50,
     sortBy: SortBy.Added,
     sortOrder: Direction.Desc,
@@ -28,15 +29,12 @@ const PendingList: FC<{}> = () => {
       <NoPaddingWrapper>
         <TabList />
         <Content>
-          <SortList
-            onSortUpdate={dispatch}
-            sortBy={sortBy}
-            sortOrder={sortOrder}
-            perPage={perPage}
-          />
-          <EntryList sortBy={sortBy} sortOrder={sortOrder} page={page} perPage={perPage} />
+          <SortList onSortUpdate={dispatch} {...options} />
+          <EntryContainter.Provider initialState={{ options, page }}>
+            <EntryList />
+            <Pagination onPageUpdate={setPage} perPage={options.perPage} />
+          </EntryContainter.Provider>
         </Content>
-        <Pagination onPageUpdate={setPage} perPage={perPage} />
       </NoPaddingWrapper>
     </ListContiner.Provider>
   );

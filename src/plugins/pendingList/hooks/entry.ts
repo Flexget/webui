@@ -5,6 +5,7 @@ import { action } from 'utils/hooks/actions';
 import { Method } from 'utils/fetch';
 import FlexGetEntry from 'common/FlexGetEntry';
 import { stringify } from 'qs';
+import { ListContiner } from 'plugins/pendingList/hooks/list';
 import { Options, AddEntryRequest, Operation, InjectRequest } from '../types';
 
 export const enum Constants {
@@ -53,14 +54,14 @@ const entryReducer: Reducer<State, Actions> = (state, act) => {
   }
 };
 
-const useEntries = () => {
-  return useReducer(entryReducer, { entries: [], totalCount: 0 });
-};
+interface ValueType {
+  options: Options;
+  page: number;
+}
 
-export const EntryContainter = createContainer(useEntries);
-
-export const useGetEntries = (listId: number | undefined, options: Options, page: number) => {
-  const [, dispatch] = EntryContainter.useContainer();
+export const useEntries = ({ options, page }: ValueType) => {
+  const [{ listId }] = ListContiner.useContainer();
+  const [entryState, dispatch] = useReducer(entryReducer, { entries: [], totalCount: 0 });
   const query = stringify({ ...options, page });
 
   const [state, getEntries] = useFlexgetAPI<FlexGetEntry[]>(
@@ -81,8 +82,10 @@ export const useGetEntries = (listId: number | undefined, options: Options, page
     }
   }, [dispatch, getEntries, listId]);
 
-  return state;
+  return [{ ...entryState, ...state }, dispatch] as const;
 };
+
+export const EntryContainter = createContainer(useEntries);
 
 export const useAddEntry = (listId: number | undefined, setPage: SetState<number>) => {
   const [state, request] = useFlexgetAPI(`/pending_list/${listId}/entries`, Method.Post);
@@ -98,29 +101,40 @@ export const useAddEntry = (listId: number | undefined, setPage: SetState<number
   return [state, addEntry] as const;
 };
 
-export const useInjectEntry = (listId: number, entryId: number) => {
+export const useRemoveEntry = (listId: number, entryId: number) => {
   const [, dispatch] = EntryContainter.useContainer();
   const [state, request] = useFlexgetAPI(
     `/pending_list/${listId}/entries/${entryId}`,
     Method.Delete,
   );
 
-  const [inejectState, inject] = useFlexgetAPI('/tasks/execute');
-
-  const removeEntry = async (req: InjectRequest) => {
-    const injectResp = await inject(req);
-    if (!injectResp.ok) {
-      return [injectResp];
-    }
-    const resp = await request(req);
+  const removeEntry = async () => {
+    const resp = await request();
     if (resp.ok) {
       dispatch(actions.removeEntry(entryId));
     }
 
-    return [injectResp, resp];
+    return resp;
   };
 
-  return [[inejectState, state], removeEntry] as const;
+  return [state, removeEntry] as const;
+};
+
+export const useInjectEntry = (listId: number, entryId: number) => {
+  const [state, removeEntry] = useRemoveEntry(listId, entryId);
+
+  const [inejectState, inject] = useFlexgetAPI('/tasks/execute');
+
+  const injectEntry = async (req: InjectRequest) => {
+    const injectResp = await inject(req);
+    if (!injectResp.ok) {
+      return [injectResp];
+    }
+
+    return [injectResp, await removeEntry()];
+  };
+
+  return [[inejectState, state], injectEntry] as const;
 };
 
 export const useEntryOperation = (listId: number, entryId: number) => {

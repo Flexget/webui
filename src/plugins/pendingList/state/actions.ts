@@ -9,6 +9,7 @@ import {
   GetEntriesOptions,
   AddEntryRequest,
   List,
+  EntryRequest,
 } from 'plugins/pendingList/types';
 
 export const enum Constants {

@@ -1,11 +1,11 @@
-import { Component } from 'react';
+import { ComponentType } from 'react';
 import { ReducersMapObject, Reducer } from 'redux';
 
 export type ReducerHandler = (reducers?: ReducersMapObject) => void;
 export type SagaHandler = (saga?: Function) => void;
 
 export interface Plugin<S = any> {
-  component?: Component;
+  component?: ComponentType;
   children?: Plugin[];
   routeDisplayName: string;
   routeIcon: string;
@@ -16,7 +16,7 @@ export interface Plugin<S = any> {
 
 export interface RouteConfig {
   path: string;
-  component?: Component;
+  component?: ComponentType;
   children?: Plugin[];
   routeDisplayName: string;
   routeIcon: string;
