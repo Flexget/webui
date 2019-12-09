@@ -2,7 +2,7 @@ import React, { FC, useState, useReducer } from 'react';
 import { NoPaddingWrapper } from 'common/styles';
 import TabList from 'plugins/pendingList/TabList';
 import { Direction } from 'utils/query';
-import { EntryContainter } from 'plugins/pendingList/hooks/entry';
+import { EntryContainer } from 'plugins/pendingList/hooks/entry';
 import Pagination from '../Pagination';
 import EntryList from '../EntryList';
 import SortList from '../SortList';
@@ -30,10 +30,10 @@ const PendingList: FC<{}> = () => {
         <TabList />
         <Content>
           <SortList onSortUpdate={dispatch} {...options} />
-          <EntryContainter.Provider initialState={{ options, page }}>
-            <EntryList />
+          <EntryContainer.Provider>
+            <EntryList options={options} page={page} />
             <Pagination onPageUpdate={setPage} perPage={options.perPage} />
-          </EntryContainter.Provider>
+          </EntryContainer.Provider>
         </Content>
       </NoPaddingWrapper>
     </ListContiner.Provider>

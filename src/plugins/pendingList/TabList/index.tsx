@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import Tab from '@material-ui/core/Tab';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import SecondaryNav from 'common/SecondaryNav';
 import { ListContiner, actions, useGetLists } from 'plugins/pendingList/hooks/list';
 import AddListDialog from '../AddListDialog';
@@ -31,7 +31,7 @@ const TabList: FC = () => {
         {lists.map(({ name, id }) => (
           <Tab label={name} value={id} key={id} />
         ))}
-        <Tab icon={<FontAwesomeIcon icon="plus-circle" />} value="add" />
+        <Tab icon={<AddCircleIcon />} value="add" />
       </SecondaryNav>
       <AddListDialog open={isOpen} onClose={() => setOpen(false)} />
     </div>

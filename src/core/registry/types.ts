@@ -8,7 +8,7 @@ export interface Plugin<S = any> {
   component?: ComponentType;
   children?: Plugin[];
   routeDisplayName: string;
-  routeIcon: string;
+  routeIcon: ComponentType;
   reducer?: Reducer<S>;
   saga?: Function;
   name?: string;
@@ -19,7 +19,7 @@ export interface RouteConfig {
   component?: ComponentType;
   children?: Plugin[];
   routeDisplayName: string;
-  routeIcon: string;
+  routeIcon: ComponentType;
 }
 
 export type RouteHandler = (route?: RouteConfig) => void;

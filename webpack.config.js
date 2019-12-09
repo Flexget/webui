@@ -77,6 +77,9 @@ const config = {
       'react-dom': '@hot-loader/react-dom',
     },
   },
+  optimization: {
+    sideEffects: true,
+  },
   module: {
     rules: [
       {
@@ -126,10 +129,8 @@ const config = {
 };
 
 if (!__DEV__) {
-  config.optimization = {
-    splitChunks: {
+  config.optimization.splitChunks = {
       chunks: 'all',
-    },
   };
 }
 

@@ -3,7 +3,7 @@ import { useFlexgetAPI } from 'core/api';
 import { action } from 'utils/hooks/actions';
 import { Method } from 'utils/fetch';
 import { createContainer } from 'unstated-next';
-import { List, AddListRequest } from '../types';
+import { List, AddListRequest, SelectedListID } from '../types';
 
 export const enum Constants {
   GET_LISTS = '@flexget/pedingList/GET_LISTS',
@@ -23,7 +23,7 @@ type Actions = PropReturnType<typeof actions>;
 
 interface State {
   lists: List[];
-  listId?: number;
+  listId: SelectedListID;
 }
 
 const listReducer: Reducer<State, Actions> = (state, act) => {
@@ -54,7 +54,7 @@ const listReducer: Reducer<State, Actions> = (state, act) => {
   }
 };
 
-const useLists = () => useReducer(listReducer, { lists: [] });
+const useLists = () => useReducer(listReducer, { lists: [], listId: 'add' });
 export const ListContiner = createContainer(useLists);
 
 export const useGetLists = () => {

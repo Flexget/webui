@@ -3,7 +3,8 @@ import semver from 'semver-compare';
 import styled from '@emotion/styled';
 import theme from 'theme';
 import { IconButton } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import Typography from '@material-ui/core/Typography';
 import { useFlexgetAPI } from 'core/api';
 
 interface Props {
@@ -20,7 +21,7 @@ const Wrapper = styled.div`
   color: ${theme.palette.primary[800]};
 `;
 
-const Line = styled.p`
+const Line = styled(Typography)`
   margin: 0;
 `;
 
@@ -56,9 +57,9 @@ const Version: React.FC<Props> = ({ className }) => {
       <Line>Version Info</Line>
       <Line>
         {`Flexget: ${flexgetVersion} `}
-        {semver(latestVersion, flexgetVersion) === 1 && (
-          <IconButton href="https://flexget.com/ChangeLog">
-            <FontAwesomeIcon icon={['far', 'question-circle']} fixedWidth />
+        {semver(latestVersion, flexgetVersion) !== 1 && (
+          <IconButton href="https://flexget.com/ChangeLog" color="inherit" size="small">
+            <HelpOutlineIcon />
           </IconButton>
         )}
       </Line>

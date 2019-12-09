@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import { SideNavIcon, SideNavText, NavItem } from './styles';
+import ListItemText from '@material-ui/core/ListItemText';
+import { NavItem, colorClass } from './styles';
 
-const SideNavEntry = ({ onClick, path, icon, name, className }) => {
+const SideNavEntry = ({ onClick, path, Icon, name, className }) => {
   const item = (
-    <NavItem className={className} onClick={onClick}>
-      <ListItemIcon>
-        <SideNavIcon icon={icon} fixedWidth />
+    <NavItem css={[colorClass, className]} onClick={onClick}>
+      <ListItemIcon css={colorClass}>
+        <Icon />
       </ListItemIcon>
-      <SideNavText disableTypography primary={name} />
+      <ListItemText css={colorClass} disableTypography primary={name} />
     </NavItem>
   );
 
@@ -24,7 +25,7 @@ const SideNavEntry = ({ onClick, path, icon, name, className }) => {
 SideNavEntry.propTypes = {
   onClick: PropTypes.func.isRequired,
   path: PropTypes.string,
-  icon: PropTypes.string.isRequired,
+  Icon: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   className: PropTypes.string,
 };

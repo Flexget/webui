@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { css } from '@emotion/core';
 import theme from 'theme';
-import { EntryContainter } from 'plugins/pendingList/hooks/entry';
-import Entry from '../Entry';
+import { EntryContainer, useGetEntries } from '../hooks/entry';
+import EntryCard from '../EntryCard';
+import { Options } from '../types';
 
 export const listWrapper = css`
   display: flex;
@@ -23,13 +24,20 @@ export const entryWrapper = css`
   }
 `;
 
-const EntryList: FC = () => {
-  const [{ entries }] = EntryContainter.useContainer();
+interface Props {
+  options: Options;
+  page: number;
+}
+
+const EntryList: FC<Props> = ({ options, page }) => {
+  const [{ entries }] = EntryContainer.useContainer();
+  useGetEntries(options, page);
+
   return (
     <div css={listWrapper}>
       {entries.map(entry => (
         <div key={entry.id} css={entryWrapper}>
-          <Entry entry={entry} />
+          <EntryCard entry={entry} />
         </div>
       ))}
     </div>
