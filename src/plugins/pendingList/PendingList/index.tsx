@@ -1,4 +1,5 @@
 import React, { FC, useState, useReducer } from 'react';
+import { hot } from 'react-hot-loader/root';
 import { NoPaddingWrapper } from 'common/styles';
 import TabList from 'plugins/pendingList/TabList';
 import { Direction } from 'utils/query';
@@ -40,4 +41,4 @@ const PendingList: FC<{}> = () => {
   );
 };
 
-export default PendingList;
+export default hot(PendingList);

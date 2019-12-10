@@ -1,28 +1,8 @@
 import React, { FC } from 'react';
-import { css } from '@emotion/core';
-import theme from 'theme';
+import { Grid } from '@material-ui/core';
 import { EntryContainer, useGetEntries } from '../hooks/entry';
 import EntryCard from '../EntryCard';
 import { Options } from '../types';
-
-export const listWrapper = css`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-`;
-
-export const entryWrapper = css`
-  width: 100%;
-  padding: ${theme.typography.pxToRem(theme.spacing(2))};
-
-  ${theme.breakpoints.up('sm')} {
-    width: 100%;
-  }
-
-  ${theme.breakpoints.up('md')} {
-    width: 50%;
-  }
-`;
 
 interface Props {
   options: Options;
@@ -34,13 +14,13 @@ const EntryList: FC<Props> = ({ options, page }) => {
   useGetEntries(options, page);
 
   return (
-    <div css={listWrapper}>
+    <Grid container spacing={2}>
       {entries.map(entry => (
-        <div key={entry.id} css={entryWrapper}>
+        <Grid item key={entry.id} xs={12} md={6}>
           <EntryCard entry={entry} />
-        </div>
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 };
 

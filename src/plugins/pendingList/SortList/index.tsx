@@ -2,6 +2,7 @@ import React, { FC, ChangeEvent } from 'react';
 import { Options, SortBy } from 'plugins/pendingList/types';
 import { Select, FormControl, MenuItem } from '@material-ui/core';
 import { css } from '@emotion/core';
+import theme from 'theme';
 
 interface Props extends Options {
   onSortUpdate: (opts: Partial<Options>) => void;
@@ -14,13 +15,14 @@ type Targets = {
   };
 }[keyof Options];
 
-export const wrapper = css`
+const wrapper = css`
   display: flex;
   justify-content: center;
-  > div {
-    margin-left: 2em;
-    margin-right: 2em;
-  }
+  padding-bottom: ${theme.typography.pxToRem(theme.spacing(2))};
+`;
+const item = css`
+  margin-left: 2em;
+  margin-right: 2em;
 `;
 const SortList: FC<Props> = ({ onSortUpdate, sortBy, sortOrder, perPage }) => {
   const handleChange = (event: ChangeEvent<Targets>) => {
@@ -30,7 +32,7 @@ const SortList: FC<Props> = ({ onSortUpdate, sortBy, sortOrder, perPage }) => {
   };
   return (
     <div css={wrapper}>
-      <FormControl>
+      <FormControl css={item}>
         <Select
           value={sortBy}
           onChange={handleChange}
@@ -45,7 +47,7 @@ const SortList: FC<Props> = ({ onSortUpdate, sortBy, sortOrder, perPage }) => {
           <MenuItem value={SortBy.Approved}>Approved</MenuItem>
         </Select>
       </FormControl>
-      <FormControl>
+      <FormControl css={item}>
         <Select
           value={sortOrder}
           onChange={handleChange}
@@ -58,7 +60,7 @@ const SortList: FC<Props> = ({ onSortUpdate, sortBy, sortOrder, perPage }) => {
           <MenuItem value="asc">Asc</MenuItem>
         </Select>
       </FormControl>
-      <FormControl>
+      <FormControl css={item}>
         <Select
           value={perPage}
           onChange={handleChange}
