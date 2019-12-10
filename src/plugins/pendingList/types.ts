@@ -25,8 +25,8 @@ export interface AddListRequest {
 }
 
 export interface AddEntryRequest {
-  listId: number;
-  entry: FlexGetEntry;
+  title: string;
+  originalUrl: string;
 }
 
 export interface GetEntriesOptions extends Partial<Options> {

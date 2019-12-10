@@ -6,14 +6,15 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import TextField from 'common/TextField';
-import { Formik, Form } from 'formik';
+import { Form, Formik } from 'formik';
 import theme from 'theme';
-import { AddListRequest } from '../types';
-import { useAddList } from '../hooks/list';
+import { useAddEntry } from 'plugins/pendingList/hooks/entry';
+import { AddEntryRequest } from '../types';
 
 interface Props {
   open: boolean;
   onClose: () => void;
+  setPage: SetState<number>;
 }
 
 const errorStyle = css`
@@ -22,17 +23,18 @@ const errorStyle = css`
   padding: 1rem;
 `;
 
-const AddListDialog: FC<Props> = ({ open, onClose }) => {
-  const initialValues: AddListRequest = { name: '' };
-  const [{ loading, error }, addList] = useAddList();
+const AddEntryDialog: FC<Props> = ({ open = false, onClose, setPage }) => {
+  const initialValues: AddEntryRequest = { title: '', originalUrl: '' };
+  const [{ loading, error }, addEntry] = useAddEntry(setPage);
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Add New Pending List</DialogTitle>
+      <DialogTitle>Add New Entry</DialogTitle>
+
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, actions) => {
-          const resp = await addList(values);
+          const resp = await addEntry(values);
           if (resp.ok) {
             actions.resetForm();
           }
@@ -41,7 +43,8 @@ const AddListDialog: FC<Props> = ({ open, onClose }) => {
         <Form>
           <div css={errorStyle}>{error?.message}</div>
           <DialogContent>
-            <TextField autoFocus id="name" label="List Name" fullWidth name="name" />
+            <TextField autoFocus id="title" label="Entry Title" fullWidth name="title" />
+            <TextField id="entry-url" label="Entry URL" fullWidth name="originalUrl" />
           </DialogContent>
           <DialogActions>
             <Button onClick={onClose} type="button">
@@ -57,4 +60,4 @@ const AddListDialog: FC<Props> = ({ open, onClose }) => {
   );
 };
 
-export default AddListDialog;
+export default AddEntryDialog;
