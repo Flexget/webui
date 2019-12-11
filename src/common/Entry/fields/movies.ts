@@ -8,6 +8,7 @@ export enum MovieFieldNames {
   Votes = 'votes',
   Description = 'description',
   Url = 'url',
+  Runtime = 'runtime',
   ID = 'movieId',
 }
 
@@ -18,6 +19,7 @@ export const enum IMDBFields {
   Votes = 'imdbVotes',
   Description = 'imdbPlotOutline',
   Url = 'imdbUrl',
+  Runtime = 'imdbRuntime',
   ID = 'imdbId',
 }
 
@@ -27,6 +29,7 @@ export const enum TraktFields {
   Votes = 'traktVotes',
   Description = 'traktOverview',
   Url = 'traktHomepage',
+  Runtime = 'traktRuntime',
   ID = 'traktMovieId',
 }
 
@@ -36,15 +39,9 @@ export const enum TMDBFields {
   Backdrops = 'tmdbBackdrops',
   Rating = 'tmdbRating',
   Votes = 'tmdbVotes',
-  Description = 'tmdbTagline',
   Url = 'tmdbHomepage',
+  Runtime = 'tmdbRuntime',
   ID = 'tmdbId',
-}
-
-export const enum BluerayFields {
-  Genres = 'bluerayGenres',
-  Rating = 'bluerayRating',
-  Url = 'bluerayUrl',
 }
 
 // NOTE: Thes are in order of priority so if all fields are present, the first one in
@@ -57,8 +54,8 @@ export const movieFieldList = [
     [MovieFieldNames.Backdrops]: TMDBFields.Backdrops,
     [MovieFieldNames.Rating]: TMDBFields.Rating,
     [MovieFieldNames.Votes]: TMDBFields.Votes,
-    [MovieFieldNames.Description]: TMDBFields.Description,
     [MovieFieldNames.Url]: TMDBFields.Url,
+    [MovieFieldNames.Runtime]: TMDBFields.Runtime,
     [MovieFieldNames.ID]: TMDBFields.ID,
   },
   // Trakt
@@ -68,6 +65,7 @@ export const movieFieldList = [
     [MovieFieldNames.Votes]: TraktFields.Votes,
     [MovieFieldNames.Description]: TraktFields.Description,
     [MovieFieldNames.Url]: TraktFields.Url,
+    [MovieFieldNames.Runtime]: TraktFields.Runtime,
     [MovieFieldNames.ID]: TraktFields.ID,
   },
   // IMDB
@@ -78,13 +76,8 @@ export const movieFieldList = [
     [MovieFieldNames.Votes]: IMDBFields.Votes,
     [MovieFieldNames.Description]: IMDBFields.Description,
     [MovieFieldNames.Url]: IMDBFields.Url,
+    [MovieFieldNames.Runtime]: IMDBFields.Runtime,
     [MovieFieldNames.ID]: IMDBFields.ID,
-  },
-  // Blue-ray
-  {
-    [MovieFieldNames.Genres]: BluerayFields.Genres,
-    [MovieFieldNames.Rating]: BluerayFields.Rating,
-    [MovieFieldNames.Url]: BluerayFields.Url,
   },
 ] as const;
 
@@ -96,6 +89,7 @@ interface MovieGetters {
   [MovieFieldNames.Votes]: number;
   [MovieFieldNames.Description]: string;
   [MovieFieldNames.Url]: string;
+  [MovieFieldNames.Runtime]: number;
   [MovieFieldNames.ID]: string;
 }
 

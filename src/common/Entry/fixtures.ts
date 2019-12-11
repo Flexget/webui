@@ -1,6 +1,6 @@
 import { random, internet, image, date, lorem } from 'faker';
 import { RawEntry } from './types';
-import { IMDBFields, TraktFields, TMDBFields, BluerayFields } from './fields/movies';
+import { IMDBFields, TraktFields, TMDBFields } from './fields/movies';
 import {
   TVDBFields as TVDBEpisodeFields,
   TVMazeFields as TVMazeEpisodeFields,
@@ -55,13 +55,6 @@ export const withTMDBFields = (e: RawEntry) => ({
   [TMDBFields.Description]: lorem.paragraph(),
   [TMDBFields.Url]: internet.url(),
   [TMDBFields.ID]: random.word(),
-});
-
-export const withBluerayFields = (e: RawEntry) => ({
-  ...e,
-  [BluerayFields.Genres]: random.words().split(' '),
-  [BluerayFields.Rating]: random.number(10),
-  [BluerayFields.Url]: internet.url(),
 });
 
 export const withEpisodeRawEntry = (e: RawEntry) => ({

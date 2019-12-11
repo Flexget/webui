@@ -6,13 +6,18 @@ import { ListContiner, actions, useGetLists } from 'plugins/pendingList/hooks/li
 import AddListDialog from '../AddListDialog';
 import { SelectedListID } from '../types';
 
-const TabList: FC = () => {
+interface Props {
+  setPage: SetState<number>;
+}
+
+const TabList: FC<Props> = ({ setPage }) => {
   const [isOpen, setOpen] = useState(false);
   const [{ lists, listId }, dispatch] = ListContiner.useContainer();
 
   const handleChange = (_, selected: SelectedListID) => {
     if (selected !== 'add') {
-      return dispatch(actions.selectList(selected));
+      dispatch(actions.selectList(selected));
+      return setPage(0);
     }
     return setOpen(true);
   };

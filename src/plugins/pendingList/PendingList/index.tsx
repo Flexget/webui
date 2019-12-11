@@ -38,7 +38,7 @@ const PendingList: FC<{}> = () => {
   return (
     <ListContiner.Provider>
       <NoPaddingWrapper>
-        <TabList />
+        <TabList setPage={(n: number) => dispatch({ page: n })} />
         <div css={content}>
           <EntryContainer.Provider>
             <EntryListHeader setOptions={dispatch} options={options} />
@@ -50,4 +50,4 @@ const PendingList: FC<{}> = () => {
   );
 };
 
-export default hot(PendingList;
+export default hot(PendingList);
