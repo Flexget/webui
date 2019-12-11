@@ -48,11 +48,7 @@ export type FieldNames<T> = T extends Fields<
   ? U
   : never;
 
-// export type MappingType<T> = T extends Fields<any, infer U, any> ? U : never;
-
-export type MappingType<T> = T extends Fields<infer W, infer U, Partial<Record<infer W, infer R>>>
-  ? U
-  : never;
+export type MappingType<T> = T extends Fields<any, infer U, any> ? U : never;
 
 export type GettersType<T> = T extends Fields<
   infer _,

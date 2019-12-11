@@ -16,7 +16,7 @@ const EntryList: FC<Props> = ({ options, page }) => {
   return (
     <Grid container spacing={2}>
       {entries.map(entry => (
-        <Grid item key={entry.id} xs={12} md={6}>
+        <Grid item key={entry.id} xs={12} md={6} lg={4}>
           <EntryCard entry={entry} />
         </Grid>
       ))}

@@ -37,6 +37,8 @@ export const enum TVMazeFields {
   ID = 'tvmazeSeriesId',
 }
 
+// NOTE: Thes are in order of priority so if all fields are present, the first one in
+// the list will be used when rendered...possibly we can make this configurable later.
 export const seriesFieldList = [
   // TVDB
   {

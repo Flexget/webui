@@ -3,6 +3,7 @@ import { Fields, CardType, BaseEntry } from '../types';
 export enum MovieFieldNames {
   Genres = 'genres',
   Posters = 'posters',
+  Backdrops = 'backdrops',
   Rating = 'rating',
   Votes = 'votes',
   Description = 'description',
@@ -32,6 +33,7 @@ export const enum TraktFields {
 export const enum TMDBFields {
   Genres = 'tmdbGenres',
   Posters = 'tmdbPosters',
+  Backdrops = 'tmdbBackdrops',
   Rating = 'tmdbRating',
   Votes = 'tmdbVotes',
   Description = 'tmdbTagline',
@@ -45,16 +47,19 @@ export const enum BluerayFields {
   Url = 'bluerayUrl',
 }
 
+// NOTE: Thes are in order of priority so if all fields are present, the first one in
+// the list will be used when rendered...possibly we can make this configurable later.
 export const movieFieldList = [
-  // IMDB
+  // TMDB
   {
-    [MovieFieldNames.Genres]: IMDBFields.Genres,
-    [MovieFieldNames.Posters]: IMDBFields.Posters,
-    [MovieFieldNames.Rating]: IMDBFields.Rating,
-    [MovieFieldNames.Votes]: IMDBFields.Votes,
-    [MovieFieldNames.Description]: IMDBFields.Description,
-    [MovieFieldNames.Url]: IMDBFields.Url,
-    [MovieFieldNames.ID]: IMDBFields.ID,
+    [MovieFieldNames.Genres]: TMDBFields.Genres,
+    [MovieFieldNames.Posters]: TMDBFields.Posters,
+    [MovieFieldNames.Backdrops]: TMDBFields.Backdrops,
+    [MovieFieldNames.Rating]: TMDBFields.Rating,
+    [MovieFieldNames.Votes]: TMDBFields.Votes,
+    [MovieFieldNames.Description]: TMDBFields.Description,
+    [MovieFieldNames.Url]: TMDBFields.Url,
+    [MovieFieldNames.ID]: TMDBFields.ID,
   },
   // Trakt
   {
@@ -65,15 +70,15 @@ export const movieFieldList = [
     [MovieFieldNames.Url]: TraktFields.Url,
     [MovieFieldNames.ID]: TraktFields.ID,
   },
-  // TMDB
+  // IMDB
   {
-    [MovieFieldNames.Genres]: TMDBFields.Genres,
-    [MovieFieldNames.Posters]: TMDBFields.Posters,
-    [MovieFieldNames.Rating]: TMDBFields.Rating,
-    [MovieFieldNames.Votes]: TMDBFields.Votes,
-    [MovieFieldNames.Description]: TMDBFields.Description,
-    [MovieFieldNames.Url]: TMDBFields.Url,
-    [MovieFieldNames.ID]: TMDBFields.ID,
+    [MovieFieldNames.Genres]: IMDBFields.Genres,
+    [MovieFieldNames.Posters]: IMDBFields.Posters,
+    [MovieFieldNames.Rating]: IMDBFields.Rating,
+    [MovieFieldNames.Votes]: IMDBFields.Votes,
+    [MovieFieldNames.Description]: IMDBFields.Description,
+    [MovieFieldNames.Url]: IMDBFields.Url,
+    [MovieFieldNames.ID]: IMDBFields.ID,
   },
   // Blue-ray
   {
@@ -86,6 +91,7 @@ export const movieFieldList = [
 interface MovieGetters {
   [MovieFieldNames.Genres]: string[];
   [MovieFieldNames.Posters]: string | string[];
+  [MovieFieldNames.Backdrops]: string | string[];
   [MovieFieldNames.Rating]: number;
   [MovieFieldNames.Votes]: number;
   [MovieFieldNames.Description]: string;

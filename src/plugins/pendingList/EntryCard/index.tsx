@@ -1,17 +1,21 @@
 import React, { FC } from 'react';
+import { css } from '@emotion/core';
 import { Card, CardActionArea, CardActions, IconButton, Tooltip } from '@material-ui/core';
-import FlexGetEntry from 'common/FlexGetEntry';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import DeleteIcon from '@material-ui/icons/Delete';
 import RepeatIcon from '@material-ui/icons/Repeat';
-
-import { Operation } from 'plugins/pendingList/types';
+import Entry from 'common/Entry';
+import { Operation, PendingListEntry } from '../types';
 import { useEntryOperation, useRemoveEntry } from '../hooks/entry';
 
 interface Props {
-  entry: FlexGetEntry;
+  entry: PendingListEntry;
 }
+
+const buffer = css`
+  flex: 1;
+`;
 
 const EntryCard: FC<Props> = ({ entry }) => {
   const [{ loading: operationLoading }, doOperation] = useEntryOperation(entry.id);
@@ -33,8 +37,11 @@ const EntryCard: FC<Props> = ({ entry }) => {
 
   return (
     <Card>
-      <CardActionArea />
+      <CardActionArea>
+        <Entry entry={entry.entry} />
+      </CardActionArea>
       <CardActions>
+        <span css={buffer} />
         <Tooltip title={title}>
           <IconButton aria-label={label} disabled={operationLoading} onClick={onClick}>
             <Icon />

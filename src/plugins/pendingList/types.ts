@@ -1,11 +1,22 @@
 import FlexGetEntry from 'common/FlexGetEntry';
 import { Direction } from 'utils/query';
+import { RawEntry } from 'common/Entry/types';
 
 export const enum SortBy {
   Added = 'added',
   Title = 'title',
   URL = 'original_url',
   Approved = 'appoved',
+}
+
+export interface PendingListEntry {
+  id: number;
+  listId: number;
+  title: string;
+  addedOn: string;
+  originalUrl: string;
+  approved: boolean;
+  entry: RawEntry;
 }
 
 export interface Options {

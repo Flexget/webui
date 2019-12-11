@@ -3,10 +3,9 @@ import { createContainer } from 'unstated-next';
 import { useFlexgetAPI } from 'core/api';
 import { action } from 'utils/hooks/actions';
 import { Method } from 'utils/fetch';
-import FlexGetEntry from 'common/FlexGetEntry';
 import { stringify } from 'qs';
 import { ListContiner } from 'plugins/pendingList/hooks/list';
-import { Options, AddEntryRequest, Operation } from '../types';
+import { Options, AddEntryRequest, Operation, PendingListEntry } from '../types';
 
 export const enum Constants {
   GET_ENTRIES = '@flexget/pendingList/GET_ENTRIES',
@@ -18,10 +17,10 @@ export const enum Constants {
 }
 
 const actions = {
-  getEntries: (entries: FlexGetEntry[], totalCount: number) =>
+  getEntries: (entries: PendingListEntry[], totalCount: number) =>
     action(Constants.GET_ENTRIES, { entries, totalCount }),
   removeEntry: (id: number) => action(Constants.REMOVE_ENTRY, id),
-  updateEntry: (entry: FlexGetEntry) => action(Constants.UPDATE_ENTRY, entry),
+  updateEntry: (entry: PendingListEntry) => action(Constants.UPDATE_ENTRY, entry),
   selectEntry: (id: number) => action(Constants.SELECT_ENTRY, id),
   unselectEntry: (id: number) => action(Constants.UNSELECT_ENTRY, id),
   clearSelected: () => action(Constants.CLEAR_SELECTED),
@@ -30,7 +29,7 @@ const actions = {
 type Actions = PropReturnType<typeof actions>;
 
 interface State {
-  entries: FlexGetEntry[];
+  entries: PendingListEntry[];
   totalCount: number;
   selectedIds: Record<number, boolean>;
 }
@@ -93,7 +92,7 @@ export const useGetEntries = (options: Options, page: number) => {
   const query = stringify({ ...options, page });
 
   const [{ listId }] = ListContiner.useContainer();
-  const [state, getEntries] = useFlexgetAPI<FlexGetEntry[]>(
+  const [state, getEntries] = useFlexgetAPI<PendingListEntry[]>(
     `/pending_list/${listId}/entries?${query}`,
   );
 
@@ -154,7 +153,7 @@ export const useInjectEntry = () => useFlexgetAPI('/tasks/execute');
 export const useEntryOperation = (entryId: number) => {
   const [{ listId }] = ListContiner.useContainer();
   const [, dispatch] = EntryContainer.useContainer();
-  const [state, request] = useFlexgetAPI<FlexGetEntry>(
+  const [state, request] = useFlexgetAPI<PendingListEntry>(
     `/pending_list/${listId}/entries/${entryId}`,
     Method.Put,
   );

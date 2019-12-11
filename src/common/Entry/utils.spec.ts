@@ -45,23 +45,23 @@ describe('./utils', () => {
       });
 
       it('should work with imdb additional fields', () => {
-        const rawMovie = compose(withIMDBFields, withMovieRawEntry)(entry);
+        const rawMovie = compose(withTMDBFields, withMovieRawEntry)(entry);
         const movie = toEntry(rawMovie) as MovieEntry;
         expect(movie.type).toBe(CardType.Movie);
         expect(movie.genres).toBeDefined();
-        expect(movie.genres).toEqual(rawMovie[IMDBFields.Genres]);
+        expect(movie.genres).toEqual(rawMovie[TMDBFields.Genres]);
         expect(movie.posters).toBeDefined();
-        expect(movie.posters).toEqual(rawMovie[IMDBFields.Posters]);
+        expect(movie.posters).toEqual(rawMovie[TMDBFields.Posters]);
       });
 
       it('should work with multiple additional fields', () => {
-        const rawMovie = compose(withTraktFields, withTMDBFields, withMovieRawEntry)(entry);
+        const rawMovie = compose(withTraktFields, withIMDBFields, withMovieRawEntry)(entry);
         const movie = toEntry(rawMovie) as MovieEntry;
         expect(movie.type).toBe(CardType.Movie);
         expect(movie.genres).toBeDefined();
         expect(movie.genres).toEqual(rawMovie[TraktFields.Genres]);
         expect(movie.posters).toBeDefined();
-        expect(movie.posters).toEqual(rawMovie[TMDBFields.Posters]);
+        expect(movie.posters).toEqual(rawMovie[IMDBFields.Posters]);
       });
     });
 

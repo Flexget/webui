@@ -4,7 +4,7 @@ import { NoPaddingWrapper } from 'common/styles';
 import TabList from 'plugins/pendingList/TabList';
 import { Direction } from 'utils/query';
 import { EntryContainer } from 'plugins/pendingList/hooks/entry';
-import Pagination from '../Pagination';
+// import Pagination from '../Pagination';
 import EntryList from '../EntryList';
 import SortList from '../SortList';
 import { Options, SortBy } from '../types';
@@ -33,7 +33,7 @@ const PendingList: FC<{}> = () => {
           <SortList onSortUpdate={dispatch} {...options} />
           <EntryContainer.Provider>
             <EntryList options={options} page={page} />
-            <Pagination onPageUpdate={setPage} perPage={options.perPage} />
+            {/* <Pagination onPageUpdate={setPage} perPage={options.perPage} /> */}
           </EntryContainer.Provider>
         </Content>
       </NoPaddingWrapper>

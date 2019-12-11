@@ -37,6 +37,8 @@ export const enum TVMazeFields {
   ID = 'tvmazeEpisodeId',
 }
 
+// NOTE: Thes are in order of priority so if all fields are present, the first one in
+// the list will be used when rendered...possibly we can make this configurable later.
 export const episodesFieldList = [
   // TVDB
   {
@@ -82,6 +84,7 @@ export type EpisodeFields = Fields<EpisodeFieldNames, typeof episodesFieldList, 
 export interface RawEpisodeEntry extends BaseEntry, EpisodeFields {
   seriesEpisode: number;
   seriesSeason: number;
+  seriesName: string;
 }
 export interface EpisodeEntry extends RawEpisodeEntry, Partial<EpisodeGetters> {
   type: CardType.Episode;
