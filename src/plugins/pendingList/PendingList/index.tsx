@@ -1,18 +1,27 @@
-import React, { FC, useState, useReducer } from 'react';
+import React, { FC, useReducer } from 'react';
 import { hot } from 'react-hot-loader/root';
 import { NoPaddingWrapper } from 'common/styles';
 import TabList from 'plugins/pendingList/TabList';
 import { Direction } from 'utils/query';
 import { EntryContainer } from 'plugins/pendingList/hooks/entry';
-import Pagination from '../Pagination';
+import theme from 'theme';
+import { css } from '@emotion/core';
 import EntryList from '../EntryList';
 import SortList from '../SortList';
 import { Options, SortBy } from '../types';
-import { Content } from './styles';
 import { ListContiner } from '../hooks/list';
 
+export const content = css`
+  flex: 1;
+  overflow-y: auto;
+  padding: ${theme.typography.pxToRem(theme.spacing(1))};
+
+  ${theme.breakpoints.up('sm')} {
+    padding: ${theme.typography.pxToRem(theme.spacing(2))};
+  }
+`;
+
 const PendingList: FC<{}> = () => {
-  const [page, setPage] = useState(1);
   const reducer = (state: Options, partialState: Partial<Options>): Options => {
     return {
       ...state,
@@ -20,24 +29,22 @@ const PendingList: FC<{}> = () => {
     };
   };
   const [options, dispatch] = useReducer(reducer, {
+    page: 0,
     perPage: 30,
     sortBy: SortBy.Added,
     sortOrder: Direction.Desc,
   });
 
-  const setPerPage = (perPage: number) => dispatch({ perPage });
-
   return (
     <ListContiner.Provider>
       <NoPaddingWrapper>
         <TabList />
-        <Content>
-          <SortList onSortUpdate={dispatch} {...options} />
+        <div css={content}>
           <EntryContainer.Provider>
-            <Pagination options={options} page={page} setPage={setPage} setPerPage={setPerPage} />
-            <EntryList options={options} page={page} />
+            <SortList dispatch={dispatch} options={options} />
+            <EntryList options={options} />
           </EntryContainer.Provider>
-        </Content>
+        </div>
       </NoPaddingWrapper>
     </ListContiner.Provider>
   );

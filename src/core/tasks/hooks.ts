@@ -1,7 +1,8 @@
 import { createContainer } from 'unstated-next';
 import { useState, useEffect } from 'react';
 import { useFlexgetAPI } from 'core/api';
-import { Task } from './types';
+import { Method } from 'utils/fetch';
+import { Task, ExecuteTaskRequest } from './types';
 
 export const enum Constants {
   GET_TASKS = '@flexget/pendingList/GET_TASKS',
@@ -25,3 +26,9 @@ const useTasks = () => {
 };
 
 export const TaskContainer = createContainer(useTasks);
+
+export const useExecuteTask = () => {
+  const [state, request] = useFlexgetAPI('/tasks/execute', Method.Post);
+
+  return [state, (req: ExecuteTaskRequest) => request(req)] as const;
+};

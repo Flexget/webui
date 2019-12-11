@@ -4,8 +4,9 @@ import { useFlexgetAPI } from 'core/api';
 import { action } from 'utils/hooks/actions';
 import { Method, snakeCase } from 'utils/fetch';
 import { stringify } from 'qs';
-import { ListContiner } from 'plugins/pendingList/hooks/list';
-import { Options, AddEntryRequest, Operation, PendingListEntry } from '../types';
+import { useExecuteTask } from 'core/tasks/hooks';
+import { ListContiner } from './list';
+import { Options, AddEntryRequest, Operation, PendingListEntry, InjectRequest } from '../types';
 
 export const enum Constants {
   GET_ENTRIES = '@flexget/pendingList/GET_ENTRIES',
@@ -87,9 +88,11 @@ const useEntries = () => useReducer(entryReducer, { entries: [], totalCount: 0, 
 
 export const EntryContainer = createContainer(useEntries);
 
-export const useGetEntries = (options: Options, page: number) => {
+export const useGetEntries = (options: Options) => {
   const [, dispatch] = EntryContainer.useContainer();
-  const query = stringify(snakeCase({ ...options, page }));
+  // NOTE: Material-UI Table Pagination uses 0 based indexing for pages, so we add
+  // one here to account for that
+  const query = stringify(snakeCase({ ...options, page: options.page + 1 }));
 
   const [{ listId }] = ListContiner.useContainer();
   const [state, getEntries] = useFlexgetAPI<PendingListEntry[]>(
@@ -128,7 +131,7 @@ export const useAddEntry = (setPage: SetState<number>) => {
   return [state, addEntry] as const;
 };
 
-export const useRemoveEntry = (entryId: number) => {
+export const useRemoveEntry = (entryId?: number) => {
   const [{ listId }] = ListContiner.useContainer();
   const [, dispatch] = EntryContainer.useContainer();
   const [state, request] = useFlexgetAPI(
@@ -138,7 +141,7 @@ export const useRemoveEntry = (entryId: number) => {
 
   const removeEntry = async () => {
     const resp = await request();
-    if (resp.ok) {
+    if (resp.ok && entryId) {
       dispatch(actions.removeEntry(entryId));
     }
 
@@ -148,7 +151,26 @@ export const useRemoveEntry = (entryId: number) => {
   return [state, removeEntry] as const;
 };
 
-export const useInjectEntry = () => useFlexgetAPI('/tasks/execute');
+export const useInjectEntry = (entryId?: number) => {
+  const [remove, removeEntry] = useRemoveEntry(entryId);
+  const [execute, executeTask] = useExecuteTask();
+
+  const injectEntry = async ({ task, entry }: InjectRequest) => {
+    const executeResponse = await executeTask({ tasks: [task], inject: [entry] });
+    if (!executeResponse.ok) {
+      return executeResponse;
+    }
+    return removeEntry();
+  };
+
+  return [
+    {
+      error: remove.error ?? execute.error,
+      loading: remove.loading || execute.loading,
+    },
+    injectEntry,
+  ] as const;
+};
 
 export const useEntryOperation = (entryId: number) => {
   const [{ listId }] = ListContiner.useContainer();

@@ -6,20 +6,24 @@ import ClearIcon from '@material-ui/icons/Clear';
 import DeleteIcon from '@material-ui/icons/Delete';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import Entry from 'common/Entry';
+import { RawEntry } from 'common/Entry/types';
 import { Operation, PendingListEntry } from '../types';
 import { useEntryOperation, useRemoveEntry } from '../hooks/entry';
 
 interface Props {
   entry: PendingListEntry;
+  setInjectEntry: SetState<RawEntry | undefined>;
 }
 
 const buffer = css`
   flex: 1;
 `;
 
-const EntryCard: FC<Props> = ({ entry }) => {
+const EntryCard: FC<Props> = ({ entry, setInjectEntry }) => {
   const [{ loading: operationLoading }, doOperation] = useEntryOperation(entry.id);
   const [{ loading: removeLoading }, removeEntry] = useRemoveEntry(entry.id);
+
+  const handleInjectClick = () => setInjectEntry(entry);
 
   const { title, label, Icon, onClick } = entry.approved
     ? {
@@ -53,7 +57,7 @@ const EntryCard: FC<Props> = ({ entry }) => {
           </IconButton>
         </Tooltip>
         <Tooltip title="Inject">
-          <IconButton aria-label="inject">
+          <IconButton aria-label="inject" onClick={handleInjectClick}>
             <RepeatIcon />
           </IconButton>
         </Tooltip>

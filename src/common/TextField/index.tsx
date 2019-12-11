@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import BaseTextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { useField } from 'formik';
 
-type Props = TextFieldProps & {
+export type Props = TextFieldProps & {
   name: string;
 };
 

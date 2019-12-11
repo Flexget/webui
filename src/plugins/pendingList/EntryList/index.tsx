@@ -1,27 +1,31 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Grid } from '@material-ui/core';
+import { RawEntry } from 'common/Entry/types';
 import { EntryContainer, useGetEntries } from '../hooks/entry';
 import EntryCard from '../EntryCard';
 import { Options } from '../types';
+import InjectEntryDialog from '../InjectEntryDialog';
 
 interface Props {
   options: Options;
-  page: number;
 }
 
-const EntryList: FC<Props> = ({ options, page }) => {
+const EntryList: FC<Props> = ({ options }) => {
   const [{ entries }] = EntryContainer.useContainer();
-  useGetEntries(options, page);
+  useGetEntries(options);
+  const [injectEntry, setInjectEntry] = useState<RawEntry | undefined>();
+  const handleClose = () => setInjectEntry(undefined);
 
   return (
     <>
       <Grid container spacing={2}>
         {entries.map(entry => (
           <Grid item key={entry.id} xs={12} md={6} lg={4}>
-            <EntryCard entry={entry} />
+            <EntryCard entry={entry} setInjectEntry={setInjectEntry} />
           </Grid>
         ))}
       </Grid>
+      <InjectEntryDialog entry={injectEntry} onClose={handleClose} />
     </>
   );
 };

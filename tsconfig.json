@@ -21,7 +21,7 @@
       "dom.iterable"
     ],
     "esModuleInterop": true,
-    "experimentalDecorators": true,
+    "experimentalDecorators": true
   },
   "include": [
     "./src"

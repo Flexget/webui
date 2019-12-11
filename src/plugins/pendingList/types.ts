@@ -1,6 +1,6 @@
-import FlexGetEntry from 'common/FlexGetEntry';
 import { Direction } from 'utils/query';
 import { RawEntry } from 'common/Entry/types';
+import { Inject } from 'core/tasks/types';
 
 export const enum SortBy {
   Added = 'added',
@@ -20,6 +20,7 @@ export interface PendingListEntry {
 }
 
 export interface Options {
+  page: number;
   perPage: number;
   sortBy: SortBy;
   sortOrder: Direction;
@@ -55,8 +56,8 @@ export const enum Operation {
 }
 
 export interface InjectRequest {
-  tasks: string[];
-  inject: FlexGetEntry[];
+  task: string;
+  entry: Inject;
 }
 
 export type SelectedListID = number | 'add';

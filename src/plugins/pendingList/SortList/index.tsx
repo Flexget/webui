@@ -1,80 +1,122 @@
 import React, { FC, ChangeEvent } from 'react';
 import { Options, SortBy } from 'plugins/pendingList/types';
-import { Select, FormControl, MenuItem } from '@material-ui/core';
-import { css } from '@emotion/core';
+import { FormControl, TablePagination } from '@material-ui/core';
+import { css, ClassNames } from '@emotion/core';
 import theme from 'theme';
+import SelectField from 'common/SelectField';
+import { Direction } from 'utils/query';
+import { EntryContainer } from 'plugins/pendingList/hooks/entry';
 
-interface Props extends Options {
-  onSortUpdate: (opts: Partial<Options>) => void;
+interface Props {
+  dispatch: (opts: Partial<Options>) => void;
+  options: Options;
 }
-
-type Targets = {
-  [P in keyof Options]: {
-    name: P;
-    value: Options[P];
-  };
-}[keyof Options];
 
 const wrapper = css`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   padding-bottom: ${theme.typography.pxToRem(theme.spacing(2))};
+  align-items: center;
 `;
+
+const container = css`
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+`;
+
 const item = css`
-  margin-left: 2em;
-  margin-right: 2em;
+  margin-left: ${theme.typography.pxToRem(theme.spacing(2))};
+  margin-right: ${theme.typography.pxToRem(theme.spacing(2))};
 `;
-const SortList: FC<Props> = ({ onSortUpdate, sortBy, sortOrder, perPage }) => {
-  const handleChange = (event: ChangeEvent<Targets>) => {
-    onSortUpdate({
+
+const input = css`
+  font-size: inherit;
+`;
+const SortList: FC<Props> = ({ dispatch, options: { sortBy, page, perPage, sortOrder } }) => {
+  const [{ totalCount }] = EntryContainer.useContainer();
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch({
       [event.target.name]: event.target.value,
-    });
+    } as Partial<Options>);
   };
+
+  const handleChangePerPage = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch({ perPage: parseInt(event.target.value, 10) });
+    dispatch({ page: 0 });
+  };
+
+  const handleChangePage = (_: unknown, p: number) => {
+    dispatch({ page: p });
+  };
+
   return (
-    <div css={wrapper}>
-      <FormControl css={item}>
-        <Select
-          value={sortBy}
-          onChange={handleChange}
-          inputProps={{
-            name: 'sortBy',
-            id: 'sortBy',
-          }}
-        >
-          <MenuItem value={SortBy.Added}>Date Added</MenuItem>
-          <MenuItem value={SortBy.Title}>Title</MenuItem>
-          <MenuItem value={SortBy.URL}>URL</MenuItem>
-          <MenuItem value={SortBy.Approved}>Approved</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl css={item}>
-        <Select
-          value={sortOrder}
-          onChange={handleChange}
-          inputProps={{
-            name: 'sortOrder',
-            id: 'sortOrder',
-          }}
-        >
-          <MenuItem value="desc">Desc</MenuItem>
-          <MenuItem value="asc">Asc</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl css={item}>
-        <Select
-          value={perPage}
-          onChange={handleChange}
-          inputProps={{
-            name: 'perPage',
-            id: 'perPage',
-          }}
-        >
-          <MenuItem value={25}>25</MenuItem>
-          <MenuItem value={50}>50</MenuItem>
-          <MenuItem value={100}>100</MenuItem>
-        </Select>
-      </FormControl>
-    </div>
+    <ClassNames>
+      {({ css: cssString }) => (
+        <div css={wrapper}>
+          <div css={container}>
+            <FormControl css={item}>
+              <SelectField
+                value={sortBy}
+                onChange={handleChange}
+                name="sortBy"
+                id="sortBy"
+                size="small"
+                InputProps={{ className: cssString(input) }}
+                options={[
+                  {
+                    value: SortBy.Added,
+                    label: 'Date Added',
+                  },
+                  {
+                    value: SortBy.Title,
+                    label: 'Title',
+                  },
+                  {
+                    value: SortBy.URL,
+                    label: 'URL',
+                  },
+                  {
+                    value: SortBy.Approved,
+                    label: 'Approved',
+                  },
+                ]}
+              />
+            </FormControl>
+            <FormControl css={item}>
+              <SelectField
+                value={sortOrder}
+                onChange={handleChange}
+                name="sortOrder"
+                id="sortOrder"
+                size="small"
+                InputProps={{ className: cssString(input) }}
+                options={[
+                  {
+                    value: Direction.Desc,
+                    label: 'Desc',
+                  },
+                  {
+                    value: Direction.Asc,
+                    label: 'Asc',
+                  },
+                ]}
+              />
+            </FormControl>
+          </div>
+
+          <TablePagination
+            rowsPerPageOptions={[30, 60, 90]}
+            count={totalCount}
+            rowsPerPage={perPage}
+            page={page}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangePerPage}
+            component="div"
+          />
+        </div>
+      )}
+    </ClassNames>
   );
 };
 
