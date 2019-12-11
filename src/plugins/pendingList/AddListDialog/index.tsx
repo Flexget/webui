@@ -1,10 +1,13 @@
 import React, { FC } from 'react';
 import { css } from '@emotion/core';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  DialogContentText,
+} from '@material-ui/core';
 import TextField from 'common/TextField';
 import { Formik, Form } from 'formik';
 import theme from 'theme';
@@ -19,7 +22,7 @@ interface Props {
 const errorStyle = css`
   color: ${theme.palette.error[500]};
   text-align: center;
-  padding: 1rem;
+  padding: ${theme.typography.pxToRem(theme.spacing(1))};
 `;
 
 const AddListDialog: FC<Props> = ({ open, onClose }) => {
@@ -27,7 +30,7 @@ const AddListDialog: FC<Props> = ({ open, onClose }) => {
   const [{ loading, error }, addList] = useAddList();
 
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
       <DialogTitle>Add New Pending List</DialogTitle>
       <Formik
         initialValues={initialValues}
@@ -39,8 +42,8 @@ const AddListDialog: FC<Props> = ({ open, onClose }) => {
         }}
       >
         <Form>
-          <div css={errorStyle}>{error?.message}</div>
           <DialogContent>
+            {error && <DialogContentText css={errorStyle}>{error.message}</DialogContentText>}
             <TextField autoFocus id="name" label="List Name" fullWidth name="name" />
           </DialogContent>
           <DialogActions>

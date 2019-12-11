@@ -10,6 +10,7 @@ import { Options, AddEntryRequest, Operation, PendingListEntry, InjectRequest } 
 
 export const enum Constants {
   GET_ENTRIES = '@flexget/pendingList/GET_ENTRIES',
+  ADD_ENTRY = '@flexget/pendingList/ADD_ENTRY',
   REMOVE_ENTRY = '@flexget/pendingList/REMOVE_ENTRY',
   UPDATE_ENTRY = '@flexget/pendingList/UPDATE_ENTRY',
   SELECT_ENTRY = '@flexget/pendingList/SELECT_ENTRY',
@@ -20,8 +21,9 @@ export const enum Constants {
 const actions = {
   getEntries: (entries: PendingListEntry[], totalCount: number) =>
     action(Constants.GET_ENTRIES, { entries, totalCount }),
-  removeEntry: (id: number) => action(Constants.REMOVE_ENTRY, id),
+  addEntry: (entry: PendingListEntry) => action(Constants.ADD_ENTRY, entry),
   updateEntry: (entry: PendingListEntry) => action(Constants.UPDATE_ENTRY, entry),
+  removeEntry: (id: number) => action(Constants.REMOVE_ENTRY, id),
   selectEntry: (id: number) => action(Constants.SELECT_ENTRY, id),
   unselectEntry: (id: number) => action(Constants.UNSELECT_ENTRY, id),
   clearSelected: () => action(Constants.CLEAR_SELECTED),
@@ -41,6 +43,12 @@ const entryReducer: Reducer<State, Actions> = (state, act) => {
       return {
         ...act.payload,
         selectedIds: {},
+      };
+    case Constants.ADD_ENTRY:
+      return {
+        ...state,
+        entries: [act.payload, ...state.entries],
+        totalCount: state.totalCount + 1,
       };
     case Constants.REMOVE_ENTRY:
       return {
@@ -116,14 +124,18 @@ export const useGetEntries = (options: Options) => {
   return state;
 };
 
-export const useAddEntry = (setPage: SetState<number>) => {
+export const useAddEntry = () => {
   const [{ listId }] = ListContiner.useContainer();
-  const [state, request] = useFlexgetAPI(`/pending_list/${listId}/entries`, Method.Post);
+  const [, dispatch] = EntryContainer.useContainer();
+  const [state, request] = useFlexgetAPI<PendingListEntry>(
+    `/pending_list/${listId}/entries`,
+    Method.Post,
+  );
 
   const addEntry = async (req: AddEntryRequest) => {
     const resp = await request(req);
     if (resp.ok) {
-      setPage(1);
+      dispatch(actions.addEntry(resp.data));
     }
     return resp;
   };

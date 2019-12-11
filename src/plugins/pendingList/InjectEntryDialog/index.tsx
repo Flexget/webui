@@ -1,10 +1,13 @@
 import React, { FC } from 'react';
 import { css } from '@emotion/core';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  DialogContentText,
+} from '@material-ui/core';
 import { Formik, Form } from 'formik';
 import theme from 'theme';
 import { RawEntry } from 'common/Entry/types';
@@ -21,7 +24,6 @@ interface Props {
 const errorStyle = css`
   color: ${theme.palette.error[500]};
   text-align: center;
-  padding: 1rem;
 `;
 
 const formatEntry = (entry?: RawEntry) => {
@@ -39,7 +41,7 @@ const InjectEntryDialog: FC<Props> = ({ entry, onClose }) => {
   const { tasks } = TaskContainer.useContainer();
 
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
       <DialogTitle>Inject Entry</DialogTitle>
       <Formik
         initialValues={initialValues}
@@ -52,8 +54,8 @@ const InjectEntryDialog: FC<Props> = ({ entry, onClose }) => {
         }}
       >
         <Form>
-          <div css={errorStyle}>{error?.message}</div>
           <DialogContent>
+            {error && <DialogContentText css={errorStyle}>{error.message}</DialogContentText>}
             <SelectField
               autoFocus
               id="task"

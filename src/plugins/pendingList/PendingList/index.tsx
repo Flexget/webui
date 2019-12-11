@@ -7,7 +7,7 @@ import { EntryContainer } from 'plugins/pendingList/hooks/entry';
 import theme from 'theme';
 import { css } from '@emotion/core';
 import EntryList from '../EntryList';
-import SortList from '../SortList';
+import EntryListHeader from '../EntryListHeader';
 import { Options, SortBy } from '../types';
 import { ListContiner } from '../hooks/list';
 
@@ -41,7 +41,7 @@ const PendingList: FC<{}> = () => {
         <TabList />
         <div css={content}>
           <EntryContainer.Provider>
-            <SortList dispatch={dispatch} options={options} />
+            <EntryListHeader setOptions={dispatch} options={options} />
             <EntryList options={options} />
           </EntryContainer.Provider>
         </div>
@@ -50,4 +50,4 @@ const PendingList: FC<{}> = () => {
   );
 };
 
-export default hot(PendingList);
+export default hot(PendingList;

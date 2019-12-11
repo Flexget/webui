@@ -19,6 +19,7 @@ const SelectField: FC<Props> = ({ options, ...props }) => {
       {...props}
       select
       SelectProps={{
+        autoWidth: true,
         native,
       }}
     >
