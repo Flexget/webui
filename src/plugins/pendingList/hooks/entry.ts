@@ -1,4 +1,4 @@
-import { useReducer, Reducer, useEffect } from 'react';
+import { useReducer, Reducer, useEffect, useCallback } from 'react';
 import { createContainer } from 'unstated-next';
 import { useFlexgetAPI } from 'core/api';
 import { action } from 'utils/hooks/actions';
@@ -132,13 +132,16 @@ export const useAddEntry = () => {
     Method.Post,
   );
 
-  const addEntry = async (req: AddEntryRequest) => {
-    const resp = await request(req);
-    if (resp.ok) {
-      dispatch(actions.addEntry(resp.data));
-    }
-    return resp;
-  };
+  const addEntry = useCallback(
+    async (req: AddEntryRequest) => {
+      const resp = await request(req);
+      if (resp.ok) {
+        dispatch(actions.addEntry(resp.data));
+      }
+      return resp;
+    },
+    [dispatch, request],
+  );
 
   return [state, addEntry] as const;
 };
@@ -151,14 +154,14 @@ export const useRemoveEntry = (entryId?: number) => {
     Method.Delete,
   );
 
-  const removeEntry = async () => {
+  const removeEntry = useCallback(async () => {
     const resp = await request();
     if (resp.ok && entryId) {
       dispatch(actions.removeEntry(entryId));
     }
 
     return resp;
-  };
+  }, [dispatch, entryId, request]);
 
   return [state, removeEntry] as const;
 };
@@ -167,13 +170,16 @@ export const useInjectEntry = (entryId?: number) => {
   const [remove, removeEntry] = useRemoveEntry(entryId);
   const [execute, executeTask] = useExecuteTask();
 
-  const injectEntry = async ({ task, entry }: InjectRequest) => {
-    const executeResponse = await executeTask({ tasks: [task], inject: [entry] });
-    if (!executeResponse.ok) {
-      return executeResponse;
-    }
-    return removeEntry();
-  };
+  const injectEntry = useCallback(
+    async ({ task, entry }: InjectRequest) => {
+      const executeResponse = await executeTask({ tasks: [task], inject: [entry] });
+      if (!executeResponse.ok) {
+        return executeResponse;
+      }
+      return removeEntry();
+    },
+    [executeTask, removeEntry],
+  );
 
   return [
     {
@@ -192,13 +198,16 @@ export const useEntryOperation = (entryId: number) => {
     Method.Put,
   );
 
-  const doOperation = async (operation: Operation) => {
-    const resp = await request({ operation });
-    if (resp.ok) {
-      dispatch(actions.updateEntry(resp.data));
-    }
-    return resp;
-  };
+  const doOperation = useCallback(
+    async (operation: Operation) => {
+      const resp = await request({ operation });
+      if (resp.ok) {
+        dispatch(actions.updateEntry(resp.data));
+      }
+      return resp;
+    },
+    [dispatch, request],
+  );
 
   return [state, doOperation] as const;
 };

@@ -33,8 +33,8 @@ const EntryCard: FC<Props> = ({ entry, setInjectEntry }) => {
         onClick: () => doOperation(Operation.Reject),
       }
     : {
-        title: 'Approved',
-        label: 'approved',
+        title: 'Approve',
+        label: 'approve',
         Icon: CheckIcon,
         onClick: () => doOperation(Operation.Approve),
       };
@@ -46,17 +46,17 @@ const EntryCard: FC<Props> = ({ entry, setInjectEntry }) => {
       </CardActionArea>
       <CardActions>
         <span css={buffer} />
-        <Tooltip title={title}>
+        <Tooltip title={title} placement="top">
           <IconButton aria-label={label} disabled={operationLoading} onClick={onClick}>
             <Icon />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Remove">
+        <Tooltip title="Remove" placement="top">
           <IconButton aria-label="remove" onClick={removeEntry} disabled={removeLoading}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Inject">
+        <Tooltip title="Inject" placement="top">
           <IconButton aria-label="inject" onClick={handleInjectClick}>
             <RepeatIcon />
           </IconButton>

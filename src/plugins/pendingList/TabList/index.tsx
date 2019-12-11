@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useCallback } from 'react';
 import Tab from '@material-ui/core/Tab';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import SecondaryNav from 'common/SecondaryNav';
@@ -14,13 +14,16 @@ const TabList: FC<Props> = ({ setPage }) => {
   const [isOpen, setOpen] = useState(false);
   const [{ lists, listId }, dispatch] = ListContiner.useContainer();
 
-  const handleChange = (_, selected: SelectedListID) => {
-    if (selected !== 'add') {
-      dispatch(actions.selectList(selected));
-      return setPage(0);
-    }
-    return setOpen(true);
-  };
+  const handleChange = useCallback(
+    (_, selected: SelectedListID) => {
+      if (selected !== 'add') {
+        dispatch(actions.selectList(selected));
+        return setPage(0);
+      }
+      return setOpen(true);
+    },
+    [dispatch, setPage],
+  );
 
   useGetLists();
 
