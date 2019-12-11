@@ -70,7 +70,7 @@ export const withEpisodeRawEntry = (e: RawEntry) => ({
   seriesSeason: 2,
 });
 
-export const withTraktEpisodesFields = (e: RawEntry) => ({
+export const withTraktEpisodeFields = (e: RawEntry) => ({
   ...e,
   [TraktEpisodeFields.Genres]: random.words().split(' '),
   [TraktEpisodeFields.Rating]: random.number(10),
@@ -100,11 +100,10 @@ export const withTVMazeEpisodeFields = (e: RawEntry) => ({
 
 export const withSeriesRawEntry = (e: RawEntry) => ({
   ...e,
-  seriesSeries: 1,
-  seriesSeason: 2,
+  seriesName: random.word(),
 });
 
-export const withTraktSeriessFields = (e: RawEntry) => ({
+export const withTraktSeriesFields = (e: RawEntry) => ({
   ...e,
   [TraktSeriesFields.Genres]: random.words().split(' '),
   [TraktSeriesFields.Rating]: random.number(10),
