@@ -1,9 +1,9 @@
-import * as React from 'react';
+import { ComponentType } from 'react';
 
 export interface Route {
-  component?: React.Component;
+  component?: ComponentType;
   name: string;
-  Icon: string;
+  Icon: ComponentType;
   path?: string;
   children?: Route[];
 }

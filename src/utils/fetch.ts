@@ -27,7 +27,7 @@ export const camelize = <T>(obj: Object | Object[]) =>
     separator: '_',
   });
 
-const snakeCase = <T>(obj: Object | Object[]): T =>
+export const snakeCase = <T>(obj: Object | Object[]): T =>
   humps.decamelizeKeys(obj, {
     split: /(?=[A-Z0-9])/,
   });
@@ -48,18 +48,11 @@ export interface SuccessResponse<T> extends OptionalProps<TypedResponse<T>, 'err
 
 export type APIResponse<T> = SuccessResponse<T> | ErrorResponse;
 
-export const isError = <T>(resp: APIResponse<T>): resp is ErrorResponse => !resp.ok;
-
-export const prepareResponse = <T>(data: Object, response: TypedResponse<T>) => ({
-  data: camelize<T>(data),
-  headers: response.headers,
-});
-
 const status = async <T>(r: Response): Promise<APIResponse<T>> => {
   const response = r as APIResponse<T>;
   response.data = await response.json();
 
-  if (!isError(response)) {
+  if (response.ok) {
     response.data = response.data && camelize<T>(response.data);
   } else {
     response.error = new StatusError(response.data?.message, response.status);

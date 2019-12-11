@@ -14,13 +14,15 @@ const EntryList: FC<Props> = ({ options, page }) => {
   useGetEntries(options, page);
 
   return (
-    <Grid container spacing={2}>
-      {entries.map(entry => (
-        <Grid item key={entry.id} xs={12} md={6} lg={4}>
-          <EntryCard entry={entry} />
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <Grid container spacing={2}>
+        {entries.map(entry => (
+          <Grid item key={entry.id} xs={12} md={6} lg={4}>
+            <EntryCard entry={entry} />
+          </Grid>
+        ))}
+      </Grid>
+    </>
   );
 };
 

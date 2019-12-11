@@ -25,7 +25,7 @@ import {
 
 const isMovie = (entry: RawEntry): entry is RawMovieEntry => !!entry.movieName;
 const isSeries = (entry: RawEntry): entry is RawSeriesEntry =>
-  !!entry.seriesName && !!entry.seriesSeason;
+  !!entry.seriesName && !entry.seriesSeason;
 const isEpisode = (entry: RawEntry): entry is RawEpisodeEntry =>
   !!(entry.seriesSeason && entry.seriesEpisode);
 

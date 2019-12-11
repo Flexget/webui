@@ -2,7 +2,7 @@ import { useReducer, Reducer, useEffect } from 'react';
 import { createContainer } from 'unstated-next';
 import { useFlexgetAPI } from 'core/api';
 import { action } from 'utils/hooks/actions';
-import { Method } from 'utils/fetch';
+import { Method, snakeCase } from 'utils/fetch';
 import { stringify } from 'qs';
 import { ListContiner } from 'plugins/pendingList/hooks/list';
 import { Options, AddEntryRequest, Operation, PendingListEntry } from '../types';
@@ -89,7 +89,7 @@ export const EntryContainer = createContainer(useEntries);
 
 export const useGetEntries = (options: Options, page: number) => {
   const [, dispatch] = EntryContainer.useContainer();
-  const query = stringify({ ...options, page });
+  const query = stringify(snakeCase({ ...options, page }));
 
   const [{ listId }] = ListContiner.useContainer();
   const [state, getEntries] = useFlexgetAPI<PendingListEntry[]>(
