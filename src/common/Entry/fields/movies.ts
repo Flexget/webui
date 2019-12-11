@@ -1,6 +1,6 @@
 import { Fields, CardType, BaseEntry } from '../types';
 
-export const enum MovieFieldNames {
+export enum MovieFieldNames {
   Genres = 'genres',
   Posters = 'posters',
   Rating = 'rating',
@@ -10,41 +10,76 @@ export const enum MovieFieldNames {
   ID = 'movieId',
 }
 
+export const enum IMDBFields {
+  Genres = 'imdbGenres',
+  Posters = 'imdbPhoto',
+  Rating = 'imdbScore',
+  Votes = 'imdbVotes',
+  Description = 'imdbPlotOutline',
+  Url = 'imdbUrl',
+  ID = 'imdbId',
+}
+
+export const enum TraktFields {
+  Genres = 'traktGenres',
+  Rating = 'traktRating',
+  Votes = 'traktVotes',
+  Description = 'traktOverview',
+  Url = 'traktHomepage',
+  ID = 'traktMovieId',
+}
+
+export const enum TMDBFields {
+  Genres = 'tmdbGenres',
+  Posters = 'tmdbPosters',
+  Rating = 'tmdbRating',
+  Votes = 'tmdbVotes',
+  Description = 'tmdbTagline',
+  Url = 'tmdbHomepage',
+  ID = 'tmdbId',
+}
+
+export const enum BluerayFields {
+  Genres = 'bluerayGenres',
+  Rating = 'bluerayRating',
+  Url = 'bluerayUrl',
+}
+
 export const movieFieldList = [
   // IMDB
   {
-    [MovieFieldNames.Genres]: 'imdbGenres',
-    [MovieFieldNames.Posters]: 'imdbPhoto',
-    [MovieFieldNames.Rating]: 'imdbScore',
-    [MovieFieldNames.Votes]: 'imdbVotes',
-    [MovieFieldNames.Description]: 'imdbPlotOutline',
-    [MovieFieldNames.Url]: 'imdbUrl',
-    [MovieFieldNames.ID]: 'imdbId',
+    [MovieFieldNames.Genres]: IMDBFields.Genres,
+    [MovieFieldNames.Posters]: IMDBFields.Posters,
+    [MovieFieldNames.Rating]: IMDBFields.Rating,
+    [MovieFieldNames.Votes]: IMDBFields.Votes,
+    [MovieFieldNames.Description]: IMDBFields.Description,
+    [MovieFieldNames.Url]: IMDBFields.Url,
+    [MovieFieldNames.ID]: IMDBFields.ID,
   },
   // Trakt
   {
-    [MovieFieldNames.Genres]: 'traktGenres',
-    [MovieFieldNames.Rating]: 'traktRating',
-    [MovieFieldNames.Description]: 'traktOverview',
-    [MovieFieldNames.Votes]: 'traktVotes',
-    [MovieFieldNames.Url]: 'traktHomepage',
-    [MovieFieldNames.ID]: 'traktMovieId',
+    [MovieFieldNames.Genres]: TraktFields.Genres,
+    [MovieFieldNames.Rating]: TraktFields.Rating,
+    [MovieFieldNames.Votes]: TraktFields.Votes,
+    [MovieFieldNames.Description]: TraktFields.Description,
+    [MovieFieldNames.Url]: TraktFields.Url,
+    [MovieFieldNames.ID]: TraktFields.ID,
   },
   // TMDB
   {
-    [MovieFieldNames.Genres]: 'tmdbGenres',
-    [MovieFieldNames.Posters]: 'tmdbPosters',
-    [MovieFieldNames.Rating]: 'tmdbRating',
-    [MovieFieldNames.Votes]: 'tmbdVotes',
-    [MovieFieldNames.Description]: 'tmdbTagline',
-    [MovieFieldNames.Url]: 'tmdbHomepage',
-    [MovieFieldNames.ID]: 'tmdbId',
+    [MovieFieldNames.Genres]: TMDBFields.Genres,
+    [MovieFieldNames.Posters]: TMDBFields.Posters,
+    [MovieFieldNames.Rating]: TMDBFields.Rating,
+    [MovieFieldNames.Votes]: TMDBFields.Votes,
+    [MovieFieldNames.Description]: TMDBFields.Description,
+    [MovieFieldNames.Url]: TMDBFields.Url,
+    [MovieFieldNames.ID]: TMDBFields.ID,
   },
   // Blue-ray
   {
-    [MovieFieldNames.Genres]: 'bluerayGenres',
-    [MovieFieldNames.Rating]: 'bluerayRating',
-    [MovieFieldNames.Url]: 'bluerayUrl',
+    [MovieFieldNames.Genres]: BluerayFields.Genres,
+    [MovieFieldNames.Rating]: BluerayFields.Rating,
+    [MovieFieldNames.Url]: BluerayFields.Url,
   },
 ] as const;
 
@@ -58,10 +93,13 @@ interface MovieGetters {
   [MovieFieldNames.ID]: string;
 }
 
-type MovieFields = Fields<MovieFieldNames, typeof movieFieldList, MovieGetters>;
+export type MovieFields = Fields<MovieFieldNames, typeof movieFieldList, MovieGetters>;
 
-export interface MovieEntry extends BaseEntry, MovieGetters, MovieFields {
-  type: CardType.Movie;
+export interface RawMovieEntry extends BaseEntry, MovieFields {
   movieName: string;
   movieYear: number;
+}
+
+export interface MovieEntry extends RawMovieEntry, Partial<MovieGetters> {
+  type: CardType.Movie;
 }

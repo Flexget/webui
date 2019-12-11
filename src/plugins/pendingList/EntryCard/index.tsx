@@ -33,8 +33,7 @@ const EntryCard: FC<Props> = ({ entry }) => {
 
   return (
     <Card>
-        <CardActionArea>
-        </CardActionArea>
+      <CardActionArea />
       <CardActions>
         <Tooltip title={title}>
           <IconButton aria-label={label} disabled={operationLoading} onClick={onClick}>

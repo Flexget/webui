@@ -1,6 +1,6 @@
 import { BaseEntry, CardType, Fields } from '../types';
 
-export const enum EpisodeFieldNames {
+export enum EpisodeFieldNames {
   Name = 'name',
   Genres = 'genres',
   Image = 'posters',
@@ -11,34 +11,60 @@ export const enum EpisodeFieldNames {
   ID = 'episodeId',
 }
 
+export const enum TVDBFields {
+  Genres = 'tvdbGenres',
+  Image = 'tvdbEpImage',
+  Rating = 'tvdbEpRating',
+  Description = 'tvdbEpOverview',
+  ID = 'tvdbepId',
+}
+
+export const enum TraktFields {
+  Genres = 'traktGenres',
+  Rating = 'traktEpRating',
+  Description = 'traktEpOverview',
+  Votes = 'traktEpVotes',
+  ID = 'traktEpId',
+}
+
+export const enum TVMazeFields {
+  Name = 'tvmazeEpisodeName',
+  Genres = 'tvmazeGenres',
+  Image = 'tvmazeEpisodeOriginalImage',
+  Description = 'tvmazeEpisodeSummary',
+  Rating = 'tvmazeEpisodeRating',
+  Url = 'tvmazeEpisodeUrl',
+  ID = 'tvmazeEpisodeId',
+}
+
 export const episodesFieldList = [
   // TVDB
   {
-    [EpisodeFieldNames.Genres]: 'tvdbGenres',
-    [EpisodeFieldNames.Image]: 'tvdbEpImage',
-    [EpisodeFieldNames.Rating]: 'tvdbEpRating',
-    [EpisodeFieldNames.Description]: 'tvdbEpOverview',
-    [EpisodeFieldNames.ID]: 'tvdbepId',
+    [EpisodeFieldNames.Genres]: TVDBFields.Genres,
+    [EpisodeFieldNames.Image]: TVDBFields.Image,
+    [EpisodeFieldNames.Rating]: TVDBFields.Rating,
+    [EpisodeFieldNames.Description]: TVDBFields.Description,
+    [EpisodeFieldNames.ID]: TVDBFields.ID,
   },
   // Trakt
   {
-    [EpisodeFieldNames.Genres]: 'traktGenres',
-    [EpisodeFieldNames.Rating]: 'traktEpRating',
-    [EpisodeFieldNames.Description]: 'traktEpOverview',
-    [EpisodeFieldNames.Votes]: 'traktEpVotes',
-    [EpisodeFieldNames.ID]: 'traktEpId',
+    [EpisodeFieldNames.Genres]: TraktFields.Genres,
+    [EpisodeFieldNames.Rating]: TraktFields.Rating,
+    [EpisodeFieldNames.Description]: TraktFields.Description,
+    [EpisodeFieldNames.Votes]: TraktFields.Votes,
+    [EpisodeFieldNames.ID]: TraktFields.ID,
   },
   // Tvmaze
   {
-    [EpisodeFieldNames.Name]: 'tvmazeEpisodeName',
-    [EpisodeFieldNames.Genres]: 'tvmazeGenres',
-    [EpisodeFieldNames.Image]: 'tvmazeEpisodeOriginalImage',
-    [EpisodeFieldNames.Description]: 'tvmazeEpisodeSummary',
-    [EpisodeFieldNames.Rating]: 'tvmazeEpisodeRating',
-    [EpisodeFieldNames.Url]: 'tvmazeEpisodeUrl',
-    [EpisodeFieldNames.ID]: 'tvmazeEpisodeId',
+    [EpisodeFieldNames.Name]: TVMazeFields.Name,
+    [EpisodeFieldNames.Genres]: TVMazeFields.Genres,
+    [EpisodeFieldNames.Image]: TVMazeFields.Image,
+    [EpisodeFieldNames.Description]: TVMazeFields.Description,
+    [EpisodeFieldNames.Rating]: TVMazeFields.Rating,
+    [EpisodeFieldNames.Url]: TVMazeFields.Url,
+    [EpisodeFieldNames.ID]: TVMazeFields.ID,
   },
-];
+] as const;
 
 interface EpisodeGetters {
   [EpisodeFieldNames.Name]: string;
@@ -51,11 +77,12 @@ interface EpisodeGetters {
   [EpisodeFieldNames.ID]: string;
 }
 
-type EpisodeFields = Fields<EpisodeFieldNames, typeof episodesFieldList, EpisodeGetters>;
+export type EpisodeFields = Fields<EpisodeFieldNames, typeof episodesFieldList, EpisodeGetters>;
 
-export interface EpisodeEntry extends BaseEntry, EpisodeGetters, EpisodeFields {
-  type: CardType.Episode;
-  seriesName: string;
+export interface RawEpisodeEntry extends BaseEntry, EpisodeFields {
   seriesEpisode: number;
   seriesSeason: number;
+}
+export interface EpisodeEntry extends RawEpisodeEntry, Partial<EpisodeGetters> {
+  type: CardType.Episode;
 }
