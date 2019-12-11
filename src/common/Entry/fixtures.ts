@@ -52,7 +52,6 @@ export const withTMDBFields = (e: RawEntry) => ({
   [TMDBFields.Posters]: image.imageUrl(),
   [TMDBFields.Rating]: random.number(10),
   [TMDBFields.Votes]: random.number(100),
-  [TMDBFields.Description]: lorem.paragraph(),
   [TMDBFields.Url]: internet.url(),
   [TMDBFields.ID]: random.word(),
 });
