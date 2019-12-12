@@ -4,22 +4,12 @@ import theme from 'theme';
 import { css } from '@emotion/core';
 import { getCachedUrl } from 'utils/image';
 import { SeriesEntry } from '../fields/series';
+import { Bullet } from './styles';
 
 interface Props {
   entry: SeriesEntry;
   className?: string;
 }
-
-const bull = (
-  <span
-    css={css`
-      display: inline-block;
-      margin: 0 ${theme.typography.pxToRem(theme.spacing(1))};
-    `}
-  >
-    •
-  </span>
-);
 
 const summary = css`
   font-size: 1.5rem;
@@ -52,7 +42,7 @@ const SeriesCard: FC<Props> = ({
         </Typography>
         <Typography variant="overline" color="textSecondary">
           {contentRating}
-          {contentRating && bull}
+          {contentRating && <Bullet />}
           {genres.join(' ')}
         </Typography>
         <Typography css={summary} variant="body1" component="h3">

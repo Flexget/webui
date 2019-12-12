@@ -5,21 +5,12 @@ import { normalizeMinutes } from 'utils/time';
 import { css } from '@emotion/core';
 import theme from 'theme';
 import { MovieEntry } from '../fields/movies';
+import { Bullet } from './styles';
 
 interface Props {
   entry: MovieEntry;
   className?: string;
 }
-const bull = (
-  <span
-    css={css`
-      display: inline-block;
-      margin: 0 ${theme.typography.pxToRem(theme.spacing(1))};
-    `}
-  >
-    •
-  </span>
-);
 
 const summary = css`
   font-size: 1.5rem;
@@ -52,7 +43,7 @@ const MovieCard: FC<Props> = ({
         </Typography>
         <Typography variant="overline" color="textSecondary">
           {normalizeMinutes(runtime)}
-          {bull}
+          <Bullet />
           {genres.join(' ')}
         </Typography>
         <Typography css={summary} variant="body1" component="h3">
