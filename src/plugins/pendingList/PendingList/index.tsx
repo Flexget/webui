@@ -32,7 +32,7 @@ const PendingList: FC<{}> = () => {
     page: 0,
     perPage: 30,
     sortBy: SortBy.Added,
-    sortOrder: Direction.Desc,
+    order: Direction.Desc,
   });
 
   return (

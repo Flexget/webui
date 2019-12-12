@@ -23,7 +23,7 @@ export interface Options {
   page: number;
   perPage: number;
   sortBy: SortBy;
-  sortOrder: Direction;
+  order: Direction;
 }
 
 export interface List {

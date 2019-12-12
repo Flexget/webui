@@ -27,44 +27,32 @@ const summary = css`
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
 `;
 
-const wrapper = css`
-  display: flex;
-`;
-
 const image = css`
-  background-size: contain;
-  background-position: top left;
-  width: 30%;
-`;
-
-const content = css`
-  flex: 1 0 auto;
-  max-width: 70%;
-  display: flex;
-  flex-direction: column;
+  height: 12rem;
 `;
 
 const SeriesCard: FC<Props> = ({
-  entry: { posters, seriesName, genres = [], description = '', contentRating = '' },
+  entry: { backdrops, seriesName, genres = [], description = '', contentRating = '' },
   className,
 }) => {
   return (
-    <div css={wrapper} className={className}>
-      {posters?.length && (
+    <div className={className}>
+      {backdrops?.length && (
         <CardMedia
-          aria-label={`${seriesName} poster`}
-          image={getCachedUrl(Array.isArray(posters) ? posters[0] : posters)}
-          title={`${seriesName} Poster`}
           css={image}
+          role="img"
+          aria-label={`${seriesName} backdrop`}
+          image={getCachedUrl(Array.isArray(backdrops) ? backdrops[0] : backdrops)}
+          title={`${seriesName} Backdrop`}
         />
       )}
-      <CardContent css={content}>
+      <CardContent>
         <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
           {seriesName}
         </Typography>
         <Typography variant="overline" color="textSecondary">
           {contentRating}
-          {bull}
+          {contentRating && bull}
           {genres.join(' ')}
         </Typography>
         <Typography css={summary} variant="body1" component="h3">

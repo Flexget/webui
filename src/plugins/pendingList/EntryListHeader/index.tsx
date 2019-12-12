@@ -67,10 +67,7 @@ const sortByOptions = [
   },
 ];
 
-const EntryListHeader: FC<Props> = ({
-  setOptions,
-  options: { sortBy, page, perPage, sortOrder },
-}) => {
+const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPage, order } }) => {
   const [{ totalCount }] = EntryContainer.useContainer();
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setOptions({
@@ -117,10 +114,10 @@ const EntryListHeader: FC<Props> = ({
               </FormControl>
               <FormControl css={item}>
                 <SelectField
-                  value={sortOrder}
+                  value={order}
                   onChange={handleChange}
-                  name="sortOrder"
-                  id="sortOrder"
+                  name="order"
+                  id="order"
                   size="small"
                   InputProps={{ className: cssString(input) }}
                   options={sortOrderOptions}

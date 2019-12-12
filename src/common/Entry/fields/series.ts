@@ -3,6 +3,7 @@ import { BaseEntry, CardType, Fields } from '../types';
 export enum SeriesFieldNames {
   Genres = 'genres',
   Posters = 'posters',
+  Backdrops = 'backdrops',
   Rating = 'rating',
   Votes = 'votes',
   Description = 'description',
@@ -14,6 +15,7 @@ export enum SeriesFieldNames {
 export const enum TVDBFields {
   Genres = 'tvdbGenres',
   Posters = 'tvdbPosters',
+  Backdrops = 'tvdbBanner',
   Rating = 'tvdbRating',
   Description = 'tvdbOverview',
   Url = 'tvdbUrl',
@@ -51,6 +53,7 @@ export const seriesFieldList = [
     [SeriesFieldNames.Description]: TVDBFields.Description,
     [SeriesFieldNames.Url]: TVDBFields.Url,
     [SeriesFieldNames.ContentRating]: TVDBFields.ContentRating,
+    [SeriesFieldNames.Backdrops]: TVDBFields.Backdrops,
     [SeriesFieldNames.ID]: TVDBFields.ID,
   },
   // Trakt
@@ -77,6 +80,7 @@ export const seriesFieldList = [
 interface SeriesGetters {
   [SeriesFieldNames.Genres]: string[];
   [SeriesFieldNames.Posters]: string | string[];
+  [SeriesFieldNames.Backdrops]: string | string[];
   [SeriesFieldNames.Rating]: number;
   [SeriesFieldNames.Votes]: number;
   [SeriesFieldNames.Description]: string;
