@@ -5,12 +5,12 @@ import {
   withEpisodeRawEntry,
   withSeriesRawEntry,
   withMovieRawEntry,
-} from '../fixtures';
+} from './fixtures';
 import Card from './index';
-import DefaultCard from './Default';
-import MovieCard from './Movie';
-import EpisodeCard from './Episode';
-import SeriesCard from './Series';
+import DefaultCard from './cards/Default';
+import MovieCard from './cards/Movie';
+import EpisodeCard from './cards/Episode';
+import SeriesCard from './cards/Series';
 
 describe('common/Entry/cards', () => {
   const rawEntry = makeRawEntry();
