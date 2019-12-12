@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import semver from 'semver-compare';
 import styled from '@emotion/styled';
 import theme from 'theme';
 import { IconButton } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import Typography from '@material-ui/core/Typography';
 import { useFlexgetAPI } from 'core/api';
 
 interface Props {
@@ -20,42 +21,45 @@ const Wrapper = styled.div`
   color: ${theme.palette.primary[800]};
 `;
 
-const Line = styled.p`
+const Line = styled(Typography)`
   margin: 0;
 `;
 
 const useVersion = () => {
-  const [{ loading, error, data }, { get }] = useFlexgetAPI<VersionResponse>('/server/version');
+  const [version, setVersion] = useState<VersionResponse | undefined>();
+  const [{ loading }, getVersion] = useFlexgetAPI<VersionResponse>('/server/version');
 
   useEffect(() => {
-    get();
-  }, [get]);
+    const fn = async () => {
+      const resp = await getVersion();
+      if (resp.ok) {
+        setVersion(resp.data);
+      }
+    };
+    fn();
+  }, [getVersion]);
 
-  return { loading, error, data };
+  return { loading, version };
 };
 
 const Version: React.FC<Props> = ({ className }) => {
-  const { loading, error, data } = useVersion();
+  const { loading, version } = useVersion();
 
-  if (loading || !data) {
+  if (loading || !version) {
     // showProgress
     return null;
   }
 
-  if (error) {
-    return null;
-  }
-
-  const { flexgetVersion, apiVersion, latestVersion } = data;
+  const { flexgetVersion, apiVersion, latestVersion } = version;
 
   return (
     <Wrapper className={className}>
       <Line>Version Info</Line>
       <Line>
         {`Flexget: ${flexgetVersion} `}
-        {semver(latestVersion, flexgetVersion) === 1 && (
-          <IconButton href="https://flexget.com/ChangeLog">
-            <FontAwesomeIcon icon={['far', 'question-circle']} fixedWidth />
+        {semver(latestVersion, flexgetVersion) !== 1 && (
+          <IconButton href="https://flexget.com/ChangeLog" color="inherit" size="small">
+            <HelpOutlineIcon />
           </IconButton>
         )}
       </Line>

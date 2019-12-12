@@ -1,49 +1,31 @@
-import * as React from 'react';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import React, { FC, useState, useCallback } from 'react';
 import Tab from '@material-ui/core/Tab';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import SecondaryNav from 'common/SecondaryNav';
-import { useOverlayState } from 'utils/hooks/useOverlayState';
+import { ListContiner, actions, useGetLists } from 'plugins/pendingList/hooks/list';
 import AddListDialog from '../AddListDialog';
-import { List, SelectedListID } from '../state/types';
-import actions from '../state/actions';
+import { SelectedListID } from '../types';
 
-const ALD = AddListDialog as any; // eslint-disable-line @typescript-eslint/no-explicit-any
-
-interface SelectorProps {
-  lists: List[];
-  listId?: SelectedListID;
+interface Props {
+  setPage: SetState<number>;
 }
 
-const usePendingList = openDialog => {
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(actions.getLists.request());
-  }, [dispatch]);
-  const handleChange = React.useCallback(
+const TabList: FC<Props> = ({ setPage }) => {
+  const [isOpen, setOpen] = useState(false);
+  const [{ lists, listId }, dispatch] = ListContiner.useContainer();
+
+  const handleChange = useCallback(
     (_, selected: SelectedListID) => {
       if (selected !== 'add') {
-        return dispatch(actions.selectList(selected));
+        dispatch(actions.selectList(selected));
+        return setPage(0);
       }
-      return openDialog();
+      return setOpen(true);
     },
-    [dispatch, openDialog],
+    [dispatch, setPage],
   );
 
-  const { lists, listId }: SelectorProps = useSelector(
-    ({ pendingList }) => ({
-      lists: pendingList.lists,
-      listId: pendingList.selected,
-    }),
-    shallowEqual,
-  );
-
-  return { handleChange, lists, listId };
-};
-
-const TabList: React.FC<{}> = () => {
-  const addDialog = useOverlayState(false);
-  const { handleChange, lists, listId } = usePendingList(addDialog.openOverlay);
+  useGetLists();
 
   return (
     <div>
@@ -57,9 +39,9 @@ const TabList: React.FC<{}> = () => {
         {lists.map(({ name, id }) => (
           <Tab label={name} value={id} key={id} />
         ))}
-        <Tab icon={<FontAwesomeIcon icon="plus-circle" />} value="add" />
+        <Tab icon={<AddCircleIcon />} value="add" />
       </SecondaryNav>
-      <ALD open={addDialog.isOpen} onClose={addDialog.closeOverlay} />
+      <AddListDialog open={isOpen} onClose={() => setOpen(false)} />
     </div>
   );
 };

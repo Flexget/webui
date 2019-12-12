@@ -13,6 +13,7 @@ module.exports = {
     '!**/node_modules/**',
     '!**/dist/**',
     '!src/store/**/shapes.js',
+    '!src/**/fixtures.{ts, tsx, js, jsx}',
   ],
   coverageThreshold: {
     // global: {

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { hot } from 'react-hot-loader/root';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import HistoryList from 'plugins/history/HistoryList';
 import FilterNav from 'plugins/history/FilterNav';
 import { NoPaddingWrapper } from 'common/styles';
 
-export default class HistoryPage extends Component {
+class HistoryPage extends Component {
   scroll = React.createRef();
 
   static propTypes = {
@@ -57,3 +58,5 @@ export default class HistoryPage extends Component {
     );
   }
 }
+
+export default hot(HistoryPage);

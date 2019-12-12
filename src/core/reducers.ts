@@ -4,14 +4,12 @@ import history from 'core/history';
 import { connectRouter } from 'connected-react-router';
 import routes from 'core/routes/state/reducer';
 import status from 'core/status/state/reducer';
-import tasks from 'core/tasks/state/reducer';
 
 export default function createReducers(reducers = {}) {
   return combineReducers({
     form,
     routes,
     status,
-    tasks,
     router: connectRouter(history),
     ...reducers,
   });

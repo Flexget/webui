@@ -1,19 +1,10 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import theme from 'theme';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ListItem, ListItemText } from '@material-ui/core';
+import ListItem from '@material-ui/core/ListItem';
 
-const colorClass = css`
+export const colorClass = css`
   color: ${theme.palette.secondary[200]};
-`;
-
-export const SideNavIcon = styled(FontAwesomeIcon)`
-  ${colorClass};
-`;
-
-export const SideNavText = styled(ListItemText)`
-  ${colorClass};
 `;
 
 export const NavItem = styled(ListItem)`

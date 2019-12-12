@@ -1,7 +1,10 @@
 import React from 'react';
 import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import ForumIcon from '@material-ui/icons/ForumOutlined';
+import HomeIcon from '@material-ui/icons/Home';
+import ChatIcon from '@material-ui/icons/Chat';
 import { InfoCardWrapper, InfoCardHeader, BoldParagraph, InfoCardActions } from './styles';
 
 const InfoCard = () => (
@@ -40,7 +43,7 @@ const InfoCard = () => (
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Icon className="fa fa-github" />
+        <GitHubIcon />
       </IconButton>
       <IconButton
         aria-label="Flexget.com"
@@ -48,15 +51,15 @@ const InfoCard = () => (
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Icon className="fa fa-home" />
+        <HomeIcon />
       </IconButton>
       <IconButton
-        aria-label="Gitter"
-        href="https://gitter.im/Flexget/Flexget"
+        aria-label="Chat"
+        href="https://flexget.com/Chat"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Icon className="fa fa-comment" />
+        <ChatIcon />
       </IconButton>
       <IconButton
         aria-label="Forum"
@@ -64,7 +67,7 @@ const InfoCard = () => (
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Icon className="fa fa-forumbee" />
+        <ForumIcon />
       </IconButton>
     </InfoCardActions>
   </InfoCardWrapper>

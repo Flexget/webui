@@ -10,9 +10,19 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import {
+  ListAlt,
+  Settings,
+  Storage,
+  ExitToApp,
+  Sync,
+  PowerSettingsNew,
+  CreateOutlined,
+  Menu as MenuIcon,
+} from '@material-ui/icons';
 import { Spacer } from 'common/styles';
-import { MenuIcon, NavAppBar, NavToolbar, NavIcon } from './styles';
+import { NavAppBar, NavToolbar, NavIcon } from './styles';
 
 export default class Navbar extends Component {
   static propTypes = {
@@ -71,7 +81,7 @@ export default class Navbar extends Component {
       <NavAppBar>
         <NavToolbar>
           <NavIcon onClick={toggle}>
-            <FontAwesomeIcon icon="bars" fixedWidth />
+            <MenuIcon />
           </NavIcon>
           <Typography variant="h6" color="inherit">
             {titleMap[pathname]}
@@ -79,16 +89,16 @@ export default class Navbar extends Component {
           <Spacer />
           <Link to="/config">
             <NavIcon aria-label="Config">
-              <FontAwesomeIcon icon="pencil-alt" fixedWidth />
+              <CreateOutlined />
             </NavIcon>
           </Link>
           <Link to="/log">
             <NavIcon aria-label="Log">
-              <FontAwesomeIcon icon="book" fixedWidth />
+              <ListAlt />
             </NavIcon>
           </Link>
           <NavIcon aria-label="Manage" onClick={this.handleMenuClick}>
-            <FontAwesomeIcon icon="cog" fixedWidth />
+            <Settings />
           </NavIcon>
           <Menu
             id="nav-menu"
@@ -97,19 +107,27 @@ export default class Navbar extends Component {
             onClose={this.handleMenuRequestClose}
           >
             <MenuItem onClick={this.handleReloadClick}>
-              <MenuIcon icon="sync" fixedWidth />
+              <ListItemIcon>
+                <Sync />
+              </ListItemIcon>
               Reload
             </MenuItem>
             <MenuItem onClick={this.handleShutdownPromptClick}>
-              <MenuIcon icon="power-off" fixedWidth />
+              <ListItemIcon>
+                <PowerSettingsNew />
+              </ListItemIcon>
               Shutdown
             </MenuItem>
             <MenuItem>
-              <MenuIcon icon="database" fixedWidth />
+              <ListItemIcon>
+                <Storage />
+              </ListItemIcon>
               Database
             </MenuItem>
             <MenuItem onClick={logout}>
-              <MenuIcon icon="sign-out-alt" fixedWidth />
+              <ListItemIcon>
+                <ExitToApp />
+              </ListItemIcon>
               Logout
             </MenuItem>
           </Menu>

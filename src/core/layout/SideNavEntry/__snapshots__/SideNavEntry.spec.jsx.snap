@@ -1,55 +1,135 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core/layout/components/SideNavEntry renders correctly with link 1`] = `
-.emotion-1 {
+.emotion-0 {
   border-left: 3px solid transparent;
   cursor: pointer;
 }
 
-.emotion-1:hover {
+.emotion-0:hover {
   border-left: 3px solid #ff9800;
 }
 
-.emotion-0 {
-  color: #b0bec5;
-}
-
 <li
-  className="MuiListItem-root  emotion-1 MuiListItem-gutters"
+  className="MuiListItem-root emotion-0 MuiListItem-gutters"
+  css={
+    Array [
+      Object {
+        "map": undefined,
+        "name": "2tnp70",
+        "next": undefined,
+        "styles": "
+  color: #b0bec5;
+",
+        "toString": [Function],
+      },
+      "",
+    ]
+  }
   disabled={false}
 >
   <div
     className="MuiListItemIcon-root"
-  />
+    css={
+      Object {
+        "map": undefined,
+        "name": "2tnp70",
+        "next": undefined,
+        "styles": "
+  color: #b0bec5;
+",
+        "toString": [Function],
+      }
+    }
+  >
+    <svg
+      aria-hidden="true"
+      className="MuiSvgIcon-root"
+      focusable="false"
+      role="presentation"
+      viewBox="0 0 24 24"
+    />
+  </div>
   <div
-    className="MuiListItemText-root emotion-0"
+    className="MuiListItemText-root"
+    css={
+      Object {
+        "map": undefined,
+        "name": "2tnp70",
+        "next": undefined,
+        "styles": "
+  color: #b0bec5;
+",
+        "toString": [Function],
+      }
+    }
   />
 </li>
 `;
 
 exports[`core/layout/components/SideNavEntry renders correctly without link 1`] = `
-.emotion-1 {
+.emotion-0 {
   border-left: 3px solid transparent;
   cursor: pointer;
 }
 
-.emotion-1:hover {
+.emotion-0:hover {
   border-left: 3px solid #ff9800;
 }
 
-.emotion-0 {
-  color: #b0bec5;
-}
-
 <li
-  className="MuiListItem-root  emotion-1 MuiListItem-gutters"
+  className="MuiListItem-root emotion-0 MuiListItem-gutters"
+  css={
+    Array [
+      Object {
+        "map": undefined,
+        "name": "2tnp70",
+        "next": undefined,
+        "styles": "
+  color: #b0bec5;
+",
+        "toString": [Function],
+      },
+      "",
+    ]
+  }
   disabled={false}
 >
   <div
     className="MuiListItemIcon-root"
-  />
+    css={
+      Object {
+        "map": undefined,
+        "name": "2tnp70",
+        "next": undefined,
+        "styles": "
+  color: #b0bec5;
+",
+        "toString": [Function],
+      }
+    }
+  >
+    <svg
+      aria-hidden="true"
+      className="MuiSvgIcon-root"
+      focusable="false"
+      role="presentation"
+      viewBox="0 0 24 24"
+    />
+  </div>
   <div
-    className="MuiListItemText-root emotion-0"
+    className="MuiListItemText-root"
+    css={
+      Object {
+        "map": undefined,
+        "name": "2tnp70",
+        "next": undefined,
+        "styles": "
+  color: #b0bec5;
+",
+        "toString": [Function],
+      }
+    }
   />
 </li>
 `;

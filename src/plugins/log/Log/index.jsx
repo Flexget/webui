@@ -1,4 +1,5 @@
 import React from 'react';
+import { hot } from 'react-hot-loader/root';
 import { PaperWrapper } from 'common/styles';
 import Header from '../Header';
 import LogTable from '../LogTable';
@@ -13,4 +14,4 @@ const LogPage = () => (
   </PaperWrapper>
 );
 
-export default LogPage;
+export default hot(LogPage);

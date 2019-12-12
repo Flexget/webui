@@ -41,6 +41,6 @@ describe('common/layout', () => {
     await act(async () => {
       tree = create(renderLayout());
     });
-    expect(tree && tree.toJSON()).toMatchSnapshot();
+    expect(tree?.toJSON()).toMatchSnapshot();
   });
 });

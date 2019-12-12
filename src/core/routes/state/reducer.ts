@@ -16,16 +16,14 @@ export default function reducer(state = initState, action: ActionTypes): State {
         [payload.path]: {
           component: payload.component,
           name: payload.routeDisplayName,
-          icon: payload.routeIcon,
+          Icon: payload.routeIcon,
           path: payload.children ? undefined : payload.path,
-          children:
-            payload.children &&
-            payload.children.map(child => ({
-              component: child.component,
-              name: child.routeDisplayName,
-              icon: child.routeIcon,
-              path: `${payload.path}/${child.name}`,
-            })),
+          children: payload.children?.map(child => ({
+            component: child.component,
+            name: child.routeDisplayName,
+            Icon: child.routeIcon,
+            path: `${payload.path}/${child.name}`,
+          })),
         },
       };
     }

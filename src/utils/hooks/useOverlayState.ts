@@ -1,10 +1,11 @@
-import * as React from 'react';
+import { useState, useCallback } from 'react';
 
 export const useOverlayState = (defaultState: boolean) => {
-  const [isOpen, setOpen] = React.useState(defaultState);
+  const [isOpen, setOpen] = useState(defaultState);
 
-  const openOverlay = React.useCallback(() => setOpen(true), [setOpen]);
-  const closeOverlay = React.useCallback(() => setOpen(false), [setOpen]);
+  const open = useCallback(() => setOpen(true), []);
+  const close = useCallback(() => setOpen(false), []);
+  const toggle = useCallback(() => setOpen(o => !o), []);
 
-  return { isOpen, openOverlay, closeOverlay };
+  return [isOpen, { open, close, toggle }] as const;
 };

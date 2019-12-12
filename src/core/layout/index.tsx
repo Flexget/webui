@@ -2,8 +2,9 @@ import React, { useState, useCallback } from 'react';
 import ErrorStatus from 'common/ErrorStatus';
 import InfoStatus from 'common/InfoStatus';
 import { LoadingBar } from 'common/LoadingBar';
-import { AuthContainter } from 'core/auth/container';
+import { AuthContainer } from 'core/auth/container';
 import { useFlexgetAPI } from 'core/api';
+import { Method } from 'utils/fetch';
 import Logo from './Logo';
 import Navbar from './Navbar';
 import SideNav from './SideNav';
@@ -26,12 +27,12 @@ const Layout: React.FC = ({ children }) => {
     (window.matchMedia && !!window.matchMedia('(min-width: 600px)').matches) || false,
   );
 
-  const [, setLoggedIn] = AuthContainter.useContainer();
-  const [, logout] = useFlexgetAPI('/auth/logout');
+  const [, setLoggedIn] = AuthContainer.useContainer();
+  const [, logout] = useFlexgetAPI('/auth/logout', Method.Post);
 
   const handleLogout = async () => {
-    const response = await logout.post();
-    if (response?.ok) {
+    const response = await logout();
+    if (response.ok) {
       setLoggedIn(false);
     }
   };

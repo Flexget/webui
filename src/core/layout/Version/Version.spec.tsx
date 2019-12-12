@@ -22,7 +22,7 @@ describe('core/layout/Version', () => {
     await act(async () => {
       tree = create(authProvider(themed(<Version />)));
     });
-    expect(tree && tree.toJSON()).toMatchSnapshot();
+    expect(tree?.toJSON()).toMatchSnapshot();
   });
 
   it('renders correctly without latest version', async () => {
@@ -37,6 +37,6 @@ describe('core/layout/Version', () => {
     await act(async () => {
       tree = create(authProvider(themed(<Version />)));
     });
-    expect(tree && tree.toJSON()).toMatchSnapshot();
+    expect(tree?.toJSON()).toMatchSnapshot();
   });
 });

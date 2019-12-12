@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import theme from 'theme';
 import { backgroundColor } from 'common/styles';
 
@@ -23,7 +22,7 @@ export const NavIcon = styled(IconButton)`
   color: ${theme.palette.getContrastText(theme.palette.primary[800])};
 `;
 
-export const MenuIcon = styled(FontAwesomeIcon)`
+export const MenuIcon = css`
   margin-right: 3rem;
   font-size: 1.6rem;
 `;
