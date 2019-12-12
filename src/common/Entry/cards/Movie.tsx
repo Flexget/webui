@@ -42,8 +42,8 @@ const MovieCard: FC<Props> = ({
           {movieName} ({movieYear})
         </Typography>
         <Typography variant="overline" color="textSecondary">
-          {normalizeMinutes(runtime)}
-          <Bullet />
+          {!!runtime && normalizeMinutes(runtime)}
+          {!!runtime && <Bullet />}
           {genres.join(' ')}
         </Typography>
         <Typography css={summary} variant="body1" component="h3">

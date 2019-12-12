@@ -33,6 +33,7 @@ export const withIMDBFields = (e: RawEntry) => ({
   [IMDBFields.Votes]: random.number(100),
   [IMDBFields.Description]: lorem.paragraph(),
   [IMDBFields.Url]: internet.url(),
+  [IMDBFields.Runtime]: random.number(150),
   [IMDBFields.ID]: random.word(),
 });
 
@@ -44,12 +45,15 @@ export const withTraktFields = (e: RawEntry) => ({
   [TraktFields.Description]: lorem.paragraph(),
   [TraktFields.Url]: internet.url(),
   [TraktFields.ID]: random.word(),
+  [TraktFields.Runtime]: random.number(150),
 });
 
 export const withTMDBFields = (e: RawEntry) => ({
   ...e,
   [TMDBFields.Genres]: random.words().split(' '),
   [TMDBFields.Posters]: image.imageUrl(),
+  [TMDBFields.Backdrops]: image.imageUrl(),
+  [TMDBFields.Runtime]: random.number(150),
   [TMDBFields.Rating]: random.number(10),
   [TMDBFields.Votes]: random.number(100),
   [TMDBFields.Url]: internet.url(),
@@ -60,14 +64,18 @@ export const withEpisodeRawEntry = (e: RawEntry) => ({
   ...e,
   seriesEpisode: 1,
   seriesSeason: 2,
+  seriesName: random.word(),
+  seriesId: 'S02E01',
 });
 
 export const withTraktEpisodeFields = (e: RawEntry) => ({
   ...e,
+  [TraktEpisodeFields.Name]: random.words(),
   [TraktEpisodeFields.Genres]: random.words().split(' '),
   [TraktEpisodeFields.Rating]: random.number(10),
   [TraktEpisodeFields.Votes]: random.number(100),
   [TraktEpisodeFields.Description]: lorem.paragraph(),
+  [TraktEpisodeFields.ContentRating]: random.word(),
   [TraktEpisodeFields.ID]: random.word(),
 });
 
@@ -77,11 +85,13 @@ export const withTVDBEpisodeFields = (e: RawEntry) => ({
   [TVDBEpisodeFields.Image]: image.imageUrl(),
   [TVDBEpisodeFields.Rating]: random.number(10),
   [TVDBEpisodeFields.Description]: lorem.paragraph(),
+  [TVDBEpisodeFields.ContentRating]: random.word(),
   [TVDBEpisodeFields.ID]: random.word(),
 });
 
 export const withTVMazeEpisodeFields = (e: RawEntry) => ({
   ...e,
+  [TVMazeEpisodeFields.Name]: random.words(),
   [TVMazeEpisodeFields.Genres]: random.words().split(' '),
   [TVMazeEpisodeFields.Image]: image.imageUrl(),
   [TVMazeEpisodeFields.Rating]: random.number(10),
@@ -102,6 +112,8 @@ export const withTraktSeriesFields = (e: RawEntry) => ({
   [TraktSeriesFields.Votes]: random.number(100),
   [TraktSeriesFields.Description]: lorem.paragraph(),
   [TraktSeriesFields.ID]: random.word(),
+  [TraktSeriesFields.ContentRating]: random.words(),
+  [TraktSeriesFields.Url]: internet.url(),
 });
 
 export const withTVDBSeriesFields = (e: RawEntry) => ({
@@ -111,6 +123,8 @@ export const withTVDBSeriesFields = (e: RawEntry) => ({
   [TVDBSeriesFields.Rating]: random.number(10),
   [TVDBSeriesFields.Description]: lorem.paragraph(),
   [TVDBSeriesFields.Url]: internet.url(),
+  [TVDBSeriesFields.Backdrops]: image.imageUrl(),
+  [TVDBSeriesFields.ContentRating]: random.words(),
   [TVDBSeriesFields.ID]: random.word(),
 });
 
