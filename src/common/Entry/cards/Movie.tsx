@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { CardContent, Typography, CardMedia } from '@material-ui/core';
+import { CardContent, Typography, CardMedia, CardActionArea } from '@material-ui/core';
 import { getCachedUrl } from 'utils/image';
 import { normalizeMinutes } from 'utils/time';
 import { css } from '@emotion/core';
@@ -8,6 +8,7 @@ import { MovieEntry } from '../fields/movies';
 
 interface Props {
   entry: MovieEntry;
+  className?: string;
 }
 const bull = (
   <span
@@ -26,18 +27,23 @@ const summary = css`
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
 `;
 
+const image = css`
+  height: 30rem;
+`;
+
 const MovieCard: FC<Props> = ({
   entry: { backdrops, movieName, movieYear, runtime = 0, genres = [], description = '' },
+  className,
 }) => {
   return (
-    <>
-      {backdrops && (
+    <div className={className}>
+      {backdrops?.length && (
         <CardMedia
-          component="img"
-          alt={`${movieName} backdrops`}
-          height="300"
+          css={image}
+          role="img"
+          aria-label={`${movieName} backdrop`}
           image={getCachedUrl(Array.isArray(backdrops) ? backdrops[0] : backdrops)}
-          title={`${movieName} Backdrops`}
+          title={`${movieName} Backdrop`}
         />
       )}
       <CardContent>
@@ -56,7 +62,7 @@ const MovieCard: FC<Props> = ({
           {description}
         </Typography>
       </CardContent>
-    </>
+    </div>
   );
 };
 

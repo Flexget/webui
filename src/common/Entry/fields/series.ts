@@ -7,6 +7,7 @@ export enum SeriesFieldNames {
   Votes = 'votes',
   Description = 'description',
   Url = 'url',
+  ContentRating = 'contentRating',
   ID = 'seriesId',
 }
 
@@ -16,6 +17,7 @@ export const enum TVDBFields {
   Rating = 'tvdbRating',
   Description = 'tvdbOverview',
   Url = 'tvdbUrl',
+  ContentRating = 'tvdbContentRating',
   ID = 'tvdbId',
 }
 
@@ -25,6 +27,7 @@ export const enum TraktFields {
   Description = 'traktSeriesOverview',
   Votes = 'traktSeriesVotes',
   Url = 'traktSeriesUrl',
+  ContentRating = 'traktSeriesContentRating',
   ID = 'traktId',
 }
 
@@ -47,6 +50,7 @@ export const seriesFieldList = [
     [SeriesFieldNames.Rating]: TVDBFields.Rating,
     [SeriesFieldNames.Description]: TVDBFields.Description,
     [SeriesFieldNames.Url]: TVDBFields.Url,
+    [SeriesFieldNames.ContentRating]: TVDBFields.ContentRating,
     [SeriesFieldNames.ID]: TVDBFields.ID,
   },
   // Trakt
@@ -56,6 +60,7 @@ export const seriesFieldList = [
     [SeriesFieldNames.Description]: TraktFields.Description,
     [SeriesFieldNames.Votes]: TraktFields.Votes,
     [SeriesFieldNames.Url]: TraktFields.Url,
+    [SeriesFieldNames.ContentRating]: TraktFields.ContentRating,
     [SeriesFieldNames.ID]: TraktFields.ID,
   },
   // Tvmaze
@@ -76,6 +81,7 @@ interface SeriesGetters {
   [SeriesFieldNames.Votes]: number;
   [SeriesFieldNames.Description]: string;
   [SeriesFieldNames.Url]: string;
+  [SeriesFieldNames.ContentRating]: string;
   [SeriesFieldNames.ID]: string;
 }
 

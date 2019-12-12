@@ -19,6 +19,24 @@ const buffer = css`
   flex: 1;
 `;
 
+const card = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  height: 100%;
+`;
+
+const actionArea = css`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const entryCard = css`
+  flex: 1;
+`;
+
 const EntryCard: FC<Props> = ({ entry, setInjectEntry }) => {
   const [{ loading: operationLoading }, doOperation] = useEntryOperation(entry.id);
   const [{ loading: removeLoading }, removeEntry] = useRemoveEntry(entry.id);
@@ -40,9 +58,9 @@ const EntryCard: FC<Props> = ({ entry, setInjectEntry }) => {
       };
 
   return (
-    <Card>
-      <CardActionArea>
-        <Entry entry={entry.entry} />
+    <Card css={card}>
+      <CardActionArea css={actionArea}>
+        <Entry entry={entry.entry} css={entryCard} />
       </CardActionArea>
       <CardActions>
         <span css={buffer} />

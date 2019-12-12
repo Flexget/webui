@@ -4,18 +4,21 @@ import { EpisodeEntry } from '../fields/episodes';
 
 interface Props {
   entry: EpisodeEntry;
+  className?: string;
 }
 
-const EpisodeCard: FC<Props> = ({ entry }) => {
+const EpisodeCard: FC<Props> = ({ entry, className }) => {
   return (
-    <CardContent>
-      <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
-        {entry.title}
-      </Typography>
-      <Typography variant="body2" color="textSecondary" component="p">
-        {entry.originalUrl}
-      </Typography>
-    </CardContent>
+    <div className={className}>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
+          {entry.title}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {entry.originalUrl}
+        </Typography>
+      </CardContent>
+    </div>
   );
 };
 

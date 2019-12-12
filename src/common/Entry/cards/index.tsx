@@ -8,20 +8,21 @@ import DefaultCard from './Default';
 
 interface Props {
   entry: RawEntry;
+  className?: string;
 }
 
-const EntryCard: FC<Props> = ({ entry: rawEntry }) => {
+const EntryCard: FC<Props> = ({ entry: rawEntry, className }) => {
   const entry = toEntry(rawEntry);
 
   switch (entry.type) {
     case CardType.Movie:
-      return <MovieCard entry={entry} />;
+      return <MovieCard entry={entry} className={className} />;
     case CardType.Series:
-      return <SeriesCard entry={entry} />;
+      return <SeriesCard entry={entry} className={className} />;
     case CardType.Episode:
-      return <EpisodeCard entry={entry} />;
+      return <EpisodeCard entry={entry} className={className} />;
     default:
-      return <DefaultCard entry={entry} />;
+      return <DefaultCard entry={entry} className={className} />;
   }
 };
 
