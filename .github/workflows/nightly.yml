@@ -2,7 +2,7 @@ name: Nightly Cron
 
 on:
   schedule:
-    - cron: 0 1 * * *
+    - cron: 0 13 * * *
 
 jobs:
   deploy:
