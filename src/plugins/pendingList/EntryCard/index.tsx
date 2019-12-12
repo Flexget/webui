@@ -5,8 +5,8 @@ import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import DeleteIcon from '@material-ui/icons/Delete';
 import RepeatIcon from '@material-ui/icons/Repeat';
-import Entry from 'common/Entry';
-import { RawEntry } from 'common/Entry/types';
+import Entry from 'core/entry/cards';
+import { RawEntry } from 'core/entry/types';
 import { Operation, PendingListEntry } from '../types';
 import { useEntryOperation, useRemoveEntry } from '../hooks/entry';
 

@@ -1,5 +1,5 @@
 import { Direction } from 'utils/query';
-import { RawEntry } from 'common/Entry/types';
+import { RawEntry } from 'core/entry/types';
 import { Inject } from 'core/tasks/types';
 
 export const enum SortBy {

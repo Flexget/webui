@@ -1,4 +1,4 @@
-import { CardType, BaseEntry } from 'common/Entry/types';
+import { CardType, BaseEntry } from 'core/entry/types';
 import { MovieEntry } from './movies';
 import { EpisodeEntry } from './episodes';
 import { SeriesEntry } from './series';

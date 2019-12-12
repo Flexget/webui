@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import { Formik, Form } from 'formik';
 import theme from 'theme';
-import { RawEntry } from 'common/Entry/types';
+import { RawEntry } from 'core/entry/types';
 import SelectField from 'common/TextField/Select';
 import { TaskContainer } from 'core/tasks/hooks';
 import { InjectRequest } from '../types';

@@ -1,14 +1,17 @@
 import React, { FC } from 'react';
-import { CardContent, Typography, CardMedia } from '@material-ui/core';
-import { getCachedUrl } from 'utils/image';
-import { normalizeMinutes } from 'utils/time';
+import {
+  CardContent,
+  Typography,
+  CardMedia,
+} from '@material-ui/core';
 import { css } from '@emotion/core';
 import theme from 'theme';
-import { MovieEntry } from '../fields/movies';
+import { getCachedUrl } from 'utils/image';
+import { EpisodeEntry } from '../fields/episodes';
 import { Bullet } from './styles';
 
 interface Props {
-  entry: MovieEntry;
+  entry: EpisodeEntry;
   className?: string;
 }
 
@@ -18,32 +21,40 @@ const summary = css`
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
 `;
 
-const image = css`
+const imageCss = css`
   height: 30rem;
 `;
 
-const MovieCard: FC<Props> = ({
-  entry: { backdrops, movieName, movieYear, runtime = 0, genres = [], description = '' },
+const EpisodeCard: FC<Props> = ({
+  entry: {
+    seriesName,
+    genres = [],
+    description = '',
+    image = '',
+    episodeName,
+    contentRating,
+    seriesId,
+  },
   className,
 }) => {
   return (
     <div className={className}>
-      {backdrops?.length && (
+      {image?.length && (
         <CardMedia
-          css={image}
+          css={imageCss}
           role="img"
-          aria-label={`${movieName} backdrop`}
-          image={getCachedUrl(Array.isArray(backdrops) ? backdrops[0] : backdrops)}
-          title={`${movieName} Backdrop`}
+          aria-label={`${seriesName} backdrop`}
+          image={getCachedUrl(Array.isArray(image) ? image[0] : image)}
+          title={`${seriesName} Backdrop`}
         />
       )}
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
-          {movieName} ({movieYear})
+          {seriesName} - {episodeName} - {seriesId}
         </Typography>
         <Typography variant="overline" color="textSecondary">
-          {!!runtime && normalizeMinutes(runtime)}
-          {!!runtime && <Bullet />}
+          {contentRating}
+          {contentRating && <Bullet />}
           {genres.join(' ')}
         </Typography>
         <Typography css={summary} variant="body1" component="h3">
@@ -57,4 +68,4 @@ const MovieCard: FC<Props> = ({
   );
 };
 
-export default MovieCard;
+export default EpisodeCard;

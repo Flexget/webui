@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Grid } from '@material-ui/core';
-import { RawEntry } from 'common/Entry/types';
+import { RawEntry } from 'core/entry/types';
 import { EntryContainer, useGetEntries } from '../hooks/entry';
 import EntryCard from '../EntryCard';
 import { Options } from '../types';
