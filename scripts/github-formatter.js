@@ -90,17 +90,6 @@ const formatResults = results =>
       return result.messages.map(m => formatMessage(m, result));
     });
 
-const countErrors = results =>
-  results.reduce(
-    ({ errorCount, warningCount }, r) => ({
-      errorCount: r.errorCount + errorCount,
-      warningCount: r.warningCount + warningCount,
-    }),
-    {
-      errorCount: 0,
-      warningCount: 0,
-    },
-  );
 module.exports = async results => {
   const myToken = getInput('token');
 
@@ -127,10 +116,5 @@ module.exports = async results => {
     setFailed(`Action failed with err ${err}`);
   }
 
-  const counts = countErrors(results);
-
-  if (counts.errorCount || counts.warningCount) {
-    info(formatter(results));
-    setFailed('Linting errors');
-  }
+  return formatter(results);
 };
