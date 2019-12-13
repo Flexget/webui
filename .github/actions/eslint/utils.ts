@@ -107,5 +107,8 @@ export const formatSummary = ({
 export const formatResults = (results: CLIEngine.LintResult[]) => {
   return results
     .filter(result => !!result.messages.length)
-    .flatMap(result => result.messages.map(m => formatMessage(m, result)));
+    .flatMap(result => {
+      info(JSON.stringify(result))
+      return      result.messages.map(m => formatMessage(m, result))
+    });
 };
