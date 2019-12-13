@@ -10,7 +10,7 @@ on:
       - '**'
 jobs:
   tests:
-    name: Run Tests ${{ github.event_name }}
+    name: Run Tests (${{ github.event_name }})
     runs-on: ubuntu-latest
     strategy:
       matrix:

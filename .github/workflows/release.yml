@@ -43,7 +43,7 @@ jobs:
       - name: Zip Dist Folder
         run: zip -r /tmp/dist.zip ./dist
       - name: Release
-        run: scripts/release.sh
+        run: ./.github/actions/scripts/release.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./.github/actions/deployment-status
