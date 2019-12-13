@@ -35,6 +35,8 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Run Linter
         run: yarn lint -f ./scripts/github-formatter.js
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN }}
       - name: Run Tests
         run: yarn test --ci --coverage -i
       - name: Send to Code Cov
