@@ -33,11 +33,10 @@ jobs:
             # ${{ matrix.node }}-deps-
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
-      - uses: ./.github/actions/deployment-status
-        name: Set Deployment Status In Progress
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          status: in_progress
+      - name: Set Deployment Status In Progress
+        run: yarn deploy:status in_progress
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Build
         run: yarn build
       - name: Zip Dist Folder
@@ -46,14 +45,12 @@ jobs:
         run: scripts/release.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: ./.github/actions/deployment-status
-        name: Set Deployment Status Success
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          status: success
-      - uses: ./.github/actions/deployment-status
-        name: Set Deployment Status Failure
+      - name: Set Deployment Status Success
+        run: yarn deploy:status success
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set Deployment Status Failure
+        run: yarn deploy:status failure
         if: failure()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          status: failure
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
