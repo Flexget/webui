@@ -53,7 +53,7 @@ const globals = css`
 `;
 
 const Home = createAsyncComponent(() => import('core/home'));
-const Login = createAsyncComponent(() => import('core/auth'));
+const Login = createAsyncComponent(() => import('core/auth/Login'));
 const Routes = RoutesComponent as any;
 
 const Root = () => (

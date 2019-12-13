@@ -10,7 +10,7 @@ exports[`plugins/history/components/HistoryList HistoryList renders correctly 1`
     isReverse={false}
     loadMore={[MockFunction]}
     loader={
-      <LoadingBar
+      <LoadingSpinner
         loading={true}
       />
     }

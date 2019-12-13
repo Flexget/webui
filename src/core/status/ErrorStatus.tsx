@@ -1,20 +1,14 @@
 import React, { FC } from 'react';
-import { useStore, useDispatch } from 'react-redux';
 import StatusBar from './StatusBar';
-import actions from './state/actions';
-import { StatusContainer } from './hooks';
+import { actions, StatusContainer } from './hooks';
 
 const ErrorStatus: FC = () => {
-  const store = useStore();
-  const { status } = store.getState();
-  const dispatch = useDispatch();
-  const [{ error }, { setError }] = StatusContainer.useContainer();
+  const [{ errors }, dispatch] = StatusContainer.useContainer();
   const clearStatus = () => {
-    setError(undefined);
-    dispatch(actions.clear());
+    dispatch(actions.popError());
   };
 
-  return <StatusBar message={error ?? status.error?.message} clearStatus={clearStatus} />;
+  return <StatusBar message={errors[0]?.message} clearStatus={clearStatus} />;
 };
 
 export default ErrorStatus;

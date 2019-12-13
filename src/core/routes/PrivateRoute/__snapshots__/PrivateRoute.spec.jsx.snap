@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`core/routes/components/PrivateRoute PrivateRoute renders correctly when logged in 1`] = `<div />`;

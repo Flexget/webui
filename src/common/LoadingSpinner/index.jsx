@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Spinner, Wrapper } from './styles';
 
-const LoadingBar = ({ loading }) => {
+const LoadingSpinner = ({ loading }) => {
   if (loading) {
     return (
       <Wrapper>
@@ -13,12 +13,12 @@ const LoadingBar = ({ loading }) => {
   return null;
 };
 
-LoadingBar.propTypes = {
+LoadingSpinner.propTypes = {
   loading: PropTypes.bool,
 };
 
-LoadingBar.defaultProps = {
+LoadingSpinner.defaultProps = {
   loading: false,
 };
 
-export default LoadingBar;
+export default LoadingSpinner;
