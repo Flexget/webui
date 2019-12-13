@@ -1,9 +1,5 @@
 import React, { FC } from 'react';
-import {
-  CardContent,
-  Typography,
-  CardMedia,
-} from '@material-ui/core';
+import { CardContent, Typography, CardMedia } from '@material-ui/core';
 import { getCachedUrl } from 'utils/image';
 import { normalizeMinutes } from 'utils/time';
 import { css } from '@emotion/core';
