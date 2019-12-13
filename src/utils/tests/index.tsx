@@ -9,6 +9,7 @@ import { Formik, FormikConfig } from 'formik';
 import theme from 'theme';
 import { BaseAction } from 'core/status/state/util';
 import { AuthContainer } from 'core/auth/container';
+import { StatusContainer, State } from 'core/status/hooks';
 
 const mockStore = configureMockStore();
 
@@ -33,4 +34,8 @@ export const authProvider = (component: React.ReactNode, initialValue = false) =
 
 export const formik = <T extends any>(component: React.ReactNode, props: FormikConfig<T>) => (
   <Formik {...props}>{component}</Formik>
+);
+
+export const statusProvider = (component: React.ReactNode, initialValue?: State) => (
+  <StatusContainer.Provider initialState={initialValue}>{component}</StatusContainer.Provider>
 );

@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import ErrorStatus from 'common/ErrorStatus';
-import InfoStatus from 'common/InfoStatus';
+import ErrorStatus from 'core/status/ErrorStatus';
+import InfoStatus from 'core/status/InfoStatus';
 import { LoadingBar } from 'common/LoadingBar';
 import { AuthContainer } from 'core/auth/container';
 import { useFlexgetAPI } from 'core/api';
@@ -18,9 +18,6 @@ import {
   contentWithSidebar,
   content,
 } from './styles';
-
-const Error = ErrorStatus as any;
-const Info = InfoStatus as any;
 
 const Layout: React.FC = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(
@@ -57,8 +54,8 @@ const Layout: React.FC = ({ children }) => {
           <SideNav sideBarOpen={sidebarOpen} toggle={toggleSidebar} />
         </aside>
         <section css={[content, contentCssFn()]}>{children}</section>
-        <Error />
-        <Info />
+        <ErrorStatus />
+        <InfoStatus />
       </main>
     </div>
   );

@@ -40,6 +40,6 @@ module.exports = {
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/__mocks__/fileMock.js',
   },
   setupFiles: ['raf/polyfill', '<rootDir>/src/utils/tests/setupFiles.ts'],
-  setupFilesAfterEnv: ['<rootDir>/src/utils/tests/setupTest.js'],
+  setupFilesAfterEnv: ['jest-extended', 'jest-chain', '<rootDir>/src/utils/tests/setupTest.js'],
   testURL: 'http://localhost/',
 };
