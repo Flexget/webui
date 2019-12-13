@@ -1,7 +1,7 @@
 import { createContainer } from 'unstated-next';
 import { useState } from 'react';
 
-interface State {
+export interface State {
   loading?: boolean;
   info?: string;
   error?: string;

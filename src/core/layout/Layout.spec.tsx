@@ -2,18 +2,20 @@ import React from 'react';
 import { FetchMock } from 'jest-fetch-mock';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
 import Layout from 'core/layout';
-import { themed, router, provider, authProvider } from 'utils/tests';
+import { themed, router, provider, authProvider, statusProvider } from 'utils/tests';
 
 const fetchMock = fetch as FetchMock;
 
 function renderLayout() {
   return provider(
-    authProvider(
-      router(
-        themed(
-          <Layout>
-            <div />
-          </Layout>,
+    statusProvider(
+      authProvider(
+        router(
+          themed(
+            <Layout>
+              <div />
+            </Layout>,
+          ),
         ),
       ),
     ),
