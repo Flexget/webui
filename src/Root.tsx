@@ -19,6 +19,7 @@ import registerSeries from 'plugins/series';
 import registerPendingList from 'plugins/pendingList';
 import { AuthContainer } from 'core/auth/container';
 import { TaskContainer } from 'core/tasks/hooks';
+import { StatusContainer } from 'core/status/hooks';
 
 registerHistory();
 registerLog();
@@ -60,29 +61,31 @@ const Root = () => (
     <Global styles={globals} />
     <StylesProvider injectFirst>
       <Provider store={store}>
-        <AuthContainer.Provider>
-          <ConnectedRouter history={history}>
-            <MuiThemeProvider theme={theme}>
-              <div>
-                <Switch>
-                  <Route path="/login" exact component={Login} />
-                  <Route
-                    render={() => (
-                      <TaskContainer.Provider>
-                        <Layout>
-                          <Switch>
-                            <PrivateRoute path="/" exact component={Home} />
-                            <Route render={() => <Routes />} />
-                          </Switch>
-                        </Layout>
-                      </TaskContainer.Provider>
-                    )}
-                  />
-                </Switch>
-              </div>
-            </MuiThemeProvider>
-          </ConnectedRouter>
-        </AuthContainer.Provider>
+        <StatusContainer.Provider>
+          <AuthContainer.Provider>
+            <ConnectedRouter history={history}>
+              <MuiThemeProvider theme={theme}>
+                <div>
+                  <Switch>
+                    <Route path="/login" exact component={Login} />
+                    <Route
+                      render={() => (
+                        <TaskContainer.Provider>
+                          <Layout>
+                            <Switch>
+                              <PrivateRoute path="/" exact component={Home} />
+                              <Route render={() => <Routes />} />
+                            </Switch>
+                          </Layout>
+                        </TaskContainer.Provider>
+                      )}
+                    />
+                  </Switch>
+                </div>
+              </MuiThemeProvider>
+            </ConnectedRouter>
+          </AuthContainer.Provider>
+        </StatusContainer.Provider>
       </Provider>
     </StylesProvider>
   </div>

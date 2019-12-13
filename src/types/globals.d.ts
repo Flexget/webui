@@ -1,5 +1,6 @@
 import { PluginRegistry } from 'core/registry';
 import { SetStateAction, Dispatch } from 'react';
+import 'jest-extended';
 
 declare global {
   interface Window {
