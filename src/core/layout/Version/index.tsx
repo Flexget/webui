@@ -6,6 +6,7 @@ import { IconButton } from '@material-ui/core';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import Typography from '@material-ui/core/Typography';
 import { useFlexgetAPI } from 'core/api';
+import { useGlobalStatus } from 'core/status/hooks';
 
 interface Props {
   className?: string;
@@ -27,7 +28,8 @@ const Line = styled(Typography)`
 
 const useVersion = () => {
   const [version, setVersion] = useState<VersionResponse | undefined>();
-  const [{ loading }, getVersion] = useFlexgetAPI<VersionResponse>('/server/version');
+  const [{ loading, error }, getVersion] = useFlexgetAPI<VersionResponse>('/server/version');
+  useGlobalStatus(loading, error);
 
   useEffect(() => {
     const fn = async () => {

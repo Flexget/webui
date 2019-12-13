@@ -2,7 +2,7 @@ import React from 'react';
 import { create } from 'react-test-renderer';
 import { provider, router, themed, authProvider } from 'utils/tests';
 import { FetchMock } from 'jest-fetch-mock';
-import Login from './index';
+import Login from './Login';
 
 const fetchMock = fetch as FetchMock;
 

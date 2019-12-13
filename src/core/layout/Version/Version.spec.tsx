@@ -1,8 +1,9 @@
 import React from 'react';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
 import Version from 'core/layout/Version';
-import { themed, authProvider } from 'utils/tests';
 import { FetchMock } from 'jest-fetch-mock';
+import { StatusContainer } from 'core/status/hooks';
+import { AuthContainer } from 'core/auth/container';
 
 const fetchMock = fetch as FetchMock;
 
@@ -20,7 +21,13 @@ describe('core/layout/Version', () => {
     );
     let tree: ReactTestRenderer | undefined;
     await act(async () => {
-      tree = create(authProvider(themed(<Version />)));
+      tree = create(
+        <StatusContainer.Provider>
+          <AuthContainer.Provider>
+            <Version />
+          </AuthContainer.Provider>
+        </StatusContainer.Provider>,
+      );
     });
     expect(tree?.toJSON()).toMatchSnapshot();
   });
@@ -33,10 +40,16 @@ describe('core/layout/Version', () => {
         latestVersion: '2.10.60',
       }),
     );
-    let tree: ReactTestRenderer | undefined;
+    let wrapper: ReactTestRenderer | undefined;
     await act(async () => {
-      tree = create(authProvider(themed(<Version />)));
+      wrapper = create(
+        <StatusContainer.Provider>
+          <AuthContainer.Provider>
+            <Version />
+          </AuthContainer.Provider>
+        </StatusContainer.Provider>,
+      );
     });
-    expect(tree?.toJSON()).toMatchSnapshot();
+    expect(wrapper?.toJSON()).toMatchSnapshot();
   });
 });

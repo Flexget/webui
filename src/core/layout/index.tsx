@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import ErrorStatus from 'core/status/ErrorStatus';
 import InfoStatus from 'core/status/InfoStatus';
-import { LoadingBar } from 'common/LoadingBar';
+import LoadingBar from 'core/status/LoadingBar';
 import { AuthContainer } from 'core/auth/container';
 import { useFlexgetAPI } from 'core/api';
 import { Method } from 'utils/fetch';

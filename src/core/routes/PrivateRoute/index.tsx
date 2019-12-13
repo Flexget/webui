@@ -1,9 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Route, Redirect } from 'react-router-dom';
+import React, { FC, ComponentType } from 'react';
+import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { AuthContainer } from 'core/auth/container';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+interface Props extends RouteProps {
+  component: ComponentType<any>;
+}
+
+const PrivateRoute: FC<Props> = ({ component: Component, ...rest }) => {
   const [loggedIn] = AuthContainer.useContainer();
   return (
     <Route
@@ -22,10 +25,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       }
     />
   );
-};
-
-PrivateRoute.propTypes = {
-  component: PropTypes.func.isRequired,
 };
 
 export default PrivateRoute;

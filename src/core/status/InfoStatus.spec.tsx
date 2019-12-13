@@ -1,35 +1,51 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { mount } from 'enzyme';
-import { themed, provider } from 'utils/tests';
 import InfoStatus from './InfoStatus';
-import { StatusContainer } from './hooks';
+import { StatusContainer, actions } from './hooks';
 
-describe('core/status/InfoStatus', () => {
-  it('should render nothing if no message', () => {
-    const wrapper = mount(
-      themed(
-        provider(
-          <StatusContainer.Provider>
-            <InfoStatus />
-          </StatusContainer.Provider>,
-          { status: {} },
-        ),
-      ),
-    );
-    expect(wrapper.html()).toBeEmpty();
-  });
+const TestComponent: FC = () => {
+  const [, dispatch] = StatusContainer.useContainer();
 
+  const push = (event: any) => dispatch(actions.pushInfo(event.message));
+  const pop = () => dispatch(actions.popInfo());
+
+  return (
+    <>
+      <InfoStatus />
+      <button id="push" type="button" onClick={push}>
+        Push Button
+      </button>
+      <button id="pop" type="button" onClick={pop}>
+        Pop Button
+      </button>
+    </>
+  );
+};
+
+describe('core/status/ErrorStatus', () => {
   it('should render text if there is a message', () => {
     const wrapper = mount(
-      themed(
-        provider(
-          <StatusContainer.Provider initialState={{ info: 'some info', error: 'some error' }}>
-            <InfoStatus />
-          </StatusContainer.Provider>,
-          { status: {} },
-        ),
-      ),
+      <StatusContainer.Provider>
+        <TestComponent />
+      </StatusContainer.Provider>,
     );
-    expect(wrapper.text()).toInclude('some info');
+
+    const pushButton = wrapper.find('#push');
+    const popButton = wrapper.find('#pop');
+
+    expect(wrapper.find(InfoStatus).text()).toBeEmpty();
+
+    pushButton.simulate('click', { message: 'first message' });
+
+    expect(wrapper.find(InfoStatus).text()).toInclude('first message');
+    pushButton.simulate('click', { message: 'second message' });
+
+    expect(wrapper.find(InfoStatus).text()).toInclude('first message');
+
+    popButton.simulate('click');
+    expect(wrapper.find(InfoStatus).text()).toInclude('second message');
+
+    popButton.simulate('click');
+    expect(wrapper.find(InfoStatus).text()).toBeEmpty();
   });
 });
