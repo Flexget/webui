@@ -45,5 +45,3 @@ export const useFlexgetAPI = <Res>(url: string, method: Method = Method.Get) => 
 
   return [{ error, loading }, requestFn] as const;
 };
-
-
