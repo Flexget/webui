@@ -346,19 +346,6 @@ exports[`common/layout renders correctly 1`] = `
           </button>
         </div>
       </header>
-      <div
-        className="MuiLinearProgress-root MuiLinearProgress-colorSecondary MuiLinearProgress-query"
-        role="progressbar"
-      >
-        <div
-          className="MuiLinearProgress-bar MuiLinearProgress-barColorSecondary MuiLinearProgress-bar1Indeterminate"
-          style={Object {}}
-        />
-        <div
-          className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorSecondary"
-          style={Object {}}
-        />
-      </div>
     </nav>
   </header>
   <main
