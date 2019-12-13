@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { mount } from 'enzyme';
-import { themed, provider } from 'utils/tests';
 import { StatusContainer, actions } from './hooks';
 import LoadingBar from './LoadingBar';
 
@@ -26,14 +25,9 @@ const TestComponent: FC = () => {
 describe('core/status/LoadingBar', () => {
   it('should render the loading bar if loading', () => {
     const wrapper = mount(
-      themed(
-        provider(
-          <StatusContainer.Provider>
-            <TestComponent />
-          </StatusContainer.Provider>,
-          { status: {} },
-        ),
-      ),
+      <StatusContainer.Provider>
+        <TestComponent />
+      </StatusContainer.Provider>,
     );
 
     const startButton = wrapper.find('#start');

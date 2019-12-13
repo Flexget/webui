@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
-import { useStore } from 'react-redux';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { StatusContainer } from './hooks';
 
+const isLoading = (obj: Record<string, boolean>) =>
+  Object.values(obj).reduce((agg, loading) => agg || loading, false);
+
 const LoadingBar: FC = () => {
-  const store = useStore();
-  const { status } = store.getState();
   const [{ loading }] = StatusContainer.useContainer();
-  if (Object.values(loading).reduce((agg, l) => agg || l, false) || status.loading) {
+
+  if (isLoading(loading)) {
     return <LinearProgress variant="query" color="secondary" />;
   }
   return null;
