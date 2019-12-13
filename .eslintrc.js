@@ -26,7 +26,7 @@ module.exports = {
   },
   parserOptions: {
     warnOnUnsupportedTypeScriptVersion: false,
-    project: './tsconfig.json',
+    // project: './tsconfig.json',
   },
   rules: {
     // typescript
@@ -44,7 +44,7 @@ module.exports = {
         argsIgnorePattern: '^_',
       },
     ],
-    '@typescript-eslint/prefer-nullish-coalescing': 'error',
+    // '@typescript-eslint/prefer-nullish-coalescing': 'error',
     '@typescript-eslint/prefer-optional-chain': 'error',
 
     // emotion

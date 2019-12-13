@@ -1,0 +1,17 @@
+name: ESlint
+description: Runs eslint and calls the checks API
+inputs:
+  token:
+    description: 'Github access token'
+    required: true
+  extensions:
+    description: 'Comma separated file extensions'
+    required: false
+    default: '.js, .ts, jsx, .tsx'
+  files:
+    description: 'Comma separated file paths'
+    required: false
+    default: '.'
+runs:
+  using: 'node12'
+  main: 'lib/index.js'

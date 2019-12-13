@@ -34,7 +34,11 @@ jobs:
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
       - name: Run Linter
-        run: yarn lint
+        uses: ./github/actions/eslint
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          extensions: ".ts, .tsx, .js, .jsx"
+          files: src
       - name: Run Tests
         run: yarn test --ci --coverage -i
       - name: Send to Code Cov

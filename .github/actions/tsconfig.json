@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "pretty": true,
+    "target": "es2019",
+    "moduleResolution": "node",
+    "typeRoots": ["../../node_modules/@types"],
+    "skipLibCheck": true,
+    "lib": [
+      "esnext",
+      "webworker.importscripts",
+      "dom",
+      "scripthost",
+      "dom.iterable"
+    ],
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "./**/lib/"
+  ]
+}
