@@ -1,9 +1,0 @@
-name: Deployment
-description: Creates a deployment
-inputs:
-  token:
-    description: 'Github access token'
-    required: true
-runs:
-  using: 'node12'
-  main: 'lib/index.js'

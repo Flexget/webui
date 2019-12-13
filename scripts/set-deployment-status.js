@@ -1,12 +1,11 @@
-const { getInput, setFailed } = require('@actions/core');
-const { GitHub, context } = require('@actions/github');
+import { setFailed } from '@actions/core';
+import { GitHub, context } from '@actions/github';
 
 async function run() {
-  const myToken = getInput('token');
-  const state = getInput('status');
+  const state = process.argv[2];
 
   const { repo, payload } = context;
-  const { repos } = new GitHub(myToken, { previews: ['flash'] });
+  const { repos } = new GitHub(process.env.GITHUB_TOKEN, { previews: ['flash'] });
 
   try {
     await repos.createDeploymentStatus({
