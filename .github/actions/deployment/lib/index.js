@@ -3941,7 +3941,7 @@ async function run() {
     const { repo, ref } = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context;
     const { repos } = new _actions_github__WEBPACK_IMPORTED_MODULE_1__.GitHub(myToken);
     try {
-        const data = await repos.createDeployment({
+        await repos.createDeployment({
             ...repo,
             ref: ref.slice(11),
         });

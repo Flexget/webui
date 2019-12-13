@@ -8,7 +8,7 @@ async function run() {
   const { repos } = new GitHub(myToken);
 
   try {
-    const data = await repos.createDeployment({
+    await repos.createDeployment({
       ...repo,
       ref: ref.slice(11),
     });

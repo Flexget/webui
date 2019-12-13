@@ -10,7 +10,7 @@ on:
       - '**'
 jobs:
   tests:
-    name: Run Tests
+    name: Run Tests ${{ github.event_name }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -34,7 +34,7 @@ jobs:
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
       - name: Run Linter
-        uses: ./github/actions/eslint
+        uses: ./.github/actions/eslint
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           extensions: ".ts, .tsx, .js, .jsx"
