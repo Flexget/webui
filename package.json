@@ -13,8 +13,7 @@
     "test:watch": "jest --watch",
     "release:bump": "NODE_ENV=release babel-node ./scripts/bump-version.js",
     "release:upload": "NODE_ENV=release babel-node ./scripts/create-release.js",
-    "deploy:status": "NODE_ENV=release babel-node ./scripts/set-deployment-status.js",
-    "deploy:create": "NODE_ENV=release babel-node ./scripts/deployment.js"
+    "deploy:status": "NODE_ENV=release babel-node ./scripts/set-deployment-status.js"
   },
   "repository": {
     "type": "git",
