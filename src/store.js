@@ -20,7 +20,6 @@ sagaMiddleware.run(rootSaga);
 
 registry.onRegisterReducer = reducers => store.replaceReducer(createReducer(reducers));
 registry.onRegisterSaga = saga => sagaMiddleware.run(saga);
-registry.onRegisterRoute = data => store.dispatch(actions.addRoute(data));
 
 export default store;
 

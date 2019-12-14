@@ -1,5 +1,6 @@
 import { ComponentType } from 'react';
 import { ReducersMapObject, Reducer } from 'redux';
+import { Route } from 'core/routes/types';
 
 export type ReducerHandler = (reducers?: ReducersMapObject) => void;
 export type SagaHandler = (saga?: Function) => void;
@@ -22,4 +23,4 @@ export interface RouteConfig {
   routeIcon: ComponentType;
 }
 
-export type RouteHandler = (route?: RouteConfig) => void;
+export type RouteHandler = (route: Route) => void;

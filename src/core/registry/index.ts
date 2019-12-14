@@ -1,5 +1,6 @@
 import { camelize } from 'humps';
 import { ReducersMapObject } from 'redux';
+import { Route } from 'core/routes/types';
 import { ReducerHandler, SagaHandler, RouteHandler, Plugin } from './types';
 
 export class PluginRegistry {
@@ -11,8 +12,11 @@ export class PluginRegistry {
 
   routeHandler: RouteHandler;
 
+  routes: Route[];
+
   constructor() {
     this.reducers = {};
+    this.routes = [];
     this.reducerHandler = () => {};
     this.sagaHandler = () => {};
     this.routeHandler = () => {};
@@ -37,18 +41,22 @@ export class PluginRegistry {
     if (!name) {
       throw Error('Plugin requires name');
     }
-    if (component || children) {
-      if (!routeDisplayName || !routeIcon) {
-        throw Error('Component requires routeDisplayname and routeIcon');
-      }
 
-      this.routeHandler({
-        path: `/${name}`,
+    if (!routeDisplayName || !routeIcon) {
+      throw Error('Component requires routeDisplayname and routeIcon');
+    }
+
+    if (component) {
+      const route = {
+        name: routeDisplayName,
         component,
-        children,
-        routeDisplayName,
-        routeIcon,
-      });
+        Icon: routeIcon,
+        path: `/${name}`,
+      };
+
+      this.routes = [...this.routes, route];
+
+      this.routeHandler(route);
     }
 
     if (children) {

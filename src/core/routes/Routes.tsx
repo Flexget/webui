@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, FC } from 'react';
 import { Switch, useLocation } from 'react-router-dom';
 import { StatusContainer, actions } from 'core/status/hooks';
-import PrivateRoute from '../PrivateRoute';
+import { RouteContainer } from 'core/routes/hooks';
+import PrivateRoute from './PrivateRoute';
 
-const Routes = ({ routes }) => {
+const Routes: FC = () => {
+  const [routes] = RouteContainer.useContainer();
+
   const location = useLocation();
   const [, dispatch] = StatusContainer.useContainer();
   useEffect(() => dispatch(actions.clear()), [dispatch, location]);
@@ -19,19 +21,6 @@ const Routes = ({ routes }) => {
       })}
     </Switch>
   );
-};
-
-Routes.propTypes = {
-  routes: PropTypes.arrayOf(
-    PropTypes.shape({
-      path: PropTypes.string.isRequired,
-      children: PropTypes.arrayOf(
-        PropTypes.shape({
-          path: PropTypes.string,
-        }),
-      ),
-    }),
-  ).isRequired,
 };
 
 export default Routes;

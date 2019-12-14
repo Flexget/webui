@@ -1,8 +1,9 @@
 import React from 'react';
 import { FetchMock } from 'jest-fetch-mock';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
-import Layout from 'core/layout';
 import { themed, router, provider, authProvider, statusProvider } from 'utils/tests';
+import { RouteContainer } from 'core/routes/hooks';
+import Layout from './Layout';
 
 const fetchMock = fetch as FetchMock;
 
@@ -12,9 +13,11 @@ function renderLayout() {
       authProvider(
         router(
           themed(
-            <Layout>
-              <div />
-            </Layout>,
+            <RouteContainer.Provider>
+              <Layout>
+                <div />
+              </Layout>
+            </RouteContainer.Provider>,
           ),
         ),
       ),

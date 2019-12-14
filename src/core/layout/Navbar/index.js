@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 function mapStateToProps({ router, routes }) {
   return {
     pathname: router.location.pathname,
-    titleMap: Object.values(routes).reduce(
+    titleMap: Object.values(routes || []).reduce(
       (obj, route) => ({
         ...obj,
         [route.path]: route.name,

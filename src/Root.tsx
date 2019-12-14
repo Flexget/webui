@@ -10,8 +10,8 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Global, css } from '@emotion/core';
 import theme from 'theme';
 import PrivateRoute from 'core/routes/PrivateRoute';
-import Layout from 'core/layout';
-import RoutesComponent from 'core/routes';
+import Layout from 'core/layout/Layout';
+import RoutesComponent from 'core/routes/Routes';
 import { createAsyncComponent } from 'utils/loading';
 import registerHistory from 'plugins/history';
 import registerLog from 'plugins/log';
@@ -20,6 +20,7 @@ import registerPendingList from 'plugins/pendingList';
 import { AuthContainer } from 'core/auth/container';
 import { TaskContainer } from 'core/tasks/hooks';
 import { StatusContainer } from 'core/status/hooks';
+import { RouteContainer } from 'core/routes/hooks';
 
 registerHistory();
 registerLog();
@@ -71,12 +72,14 @@ const Root = () => (
                     <Route
                       render={() => (
                         <TaskContainer.Provider>
-                          <Layout>
-                            <Switch>
-                              <PrivateRoute path="/" exact component={Home} />
-                              <Route render={() => <Routes />} />
-                            </Switch>
-                          </Layout>
+                          <RouteContainer.Provider>
+                            <Layout>
+                              <Switch>
+                                <PrivateRoute path="/" exact component={Home} />
+                                <Route render={() => <Routes />} />
+                              </Switch>
+                            </Layout>
+                          </RouteContainer.Provider>
                         </TaskContainer.Provider>
                       )}
                     />
