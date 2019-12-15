@@ -4,7 +4,6 @@ import { routerMiddleware } from 'connected-react-router';
 import history from 'core/history';
 import createReducer from 'core/reducers';
 import status from 'core/status/state/middleware';
-import rootSaga from 'core/sagas';
 import registry from 'core/routes/registry';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -14,8 +13,6 @@ const store = createStore(
   createReducer(),
   composeEnhancers(applyMiddleware(status, routerMiddleware(history), sagaMiddleware)),
 );
-
-sagaMiddleware.run(rootSaga);
 
 registry.onRegisterReducer = reducers => store.replaceReducer(createReducer(reducers));
 registry.onRegisterSaga = saga => sagaMiddleware.run(saga);

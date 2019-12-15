@@ -1,35 +1,27 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { FetchMock } from 'jest-fetch-mock';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
-import { themed, router, provider, authProvider, statusProvider } from 'utils/tests';
 import { RouteContainer } from 'core/routes/hooks';
+import { AuthContainer } from 'core/auth/container';
+import { StatusContainer } from 'core/status/hooks';
 import Layout from './Layout';
 
 const fetchMock = fetch as FetchMock;
 
-function renderLayout() {
-  return provider(
-    statusProvider(
-      authProvider(
-        router(
-          themed(
-            <RouteContainer.Provider>
-              <Layout>
-                <div />
-              </Layout>
-            </RouteContainer.Provider>,
-          ),
-        ),
-      ),
-    ),
-    {
-      router: { location: {} },
-      version: {},
-      status: { loading: {} },
-      routes: {},
-    },
-  );
-}
+const renderLayout = () => (
+  <StatusContainer.Provider>
+    <AuthContainer.Provider>
+      <MemoryRouter>
+        <RouteContainer.Provider>
+          <Layout>
+            <div />
+          </Layout>
+        </RouteContainer.Provider>
+      </MemoryRouter>
+    </AuthContainer.Provider>
+  </StatusContainer.Provider>
+);
 describe('common/layout', () => {
   beforeEach(() => {
     fetchMock.mockResponseOnce(
