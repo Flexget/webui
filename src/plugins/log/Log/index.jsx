@@ -7,7 +7,7 @@ import LogTable from '../LogTable';
 import { TableWrapper } from './styles';
 
 const LogPage = () => {
-  useInjectPageTitle('Log')
+  useInjectPageTitle('Log');
   return (
     <PaperWrapper elevation={4}>
       <Header />
