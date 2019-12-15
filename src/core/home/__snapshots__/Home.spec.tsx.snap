@@ -1,36 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`core/home/components/Home renders correctly 1`] = `
-.emotion-3 {
+exports[`core/home/Home renders correctly 1`] = `
+<div
+  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root MuiPaper-rounded"
+  css={
+    Object {
+      "map": undefined,
+      "name": "1tku438",
+      "next": undefined,
+      "styles": "
   margin: 0 auto;
-}
-
-@media (min-width:600px) {
-  .emotion-3 {
+  @media (min-width:600px) {
     width: 50%;
   }
-}
-
-.emotion-0 {
-  background-color: #ef6c00;
-}
-
-.emotion-1 {
-  font-weight: bold;
-}
-
-.emotion-2 {
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-<div
-  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root emotion-3 MuiPaper-rounded"
+",
+      "toString": [Function],
+    }
+  }
 >
   <div
-    className="MuiCardHeader-root emotion-0"
+    className="MuiCardHeader-root"
+    css={
+      Object {
+        "map": undefined,
+        "name": "dbzqgo",
+        "next": undefined,
+        "styles": "
+  background-color: #ef6c00;
+  color: #fff;
+",
+        "toString": [Function],
+      }
+    }
   >
     <div
       className="MuiCardHeader-content"
@@ -51,7 +52,17 @@ exports[`core/home/components/Home renders correctly 1`] = `
     className="MuiCardContent-root"
   >
     <p
-      className="emotion-1"
+      css={
+        Object {
+          "map": undefined,
+          "name": "1xxe9l9",
+          "next": undefined,
+          "styles": "
+  font-weight: bold;
+",
+          "toString": [Function],
+        }
+      }
     >
       We need your help! If you are a React developer or can help with the layout/design/css then please join in the effort!
     </p>
@@ -93,7 +104,18 @@ exports[`core/home/components/Home renders correctly 1`] = `
     </p>
   </div>
   <div
-    className="MuiCardActions-root emotion-2 MuiCardActions-spacing"
+    className="MuiCardActions-root MuiCardActions-spacing"
+    css={
+      Object {
+        "map": undefined,
+        "name": "xf7v2y",
+        "next": undefined,
+        "styles": "
+  justify-content: center;
+",
+        "toString": [Function],
+      }
+    }
   >
     <a
       aria-disabled={false}
