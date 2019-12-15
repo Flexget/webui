@@ -1,6 +1,8 @@
+import React from 'react';
 import styled from '@emotion/styled';
-import theme from 'theme';
+import WaveSpinner from 'common/WaveSpinner';
 import headerImage from 'images/header.png';
+import theme from 'theme';
 
 export const Logo = styled.div`
   background: transparent url(${headerImage}) no-repeat center;
@@ -11,3 +13,12 @@ export const Logo = styled.div`
     background-size: auto;
   }
 `;
+
+const SplashScreen = () => (
+  <div>
+    <Logo />
+    <WaveSpinner />
+  </div>
+);
+
+export default SplashScreen;
