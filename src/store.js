@@ -3,7 +3,6 @@ import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
 import history from 'core/history';
 import createReducer from 'core/reducers';
-import status from 'core/status/state/middleware';
 import registry from 'core/routes/registry';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -11,7 +10,7 @@ const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = (__DEV__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 const store = createStore(
   createReducer(),
-  composeEnhancers(applyMiddleware(status, routerMiddleware(history), sagaMiddleware)),
+  composeEnhancers(applyMiddleware(routerMiddleware(history), sagaMiddleware)),
 );
 
 registry.onRegisterReducer = reducers => store.replaceReducer(createReducer(reducers));
