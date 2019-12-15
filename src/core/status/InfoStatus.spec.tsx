@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import { mount } from 'enzyme';
+import { useContainer } from 'unstated-next';
 import InfoStatus from './InfoStatus';
 import { StatusContainer, actions } from './hooks';
 
 const TestComponent: FC = () => {
-  const [, dispatch] = StatusContainer.useContainer();
+  const [, dispatch] = useContainer(StatusContainer);
 
   const push = (event: any) => dispatch(actions.pushInfo(event.message));
   const pop = () => dispatch(actions.popInfo());

@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import { mount } from 'enzyme';
+import { useContainer } from 'unstated-next';
 import { StatusContainer, actions } from './hooks';
 import LoadingBar from './LoadingBar';
 
 const TestComponent: FC = () => {
-  const [, dispatch] = StatusContainer.useContainer();
+  const [, dispatch] = useContainer(StatusContainer);
 
   const start = (event: any) => dispatch(actions.setLoading(event.id, true));
   const stop = (event: any) => dispatch(actions.setLoading(event.id, false));

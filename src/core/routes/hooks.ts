@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createContainer } from 'unstated-next';
-import registry from 'core/registry';
+import registry from 'core/routes/registry';
 
 export const RouteContainer = createContainer(() => {
   const [routes, setRoutes] = useState(registry.routes);

@@ -1,14 +1,15 @@
 import React, { useEffect, FC } from 'react';
+import { useContainer } from 'unstated-next';
 import { Switch, useLocation } from 'react-router-dom';
 import { StatusContainer, actions } from 'core/status/hooks';
-import { RouteContainer } from 'core/routes/hooks';
+import { RouteContainer } from './hooks';
 import PrivateRoute from './PrivateRoute';
 
 const Routes: FC = () => {
-  const [routes] = RouteContainer.useContainer();
+  const [routes] = useContainer(RouteContainer);
 
   const location = useLocation();
-  const [, dispatch] = StatusContainer.useContainer();
+  const [, dispatch] = useContainer(StatusContainer);
   useEffect(() => dispatch(actions.clear()), [dispatch, location]);
 
   return (

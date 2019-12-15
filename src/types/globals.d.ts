@@ -1,4 +1,4 @@
-import { PluginRegistry } from 'core/registry';
+import { PluginRegistry } from 'core/routes/registry';
 import { SetStateAction, Dispatch } from 'react';
 import 'jest-extended';
 

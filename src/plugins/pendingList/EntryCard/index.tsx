@@ -12,7 +12,7 @@ import { useEntryOperation, useRemoveEntry } from '../hooks/entry';
 
 interface Props {
   entry: PendingListEntry;
-  setInjectEntry: SetState<RawEntry | undefined>;
+  setInjectEntry: SetState<RawEntry>;
 }
 
 const buffer = css`

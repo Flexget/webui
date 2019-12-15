@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react';
+import { useContainer } from 'unstated-next';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
 import { AuthContainer } from 'core/auth/container';
 import { useFlexgetAPI } from 'core/api';
@@ -14,7 +15,7 @@ const Card = LoginCard as any;
 
 const LoginPage: FC<Props> = ({ location }) => {
   const { from } = location?.state || { from: { pathname: '/' } };
-  const [loggedIn, setLoggedIn] = AuthContainer.useContainer();
+  const [loggedIn, setLoggedIn] = useContainer(AuthContainer);
 
   const [loginState, postLogin] = useFlexgetAPI('/auth/login', Method.Post);
   const [versionState, getVersion] = useFlexgetAPI('/server/version');

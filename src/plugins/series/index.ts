@@ -1,5 +1,5 @@
 import { createAsyncComponent } from 'utils/loading';
-import registry from 'core/registry';
+import registry from 'core/routes/registry';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
 import saga from './state/saga';
 import reducer from './state/reducer';

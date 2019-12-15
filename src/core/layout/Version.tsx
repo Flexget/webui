@@ -27,7 +27,7 @@ const Line = styled(Typography)`
 `;
 
 const useVersion = () => {
-  const [version, setVersion] = useState<VersionResponse | undefined>();
+  const [version, setVersion] = useState<VersionResponse>();
   const [{ loading, error }, getVersion] = useFlexgetAPI<VersionResponse>('/server/version');
   useGlobalStatus(loading, error);
 

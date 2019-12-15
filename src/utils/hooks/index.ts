@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-export const useOverlayState = (defaultState: boolean) => {
+export const useOverlayState = (defaultState = false) => {
   const [isOpen, setOpen] = useState(defaultState);
 
   const open = useCallback(() => setOpen(true), []);

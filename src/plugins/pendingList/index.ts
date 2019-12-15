@@ -1,6 +1,6 @@
 import { createAsyncComponent } from 'utils/loading';
 import CheckIcon from '@material-ui/icons/Check';
-import registry from 'core/registry';
+import registry from 'core/routes/registry';
 
 export default () =>
   registry.registerPlugin('pendingList', {

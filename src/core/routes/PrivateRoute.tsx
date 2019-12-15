@@ -1,5 +1,6 @@
 import React, { FC, ComponentType } from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
+import { useContainer } from 'unstated-next';
 import { AuthContainer } from 'core/auth/container';
 
 interface Props extends RouteProps {
@@ -7,7 +8,7 @@ interface Props extends RouteProps {
 }
 
 const PrivateRoute: FC<Props> = ({ component: Component, ...rest }) => {
-  const [loggedIn] = AuthContainer.useContainer();
+  const [loggedIn] = useContainer(AuthContainer);
   return (
     <Route
       {...rest}

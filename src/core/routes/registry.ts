@@ -1,7 +1,6 @@
 import { camelize } from 'humps';
 import { ReducersMapObject } from 'redux';
-import { Route } from 'core/routes/types';
-import { ReducerHandler, SagaHandler, RouteHandler, Plugin } from './types';
+import { Route, ReducerHandler, SagaHandler, RouteHandler, Plugin } from './types';
 
 export class PluginRegistry {
   reducers: ReducersMapObject;

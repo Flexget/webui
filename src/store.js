@@ -4,9 +4,8 @@ import { routerMiddleware } from 'connected-react-router';
 import history from 'core/history';
 import createReducer from 'core/reducers';
 import status from 'core/status/state/middleware';
-import actions from 'core/routes/state/actions';
 import rootSaga from 'core/sagas';
-import registry from 'core/registry';
+import registry from 'core/routes/registry';
 
 const sagaMiddleware = createSagaMiddleware();
 // eslint-disable-next-line no-underscore-dangle

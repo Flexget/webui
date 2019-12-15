@@ -1,8 +1,8 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import PrivateRoute from 'core/routes/PrivateRoute';
 import { AuthContainer } from 'core/auth/container';
 import { MemoryRouter } from 'react-router';
+import PrivateRoute from './PrivateRoute';
 
 const Component = () => <div />;
 

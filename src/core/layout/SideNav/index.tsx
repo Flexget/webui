@@ -1,13 +1,14 @@
 import React, { FC, useCallback, useReducer } from 'react';
+import { useContainer } from 'unstated-next';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Drawer, List, Collapse, useMediaQuery } from '@material-ui/core';
 import theme from 'theme';
-import SideNavEntry from 'core/layout/SideNavEntry';
 import Version from 'core/layout/Version';
 import { RouteContainer } from 'core/routes/hooks';
 import { useHistory } from 'react-router';
 import { Route } from 'core/routes/types';
+import Entry from './Entry';
 
 export const nested = css`
   padding-left: ${theme.spacing(0.4)}rem;
@@ -42,12 +43,12 @@ const hideVersion = css`
 `;
 
 interface Props {
-  sideBarOpen?: boolean;
-  toggle: () => void;
+  sidebarOpen?: boolean;
+  onClose: () => void;
 }
 
-const SideNav: FC<Props> = ({ sideBarOpen = false, toggle }) => {
-  const [routes] = RouteContainer.useContainer();
+const SideNav: FC<Props> = ({ sidebarOpen = false, onClose }) => {
+  const [routes] = useContainer(RouteContainer);
   const history = useHistory();
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
   const [open, setOpen] = useReducer(
@@ -62,21 +63,21 @@ const SideNav: FC<Props> = ({ sideBarOpen = false, toggle }) => {
     ({ path, name }: Route) => () => {
       if (path) {
         if (matches) {
-          toggle();
+          onClose();
         }
         history.push(path);
         return;
       }
       setOpen(name);
-      if (!sideBarOpen) {
-        toggle();
+      if (!sidebarOpen) {
+        onClose();
       }
     },
-    [history, matches, sideBarOpen, toggle],
+    [history, matches, onClose, sidebarOpen],
   );
 
   return (
-    <NavDrawer open={sideBarOpen} variant="permanent">
+    <NavDrawer open={sidebarOpen} variant="permanent">
       <div css={innerDrawer}>
         <List
           css={css`
@@ -84,11 +85,11 @@ const SideNav: FC<Props> = ({ sideBarOpen = false, toggle }) => {
           `}
         >
           {routes.flatMap(({ children, ...route }) => [
-            <SideNavEntry key={route.path} onClick={handleClick(route)} {...route} />,
+            <Entry key={route.path} onClick={handleClick(route)} {...route} />,
             children && (
               <Collapse in={open[route.name]} timeout="auto" unmountOnExit key={route.name}>
                 {children.map(child => (
-                  <SideNavEntry key={child.path} onClick={handleClick(child)} {...child} />
+                  <Entry key={child.path} onClick={handleClick(child)} {...child} />
                 ))}
               </Collapse>
             ),

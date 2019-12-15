@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Grid } from '@material-ui/core';
+import { useContainer } from 'unstated-next';
 import { RawEntry } from 'core/entry/types';
 import { EntryContainer, useGetEntries } from '../hooks/entry';
 import EntryCard from '../EntryCard';
@@ -11,9 +12,9 @@ interface Props {
 }
 
 const EntryList: FC<Props> = ({ options }) => {
-  const [{ entries }] = EntryContainer.useContainer();
+  const [{ entries }] = useContainer(EntryContainer);
   useGetEntries(options);
-  const [injectEntry, setInjectEntry] = useState<RawEntry | undefined>();
+  const [injectEntry, setInjectEntry] = useState<RawEntry>();
   const handleClose = () => setInjectEntry(undefined);
 
   return (

@@ -9,7 +9,7 @@ import { css } from '@emotion/core';
 import EntryList from '../EntryList';
 import EntryListHeader from '../EntryListHeader';
 import { Options, SortBy } from '../types';
-import { ListContiner } from '../hooks/list';
+import { ListContainer } from '../hooks/list';
 
 export const content = css`
   flex: 1;
@@ -36,7 +36,7 @@ const PendingList: FC<{}> = () => {
   });
 
   return (
-    <ListContiner.Provider>
+    <ListContainer.Provider>
       <NoPaddingWrapper>
         <TabList setPage={(n: number) => dispatch({ page: n })} />
         <div css={content}>
@@ -46,7 +46,7 @@ const PendingList: FC<{}> = () => {
           </EntryContainer.Provider>
         </div>
       </NoPaddingWrapper>
-    </ListContiner.Provider>
+    </ListContainer.Provider>
   );
 };
 
