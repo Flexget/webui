@@ -10,7 +10,7 @@ import {
 import { css } from '@emotion/core';
 import theme from 'theme';
 import { useContainer } from 'unstated-next';
-import { useRemoveList, ListContainer } from '../hooks/list';
+import { useRemoveList, ListContainer } from './hooks/list';
 
 interface Props {
   open?: boolean;

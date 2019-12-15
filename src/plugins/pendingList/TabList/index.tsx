@@ -4,7 +4,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import SecondaryNav from 'common/SecondaryNav';
 import { ListContainer, actions, useGetLists } from 'plugins/pendingList/hooks/list';
 import { useContainer } from 'unstated-next';
-import AddListDialog from '../AddListDialog';
+import AddListDialog from './AddListDialog';
 import { SelectedListID } from '../types';
 
 interface Props {

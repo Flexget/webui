@@ -7,9 +7,9 @@ import { Direction } from 'utils/query';
 import { useOverlayState } from 'utils/hooks';
 import RemoveListDialog from 'plugins/pendingList/RemoveListDialog';
 import { useContainer } from 'unstated-next';
-import { Options, SortBy } from '../types';
-import { EntryContainer } from '../hooks/entry';
-import AddEntryDialog from '../AddEntryDialog';
+import { Options, SortBy } from './types';
+import { EntryContainer } from './hooks/entry';
+import AddEntryDialog from './AddEntryDialog';
 
 interface Props {
   setOptions: (opts: Partial<Options>) => void;
