@@ -6,7 +6,7 @@ import { css } from '@emotion/core';
 import theme from 'theme';
 import { backgroundColor, Spacer } from 'common/styles';
 
-import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Typography, useTheme } from '@material-ui/core';
 import { ListAlt, Settings, CreateOutlined, Menu as MenuIcon } from '@material-ui/icons';
 import { NavbarContainer } from './hooks';
 import Menu from './Menu';
@@ -36,7 +36,7 @@ const Navbar: FC<Props> = ({ toggleSidebar }) => {
         position: static;
       `}
     >
-      <Toolbar css={backgroundColor}>
+      <Toolbar css={backgroundColor(theme.palette.primary[800])}>
         <NavIcon onClick={toggleSidebar} aria-label="toggle sidebar">
           <MenuIcon />
         </NavIcon>

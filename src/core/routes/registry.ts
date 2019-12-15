@@ -11,11 +11,11 @@ export class PluginRegistry {
 
   routeHandler: RouteHandler;
 
-  routes: Route[];
+  routes: Record<string, Route>;
 
   constructor() {
     this.reducers = {};
-    this.routes = [];
+    this.routes = {};
     this.reducerHandler = () => {};
     this.sagaHandler = () => {};
     this.routeHandler = () => {};
@@ -53,9 +53,9 @@ export class PluginRegistry {
         path: `/${name}`,
       };
 
-      this.routes = [...this.routes, route];
+      this.routes = { ...this.routes, [route.path]: route };
 
-      this.routeHandler(route);
+      this.routeHandler({ [route.path]: route });
     }
 
     if (children) {

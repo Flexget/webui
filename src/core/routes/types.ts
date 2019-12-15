@@ -22,7 +22,7 @@ export interface RouteConfig {
   routeIcon: ComponentType;
 }
 
-export type RouteHandler = (route: Route) => void;
+export type RouteHandler = (route: Record<string, Route>) => void;
 
 export interface Route {
   component: ComponentType<any>;

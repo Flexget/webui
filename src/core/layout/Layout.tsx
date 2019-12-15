@@ -17,34 +17,37 @@ import {
   contentWithSidebar,
   content,
 } from './styles';
+import { NavbarContainer } from './Navbar/hooks';
 
 const Layout: React.FC = ({ children }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
-  const [sidebarOpen, { toggle, close }] = useOverlayState(matches);
+  const [sidebarOpen, { toggle, close }] = useOverlayState(!matches);
 
   const contentCssFn = useCallback(() => contentWithSidebar(sidebarOpen), [sidebarOpen]);
 
   return (
-    <div css={wrapper}>
-      <header css={header}>
-        <div css={logoWrapper}>
-          <Logo sidebarOpen={sidebarOpen} />
-        </div>
-        <nav css={nav}>
-          <Navbar toggleSidebar={toggle} />
-          <LoadingBar />
-        </nav>
-      </header>
-      <main css={main}>
-        <aside css={sidebar}>
-          <SideNav sidebarOpen={sidebarOpen} onClose={close} />
-        </aside>
-        <section css={[content, contentCssFn()]}>{children}</section>
-        <ErrorStatus />
-        <InfoStatus />
-      </main>
-    </div>
+    <NavbarContainer.Provider>
+      <div css={wrapper}>
+        <header css={header}>
+          <div css={logoWrapper}>
+            <Logo sidebarOpen={sidebarOpen} />
+          </div>
+          <nav css={nav}>
+            <Navbar toggleSidebar={toggle} />
+            <LoadingBar />
+          </nav>
+        </header>
+        <main css={main}>
+          <aside css={sidebar}>
+            <SideNav sidebarOpen={sidebarOpen} onClose={close} />
+          </aside>
+          <section css={[content, contentCssFn()]}>{children}</section>
+          <ErrorStatus />
+          <InfoStatus />
+        </main>
+      </div>
+    </NavbarContainer.Provider>
   );
 };
 
