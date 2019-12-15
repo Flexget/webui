@@ -2,11 +2,12 @@ import { useEffect, useRef, useCallback, useState } from 'react';
 import { Method, APIResponse, request, StatusError, ErrorResponse } from 'utils/fetch';
 import { AuthContainer } from 'core/auth/container';
 import { uriParser } from 'utils';
+import { useContainer } from 'unstated-next';
 
 export const useFlexgetAPI = <Res>(url: string, method: Method = Method.Get) => {
-  const [, setLoggedIn] = AuthContainer.useContainer();
+  const [, setLoggedIn] = useContainer(AuthContainer);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<StatusError | undefined>();
+  const [error, setError] = useState<StatusError>();
   const controller = useRef(new AbortController());
   const baseURI = useRef(uriParser(document.baseURI));
 

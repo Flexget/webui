@@ -1,11 +1,11 @@
 import { useReducer, Reducer, useEffect, useCallback } from 'react';
-import { createContainer } from 'unstated-next';
+import { createContainer, useContainer } from 'unstated-next';
 import { useFlexgetAPI } from 'core/api';
 import { action } from 'utils/hooks/actions';
 import { Method, snakeCase } from 'utils/fetch';
 import { stringify } from 'qs';
 import { useExecuteTask } from 'core/tasks/hooks';
-import { ListContiner } from './list';
+import { ListContainer } from './list';
 import { Options, AddEntryRequest, Operation, PendingListEntry, InjectRequest } from '../types';
 
 export const enum Constants {
@@ -97,12 +97,12 @@ const useEntries = () => useReducer(entryReducer, { entries: [], totalCount: 0, 
 export const EntryContainer = createContainer(useEntries);
 
 export const useGetEntries = (options: Options) => {
-  const [, dispatch] = EntryContainer.useContainer();
+  const [, dispatch] = useContainer(EntryContainer);
   // NOTE: Material-UI Table Pagination uses 0 based indexing for pages, so we add
   // one here to account for that
   const query = stringify(snakeCase({ ...options, page: options.page + 1 }));
 
-  const [{ listId }] = ListContiner.useContainer();
+  const [{ listId }] = useContainer(ListContainer);
   const [state, getEntries] = useFlexgetAPI<PendingListEntry[]>(
     `/pending_list/${listId}/entries?${query}`,
   );
@@ -125,8 +125,8 @@ export const useGetEntries = (options: Options) => {
 };
 
 export const useAddEntry = () => {
-  const [{ listId }] = ListContiner.useContainer();
-  const [, dispatch] = EntryContainer.useContainer();
+  const [{ listId }] = useContainer(ListContainer);
+  const [, dispatch] = useContainer(EntryContainer);
   const [state, request] = useFlexgetAPI<PendingListEntry>(
     `/pending_list/${listId}/entries`,
     Method.Post,
@@ -147,8 +147,8 @@ export const useAddEntry = () => {
 };
 
 export const useRemoveEntry = (entryId?: number) => {
-  const [{ listId }] = ListContiner.useContainer();
-  const [, dispatch] = EntryContainer.useContainer();
+  const [{ listId }] = useContainer(ListContainer);
+  const [, dispatch] = useContainer(EntryContainer);
   const [state, request] = useFlexgetAPI(
     `/pending_list/${listId}/entries/${entryId}`,
     Method.Delete,
@@ -191,8 +191,8 @@ export const useInjectEntry = (entryId?: number) => {
 };
 
 export const useEntryOperation = (entryId: number) => {
-  const [{ listId }] = ListContiner.useContainer();
-  const [, dispatch] = EntryContainer.useContainer();
+  const [{ listId }] = useContainer(ListContainer);
+  const [, dispatch] = useContainer(EntryContainer);
   const [state, request] = useFlexgetAPI<PendingListEntry>(
     `/pending_list/${listId}/entries/${entryId}`,
     Method.Put,

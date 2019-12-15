@@ -4,8 +4,9 @@ import { css, ClassNames } from '@emotion/core';
 import theme from 'theme';
 import SelectField from 'common/SelectField';
 import { Direction } from 'utils/query';
-import { useOverlayState } from 'utils/hooks/useOverlayState';
+import { useOverlayState } from 'utils/hooks';
 import RemoveListDialog from 'plugins/pendingList/RemoveListDialog';
+import { useContainer } from 'unstated-next';
 import { Options, SortBy } from '../types';
 import { EntryContainer } from '../hooks/entry';
 import AddEntryDialog from '../AddEntryDialog';
@@ -68,7 +69,7 @@ const sortByOptions = [
 ];
 
 const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPage, order } }) => {
-  const [{ totalCount }] = EntryContainer.useContainer();
+  const [{ totalCount }] = useContainer(EntryContainer);
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setOptions({
       [event.target.name]: event.target.value,

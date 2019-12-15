@@ -1,5 +1,5 @@
 import { useReducer, useEffect, Reducer, useRef } from 'react';
-import { createContainer } from 'unstated-next';
+import { createContainer, useContainer } from 'unstated-next';
 import uuid from 'uuid/v4';
 import { action } from 'utils/hooks/actions';
 
@@ -78,7 +78,7 @@ export const StatusContainer = createContainer(() => {
 
 export const useGlobalStatus = (loading: boolean, error?: Error) => {
   const id = useRef(uuid());
-  const [, dispatch] = StatusContainer.useContainer();
+  const [, dispatch] = useContainer(StatusContainer);
 
   useEffect(() => {
     if (error) {

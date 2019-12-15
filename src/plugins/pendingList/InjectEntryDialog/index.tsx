@@ -13,6 +13,7 @@ import theme from 'theme';
 import { RawEntry } from 'core/entry/types';
 import SelectField from 'common/TextField/Select';
 import { TaskContainer } from 'core/tasks/hooks';
+import { useContainer } from 'unstated-next';
 import { InjectRequest } from '../types';
 import { useInjectEntry } from '../hooks/entry';
 
@@ -38,7 +39,7 @@ const InjectEntryDialog: FC<Props> = ({ entry, onClose }) => {
   const initialValues: InjectRequest = { task: '', entry: formatEntry(entry) };
   const [{ loading, error }, inject] = useInjectEntry(entry?.id);
   const open = !!entry;
-  const { tasks } = TaskContainer.useContainer();
+  const { tasks } = useContainer(TaskContainer);
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">

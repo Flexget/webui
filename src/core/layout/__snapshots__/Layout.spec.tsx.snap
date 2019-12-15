@@ -1,16 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`common/layout renders correctly 1`] = `
-.emotion-6 {
-  position: static;
-}
-
-.emotion-5 {
-  background-color: #ef6c00;
-  color: #fff;
-  min-height: 5rem;
-}
-
 .emotion-0 {
   color: #fff;
 }
@@ -21,49 +11,28 @@ exports[`common/layout renders correctly 1`] = `
   flex: 1;
 }
 
-.emotion-13 .MuiDrawer-paper {
+.emotion-9 .MuiDrawer-paper {
   position: relative;
   background-color: #263238;
   height: calc(100vh - 10rem);
-  width: 0;
+  width: 100vw;
   -webkit-transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
   transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
   border-right: none !important;
 }
 
 @media (min-width:600px) {
-  .emotion-13 .MuiDrawer-paper {
+  .emotion-9 .MuiDrawer-paper {
     height: calc(100vh - 5rem);
-    width: 6rem;
+    width: 19rem;
   }
 }
 
-.emotion-12 {
-  width: inherit;
-  height: inherit;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.emotion-7 {
-  width: inherit;
-}
-
-.emotion-11 {
-  color: #ef6c00;
-  display: none;
-}
-
 .emotion-8 {
+  color: #ef6c00;
+}
+
+.emotion-5 {
   margin: 0;
 }
 
@@ -138,12 +107,12 @@ exports[`common/layout renders correctly 1`] = `
               },
               Object {
                 "map": undefined,
-                "name": "1af4v5",
+                "name": "tfhydr",
                 "next": undefined,
                 "styles": "
   @media (min-width:600px) {
-    width: 6rem;
-    background-size: 25rem;
+    width: 19rem;
+    background-size: 17.5rem;
   }
 ",
                 "toString": [Function],
@@ -168,12 +137,28 @@ exports[`common/layout renders correctly 1`] = `
       }
     >
       <header
-        className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed emotion-6 MuiAppBar-colorPrimary mui-fixed"
+        className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary"
       >
         <div
-          className="MuiToolbar-root MuiToolbar-regular emotion-5 MuiToolbar-gutters"
+          className="MuiToolbar-root MuiToolbar-dense MuiToolbar-gutters"
+          css={
+            Object {
+              "map": undefined,
+              "name": "121au9h",
+              "next": undefined,
+              "styles": "
+  
+  background-color: #ef6c00;
+  color: #fff;
+;;
+  min-height: 5rem;
+",
+              "toString": [Function],
+            }
+          }
         >
           <button
+            aria-label="toggle sidebar"
             className="MuiButtonBase-root MuiIconButton-root emotion-0"
             disabled={false}
             onBlur={[Function]}
@@ -211,8 +196,10 @@ exports[`common/layout renders correctly 1`] = `
             />
           </button>
           <h6
-            className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit"
-          />
+            className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit MuiTypography-noWrap"
+          >
+            Flexget Manager
+          </h6>
           <div
             className="emotion-1"
           />
@@ -221,7 +208,7 @@ exports[`common/layout renders correctly 1`] = `
             onClick={[Function]}
           >
             <button
-              aria-label="Config"
+              aria-label="config editor"
               className="MuiButtonBase-root MuiIconButton-root emotion-0"
               disabled={false}
               onBlur={[Function]}
@@ -263,7 +250,7 @@ exports[`common/layout renders correctly 1`] = `
             onClick={[Function]}
           >
             <button
-              aria-label="Log"
+              aria-label="log"
               className="MuiButtonBase-root MuiIconButton-root emotion-0"
               disabled={false}
               onBlur={[Function]}
@@ -382,27 +369,52 @@ exports[`common/layout renders correctly 1`] = `
       }
     >
       <div
-        className="MuiDrawer-root MuiDrawer-docked emotion-13"
+        className="MuiDrawer-root MuiDrawer-docked emotion-9"
       >
         <div
           className="MuiPaper-root MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft"
         >
           <div
-            className="emotion-12"
+            css={
+              Object {
+                "map": undefined,
+                "name": "mrqyz6",
+                "next": undefined,
+                "styles": "
+  width: inherit;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+",
+                "toString": [Function],
+              }
+            }
           >
             <ul
-              className="MuiList-root emotion-7 MuiList-padding"
+              className="MuiList-root MuiList-padding"
+              css={
+                Object {
+                  "map": undefined,
+                  "name": "1nxb9gk",
+                  "next": undefined,
+                  "styles": "
+            width: inherit;
+          ",
+                  "toString": [Function],
+                }
+              }
             />
             <div
-              className="emotion-11"
+              className="emotion-8"
             >
               <p
-                className="MuiTypography-root emotion-8 MuiTypography-body1"
+                className="MuiTypography-root emotion-5 MuiTypography-body1"
               >
                 Version Info
               </p>
               <p
-                className="MuiTypography-root emotion-8 MuiTypography-body1"
+                className="MuiTypography-root emotion-5 MuiTypography-body1"
               >
                 Flexget: 2.10.60 
                 <a
@@ -443,7 +455,7 @@ exports[`common/layout renders correctly 1`] = `
                 </a>
               </p>
               <p
-                className="MuiTypography-root emotion-8 MuiTypography-body1"
+                className="MuiTypography-root emotion-5 MuiTypography-body1"
               >
                 API: 1.1.2
               </p>
@@ -475,12 +487,12 @@ exports[`common/layout renders correctly 1`] = `
           },
           Object {
             "map": undefined,
-            "name": "leo25p",
+            "name": "1cluuk",
             "next": undefined,
             "styles": "
   @media (max-width:959.95px) {
-    opacity: 1;
-    display: block;
+    opacity: 0;
+    display: none;
   }
 ",
             "toString": [Function],

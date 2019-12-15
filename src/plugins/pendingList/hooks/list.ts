@@ -2,7 +2,7 @@ import { useReducer, Reducer, useEffect } from 'react';
 import { useFlexgetAPI } from 'core/api';
 import { action } from 'utils/hooks/actions';
 import { Method } from 'utils/fetch';
-import { createContainer } from 'unstated-next';
+import { createContainer, useContainer } from 'unstated-next';
 import { List, AddListRequest, SelectedListID } from '../types';
 
 export const enum Constants {
@@ -55,10 +55,10 @@ const listReducer: Reducer<State, Actions> = (state, act) => {
 };
 
 const useLists = () => useReducer(listReducer, { lists: [], listId: 'add' });
-export const ListContiner = createContainer(useLists);
+export const ListContainer = createContainer(useLists);
 
 export const useGetLists = () => {
-  const [, dispatch] = ListContiner.useContainer();
+  const [, dispatch] = useContainer(ListContainer);
 
   const [state, getLists] = useFlexgetAPI<List[]>('/pending_list');
 
@@ -78,7 +78,7 @@ export const useGetLists = () => {
 };
 
 export const useAddList = () => {
-  const [, dispatch] = ListContiner.useContainer();
+  const [, dispatch] = useContainer(ListContainer);
 
   const [state, request] = useFlexgetAPI<List>('/pending_list', Method.Post);
 
@@ -94,7 +94,7 @@ export const useAddList = () => {
 };
 
 export const useRemoveList = (id: SelectedListID) => {
-  const [, dispatch] = ListContiner.useContainer();
+  const [, dispatch] = useContainer(ListContainer);
 
   const [state, request] = useFlexgetAPI(`/pending_list/${id}`, Method.Delete);
 

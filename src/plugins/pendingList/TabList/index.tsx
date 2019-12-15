@@ -2,7 +2,8 @@ import React, { FC, useState, useCallback } from 'react';
 import Tab from '@material-ui/core/Tab';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import SecondaryNav from 'common/SecondaryNav';
-import { ListContiner, actions, useGetLists } from 'plugins/pendingList/hooks/list';
+import { ListContainer, actions, useGetLists } from 'plugins/pendingList/hooks/list';
+import { useContainer } from 'unstated-next';
 import AddListDialog from '../AddListDialog';
 import { SelectedListID } from '../types';
 
@@ -12,7 +13,7 @@ interface Props {
 
 const TabList: FC<Props> = ({ setPage }) => {
   const [isOpen, setOpen] = useState(false);
-  const [{ lists, listId }, dispatch] = ListContiner.useContainer();
+  const [{ lists, listId }, dispatch] = useContainer(ListContainer);
 
   const handleChange = useCallback(
     (_, selected: SelectedListID) => {

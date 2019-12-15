@@ -1,12 +1,12 @@
 import { createAsyncComponent } from 'utils/loading';
-import registry from 'core/registry';
+import registry from 'core/routes/registry';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
 import saga from './state/saga';
 import reducer from './state/reducer';
 
 export default () =>
   registry.registerPlugin('series', {
-    component: createAsyncComponent(() => import('plugins/series/Series')),
+    component: createAsyncComponent(() => import('plugins/series/Wrapper')),
     routeDisplayName: 'Series',
     routeIcon: LiveTvIcon,
     reducer,
