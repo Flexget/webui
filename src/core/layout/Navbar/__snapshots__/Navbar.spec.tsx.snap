@@ -1,16 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core/layout/components/Navbar renders correctly 1`] = `
-.emotion-6 {
-  position: static;
-}
-
-.emotion-5 {
-  background-color: #ef6c00;
-  color: #fff;
-  min-height: 5rem;
-}
-
 .emotion-0 {
   color: #fff;
 }
@@ -22,12 +12,28 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
 }
 
 <header
-  className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed emotion-6 MuiAppBar-colorPrimary mui-fixed"
+  className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary"
 >
   <div
-    className="MuiToolbar-root MuiToolbar-regular emotion-5 MuiToolbar-gutters"
+    className="MuiToolbar-root MuiToolbar-dense MuiToolbar-gutters"
+    css={
+      Object {
+        "map": undefined,
+        "name": "121au9h",
+        "next": undefined,
+        "styles": "
+  
+  background-color: #ef6c00;
+  color: #fff;
+;;
+  min-height: 5rem;
+",
+        "toString": [Function],
+      }
+    }
   >
     <button
+      aria-label="toggle sidebar"
       className="MuiButtonBase-root MuiIconButton-root emotion-0"
       disabled={false}
       onBlur={[Function]}
@@ -62,8 +68,10 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
       </span>
     </button>
     <h6
-      className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit"
-    />
+      className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit MuiTypography-noWrap"
+    >
+      Flexget Manager
+    </h6>
     <div
       className="emotion-1"
     />
@@ -72,7 +80,7 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
       onClick={[Function]}
     >
       <button
-        aria-label="Config"
+        aria-label="config editor"
         className="MuiButtonBase-root MuiIconButton-root emotion-0"
         disabled={false}
         onBlur={[Function]}
@@ -111,7 +119,7 @@ exports[`core/layout/components/Navbar renders correctly 1`] = `
       onClick={[Function]}
     >
       <button
-        aria-label="Log"
+        aria-label="log"
         className="MuiButtonBase-root MuiIconButton-root emotion-0"
         disabled={false}
         onBlur={[Function]}
