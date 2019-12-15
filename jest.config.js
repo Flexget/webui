@@ -13,11 +13,12 @@ module.exports = {
     '!src/**/fixtures.{ts, tsx, js, jsx}',
   ],
   coverageThreshold: {
-    // global: {
-    // functions: 40,
-    // lines: 40,
-    // statements: 40,
-    // },
+    global: {
+      functions: 40,
+      lines: 60,
+      statements: 60,
+      branches: 40,
+    },
   },
   globals: {
     __DEV__: false,
