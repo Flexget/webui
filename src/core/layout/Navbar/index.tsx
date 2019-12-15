@@ -6,13 +6,18 @@ import { css } from '@emotion/core';
 import theme from 'theme';
 import { backgroundColor, Spacer } from 'common/styles';
 
-import { AppBar, Toolbar, IconButton, Typography, useTheme } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import { ListAlt, Settings, CreateOutlined, Menu as MenuIcon } from '@material-ui/icons';
 import { NavbarContainer } from './hooks';
 import Menu from './Menu';
 
 const NavIcon = styled(IconButton)`
   color: ${theme.palette.getContrastText(theme.palette.primary[800])};
+`;
+
+const toolbar = css`
+  ${backgroundColor(theme.palette.primary[800])};
+  min-height: 5rem;
 `;
 
 interface Props {
@@ -31,16 +36,12 @@ const Navbar: FC<Props> = ({ toggleSidebar }) => {
   const handleSettingsClose = useCallback(() => setAnchorEl(undefined), []);
 
   return (
-    <AppBar
-      css={css`
-        position: static;
-      `}
-    >
-      <Toolbar css={backgroundColor(theme.palette.primary[800])}>
+    <AppBar position="static">
+      <Toolbar css={toolbar} variant="dense">
         <NavIcon onClick={toggleSidebar} aria-label="toggle sidebar">
           <MenuIcon />
         </NavIcon>
-        <Typography variant="h6" color="inherit">
+        <Typography variant="h6" color="inherit" noWrap>
           {title}
         </Typography>
         <Spacer />

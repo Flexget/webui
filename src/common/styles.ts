@@ -31,12 +31,18 @@ export const NoPaddingWrapper = styled.div`
   }
 `;
 
-export const backgroundColor = color => css`
+export const backgroundColor = (color: string) => css`
   background-color: ${color};
   color: ${theme.palette.getContrastText(color)};
 `;
 
-export const Button = styled(MUIButton)`
+interface ButtonProps {
+  color: 'primary' | 'secondary';
+  level: number;
+  hoverLevel: number;
+}
+
+export const Button = styled<typeof MUIButton, ButtonProps>(MUIButton)`
   ${({ color, level }) => backgroundColor(theme.palette[color][level])};
 
   &:hover {

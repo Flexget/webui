@@ -21,7 +21,7 @@ const NavMenu: FC<Props> = ({ anchorEl, onClose }) => {
   const [, setLoggedIn] = useContainer(AuthContainer);
   const [, request] = useFlexgetAPI('/auth/logout', Method.Post);
   const [shudownOpen, shudownActions] = useOverlayState();
-  const [{ loading, error }, handleReloadClick] = useServerOperation(Operation.Reload);
+  const [{ loading, error }, handleReloadClick] = useServerOperation(Operation.Reload, onClose);
   useGlobalStatus(loading, error);
 
   const logout = async () => {
@@ -29,6 +29,11 @@ const NavMenu: FC<Props> = ({ anchorEl, onClose }) => {
     if (response.ok) {
       setLoggedIn(false);
     }
+  };
+
+  const handleShutdownClick = () => {
+    shudownActions.open();
+    onClose();
   };
 
   return (
@@ -40,7 +45,7 @@ const NavMenu: FC<Props> = ({ anchorEl, onClose }) => {
           </ListItemIcon>
           Reload
         </MenuItem>
-        <MenuItem onClick={shudownActions.open}>
+        <MenuItem onClick={handleShutdownClick}>
           <ListItemIcon>
             <PowerSettingsNew />
           </ListItemIcon>
