@@ -6,10 +6,11 @@ import { Direction } from 'utils/query';
 import { EntryContainer } from 'plugins/pendingList/hooks/entry';
 import theme from 'theme';
 import { css } from '@emotion/core';
-import EntryList from '../EntryList';
-import EntryListHeader from '../EntryListHeader';
-import { Options, SortBy } from '../types';
-import { ListContainer } from '../hooks/list';
+import { useInjectPageTitle } from 'core/layout/Navbar/hooks';
+import EntryList from './EntryList';
+import EntryListHeader from './EntryListHeader';
+import { Options, SortBy } from './types';
+import { ListContainer } from './hooks/list';
 
 export const content = css`
   flex: 1;
@@ -22,6 +23,7 @@ export const content = css`
 `;
 
 const PendingList: FC<{}> = () => {
+  useInjectPageTitle('Pending List');
   const reducer = (state: Options, partialState: Partial<Options>): Options => {
     return {
       ...state,

@@ -6,7 +6,7 @@ import reducer from './state/reducer';
 
 export default () =>
   registry.registerPlugin('history', {
-    component: createAsyncComponent(() => import('plugins/history/History')),
+    component: createAsyncComponent(() => import('plugins/history/Wrapper')),
     routeDisplayName: 'History',
     routeIcon: HistoryIcon,
     reducer,

@@ -6,7 +6,7 @@ import reducer from './state/reducer';
 
 export default () =>
   registry.registerPlugin('series', {
-    component: createAsyncComponent(() => import('plugins/series/Series')),
+    component: createAsyncComponent(() => import('plugins/series/Wrapper')),
     routeDisplayName: 'Series',
     routeIcon: LiveTvIcon,
     reducer,
