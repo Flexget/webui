@@ -1,7 +1,7 @@
 import React, { FC, ChangeEvent } from 'react';
 import { FormControl, TablePagination, Button } from '@material-ui/core';
 import { css, ClassNames } from '@emotion/core';
-import theme from 'theme';
+import theme from 'core/theme';
 import SelectField from 'common/SelectField';
 import { Direction } from 'utils/query';
 import { useOverlayState } from 'utils/hooks';

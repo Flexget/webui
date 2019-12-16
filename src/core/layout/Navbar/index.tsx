@@ -1,30 +1,24 @@
 import React, { FC, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 import { useContainer } from 'unstated-next';
-import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import theme from 'theme';
-import { backgroundColor, Spacer } from 'common/styles';
-
-import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Typography, Theme } from '@material-ui/core';
 import { ListAlt, Settings, CreateOutlined, Menu as MenuIcon } from '@material-ui/icons';
+import { Spacer, Link } from 'common/styles';
+import LoadingBar from 'core/status/LoadingBar';
 import { NavbarContainer } from './hooks';
 import Menu from './Menu';
 
-const NavIcon = styled(IconButton)`
-  color: ${theme.palette.getContrastText(theme.palette.primary[800])};
-`;
-
-const toolbar = css`
-  ${backgroundColor(theme.palette.primary[800])};
-  min-height: 5rem;
+const appbar = (theme: Theme) => css`
+  color: ${theme.palette.primary.contrastText};
+  min-height: ${theme.mixins.toolbar.minHeight};
 `;
 
 interface Props {
   toggleSidebar: () => void;
+  className?: string;
 }
 
-const Navbar: FC<Props> = ({ toggleSidebar }) => {
+const Navbar: FC<Props> = ({ toggleSidebar, className }) => {
   const [{ title }] = useContainer(NavbarContainer);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement>();
 
@@ -36,30 +30,27 @@ const Navbar: FC<Props> = ({ toggleSidebar }) => {
   const handleSettingsClose = useCallback(() => setAnchorEl(undefined), []);
 
   return (
-    <AppBar position="static">
-      <Toolbar css={toolbar} variant="dense">
-        <NavIcon onClick={toggleSidebar} aria-label="toggle sidebar">
+    <AppBar position="static" css={appbar} className={className}>
+      <Toolbar variant="dense">
+        <IconButton onClick={toggleSidebar} aria-label="toggle sidebar" color="inherit">
           <MenuIcon />
-        </NavIcon>
+        </IconButton>
         <Typography variant="h6" color="inherit" noWrap>
           {title}
         </Typography>
         <Spacer />
-        <Link to="/config">
-          <NavIcon aria-label="config editor">
-            <CreateOutlined />
-          </NavIcon>
-        </Link>
-        <Link to="/log">
-          <NavIcon aria-label="log">
-            <ListAlt />
-          </NavIcon>
-        </Link>
-        <NavIcon aria-label="Manage" onClick={handleSettingsClick}>
+        <IconButton aria-label="config editor" color="inherit" component={Link} to="/config">
+          <CreateOutlined />
+        </IconButton>
+        <IconButton aria-label="log" color="inherit" component={Link} to="/log">
+          <ListAlt />
+        </IconButton>
+        <IconButton aria-label="Manage" onClick={handleSettingsClick} color="inherit">
           <Settings />
-        </NavIcon>
+        </IconButton>
         <Menu anchorEl={anchorEl} onClose={handleSettingsClose} />
       </Toolbar>
+      <LoadingBar />
     </AppBar>
   );
 };

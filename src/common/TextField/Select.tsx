@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useMediaQuery, MenuItem } from '@material-ui/core';
-import theme from 'theme';
+import theme from 'core/theme';
 import TextField, { Props as TextFieldProps } from './index';
 
 interface Option {

@@ -7,43 +7,12 @@ exports[`core/layout/SideNavEntry renders correctly with link 1`] = `
 >
   <li
     className="MuiListItem-root MuiListItem-gutters"
-    css={
-      Array [
-        Object {
-          "map": undefined,
-          "name": "1fef3mw",
-          "next": undefined,
-          "styles": "
-  
-  color: #b0bec5;
-;;
-  border-left: 3px solid transparent;
-  cursor: pointer;
-
-  &:hover {
-    border-left: 3px solid #ff9800;
-  }
-",
-          "toString": [Function],
-        },
-        undefined,
-      ]
-    }
+    css={[Function]}
     disabled={false}
   >
     <div
       className="MuiListItemIcon-root"
-      css={
-        Object {
-          "map": undefined,
-          "name": "2tnp70",
-          "next": undefined,
-          "styles": "
-  color: #b0bec5;
-",
-          "toString": [Function],
-        }
-      }
+      css={[Function]}
     >
       <svg
         aria-hidden="true"
@@ -55,17 +24,7 @@ exports[`core/layout/SideNavEntry renders correctly with link 1`] = `
     </div>
     <div
       className="MuiListItemText-root"
-      css={
-        Object {
-          "map": undefined,
-          "name": "2tnp70",
-          "next": undefined,
-          "styles": "
-  color: #b0bec5;
-",
-          "toString": [Function],
-        }
-      }
+      css={[Function]}
     >
       Test
     </div>
@@ -76,43 +35,12 @@ exports[`core/layout/SideNavEntry renders correctly with link 1`] = `
 exports[`core/layout/SideNavEntry renders correctly without link 1`] = `
 <li
   className="MuiListItem-root MuiListItem-gutters"
-  css={
-    Array [
-      Object {
-        "map": undefined,
-        "name": "1fef3mw",
-        "next": undefined,
-        "styles": "
-  
-  color: #b0bec5;
-;;
-  border-left: 3px solid transparent;
-  cursor: pointer;
-
-  &:hover {
-    border-left: 3px solid #ff9800;
-  }
-",
-        "toString": [Function],
-      },
-      undefined,
-    ]
-  }
+  css={[Function]}
   disabled={false}
 >
   <div
     className="MuiListItemIcon-root"
-    css={
-      Object {
-        "map": undefined,
-        "name": "2tnp70",
-        "next": undefined,
-        "styles": "
-  color: #b0bec5;
-",
-        "toString": [Function],
-      }
-    }
+    css={[Function]}
   >
     <svg
       aria-hidden="true"
@@ -124,17 +52,7 @@ exports[`core/layout/SideNavEntry renders correctly without link 1`] = `
   </div>
   <div
     className="MuiListItemText-root"
-    css={
-      Object {
-        "map": undefined,
-        "name": "2tnp70",
-        "next": undefined,
-        "styles": "
-  color: #b0bec5;
-",
-        "toString": [Function],
-      }
-    }
+    css={[Function]}
   >
     Test
   </div>

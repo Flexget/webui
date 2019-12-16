@@ -8,7 +8,7 @@ import {
   DialogContentText,
 } from '@material-ui/core';
 import { css } from '@emotion/core';
-import theme from 'theme';
+import theme from 'core/theme';
 import { useContainer } from 'unstated-next';
 import { useRemoveList, ListContainer } from './hooks/list';
 

@@ -4,7 +4,7 @@ import { NoPaddingWrapper } from 'common/styles';
 import TabList from 'plugins/pendingList/TabList';
 import { Direction } from 'utils/query';
 import { EntryContainer } from 'plugins/pendingList/hooks/entry';
-import theme from 'theme';
+import theme from 'core/theme';
 import { css } from '@emotion/core';
 import { useInjectPageTitle } from 'core/layout/Navbar/hooks';
 import EntryList from './EntryList';

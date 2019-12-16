@@ -97,10 +97,10 @@ exports[`plugins/log/components/LogTable LogTable renders correctly 1`] = `
           "A200": "#ffab40",
           "A400": "#ff9100",
           "A700": "#ff6d00",
-          "contrastText": "rgba(0, 0, 0, 0.87)",
+          "contrastText": "#fff",
           "dark": "#f57c00",
           "light": "#ffb74d",
-          "main": "#ff9800",
+          "main": "#ef6c00",
         },
         "secondary": Object {
           "100": "#cfd8dc",
@@ -120,7 +120,7 @@ exports[`plugins/log/components/LogTable LogTable renders correctly 1`] = `
           "contrastText": "#fff",
           "dark": "#455a64",
           "light": "#b0bec5",
-          "main": "#78909c",
+          "main": "#37474f",
         },
         "text": Object {
           "disabled": "rgba(0, 0, 0, 0.38)",

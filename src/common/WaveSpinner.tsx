@@ -1,6 +1,7 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/core';
-import theme from 'theme';
+import theme from 'core/theme';
 
 const stretchDelay = keyframes`
   0%, 40%, 100% {
@@ -12,7 +13,7 @@ const stretchDelay = keyframes`
   }
 `;
 
-export const Spinner = styled.div`
+const Spinner = styled.div`
   margin: 10rem auto;
   width: 5rem;
   height: 4rem;
@@ -20,7 +21,7 @@ export const Spinner = styled.div`
   font-size: 1rem;
 `;
 
-export const Rect1 = styled.div`
+const Rect1 = styled.div`
   background-color: ${theme.palette.primary[500]};
   height: 100%;
   width: 0.6rem;
@@ -29,18 +30,30 @@ export const Rect1 = styled.div`
   animation: ${stretchDelay} 1.2s infinite ease-in-out;
 `;
 
-export const Rect2 = styled(Rect1)`
+const Rect2 = styled(Rect1)`
   animation-delay: -1.1s;
 `;
 
-export const Rect3 = styled(Rect1)`
+const Rect3 = styled(Rect1)`
   animation-delay: -1s;
 `;
 
-export const Rect4 = styled(Rect1)`
+const Rect4 = styled(Rect1)`
   animation-delay: -0.9s;
 `;
 
-export const Rect5 = styled(Rect1)`
+const Rect5 = styled(Rect1)`
   animation-delay: -0.8s;
 `;
+
+const WaveSpinner = () => (
+  <Spinner>
+    <Rect1 />
+    <Rect2 />
+    <Rect3 />
+    <Rect4 />
+    <Rect5 />
+  </Spinner>
+);
+
+export default WaveSpinner;

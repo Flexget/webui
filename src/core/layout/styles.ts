@@ -1,68 +1,74 @@
 import { css } from '@emotion/core';
-import theme from 'theme';
+import { Theme } from '@material-ui/core';
 
-const HEADER_HEIGHT = 5;
-const MOBILE_HEADER_HEIGHT = HEADER_HEIGHT * 2;
+export const wrapper = (theme: Theme) => css`
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    'logo logo'
+    'header header'
+    'sidebar content';
+  height: 100vh;
 
-export const wrapper = css`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 100vh;
+  ${theme.breakpoints.up('sm')} {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr 0;
+    grid-template-areas:
+      'logo header'
+      'sidebar content'
+      'sidebar content';
+  }
 `;
 
 export const main = css`
-  display: flex;
-  flex-direction: row;
-  padding-top: ${MOBILE_HEADER_HEIGHT}rem;
-  flex: 1;
-  max-height: 100vh;
-  ${theme.breakpoints.up('sm')} {
-    padding-top: ${HEADER_HEIGHT}rem;
-  }
+  grid-area: content;
 `;
 
 export const header = css`
-  display: flex;
-  min-height: ${HEADER_HEIGHT}rem;
-  flex-direction: column;
-  z-index: 2;
-  position: fixed;
-  width: 100%;
-  ${theme.breakpoints.up('sm')} {
-    flex-direction: row;
-  }
+  grid-area: header;
 `;
 
 export const logoWrapper = css`
-  height: ${HEADER_HEIGHT}rem;
-`;
-
-export const nav = css`
-  height: ${HEADER_HEIGHT}rem;
-  flex: 1;
+  grid-area: logo;
 `;
 
 export const sidebar = css`
   overflow-y: auto;
+  grid-area: sidebar;
 `;
 
-export const content = css`
-  flex: 1;
+export const enterTransition = (theme: Theme) => css`
+  transition: ${theme.transitions.create(['width', 'margin', 'opacity', 'background-size'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  })};
+`;
+
+export const leavingTransition = (theme: Theme) => css`
+  transition: ${theme.transitions.create(['width', 'margin', 'opacity', 'background-size'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  })};
+`;
+
+export const content = (theme: Theme) => css`
   overflow-y: auto;
   padding: ${theme.typography.pxToRem(theme.spacing(2))};
   opacity: 1;
-  transition: ${theme.transitions.create(['opacity', 'margin-left'])};
+  height: 100%;
 
   ${theme.breakpoints.down('sm')} {
     margin-left: 0;
     padding: ${theme.typography.pxToRem(theme.spacing(1))};
+    opacity: 1;
+    display: block;
   }
 `;
 
-export const contentWithSidebar = (open: boolean) => css`
+export const contentWithSidebar = (theme: Theme) => css`
   ${theme.breakpoints.down('sm')} {
-    opacity: ${open ? 0 : 1};
-    display: ${open ? 'none' : 'block'};
+    opacity: 0;
+    display: none;
   }
 `;

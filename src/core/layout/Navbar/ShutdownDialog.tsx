@@ -8,7 +8,7 @@ import {
   DialogContentText,
 } from '@material-ui/core';
 import { css } from '@emotion/core';
-import theme from 'theme';
+import theme from 'core/theme';
 import { Operation } from './types';
 import { useServerOperation } from './hooks';
 

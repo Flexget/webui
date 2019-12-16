@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import { Formik, FormikConfig } from 'formik';
-import theme from 'theme';
+import theme from 'core/theme';
 import { BaseAction } from 'core/status/state/util';
 import { AuthContainer } from 'core/auth/container';
 import { StatusContainer } from 'core/status/hooks';

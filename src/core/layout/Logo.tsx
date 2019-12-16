@@ -1,30 +1,36 @@
-import * as React from 'react';
-import { css } from '@emotion/core';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import theme from 'theme';
+import { css } from '@emotion/core';
+import { Theme } from '@material-ui/core';
 import headerImage from 'images/header.png';
 
-const logo = css`
-  background: ${theme.palette.secondary[900]} url(${headerImage}) no-repeat center;
+const logo = (theme: Theme) => css`
+  background: ${theme.palette.secondary.main} url(${headerImage}) no-repeat center;
   background-size: 17.5rem;
   height: 100%;
-  transition: ${theme.transitions.create(['width', 'background-size'])};
+  min-height: ${theme.mixins.toolbar.minHeight};
+
+  ${theme.breakpoints.up('sm')} {
+    width: 6rem;
+    background-size: 25rem;
+  }
 `;
 
-const openCss = (open: boolean) => css`
+const openCss = (theme: Theme) => css`
   ${theme.breakpoints.up('sm')} {
-    width: ${open ? '19rem' : '6rem'};
-    background-size: ${open ? '17.5rem' : '25rem'};
+    width: 19rem;
+    background-size: 17.5rem;
   }
 `;
 
 interface Props {
   sidebarOpen: boolean;
+  className?: string;
 }
 
-const Logo: React.FC<Props> = ({ sidebarOpen }) => (
+const Logo: FC<Props> = ({ sidebarOpen, className }) => (
   <Link to="/">
-    <div css={[logo, openCss(sidebarOpen)]} />
+    <div css={theme => [logo(theme), sidebarOpen && openCss(theme)]} className={className} />
   </Link>
 );
 

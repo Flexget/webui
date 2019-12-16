@@ -10,7 +10,7 @@ import {
   DialogContentText,
 } from '@material-ui/core';
 import { Form, Formik } from 'formik';
-import theme from 'theme';
+import theme from 'core/theme';
 import { useAddEntry } from 'plugins/pendingList/hooks/entry';
 import { AddEntryRequest } from '../types';
 

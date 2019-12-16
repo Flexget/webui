@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import TextField from 'common/TextField';
 import { Formik, Form } from 'formik';
-import theme from 'theme';
+import theme from 'core/theme';
 import { AddListRequest } from '../types';
 import { useAddList } from '../hooks/list';
 

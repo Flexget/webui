@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import theme from 'theme';
+import theme from 'core/theme';
 import headerImage from 'images/header.png';
 
 export const Logo = styled.div`
