@@ -8,7 +8,7 @@ import RepeatIcon from '@material-ui/icons/Repeat';
 import Entry from 'core/entry/cards';
 import { RawEntry } from 'core/entry/types';
 import { Operation, PendingListEntry } from '../types';
-import { useEntryOperation, useRemoveEntry } from '../hooks/entry';
+import { useEntryOperation, useRemoveEntry, useEntryBulkSelect } from '../hooks/entry';
 
 interface Props {
   entry: PendingListEntry;
@@ -40,6 +40,7 @@ const entryCard = css`
 const EntryCard: FC<Props> = ({ entry, setInjectEntry }) => {
   const [{ loading: operationLoading }, doOperation] = useEntryOperation(entry.id);
   const [{ loading: removeLoading }, removeEntry] = useRemoveEntry(entry.id);
+  const [selectedIds, { selectEntry, unselectEntry }] = useEntryBulkSelect();
 
   const handleInjectClick = () => setInjectEntry(entry);
 
@@ -57,9 +58,11 @@ const EntryCard: FC<Props> = ({ entry, setInjectEntry }) => {
         onClick: () => doOperation(Operation.Approve),
       };
 
+  const toggle = () => (selectedIds[entry.id] ? unselectEntry(entry.id) : selectEntry(entry.id));
+
   return (
     <Card css={card}>
-      <CardActionArea css={actionArea}>
+      <CardActionArea css={actionArea} onClick={toggle}>
         <Entry entry={entry.entry} css={entryCard} />
       </CardActionArea>
       <CardActions>

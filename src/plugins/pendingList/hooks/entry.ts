@@ -92,9 +92,9 @@ const entryReducer: Reducer<State, Actions> = (state, act) => {
   }
 };
 
-const useEntries = () => useReducer(entryReducer, { entries: [], totalCount: 0, selectedIds: {} });
-
-export const EntryContainer = createContainer(useEntries);
+export const EntryContainer = createContainer(() =>
+  useReducer(entryReducer, { entries: [], totalCount: 0, selectedIds: {} }),
+);
 
 export const useGetEntries = (options: Options) => {
   const [, dispatch] = useContainer(EntryContainer);
@@ -210,4 +210,17 @@ export const useEntryOperation = (entryId: number) => {
   );
 
   return [state, doOperation] as const;
+};
+
+export const useEntryBulkSelect = () => {
+  const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
+
+  const selectEntry = useCallback((id: number) => dispatch(actions.selectEntry(id)), [dispatch]);
+  const unselectEntry = useCallback((id: number) => dispatch(actions.unselectEntry(id)), [
+    dispatch,
+  ]);
+
+  const clearSelected = useCallback(() => dispatch(actions.clearSelected()), [dispatch]);
+
+  return [selectedIds, { selectEntry, unselectEntry, clearSelected }] as const;
 };

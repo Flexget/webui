@@ -26,6 +26,6 @@ Then you can go to http://localhost:8000/v2 (use `PORT` env variable to run on a
 4. After you've made your changes, open a PR.
 
 ## Testing
-We currently use [Jest](https://facebook.github.io/jest/) and primarily [Snapshot Testing](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest) for tests. To run the tests, run `yarn test`. To run the tests in watch mode, run `yarn test --watch`. To run tests with coverage, run `yarn test --coverage`.
+We currently use [Jest](https://facebook.github.io/jest/) and primarily [Enzyme](https://airbnb.io/enzyme/) for tests. To run the tests, run `yarn test`. To run the tests in watch mode, run `yarn test --watch`. To run tests with coverage, run `yarn test --coverage`.
 
 

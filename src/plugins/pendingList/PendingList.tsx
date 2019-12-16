@@ -37,7 +37,7 @@ const PendingList: FC<{}> = () => {
     order: Direction.Desc,
   });
 
-  const setPage = useCallback((n: number) => dispatch({ page: n }), [] )
+  const setPage = useCallback((n: number) => dispatch({ page: n }), []);
 
   return (
     <ListContainer.Provider>
