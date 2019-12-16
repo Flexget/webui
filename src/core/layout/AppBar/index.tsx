@@ -2,7 +2,7 @@ import React, { FC, useState, useCallback } from 'react';
 import { useContainer } from 'unstated-next';
 import { css } from '@emotion/core';
 import { AppBar as MUIAppBar, Toolbar, IconButton, Typography, Theme } from '@material-ui/core';
-import { MoreVert, Menu as MenuIcon, ListAlt, CreateOutlined } from '@material-ui/icons';
+import { MoreVert, Menu as MenuIcon, ListAlt, CreateOutlined, Clear } from '@material-ui/icons';
 import { Spacer, Link } from 'common/styles';
 import LoadingBar from 'core/status/LoadingBar';
 import { AppBarContainer } from './hooks';
@@ -28,15 +28,16 @@ interface Props {
 }
 
 const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
-  const [{ title, content, contextualProps = {} }] = useContainer(AppBarContainer);
+  const [
+    { title, content, contextualMode, contextualProps = {} },
+    { setContextual },
+  ] = useContainer(AppBarContainer);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement>();
 
   const handleSettingsClick = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget),
     [],
   );
-
-  const contextualMode = !!contextualProps.enabled;
 
   const appbarStyles = useCallback(
     (theme: Theme) => [appbar(theme), contextualMode && contextualAppBar(theme)],
@@ -45,12 +46,25 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
 
   const handleSettingsClose = useCallback(() => setAnchorEl(undefined), []);
 
+  const handleContextualClose = useCallback(() => {
+    if (contextualProps?.onClose) {
+      contextualProps.onClose();
+    }
+    setContextual(false);
+  }, [contextualProps, setContextual]);
+
   return (
     <MUIAppBar color="inherit" position="static" css={appbarStyles} className={className}>
       <Toolbar>
-        <IconButton onClick={toggleSidebar} aria-label="toggle sidebar" color="inherit">
-          <MenuIcon />
-        </IconButton>
+        {contextualMode ? (
+          <IconButton onClick={handleContextualClose} aria-label="close context" color="inherit">
+            <Clear />
+          </IconButton>
+        ) : (
+          <IconButton onClick={toggleSidebar} aria-label="toggle sidebar" color="inherit">
+            <MenuIcon />
+          </IconButton>
+        )}
         <Typography variant="h6" color="inherit" noWrap>
           {contextualMode && contextualProps?.title ? contextualProps.title : title}
         </Typography>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, ElementType, ComponentType } from 'react';
+import { useState, useEffect, useCallback, ComponentType } from 'react';
 import { createContainer, useContainer } from 'unstated-next';
 import { useFlexgetAPI } from 'core/api';
 import { Method } from 'utils/fetch';
@@ -10,22 +10,23 @@ interface IconProps {
   Icon: ComponentType;
 }
 
-interface ContextualProps {
-  enabled?: boolean;
+export interface ContextualProps {
   icons?: IconProps[];
   title?: string;
+  onClose?: () => void;
 }
 
 const defaultTitle = 'Flexget Manager';
 
 export const AppBarContainer = createContainer(() => {
   const [title, setTitle] = useState(defaultTitle);
-  const [content, setContent] = useState<ElementType>();
+  const [content, setContent] = useState<JSX.Element>();
   const [contextualProps, setContextualProps] = useState<ContextualProps>();
+  const [contextualMode, setContextual] = useState(false);
 
   return [
-    { title, content, contextualProps },
-    { setTitle, setContent, setContextualProps },
+    { title, content, contextualProps, contextualMode },
+    { setTitle, setContent, setContextualProps, setContextual },
   ] as const;
 });
 
@@ -45,7 +46,7 @@ export const useInjectPageTitle = (title: string) => {
   return clear;
 };
 
-export const useInjectContent = (content: ElementType) => {
+export const useInjectContent = (content: JSX.Element) => {
   const [, { setContent }] = useContainer(AppBarContainer);
 
   const clear = useCallback(() => setContent(undefined), [setContent]);
@@ -59,18 +60,21 @@ export const useInjectContent = (content: ElementType) => {
   return clear;
 };
 
-export const useContextualNav = (enabled: boolean, props: Omit<ContextualProps, 'enabled'>) => {
-  const [, { setContextualProps }] = useContainer(AppBarContainer);
+export const useContextualAppBar = (props?: ContextualProps) => {
+  const [, { setContextual, setContextualProps }] = useContainer(AppBarContainer);
 
-  const clear = useCallback(() => setContextualProps(undefined), [setContextualProps]);
+  const clear = useCallback(() => {
+    setContextualProps(undefined);
+    setContextual(false);
+  }, [setContextual, setContextualProps]);
 
   useEffect(() => {
-    setContextualProps({ enabled, ...props });
+    setContextualProps(props);
 
     return clear;
-  }, [clear, enabled, props, setContextualProps]);
+  }, [clear, props, setContextualProps]);
 
-  return clear;
+  return { setContextual, clear };
 };
 
 export const useServerOperation = (operation: Operation, onSuccess = () => {}) => {
