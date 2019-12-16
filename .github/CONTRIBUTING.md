@@ -2,7 +2,7 @@
 
 The UI has a solid base but we need help building the plugins and maintaining. If you would like to get your hands dirty in React, CSS or UX Design then please read below and join our [chat](https://flexget.com/Chat).
 
-Technologies we use:
+### Technologies we use:
 * [Typescript](https://www.typescriptlang.org)
 * [React](https://reactjs.org)
 * [Unstated Next](https://github.com/jamiebuilds/unstated-next)
@@ -12,9 +12,11 @@ Technologies we use:
 * [Emotion](https://emotion.sh)
 * [Webpack](https://webpack.js.org/)
 
-Requirements:
-* Node 12+
-* Yarn
+### Getting Setup:
+
+This assumes you have the following technologies installed and on your path:
+* [Node 12+](https://nodejs.org)
+* [Yarn](https://yarnpkg.com/lang/en/)
 
 1. Fork the repo (Once we see any semi-serious input from a developer we will grant write permissions to our central repository. You can also request this earlier if you wish.)
 2. Install dependencies
@@ -35,7 +37,7 @@ Then you can go to http://localhost:8000 (use `PORT` env variable to run on a di
 
 We currently use [Jest](https://facebook.github.io/jest/) and primarily [Snapshot Testing](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest) for tests. Going forward we are deprecating snapshot testing outside of inline snapshots.
 
-Technologies we use:
+### Technologies we use:
 * [Jest](https://facebook.github.io/jest/)
 * [Snapshot Testing](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest) (old tests only)
 * [Enzyme](https://airbnb.io/enzyme)
