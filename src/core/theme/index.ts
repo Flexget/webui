@@ -17,11 +17,10 @@ export const createTheme = (type: 'light' | 'dark' = 'light'): Theme =>
     palette: {
       primary: {
         main: orange[800],
-        ...orange,
       },
       secondary: {
         main: blueGrey[800],
-        ...blueGrey,
+        light: blueGrey.A200,
       },
       type,
     },
@@ -41,4 +40,24 @@ export const createTheme = (type: 'light' | 'dark' = 'light'): Theme =>
     },
   });
 
-export default createTheme();
+export default createMuiTheme({
+  palette: {
+    primary: orange,
+    secondary: blueGrey,
+    type: 'light',
+  },
+  typography: {
+    htmlFontSize: 10,
+  },
+  mixins: {
+    toolbar: {
+      minHeight: '5rem',
+    },
+    sidebar: {
+      width: {
+        open: '19rem',
+        closed: '6rem',
+      },
+    },
+  },
+});
