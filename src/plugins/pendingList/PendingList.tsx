@@ -1,4 +1,4 @@
-import React, { FC, useReducer } from 'react';
+import React, { FC, useReducer, useCallback } from 'react';
 import { hot } from 'react-hot-loader/root';
 import { NoPaddingWrapper } from 'common/styles';
 import TabList from 'plugins/pendingList/TabList';
@@ -37,10 +37,12 @@ const PendingList: FC<{}> = () => {
     order: Direction.Desc,
   });
 
+  const setPage = useCallback((n: number) => dispatch({ page: n }), [] )
+
   return (
     <ListContainer.Provider>
       <NoPaddingWrapper>
-        <TabList setPage={(n: number) => dispatch({ page: n })} />
+        <TabList setPage={setPage} />
         <div css={content}>
           <EntryContainer.Provider>
             <EntryListHeader setOptions={dispatch} options={options} />

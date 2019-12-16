@@ -49,15 +49,11 @@ export const useInjectPageTitle = (title: string) => {
 export const useInjectContent = (content: JSX.Element) => {
   const [, { setContent }] = useContainer(AppBarContainer);
 
-  const clear = useCallback(() => setContent(undefined), [setContent]);
-
   useEffect(() => {
     setContent(content);
 
-    return clear;
-  }, [clear, content, setContent]);
-
-  return clear;
+    return () => setContent(undefined);
+  }, [content, setContent]);
 };
 
 export const useContextualAppBar = (props?: ContextualProps) => {

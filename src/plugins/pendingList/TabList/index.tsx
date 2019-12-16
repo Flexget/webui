@@ -1,9 +1,10 @@
-import React, { FC, useState, useCallback } from 'react';
+import React, { FC, useState, useCallback, useMemo } from 'react';
 import Tab from '@material-ui/core/Tab';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import SecondaryNav from 'common/SecondaryNav';
 import { ListContainer, actions, useGetLists } from 'plugins/pendingList/hooks/list';
 import { useContainer } from 'unstated-next';
+import { useInjectContent } from 'core/layout/AppBar/hooks';
+import { Tabs } from '@material-ui/core';
 import AddListDialog from './AddListDialog';
 import { SelectedListID } from '../types';
 
@@ -28,23 +29,20 @@ const TabList: FC<Props> = ({ setPage }) => {
 
   useGetLists();
 
-  return (
-    <div>
-      <SecondaryNav
-        value={listId}
-        variant="scrollable"
-        scrollButtons="on"
-        onChange={handleChange}
-        tabs
-      >
+  const content = useMemo(
+    () => (
+      <Tabs value={listId} variant="scrollable" scrollButtons="on" onChange={handleChange}>
         {lists.map(({ name, id }) => (
           <Tab label={name} value={id} key={id} />
         ))}
         <Tab icon={<AddCircleIcon />} value="add" />
-      </SecondaryNav>
-      <AddListDialog open={isOpen} onClose={() => setOpen(false)} />
-    </div>
+      </Tabs>
+    ),
+    [handleChange, listId, lists],
   );
+
+  useInjectContent(content);
+  return <AddListDialog open={isOpen} onClose={() => setOpen(false)} />;
 };
 
 export default TabList;
