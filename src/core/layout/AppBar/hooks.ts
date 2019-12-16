@@ -4,14 +4,14 @@ import { useFlexgetAPI } from 'core/api';
 import { Method } from 'utils/fetch';
 import { Operation } from './types';
 
-export const NavbarContainer = createContainer(() => {
+export const AppBarContainer = createContainer(() => {
   const [title, setTitle] = useState('Flexget Manager');
 
   return [{ title }, { setTitle }] as const;
 });
 
 export const useInjectPageTitle = (title: string) => {
-  const [, { setTitle }] = useContainer(NavbarContainer);
+  const [, { setTitle }] = useContainer(AppBarContainer);
 
   useEffect(() => {
     setTitle(title);

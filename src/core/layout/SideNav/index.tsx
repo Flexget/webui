@@ -24,7 +24,7 @@ const drawerOpen = (theme: Theme) => css`
   width: 100vw;
 
   ${theme.breakpoints.up('sm')} {
-    width: 19rem;
+    width: ${theme.mixins.sidebar.width.open};
   }
 `;
 
@@ -32,7 +32,7 @@ const drawerClose = (theme: Theme) => css`
   width: 0;
 
   ${theme.breakpoints.up('sm')} {
-    width: 6rem;
+    width: ${theme.mixins.sidebar.width.closed};
   }
 `;
 

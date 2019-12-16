@@ -1,5 +1,5 @@
 import { orange, blueGrey } from '@material-ui/core/colors';
-import { createMuiTheme } from '@material-ui/core';
+import { createMuiTheme, Theme } from '@material-ui/core';
 
 export const darkTheme = createMuiTheme({
   palette: {
@@ -12,7 +12,7 @@ export const darkTheme = createMuiTheme({
   },
 });
 
-export const createTheme = (type: 'light' | 'dark' = 'light') =>
+export const createTheme = (type: 'light' | 'dark' = 'light'): Theme =>
   createMuiTheme({
     palette: {
       primary: {
@@ -30,9 +30,15 @@ export const createTheme = (type: 'light' | 'dark' = 'light') =>
     },
     mixins: {
       toolbar: {
-        minHeight: '5rem';
-      }
-    }
+        minHeight: '5rem',
+      },
+      sidebar: {
+        width: {
+          open: '19rem',
+          closed: '6rem',
+        },
+      },
+    },
   });
 
 export default createTheme();

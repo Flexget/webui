@@ -5,7 +5,7 @@ import { useTheme } from '@material-ui/core';
 import { useOverlayState } from 'utils/hooks';
 
 import Logo from './Logo';
-import Navbar from './Navbar';
+import AppBar from './AppBar';
 import SideNav from './SideNav';
 import {
   header,
@@ -18,7 +18,7 @@ import {
   leavingTransition,
   enterTransition,
 } from './styles';
-import { NavbarContainer } from './Navbar/hooks';
+import { AppBarContainer } from './AppBar/hooks';
 
 const Layout: React.FC = ({ children }) => {
   const theme = useTheme();
@@ -36,7 +36,7 @@ const Layout: React.FC = ({ children }) => {
   const mainTransition = sidebarOpen ? leavingCss : enterCss;
 
   return (
-    <NavbarContainer.Provider>
+    <AppBarContainer.Provider>
       <div css={wrapper}>
         <div css={logoWrapper}>
           <Logo css={sideTransition} sidebarOpen={sidebarOpen} />
@@ -45,7 +45,7 @@ const Layout: React.FC = ({ children }) => {
           <SideNav css={sideTransition} sidebarOpen={sidebarOpen} onClose={close} />
         </aside>
         <header css={header}>
-          <Navbar css={mainTransition} toggleSidebar={toggle} />
+          <AppBar css={mainTransition} toggleSidebar={toggle} />
         </header>
         <main css={main}>
           <section css={[contentCss, mainTransition]}>{children}</section>
@@ -53,7 +53,7 @@ const Layout: React.FC = ({ children }) => {
           <InfoStatus />
         </main>
       </div>
-    </NavbarContainer.Provider>
+    </AppBarContainer.Provider>
   );
 };
 

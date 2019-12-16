@@ -28,14 +28,14 @@ exports[`plugins/log/components/LogTable LogTable renders correctly 1`] = `
       "direction": "ltr",
       "mixins": Object {
         "gutters": [Function],
+        "sidebar": Object {
+          "width": Object {
+            "closed": "6rem",
+            "open": "19rem",
+          },
+        },
         "toolbar": Object {
-          "@media (min-width:0px) and (orientation: landscape)": Object {
-            "minHeight": 48,
-          },
-          "@media (min-width:600px)": Object {
-            "minHeight": 64,
-          },
-          "minHeight": 56,
+          "minHeight": "5rem",
         },
       },
       "overrides": Object {},

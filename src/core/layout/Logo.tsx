@@ -11,14 +11,14 @@ const logo = (theme: Theme) => css`
   min-height: ${theme.mixins.toolbar.minHeight};
 
   ${theme.breakpoints.up('sm')} {
-    width: 6rem;
+    width: ${theme.mixins.sidebar.width.closed};
     background-size: 25rem;
   }
 `;
 
 const openCss = (theme: Theme) => css`
   ${theme.breakpoints.up('sm')} {
-    width: 19rem;
+    width: ${theme.mixins.sidebar.width.open};
     background-size: 17.5rem;
   }
 `;

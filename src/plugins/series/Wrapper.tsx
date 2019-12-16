@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useInjectPageTitle } from 'core/layout/Navbar/hooks';
+import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import Series from './Series';
 
 const Wrapper: FC = () => {

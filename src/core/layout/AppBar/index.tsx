@@ -1,16 +1,19 @@
 import React, { FC, useState, useCallback } from 'react';
 import { useContainer } from 'unstated-next';
 import { css } from '@emotion/core';
-import { AppBar, Toolbar, IconButton, Typography, Theme } from '@material-ui/core';
+import { AppBar as MUIAppBar, Toolbar, IconButton, Typography, Theme } from '@material-ui/core';
 import { ListAlt, Settings, CreateOutlined, Menu as MenuIcon } from '@material-ui/icons';
 import { Spacer, Link } from 'common/styles';
 import LoadingBar from 'core/status/LoadingBar';
-import { NavbarContainer } from './hooks';
+import { AppBarContainer } from './hooks';
 import Menu from './Menu';
 
 const appbar = (theme: Theme) => css`
   color: ${theme.palette.primary.contrastText};
-  min-height: ${theme.mixins.toolbar.minHeight};
+
+  ${theme.breakpoints.up('sm')} {
+    min-height: ${theme.mixins.toolbar.minHeight};
+  }
 `;
 
 interface Props {
@@ -18,8 +21,8 @@ interface Props {
   className?: string;
 }
 
-const Navbar: FC<Props> = ({ toggleSidebar, className }) => {
-  const [{ title }] = useContainer(NavbarContainer);
+const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
+  const [{ title }] = useContainer(AppBarContainer);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement>();
 
   const handleSettingsClick = useCallback(
@@ -30,8 +33,8 @@ const Navbar: FC<Props> = ({ toggleSidebar, className }) => {
   const handleSettingsClose = useCallback(() => setAnchorEl(undefined), []);
 
   return (
-    <AppBar position="static" css={appbar} className={className}>
-      <Toolbar variant="dense">
+    <MUIAppBar position="static" css={appbar} className={className}>
+      <Toolbar>
         <IconButton onClick={toggleSidebar} aria-label="toggle sidebar" color="inherit">
           <MenuIcon />
         </IconButton>
@@ -51,8 +54,8 @@ const Navbar: FC<Props> = ({ toggleSidebar, className }) => {
         <Menu anchorEl={anchorEl} onClose={handleSettingsClose} />
       </Toolbar>
       <LoadingBar />
-    </AppBar>
+    </MUIAppBar>
   );
 };
 
-export default Navbar;
+export default AppBar;

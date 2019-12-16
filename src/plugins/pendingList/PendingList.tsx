@@ -6,7 +6,7 @@ import { Direction } from 'utils/query';
 import { EntryContainer } from 'plugins/pendingList/hooks/entry';
 import theme from 'core/theme';
 import { css } from '@emotion/core';
-import { useInjectPageTitle } from 'core/layout/Navbar/hooks';
+import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import EntryList from './EntryList';
 import EntryListHeader from './EntryListHeader';
 import { Options, SortBy } from './types';

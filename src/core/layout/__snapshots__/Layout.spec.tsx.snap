@@ -52,10 +52,10 @@ exports[`common/layout renders correctly 1`] = `
         Array [
           Object {
             "map": undefined,
-            "name": "1re02ki",
+            "name": "je82if",
             "next": undefined,
             "styles": "
-  background-color: #f50057;
+  background-color: #37474f;
   width: 0;
   height: 100%;
   white-space: nowrap;
@@ -202,7 +202,7 @@ exports[`common/layout renders correctly 1`] = `
       css={[Function]}
     >
       <div
-        className="MuiToolbar-root MuiToolbar-dense MuiToolbar-gutters"
+        className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
         <button
           aria-label="toggle sidebar"
@@ -379,11 +379,10 @@ exports[`common/layout renders correctly 1`] = `
     css={
       Object {
         "map": undefined,
-        "name": "1tuvxk3",
+        "name": "1qc1fvq",
         "next": undefined,
         "styles": "
   grid-area: content;
-  height: 100%;
 ",
         "toString": [Function],
       }
@@ -395,17 +394,17 @@ exports[`common/layout renders correctly 1`] = `
           Array [
             Object {
               "map": undefined,
-              "name": "1l7dm3",
+              "name": "1awj0lh",
               "next": undefined,
               "styles": "
   overflow-y: auto;
-  padding: 1rem;
+  padding: 1.6rem;
   opacity: 1;
   height: 100%;
 
   @media (max-width:959.95px) {
     margin-left: 0;
-    padding: 0.5rem;
+    padding: 0.8rem;
     opacity: 1;
     display: block;
   }

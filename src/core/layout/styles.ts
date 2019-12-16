@@ -3,21 +3,21 @@ import { Theme } from '@material-ui/core';
 
 export const wrapper = (theme: Theme) => css`
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr 0;
   grid-template-rows: auto auto 1fr;
   grid-template-areas:
-    'logo logo'
-    'header header'
-    'sidebar content';
+    'logo logo logo'
+    'header header header'
+    'sidebar content content';
   height: 100vh;
+  width: 100vw;
 
   ${theme.breakpoints.up('sm')} {
-    grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr 0;
     grid-template-areas:
-      'logo header'
-      'sidebar content'
-      'sidebar content';
+      'logo header header'
+      'sidebar content content'
+      'sidebar content content';
   }
 `;
 
