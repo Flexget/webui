@@ -1,6 +1,8 @@
+import React, { forwardRef } from 'react';
+import { Link as RouterLink, LinkProps } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import theme from 'theme';
+import theme from 'core/theme';
 import { Paper, Button as MUIButton } from '@material-ui/core';
 
 export const PaperWrapper = styled(Paper)`
@@ -49,3 +51,6 @@ export const Button = styled<typeof MUIButton, ButtonProps>(MUIButton)`
     ${({ color, hoverLevel }) => backgroundColor(theme.palette[color][hoverLevel])};
   }
 `;
+export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
+  <RouterLink innerRef={ref} {...props} />
+));

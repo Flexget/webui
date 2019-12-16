@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import WaveSpinner from 'common/WaveSpinner';
 import headerImage from 'images/header.png';
-import theme from 'theme';
+import theme from 'core/theme';
 
 export const Logo = styled.div`
   background: transparent url(${headerImage}) no-repeat center;

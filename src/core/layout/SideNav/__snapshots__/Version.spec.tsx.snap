@@ -1,24 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core/layout/Version renders correctly with latest version 1`] = `
-.emotion-3 {
-  color: #ef6c00;
-}
-
-.emotion-0 {
-  margin: 0;
-}
-
 <div
-  className="emotion-3"
+  css={[Function]}
 >
   <p
-    className="MuiTypography-root emotion-0 MuiTypography-body1"
+    className="MuiTypography-root MuiTypography-body1"
   >
     Version Info
   </p>
   <p
-    className="MuiTypography-root emotion-0 MuiTypography-body1"
+    className="MuiTypography-root MuiTypography-body1"
   >
     Flexget: 2.10.60 
     <a
@@ -59,7 +51,7 @@ exports[`core/layout/Version renders correctly with latest version 1`] = `
     </a>
   </p>
   <p
-    className="MuiTypography-root emotion-0 MuiTypography-body1"
+    className="MuiTypography-root MuiTypography-body1"
   >
     API: 1.1.2
   </p>
@@ -67,29 +59,21 @@ exports[`core/layout/Version renders correctly with latest version 1`] = `
 `;
 
 exports[`core/layout/Version renders correctly without latest version 1`] = `
-.emotion-3 {
-  color: #ef6c00;
-}
-
-.emotion-0 {
-  margin: 0;
-}
-
 <div
-  className="emotion-3"
+  css={[Function]}
 >
   <p
-    className="MuiTypography-root emotion-0 MuiTypography-body1"
+    className="MuiTypography-root MuiTypography-body1"
   >
     Version Info
   </p>
   <p
-    className="MuiTypography-root emotion-0 MuiTypography-body1"
+    className="MuiTypography-root MuiTypography-body1"
   >
     Flexget: 2.10.11 
   </p>
   <p
-    className="MuiTypography-root emotion-0 MuiTypography-body1"
+    className="MuiTypography-root MuiTypography-body1"
   >
     API: 1.1.2
   </p>

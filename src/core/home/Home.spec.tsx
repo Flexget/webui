@@ -1,15 +1,15 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { NavbarContainer } from 'core/layout/Navbar/hooks';
+import { AppBarContainer } from 'core/layout/AppBar/hooks';
 import HomePage from './Home';
 
 describe('core/home/Home', () => {
   it('renders correctly', () => {
     const tree = renderer
       .create(
-        <NavbarContainer.Provider>
+        <AppBarContainer.Provider>
           <HomePage />
-        </NavbarContainer.Provider>,
+        </AppBarContainer.Provider>,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

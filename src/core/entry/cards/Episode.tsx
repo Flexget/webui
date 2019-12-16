@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { CardContent, Typography, CardMedia } from '@material-ui/core';
 import { css } from '@emotion/core';
-import theme from 'theme';
+import theme from 'core/theme';
 import { getCachedUrl } from 'utils/image';
 import { EpisodeEntry } from '../fields/episodes';
 import { Bullet } from './styles';

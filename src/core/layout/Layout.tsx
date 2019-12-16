@@ -1,53 +1,59 @@
-import React, { useCallback } from 'react';
+import React, { useMemo } from 'react';
 import ErrorStatus from 'core/status/ErrorStatus';
 import InfoStatus from 'core/status/InfoStatus';
-import LoadingBar from 'core/status/LoadingBar';
-import { useMediaQuery, useTheme } from '@material-ui/core';
+import { useTheme } from '@material-ui/core';
 import { useOverlayState } from 'utils/hooks';
+
 import Logo from './Logo';
-import Navbar from './Navbar';
+import AppBar from './AppBar';
 import SideNav from './SideNav';
 import {
   header,
   wrapper,
   logoWrapper,
-  nav,
   main,
   sidebar,
   contentWithSidebar,
   content,
+  leavingTransition,
+  enterTransition,
 } from './styles';
-import { NavbarContainer } from './Navbar/hooks';
+import { AppBarContainer } from './AppBar/hooks';
 
 const Layout: React.FC = ({ children }) => {
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('sm'));
-  const [sidebarOpen, { toggle, close }] = useOverlayState(!matches);
+  const [sidebarOpen, { toggle, close }] = useOverlayState(false);
 
-  const contentCssFn = useCallback(() => contentWithSidebar(sidebarOpen), [sidebarOpen]);
+  const enterCss = useMemo(() => [enterTransition(theme)], [theme]);
+  const leavingCss = useMemo(() => [leavingTransition(theme)], [theme]);
+
+  const contentCss = useMemo(() => [content(theme), sidebarOpen && contentWithSidebar(theme)], [
+    sidebarOpen,
+    theme,
+  ]);
+
+  const sideTransition = sidebarOpen ? enterCss : leavingCss;
+  const mainTransition = sidebarOpen ? leavingCss : enterCss;
 
   return (
-    <NavbarContainer.Provider>
+    <AppBarContainer.Provider>
       <div css={wrapper}>
+        <div css={logoWrapper}>
+          <Logo css={sideTransition} sidebarOpen={sidebarOpen} />
+        </div>
+        <aside css={sidebar}>
+          <SideNav css={sideTransition} sidebarOpen={sidebarOpen} onClose={close} />
+        </aside>
         <header css={header}>
-          <div css={logoWrapper}>
-            <Logo sidebarOpen={sidebarOpen} />
-          </div>
-          <nav css={nav}>
-            <Navbar toggleSidebar={toggle} />
-            <LoadingBar />
-          </nav>
+          <AppBar css={mainTransition} toggleSidebar={toggle} />
         </header>
         <main css={main}>
-          <aside css={sidebar}>
-            <SideNav sidebarOpen={sidebarOpen} onClose={close} />
-          </aside>
-          <section css={[content, contentCssFn()]}>{children}</section>
+          <section css={[contentCss, mainTransition]}>{children}</section>
           <ErrorStatus />
           <InfoStatus />
         </main>
       </div>
-    </NavbarContainer.Provider>
+    </AppBarContainer.Provider>
   );
 };
 

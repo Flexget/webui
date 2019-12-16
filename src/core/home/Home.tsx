@@ -1,5 +1,5 @@
 import React from 'react';
-import { useInjectPageTitle } from 'core/layout/Navbar/hooks';
+import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import InfoCard from './InfoCard';
 
 const Home = () => {

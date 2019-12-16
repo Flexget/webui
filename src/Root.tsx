@@ -3,15 +3,15 @@ import { hot } from 'react-hot-loader/root';
 import store from 'store';
 import history from 'core/history';
 import { StylesProvider } from '@material-ui/styles';
+import { CssBaseline } from '@material-ui/core';
 import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
-import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Global, css } from '@emotion/core';
-import theme from 'theme';
+import theme from 'core/theme';
 import PrivateRoute from 'core/routes/PrivateRoute';
 import Layout from 'core/layout/Layout';
-import RoutesComponent from 'core/routes/Routes';
+import Routes from 'core/routes/Routes';
 import { createAsyncComponent } from 'utils/loading';
 import registerHistory from 'plugins/history';
 import registerLog from 'plugins/log';
@@ -21,6 +21,7 @@ import { AuthContainer } from 'core/auth/container';
 import { TaskContainer } from 'core/tasks/hooks';
 import { StatusContainer } from 'core/status/hooks';
 import { RouteContainer } from 'core/routes/hooks';
+import ThemeProvider from 'core/theme/ThemeProvider';
 
 registerHistory();
 registerLog();
@@ -36,7 +37,7 @@ const globals = css`
     height: 100%;
     width: 100%;
     font-size: 1.6rem;
-    background-color: ${theme.palette.grey['200']};
+    background-color: ${theme.palette.grey[200]};
     font-family: 'Roboto';
   }
 
@@ -55,43 +56,41 @@ const globals = css`
 
 const Home = createAsyncComponent(() => import('core/home'));
 const Login = createAsyncComponent(() => import('core/auth/Login'));
-const Routes = RoutesComponent as any;
 
 const Root = () => (
-  <div>
+  <>
     <Global styles={globals} />
+    <CssBaseline />
     <StylesProvider injectFirst>
       <Provider store={store}>
         <StatusContainer.Provider>
           <AuthContainer.Provider>
             <ConnectedRouter history={history}>
-              <MuiThemeProvider theme={theme}>
-                <div>
-                  <Switch>
-                    <Route path="/login" exact component={Login} />
-                    <Route
-                      render={() => (
+              <ThemeProvider>
+                <Switch>
+                  <Route path="/login" exact component={Login} />
+                  <Route
+                    render={() => (
+                      <RouteContainer.Provider>
                         <TaskContainer.Provider>
-                          <RouteContainer.Provider>
-                            <Layout>
-                              <Switch>
-                                <PrivateRoute path="/" exact component={Home} />
-                                <Route render={() => <Routes />} />
-                              </Switch>
-                            </Layout>
-                          </RouteContainer.Provider>
+                          <Layout>
+                            <Switch>
+                              <PrivateRoute path="/" exact component={Home} />
+                              <Route render={() => <Routes />} />
+                            </Switch>
+                          </Layout>
                         </TaskContainer.Provider>
-                      )}
-                    />
-                  </Switch>
-                </div>
-              </MuiThemeProvider>
+                      </RouteContainer.Provider>
+                    )}
+                  />
+                </Switch>
+              </ThemeProvider>
             </ConnectedRouter>
           </AuthContainer.Provider>
         </StatusContainer.Provider>
       </Provider>
     </StylesProvider>
-  </div>
+  </>
 );
 
 export default hot(Root);

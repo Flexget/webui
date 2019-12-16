@@ -2,501 +2,422 @@
 
 exports[`common/layout renders correctly 1`] = `
 .emotion-0 {
-  color: #fff;
-}
-
-.emotion-1 {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
-.emotion-9 .MuiDrawer-paper {
-  position: relative;
-  background-color: #263238;
-  height: calc(100vh - 10rem);
-  width: 100vw;
-  -webkit-transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
-  transition: width 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
-  border-right: none !important;
-}
-
-@media (min-width:600px) {
-  .emotion-9 .MuiDrawer-paper {
-    height: calc(100vh - 5rem);
-    width: 19rem;
-  }
-}
-
-.emotion-8 {
-  color: #ef6c00;
-}
-
-.emotion-5 {
-  margin: 0;
-}
-
 <div
-  css={
-    Object {
-      "map": undefined,
-      "name": "oh8avo",
-      "next": undefined,
-      "styles": "
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 100vh;
-",
-      "toString": [Function],
-    }
-  }
+  css={[Function]}
 >
-  <header
+  <div
     css={
       Object {
         "map": undefined,
-        "name": "1mfkpn7",
+        "name": "gzpxx7",
         "next": undefined,
         "styles": "
-  display: flex;
-  min-height: 5rem;
-  flex-direction: column;
-  z-index: 2;
-  position: fixed;
-  width: 100%;
-  @media (min-width:600px) {
-    flex-direction: row;
-  }
+  grid-area: logo;
+",
+        "toString": [Function],
+      }
+    }
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <div
+        css={[Function]}
+      />
+    </a>
+  </div>
+  <aside
+    css={
+      Object {
+        "map": undefined,
+        "name": "9bboz",
+        "next": undefined,
+        "styles": "
+  overflow-y: auto;
+  grid-area: sidebar;
 ",
         "toString": [Function],
       }
     }
   >
     <div
+      className="MuiDrawer-root MuiDrawer-docked"
       css={
-        Object {
-          "map": undefined,
-          "name": "1r0czf3",
-          "next": undefined,
-          "styles": "
-  height: 5rem;
-",
-          "toString": [Function],
-        }
-      }
-    >
-      <a
-        href="/"
-        onClick={[Function]}
-      >
-        <div
-          css={
-            Array [
-              Object {
-                "map": undefined,
-                "name": "1w2nirn",
-                "next": undefined,
-                "styles": "
-  background: #263238 url(test-file-stub) no-repeat center;
-  background-size: 17.5rem;
+        Array [
+          Object {
+            "map": undefined,
+            "name": "je82if",
+            "next": undefined,
+            "styles": "
+  background-color: #37474f;
+  width: 0;
   height: 100%;
-  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,background-size 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-",
-                "toString": [Function],
-              },
-              Object {
-                "map": undefined,
-                "name": "tfhydr",
-                "next": undefined,
-                "styles": "
+  white-space: nowrap;
+
+  & .MuiDrawer-paper {
+    
+  width: inherit;
+  background-color: inherit;
+  border-right: none !important;
+  position: relative;
+;
+  }
+
   @media (min-width:600px) {
-    width: 19rem;
-    background-size: 17.5rem;
+    width: 6rem;
   }
 ",
-                "toString": [Function],
-              },
-            ]
-          }
-        />
-      </a>
-    </div>
-    <nav
-      css={
-        Object {
-          "map": undefined,
-          "name": "jdqp6j",
-          "next": undefined,
-          "styles": "
-  height: 5rem;
-  flex: 1;
-",
-          "toString": [Function],
-        }
-      }
-    >
-      <header
-        className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary"
-      >
-        <div
-          className="MuiToolbar-root MuiToolbar-dense MuiToolbar-gutters"
-          css={
-            Object {
-              "map": undefined,
-              "name": "121au9h",
-              "next": undefined,
-              "styles": "
-  
-  background-color: #ef6c00;
-  color: #fff;
-;;
-  min-height: 5rem;
-",
-              "toString": [Function],
-            }
-          }
-        >
-          <button
-            aria-label="toggle sidebar"
-            className="MuiButtonBase-root MuiIconButton-root emotion-0"
-            disabled={false}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onDragLeave={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            onKeyUp={[Function]}
-            onMouseDown={[Function]}
-            onMouseLeave={[Function]}
-            onMouseUp={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            tabIndex={0}
-            type="button"
-          >
-            <span
-              className="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                className="MuiSvgIcon-root"
-                focusable="false"
-                role="presentation"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
-                />
-              </svg>
-            </span>
-            <span
-              className="MuiTouchRipple-root"
-            />
-          </button>
-          <h6
-            className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit MuiTypography-noWrap"
-          >
-            Flexget Manager
-          </h6>
-          <div
-            className="emotion-1"
-          />
-          <a
-            href="/config"
-            onClick={[Function]}
-          >
-            <button
-              aria-label="config editor"
-              className="MuiButtonBase-root MuiIconButton-root emotion-0"
-              disabled={false}
-              onBlur={[Function]}
-              onDragLeave={[Function]}
-              onFocus={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
-              onMouseDown={[Function]}
-              onMouseLeave={[Function]}
-              onMouseUp={[Function]}
-              onTouchEnd={[Function]}
-              onTouchMove={[Function]}
-              onTouchStart={[Function]}
-              tabIndex={0}
-              type="button"
-            >
-              <span
-                className="MuiIconButton-label"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="MuiSvgIcon-root"
-                  focusable="false"
-                  role="presentation"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z"
-                  />
-                </svg>
-              </span>
-              <span
-                className="MuiTouchRipple-root"
-              />
-            </button>
-          </a>
-          <a
-            href="/log"
-            onClick={[Function]}
-          >
-            <button
-              aria-label="log"
-              className="MuiButtonBase-root MuiIconButton-root emotion-0"
-              disabled={false}
-              onBlur={[Function]}
-              onDragLeave={[Function]}
-              onFocus={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
-              onMouseDown={[Function]}
-              onMouseLeave={[Function]}
-              onMouseUp={[Function]}
-              onTouchEnd={[Function]}
-              onTouchMove={[Function]}
-              onTouchStart={[Function]}
-              tabIndex={0}
-              type="button"
-            >
-              <span
-                className="MuiIconButton-label"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="MuiSvgIcon-root"
-                  focusable="false"
-                  role="presentation"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19 5v14H5V5h14m1.1-2H3.9c-.5 0-.9.4-.9.9v16.2c0 .4.4.9.9.9h16.2c.4 0 .9-.5.9-.9V3.9c0-.5-.5-.9-.9-.9zM11 7h6v2h-6V7zm0 4h6v2h-6v-2zm0 4h6v2h-6zM7 7h2v2H7zm0 4h2v2H7zm0 4h2v2H7z"
-                  />
-                </svg>
-              </span>
-              <span
-                className="MuiTouchRipple-root"
-              />
-            </button>
-          </a>
-          <button
-            aria-label="Manage"
-            className="MuiButtonBase-root MuiIconButton-root emotion-0"
-            disabled={false}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onDragLeave={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            onKeyUp={[Function]}
-            onMouseDown={[Function]}
-            onMouseLeave={[Function]}
-            onMouseUp={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            tabIndex={0}
-            type="button"
-          >
-            <span
-              className="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                className="MuiSvgIcon-root"
-                focusable="false"
-                role="presentation"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M0 0h20v20H0V0z"
-                  fill="none"
-                  transform="scale(1.2, 1.2)"
-                />
-                <path
-                  d="M15.95 10.78c.03-.25.05-.51.05-.78s-.02-.53-.06-.78l1.69-1.32c.15-.12.19-.34.1-.51l-1.6-2.77c-.1-.18-.31-.24-.49-.18l-1.99.8c-.42-.32-.86-.58-1.35-.78L12 2.34c-.03-.2-.2-.34-.4-.34H8.4c-.2 0-.36.14-.39.34l-.3 2.12c-.49.2-.94.47-1.35.78l-1.99-.8c-.18-.07-.39 0-.49.18l-1.6 2.77c-.1.18-.06.39.1.51l1.69 1.32c-.04.25-.07.52-.07.78s.02.53.06.78L2.37 12.1c-.15.12-.19.34-.1.51l1.6 2.77c.1.18.31.24.49.18l1.99-.8c.42.32.86.58 1.35.78l.3 2.12c.04.2.2.34.4.34h3.2c.2 0 .37-.14.39-.34l.3-2.12c.49-.2.94-.47 1.35-.78l1.99.8c.18.07.39 0 .49-.18l1.6-2.77c.1-.18.06-.39-.1-.51l-1.67-1.32zM10 13c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"
-                  transform="scale(1.2, 1.2)"
-                />
-              </svg>
-            </span>
-            <span
-              className="MuiTouchRipple-root"
-            />
-          </button>
-        </div>
-      </header>
-    </nav>
-  </header>
-  <main
-    css={
-      Object {
-        "map": undefined,
-        "name": "fpd4ie",
-        "next": undefined,
-        "styles": "
-  display: flex;
-  flex-direction: row;
-  padding-top: 10rem;
-  flex: 1;
-  max-height: 100vh;
+            "toString": [Function],
+          },
+          Object {
+            "map": undefined,
+            "name": "1apinr7",
+            "next": undefined,
+            "styles": "
+  width: 0;
+
   @media (min-width:600px) {
-    padding-top: 5rem;
+    width: 6rem;
   }
 ",
-        "toString": [Function],
-      }
-    }
-  >
-    <aside
-      css={
-        Object {
-          "map": undefined,
-          "name": "qdovln",
-          "next": undefined,
-          "styles": "
-  overflow-y: auto;
-",
-          "toString": [Function],
-        }
+            "toString": [Function],
+          },
+        ]
       }
     >
       <div
-        className="MuiDrawer-root MuiDrawer-docked emotion-9"
+        className="MuiPaper-root MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft"
       >
         <div
-          className="MuiPaper-root MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft"
-        >
-          <div
-            css={
-              Object {
-                "map": undefined,
-                "name": "mrqyz6",
-                "next": undefined,
-                "styles": "
+          css={
+            Object {
+              "map": undefined,
+              "name": "mrqyz6",
+              "next": undefined,
+              "styles": "
   width: inherit;
   height: inherit;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 ",
+              "toString": [Function],
+            }
+          }
+        >
+          <nav
+            className="MuiList-root MuiList-padding"
+            css={
+              Object {
+                "map": undefined,
+                "name": "1nxb9gk",
+                "next": undefined,
+                "styles": "
+            width: inherit;
+          ",
                 "toString": [Function],
               }
             }
+          />
+          <div
+            css={[Function]}
           >
-            <ul
-              className="MuiList-root MuiList-padding"
-              css={
-                Object {
-                  "map": undefined,
-                  "name": "1nxb9gk",
-                  "next": undefined,
-                  "styles": "
-            width: inherit;
-          ",
-                  "toString": [Function],
-                }
-              }
-            />
-            <div
-              className="emotion-8"
+            <p
+              className="MuiTypography-root MuiTypography-body1"
             >
-              <p
-                className="MuiTypography-root emotion-5 MuiTypography-body1"
+              Version Info
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1"
+            >
+              Flexget: 2.10.60 
+              <a
+                aria-disabled={false}
+                className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeSmall"
+                href="https://flexget.com/ChangeLog"
+                onBlur={[Function]}
+                onDragLeave={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                tabIndex={0}
               >
-                Version Info
-              </p>
-              <p
-                className="MuiTypography-root emotion-5 MuiTypography-body1"
-              >
-                Flexget: 2.10.60 
-                <a
-                  aria-disabled={false}
-                  className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeSmall"
-                  href="https://flexget.com/ChangeLog"
-                  onBlur={[Function]}
-                  onDragLeave={[Function]}
-                  onFocus={[Function]}
-                  onKeyDown={[Function]}
-                  onKeyUp={[Function]}
-                  onMouseDown={[Function]}
-                  onMouseLeave={[Function]}
-                  onMouseUp={[Function]}
-                  onTouchEnd={[Function]}
-                  onTouchMove={[Function]}
-                  onTouchStart={[Function]}
-                  tabIndex={0}
+                <span
+                  className="MuiIconButton-label"
                 >
-                  <span
-                    className="MuiIconButton-label"
+                  <svg
+                    aria-hidden="true"
+                    className="MuiSvgIcon-root"
+                    focusable="false"
+                    role="presentation"
+                    viewBox="0 0 24 24"
                   >
-                    <svg
-                      aria-hidden="true"
-                      className="MuiSvgIcon-root"
-                      focusable="false"
-                      role="presentation"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"
-                      />
-                    </svg>
-                  </span>
-                  <span
-                    className="MuiTouchRipple-root"
-                  />
-                </a>
-              </p>
-              <p
-                className="MuiTypography-root emotion-5 MuiTypography-body1"
-              >
-                API: 1.1.2
-              </p>
-            </div>
+                    <path
+                      d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"
+                    />
+                  </svg>
+                </span>
+                <span
+                  className="MuiTouchRipple-root"
+                />
+              </a>
+            </p>
+            <p
+              className="MuiTypography-root MuiTypography-body1"
+            >
+              API: 1.1.2
+            </p>
           </div>
         </div>
       </div>
-    </aside>
+    </div>
+  </aside>
+  <header
+    css={
+      Object {
+        "map": undefined,
+        "name": "1osrr34",
+        "next": undefined,
+        "styles": "
+  grid-area: header;
+",
+        "toString": [Function],
+      }
+    }
+  >
+    <header
+      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionStatic"
+      css={[Function]}
+    >
+      <div
+        className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+      >
+        <button
+          aria-label="toggle sidebar"
+          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+              />
+            </svg>
+          </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </button>
+        <h6
+          className="MuiTypography-root MuiTypography-h6 MuiTypography-colorInherit MuiTypography-noWrap"
+        >
+          Flexget Manager
+        </h6>
+        <div
+          className="emotion-0"
+        />
+        <a
+          aria-disabled={false}
+          aria-label="config editor"
+          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+          href="/config"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          <span
+            className="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z"
+              />
+            </svg>
+          </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </a>
+        <a
+          aria-disabled={false}
+          aria-label="log"
+          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+          href="/log"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          <span
+            className="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 5v14H5V5h14m1.1-2H3.9c-.5 0-.9.4-.9.9v16.2c0 .4.4.9.9.9h16.2c.4 0 .9-.5.9-.9V3.9c0-.5-.5-.9-.9-.9zM11 7h6v2h-6V7zm0 4h6v2h-6v-2zm0 4h6v2h-6zM7 7h2v2H7zm0 4h2v2H7zm0 4h2v2H7z"
+              />
+            </svg>
+          </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </a>
+        <button
+          aria-label="Manage"
+          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+              />
+            </svg>
+          </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </header>
+  </header>
+  <main
+    css={
+      Object {
+        "map": undefined,
+        "name": "1qc1fvq",
+        "next": undefined,
+        "styles": "
+  grid-area: content;
+",
+        "toString": [Function],
+      }
+    }
+  >
     <section
       css={
         Array [
-          Object {
-            "map": undefined,
-            "name": "12lzmjs",
-            "next": undefined,
-            "styles": "
-  flex: 1;
+          Array [
+            Object {
+              "map": undefined,
+              "name": "1awj0lh",
+              "next": undefined,
+              "styles": "
   overflow-y: auto;
   padding: 1.6rem;
   opacity: 1;
-  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  height: 100%;
 
   @media (max-width:959.95px) {
     margin-left: 0;
     padding: 0.8rem;
+    opacity: 1;
+    display: block;
   }
 ",
-            "toString": [Function],
-          },
-          Object {
-            "map": undefined,
-            "name": "1cluuk",
-            "next": undefined,
-            "styles": "
-  @media (max-width:959.95px) {
-    opacity: 0;
-    display: none;
-  }
+              "toString": [Function],
+            },
+            false,
+          ],
+          Array [
+            Object {
+              "map": undefined,
+              "name": "17b3u5p",
+              "next": undefined,
+              "styles": "
+  transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,opacity 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,background-size 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
 ",
-            "toString": [Function],
-          },
+              "toString": [Function],
+            },
+          ],
         ]
       }
     >

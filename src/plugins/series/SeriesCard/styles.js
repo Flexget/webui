@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import theme from 'theme';
+import theme from 'core/theme';
 import { CardMedia } from '@material-ui/core';
 
 export const Media = styled(CardMedia)`

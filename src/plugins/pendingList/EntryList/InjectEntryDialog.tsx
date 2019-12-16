@@ -9,7 +9,7 @@ import {
   DialogContentText,
 } from '@material-ui/core';
 import { Formik, Form } from 'formik';
-import theme from 'theme';
+import theme from 'core/theme';
 import { RawEntry } from 'core/entry/types';
 import SelectField from 'common/TextField/Select';
 import { TaskContainer } from 'core/tasks/hooks';

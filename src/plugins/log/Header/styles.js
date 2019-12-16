@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import theme from 'theme';
+import theme from 'core/theme';
 
 import { Typography, TextField } from '@material-ui/core';
 

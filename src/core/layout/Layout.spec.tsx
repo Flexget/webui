@@ -5,22 +5,25 @@ import { act, create, ReactTestRenderer } from 'react-test-renderer';
 import { RouteContainer } from 'core/routes/hooks';
 import { AuthContainer } from 'core/auth/container';
 import { StatusContainer } from 'core/status/hooks';
+import ThemeProvider from 'core/theme/ThemeProvider';
 import Layout from './Layout';
 
 const fetchMock = fetch as FetchMock;
 
 const renderLayout = () => (
-  <StatusContainer.Provider>
-    <AuthContainer.Provider>
-      <MemoryRouter>
-        <RouteContainer.Provider>
-          <Layout>
-            <div />
-          </Layout>
-        </RouteContainer.Provider>
-      </MemoryRouter>
-    </AuthContainer.Provider>
-  </StatusContainer.Provider>
+  <ThemeProvider>
+    <StatusContainer.Provider>
+      <AuthContainer.Provider>
+        <MemoryRouter>
+          <RouteContainer.Provider>
+            <Layout>
+              <div />
+            </Layout>
+          </RouteContainer.Provider>
+        </MemoryRouter>
+      </AuthContainer.Provider>
+    </StatusContainer.Provider>
+  </ThemeProvider>
 );
 describe('common/layout', () => {
   beforeEach(() => {

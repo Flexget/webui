@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import semver from 'semver-compare';
-import styled from '@emotion/styled';
-import theme from 'theme';
-import { IconButton } from '@material-ui/core';
+import { css } from '@emotion/core';
+import { IconButton, Theme } from '@material-ui/core';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import Typography from '@material-ui/core/Typography';
 import { useFlexgetAPI } from 'core/api';
@@ -18,12 +17,9 @@ interface VersionResponse {
   latestVersion: string;
 }
 
-const Wrapper = styled.div`
-  color: ${theme.palette.primary[800]};
-`;
-
-const Line = styled(Typography)`
-  margin: 0;
+const wrapper = (theme: Theme) => css`
+  color: ${theme.palette.primary.main};
+  opacity: 1;
 `;
 
 const useVersion = () => {
@@ -55,18 +51,18 @@ const Version: React.FC<Props> = ({ className }) => {
   const { flexgetVersion, apiVersion, latestVersion } = version;
 
   return (
-    <Wrapper className={className}>
-      <Line>Version Info</Line>
-      <Line>
+    <div css={wrapper} className={className}>
+      <Typography>Version Info</Typography>
+      <Typography>
         {`Flexget: ${flexgetVersion} `}
         {semver(latestVersion, flexgetVersion) !== 1 && (
           <IconButton href="https://flexget.com/ChangeLog" color="inherit" size="small">
             <HelpOutlineIcon />
           </IconButton>
         )}
-      </Line>
-      <Line>{`API: ${apiVersion}`}</Line>
-    </Wrapper>
+      </Typography>
+      <Typography>{`API: ${apiVersion}`}</Typography>
+    </div>
   );
 };
 

@@ -5,7 +5,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import ForumIcon from '@material-ui/icons/ForumOutlined';
 import HomeIcon from '@material-ui/icons/Home';
 import ChatIcon from '@material-ui/icons/Chat';
-import theme from 'theme';
+import theme from 'core/theme';
 import { backgroundColor } from 'common/styles';
 
 const bold = css`

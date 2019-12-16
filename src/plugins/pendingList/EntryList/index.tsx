@@ -3,9 +3,9 @@ import { Grid } from '@material-ui/core';
 import { useContainer } from 'unstated-next';
 import { RawEntry } from 'core/entry/types';
 import { EntryContainer, useGetEntries } from '../hooks/entry';
-import EntryCard from '../EntryCard';
+import EntryCard from './EntryCard';
 import { Options } from '../types';
-import InjectEntryDialog from '../InjectEntryDialog';
+import InjectEntryDialog from './InjectEntryDialog';
 
 interface Props {
   options: Options;

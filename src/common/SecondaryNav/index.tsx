@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { darkTheme } from 'theme';
+import { darkTheme } from 'core/theme';
 import { TabsTypeMap } from '@material-ui/core/Tabs';
 import { SecondaryAppBar, SecondaryToolbar, SecondaryTabs } from './styles';
 

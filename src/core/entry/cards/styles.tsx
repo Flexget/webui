@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import theme from 'theme';
+import theme from 'core/theme';
 import { css } from '@emotion/core';
 
 export const Bullet: FC<{ className?: string }> = ({ className }) => (

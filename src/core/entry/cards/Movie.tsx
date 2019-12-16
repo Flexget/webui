@@ -3,7 +3,7 @@ import { CardContent, Typography, CardMedia } from '@material-ui/core';
 import { getCachedUrl } from 'utils/image';
 import { normalizeMinutes } from 'utils/time';
 import { css } from '@emotion/core';
-import theme from 'theme';
+import theme from 'core/theme';
 import { MovieEntry } from '../fields/movies';
 import { Bullet } from './styles';
 
