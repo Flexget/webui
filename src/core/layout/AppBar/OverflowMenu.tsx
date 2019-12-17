@@ -8,14 +8,20 @@ import {
   ListItemIcon,
   MenuItem,
   Tooltip,
+  IconButtonProps,
+  MenuItemProps,
 } from '@material-ui/core';
 import { MoreVert } from '@material-ui/icons';
 
-export interface OverflowMenuIconProps {
-  name: string;
-  onClick: () => void;
-  Icon: ComponentType;
-}
+export type OverflowMenuIconProps = Omit<
+  IconButtonProps &
+    MenuItemProps & {
+      name: string;
+      onClick: () => void;
+      Icon: ComponentType;
+    },
+  'button'
+>;
 
 interface Props {
   OverflowMenuIcon?: typeof SvgIcon;
@@ -46,9 +52,9 @@ const OverflowMenu: FC<Props> = ({ OverflowMenuIcon = MoreVert, icons = [] }) =>
 
   return (
     <>
-      {items[0].map(({ onClick, name, Icon }) => (
+      {items[0].map(({ name, Icon, ...props }) => (
         <Tooltip key={name} title={name}>
-          <IconButton onClick={onClick} aria-label={name} key={name} color="inherit">
+          <IconButton aria-label={name} key={name} color="inherit" {...props}>
             <Icon />
           </IconButton>
         </Tooltip>
@@ -61,8 +67,8 @@ const OverflowMenu: FC<Props> = ({ OverflowMenuIcon = MoreVert, icons = [] }) =>
             </IconButton>
           </Tooltip>
           <Menu anchorEl={anchorEl} open={!!anchorEl} onClose={handleOverflowClose}>
-            {items[1].map(({ onClick, name, Icon }) => (
-              <MenuItem onClick={onClick} aria-label={name} key={name}>
+            {items[1].map(({ name, Icon, ...props }) => (
+              <MenuItem aria-label={name} key={name} {...props}>
                 <ListItemIcon>
                   <Icon />
                 </ListItemIcon>

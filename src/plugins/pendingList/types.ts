@@ -53,9 +53,10 @@ export interface EntryRequest {
 export const enum Operation {
   Approve = 'approve',
   Reject = 'reject',
+  Remove = 'remove',
 }
 
-export interface InjectRequest {
+export interface SingleInjectRequest {
   task: string;
   entry: Inject;
 }

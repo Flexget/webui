@@ -4,9 +4,14 @@ import { Repeat, DoneAll, ClearAll, Delete } from '@material-ui/icons';
 import { useContainer } from 'unstated-next';
 import { RawEntry } from 'core/entry/types';
 import { useContextualAppBar, ContextualProps } from 'core/layout/AppBar/hooks';
-import { EntryContainer, useGetEntries, useEntryBulkSelect } from '../hooks/entry';
+import {
+  EntryContainer,
+  useGetEntries,
+  useEntryBulkSelect,
+  useEntryBulkOperation,
+} from '../hooks/entry';
 import EntryCard from './EntryCard';
-import { Options } from '../types';
+import { Options, Operation } from '../types';
 import InjectEntryDialog from './InjectEntryDialog';
 
 interface Props {
@@ -19,8 +24,9 @@ const EntryList: FC<Props> = ({ options }) => {
   useGetEntries(options);
   const [injectEntry, setInjectEntry] = useState<RawEntry>();
   const handleClose = () => setInjectEntry(undefined);
+  const [{ loading }, doBulkOperation] = useEntryBulkOperation();
 
-  const count = Object.values(selectedIds).reduce((c, selected) => (selected ? c + 1 : c), 0);
+  const count = selectedIds.size;
   const contextualProps: ContextualProps = useMemo(
     () => ({
       icons: [
@@ -31,13 +37,15 @@ const EntryList: FC<Props> = ({ options }) => {
         },
         {
           name: 'Approve All',
-          onClick: () => {},
+          onClick: () => doBulkOperation(Operation.Approve),
           Icon: DoneAll,
+          disabled: loading,
         },
         {
           name: 'Reject All',
-          onClick: () => {},
+          onClick: () => doBulkOperation(Operation.Reject),
           Icon: ClearAll,
+          disabled: loading,
         },
         {
           name: 'Remove All',
@@ -48,7 +56,7 @@ const EntryList: FC<Props> = ({ options }) => {
       title: `${count} selected`,
       onClose: clearSelected,
     }),
-    [clearSelected, count],
+    [clearSelected, count, doBulkOperation, loading],
   );
   const { setContextual } = useContextualAppBar(contextualProps);
 

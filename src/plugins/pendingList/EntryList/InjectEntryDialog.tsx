@@ -13,8 +13,9 @@ import theme from 'core/theme';
 import { RawEntry } from 'core/entry/types';
 import SelectField from 'common/TextField/Select';
 import { TaskContainer } from 'core/tasks/hooks';
+import { toExecuteRequest } from 'core/tasks/utils';
 import { useContainer } from 'unstated-next';
-import { InjectRequest } from '../types';
+import { SingleInjectRequest } from '../types';
 import { useInjectEntry } from '../hooks/entry';
 
 interface Props {
@@ -27,16 +28,8 @@ const errorStyle = css`
   text-align: center;
 `;
 
-const formatEntry = (entry?: RawEntry) => {
-  if (entry) {
-    const { id, title, originalUrl, ...fields } = entry;
-    return { title, url: originalUrl, fields };
-  }
-  return { title: '', url: '', fields: {} };
-};
-
 const InjectEntryDialog: FC<Props> = ({ entry, onClose }) => {
-  const initialValues: InjectRequest = { task: '', entry: formatEntry(entry) };
+  const initialValues: SingleInjectRequest = { task: '', entry: toExecuteRequest(entry) };
   const [{ loading, error }, inject] = useInjectEntry(entry?.id);
   const open = !!entry;
   const { tasks } = useContainer(TaskContainer);

@@ -17,6 +17,7 @@ const buffer = css`
 `;
 
 const card = (theme: Theme) => css`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -25,7 +26,6 @@ const card = (theme: Theme) => css`
 `;
 
 const actionArea = css`
-  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -48,8 +48,8 @@ const selectedCardActions = (theme: Theme) => css`
 
 const circleIcon = (theme: Theme) => css`
   position: absolute;
-  top: 0;
-  right: 0;
+  bottom: 0;
+  left: 0;
   color: ${theme.palette.primary.main};
   margin: ${theme.typography.pxToRem(theme.spacing(1))};
   opacity: 0;
@@ -81,7 +81,7 @@ const EntryCard: FC<Props> = ({ entry, setInjectEntry }) => {
         onClick: () => doOperation(Operation.Approve),
       };
 
-  const selected = !!selectedIds[entry.id];
+  const selected = selectedIds.has(entry.id);
 
   const toggle = useCallback(() => (selected ? unselectEntry(entry.id) : selectEntry(entry.id)), [
     entry.id,
@@ -107,8 +107,8 @@ const EntryCard: FC<Props> = ({ entry, setInjectEntry }) => {
 
   return (
     <Card css={cardStyles}>
+      <CheckCircle css={checkCircleStyles} />
       <CardActionArea css={actionAreaStyles} onClick={toggle} aria-pressed={selected}>
-        <CheckCircle css={checkCircleStyles} />
         <Entry entry={entry.entry} css={entryCard} />
       </CardActionArea>
       <CardActions>
