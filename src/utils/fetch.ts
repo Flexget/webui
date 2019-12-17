@@ -50,7 +50,11 @@ export type APIResponse<T> = SuccessResponse<T> | ErrorResponse;
 
 const status = async <T>(r: Response): Promise<APIResponse<T>> => {
   const response = r as APIResponse<T>;
-  response.data = await response.json();
+  try {
+    response.data = await response.json();
+  } catch (err) {
+    // do nothing for nwo;
+  }
 
   if (response.ok) {
     response.data = response.data && camelize<T>(response.data);

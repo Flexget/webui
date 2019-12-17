@@ -3,15 +3,14 @@ import { css } from '@emotion/core';
 import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@material-ui/core';
 import { Check, Clear, Delete, Repeat, CheckCircle } from '@material-ui/icons';
 import Entry from 'core/entry/cards';
-import { RawEntry } from 'core/entry/types';
 import { Operation, PendingListEntry } from '../types';
-import { useEntryOperation, useRemoveEntry, useEntryBulkSelect } from '../hooks/entry';
+import { useEntryOperation, useEntryBulkSelect } from '../hooks/entry';
 
 interface Props {
   entry: PendingListEntry;
-  setInjectEntry: SetState<RawEntry>;
+  onInjectClick: () => void;
+  onRemoveClick: () => void;
 }
-
 const buffer = css`
   flex: 1;
 `;
@@ -60,12 +59,9 @@ const circleIconVisible = css`
   opacity: 1;
 `;
 
-const EntryCard: FC<Props> = ({ entry, setInjectEntry }) => {
+const EntryCard: FC<Props> = ({ entry, onInjectClick, onRemoveClick }) => {
   const [{ loading: operationLoading }, doOperation] = useEntryOperation(entry.id);
-  const [{ loading: removeLoading }, removeEntry] = useRemoveEntry(entry.id);
   const [selectedIds, { selectEntry, unselectEntry }] = useEntryBulkSelect();
-
-  const handleInjectClick = () => setInjectEntry(entry);
 
   const { title, label, Icon, onClick } = entry.approved
     ? {
@@ -124,17 +120,12 @@ const EntryCard: FC<Props> = ({ entry, setInjectEntry }) => {
           </IconButton>
         </Tooltip>
         <Tooltip title="Remove" placement="top">
-          <IconButton
-            aria-label="remove"
-            onClick={removeEntry}
-            disabled={removeLoading}
-            css={selectedIconButton}
-          >
+          <IconButton aria-label="remove" onClick={onRemoveClick} css={selectedIconButton}>
             <Delete />
           </IconButton>
         </Tooltip>
         <Tooltip title="Inject" placement="top">
-          <IconButton aria-label="inject" onClick={handleInjectClick} css={selectedIconButton}>
+          <IconButton aria-label="inject" onClick={onInjectClick} css={selectedIconButton}>
             <Repeat />
           </IconButton>
         </Tooltip>

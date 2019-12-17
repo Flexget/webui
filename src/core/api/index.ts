@@ -4,6 +4,11 @@ import { AuthContainer } from 'core/auth/container';
 import { uriParser } from 'utils';
 import { useContainer } from 'unstated-next';
 
+export interface RequestState {
+  error?: StatusError;
+  loading: boolean;
+}
+
 export const useFlexgetAPI = <Res>(url: string, method: Method = Method.Get) => {
   const [, setLoggedIn] = useContainer(AuthContainer);
   const [loading, setLoading] = useState(false);

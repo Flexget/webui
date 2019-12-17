@@ -1,9 +1,9 @@
-import React, { FC, useState, useEffect, useMemo } from 'react';
+import React, { FC, useState, useEffect, useMemo, useCallback } from 'react';
 import { Grid } from '@material-ui/core';
 import { Repeat, DoneAll, ClearAll, Delete } from '@material-ui/icons';
 import { useContainer } from 'unstated-next';
-import { RawEntry } from 'core/entry/types';
 import { useContextualAppBar, ContextualProps } from 'core/layout/AppBar/hooks';
+import RemoveEntryDialog from 'plugins/pendingList/EntryList/RemoveEntryDialog';
 import {
   EntryContainer,
   useGetEntries,
@@ -18,12 +18,17 @@ interface Props {
   options: Options;
 }
 
+interface EntryPromptStates {
+  type?: 'inject' | 'remove';
+  open: boolean;
+  entryId?: number;
+}
+
 const EntryList: FC<Props> = ({ options }) => {
   const [{ entries }] = useContainer(EntryContainer);
   const [selectedIds, { clearSelected }] = useEntryBulkSelect();
   useGetEntries(options);
-  const [injectEntry, setInjectEntry] = useState<RawEntry>();
-  const handleClose = () => setInjectEntry(undefined);
+  const [{ entryId, open, type }, setEntryPrompt] = useState<EntryPromptStates>({ open: false });
   const [{ loading }, doBulkOperation] = useEntryBulkOperation();
 
   const count = selectedIds.size;
@@ -32,7 +37,7 @@ const EntryList: FC<Props> = ({ options }) => {
       icons: [
         {
           name: 'Inject All',
-          onClick: () => {},
+          onClick: () => setEntryPrompt({ open: true, type: 'inject' }),
           Icon: Repeat,
         },
         {
@@ -49,7 +54,7 @@ const EntryList: FC<Props> = ({ options }) => {
         },
         {
           name: 'Remove All',
-          onClick: () => {},
+          onClick: () => setEntryPrompt({ open: true, type: 'remove' }),
           Icon: Delete,
         },
       ],
@@ -64,16 +69,27 @@ const EntryList: FC<Props> = ({ options }) => {
     setContextual(count !== 0);
   }, [count, setContextual]);
 
+  const handleClose = useCallback(() => setEntryPrompt({ open: false }), []);
+
   return (
     <>
       <Grid container spacing={2}>
         {entries.map(entry => (
           <Grid item key={entry.id} xs={12} md={6} lg={4}>
-            <EntryCard entry={entry} setInjectEntry={setInjectEntry} />
+            <EntryCard
+              entry={entry}
+              onInjectClick={() =>
+                setEntryPrompt({ open: true, type: 'inject', entryId: entry.id })
+              }
+              onRemoveClick={() =>
+                setEntryPrompt({ open: true, type: 'remove', entryId: entry.id })
+              }
+            />
           </Grid>
         ))}
       </Grid>
-      <InjectEntryDialog entry={injectEntry} onClose={handleClose} />
+      <InjectEntryDialog entryId={entryId} open={open && type === 'inject'} onClose={handleClose} />
+      <RemoveEntryDialog entryId={entryId} open={open && type === 'remove'} onClose={handleClose} />
     </>
   );
 };

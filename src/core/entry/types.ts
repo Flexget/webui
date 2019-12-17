@@ -6,14 +6,12 @@ export const enum CardType {
 }
 
 export interface RawEntry {
-  readonly id: number;
   readonly title: string;
   readonly originalUrl: string;
   readonly [k: string]: any;
 }
 
 export interface BaseEntry {
-  readonly id: number;
   readonly title: string;
   readonly originalUrl: string;
   readonly type: CardType;

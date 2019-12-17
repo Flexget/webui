@@ -7,13 +7,7 @@ import { stringify } from 'qs';
 import { useExecuteTask } from 'core/tasks/hooks';
 import { toExecuteRequest } from 'core/tasks/utils';
 import { ListContainer } from './list';
-import {
-  Options,
-  AddEntryRequest,
-  Operation,
-  PendingListEntry,
-  SingleInjectRequest,
-} from '../types';
+import { Options, AddEntryRequest, Operation, PendingListEntry } from '../types';
 
 export const enum Constants {
   GET_ENTRIES = '@flexget/pendingList/GET_ENTRIES',
@@ -93,6 +87,7 @@ const entryReducer: Reducer<State, Actions> = (state, act) => {
     }
     case Constants.REMOVE_ENTRIES: {
       const idSet = new Set(act.payload);
+
       return {
         ...state,
         totalCount: state.totalCount - 1,
@@ -174,7 +169,7 @@ export const useAddEntry = () => {
   return [state, addEntry] as const;
 };
 
-export const useRemoveEntry = (entryId?: number) => {
+const useRemoveSingleEntry = (entryId?: number) => {
   const [{ listId }] = useContainer(ListContainer);
   const [, dispatch] = useContainer(EntryContainer);
   const [state, request] = useFlexgetAPI(
@@ -194,19 +189,75 @@ export const useRemoveEntry = (entryId?: number) => {
   return [state, removeEntry] as const;
 };
 
+export const useEntryBulkOperation = () => {
+  const [{ listId }] = useContainer(ListContainer);
+  const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
+  const [state, request] = useFlexgetAPI<PendingListEntry[]>(
+    `/pending_list/${listId}/entries/batch`,
+    Method.Post,
+  );
+
+  const doOperation = useCallback(
+    async (operation: Operation) => {
+      const ids = [...selectedIds];
+      const resp = await request({
+        operation,
+        ids,
+      });
+
+      if (resp.ok) {
+        if (operation === Operation.Remove) {
+          dispatch(actions.removeEntries(ids));
+        } else {
+          dispatch(actions.updateEntries(resp.data));
+        }
+      }
+      return resp;
+    },
+    [dispatch, request, selectedIds],
+  );
+  return [state, doOperation] as const;
+};
+
+export const useRemoveEntry = (entryId?: number) => {
+  const singleState = useRemoveSingleEntry(entryId);
+  const [bulkState, doOperation] = useEntryBulkOperation();
+  const removeBulk = useCallback(() => doOperation(Operation.Remove), [doOperation]);
+
+  return entryId ? singleState : ([bulkState, removeBulk] as const);
+};
+
 export const useInjectEntry = (entryId?: number) => {
+  const [{ selectedIds, entries }] = useContainer(EntryContainer);
   const [remove, removeEntry] = useRemoveEntry(entryId);
   const [execute, executeTask] = useExecuteTask();
 
+  const entryMap = useMemo(
+    () =>
+      entries.reduce(
+        (obj: Record<number, PendingListEntry>, entry) => ({
+          ...obj,
+          [entry.id]: entry,
+        }),
+        {},
+      ),
+    [entries],
+  );
+
+  const inject = useMemo(
+    () => (entryId ? [entryId] : [...selectedIds]).map(id => toExecuteRequest(entryMap[id]?.entry)),
+    [entryId, entryMap, selectedIds],
+  );
+
   const injectEntry = useCallback(
-    async ({ task, entry }: SingleInjectRequest) => {
-      const executeResponse = await executeTask({ tasks: [task], inject: [entry] });
+    async (task: string) => {
+      const executeResponse = await executeTask({ tasks: [task], inject });
       if (!executeResponse.ok) {
         return executeResponse;
       }
       return removeEntry();
     },
-    [executeTask, removeEntry],
+    [executeTask, inject, removeEntry],
   );
 
   return [
@@ -251,70 +302,4 @@ export const useEntryBulkSelect = () => {
   const clearSelected = useCallback(() => dispatch(actions.clearSelected()), [dispatch]);
 
   return [selectedIds, { selectEntry, unselectEntry, clearSelected }] as const;
-};
-
-export const useEntryBulkOperation = () => {
-  const [{ listId }] = useContainer(ListContainer);
-  const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
-  const [state, request] = useFlexgetAPI<PendingListEntry[]>(
-    `/pending_list/${listId}/entries/batch`,
-    Method.Post,
-  );
-
-  const doOperation = useCallback(
-    async (operation: Operation) => {
-      const ids = [...selectedIds];
-      const resp = await request({
-        operation,
-        ids,
-      });
-
-      if (resp.ok) {
-        if (operation === Operation.Remove) {
-          dispatch(actions.removeEntries(ids));
-        } else {
-          dispatch(actions.updateEntries(resp.data));
-        }
-      }
-    },
-    [dispatch, request, selectedIds],
-  );
-  return [state, doOperation] as const;
-};
-
-export const useBulkInjectEntry = () => {
-  const [execute, executeTask] = useExecuteTask();
-  const [operation, doOperation] = useEntryBulkOperation();
-  const [{ entries, selectedIds }] = useContainer(EntryContainer);
-  const entryMap = useMemo(
-    () =>
-      entries.reduce(
-        (obj: Record<number, PendingListEntry>, entry) => ({
-          ...obj,
-          [entry.id]: entry,
-        }),
-        {},
-      ),
-    [entries],
-  );
-
-  const injectEntry = useCallback(
-    async (task: string) => {
-      const inject = [...selectedIds].map(id => toExecuteRequest(entryMap[id]));
-      const executeResponse = await executeTask({ tasks: [task], inject });
-      if (!executeResponse.ok) {
-        return executeResponse;
-      }
-      return doOperation(Operation.Remove);
-    },
-    [doOperation, entryMap, executeTask, selectedIds],
-  );
-
-  return [
-    {
-      error: operation.error ?? execute.error,
-      loading: operation.loading || execute.loading,
-    },
-    injectEntry,
-  ] as const;
 };

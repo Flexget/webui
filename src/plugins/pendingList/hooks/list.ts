@@ -93,15 +93,15 @@ export const useAddList = () => {
   return [state, addList] as const;
 };
 
-export const useRemoveList = (id: SelectedListID) => {
-  const [, dispatch] = useContainer(ListContainer);
+export const useRemoveList = () => {
+  const [{ listId }, dispatch] = useContainer(ListContainer);
 
-  const [state, request] = useFlexgetAPI(`/pending_list/${id}`, Method.Delete);
+  const [state, request] = useFlexgetAPI(`/pending_list/${listId}`, Method.Delete);
 
   const removeList = async () => {
     const resp = await request();
-    if (resp.ok && id !== 'add') {
-      dispatch(actions.removeList(id));
+    if (resp.ok && listId !== 'add') {
+      dispatch(actions.removeList(listId));
     }
     return resp;
   };

@@ -9,8 +9,7 @@ import {
 } from '@material-ui/core';
 import { css } from '@emotion/core';
 import theme from 'core/theme';
-import { useContainer } from 'unstated-next';
-import { useRemoveList, ListContainer } from '../hooks/list';
+import { useRemoveList } from '../hooks/list';
 
 interface Props {
   open?: boolean;
@@ -23,8 +22,7 @@ const errorStyle = css`
 `;
 
 const RemoveListDialog: FC<Props> = ({ open = false, onClose }) => {
-  const [{ listId }] = useContainer(ListContainer);
-  const [{ loading, error }, removeList] = useRemoveList(listId);
+  const [{ loading, error }, removeList] = useRemoveList();
   const handleClick = async () => {
     const resp = await removeList();
     if (resp.ok) {
@@ -33,7 +31,7 @@ const RemoveListDialog: FC<Props> = ({ open = false, onClose }) => {
   };
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
-      <DialogTitle>Remove Entry</DialogTitle>
+      <DialogTitle>Remove List</DialogTitle>
       <DialogContent>
         {error && <DialogContentText css={errorStyle}>{error.message}</DialogContentText>}
         <DialogContentText>Are you sure you would like to remove this List?</DialogContentText>
