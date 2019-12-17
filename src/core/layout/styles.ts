@@ -4,10 +4,11 @@ import { Theme } from '@material-ui/core';
 export const wrapper = (theme: Theme) => css`
   display: grid;
   grid-template-columns: auto 1fr 0;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto 1fr 0;
   grid-template-areas:
     'logo logo logo'
     'header header header'
+    'sidebar content content'
     'sidebar content content';
   height: 100vh;
   width: 100vw;
@@ -23,6 +24,7 @@ export const wrapper = (theme: Theme) => css`
 
 export const main = css`
   grid-area: content;
+  position: relative;
 `;
 
 export const header = css`
@@ -54,21 +56,19 @@ export const leavingTransition = (theme: Theme) => css`
 
 export const content = (theme: Theme) => css`
   overflow-y: auto;
-  padding: ${theme.typography.pxToRem(theme.spacing(2))};
-  opacity: 1;
+  padding: ${theme.typography.pxToRem(theme.spacing(1))};
   height: 100%;
 
-  ${theme.breakpoints.down('sm')} {
-    margin-left: 0;
-    padding: ${theme.typography.pxToRem(theme.spacing(1))};
-    opacity: 1;
-    display: block;
+  ${theme.breakpoints.up('sm')} {
+    padding: ${theme.typography.pxToRem(theme.spacing(2))};
   }
 `;
 
 export const contentWithSidebar = (theme: Theme) => css`
-  ${theme.breakpoints.down('sm')} {
-    opacity: 0;
-    display: none;
+  opacity: 0;
+  display: none;
+  ${theme.breakpoints.up('sm')} {
+    opacity: 1;
+    display: block;
   }
 `;

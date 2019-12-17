@@ -5,11 +5,10 @@ import theme from 'core/theme';
 import SelectField from 'common/SelectField';
 import { Direction } from 'utils/query';
 import { useOverlayState } from 'utils/hooks';
-import RemoveListDialog from 'plugins/pendingList/RemoveListDialog';
 import { useContainer } from 'unstated-next';
-import { Options, SortBy } from './types';
-import { EntryContainer } from './hooks/entry';
-import AddEntryDialog from './AddEntryDialog';
+import { Options, SortBy } from '../types';
+import { EntryContainer } from '../hooks/entry';
+import RemoveListDialog from './RemoveListDialog';
 
 interface Props {
   setOptions: (opts: Partial<Options>) => void;
@@ -85,8 +84,7 @@ const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPa
     setOptions({ page: p });
   };
 
-  const [addIsOpen, { open: addOpen, close: addClose }] = useOverlayState(false);
-  const [removeIsOpen, { open: removeOpen, close: removeClose }] = useOverlayState(false);
+  const [removeIsOpen, { open: removeOpen, close: removeClose }] = useOverlayState();
 
   return (
     <>
@@ -94,9 +92,6 @@ const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPa
         {({ css: cssString }) => (
           <div css={wrapper}>
             <div css={container}>
-              <Button color="secondary" onClick={addOpen} css={item}>
-                Add New Entry
-              </Button>
               <Button color="secondary" onClick={removeOpen} css={item}>
                 Remove List
               </Button>
@@ -138,7 +133,6 @@ const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPa
           </div>
         )}
       </ClassNames>
-      <AddEntryDialog open={addIsOpen} onClose={addClose} />
       <RemoveListDialog open={removeIsOpen} onClose={removeClose} />
     </>
   );

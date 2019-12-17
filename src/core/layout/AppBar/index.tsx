@@ -1,20 +1,26 @@
-import React, { FC, useState, useCallback } from 'react';
+import React, { FC, useState, useCallback, useMemo } from 'react';
 import { useContainer } from 'unstated-next';
 import { css } from '@emotion/core';
-import { AppBar as MUIAppBar, Toolbar, IconButton, Typography, Theme } from '@material-ui/core';
-import { MoreVert, Menu as MenuIcon, ListAlt, CreateOutlined, Clear } from '@material-ui/icons';
+import {
+  AppBar as MUIAppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Theme,
+  Tooltip,
+} from '@material-ui/core';
+import { Menu as MenuIcon, ListAlt, CreateOutlined, Clear, Settings } from '@material-ui/icons';
 import { Spacer, Link } from 'common/styles';
 import LoadingBar from 'core/status/LoadingBar';
+import { SpeedDialIcon } from '@material-ui/lab';
 import { AppBarContainer } from './hooks';
 import Menu from './Menu';
+import OverflowMenu from './OverflowMenu';
 
 const appbar = (theme: Theme) => css`
   background-color: ${theme.palette.primary.main};
   color: ${theme.palette.primary.contrastText};
-
-  ${theme.breakpoints.up('sm')} {
-    min-height: ${theme.mixins.toolbar.minHeight};
-  }
+  min-height: ${theme.mixins.toolbar.minHeight};
 `;
 
 const contextualAppBar = (theme: Theme) => css`
@@ -53,42 +59,46 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
     setContextual(false);
   }, [contextualProps, setContextual]);
 
+  const menuClick = useMemo(() => (contextualMode ? handleContextualClose : toggleSidebar), [
+    contextualMode,
+    handleContextualClose,
+    toggleSidebar,
+  ]);
+
+  const menuLabel = contextualMode ? 'close context' : 'toggle sidebar';
+
   return (
     <MUIAppBar color="inherit" position="static" css={appbarStyles} className={className}>
       <Toolbar>
-        {contextualMode ? (
-          <IconButton onClick={handleContextualClose} aria-label="close context" color="inherit">
-            <Clear />
-          </IconButton>
-        ) : (
-          <IconButton onClick={toggleSidebar} aria-label="toggle sidebar" color="inherit">
-            <MenuIcon />
-          </IconButton>
-        )}
+        <IconButton onClick={menuClick} aria-label={menuLabel} color="inherit">
+          <SpeedDialIcon icon={<MenuIcon />} openIcon={<Clear />} open={contextualMode} />
+        </IconButton>
         <Typography variant="h6" color="inherit" noWrap>
           {contextualMode && contextualProps?.title ? contextualProps.title : title}
         </Typography>
         <Spacer />
         {contextualMode && !!contextualProps.icons ? (
-          contextualProps.icons?.map(({ name, Icon, onClick }) => (
-            <IconButton aria-label={name} onClick={onClick} color="inherit">
-              <Icon />
-            </IconButton>
-          ))
+          <OverflowMenu icons={contextualProps.icons} />
         ) : (
           <>
-            <IconButton aria-label="config editor" color="inherit" component={Link} to="/config">
-              <CreateOutlined />
-            </IconButton>
-            <IconButton aria-label="log" color="inherit" component={Link} to="/log">
-              <ListAlt />
-            </IconButton>
+            <Tooltip title="Config Editor">
+              <IconButton aria-label="config editor" color="inherit" component={Link} to="/config">
+                <CreateOutlined />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Log">
+              <IconButton aria-label="log" color="inherit" component={Link} to="/log">
+                <ListAlt />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Manage">
+              <IconButton aria-label="Manage" onClick={handleSettingsClick} color="inherit">
+                <Settings />
+              </IconButton>
+            </Tooltip>
+            <Menu anchorEl={anchorEl} onClose={handleSettingsClose} />
           </>
         )}
-        <IconButton aria-label="Manage" onClick={handleSettingsClick} color="inherit">
-          <MoreVert />
-        </IconButton>
-        <Menu anchorEl={anchorEl} onClose={handleSettingsClose} />
       </Toolbar>
       {content}
       <LoadingBar />

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useContainer } from 'unstated-next';
 import { css } from '@emotion/core';
 import {
   Button,
@@ -10,15 +11,13 @@ import {
 } from '@material-ui/core';
 import { Formik, Form } from 'formik';
 import theme from 'core/theme';
-import { RawEntry } from 'core/entry/types';
 import SelectField from 'common/TextField/Select';
 import { TaskContainer } from 'core/tasks/hooks';
-import { useContainer } from 'unstated-next';
-import { InjectRequest } from '../types';
 import { useInjectEntry } from '../hooks/entry';
 
 interface Props {
-  entry?: RawEntry;
+  entryId?: number;
+  open: boolean;
   onClose: () => void;
 }
 
@@ -27,27 +26,22 @@ const errorStyle = css`
   text-align: center;
 `;
 
-const formatEntry = (entry?: RawEntry) => {
-  if (entry) {
-    const { id, title, originalUrl, ...fields } = entry;
-    return { title, url: originalUrl, fields };
-  }
-  return { title: '', url: '', fields: {} };
-};
+interface Values {
+  task: string;
+}
 
-const InjectEntryDialog: FC<Props> = ({ entry, onClose }) => {
-  const initialValues: InjectRequest = { task: '', entry: formatEntry(entry) };
-  const [{ loading, error }, inject] = useInjectEntry(entry?.id);
-  const open = !!entry;
+const InjectEntryDialog: FC<Props> = ({ entryId, onClose, open }) => {
+  const initialValues: Values = { task: '' };
+  const [{ loading, error }, inject] = useInjectEntry(entryId);
   const { tasks } = useContainer(TaskContainer);
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
-      <DialogTitle>Inject Entry</DialogTitle>
+      <DialogTitle>Inject {entryId ? 'Entry' : 'Entries'}</DialogTitle>
       <Formik
         initialValues={initialValues}
-        onSubmit={async (values, actions) => {
-          const resp = await inject(values);
+        onSubmit={async ({ task }, actions) => {
+          const resp = await inject(task);
           if (resp.ok) {
             actions.resetForm();
             onClose();

@@ -34,7 +34,6 @@ Then you can go to http://localhost:8000 (use `PORT` env variable to run on a di
 * We are in the process of moving from javascript to typescript and if you are making substantial changes to a javascript file, please convert it to typescript if you feel comfortable doing so. All new files should be written in typescript. 
 
 ## Testing
-
 We currently use [Jest](https://facebook.github.io/jest/) and primarily [Snapshot Testing](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest) for tests. Going forward we are deprecating snapshot testing outside of inline snapshots.
 
 ### Technologies we use:
@@ -46,5 +45,6 @@ We currently use [Jest](https://facebook.github.io/jest/) and primarily [Snapsho
 * [react-testing-library](https://github.com/testing-library/react-testing-library) (looking into using this over enzyme)
 
 To run the tests, run `yarn test`. To run the tests in watch mode, run `yarn test --watch`. To run tests with coverage, run `yarn test --coverage`.  You can also view coverage on [Codecov](https://codecov.io/gh/Flexget/webui) once you've made a PR.
+
 
 

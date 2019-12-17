@@ -1,18 +1,21 @@
-import { useReducer, Reducer, useEffect, useCallback } from 'react';
+import { useReducer, Reducer, useEffect, useCallback, useMemo } from 'react';
 import { createContainer, useContainer } from 'unstated-next';
 import { useFlexgetAPI } from 'core/api';
 import { action } from 'utils/hooks/actions';
 import { Method, snakeCase } from 'utils/fetch';
 import { stringify } from 'qs';
 import { useExecuteTask } from 'core/tasks/hooks';
+import { toExecuteRequest } from 'core/tasks/utils';
 import { ListContainer } from './list';
-import { Options, AddEntryRequest, Operation, PendingListEntry, InjectRequest } from '../types';
+import { Options, AddEntryRequest, Operation, PendingListEntry } from '../types';
 
 export const enum Constants {
   GET_ENTRIES = '@flexget/pendingList/GET_ENTRIES',
   ADD_ENTRY = '@flexget/pendingList/ADD_ENTRY',
-  REMOVE_ENTRY = '@flexget/pendingList/REMOVE_ENTRY',
   UPDATE_ENTRY = '@flexget/pendingList/UPDATE_ENTRY',
+  UPDATE_ENTRIES = '@flexget/pendingList/UPDATE_ENTRIES',
+  REMOVE_ENTRY = '@flexget/pendingList/REMOVE_ENTRY',
+  REMOVE_ENTRIES = '@flexget/pendingList/REMOVE_ENTRIES',
   SELECT_ENTRY = '@flexget/pendingList/SELECT_ENTRY',
   UNSELECT_ENTRY = '@flexget/pendingList/UNSELECT_ENTRY',
   CLEAR_SELECTED = '@flexget/pendingList/CLEAR_SELECTED',
@@ -23,7 +26,9 @@ const actions = {
     action(Constants.GET_ENTRIES, { entries, totalCount }),
   addEntry: (entry: PendingListEntry) => action(Constants.ADD_ENTRY, entry),
   updateEntry: (entry: PendingListEntry) => action(Constants.UPDATE_ENTRY, entry),
+  updateEntries: (entries: PendingListEntry[]) => action(Constants.UPDATE_ENTRIES, entries),
   removeEntry: (id: number) => action(Constants.REMOVE_ENTRY, id),
+  removeEntries: (ids: number[]) => action(Constants.REMOVE_ENTRIES, ids),
   selectEntry: (id: number) => action(Constants.SELECT_ENTRY, id),
   unselectEntry: (id: number) => action(Constants.UNSELECT_ENTRY, id),
   clearSelected: () => action(Constants.CLEAR_SELECTED),
@@ -34,7 +39,7 @@ type Actions = PropReturnType<typeof actions>;
 interface State {
   entries: PendingListEntry[];
   totalCount: number;
-  selectedIds: Record<number, boolean>;
+  selectedIds: ReadonlySet<number>;
 }
 
 const entryReducer: Reducer<State, Actions> = (state, act) => {
@@ -42,7 +47,7 @@ const entryReducer: Reducer<State, Actions> = (state, act) => {
     case Constants.GET_ENTRIES:
       return {
         ...act.payload,
-        selectedIds: {},
+        selectedIds: new Set(),
       };
     case Constants.ADD_ENTRY:
       return {
@@ -66,35 +71,53 @@ const entryReducer: Reducer<State, Actions> = (state, act) => {
           return item;
         }),
       };
+    case Constants.UPDATE_ENTRIES: {
+      const entryMap = act.payload.reduce(
+        (obj, entry) => ({
+          ...obj,
+          [entry.id]: entry,
+        }),
+        {},
+      );
+      return {
+        ...state,
+        entries: state.entries.map(item => entryMap[item.id] ?? item),
+        selectedIds: new Set(),
+      };
+    }
+    case Constants.REMOVE_ENTRIES: {
+      const idSet = new Set(act.payload);
+
+      return {
+        ...state,
+        totalCount: state.totalCount - 1,
+        entries: state.entries.filter(entry => !idSet.has(entry.id)),
+        selectedIds: new Set(),
+      };
+    }
     case Constants.SELECT_ENTRY:
       return {
         ...state,
-        selectedIds: {
-          ...state.selectedIds,
-          [act.payload]: true,
-        },
+        selectedIds: new Set([...state.selectedIds, act.payload]),
       };
     case Constants.UNSELECT_ENTRY:
       return {
         ...state,
-        selectedIds: {
-          ...state.selectedIds,
-          [act.payload]: false,
-        },
+        selectedIds: new Set([...state.selectedIds].filter(id => id !== act.payload)),
       };
     case Constants.CLEAR_SELECTED:
       return {
         ...state,
-        selectedIds: {},
+        selectedIds: new Set(),
       };
     default:
       return state;
   }
 };
 
-const useEntries = () => useReducer(entryReducer, { entries: [], totalCount: 0, selectedIds: {} });
-
-export const EntryContainer = createContainer(useEntries);
+export const EntryContainer = createContainer(() =>
+  useReducer(entryReducer, { entries: [], totalCount: 0, selectedIds: new Set<number>() }),
+);
 
 export const useGetEntries = (options: Options) => {
   const [, dispatch] = useContainer(EntryContainer);
@@ -116,9 +139,7 @@ export const useGetEntries = (options: Options) => {
         );
       }
     };
-    if (listId !== 'add') {
-      fn();
-    }
+    fn();
   }, [dispatch, getEntries, listId]);
 
   return state;
@@ -146,7 +167,7 @@ export const useAddEntry = () => {
   return [state, addEntry] as const;
 };
 
-export const useRemoveEntry = (entryId?: number) => {
+const useRemoveSingleEntry = (entryId?: number) => {
   const [{ listId }] = useContainer(ListContainer);
   const [, dispatch] = useContainer(EntryContainer);
   const [state, request] = useFlexgetAPI(
@@ -166,19 +187,62 @@ export const useRemoveEntry = (entryId?: number) => {
   return [state, removeEntry] as const;
 };
 
+const useRemoveBulkEntry = () => {
+  const [{ listId }] = useContainer(ListContainer);
+  const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
+  const [state, request] = useFlexgetAPI(`/pending_list/${listId}/entries/batch`, Method.Delete);
+
+  const removeEntry = useCallback(async () => {
+    const ids = [...selectedIds];
+    const resp = await request({ ids });
+    if (resp.ok) {
+      dispatch(actions.removeEntries(ids));
+    }
+
+    return resp;
+  }, [dispatch, request, selectedIds]);
+
+  return [state, removeEntry] as const;
+};
+
+export const useRemoveEntry = (entryId?: number) => {
+  const singleState = useRemoveSingleEntry(entryId);
+  const bulkState = useRemoveBulkEntry();
+
+  return entryId ? singleState : bulkState;
+};
+
 export const useInjectEntry = (entryId?: number) => {
+  const [{ selectedIds, entries }] = useContainer(EntryContainer);
   const [remove, removeEntry] = useRemoveEntry(entryId);
   const [execute, executeTask] = useExecuteTask();
 
+  const entryMap = useMemo(
+    () =>
+      entries.reduce(
+        (obj: Record<number, PendingListEntry>, entry) => ({
+          ...obj,
+          [entry.id]: entry,
+        }),
+        {},
+      ),
+    [entries],
+  );
+
+  const inject = useMemo(
+    () => (entryId ? [entryId] : [...selectedIds]).map(id => toExecuteRequest(entryMap[id]?.entry)),
+    [entryId, entryMap, selectedIds],
+  );
+
   const injectEntry = useCallback(
-    async ({ task, entry }: InjectRequest) => {
-      const executeResponse = await executeTask({ tasks: [task], inject: [entry] });
+    async (task: string) => {
+      const executeResponse = await executeTask({ tasks: [task], inject });
       if (!executeResponse.ok) {
         return executeResponse;
       }
       return removeEntry();
     },
-    [executeTask, removeEntry],
+    [executeTask, inject, removeEntry],
   );
 
   return [
@@ -210,4 +274,43 @@ export const useEntryOperation = (entryId: number) => {
   );
 
   return [state, doOperation] as const;
+};
+
+export const useEntryBulkOperation = () => {
+  const [{ listId }] = useContainer(ListContainer);
+  const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
+  const [state, request] = useFlexgetAPI<PendingListEntry[]>(
+    `/pending_list/${listId}/entries/batch`,
+    Method.Put,
+  );
+
+  const doOperation = useCallback(
+    async (operation: Operation) => {
+      const ids = [...selectedIds];
+      const resp = await request({
+        operation,
+        ids,
+      });
+
+      if (resp.ok) {
+        dispatch(actions.updateEntries(resp.data));
+      }
+      return resp;
+    },
+    [dispatch, request, selectedIds],
+  );
+  return [state, doOperation] as const;
+};
+
+export const useEntryBulkSelect = () => {
+  const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
+
+  const selectEntry = useCallback((id: number) => dispatch(actions.selectEntry(id)), [dispatch]);
+  const unselectEntry = useCallback((id: number) => dispatch(actions.unselectEntry(id)), [
+    dispatch,
+  ]);
+
+  const clearSelected = useCallback(() => dispatch(actions.clearSelected()), [dispatch]);
+
+  return [selectedIds, { selectEntry, unselectEntry, clearSelected }] as const;
 };

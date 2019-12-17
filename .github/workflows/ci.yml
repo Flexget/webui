@@ -3,11 +3,10 @@ name: Continuous Integration
 on:
   push:
     branches:
-      - '**'
-      - '!master'
+      - 'develop'
   pull_request:
     branches:
-      - '**'
+      - 'develop'
 jobs:
   tests:
     name: Run Tests
@@ -39,7 +38,6 @@ jobs:
         run: yarn test --ci --coverage -i
       - name: Send to Code Cov
         uses: codecov/codecov-action@v1
-        if: github.event_name == 'push'
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 

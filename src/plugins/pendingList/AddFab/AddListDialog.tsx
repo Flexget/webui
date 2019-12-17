@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { css } from '@emotion/core';
-import TextField from 'common/TextField';
 import {
   Button,
   Dialog,
@@ -9,33 +8,34 @@ import {
   DialogTitle,
   DialogContentText,
 } from '@material-ui/core';
-import { Form, Formik } from 'formik';
+import TextField from 'common/TextField';
+import { Formik, Form } from 'formik';
 import theme from 'core/theme';
-import { useAddEntry } from 'plugins/pendingList/hooks/entry';
-import { AddEntryRequest } from '../types';
+import { AddListRequest } from '../types';
+import { useAddList } from '../hooks/list';
 
 interface Props {
-  open?: boolean;
+  open: boolean;
   onClose: () => void;
 }
 
 const errorStyle = css`
   color: ${theme.palette.error[500]};
   text-align: center;
+  padding: ${theme.typography.pxToRem(theme.spacing(1))};
 `;
 
-const AddEntryDialog: FC<Props> = ({ open = false, onClose }) => {
-  const initialValues: AddEntryRequest = { title: '', originalUrl: '' };
-  const [{ loading, error }, addEntry] = useAddEntry();
+const AddListDialog: FC<Props> = ({ open, onClose }) => {
+  const initialValues: AddListRequest = { name: '' };
+  const [{ loading, error }, addList] = useAddList();
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
-      <DialogTitle>Add New Entry</DialogTitle>
-
+      <DialogTitle>Add New Pending List</DialogTitle>
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, actions) => {
-          const resp = await addEntry(values);
+          const resp = await addList(values);
           if (resp.ok) {
             actions.resetForm();
             onClose();
@@ -45,8 +45,7 @@ const AddEntryDialog: FC<Props> = ({ open = false, onClose }) => {
         <Form>
           <DialogContent>
             {error && <DialogContentText css={errorStyle}>{error.message}</DialogContentText>}
-            <TextField autoFocus id="title" label="Entry Title" fullWidth name="title" />
-            <TextField id="entry-url" label="Entry URL" fullWidth name="originalUrl" />
+            <TextField autoFocus id="name" label="List Name" fullWidth name="name" />
           </DialogContent>
           <DialogActions>
             <Button onClick={onClose} type="button">
@@ -62,4 +61,4 @@ const AddEntryDialog: FC<Props> = ({ open = false, onClose }) => {
   );
 };
 
-export default AddEntryDialog;
+export default AddListDialog;

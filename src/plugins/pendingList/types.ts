@@ -55,9 +55,7 @@ export const enum Operation {
   Reject = 'reject',
 }
 
-export interface InjectRequest {
+export interface SingleInjectRequest {
   task: string;
   entry: Inject;
 }
-
-export type SelectedListID = number | 'add';
