@@ -20,7 +20,7 @@ interface Props {
   onRemoveClick: () => void;
 }
 
-const card = (theme: Theme) => css`
+const card = css`
   position: relative;
   display: flex;
   flex-direction: column;
