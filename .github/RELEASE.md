@@ -1,6 +1,6 @@
 # Creating a Release
 
-Currently the webui is built nightly at 1am UTC as long as there are changes on the development branch. The latest release is then included with the main flexget repo.
+Currently the webui is built nightly at 13:00 UTC as long as there are changes on the development branch. The latest release is then included with the main flexget repo.
 
 If you have write access to this repo, you can also trigger a manual release in slack or using the github api directly to create a deployment.
 
