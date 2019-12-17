@@ -1,17 +1,12 @@
-import { useState, useEffect, useCallback, ComponentType } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { createContainer, useContainer } from 'unstated-next';
 import { useFlexgetAPI } from 'core/api';
 import { Method } from 'utils/fetch';
 import { Operation } from './types';
-
-interface IconProps {
-  name: string;
-  onClick: () => void;
-  Icon: ComponentType;
-}
+import { OverflowMenuIconProps } from './OverflowMenu';
 
 export interface ContextualProps {
-  icons?: IconProps[];
+  icons?: OverflowMenuIconProps[];
   title?: string;
   onClose?: () => void;
 }

@@ -1,12 +1,20 @@
 import React, { FC, useState, useCallback } from 'react';
 import { useContainer } from 'unstated-next';
 import { css } from '@emotion/core';
-import { AppBar as MUIAppBar, Toolbar, IconButton, Typography, Theme } from '@material-ui/core';
-import { MoreVert, Menu as MenuIcon, ListAlt, CreateOutlined, Clear } from '@material-ui/icons';
+import {
+  AppBar as MUIAppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Theme,
+  Tooltip,
+} from '@material-ui/core';
+import { Menu as MenuIcon, ListAlt, CreateOutlined, Clear, Settings } from '@material-ui/icons';
 import { Spacer, Link } from 'common/styles';
 import LoadingBar from 'core/status/LoadingBar';
 import { AppBarContainer } from './hooks';
 import Menu from './Menu';
+import OverflowMenu from './OverflowMenu';
 
 const appbar = (theme: Theme) => css`
   background-color: ${theme.palette.primary.main};
@@ -70,25 +78,27 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
         </Typography>
         <Spacer />
         {contextualMode && !!contextualProps.icons ? (
-          contextualProps.icons?.map(({ name, Icon, onClick }) => (
-            <IconButton aria-label={name} onClick={onClick} color="inherit">
-              <Icon />
-            </IconButton>
-          ))
+          <OverflowMenu icons={contextualProps.icons} />
         ) : (
           <>
-            <IconButton aria-label="config editor" color="inherit" component={Link} to="/config">
-              <CreateOutlined />
-            </IconButton>
-            <IconButton aria-label="log" color="inherit" component={Link} to="/log">
-              <ListAlt />
-            </IconButton>
+            <Tooltip title="Config Editor">
+              <IconButton aria-label="config editor" color="inherit" component={Link} to="/config">
+                <CreateOutlined />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Log">
+              <IconButton aria-label="log" color="inherit" component={Link} to="/log">
+                <ListAlt />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Manage">
+              <IconButton aria-label="Manage" onClick={handleSettingsClick} color="inherit">
+                <Settings />
+              </IconButton>
+            </Tooltip>
+            <Menu anchorEl={anchorEl} onClose={handleSettingsClose} />
           </>
         )}
-        <IconButton aria-label="Manage" onClick={handleSettingsClick} color="inherit">
-          <MoreVert />
-        </IconButton>
-        <Menu anchorEl={anchorEl} onClose={handleSettingsClose} />
       </Toolbar>
       {content}
       <LoadingBar />
