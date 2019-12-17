@@ -1,6 +1,14 @@
 import React, { FC, useCallback } from 'react';
 import { css } from '@emotion/core';
-import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@material-ui/core';
+import {
+  Card,
+  CardActionArea,
+  CardActions,
+  IconButton,
+  Tooltip,
+  Theme,
+  Typography,
+} from '@material-ui/core';
 import { Check, Clear, Delete, Repeat, CheckCircle } from '@material-ui/icons';
 import Entry from 'core/entry/cards';
 import { Operation, PendingListEntry } from '../types';
@@ -11,9 +19,6 @@ interface Props {
   onInjectClick: () => void;
   onRemoveClick: () => void;
 }
-const buffer = css`
-  flex: 1;
-`;
 
 const card = (theme: Theme) => css`
   position: relative;
@@ -35,22 +40,30 @@ const entryCard = css`
   flex: 1;
 `;
 
-const selectedIconButton = (theme: Theme) => css`
-  &:hover {
-    background-color: ${theme.palette.action.selected};
-  }
+const cardActions = (theme: Theme) => css`
+  padding-left: ${theme.typography.pxToRem(theme.spacing(3))};
+  justify-content: space-between;
 `;
 
-const selectedCardActions = (theme: Theme) => css`
-  background-color: ${theme.palette.action.hover};
+const overlay = (theme: Theme) => css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: ${theme.transitions.create('background-color')};
+`;
+
+const overlaySelected = (theme: Theme) => css`
+  background-color: ${theme.palette.action.selected};
 `;
 
 const circleIcon = (theme: Theme) => css`
   position: absolute;
-  bottom: 0;
-  left: 0;
+  top: 0;
+  right: 0;
   color: ${theme.palette.primary.main};
-  margin: ${theme.typography.pxToRem(theme.spacing(1))};
+  margin: ${theme.typography.pxToRem(theme.spacing(2))};
   opacity: 0;
   transition: ${theme.transitions.create('opacity')};
 `;
@@ -86,49 +99,48 @@ const EntryCard: FC<Props> = ({ entry, onInjectClick, onRemoveClick }) => {
     unselectEntry,
   ]);
 
-  const actionAreaStyles = useCallback(
-    (theme: Theme) => [actionArea, selected && selectedIconButton(theme)],
-    [selected],
-  );
-
   const checkCircleStyles = useCallback(
     (theme: Theme) => [circleIcon(theme), selected && circleIconVisible],
     [selected],
   );
 
-  const cardStyles = useCallback(
-    (theme: Theme) => [card(theme), selected && selectedCardActions(theme)],
+  const overlayStyles = useCallback(
+    (theme: Theme) => [overlay(theme), selected && overlaySelected(theme)],
     [selected],
   );
 
   return (
-    <Card css={cardStyles}>
+    <Card css={card}>
+      <div css={overlayStyles} />
       <CheckCircle css={checkCircleStyles} />
-      <CardActionArea css={actionAreaStyles} onClick={toggle} aria-pressed={selected}>
+      <CardActionArea css={actionArea} onClick={toggle} aria-pressed={selected}>
         <Entry entry={entry.entry} css={entryCard} />
       </CardActionArea>
-      <CardActions>
-        <span css={buffer} />
-        <Tooltip title={title} placement="top">
-          <IconButton
-            aria-label={label}
-            disabled={operationLoading}
-            onClick={onClick}
-            css={selectedIconButton}
-          >
-            <Icon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Remove" placement="top">
-          <IconButton aria-label="remove" onClick={onRemoveClick} css={selectedIconButton}>
-            <Delete />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Inject" placement="top">
-          <IconButton aria-label="inject" onClick={onInjectClick} css={selectedIconButton}>
-            <Repeat />
-          </IconButton>
-        </Tooltip>
+      <CardActions css={cardActions}>
+        <span>
+          {entry.approved && (
+            <Typography variant="overline" color="primary">
+              Approved
+            </Typography>
+          )}
+        </span>
+        <span>
+          <Tooltip title={title} placement="top">
+            <IconButton aria-label={label} disabled={operationLoading} onClick={onClick}>
+              <Icon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Remove" placement="top">
+            <IconButton aria-label="remove" onClick={onRemoveClick}>
+              <Delete />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Inject" placement="top">
+            <IconButton aria-label="inject" onClick={onInjectClick}>
+              <Repeat />
+            </IconButton>
+          </Tooltip>
+        </span>
       </CardActions>
     </Card>
   );
