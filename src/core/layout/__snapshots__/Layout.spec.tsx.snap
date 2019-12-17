@@ -205,7 +205,7 @@ exports[`common/layout renders correctly 1`] = `
         className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
         <button
-          aria-label="toggle sidebar"
+          aria-label="toggle sidbar"
           className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
           disabled={false}
           onBlur={[Function]}
@@ -226,17 +226,32 @@ exports[`common/layout renders correctly 1`] = `
           <span
             className="MuiIconButton-label"
           >
-            <svg
-              aria-hidden="true"
-              className="MuiSvgIcon-root"
-              focusable="false"
-              role="presentation"
-              viewBox="0 0 24 24"
+            <span
+              className="MuiSpeedDialIcon-root"
             >
-              <path
-                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                className="MuiSvgIcon-root MuiSpeedDialIcon-openIcon"
+                focusable="false"
+                role="presentation"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+              </svg>
+              <svg
+                aria-hidden="true"
+                className="MuiSvgIcon-root MuiSpeedDialIcon-icon"
+                focusable="false"
+                role="presentation"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+                />
+              </svg>
+            </span>
           </span>
           <span
             className="MuiTouchRipple-root"
@@ -388,10 +403,11 @@ exports[`common/layout renders correctly 1`] = `
     css={
       Object {
         "map": undefined,
-        "name": "1qc1fvq",
+        "name": "pzpbsp",
         "next": undefined,
         "styles": "
   grid-area: content;
+  position: relative;
 ",
         "toString": [Function],
       }
@@ -403,19 +419,15 @@ exports[`common/layout renders correctly 1`] = `
           Array [
             Object {
               "map": undefined,
-              "name": "1awj0lh",
+              "name": "8pusr2",
               "next": undefined,
               "styles": "
   overflow-y: auto;
-  padding: 1.6rem;
-  opacity: 1;
+  padding: 0.8rem;
   height: 100%;
 
-  @media (max-width:959.95px) {
-    margin-left: 0;
-    padding: 0.8rem;
-    opacity: 1;
-    display: block;
+  @media (min-width:600px) {
+    padding: 1.6rem;
   }
 ",
               "toString": [Function],

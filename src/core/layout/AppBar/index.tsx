@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback } from 'react';
+import React, { FC, useState, useCallback, useMemo } from 'react';
 import { useContainer } from 'unstated-next';
 import { css } from '@emotion/core';
 import {
@@ -12,6 +12,7 @@ import {
 import { Menu as MenuIcon, ListAlt, CreateOutlined, Clear, Settings } from '@material-ui/icons';
 import { Spacer, Link } from 'common/styles';
 import LoadingBar from 'core/status/LoadingBar';
+import { SpeedDialIcon } from '@material-ui/lab';
 import { AppBarContainer } from './hooks';
 import Menu from './Menu';
 import OverflowMenu from './OverflowMenu';
@@ -19,10 +20,7 @@ import OverflowMenu from './OverflowMenu';
 const appbar = (theme: Theme) => css`
   background-color: ${theme.palette.primary.main};
   color: ${theme.palette.primary.contrastText};
-
-  ${theme.breakpoints.up('sm')} {
-    min-height: ${theme.mixins.toolbar.minHeight};
-  }
+  min-height: ${theme.mixins.toolbar.minHeight};
 `;
 
 const contextualAppBar = (theme: Theme) => css`
@@ -61,18 +59,20 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
     setContextual(false);
   }, [contextualProps, setContextual]);
 
+  const menuClick = useMemo(() => (contextualMode ? handleContextualClose : toggleSidebar), [
+    contextualMode,
+    handleContextualClose,
+    toggleSidebar,
+  ]);
+
+  const menuLabel = contextualMode ? 'close context' : 'toggle sidebar';
+
   return (
     <MUIAppBar color="inherit" position="static" css={appbarStyles} className={className}>
       <Toolbar>
-        {contextualMode ? (
-          <IconButton onClick={handleContextualClose} aria-label="close context" color="inherit">
-            <Clear />
-          </IconButton>
-        ) : (
-          <IconButton onClick={toggleSidebar} aria-label="toggle sidebar" color="inherit">
-            <MenuIcon />
-          </IconButton>
-        )}
+        <IconButton onClick={menuClick} aria-label={menuLabel} color="inherit">
+          <SpeedDialIcon icon={<MenuIcon />} openIcon={<Clear />} open={contextualMode} />
+        </IconButton>
         <Typography variant="h6" color="inherit" noWrap>
           {contextualMode && contextualProps?.title ? contextualProps.title : title}
         </Typography>

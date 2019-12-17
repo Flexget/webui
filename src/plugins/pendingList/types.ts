@@ -59,5 +59,3 @@ export interface SingleInjectRequest {
   task: string;
   entry: Inject;
 }
-
-export type SelectedListID = number | 'add';

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, FormEvent } from 'react';
 import {
   Button,
   Dialog,
@@ -23,7 +23,8 @@ const errorStyle = css`
 
 const RemoveListDialog: FC<Props> = ({ open = false, onClose }) => {
   const [{ loading, error }, removeList] = useRemoveList();
-  const handleClick = async () => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const resp = await removeList();
     if (resp.ok) {
       onClose();
@@ -31,19 +32,21 @@ const RemoveListDialog: FC<Props> = ({ open = false, onClose }) => {
   };
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
-      <DialogTitle>Remove List</DialogTitle>
-      <DialogContent>
-        {error && <DialogContentText css={errorStyle}>{error.message}</DialogContentText>}
-        <DialogContentText>Are you sure you would like to remove this List?</DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose} type="button">
-          Cancel
-        </Button>
-        <Button onClick={handleClick} color="primary" disabled={loading}>
-          Remove
-        </Button>
-      </DialogActions>
+      <form onSubmit={handleSubmit}>
+        <DialogTitle>Remove List</DialogTitle>
+        <DialogContent>
+          {error && <DialogContentText css={errorStyle}>{error.message}</DialogContentText>}
+          <DialogContentText>Are you sure you would like to remove this List?</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onClose} type="button">
+            Cancel
+          </Button>
+          <Button type="submit" color="primary" disabled={loading}>
+            Remove
+          </Button>
+        </DialogActions>
+      </form>
     </Dialog>
   );
 };

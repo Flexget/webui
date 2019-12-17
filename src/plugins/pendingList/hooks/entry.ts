@@ -139,9 +139,7 @@ export const useGetEntries = (options: Options) => {
         );
       }
     };
-    if (listId !== 'add') {
-      fn();
-    }
+    fn();
   }, [dispatch, getEntries, listId]);
 
   return state;

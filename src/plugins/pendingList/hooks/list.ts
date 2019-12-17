@@ -3,7 +3,7 @@ import { useFlexgetAPI } from 'core/api';
 import { action } from 'utils/hooks/actions';
 import { Method } from 'utils/fetch';
 import { createContainer, useContainer } from 'unstated-next';
-import { List, AddListRequest, SelectedListID } from '../types';
+import { List, AddListRequest } from '../types';
 
 export const enum Constants {
   GET_LISTS = '@flexget/pedingList/GET_LISTS',
@@ -23,7 +23,7 @@ type Actions = PropReturnType<typeof actions>;
 
 interface State {
   lists: List[];
-  listId: SelectedListID;
+  listId?: number;
 }
 
 const listReducer: Reducer<State, Actions> = (state, act) => {
@@ -54,7 +54,7 @@ const listReducer: Reducer<State, Actions> = (state, act) => {
   }
 };
 
-const useLists = () => useReducer(listReducer, { lists: [], listId: 'add' });
+const useLists = () => useReducer(listReducer, { lists: [] });
 export const ListContainer = createContainer(useLists);
 
 export const useGetLists = () => {
@@ -100,7 +100,7 @@ export const useRemoveList = () => {
 
   const removeList = async () => {
     const resp = await request();
-    if (resp.ok && listId !== 'add') {
+    if (resp.ok && listId) {
       dispatch(actions.removeList(listId));
     }
     return resp;
