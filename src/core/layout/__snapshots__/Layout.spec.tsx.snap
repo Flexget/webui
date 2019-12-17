@@ -205,7 +205,7 @@ exports[`common/layout renders correctly 1`] = `
         className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
         <button
-          aria-label="toggle sidbar"
+          aria-label="toggle sidebar"
           className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
           disabled={false}
           onBlur={[Function]}
