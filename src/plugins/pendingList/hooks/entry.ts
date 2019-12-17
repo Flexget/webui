@@ -189,42 +189,29 @@ const useRemoveSingleEntry = (entryId?: number) => {
   return [state, removeEntry] as const;
 };
 
-export const useEntryBulkOperation = () => {
+const useRemoveBulkEntry = () => {
   const [{ listId }] = useContainer(ListContainer);
   const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
-  const [state, request] = useFlexgetAPI<PendingListEntry[]>(
-    `/pending_list/${listId}/entries/batch`,
-    Method.Post,
-  );
+  const [state, request] = useFlexgetAPI(`/pending_list/${listId}/entries/batch`, Method.Delete);
 
-  const doOperation = useCallback(
-    async (operation: Operation) => {
-      const ids = [...selectedIds];
-      const resp = await request({
-        operation,
-        ids,
-      });
+  const removeEntry = useCallback(async () => {
+    const ids = [...selectedIds];
+    const resp = await request({ ids });
+    if (resp.ok) {
+      dispatch(actions.removeEntries(ids));
+    }
 
-      if (resp.ok) {
-        if (operation === Operation.Remove) {
-          dispatch(actions.removeEntries(ids));
-        } else {
-          dispatch(actions.updateEntries(resp.data));
-        }
-      }
-      return resp;
-    },
-    [dispatch, request, selectedIds],
-  );
-  return [state, doOperation] as const;
+    return resp;
+  }, [dispatch, request, selectedIds]);
+
+  return [state, removeEntry] as const;
 };
 
 export const useRemoveEntry = (entryId?: number) => {
   const singleState = useRemoveSingleEntry(entryId);
-  const [bulkState, doOperation] = useEntryBulkOperation();
-  const removeBulk = useCallback(() => doOperation(Operation.Remove), [doOperation]);
+  const bulkState = useRemoveBulkEntry();
 
-  return entryId ? singleState : ([bulkState, removeBulk] as const);
+  return entryId ? singleState : bulkState;
 };
 
 export const useInjectEntry = (entryId?: number) => {
@@ -278,7 +265,7 @@ export const useEntryOperation = (entryId: number) => {
   );
 
   const doOperation = useCallback(
-    async (operation: Operation.Approve | Operation.Reject) => {
+    async (operation: Operation) => {
       const resp = await request({ operation });
       if (resp.ok) {
         dispatch(actions.updateEntry(resp.data));
@@ -288,6 +275,32 @@ export const useEntryOperation = (entryId: number) => {
     [dispatch, request],
   );
 
+  return [state, doOperation] as const;
+};
+
+export const useEntryBulkOperation = () => {
+  const [{ listId }] = useContainer(ListContainer);
+  const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
+  const [state, request] = useFlexgetAPI<PendingListEntry[]>(
+    `/pending_list/${listId}/entries/batch`,
+    Method.Put,
+  );
+
+  const doOperation = useCallback(
+    async (operation: Operation) => {
+      const ids = [...selectedIds];
+      const resp = await request({
+        operation,
+        ids,
+      });
+
+      if (resp.ok) {
+        dispatch(actions.updateEntries(resp.data));
+      }
+      return resp;
+    },
+    [dispatch, request, selectedIds],
+  );
   return [state, doOperation] as const;
 };
 
