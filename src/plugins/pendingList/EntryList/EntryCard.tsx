@@ -26,7 +26,6 @@ const card = (theme: Theme) => css`
   flex-direction: column;
   justify-content: start;
   height: 100%;
-  transition: ${theme.transitions.create('background-color')};
 `;
 
 const actionArea = css`
@@ -52,20 +51,24 @@ const overlay = (theme: Theme) => css`
   width: 100%;
   height: 100%;
   transition: ${theme.transitions.create('background-color')};
+  z-index: 1;
+  pointer-events: none;
 `;
 
 const overlaySelected = (theme: Theme) => css`
-  background-color: ${theme.palette.action.selected};
+  background-color: ${theme.palette.action.disabled};
 `;
 
 const circleIcon = (theme: Theme) => css`
   position: absolute;
   top: 0;
   right: 0;
-  color: ${theme.palette.primary.main};
+  color: #fff;
   margin: ${theme.typography.pxToRem(theme.spacing(2))};
   opacity: 0;
   transition: ${theme.transitions.create('opacity')};
+  z-index: 2;
+  pointer-events: none;
 `;
 
 const circleIconVisible = css`
