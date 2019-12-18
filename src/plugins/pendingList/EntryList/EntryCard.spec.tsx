@@ -5,20 +5,18 @@ import { BaseProviders } from 'utils/tests';
 import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
 import EntryCard from './EntryCard';
-import { ListContainer, actions as listActions } from '../hooks/list';
+import { ListContainer, actions } from '../hooks/list';
 import { EntryContainer } from '../hooks/entry';
 import { PendingListEntry } from '../types';
 
-jest.mock('core/tasks/hooks');
-
-const SetupTest: FC = () => {
+const TestEntryCard: typeof EntryCard = props => {
   const [, dispatch] = useContainer(ListContainer);
 
   useEffect(() => {
-    dispatch(listActions.selectList(1));
+    dispatch(actions.selectList(1));
   }, [dispatch]);
 
-  return null;
+  return <EntryCard {...props} />;
 };
 
 const wrapper: FC = ({ children }) => (
@@ -31,7 +29,10 @@ const wrapper: FC = ({ children }) => (
 
 describe('plugins/pendingList/EntryList/EntryCard', () => {
   beforeEach(() => {
-    fetchMock.put('glob:/api/pending_list/1/entries/*', {}).catch();
+    fetchMock
+      .put('glob:/api/pending_list/1/entries/*', {})
+      .get('/api/tasks', 200)
+      .catch();
   });
 
   afterEach(() => {
@@ -52,14 +53,11 @@ describe('plugins/pendingList/EntryList/EntryCard', () => {
     const handleInjectClick = jest.fn();
     const handleRemoveClick = jest.fn();
     const component = (
-      <>
-        <SetupTest />
-        <EntryCard
-          entry={approvedEntry}
-          onInjectClick={handleInjectClick}
-          onRemoveClick={handleRemoveClick}
-        />
-      </>
+      <TestEntryCard
+        entry={approvedEntry}
+        onInjectClick={handleInjectClick}
+        onRemoveClick={handleRemoveClick}
+      />
     );
 
     it('should render approvedEntry properly', () => {
@@ -99,14 +97,11 @@ describe('plugins/pendingList/EntryList/EntryCard', () => {
     const handleInjectClick = jest.fn();
     const handleRemoveClick = jest.fn();
     const component = (
-      <>
-        <SetupTest />
-        <EntryCard
-          entry={removedEntry}
-          onInjectClick={handleInjectClick}
-          onRemoveClick={handleRemoveClick}
-        />
-      </>
+      <TestEntryCard
+        entry={removedEntry}
+        onInjectClick={handleInjectClick}
+        onRemoveClick={handleRemoveClick}
+      />
     );
 
     it('should render approvedEntry properly', () => {

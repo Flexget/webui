@@ -17,7 +17,7 @@ import { useInjectEntry } from '../hooks/entry';
 
 interface Props {
   entryId?: number;
-  open: boolean;
+  open?: boolean;
   onClose: () => void;
 }
 
@@ -30,7 +30,7 @@ interface Values {
   task: string;
 }
 
-const InjectEntryDialog: FC<Props> = ({ entryId, onClose, open }) => {
+const InjectEntryDialog: FC<Props> = ({ entryId, onClose, open = false }) => {
   const initialValues: Values = { task: '' };
   const [{ loading, error }, inject] = useInjectEntry(entryId);
   const { tasks } = useContainer(TaskContainer);
@@ -65,7 +65,7 @@ const InjectEntryDialog: FC<Props> = ({ entryId, onClose, open }) => {
               Cancel
             </Button>
             <Button type="submit" color="primary" disabled={loading}>
-              Add
+              Inject
             </Button>
           </DialogActions>
         </Form>
