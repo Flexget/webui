@@ -18,9 +18,7 @@ const TestRemoveListDialog: typeof RemoveListDialog = props => {
 
 const wrapper: FC = ({ children }) => (
   <BaseProviders>
-    <ListContainer.Provider>
-      <ListContainer.Provider>{children}</ListContainer.Provider>
-    </ListContainer.Provider>
+    <ListContainer.Provider>{children}</ListContainer.Provider>
   </BaseProviders>
 );
 

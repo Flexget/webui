@@ -1,6 +1,5 @@
 import React, { FC, useReducer, useCallback, useMemo } from 'react';
 import { useContainer } from 'unstated-next';
-import { hot } from 'react-hot-loader/root';
 import { Tabs, Tab } from '@material-ui/core';
 import { Direction } from 'utils/query';
 import { useInjectContent } from 'core/layout/AppBar/hooks';
@@ -38,7 +37,7 @@ const useInjectTabs = (setPage: SetState<number>) => {
   useInjectContent(content);
 };
 
-const PendingList: FC<{}> = () => {
+const Entries: FC<{}> = () => {
   const reducer = (state: Options, partialState: Partial<Options>): Options => {
     return {
       ...state,
@@ -64,4 +63,4 @@ const PendingList: FC<{}> = () => {
   );
 };
 
-export default hot(PendingList);
+export default Entries;
