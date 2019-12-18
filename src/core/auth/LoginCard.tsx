@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { CardContent, Card, Button, CardActions } from '@material-ui/core';
 import { useFlexgetAPI } from 'core/api';
 import { Method } from 'utils/fetch';
-import TextField from 'common/TextField';
+import TextField from 'common/inputs/formik/TextField';
 import theme from 'core/theme';
 import { AuthContainer } from './container';
 import { LoginReq } from './types';

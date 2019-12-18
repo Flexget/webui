@@ -1,5 +1,5 @@
 import React from 'react';
-import TextField from 'common/TextField';
+import TextField from 'common/inputs/formik/TextField';
 import renderer from 'react-test-renderer';
 import { themed, formik } from 'utils/tests';
 

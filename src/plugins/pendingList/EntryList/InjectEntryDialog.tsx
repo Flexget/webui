@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { Formik, Form } from 'formik';
 import theme from 'core/theme';
-import SelectField from 'common/TextField/Select';
+import SelectField from 'common/inputs/formik/SelectField';
 import { TaskContainer } from 'core/tasks/hooks';
 import { useInjectEntry } from '../hooks/entry';
 

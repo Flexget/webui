@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { useMediaQuery, MenuItem } from '@material-ui/core';
+import { MenuItem, useMediaQuery } from '@material-ui/core';
 import theme from 'core/theme';
-import TextField, { Props as TextFieldProps } from './index';
+import TextField, { Props as TextFieldProps } from './TextField';
 
 interface Option {
   value: string;
@@ -12,19 +12,16 @@ type Props = TextFieldProps & {
   options: Option[];
 };
 
-const SelectField: FC<Props> = ({ options, ...props }) => {
+const SelectField: FC<Props> = ({ options, SelectProps = {}, ...props }) => {
   const native = useMediaQuery(theme.breakpoints.down('sm'));
+  const sp = {
+    native,
+    ...SelectProps,
+  };
   return (
-    <TextField
-      {...props}
-      select
-      SelectProps={{
-        autoWidth: true,
-        native,
-      }}
-    >
+    <TextField {...props} select SelectProps={sp}>
       {options.map(option =>
-        native ? (
+        sp.native ? (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>

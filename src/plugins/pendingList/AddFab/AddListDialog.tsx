@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogContentText,
 } from '@material-ui/core';
-import TextField from 'common/TextField';
+import TextField from 'common/inputs/formik/TextField';
 import { Formik, Form } from 'formik';
 import theme from 'core/theme';
 import { AddListRequest } from '../types';
