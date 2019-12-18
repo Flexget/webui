@@ -3,17 +3,17 @@ import { useContainer } from 'unstated-next';
 import { cleanup, render, fireEvent, within, wait } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
 import fetchMock from 'fetch-mock';
-import RemoveListDialog from './RemoveListDialog';
+import AddListDialog from './AddListDialog';
 import { ListContainer, actions } from '../hooks/list';
 
-const TestRemoveListDialog: typeof RemoveListDialog = props => {
+const TestAddListDialog: typeof AddListDialog = props => {
   const [, dispatch] = useContainer(ListContainer);
 
   useEffect(() => {
     dispatch(actions.selectList(1));
   }, [dispatch]);
 
-  return <RemoveListDialog {...props} />;
+  return <AddListDialog {...props} />;
 };
 
 const wrapper: FC = ({ children }) => (
@@ -24,11 +24,16 @@ const wrapper: FC = ({ children }) => (
   </BaseProviders>
 );
 
-describe('plugins/pendingList/EntryListHeader/RemoveListDialog', () => {
+describe('plugins/pendingList/AddFab/AddListDialog', () => {
   beforeEach(() => {
     fetchMock
-      .delete('glob:/api/pending_list/*', {})
-      .get('/api/tasks', 200)
+      .post('/api/pending_list', {})
+      .get('/api/tasks', [
+        { name: 'task 1' },
+        {
+          name: 'task 2',
+        },
+      ])
       .catch();
   });
 
@@ -38,7 +43,7 @@ describe('plugins/pendingList/EntryListHeader/RemoveListDialog', () => {
   });
 
   const handleClose = jest.fn();
-  const component = <TestRemoveListDialog open onClose={handleClose} />;
+  const component = <TestAddListDialog open onClose={handleClose} />;
 
   it('should find dialog when open', () => {
     const { queryByRole } = render(component, { wrapper });
@@ -47,32 +52,34 @@ describe('plugins/pendingList/EntryListHeader/RemoveListDialog', () => {
   });
 
   it('should not find dialog when closed', () => {
-    const { queryByRole } = render(<TestRemoveListDialog onClose={handleClose} />, { wrapper });
+    const { queryByRole } = render(<TestAddListDialog onClose={handleClose} />, { wrapper });
 
     expect(queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  it('should call fetch when pressing remove', async () => {
+  it('should call fetch when pressing add', async () => {
     const { getByRole } = render(component, { wrapper });
 
     const submitButton = getByRole(
-      (content, element) => content === 'button' && !!within(element).queryByText('Remove'),
+      (content, element) => content === 'button' && !!within(element).queryByText('Add'),
     );
 
     fireEvent.click(submitButton);
-    expect(fetchMock.called('/api/pending_list/1')).toBeTrue();
-    await wait(() => expect(handleClose).toHaveBeenCalled());
+    await wait(() => {
+      expect(fetchMock.called('/api/pending_list')).toBeTrue();
+      expect(handleClose).toHaveBeenCalled();
+    });
   });
 
   it('should call close wehn pressing cancel', async () => {
     const { getByRole } = render(component, { wrapper });
 
-    const submitButton = getByRole(
+    const cancelButton = getByRole(
       (content, element) => content === 'button' && !!within(element).queryByText('Cancel'),
     );
 
-    fireEvent.click(submitButton);
-    expect(fetchMock.called('/api/pending_list/1')).toBeFalse();
+    fireEvent.click(cancelButton);
+    expect(fetchMock.called('/api/pending_list')).toBeFalse();
     expect(handleClose).toHaveBeenCalled();
   });
 });
