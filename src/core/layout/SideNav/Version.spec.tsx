@@ -1,11 +1,8 @@
 import React from 'react';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
-import { FetchMock } from 'jest-fetch-mock';
 import { StatusContainer } from 'core/status/hooks';
 import { AuthContainer } from 'core/auth/container';
 import Version from './Version';
-
-const fetchMock = fetch as FetchMock;
 
 describe('core/layout/Version', () => {
   beforeEach(() => {

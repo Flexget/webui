@@ -1,7 +1,7 @@
 import { JSDOM, DOMWindow } from 'jsdom';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import 'jest-fetch-mock';
+import { GlobalWithFetchMock } from 'jest-fetch-mock';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -15,7 +15,7 @@ function copyProps(src, target) {
   Object.defineProperties(target, props as any);
 }
 
-declare const global: NodeJS.Global & {
+declare const global: GlobalWithFetchMock & {
   window: DOMWindow;
   document: Document;
   navigator: {
@@ -26,6 +26,8 @@ declare const global: NodeJS.Global & {
 global.window = window;
 global.document = window.document;
 global.fetch = require('jest-fetch-mock');
+
+global.fetchMock = global.fetch;
 
 global.navigator = {
   userAgent: 'node.js',

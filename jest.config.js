@@ -37,7 +37,8 @@ module.exports = {
     '\\.css$': 'identity-obj-proxy',
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/__mocks__/fileMock.js',
   },
+  snapshotSerializers: ['enzyme-to-json/serializer', 'jest-emotion'],
   setupFiles: ['raf/polyfill', '<rootDir>/src/utils/tests/setupFiles.ts'],
-  setupFilesAfterEnv: ['jest-extended', 'jest-chain', '<rootDir>/src/utils/tests/setupTest.js'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect', 'jest-extended', 'jest-chain'],
   testURL: 'http://localhost/',
 };

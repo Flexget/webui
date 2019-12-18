@@ -1,6 +1,8 @@
 module.exports = {
   extends: [
     'airbnb',
+    'plugin:jest-dom/recommended',
+    'plugin:testing-library/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'prettier',
@@ -22,6 +24,7 @@ module.exports = {
     },
   },
   globals: {
+    fetchMock: true,
     __DEV__: true,
   },
   parserOptions: {

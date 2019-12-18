@@ -21,7 +21,7 @@ export const enum Constants {
   CLEAR_SELECTED = '@flexget/pendingList/CLEAR_SELECTED',
 }
 
-const actions = {
+export const actions = {
   getEntries: (entries: PendingListEntry[], totalCount: number) =>
     action(Constants.GET_ENTRIES, { entries, totalCount }),
   addEntry: (entry: PendingListEntry) => action(Constants.ADD_ENTRY, entry),
@@ -131,6 +131,9 @@ export const useGetEntries = (options: Options) => {
   );
 
   useEffect(() => {
+    if (!listId) {
+      return;
+    }
     const fn = async () => {
       const resp = await getEntries();
       if (resp.ok) {

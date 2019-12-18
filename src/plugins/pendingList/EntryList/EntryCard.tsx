@@ -14,7 +14,7 @@ import Entry from 'core/entry/cards';
 import { Operation, PendingListEntry } from '../types';
 import { useEntryOperation, useEntryBulkSelect } from '../hooks/entry';
 
-interface Props {
+export interface Props {
   entry: PendingListEntry;
   onInjectClick: () => void;
   onRemoveClick: () => void;

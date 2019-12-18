@@ -8,7 +8,7 @@ export const enum Constants {
   GET_TASKS = '@flexget/pendingList/GET_TASKS',
 }
 
-const useTasks = () => {
+export const TaskContainer = createContainer(() => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [state, request] = useFlexgetAPI<Task[]>('/tasks');
 
@@ -23,9 +23,7 @@ const useTasks = () => {
   }, [request]);
 
   return { ...state, tasks };
-};
-
-export const TaskContainer = createContainer(useTasks);
+});
 
 export const useExecuteTask = () => {
   const [state, request] = useFlexgetAPI('/tasks/execute', Method.Post);
