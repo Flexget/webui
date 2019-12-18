@@ -1,11 +1,8 @@
 import React from 'react';
 import renderer, { act } from 'react-test-renderer';
-import { FetchMock } from 'jest-fetch-mock';
 import { mount } from 'enzyme';
 import { AuthContainer } from 'core/auth/container';
 import LoginCard from './LoginCard';
-
-const fetchMock = fetch as FetchMock;
 
 const TestLogin = () => {
   const [loggedIn] = AuthContainer.useContainer();

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { css } from '@emotion/core';
-import TextField from 'common/TextField';
+import TextField from 'common/inputs/formik/TextField';
 import {
   Button,
   Dialog,

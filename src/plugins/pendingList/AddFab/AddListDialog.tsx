@@ -8,14 +8,14 @@ import {
   DialogTitle,
   DialogContentText,
 } from '@material-ui/core';
-import TextField from 'common/TextField';
+import TextField from 'common/inputs/formik/TextField';
 import { Formik, Form } from 'formik';
 import theme from 'core/theme';
 import { AddListRequest } from '../types';
 import { useAddList } from '../hooks/list';
 
 interface Props {
-  open: boolean;
+  open?: boolean;
   onClose: () => void;
 }
 
@@ -25,7 +25,7 @@ const errorStyle = css`
   padding: ${theme.typography.pxToRem(theme.spacing(1))};
 `;
 
-const AddListDialog: FC<Props> = ({ open, onClose }) => {
+const AddListDialog: FC<Props> = ({ open = false, onClose }) => {
   const initialValues: AddListRequest = { name: '' };
   const [{ loading, error }, addList] = useAddList();
 

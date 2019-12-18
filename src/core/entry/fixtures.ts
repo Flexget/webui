@@ -13,7 +13,6 @@ import {
 } from './fields/series';
 
 export const makeRawEntry = (): RawEntry => ({
-  id: random.number(100),
   originalUrl: internet.url(),
   title: random.words(),
 });

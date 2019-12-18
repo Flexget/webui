@@ -4,7 +4,7 @@ module.exports = {
     '!src/store.js',
     '!src/core/reducers.ts',
     '!src/core/history.ts',
-    '!src/plugins/series/data/*.ts',
+    '!src/plugins/series/**',
     '!src/{app,Root,theme}.{ts,tsx,js,jsx}',
     '!src/utils/*.{js,jsx,ts,tsx}',
     '!**/node_modules/**',
@@ -14,10 +14,10 @@ module.exports = {
   ],
   coverageThreshold: {
     global: {
-      functions: 40,
-      lines: 40,
-      statements: 40,
-      branches: 40,
+      functions: 60,
+      lines: 80,
+      statements: 80,
+      branches: 60,
     },
   },
   globals: {
@@ -37,7 +37,8 @@ module.exports = {
     '\\.css$': 'identity-obj-proxy',
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/__mocks__/fileMock.js',
   },
+  snapshotSerializers: ['enzyme-to-json/serializer', 'jest-emotion'],
   setupFiles: ['raf/polyfill', '<rootDir>/src/utils/tests/setupFiles.ts'],
-  setupFilesAfterEnv: ['jest-extended', 'jest-chain', '<rootDir>/src/utils/tests/setupTest.js'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect', 'jest-extended', 'jest-chain'],
   testURL: 'http://localhost/',
 };

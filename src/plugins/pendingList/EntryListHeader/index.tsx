@@ -2,7 +2,7 @@ import React, { FC, ChangeEvent } from 'react';
 import { FormControl, TablePagination, Button } from '@material-ui/core';
 import { css, ClassNames } from '@emotion/core';
 import theme from 'core/theme';
-import SelectField from 'common/SelectField';
+import SelectField from 'common/inputs/SelectField';
 import { Direction } from 'utils/query';
 import { useOverlayState } from 'utils/hooks';
 import { useContainer } from 'unstated-next';
@@ -99,6 +99,7 @@ const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPa
             <div css={container}>
               <FormControl css={item}>
                 <SelectField
+                  label="Sort By"
                   value={sortBy}
                   onChange={handleChange}
                   name="sortBy"
@@ -110,6 +111,7 @@ const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPa
               </FormControl>
               <FormControl css={item}>
                 <SelectField
+                  label="Order"
                   value={order}
                   onChange={handleChange}
                   name="order"

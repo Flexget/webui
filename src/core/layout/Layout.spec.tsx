@@ -1,14 +1,11 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { FetchMock } from 'jest-fetch-mock';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
 import { RouteContainer } from 'core/routes/hooks';
 import { AuthContainer } from 'core/auth/container';
 import { StatusContainer } from 'core/status/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
 import Layout from './Layout';
-
-const fetchMock = fetch as FetchMock;
 
 const renderLayout = () => (
   <ThemeProvider>

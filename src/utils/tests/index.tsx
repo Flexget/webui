@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ReactElement, FC } from 'react';
 import { GuardPredicate } from '@redux-saga/types'; // eslint-disable-line import/no-unresolved
+import { render, RenderOptions } from '@testing-library/react';
 import { TakeEffect } from 'redux-saga/effects';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { MemoryRouter } from 'react-router-dom';
@@ -10,6 +11,10 @@ import theme from 'core/theme';
 import { BaseAction } from 'core/status/state/util';
 import { AuthContainer } from 'core/auth/container';
 import { StatusContainer } from 'core/status/hooks';
+import ThemeProvider from 'core/theme/ThemeProvider';
+import { TaskContainer } from 'core/tasks/hooks';
+import { RouteContainer } from 'core/routes/hooks';
+import { AppBarContainer } from 'core/layout/AppBar/hooks';
 
 const mockStore = configureMockStore();
 
@@ -36,6 +41,23 @@ export const formik = <T extends any>(component: React.ReactNode, props: FormikC
   <Formik {...props}>{component}</Formik>
 );
 
-export const statusProvider = (component: React.ReactNode) => (
-  <StatusContainer.Provider>{component}</StatusContainer.Provider>
-);
+export const BaseProviders: FC = ({ children }) => {
+  return (
+    <StatusContainer.Provider>
+      <AuthContainer.Provider>
+        <MemoryRouter>
+          <ThemeProvider type="light">
+            <RouteContainer.Provider>
+              <TaskContainer.Provider>
+                <AppBarContainer.Provider>{children}</AppBarContainer.Provider>
+              </TaskContainer.Provider>
+            </RouteContainer.Provider>
+          </ThemeProvider>
+        </MemoryRouter>
+      </AuthContainer.Provider>
+    </StatusContainer.Provider>
+  );
+};
+
+export const renderWithWrapper = (ui: ReactElement, options: Omit<RenderOptions, 'queries'> = {}) =>
+  render(ui, { wrapper: BaseProviders, ...options });

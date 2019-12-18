@@ -11,13 +11,13 @@ import {
 } from '@material-ui/core';
 import { Formik, Form } from 'formik';
 import theme from 'core/theme';
-import SelectField from 'common/TextField/Select';
+import SelectField from 'common/inputs/formik/SelectField';
 import { TaskContainer } from 'core/tasks/hooks';
 import { useInjectEntry } from '../hooks/entry';
 
 interface Props {
   entryId?: number;
-  open: boolean;
+  open?: boolean;
   onClose: () => void;
 }
 
@@ -30,7 +30,7 @@ interface Values {
   task: string;
 }
 
-const InjectEntryDialog: FC<Props> = ({ entryId, onClose, open }) => {
+const InjectEntryDialog: FC<Props> = ({ entryId, onClose, open = false }) => {
   const initialValues: Values = { task: '' };
   const [{ loading, error }, inject] = useInjectEntry(entryId);
   const { tasks } = useContainer(TaskContainer);
@@ -65,7 +65,7 @@ const InjectEntryDialog: FC<Props> = ({ entryId, onClose, open }) => {
               Cancel
             </Button>
             <Button type="submit" color="primary" disabled={loading}>
-              Add
+              Inject
             </Button>
           </DialogActions>
         </Form>
