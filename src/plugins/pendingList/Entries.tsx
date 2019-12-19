@@ -1,6 +1,5 @@
 import React, { FC, useCallback, useMemo } from 'react';
 import { useContainer } from 'unstated-next';
-import { Tabs, Tab } from '@material-ui/core';
 import { Direction } from 'utils/query';
 import { useInjectContent } from 'core/layout/AppBar/hooks';
 import { useMergeState } from 'utils/hooks';
@@ -10,6 +9,7 @@ import { Options, SortBy } from './types';
 import { ListContainer, useGetLists, actions } from './hooks/list';
 import { EntryContainer } from './hooks/entry';
 import AddFab from './AddFab';
+import TabList from './TabList';
 
 const useInjectTabs = (setPage: SetState<number>) => {
   const [{ lists, listId }, dispatch] = useContainer(ListContainer);
@@ -25,13 +25,7 @@ const useInjectTabs = (setPage: SetState<number>) => {
   useGetLists();
 
   const content = useMemo(
-    () => (
-      <Tabs value={listId} variant="scrollable" scrollButtons="on" onChange={handleChange}>
-        {lists.map(({ name, id }) => (
-          <Tab label={name} value={id} key={id} />
-        ))}
-      </Tabs>
-    ),
+    () => <TabList handleChange={handleChange} listId={listId} lists={lists} />,
     [handleChange, listId, lists],
   );
 

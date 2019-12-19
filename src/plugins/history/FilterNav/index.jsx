@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
-import SecondaryNav from 'common/SecondaryNav';
+import Toolbar from '@material-ui/core/Toolbar';
 import { Spacer } from 'common/styles';
 import { RotatingIcon, PaddedTextField } from './styles';
 
@@ -79,7 +79,7 @@ class FilterNav extends Component {
     const { task } = this.state;
 
     return (
-      <SecondaryNav>
+      <Toolbar>
         <PaddedTextField
           label="Filter By Task"
           id="task-filter"
@@ -118,7 +118,7 @@ class FilterNav extends Component {
         <IconButton color="inherit" onClick={toggleOrder}>
           <RotatingIcon rotate={order === 'desc'} className="fa fa-chevron-up" />
         </IconButton>
-      </SecondaryNav>
+      </Toolbar>
     );
   }
 }

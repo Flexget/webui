@@ -1,5 +1,5 @@
 import { random, internet, system, date } from 'faker';
-import { History } from './types';
+import { History } from '../types';
 
 export const makeHistory = (): History => ({
   task: random.words(),
