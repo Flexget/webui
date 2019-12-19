@@ -1,8 +1,9 @@
-import React, { FC, useReducer, useCallback, useMemo } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 import { useContainer } from 'unstated-next';
 import { Tabs, Tab } from '@material-ui/core';
 import { Direction } from 'utils/query';
 import { useInjectContent } from 'core/layout/AppBar/hooks';
+import { useMergeState } from 'utils/hooks';
 import EntryList from './EntryList';
 import EntryListHeader from './EntryListHeader';
 import { Options, SortBy } from './types';
@@ -38,20 +39,14 @@ const useInjectTabs = (setPage: SetState<number>) => {
 };
 
 const Entries: FC<{}> = () => {
-  const reducer = (state: Options, partialState: Partial<Options>): Options => {
-    return {
-      ...state,
-      ...partialState,
-    };
-  };
-  const [options, dispatch] = useReducer(reducer, {
+  const [options, dispatch] = useMergeState<Options>({
     page: 0,
     perPage: 30,
     sortBy: SortBy.Added,
     order: Direction.Desc,
   });
 
-  const setPage = useCallback((n: number) => dispatch({ page: n }), []);
+  const setPage = useCallback((n: number) => dispatch({ page: n }), [dispatch]);
   useInjectTabs(setPage);
 
   return (
