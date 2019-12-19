@@ -2,7 +2,7 @@
 
 exports[`plugins/history/components renders correctly 1`] = `
 <Styled(div)>
-  <FilterNav
+  <Filter
     grouping="time"
     handleChange={[Function]}
     order="desc"

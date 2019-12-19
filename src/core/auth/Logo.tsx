@@ -13,5 +13,5 @@ export const logo = (theme: Theme) => css`
   }
 `;
 
-const Logo: FC = () => <div css={logo} />
+const Logo: FC = () => <div css={logo} />;
 export default Logo;
