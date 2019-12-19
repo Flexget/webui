@@ -1,24 +1,22 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import theme from 'core/theme';
-
 import { Typography, TextField } from '@material-ui/core';
 
-const grey = css`
+const grey = theme => css`
   color: ${theme.palette.grey[600]};
 `;
 
 export const Wrapper = styled.div`
   display: block;
-  ${theme.breakpoints.up('sm')} {
+  ${({ theme }) => theme.breakpoints.up('sm')} {
     display: flex;
     align-items: baseline;
   }
 `;
 
 export const GreyIcon = styled(FontAwesomeIcon)`
-  ${grey};
+  ${({ theme }) => grey(theme)};
 `;
 
 export const GreyClickableIcon = styled(GreyIcon)`
@@ -26,7 +24,7 @@ export const GreyClickableIcon = styled(GreyIcon)`
 `;
 
 export const GreyType = styled(Typography)`
-  ${grey};
+  ${({ theme }) => grey(theme)};
 `;
 
 export const Spacer = styled.div`

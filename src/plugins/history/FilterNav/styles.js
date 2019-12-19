@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
-import theme from 'core/theme';
 
 import { Icon, TextField } from '@material-ui/core';
 
 export const RotatingIcon = styled(Icon)`
-  transition: ${theme.transitions.create()};
+  transition: ${({ theme }) => theme.transitions.create()};
   transform: ${({ rotate }) => rotate && 'rotate(180deg)'};
 `;
 

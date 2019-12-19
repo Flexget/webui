@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import { CardContent, Typography, CardMedia } from '@material-ui/core';
-import theme from 'core/theme';
+import { CardContent, Typography, CardMedia, Theme } from '@material-ui/core';
 import { css } from '@emotion/core';
 import { getCachedUrl } from 'utils/image';
 import { SeriesEntry } from '../fields/series';
@@ -11,7 +10,7 @@ interface Props {
   className?: string;
 }
 
-const summary = css`
+const summary = (theme: Theme) => css`
   font-size: 1.5rem;
   font-weight: 500;
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};

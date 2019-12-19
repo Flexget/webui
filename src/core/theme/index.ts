@@ -1,17 +1,6 @@
 import { orange, blueGrey } from '@material-ui/core/colors';
 import { createMuiTheme, Theme, PaletteType } from '@material-ui/core';
 
-export const darkTheme = createMuiTheme({
-  palette: {
-    primary: orange,
-    secondary: blueGrey,
-    type: 'dark',
-  },
-  typography: {
-    htmlFontSize: 10,
-  },
-});
-
 export const createTheme = (type: PaletteType = 'light'): Theme =>
   createMuiTheme({
     palette: {
@@ -39,25 +28,3 @@ export const createTheme = (type: PaletteType = 'light'): Theme =>
       },
     },
   });
-
-export default createMuiTheme({
-  palette: {
-    primary: orange,
-    secondary: blueGrey,
-    type: 'light',
-  },
-  typography: {
-    htmlFontSize: 10,
-  },
-  mixins: {
-    toolbar: {
-      minHeight: '5rem',
-    },
-    sidebar: {
-      width: {
-        open: '19rem',
-        closed: '6rem',
-      },
-    },
-  },
-});

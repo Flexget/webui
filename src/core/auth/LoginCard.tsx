@@ -2,16 +2,14 @@ import React, { FC } from 'react';
 import { Form, Formik } from 'formik';
 import { useContainer } from 'unstated-next';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
-import { CardContent, Card, Button, CardActions } from '@material-ui/core';
+import { CardContent, Card, Button, CardActions, Theme } from '@material-ui/core';
 import { useFlexgetAPI } from 'core/api';
 import { Method } from 'utils/fetch';
 import TextField from 'common/inputs/formik/TextField';
-import theme from 'core/theme';
 import { AuthContainer } from './container';
 import { LoginReq } from './types';
 
-const card = css`
+const card = (theme: Theme) => css`
   max-width: 40rem;
   margin: 0 1rem;
   ${theme.breakpoints.up('sm')} {
@@ -23,7 +21,7 @@ const field = css`
   padding-bottom: 1rem;
 `;
 
-const ErrorMessage = styled.div`
+const errorMessage = (theme: Theme) => css`
   color: ${theme.palette.error[500]};
   text-align: center;
   padding: 1rem;
@@ -54,7 +52,7 @@ const LoginCard: FC = () => {
       >
         <Form>
           <CardContent css={content}>
-            <ErrorMessage>{error?.message}</ErrorMessage>
+            <div css={errorMessage}>{error?.message}</div>
             <TextField css={field} name="username" id="username" label="Username" autoFocus />
             <TextField css={field} name="password" id="password" label="Password" type="Password" />
           </CardContent>

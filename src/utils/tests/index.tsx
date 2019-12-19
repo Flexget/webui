@@ -2,12 +2,10 @@ import React, { ReactNode, ReactElement, FC } from 'react';
 import { GuardPredicate } from '@redux-saga/types'; // eslint-disable-line import/no-unresolved
 import { render, RenderOptions } from '@testing-library/react';
 import { TakeEffect } from 'redux-saga/effects';
-import { MuiThemeProvider } from '@material-ui/core/styles';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import { Formik, FormikConfig } from 'formik';
-import theme from 'core/theme';
 import { BaseAction } from 'core/status/state/util';
 import { AuthContainer } from 'core/auth/container';
 import { StatusContainer } from 'core/status/hooks';
@@ -18,9 +16,7 @@ import { AppBarContainer } from 'core/layout/AppBar/hooks';
 
 const mockStore = configureMockStore();
 
-export const themed = (component: ReactNode) => (
-  <MuiThemeProvider theme={theme}>{component}</MuiThemeProvider>
-);
+export const themed = (component: ReactNode) => <ThemeProvider>{component}</ThemeProvider>;
 
 export const router = (component: ReactNode) => <MemoryRouter>{component}</MemoryRouter>;
 

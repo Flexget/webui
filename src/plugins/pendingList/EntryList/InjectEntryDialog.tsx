@@ -8,9 +8,9 @@ import {
   DialogContent,
   DialogTitle,
   DialogContentText,
+  Theme,
 } from '@material-ui/core';
 import { Formik, Form } from 'formik';
-import theme from 'core/theme';
 import SelectField from 'common/inputs/formik/SelectField';
 import { TaskContainer } from 'core/tasks/hooks';
 import { useInjectEntry } from '../hooks/entry';
@@ -21,7 +21,7 @@ interface Props {
   onClose: () => void;
 }
 
-const errorStyle = css`
+const errorStyle = (theme: Theme) => css`
   color: ${theme.palette.error[500]};
   text-align: center;
 `;

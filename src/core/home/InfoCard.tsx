@@ -1,18 +1,17 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import { Card, CardContent, IconButton, CardHeader, CardActions } from '@material-ui/core';
+import { Card, CardContent, IconButton, CardHeader, CardActions, Theme } from '@material-ui/core';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ForumIcon from '@material-ui/icons/ForumOutlined';
 import HomeIcon from '@material-ui/icons/Home';
 import ChatIcon from '@material-ui/icons/Chat';
-import theme from 'core/theme';
 import { backgroundColor } from 'common/styles';
 
 const bold = css`
   font-weight: bold;
 `;
 
-const wrapper = css`
+const wrapper = (theme: Theme) => css`
   margin: 0 auto;
   ${theme.breakpoints.up('sm')} {
     width: 50%;
@@ -28,7 +27,7 @@ const InfoCard = () => (
     <CardHeader
       title="Flexget Web Interface"
       subheader="Under Development"
-      css={backgroundColor(theme.palette.primary[800])}
+      css={(theme: Theme) => backgroundColor(theme, theme.palette.primary.main)}
     />
     <CardContent>
       <p css={bold}>

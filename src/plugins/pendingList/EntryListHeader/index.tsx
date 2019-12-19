@@ -1,7 +1,6 @@
 import React, { FC, ChangeEvent } from 'react';
-import { FormControl, TablePagination, Button } from '@material-ui/core';
+import { FormControl, TablePagination, Button, Theme } from '@material-ui/core';
 import { css, ClassNames } from '@emotion/core';
-import theme from 'core/theme';
 import SelectField from 'common/inputs/SelectField';
 import { Direction } from 'utils/query';
 import { useOverlayState } from 'utils/hooks';
@@ -15,7 +14,7 @@ interface Props {
   options: Options;
 }
 
-const wrapper = css`
+const wrapper = (theme: Theme) => css`
   display: flex;
   justify-content: space-between;
   padding-bottom: ${theme.typography.pxToRem(theme.spacing(2))};
@@ -28,7 +27,7 @@ const container = css`
   font-size: 14px;
 `;
 
-const item = css`
+const item = (theme: Theme) => css`
   margin-left: ${theme.typography.pxToRem(theme.spacing(2))};
   margin-right: ${theme.typography.pxToRem(theme.spacing(2))};
 `;

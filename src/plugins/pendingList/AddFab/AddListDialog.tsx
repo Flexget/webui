@@ -7,10 +7,10 @@ import {
   DialogContent,
   DialogTitle,
   DialogContentText,
+  Theme,
 } from '@material-ui/core';
 import TextField from 'common/inputs/formik/TextField';
 import { Formik, Form } from 'formik';
-import theme from 'core/theme';
 import { AddListRequest } from '../types';
 import { useAddList } from '../hooks/list';
 
@@ -19,7 +19,7 @@ interface Props {
   onClose: () => void;
 }
 
-const errorStyle = css`
+const errorStyle = (theme: Theme) => css`
   color: ${theme.palette.error[500]};
   text-align: center;
   padding: ${theme.typography.pxToRem(theme.spacing(1))};

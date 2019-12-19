@@ -1,8 +1,9 @@
-import styled from '@emotion/styled';
-import theme from 'core/theme';
+import React, { FC } from 'react';
+import { css } from '@emotion/core';
+import { Theme } from '@material-ui/core';
 import headerImage from 'images/header.png';
 
-export const Logo = styled.div`
+export const logo = (theme: Theme) => css`
   background: transparent url(${headerImage}) no-repeat center;
   min-height: 9rem;
   background-size: 100% auto;
@@ -11,3 +12,6 @@ export const Logo = styled.div`
     background-size: auto;
   }
 `;
+
+const Logo: FC = () => <div css={logo} />
+export default Logo;
