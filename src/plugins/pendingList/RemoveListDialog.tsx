@@ -9,7 +9,7 @@ import {
   Theme,
 } from '@material-ui/core';
 import { css } from '@emotion/core';
-import { useRemoveList } from '../hooks/list';
+import { useRemoveList } from './hooks/list';
 
 interface Props {
   open?: boolean;

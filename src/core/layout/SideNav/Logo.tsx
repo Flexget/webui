@@ -19,6 +19,7 @@ const logo = (theme: Theme) => css`
 const openCss = (theme: Theme) => css`
   width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.open - 48)};
   ${theme.breakpoints.up('sm')} {
+    width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.open - 48)};
     background-size: 17.5rem;
   }
 `;

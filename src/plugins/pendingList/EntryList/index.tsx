@@ -34,7 +34,7 @@ const EntryList: FC<Props> = ({ options }) => {
   const count = selectedIds.size;
   const contextualProps: ContextualProps = useMemo(
     () => ({
-      icons: [
+      menuItems: [
         {
           name: 'Inject All',
           onClick: () => setEntryPrompt({ open: true, type: 'inject' }),

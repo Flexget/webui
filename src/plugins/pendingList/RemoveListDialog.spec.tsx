@@ -4,7 +4,7 @@ import { cleanup, render, fireEvent, within, wait } from '@testing-library/react
 import { BaseProviders } from 'utils/tests';
 import fetchMock from 'fetch-mock';
 import RemoveListDialog from './RemoveListDialog';
-import { ListContainer, actions } from '../hooks/list';
+import { ListContainer, actions } from './hooks/list';
 
 const TestRemoveListDialog: typeof RemoveListDialog = props => {
   const [, dispatch] = useContainer(ListContainer);
