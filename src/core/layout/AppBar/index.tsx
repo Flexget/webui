@@ -74,7 +74,7 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
           {contextualMode && contextualProps?.title ? contextualProps.title : title}
         </Typography>
         <Spacer />
-        <Tooltip title={mode == 'light' ? 'Dark Mode' : 'Light Mode'}>
+        <Tooltip title={mode === 'light' ? 'Dark Mode' : 'Light Mode'}>
           <IconButton onClick={toggleMode} color="inherit" aria-label="toggle mode">
             <LightMode />
           </IconButton>

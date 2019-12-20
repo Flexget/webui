@@ -147,13 +147,6 @@ describe('core/layout/AppBar', () => {
               .findWhere(el => el.props()['aria-label'] === 'My Icon' && el.type() === IconButton)
               .exists(),
           ).toBeFalse();
-          expect(
-            wrapper
-              .findWhere(
-                el => el.props()['aria-label'] === 'config editor' && el.type() === IconButton,
-              )
-              .exists(),
-          ).toBeTrue();
         });
       });
       describe('not enabled', () => {
@@ -170,13 +163,6 @@ describe('core/layout/AppBar', () => {
               .findWhere(el => el.props()['aria-label'] === 'My Icon' && el.type() === IconButton)
               .exists(),
           ).toBeFalse();
-          expect(
-            wrapper
-              .findWhere(
-                el => el.props()['aria-label'] === 'config editor' && el.type() === IconButton,
-              )
-              .exists(),
-          ).toBeTrue();
         });
       });
 

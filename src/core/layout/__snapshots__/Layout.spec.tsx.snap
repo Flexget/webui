@@ -88,14 +88,65 @@ exports[`common/layout renders correctly 1`] = `
       <div
         className="MuiPaper-root MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft"
       >
-        <a
-          href="/"
-          onClick={[Function]}
+        <div
+          css={[Function]}
         >
-          <div
-            css={[Function]}
-          />
-        </a>
+          <a
+            href="/"
+            onClick={[Function]}
+          >
+            <div
+              css={[Function]}
+            />
+          </a>
+          <button
+            aria-describedby={null}
+            aria-label="Manage"
+            className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseOver={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            title="Manage"
+            type="button"
+          >
+            <span
+              className="MuiIconButton-label"
+            >
+              <svg
+                aria-hidden="true"
+                className="MuiSvgIcon-root"
+                focusable="false"
+                role="presentation"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M0 0h20v20H0V0z"
+                  fill="none"
+                  transform="scale(1.2, 1.2)"
+                />
+                <path
+                  d="M15.95 10.78c.03-.25.05-.51.05-.78s-.02-.53-.06-.78l1.69-1.32c.15-.12.19-.34.1-.51l-1.6-2.77c-.1-.18-.31-.24-.49-.18l-1.99.8c-.42-.32-.86-.58-1.35-.78L12 2.34c-.03-.2-.2-.34-.4-.34H8.4c-.2 0-.36.14-.39.34l-.3 2.12c-.49.2-.94.47-1.35.78l-1.99-.8c-.18-.07-.39 0-.49.18l-1.6 2.77c-.1.18-.06.39.1.51l1.69 1.32c-.04.25-.07.52-.07.78s.02.53.06.78L2.37 12.1c-.15.12-.19.34-.1.51l1.6 2.77c.1.18.31.24.49.18l1.99-.8c.42.32.86.58 1.35.78l.3 2.12c.04.2.2.34.4.34h3.2c.2 0 .37-.14.39-.34l.3-2.12c.49-.2.94-.47 1.35-.78l1.99.8c.18.07.39 0 .49-.18l1.6-2.77c.1-.18.06-.39-.1-.51l-1.67-1.32zM10 13c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"
+                  transform="scale(1.2, 1.2)"
+                />
+              </svg>
+            </span>
+            <span
+              className="MuiTouchRipple-root"
+            />
+          </button>
+        </div>
         <div
           css={
             Object {
@@ -268,6 +319,7 @@ exports[`common/layout renders correctly 1`] = `
           className="emotion-0"
         />
         <button
+          aria-describedby={null}
           aria-label="toggle mode"
           className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
           disabled={false}
@@ -279,11 +331,13 @@ exports[`common/layout renders correctly 1`] = `
           onKeyUp={[Function]}
           onMouseDown={[Function]}
           onMouseLeave={[Function]}
+          onMouseOver={[Function]}
           onMouseUp={[Function]}
           onTouchEnd={[Function]}
           onTouchMove={[Function]}
           onTouchStart={[Function]}
           tabIndex={0}
+          title="Dark Mode"
           type="button"
         >
           <span
@@ -298,137 +352,6 @@ exports[`common/layout renders correctly 1`] = `
             >
               <path
                 d="M12 3c-.46 0-.93.04-1.4.14-2.76.53-4.96 2.76-5.48 5.52-.48 2.61.48 5.01 2.22 6.56.43.38.66.91.66 1.47V19c0 1.1.9 2 2 2h.28c.35.6.98 1 1.72 1s1.38-.4 1.72-1H14c1.1 0 2-.9 2-2v-2.31c0-.55.22-1.09.64-1.46C18.09 13.95 19 12.08 19 10c0-3.87-3.13-7-7-7zm2 16h-4v-1h4v1zm0-2h-4v-1h4v1zm-1.5-5.59V14h-1v-2.59L9.67 9.59l.71-.71L12 10.5l1.62-1.62.71.71-1.83 1.82z"
-              />
-            </svg>
-          </span>
-          <span
-            className="MuiTouchRipple-root"
-          />
-        </button>
-        <a
-          aria-describedby={null}
-          aria-disabled={false}
-          aria-label="config editor"
-          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
-          href="/config"
-          onBlur={[Function]}
-          onClick={[Function]}
-          onDragLeave={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          onKeyUp={[Function]}
-          onMouseDown={[Function]}
-          onMouseLeave={[Function]}
-          onMouseOver={[Function]}
-          onMouseUp={[Function]}
-          onTouchEnd={[Function]}
-          onTouchMove={[Function]}
-          onTouchStart={[Function]}
-          role="button"
-          tabIndex={0}
-          title="Config Editor"
-        >
-          <span
-            className="MuiIconButton-label"
-          >
-            <svg
-              aria-hidden="true"
-              className="MuiSvgIcon-root"
-              focusable="false"
-              role="presentation"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z"
-              />
-            </svg>
-          </span>
-          <span
-            className="MuiTouchRipple-root"
-          />
-        </a>
-        <a
-          aria-describedby={null}
-          aria-disabled={false}
-          aria-label="log"
-          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
-          href="/log"
-          onBlur={[Function]}
-          onClick={[Function]}
-          onDragLeave={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          onKeyUp={[Function]}
-          onMouseDown={[Function]}
-          onMouseLeave={[Function]}
-          onMouseOver={[Function]}
-          onMouseUp={[Function]}
-          onTouchEnd={[Function]}
-          onTouchMove={[Function]}
-          onTouchStart={[Function]}
-          role="button"
-          tabIndex={0}
-          title="Log"
-        >
-          <span
-            className="MuiIconButton-label"
-          >
-            <svg
-              aria-hidden="true"
-              className="MuiSvgIcon-root"
-              focusable="false"
-              role="presentation"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M19 5v14H5V5h14m1.1-2H3.9c-.5 0-.9.4-.9.9v16.2c0 .4.4.9.9.9h16.2c.4 0 .9-.5.9-.9V3.9c0-.5-.5-.9-.9-.9zM11 7h6v2h-6V7zm0 4h6v2h-6v-2zm0 4h6v2h-6zM7 7h2v2H7zm0 4h2v2H7zm0 4h2v2H7z"
-              />
-            </svg>
-          </span>
-          <span
-            className="MuiTouchRipple-root"
-          />
-        </a>
-        <button
-          aria-describedby={null}
-          aria-label="Manage"
-          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
-          disabled={false}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onDragLeave={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          onKeyUp={[Function]}
-          onMouseDown={[Function]}
-          onMouseLeave={[Function]}
-          onMouseOver={[Function]}
-          onMouseUp={[Function]}
-          onTouchEnd={[Function]}
-          onTouchMove={[Function]}
-          onTouchStart={[Function]}
-          tabIndex={0}
-          title="Manage"
-          type="button"
-        >
-          <span
-            className="MuiIconButton-label"
-          >
-            <svg
-              aria-hidden="true"
-              className="MuiSvgIcon-root"
-              focusable="false"
-              role="presentation"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M0 0h20v20H0V0z"
-                fill="none"
-                transform="scale(1.2, 1.2)"
-              />
-              <path
-                d="M15.95 10.78c.03-.25.05-.51.05-.78s-.02-.53-.06-.78l1.69-1.32c.15-.12.19-.34.1-.51l-1.6-2.77c-.1-.18-.31-.24-.49-.18l-1.99.8c-.42-.32-.86-.58-1.35-.78L12 2.34c-.03-.2-.2-.34-.4-.34H8.4c-.2 0-.36.14-.39.34l-.3 2.12c-.49.2-.94.47-1.35.78l-1.99-.8c-.18-.07-.39 0-.49.18l-1.6 2.77c-.1.18-.06.39.1.51l1.69 1.32c-.04.25-.07.52-.07.78s.02.53.06.78L2.37 12.1c-.15.12-.19.34-.1.51l1.6 2.77c.1.18.31.24.49.18l1.99-.8c.42.32.86.58 1.35.78l.3 2.12c.04.2.2.34.4.34h3.2c.2 0 .37-.14.39-.34l.3-2.12c.49-.2.94-.47 1.35-.78l1.99.8c.18.07.39 0 .49-.18l1.6-2.77c.1-.18.06-.39-.1-.51l-1.67-1.32zM10 13c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"
-                transform="scale(1.2, 1.2)"
               />
             </svg>
           </span>
@@ -458,11 +381,11 @@ exports[`common/layout renders correctly 1`] = `
         Array [
           Object {
             "map": undefined,
-            "name": "8pusr2",
+            "name": "1a7v7et",
             "next": undefined,
             "styles": "
   overflow-y: auto;
-  padding: 0.8rem;
+  padding: 1.6rem;
   height: 100%;
 
   @media (min-width:600px) {
