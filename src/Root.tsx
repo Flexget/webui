@@ -3,7 +3,7 @@ import { hot } from 'react-hot-loader/root';
 import store from 'store';
 import history from 'core/history';
 import { StylesProvider } from '@material-ui/styles';
-import { CssBaseline, Theme } from '@material-ui/core';
+import { CssBaseline } from '@material-ui/core';
 import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
@@ -27,25 +27,18 @@ registerLog();
 registerSeries();
 registerPendingList();
 
-const globals = (theme: Theme) => css`
+const globals = css`
   html {
     font-size: 10px;
   }
 
   body {
-    height: 100%;
-    width: 100%;
     font-size: 1.6rem;
-    background-color: ${theme.palette.grey[200]};
     font-family: 'Roboto';
   }
 
   a {
     text-decoration: none;
-  }
-
-  * {
-    box-sizing: border-box;
   }
 
   *:focus {

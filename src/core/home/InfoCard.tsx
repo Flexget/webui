@@ -23,7 +23,7 @@ const actions = css`
 `;
 
 const InfoCard = () => (
-  <Card css={wrapper}>
+  <Card css={wrapper} raised>
     <CardHeader
       title="Flexget Web Interface"
       subheader="Under Development"

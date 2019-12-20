@@ -9,10 +9,19 @@ import {
   Theme,
   Tooltip,
 } from '@material-ui/core';
-import { Menu as MenuIcon, ListAlt, CreateOutlined, Clear, Settings } from '@material-ui/icons';
+import {
+  EmojiObjects,
+  EmojiObjectsOutlined,
+  Menu as MenuIcon,
+  ListAlt,
+  CreateOutlined,
+  Clear,
+  Settings,
+} from '@material-ui/icons';
 import { Spacer, Link } from 'common/styles';
 import LoadingBar from 'core/status/LoadingBar';
 import { SpeedDialIcon } from '@material-ui/lab';
+import { ThemeContainer } from 'core/theme';
 import { AppBarContainer } from './hooks';
 import Menu from './Menu';
 import OverflowMenu from './OverflowMenu';
@@ -66,6 +75,9 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
   ]);
 
   const menuLabel = contextualMode ? 'close context' : 'toggle sidebar';
+  const [mode, toggleMode] = ThemeContainer.useContainer();
+
+  const LightMode = mode === 'light' ? EmojiObjects : EmojiObjectsOutlined;
 
   return (
     <MUIAppBar color="inherit" position="static" css={appbarStyles} className={className}>
@@ -81,6 +93,9 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
           <OverflowMenu icons={contextualProps.icons} />
         ) : (
           <>
+            <IconButton onClick={toggleMode} color="inherit" aria-label="toggle mode">
+              <LightMode />
+            </IconButton>
             <Tooltip title="Config Editor">
               <IconButton aria-label="config editor" color="inherit" component={Link} to="/config">
                 <CreateOutlined />

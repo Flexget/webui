@@ -1,13 +1,11 @@
 import React, { FC, useMemo } from 'react';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core';
 import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
-import { createTheme } from './index';
+import { createTheme, ThemeContainer } from './index';
 
-interface Props {
-  type?: 'light' | 'dark';
-}
+const Theme: FC = ({ children }) => {
+  const [type] = ThemeContainer.useContainer();
 
-const ThemeProvider: FC<Props> = ({ type = 'light', children }) => {
   const theme = useMemo(() => createTheme(type), [type]);
 
   return (
@@ -16,5 +14,11 @@ const ThemeProvider: FC<Props> = ({ type = 'light', children }) => {
     </MuiThemeProvider>
   );
 };
+
+const ThemeProvider: FC = ({ children }) => (
+  <ThemeContainer.Provider>
+    <Theme>{children}</Theme>
+  </ThemeContainer.Provider>
+);
 
 export default ThemeProvider;
