@@ -9,8 +9,7 @@ import {
   Theme,
 } from '@material-ui/core';
 import { css } from '@emotion/core';
-import { Operation } from './types';
-import { useServerOperation } from './hooks';
+import { useServerOperation, Operation } from './hooks';
 
 interface Props {
   open?: boolean;

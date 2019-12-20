@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { createContainer } from 'unstated-next';
-import { common, grey, orange, blueGrey } from '@material-ui/core/colors';
+import { common, orange, blueGrey } from '@material-ui/core/colors';
 import { createMuiTheme, Theme, PaletteType } from '@material-ui/core';
 import { rgba } from 'polished';
 
@@ -53,7 +53,7 @@ const light = {
   // Consistency between these values is important.
   background: {
     paper: common.white,
-    default: grey[200],
+    default: blueGrey[50],
   },
   // The colors used to style the action elements.
   action: {
@@ -91,10 +91,13 @@ export const createTheme = (type: PaletteType = 'light'): Theme =>
       toolbar: {
         minHeight: '5rem',
       },
+      appBar: {
+        minHeight: 50,
+      },
       sidebar: {
         width: {
-          open: '19rem',
-          closed: '6rem',
+          open: 238,
+          closed: 60,
         },
       },
     },

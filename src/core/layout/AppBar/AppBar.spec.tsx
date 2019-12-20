@@ -106,7 +106,7 @@ describe('core/layout/AppBar', () => {
       const contextualProps: ContextualProps = {
         onClose,
         title: 'My Contextual Title',
-        icons: [
+        menuItems: [
           {
             name: 'My Icon',
             onClick: jest.fn(),

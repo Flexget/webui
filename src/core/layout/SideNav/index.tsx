@@ -1,13 +1,24 @@
-import React, { FC, useCallback, useReducer, useMemo } from 'react';
+import React, { FC, useCallback, useReducer, useMemo, useState } from 'react';
 import { useContainer } from 'unstated-next';
 import { css } from '@emotion/core';
-import { Drawer, List, Collapse, useMediaQuery, useTheme, Theme } from '@material-ui/core';
+import {
+  Drawer,
+  List,
+  Collapse,
+  Tooltip,
+  IconButton,
+  useMediaQuery,
+  useTheme,
+  Theme,
+} from '@material-ui/core';
+import { Settings } from '@material-ui/icons';
 import { RouteContainer } from 'core/routes/hooks';
 import { useHistory } from 'react-router';
 import { Route } from 'core/routes/types';
 import Version from './Version';
 import Entry from './Entry';
 import Logo from './Logo';
+import Menu from './Menu';
 
 export const nested = (theme: Theme) => css`
   padding-left: ${theme.spacing(0.4)}rem;
@@ -22,15 +33,15 @@ const innerDrawer = css`
 `;
 
 const drawerOpen = (theme: Theme) => css`
-  width: 80vw;
+  width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.open)};
   ${theme.breakpoints.up('sm')} {
-    width: ${theme.mixins.sidebar.width.open};
+    width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.open)};
   }
 `;
 
 const drawerClose = (theme: Theme) => css`
   ${theme.breakpoints.up('sm')} {
-    width: ${theme.mixins.sidebar.width.closed};
+    width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.closed)};
   }
 `;
 
@@ -58,6 +69,12 @@ const drawer = (theme: Theme) => css`
 
 const hideVersion = css`
   opacity: 0;
+`;
+
+const logoWrapper = (theme: Theme) => css`
+  display: flex;
+  justify-content: space-between;
+  color: ${theme.palette.secondary.light};
 `;
 
 interface Props {
@@ -103,6 +120,15 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
     [history, isMobile, onClose, sidebarOpen],
   );
 
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement>();
+
+  const handleSettingsClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget),
+    [],
+  );
+
+  const handleSettingsClose = useCallback(() => setAnchorEl(undefined), []);
+
   return (
     <Drawer
       css={drawerRootCss}
@@ -111,7 +137,16 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
       variant={isMobile ? 'temporary' : 'permanent'}
       onClose={onClose}
     >
-      <Logo sidebarOpen={sidebarOpen} className={className} />
+      <div css={logoWrapper}>
+        <Logo sidebarOpen={sidebarOpen} className={className} />
+
+        <Tooltip title="Manage">
+          <IconButton aria-label="Manage" onClick={handleSettingsClick} color="inherit">
+            <Settings />
+          </IconButton>
+        </Tooltip>
+        <Menu anchorEl={anchorEl} onClose={handleSettingsClose} />
+      </div>
       <div css={innerDrawer}>
         <List
           component="nav"

@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import { MoreVert } from '@material-ui/icons';
 
-export type OverflowMenuIconProps = Omit<
+export type OverflowMenuProps = Omit<
   IconButtonProps &
     MenuItemProps & {
       name: string;
@@ -25,7 +25,7 @@ export type OverflowMenuIconProps = Omit<
 
 interface Props {
   OverflowMenuIcon?: typeof SvgIcon;
-  icons?: OverflowMenuIconProps[];
+  icons?: OverflowMenuProps[];
 }
 
 const OverflowMenu: FC<Props> = ({ OverflowMenuIcon = MoreVert, icons = [] }) => {
@@ -40,7 +40,7 @@ const OverflowMenu: FC<Props> = ({ OverflowMenuIcon = MoreVert, icons = [] }) =>
 
   const handleOverflowClose = useCallback(() => setAnchorEl(undefined), []);
 
-  let items: [OverflowMenuIconProps[], OverflowMenuIconProps[]];
+  let items: [OverflowMenuProps[], OverflowMenuProps[]];
 
   if (mdMatches) {
     items = [icons, []];

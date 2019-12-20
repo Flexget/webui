@@ -9,8 +9,7 @@ import { useGlobalStatus } from 'core/status/hooks';
 import { Method } from 'utils/fetch';
 import { useOverlayState } from 'utils/hooks';
 import ShutdownDialog from './ShutdownDialog';
-import { useServerOperation } from './hooks';
-import { Operation } from './types';
+import { useServerOperation, Operation } from './hooks';
 
 interface Props {
   anchorEl?: Element;

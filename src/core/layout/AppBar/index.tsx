@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback, useMemo } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 import { useContainer } from 'unstated-next';
 import { css } from '@emotion/core';
 import {
@@ -9,27 +9,18 @@ import {
   Theme,
   Tooltip,
 } from '@material-ui/core';
-import {
-  EmojiObjects,
-  EmojiObjectsOutlined,
-  Menu as MenuIcon,
-  ListAlt,
-  CreateOutlined,
-  Clear,
-  Settings,
-} from '@material-ui/icons';
-import { Spacer, Link } from 'common/styles';
+import { EmojiObjects, EmojiObjectsOutlined, Menu as MenuIcon, Clear } from '@material-ui/icons';
+import { Spacer } from 'common/styles';
 import LoadingBar from 'core/status/LoadingBar';
 import { SpeedDialIcon } from '@material-ui/lab';
 import { ThemeContainer } from 'core/theme';
 import { AppBarContainer } from './hooks';
-import Menu from './Menu';
 import OverflowMenu from './OverflowMenu';
 
 const appbar = (theme: Theme) => css`
   background-color: ${theme.palette.primary.main};
   color: ${theme.palette.primary.contrastText};
-  min-height: ${theme.mixins.toolbar.minHeight};
+  min-height: ${theme.typography.pxToRem(theme.mixins.appBar.minHeight)};
 `;
 
 const contextualAppBar = (theme: Theme) => css`
@@ -44,22 +35,14 @@ interface Props {
 
 const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
   const [
-    { title, content, contextualMode, contextualProps = {} },
+    { title, content, contextualMode, contextualProps = {}, menuProps },
     { setContextual },
   ] = useContainer(AppBarContainer);
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement>();
-
-  const handleSettingsClick = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget),
-    [],
-  );
 
   const appbarStyles = useCallback(
     (theme: Theme) => [appbar(theme), contextualMode && contextualAppBar(theme)],
     [contextualMode],
   );
-
-  const handleSettingsClose = useCallback(() => setAnchorEl(undefined), []);
 
   const handleContextualClose = useCallback(() => {
     if (contextualProps?.onClose) {
@@ -78,6 +61,8 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
   const [mode, toggleMode] = useContainer(ThemeContainer);
 
   const LightMode = mode === 'light' ? EmojiObjects : EmojiObjectsOutlined;
+  const overflowMenuProps =
+    contextualMode && contextualProps.menuItems ? contextualProps.menuItems : menuProps;
 
   return (
     <MUIAppBar color="inherit" position="static" css={appbarStyles} className={className}>
@@ -89,31 +74,12 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
           {contextualMode && contextualProps?.title ? contextualProps.title : title}
         </Typography>
         <Spacer />
-        {contextualMode && !!contextualProps.icons ? (
-          <OverflowMenu icons={contextualProps.icons} />
-        ) : (
-          <>
-            <IconButton onClick={toggleMode} color="inherit" aria-label="toggle mode">
-              <LightMode />
-            </IconButton>
-            <Tooltip title="Config Editor">
-              <IconButton aria-label="config editor" color="inherit" component={Link} to="/config">
-                <CreateOutlined />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Log">
-              <IconButton aria-label="log" color="inherit" component={Link} to="/log">
-                <ListAlt />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Manage">
-              <IconButton aria-label="Manage" onClick={handleSettingsClick} color="inherit">
-                <Settings />
-              </IconButton>
-            </Tooltip>
-            <Menu anchorEl={anchorEl} onClose={handleSettingsClose} />
-          </>
-        )}
+        <Tooltip title={mode == 'light' ? 'Dark Mode' : 'Light Mode'}>
+          <IconButton onClick={toggleMode} color="inherit" aria-label="toggle mode">
+            <LightMode />
+          </IconButton>
+        </Tooltip>
+        {!!overflowMenuProps && <OverflowMenu icons={overflowMenuProps} />}
       </Toolbar>
       {content}
       <LoadingBar />

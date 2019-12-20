@@ -5,8 +5,9 @@ import InfiniteScroll from 'react-infinite-scroller';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import LoadingSpinner from 'common/LoadingSpinner';
-import { Subheader, Wrapper } from './styles';
+import { subheader, wrapper } from './styles';
 
 class HistoryList extends Component {
   static propTypes = {
@@ -25,7 +26,7 @@ class HistoryList extends Component {
     const { grouping, history, hasMore, getHistory, scrollRef } = this.props;
 
     return (
-      <Wrapper>
+      <div css={wrapper}>
         <InfiniteScroll
           hasMore={hasMore}
           loadMore={getHistory}
@@ -33,8 +34,15 @@ class HistoryList extends Component {
           ref={scrollRef}
           useWindow={false}
         >
-          {Object.entries(history).map(([subheader, histories]) => (
-            <List key={subheader} subheader={<Subheader color="primary">{subheader}</Subheader>}>
+          {Object.entries(history).map(([header, histories]) => (
+            <List
+              key={header}
+              subheader={
+                <ListSubheader color="primary" css={subheader}>
+                  {header}
+                </ListSubheader>
+              }
+            >
               {histories.map(({ id, title, time, task }) => (
                 <ListItem key={id}>
                   <ListItemText
@@ -46,7 +54,7 @@ class HistoryList extends Component {
             </List>
           ))}
         </InfiniteScroll>
-      </Wrapper>
+      </div>
     );
   }
 }

@@ -1,24 +1,24 @@
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
 import { css } from '@emotion/core';
 import { Theme } from '@material-ui/core';
 import headerImage from 'images/header.png';
+import { Link } from 'common/styles';
 
 const logo = (theme: Theme) => css`
   background: ${theme.palette.secondary.main} url(${headerImage}) no-repeat center;
   background-size: 17.5rem;
   height: 100%;
-  min-height: ${theme.mixins.toolbar.minHeight};
+  min-height: ${theme.typography.pxToRem(theme.mixins.appBar.minHeight)};
 
   ${theme.breakpoints.up('sm')} {
-    width: ${theme.mixins.sidebar.width.closed};
+    width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.closed)};
     background-size: 25rem;
   }
 `;
 
 const openCss = (theme: Theme) => css`
+  width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.open - 48)};
   ${theme.breakpoints.up('sm')} {
-    width: ${theme.mixins.sidebar.width.open};
     background-size: 17.5rem;
   }
 `;
