@@ -7,6 +7,7 @@ import { useHistory } from 'react-router';
 import { Route } from 'core/routes/types';
 import Version from './Version';
 import Entry from './Entry';
+import Logo from './Logo';
 
 export const nested = (theme: Theme) => css`
   padding-left: ${theme.spacing(0.4)}rem;
@@ -21,16 +22,13 @@ const innerDrawer = css`
 `;
 
 const drawerOpen = (theme: Theme) => css`
-  width: 100vw;
-
+  width: 80vw;
   ${theme.breakpoints.up('sm')} {
     width: ${theme.mixins.sidebar.width.open};
   }
 `;
 
 const drawerClose = (theme: Theme) => css`
-  width: 0;
-
   ${theme.breakpoints.up('sm')} {
     width: ${theme.mixins.sidebar.width.closed};
   }
@@ -72,7 +70,7 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
   const [routes] = useContainer(RouteContainer);
   const history = useHistory();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const [openMap, setOpen] = useReducer(
     (state: Record<string, boolean>, name: string) => ({
       ...state,
@@ -91,7 +89,7 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
   const handleClick = useCallback(
     ({ path, name }: Route) => () => {
       if (path) {
-        if (matches) {
+        if (isMobile) {
           onClose();
         }
         history.push(path);
@@ -102,11 +100,18 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
         onClose();
       }
     },
-    [history, matches, onClose, sidebarOpen],
+    [history, isMobile, onClose, sidebarOpen],
   );
 
   return (
-    <Drawer css={drawerRootCss} className={className} open={sidebarOpen} variant="permanent">
+    <Drawer
+      css={drawerRootCss}
+      className={className}
+      open={sidebarOpen}
+      variant={isMobile ? 'temporary' : 'permanent'}
+      onClose={onClose}
+    >
+      <Logo sidebarOpen={sidebarOpen} className={className} />
       <div css={innerDrawer}>
         <List
           component="nav"

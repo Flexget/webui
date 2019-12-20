@@ -21,6 +21,7 @@ import { TaskContainer } from 'core/tasks/hooks';
 import { StatusContainer } from 'core/status/hooks';
 import { RouteContainer } from 'core/routes/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
+import { VersionContainer } from 'core/layout/SideNav/hooks';
 
 registerHistory();
 registerLog();
@@ -57,25 +58,27 @@ const Root = () => (
       <Provider store={store}>
         <StatusContainer.Provider>
           <AuthContainer.Provider>
-            <ConnectedRouter history={history}>
-              <Switch>
-                <Route path="/login" exact component={Login} />
-                <Route
-                  render={() => (
-                    <RouteContainer.Provider>
-                      <TaskContainer.Provider>
-                        <Layout>
-                          <Switch>
-                            <PrivateRoute path="/" exact component={Home} />
-                            <Route render={() => <Routes />} />
-                          </Switch>
-                        </Layout>
-                      </TaskContainer.Provider>
-                    </RouteContainer.Provider>
-                  )}
-                />
-              </Switch>
-            </ConnectedRouter>
+            <VersionContainer.Provider>
+              <ConnectedRouter history={history}>
+                <Switch>
+                  <Route path="/login" exact component={Login} />
+                  <Route
+                    render={() => (
+                      <RouteContainer.Provider>
+                        <TaskContainer.Provider>
+                          <Layout>
+                            <Switch>
+                              <PrivateRoute path="/" exact component={Home} />
+                              <Route render={() => <Routes />} />
+                            </Switch>
+                          </Layout>
+                        </TaskContainer.Provider>
+                      </RouteContainer.Provider>
+                    )}
+                  />
+                </Switch>
+              </ConnectedRouter>
+            </VersionContainer.Provider>
           </AuthContainer.Provider>
         </StatusContainer.Provider>
       </Provider>

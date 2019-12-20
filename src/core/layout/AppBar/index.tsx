@@ -75,7 +75,7 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
   ]);
 
   const menuLabel = contextualMode ? 'close context' : 'toggle sidebar';
-  const [mode, toggleMode] = ThemeContainer.useContainer();
+  const [mode, toggleMode] = useContainer(ThemeContainer);
 
   const LightMode = mode === 'light' ? EmojiObjects : EmojiObjectsOutlined;
 

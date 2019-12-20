@@ -42,7 +42,7 @@ export const BaseProviders: FC = ({ children }) => {
     <StatusContainer.Provider>
       <AuthContainer.Provider>
         <MemoryRouter>
-          <ThemeProvider type="light">
+          <ThemeProvider>
             <RouteContainer.Provider>
               <TaskContainer.Provider>
                 <AppBarContainer.Provider>{children}</AppBarContainer.Provider>

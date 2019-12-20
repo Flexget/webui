@@ -1,25 +1,16 @@
 import { css } from '@emotion/core';
 import { Theme } from '@material-ui/core';
 
-export const wrapper = (theme: Theme) => css`
+export const wrapper = css`
   display: grid;
   grid-template-columns: auto 1fr 0;
-  grid-template-rows: auto auto 1fr 0;
+  grid-template-rows: auto 1fr 0;
   grid-template-areas:
-    'logo logo logo'
-    'header header header'
+    'sidebar header header'
     'sidebar content content'
     'sidebar content content';
   height: 100vh;
   width: 100vw;
-
-  ${theme.breakpoints.up('sm')} {
-    grid-template-rows: auto 1fr 0;
-    grid-template-areas:
-      'logo header header'
-      'sidebar content content'
-      'sidebar content content';
-  }
 `;
 
 export const main = css`
@@ -29,10 +20,6 @@ export const main = css`
 
 export const header = css`
   grid-area: header;
-`;
-
-export const logoWrapper = css`
-  grid-area: logo;
 `;
 
 export const sidebar = css`
