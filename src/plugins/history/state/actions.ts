@@ -2,7 +2,7 @@ import statusActions from 'core/status/state/actions';
 import { StatusError } from 'utils/fetch';
 import { action, ActionsUnion } from 'utils/actions';
 import { RequestsOfType as ROT } from 'core/status/state/types';
-import { GetHistoryOptions, History } from './types';
+import { GetHistoryOptions, History } from '../types';
 
 export const enum Constants {
   GET_HISTORY = '@flexget/history/GET_HISTORY',

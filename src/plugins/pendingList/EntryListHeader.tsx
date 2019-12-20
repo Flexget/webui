@@ -1,21 +1,18 @@
 import React, { FC, ChangeEvent } from 'react';
-import { FormControl, TablePagination, Button } from '@material-ui/core';
+import { FormControl, TablePagination, Theme } from '@material-ui/core';
 import { css, ClassNames } from '@emotion/core';
-import theme from 'core/theme';
 import SelectField from 'common/inputs/SelectField';
 import { Direction } from 'utils/query';
-import { useOverlayState } from 'utils/hooks';
 import { useContainer } from 'unstated-next';
-import { Options, SortBy } from '../types';
-import { EntryContainer } from '../hooks/entry';
-import RemoveListDialog from './RemoveListDialog';
+import { Options, SortBy } from './types';
+import { EntryContainer } from './hooks/entry';
 
 interface Props {
   setOptions: (opts: Partial<Options>) => void;
   options: Options;
 }
 
-const wrapper = css`
+const wrapper = (theme: Theme) => css`
   display: flex;
   justify-content: space-between;
   padding-bottom: ${theme.typography.pxToRem(theme.spacing(2))};
@@ -28,7 +25,7 @@ const container = css`
   font-size: 14px;
 `;
 
-const item = css`
+const item = (theme: Theme) => css`
   margin-left: ${theme.typography.pxToRem(theme.spacing(2))};
   margin-right: ${theme.typography.pxToRem(theme.spacing(2))};
 `;
@@ -84,18 +81,12 @@ const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPa
     setOptions({ page: p });
   };
 
-  const [removeIsOpen, { open: removeOpen, close: removeClose }] = useOverlayState();
-
   return (
     <>
       <ClassNames>
         {({ css: cssString }) => (
           <div css={wrapper}>
-            <div css={container}>
-              <Button color="secondary" onClick={removeOpen} css={item}>
-                Remove List
-              </Button>
-            </div>
+            <div css={container} />
             <div css={container}>
               <FormControl css={item}>
                 <SelectField
@@ -135,7 +126,6 @@ const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPa
           </div>
         )}
       </ClassNames>
-      <RemoveListDialog open={removeIsOpen} onClose={removeClose} />
     </>
   );
 };

@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useContainer } from 'unstated-next';
 import semver from 'semver-compare';
 import { css } from '@emotion/core';
 import { IconButton, Theme } from '@material-ui/core';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import Typography from '@material-ui/core/Typography';
-import { useFlexgetAPI } from 'core/api';
-import { useGlobalStatus } from 'core/status/hooks';
+import { VersionContainer } from './hooks';
 
 interface Props {
   className?: string;
-}
-
-interface VersionResponse {
-  apiVersion: string;
-  flexgetVersion: string;
-  latestVersion: string;
 }
 
 const wrapper = (theme: Theme) => css`
@@ -22,27 +16,8 @@ const wrapper = (theme: Theme) => css`
   opacity: 1;
 `;
 
-const useVersion = () => {
-  const [version, setVersion] = useState<VersionResponse>();
-  const [{ loading, error }, getVersion] = useFlexgetAPI<VersionResponse>('/server/version');
-  useGlobalStatus(loading, error);
-
-  useEffect(() => {
-    const fn = async () => {
-      const resp = await getVersion();
-      if (resp.ok) {
-        setVersion(resp.data);
-      }
-    };
-    fn();
-  }, [getVersion]);
-
-  return { loading, version };
-};
-
 const Version: React.FC<Props> = ({ className }) => {
-  const { loading, version } = useVersion();
-
+  const { loading, version } = useContainer(VersionContainer);
   if (loading || !version) {
     // showProgress
     return null;

@@ -6,18 +6,21 @@ import { AuthContainer } from 'core/auth/container';
 import { StatusContainer } from 'core/status/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
 import Layout from './Layout';
+import { VersionContainer } from './SideNav/hooks';
 
 const renderLayout = () => (
   <ThemeProvider>
     <StatusContainer.Provider>
       <AuthContainer.Provider>
-        <MemoryRouter>
-          <RouteContainer.Provider>
-            <Layout>
-              <div />
-            </Layout>
-          </RouteContainer.Provider>
-        </MemoryRouter>
+        <VersionContainer.Provider>
+          <MemoryRouter>
+            <RouteContainer.Provider>
+              <Layout>
+                <div />
+              </Layout>
+            </RouteContainer.Provider>
+          </MemoryRouter>
+        </VersionContainer.Provider>
       </AuthContainer.Provider>
     </StatusContainer.Provider>
   </ThemeProvider>

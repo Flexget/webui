@@ -3,8 +3,8 @@ import { hot } from 'react-hot-loader/root';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import HistoryList from 'plugins/history/HistoryList';
-import FilterNav from 'plugins/history/FilterNav';
 import { NoPaddingWrapper } from 'common/styles';
+import FilterNav from '../FilterNav';
 
 class HistoryPage extends Component {
   scroll = React.createRef();

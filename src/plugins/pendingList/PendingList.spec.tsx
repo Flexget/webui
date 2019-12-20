@@ -1,17 +1,14 @@
 import React, { FC } from 'react';
-import { useContainer } from 'unstated-next';
 import { cleanup, fireEvent, within, getNodeText } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
-import { AppBarContainer } from 'core/layout/AppBar/hooks';
+import AppBar from 'core/layout/AppBar';
 import PendingList from './PendingList';
 
 const TestPendingList: FC = () => {
-  const [{ content }] = useContainer(AppBarContainer);
-
   return (
     <>
-      {content}
+      <AppBar toggleSidebar={jest.fn()} />
       <PendingList />
     </>
   );
@@ -69,8 +66,8 @@ describe('plugins/pendingList/PendingList', () => {
 
   describe('EntryListHeader', () => {
     it('should open a dialog when pressing remove list button', async () => {
-      const { getByText, queryByRole } = renderWithWrapper(<TestPendingList />);
-      const removeListButton = getByText('Remove List');
+      const { getByLabelText, queryByRole } = renderWithWrapper(<TestPendingList />);
+      const removeListButton = getByLabelText('Remove List');
       fireEvent.click(removeListButton);
       expect(queryByRole('dialog')).toBeInTheDocument();
     });

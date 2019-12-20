@@ -1,28 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
-.emotion-0 {
-  text-align: center;
-  padding: 1rem;
-}
-
 <div
   className="MuiPaper-root MuiPaper-elevation1 MuiCard-root MuiPaper-rounded"
-  css={
-    Object {
-      "map": undefined,
-      "name": "29pa7b",
-      "next": undefined,
-      "styles": "
-  max-width: 40rem;
-  margin: 0 1rem;
-  @media (min-width:600px) {
-    margin: 0 auto;
-  }
-",
-      "toString": [Function],
-    }
-  }
+  css={[Function]}
 >
   <form
     action="#"
@@ -45,7 +26,7 @@ exports[`core/Login/LoginCard LoginCard renders correctly 1`] = `
       }
     >
       <div
-        className="emotion-0"
+        css={[Function]}
       />
       <div
         className="MuiFormControl-root MuiTextField-root"

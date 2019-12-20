@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { groupBy } from 'utils/array';
 import { State } from './reducer';
-import { History } from './types';
+import { History } from '../types';
 
 const getItems = (history: State) => history.items;
 const getGrouping = (_: State, grouping: string) => grouping;

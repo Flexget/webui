@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
-import theme from 'core/theme';
 import { CardMedia } from '@material-ui/core';
 
 export const Media = styled(CardMedia)`
-  border-bottom: 0.1rem solid ${theme.palette.grey[300]};
+  border-bottom: 0.1rem solid ${({ theme }) => theme.palette.grey[300]};
 `;
 
 export const Image = styled.img`

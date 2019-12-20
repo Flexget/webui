@@ -3,11 +3,21 @@ import { act, create, ReactTestRenderer } from 'react-test-renderer';
 import { StatusContainer } from 'core/status/hooks';
 import { AuthContainer } from 'core/auth/container';
 import Version from './Version';
+import { VersionContainer } from './hooks';
 
 describe('core/layout/Version', () => {
   beforeEach(() => {
     fetchMock.resetMocks();
   });
+  const component = (
+    <StatusContainer.Provider>
+      <AuthContainer.Provider>
+        <VersionContainer.Provider>
+          <Version />
+        </VersionContainer.Provider>
+      </AuthContainer.Provider>
+    </StatusContainer.Provider>
+  );
   it('renders correctly with latest version', async () => {
     fetchMock.mockResponseOnce(
       JSON.stringify({
@@ -18,13 +28,7 @@ describe('core/layout/Version', () => {
     );
     let tree: ReactTestRenderer | undefined;
     await act(async () => {
-      tree = create(
-        <StatusContainer.Provider>
-          <AuthContainer.Provider>
-            <Version />
-          </AuthContainer.Provider>
-        </StatusContainer.Provider>,
-      );
+      tree = create(component);
     });
     expect(tree?.toJSON()).toMatchSnapshot();
   });
@@ -39,13 +43,7 @@ describe('core/layout/Version', () => {
     );
     let wrapper: ReactTestRenderer | undefined;
     await act(async () => {
-      wrapper = create(
-        <StatusContainer.Provider>
-          <AuthContainer.Provider>
-            <Version />
-          </AuthContainer.Provider>
-        </StatusContainer.Provider>,
-      );
+      wrapper = create(component);
     });
     expect(wrapper?.toJSON()).toMatchSnapshot();
   });

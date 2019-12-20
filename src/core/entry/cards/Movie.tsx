@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
-import { CardContent, Typography, CardMedia } from '@material-ui/core';
+import { CardContent, Typography, CardMedia, Theme } from '@material-ui/core';
 import { getCachedUrl } from 'utils/image';
 import { normalizeMinutes } from 'utils/time';
 import { css } from '@emotion/core';
-import theme from 'core/theme';
 import { MovieEntry } from '../fields/movies';
 import { Bullet } from './styles';
 
@@ -12,7 +11,7 @@ interface Props {
   className?: string;
 }
 
-const summary = css`
+const summary = (theme: Theme) => css`
   font-size: 1.5rem;
   font-weight: 500;
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};

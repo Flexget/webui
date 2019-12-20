@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import { MenuItem, useMediaQuery } from '@material-ui/core';
-import theme from 'core/theme';
+import { MenuItem, useMediaQuery, useTheme } from '@material-ui/core';
 import TextField, { Props as TextFieldProps } from './TextField';
 
 interface Option {
@@ -13,6 +12,7 @@ type Props = TextFieldProps & {
 };
 
 const SelectField: FC<Props> = ({ options, SelectProps = {}, ...props }) => {
+  const theme = useTheme();
   const native = useMediaQuery(theme.breakpoints.down('sm'));
   const sp = {
     native,

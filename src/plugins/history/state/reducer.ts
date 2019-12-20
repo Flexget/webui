@@ -1,5 +1,5 @@
 import { Constants, ActionTypes } from './actions';
-import { History } from './types';
+import { History } from '../types';
 
 export interface State {
   items: History[];

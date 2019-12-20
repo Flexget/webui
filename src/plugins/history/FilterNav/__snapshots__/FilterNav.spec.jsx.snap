@@ -1,18 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`plugins/history/components/FilterNav renders correctly 1`] = `
-.emotion-6 {
-  position: static;
-}
-
-.emotion-5 {
-  background-color: #455a64;
-  min-height: 5rem;
-  color: #fff;
-}
-
 .emotion-0 {
-  margin: 0.5rem 2rem 0.5rem;
+  padding: 0.5rem 2rem 0.5rem;
 }
 
 .emotion-1 {
@@ -26,14 +16,14 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
   transition: all 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
 }
 
-<header
-  className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed emotion-6 MuiAppBar-colorPrimary mui-fixed"
+<div
+  className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
 >
   <div
-    className="MuiToolbar-root MuiToolbar-regular emotion-5 MuiToolbar-gutters"
+    className="emotion-0"
   >
     <div
-      className="MuiFormControl-root MuiTextField-root emotion-0"
+      className="MuiFormControl-root MuiTextField-root"
       onKeyPress={[Function]}
     >
       <label
@@ -65,11 +55,26 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
         />
       </div>
     </div>
+  </div>
+  <div
+    className="emotion-1"
+  />
+  <div
+    className="emotion-0"
+  >
     <div
-      className="emotion-1"
-    />
-    <div
-      className="MuiFormControl-root MuiTextField-root emotion-0"
+      className="MuiFormControl-root MuiTextField-root"
+      css={
+        Object {
+          "map": undefined,
+          "name": "1v9q0yb",
+          "next": undefined,
+          "styles": "
+  width: 7.5rem;
+",
+          "toString": [Function],
+        }
+      }
     >
       <label
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
@@ -116,8 +121,23 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
         </svg>
       </div>
     </div>
+  </div>
+  <div
+    className="emotion-0"
+  >
     <div
-      className="MuiFormControl-root MuiTextField-root emotion-0"
+      className="MuiFormControl-root MuiTextField-root"
+      css={
+        Object {
+          "map": undefined,
+          "name": "1v9q0yb",
+          "next": undefined,
+          "styles": "
+  width: 7.5rem;
+",
+          "toString": [Function],
+        }
+      }
     >
       <label
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
@@ -164,34 +184,34 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
         </svg>
       </div>
     </div>
-    <button
-      className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[MockFunction]}
-      onDragLeave={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchMove={[Function]}
-      onTouchStart={[Function]}
-      tabIndex={0}
-      type="button"
+  </div>
+  <button
+    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[MockFunction]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className="MuiIconButton-label"
     >
       <span
-        className="MuiIconButton-label"
-      >
-        <span
-          aria-hidden={true}
-          className="material-icons MuiIcon-root fa fa-chevron-up emotion-4"
-          rotate={false}
-        />
-      </span>
-    </button>
-  </div>
-</header>
+        aria-hidden={true}
+        className="material-icons MuiIcon-root fa fa-chevron-up emotion-4"
+        rotate={false}
+      />
+    </span>
+  </button>
+</div>
 `;

@@ -4,16 +4,13 @@ import InfoStatus from 'core/status/InfoStatus';
 import { useTheme } from '@material-ui/core';
 import { useOverlayState } from 'utils/hooks';
 
-import Logo from './Logo';
 import AppBar from './AppBar';
 import SideNav from './SideNav';
 import {
   header,
   wrapper,
-  logoWrapper,
   main,
   sidebar,
-  contentWithSidebar,
   content,
   leavingTransition,
   enterTransition,
@@ -25,23 +22,17 @@ const Layout: React.FC = ({ children }) => {
   const matches = window.matchMedia && !window.matchMedia('(max-width: 600px)').matches;
   const [sidebarOpen, { toggle, close }] = useOverlayState(matches);
 
-  const enterCss = useMemo(() => [enterTransition(theme)], [theme]);
-  const leavingCss = useMemo(() => [leavingTransition(theme)], [theme]);
+  const sideTransition = sidebarOpen ? enterTransition : leavingTransition;
+  const mainTransition = sidebarOpen ? leavingTransition : enterTransition;
 
-  const contentCss = useMemo(() => [content(theme), sidebarOpen && contentWithSidebar(theme)], [
-    sidebarOpen,
+  const contentCss = useMemo(() => [content(theme), mainTransition(theme)], [
+    mainTransition,
     theme,
   ]);
-
-  const sideTransition = sidebarOpen ? enterCss : leavingCss;
-  const mainTransition = sidebarOpen ? leavingCss : enterCss;
 
   return (
     <AppBarContainer.Provider>
       <div css={wrapper}>
-        <div css={logoWrapper}>
-          <Logo css={sideTransition} sidebarOpen={sidebarOpen} />
-        </div>
         <aside css={sidebar}>
           <SideNav css={sideTransition} sidebarOpen={sidebarOpen} onClose={close} />
         </aside>
@@ -49,7 +40,7 @@ const Layout: React.FC = ({ children }) => {
           <AppBar css={mainTransition} toggleSidebar={toggle} />
         </header>
         <main css={main}>
-          <section css={[contentCss, mainTransition]}>{children}</section>
+          <section css={contentCss}>{children}</section>
           <ErrorStatus />
           <InfoStatus />
         </main>

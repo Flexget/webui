@@ -6,17 +6,17 @@ import {
   DialogContent,
   DialogTitle,
   DialogContentText,
+  Theme,
 } from '@material-ui/core';
 import { css } from '@emotion/core';
-import theme from 'core/theme';
-import { useRemoveList } from '../hooks/list';
+import { useRemoveList } from './hooks/list';
 
 interface Props {
   open?: boolean;
   onClose: () => void;
 }
 
-const errorStyle = css`
+const errorStyle = (theme: Theme) => css`
   color: ${theme.palette.error[500]};
   text-align: center;
 `;

@@ -1,7 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`plugins/history/components/HistoryList HistoryList renders correctly 1`] = `
-<Styled(div)>
+<div
+  css={
+    Object {
+      "map": undefined,
+      "name": "1ut4asw",
+      "next": undefined,
+      "styles": "
+  overflow-y: scroll;
+  flex: 1;
+",
+      "toString": [Function],
+    }
+  }
+>
   <InfiniteScroll
     element="div"
     getScrollParent={null}
@@ -23,11 +36,12 @@ exports[`plugins/history/components/HistoryList HistoryList renders correctly 1`
     <WithStyles(ForwardRef(List))
       key="2017-09-09"
       subheader={
-        <ForwardRef(render)
+        <ForwardRef(WithStyles)
           color="primary"
+          css={[Function]}
         >
           2017-09-09
-        </ForwardRef(render)>
+        </ForwardRef(WithStyles)>
       }
     >
       <WithStyles(ForwardRef(ListItem))
@@ -40,7 +54,7 @@ exports[`plugins/history/components/HistoryList HistoryList renders correctly 1`
       </WithStyles(ForwardRef(ListItem))>
     </WithStyles(ForwardRef(List))>
   </InfiniteScroll>
-</Styled(div)>
+</div>
 `;
 
 exports[`plugins/history/components/HistoryList mapStateToProps should return the right params if there are more 1`] = `

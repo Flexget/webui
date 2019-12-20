@@ -1,12 +1,24 @@
-import React, { FC, useCallback, useReducer, useMemo } from 'react';
+import React, { FC, useCallback, useReducer, useMemo, useState } from 'react';
 import { useContainer } from 'unstated-next';
 import { css } from '@emotion/core';
-import { Drawer, List, Collapse, useMediaQuery, useTheme, Theme } from '@material-ui/core';
+import {
+  Drawer,
+  List,
+  Collapse,
+  Tooltip,
+  IconButton,
+  useMediaQuery,
+  useTheme,
+  Theme,
+} from '@material-ui/core';
+import { Settings } from '@material-ui/icons';
 import { RouteContainer } from 'core/routes/hooks';
 import { useHistory } from 'react-router';
 import { Route } from 'core/routes/types';
 import Version from './Version';
 import Entry from './Entry';
+import Logo from './Logo';
+import Menu from './Menu';
 
 export const nested = (theme: Theme) => css`
   padding-left: ${theme.spacing(0.4)}rem;
@@ -21,18 +33,15 @@ const innerDrawer = css`
 `;
 
 const drawerOpen = (theme: Theme) => css`
-  width: 100vw;
-
+  width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.open)};
   ${theme.breakpoints.up('sm')} {
-    width: ${theme.mixins.sidebar.width.open};
+    width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.open)};
   }
 `;
 
 const drawerClose = (theme: Theme) => css`
-  width: 0;
-
   ${theme.breakpoints.up('sm')} {
-    width: ${theme.mixins.sidebar.width.closed};
+    width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.closed)};
   }
 `;
 
@@ -62,6 +71,12 @@ const hideVersion = css`
   opacity: 0;
 `;
 
+const logoWrapper = (theme: Theme) => css`
+  display: flex;
+  justify-content: space-between;
+  color: ${theme.palette.secondary.light};
+`;
+
 interface Props {
   sidebarOpen?: boolean;
   onClose: () => void;
@@ -72,7 +87,7 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
   const [routes] = useContainer(RouteContainer);
   const history = useHistory();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
   const [openMap, setOpen] = useReducer(
     (state: Record<string, boolean>, name: string) => ({
       ...state,
@@ -91,7 +106,7 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
   const handleClick = useCallback(
     ({ path, name }: Route) => () => {
       if (path) {
-        if (matches) {
+        if (isMobile) {
           onClose();
         }
         history.push(path);
@@ -102,11 +117,36 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
         onClose();
       }
     },
-    [history, matches, onClose, sidebarOpen],
+    [history, isMobile, onClose, sidebarOpen],
   );
 
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement>();
+
+  const handleSettingsClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget),
+    [],
+  );
+
+  const handleSettingsClose = useCallback(() => setAnchorEl(undefined), []);
+
   return (
-    <Drawer css={drawerRootCss} className={className} open={sidebarOpen} variant="permanent">
+    <Drawer
+      css={drawerRootCss}
+      className={className}
+      open={sidebarOpen}
+      variant={isMobile ? 'temporary' : 'permanent'}
+      onClose={onClose}
+    >
+      <div css={logoWrapper}>
+        <Logo sidebarOpen={sidebarOpen} className={className} />
+
+        <Tooltip title="Manage">
+          <IconButton aria-label="Manage" onClick={handleSettingsClick} color="inherit">
+            <Settings />
+          </IconButton>
+        </Tooltip>
+        <Menu anchorEl={anchorEl} onClose={handleSettingsClose} />
+      </div>
       <div css={innerDrawer}>
         <List
           component="nav"

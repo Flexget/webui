@@ -1,12 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { createContainer, useContainer } from 'unstated-next';
-import { useFlexgetAPI } from 'core/api';
-import { Method } from 'utils/fetch';
-import { Operation } from './types';
-import { OverflowMenuIconProps } from './OverflowMenu';
+import { OverflowMenuProps } from './OverflowMenu';
 
 export interface ContextualProps {
-  icons?: OverflowMenuIconProps[];
+  menuItems?: OverflowMenuProps[];
   title?: string;
   onClose?: () => void;
 }
@@ -16,12 +13,13 @@ const defaultTitle = 'Flexget Manager';
 export const AppBarContainer = createContainer(() => {
   const [title, setTitle] = useState(defaultTitle);
   const [content, setContent] = useState<JSX.Element>();
+  const [menuProps, setMenuProps] = useState<OverflowMenuProps[]>();
   const [contextualProps, setContextualProps] = useState<ContextualProps>();
   const [contextualMode, setContextual] = useState(false);
 
   return [
-    { title, content, contextualProps, contextualMode },
-    { setTitle, setContent, setContextualProps, setContextual },
+    { title, content, contextualProps, contextualMode, menuProps },
+    { setTitle, setContent, setContextualProps, setContextual, setMenuProps },
   ] as const;
 });
 
@@ -51,6 +49,16 @@ export const useInjectContent = (content: JSX.Element) => {
   }, [content, setContent]);
 };
 
+export const useSetMenuProps = (menuProps: OverflowMenuProps[]) => {
+  const [, { setMenuProps }] = useContainer(AppBarContainer);
+
+  useEffect(() => {
+    setMenuProps(menuProps);
+
+    return () => setMenuProps(undefined);
+  }, [menuProps, setMenuProps]);
+};
+
 export const useContextualAppBar = (props?: ContextualProps) => {
   const [, { setContextual, setContextualProps }] = useContainer(AppBarContainer);
 
@@ -66,16 +74,4 @@ export const useContextualAppBar = (props?: ContextualProps) => {
   }, [clear, props, setContextualProps]);
 
   return { setContextual, clear };
-};
-
-export const useServerOperation = (operation: Operation, onSuccess = () => {}) => {
-  const [state, request] = useFlexgetAPI('/server/manage', Method.Post);
-  const makeRequest = useCallback(async () => {
-    const resp = await request({ operation });
-    if (resp.ok) {
-      onSuccess();
-    }
-  }, [onSuccess, operation, request]);
-
-  return [state, makeRequest] as const;
 };

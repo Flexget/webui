@@ -1,7 +1,9 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import sty, { CreateStyled } from '@emotion/styled';
 import { keyframes } from '@emotion/core';
-import theme from 'core/theme';
+import { Theme } from '@material-ui/core';
+
+const styled = sty as CreateStyled<Theme>;
 
 const stretchDelay = keyframes`
   0%, 40%, 100% {
@@ -22,7 +24,7 @@ const Spinner = styled.div`
 `;
 
 const Rect1 = styled.div`
-  background-color: ${theme.palette.primary[500]};
+  background-color: ${({ theme }) => theme.palette.primary[500]};
   height: 100%;
   width: 0.6rem;
   display: inline-block;

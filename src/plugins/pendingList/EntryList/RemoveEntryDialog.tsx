@@ -6,9 +6,9 @@ import {
   DialogContent,
   DialogTitle,
   DialogContentText,
+  Theme,
 } from '@material-ui/core';
 import { css } from '@emotion/core';
-import theme from 'core/theme';
 import { useRemoveEntry } from '../hooks/entry';
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
   entryId?: number;
 }
 
-const errorStyle = css`
+const errorStyle = (theme: Theme) => css`
   color: ${theme.palette.error[500]};
   text-align: center;
 `;

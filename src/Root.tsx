@@ -8,7 +8,6 @@ import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { Global, css } from '@emotion/core';
-import theme from 'core/theme';
 import PrivateRoute from 'core/routes/PrivateRoute';
 import Layout from 'core/layout/Layout';
 import Routes from 'core/routes/Routes';
@@ -22,6 +21,7 @@ import { TaskContainer } from 'core/tasks/hooks';
 import { StatusContainer } from 'core/status/hooks';
 import { RouteContainer } from 'core/routes/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
+import { VersionContainer } from 'core/layout/SideNav/hooks';
 
 registerHistory();
 registerLog();
@@ -34,19 +34,12 @@ const globals = css`
   }
 
   body {
-    height: 100%;
-    width: 100%;
     font-size: 1.6rem;
-    background-color: ${theme.palette.grey[200]};
     font-family: 'Roboto';
   }
 
   a {
     text-decoration: none;
-  }
-
-  * {
-    box-sizing: border-box;
   }
 
   *:focus {
@@ -58,15 +51,15 @@ const Home = createAsyncComponent(() => import('core/home'));
 const Login = createAsyncComponent(() => import('core/auth/Login'));
 
 const Root = () => (
-  <>
+  <ThemeProvider>
     <Global styles={globals} />
     <CssBaseline />
     <StylesProvider injectFirst>
       <Provider store={store}>
         <StatusContainer.Provider>
           <AuthContainer.Provider>
-            <ConnectedRouter history={history}>
-              <ThemeProvider>
+            <VersionContainer.Provider>
+              <ConnectedRouter history={history}>
                 <Switch>
                   <Route path="/login" exact component={Login} />
                   <Route
@@ -84,13 +77,13 @@ const Root = () => (
                     )}
                   />
                 </Switch>
-              </ThemeProvider>
-            </ConnectedRouter>
+              </ConnectedRouter>
+            </VersionContainer.Provider>
           </AuthContainer.Provider>
         </StatusContainer.Provider>
       </Provider>
     </StylesProvider>
-  </>
+  </ThemeProvider>
 );
 
 export default hot(Root);
