@@ -2,7 +2,7 @@
 
 exports[`plugins/history/components/FilterNav renders correctly 1`] = `
 .emotion-0 {
-  margin: 0.5rem 2rem 0.5rem;
+  padding: 0.5rem 2rem 0.5rem;
 }
 
 .emotion-1 {
@@ -20,135 +20,169 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
   className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
 >
   <div
-    className="MuiFormControl-root MuiTextField-root emotion-0"
-    onKeyPress={[Function]}
+    className="emotion-0"
   >
-    <label
-      className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-      data-shrink={false}
-      htmlFor="task-filter"
-      id="task-filter-label"
-    >
-      Filter By Task
-    </label>
     <div
-      className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-      onClick={[Function]}
+      className="MuiFormControl-root MuiTextField-root"
+      onKeyPress={[Function]}
     >
-      <input
-        aria-invalid={false}
-        autoFocus={false}
-        className="MuiInputBase-input MuiInput-input"
-        disabled={false}
-        id="task-filter"
-        onAnimationStart={[Function]}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        placeholder="Task Name"
-        required={false}
-        type="text"
-        value=""
-      />
+      <label
+        className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+        data-shrink={false}
+        htmlFor="task-filter"
+        id="task-filter-label"
+      >
+        Filter By Task
+      </label>
+      <div
+        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+        onClick={[Function]}
+      >
+        <input
+          aria-invalid={false}
+          autoFocus={false}
+          className="MuiInputBase-input MuiInput-input"
+          disabled={false}
+          id="task-filter"
+          onAnimationStart={[Function]}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="Task Name"
+          required={false}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   </div>
   <div
     className="emotion-1"
   />
   <div
-    className="MuiFormControl-root MuiTextField-root emotion-0"
+    className="emotion-0"
   >
-    <label
-      className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
-      data-shrink={true}
-      htmlFor="sort-by"
-      id="sort-by-label"
-    >
-      Sort By
-    </label>
     <div
-      className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-      onClick={[Function]}
+      className="MuiFormControl-root MuiTextField-root"
+      css={
+        Object {
+          "map": undefined,
+          "name": "1v9q0yb",
+          "next": undefined,
+          "styles": "
+  width: 7.5rem;
+",
+          "toString": [Function],
+        }
+      }
     >
+      <label
+        className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+        data-shrink={true}
+        htmlFor="sort-by"
+        id="sort-by-label"
+      >
+        Sort By
+      </label>
       <div
-        aria-haspopup="listbox"
-        aria-labelledby="sort-by-label sort-by"
-        className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
-        id="sort-by"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        role="button"
-        tabIndex={0}
+        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+        onClick={[Function]}
       >
-        Time
-      </div>
-      <input
-        autoFocus={false}
-        onAnimationStart={[Function]}
-        type="hidden"
-        value="time"
-      />
-      <svg
-        aria-hidden="true"
-        className="MuiSvgIcon-root MuiSelect-icon"
-        focusable="false"
-        role="presentation"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M7 10l5 5 5-5z"
+        <div
+          aria-haspopup="listbox"
+          aria-labelledby="sort-by-label sort-by"
+          className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+          id="sort-by"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          Time
+        </div>
+        <input
+          autoFocus={false}
+          onAnimationStart={[Function]}
+          type="hidden"
+          value="time"
         />
-      </svg>
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root MuiSelect-icon"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
+      </div>
     </div>
   </div>
   <div
-    className="MuiFormControl-root MuiTextField-root emotion-0"
+    className="emotion-0"
   >
-    <label
-      className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
-      data-shrink={true}
-      htmlFor="group-by"
-      id="group-by-label"
-    >
-      Group By
-    </label>
     <div
-      className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-      onClick={[Function]}
+      className="MuiFormControl-root MuiTextField-root"
+      css={
+        Object {
+          "map": undefined,
+          "name": "1v9q0yb",
+          "next": undefined,
+          "styles": "
+  width: 7.5rem;
+",
+          "toString": [Function],
+        }
+      }
     >
+      <label
+        className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+        data-shrink={true}
+        htmlFor="group-by"
+        id="group-by-label"
+      >
+        Group By
+      </label>
       <div
-        aria-haspopup="listbox"
-        aria-labelledby="group-by-label group-by"
-        className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
-        id="group-by"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        role="button"
-        tabIndex={0}
+        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+        onClick={[Function]}
       >
-        Time
-      </div>
-      <input
-        autoFocus={false}
-        onAnimationStart={[Function]}
-        type="hidden"
-        value="time"
-      />
-      <svg
-        aria-hidden="true"
-        className="MuiSvgIcon-root MuiSelect-icon"
-        focusable="false"
-        role="presentation"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M7 10l5 5 5-5z"
+        <div
+          aria-haspopup="listbox"
+          aria-labelledby="group-by-label group-by"
+          className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+          id="group-by"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          Time
+        </div>
+        <input
+          autoFocus={false}
+          onAnimationStart={[Function]}
+          type="hidden"
+          value="time"
         />
-      </svg>
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root MuiSelect-icon"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
+      </div>
     </div>
   </div>
   <button

@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import HistoryList from 'plugins/history/HistoryList';
 import { NoPaddingWrapper } from 'common/styles';
-import FilterNav from '../Filter';
+import FilterNav from '../FilterNav';
 
 class HistoryPage extends Component {
   scroll = React.createRef();

@@ -1,18 +1,29 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import { Table as RVTable } from 'react-virtualized';
+
+const color = (theme, hex) => css`
+  ${theme.palette.type === 'light'
+    ? css`
+        background-color: ${hex};
+      `
+    : css`
+        color: ${hex};
+      `}
+`;
 
 export const Table = styled(RVTable)`
   font-size: 1rem;
 
   & .error {
-    background-color: #f2dede;
+    ${({ theme }) => color(theme, '#f2dede')};
   }
 
   & .critical {
-    background-color: #f2dede;
+    ${({ theme }) => color(theme, '#f2dede')};
   }
 
   & .warning {
-    background-color: #fcf8e3;
+    ${({ theme }) => color(theme, '#fcf8e3')};
   }
 `;
