@@ -27,7 +27,7 @@ describe('common/Entry/cards/Movie', () => {
         el => el.type() === Typography && el.props().variant === 'overline',
       );
 
-      expect(genres.text()).toEqual('');
+      expect(genres.text()).toEqual(`${entry.quality}•`);
     });
 
     it('does not have description', () => {
@@ -65,7 +65,7 @@ describe('common/Entry/cards/Movie', () => {
       );
 
       expect(genres.text()).toEqual(
-        `${normalizeMinutes(entry.runtime ?? 0)}•${entry.genres?.join(' ')}`,
+        `${entry.quality}•${normalizeMinutes(entry.runtime ?? 0)}•${entry.genres?.join(' ')}`,
       );
     });
 

@@ -8,6 +8,7 @@ export const enum CardType {
 export interface RawEntry {
   readonly title: string;
   readonly originalUrl: string;
+  readonly quality: string;
   readonly [k: string]: any;
 }
 
@@ -15,6 +16,7 @@ export interface BaseEntry {
   readonly title: string;
   readonly originalUrl: string;
   readonly type: CardType;
+  readonly quality: string;
 }
 
 export type FieldMapping<U extends string> = Partial<Record<U, string>>;

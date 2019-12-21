@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import { CardContent, Typography, CardMedia, Theme } from '@material-ui/core';
+import { Typography, Theme } from '@material-ui/core';
 import { css } from '@emotion/core';
-import { getCachedUrl } from 'utils/image';
-import { EpisodeEntry } from '../fields/episodes';
-import { Bullet } from './styles';
+import LinkDropdown from 'core/entry/cards/LinkDropdown';
+import { EpisodeEntry, TVMazeFields, TVDBFields, TraktFields } from '../fields/episodes';
+import { Bullet, titleArea } from './styles';
+import BaseCard from './BaseCard';
 
 interface Props {
   entry: EpisodeEntry;
@@ -16,12 +17,10 @@ const summary = (theme: Theme) => css`
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
 `;
 
-const imageCss = css`
-  height: 30rem;
-`;
-
 const EpisodeCard: FC<Props> = ({
   entry: {
+    seriesSeason,
+    seriesEpisode,
     seriesName,
     genres = [],
     description = '',
@@ -29,37 +28,42 @@ const EpisodeCard: FC<Props> = ({
     episodeName,
     contentRating,
     seriesId,
+    quality,
+    ...entry
   },
   className,
 }) => {
+  const traktUrl = entry[TraktFields.Url]
+    ? `${entry[TraktFields.Url]}/seasons/${seriesSeason}/episodes/${seriesEpisode}`
+    : undefined;
+  const options = [
+    { url: entry[TVMazeFields.Url], label: 'TVMaze' },
+    { url: entry[TVDBFields.Url], label: 'TVDB' },
+    { url: traktUrl, label: 'Trakt' },
+  ];
+
   return (
-    <div className={className}>
-      {image?.length && (
-        <CardMedia
-          css={imageCss}
-          role="img"
-          aria-label={`${seriesName} backdrop`}
-          image={getCachedUrl(Array.isArray(image) ? image[0] : image)}
-          title={`${seriesName} Backdrop`}
-        />
-      )}
-      <CardContent>
+    <BaseCard className={className} images={image} label={`${episodeName} Image`}>
+      <div css={titleArea}>
         <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
           {seriesName} - {episodeName} - {seriesId}
         </Typography>
-        <Typography variant="overline" color="textSecondary">
-          {contentRating}
-          {contentRating && <Bullet />}
-          {genres.join(' ')}
-        </Typography>
-        <Typography css={summary} variant="body1" component="h3">
-          Summary
-        </Typography>
-        <Typography color="textSecondary" variant="body2">
-          {description}
-        </Typography>
-      </CardContent>
-    </div>
+        <LinkDropdown options={options} />
+      </div>
+      <Typography variant="overline" color="textSecondary">
+        {quality}
+        {!!quality && <Bullet />}
+        {contentRating}
+        {contentRating && <Bullet />}
+        {genres.join(' ')}
+      </Typography>
+      <Typography css={summary} variant="body1" component="h3">
+        Summary
+      </Typography>
+      <Typography color="textSecondary" variant="body2">
+        {description}
+      </Typography>
+    </BaseCard>
   );
 };
 

@@ -13,3 +13,14 @@ export const Bullet: FC<{ className?: string }> = ({ className }) => (
     •
   </span>
 );
+
+export const titleArea = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const ratingLine = css`
+  display: flex;
+  align-items: center;
+`;
