@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { CardContent, Typography, CardMedia, Theme } from '@material-ui/core';
+import { Typography, Theme } from '@material-ui/core';
 import { css } from '@emotion/core';
-import { getCachedUrl } from 'utils/image';
 import { EpisodeEntry } from '../fields/episodes';
 import { Bullet } from './styles';
+import BaseCard from './BaseCard';
 
 interface Props {
   entry: EpisodeEntry;
@@ -14,10 +14,6 @@ const summary = (theme: Theme) => css`
   font-size: 1.5rem;
   font-weight: 500;
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
-`;
-
-const imageCss = css`
-  height: 30rem;
 `;
 
 const EpisodeCard: FC<Props> = ({
@@ -33,33 +29,22 @@ const EpisodeCard: FC<Props> = ({
   className,
 }) => {
   return (
-    <div className={className}>
-      {image?.length && (
-        <CardMedia
-          css={imageCss}
-          role="img"
-          aria-label={`${seriesName} backdrop`}
-          image={getCachedUrl(Array.isArray(image) ? image[0] : image)}
-          title={`${seriesName} Backdrop`}
-        />
-      )}
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
-          {seriesName} - {episodeName} - {seriesId}
-        </Typography>
-        <Typography variant="overline" color="textSecondary">
-          {contentRating}
-          {contentRating && <Bullet />}
-          {genres.join(' ')}
-        </Typography>
-        <Typography css={summary} variant="body1" component="h3">
-          Summary
-        </Typography>
-        <Typography color="textSecondary" variant="body2">
-          {description}
-        </Typography>
-      </CardContent>
-    </div>
+    <BaseCard className={className} images={image} label={`${episodeName} Image`}>
+      <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
+        {seriesName} - {episodeName} - {seriesId}
+      </Typography>
+      <Typography variant="overline" color="textSecondary">
+        {contentRating}
+        {contentRating && <Bullet />}
+        {genres.join(' ')}
+      </Typography>
+      <Typography css={summary} variant="body1" component="h3">
+        Summary
+      </Typography>
+      <Typography color="textSecondary" variant="body2">
+        {description}
+      </Typography>
+    </BaseCard>
   );
 };
 

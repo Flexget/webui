@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import { CardContent, Typography, CardMedia, Theme } from '@material-ui/core';
-import { getCachedUrl } from 'utils/image';
+import { Typography, CardMedia, Theme } from '@material-ui/core';
 import { normalizeMinutes } from 'utils/time';
 import { css } from '@emotion/core';
 import { MovieEntry } from '../fields/movies';
 import { Bullet } from './styles';
+import BaseCard from './BaseCard';
 
 interface Props {
   entry: MovieEntry;
@@ -17,42 +17,34 @@ const summary = (theme: Theme) => css`
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
 `;
 
-const image = css`
-  height: 30rem;
-`;
-
 const MovieCard: FC<Props> = ({
-  entry: { backdrops, movieName, movieYear, runtime = 0, genres = [], description = '' },
+  entry: { backdrops, posters, movieName, movieYear, runtime = 0, genres = [], description = '' },
   className,
 }) => {
+  const isPoster = !backdrops?.length;
+  const images = isPoster ? posters : backdrops;
   return (
-    <div className={className}>
-      {backdrops?.length && (
-        <CardMedia
-          css={image}
-          role="img"
-          aria-label={`${movieName} backdrop`}
-          image={getCachedUrl(Array.isArray(backdrops) ? backdrops[0] : backdrops)}
-          title={`${movieName} Backdrop`}
-        />
-      )}
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
-          {movieName} ({movieYear})
-        </Typography>
-        <Typography variant="overline" color="textSecondary">
-          {!!runtime && normalizeMinutes(runtime)}
-          {!!runtime && <Bullet />}
-          {genres.join(' ')}
-        </Typography>
-        <Typography css={summary} variant="body1" component="h3">
-          Summary
-        </Typography>
-        <Typography color="textSecondary" variant="body2">
-          {description}
-        </Typography>
-      </CardContent>
-    </div>
+    <BaseCard
+      className={className}
+      images={images}
+      label={`${movieName} Image`}
+      isPoster={isPoster}
+    >
+      <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
+        {movieName} ({movieYear})
+      </Typography>
+      <Typography variant="overline" color="textSecondary">
+        {!!runtime && normalizeMinutes(runtime)}
+        {!!runtime && <Bullet />}
+        {genres.join(' ')}
+      </Typography>
+      <Typography css={summary} variant="body1" component="h3">
+        Summary
+      </Typography>
+      <Typography color="textSecondary" variant="body2">
+        {description}
+      </Typography>
+    </BaseCard>
   );
 };
 
