@@ -19,7 +19,6 @@ const summary = (theme: Theme) => css`
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
 `;
 
-
 const MovieCard: FC<Props> = ({
   entry: {
     backdrops,
