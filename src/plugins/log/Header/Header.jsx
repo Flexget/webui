@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import {
-  Wrapper,
-  GreyIcon,
-  GreyClickableIcon,
-  GreyType,
-  Spacer,
-  TextFieldWrapper,
-  FilterField,
-  MenuIcon,
-} from './styles';
+import { Menu, MenuItem, TextField, Typography, IconButton, ListItemIcon } from '@material-ui/core';
+import { FilterList, MoreVert, Stop, PlayArrow, ClearAll } from '@material-ui/icons';
+import { Wrapper, Spacer, TextFieldWrapper, FilterField } from './styles';
 
 const ENTER_KEY = 13;
 
@@ -74,16 +63,29 @@ class Header extends Component {
     const { connected, stop } = this.props;
     const { anchorEl, open, query, lines } = this.state;
     const helperText = 'Supports operators and, or, (), and "str"';
+    const { onClick, Icon, text } = connected
+      ? {
+          onClick: stop,
+          Icon: Stop,
+          text: 'Stop',
+        }
+      : {
+          onClick: this.reload,
+          Icon: PlayArrow,
+          text: 'Start',
+        };
 
     return (
       <Wrapper>
         <div>
           <Typography variant="h6">Server Log</Typography>
-          <GreyType variant="subtitle1">{connected ? 'Streaming' : 'Disconnected'}</GreyType>
+          <Typography variant="subtitle1" color="textSecondary">
+            {connected ? 'Streaming' : 'Disconnected'}
+          </Typography>
         </div>
         <Spacer />
         <TextFieldWrapper>
-          <GreyIcon icon="filter" />
+          <FilterList />
           <FilterField
             id="filter"
             label="Filter"
@@ -94,7 +96,9 @@ class Header extends Component {
             }}
             helperText={helperText}
           />
-          <GreyClickableIcon onClick={this.handleMenuClick} icon="ellipsis-v" />
+          <IconButton onClick={this.handleMenuClick}>
+            <MoreVert />
+          </IconButton>
         </TextFieldWrapper>
         <Menu id="log-menu" anchorEl={anchorEl} open={open} onClose={this.handleRequestClose}>
           <MenuItem>
@@ -110,12 +114,16 @@ class Header extends Component {
             />
           </MenuItem>
           <MenuItem onClick={this.clearLogs}>
-            <MenuIcon icon="eraser" />
+            <ListItemIcon>
+              <ClearAll />
+            </ListItemIcon>
             Clear
           </MenuItem>
-          <MenuItem onClick={connected ? stop : this.reload}>
-            <MenuIcon icon={connected ? 'stop' : 'play'} />
-            {connected ? 'Stop' : 'Start'}
+          <MenuItem onClick={onClick}>
+            <ListItemIcon>
+              <Icon />
+            </ListItemIcon>
+            {text}
           </MenuItem>
         </Menu>
       </Wrapper>

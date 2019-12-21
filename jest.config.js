@@ -3,7 +3,6 @@ module.exports = {
     'src/**/*.{js,jsx,ts,tsx}',
     '!src/store.js',
     '!src/core/reducers.ts',
-    '!src/core/history.ts',
     '!src/plugins/series/**',
     '!src/{app,Root,theme}.{ts,tsx,js,jsx}',
     '!src/utils/*.{js,jsx,ts,tsx}',

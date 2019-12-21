@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`plugins/log/components/Header Header renders correctly 1`] = `
-.emotion-4 {
+.emotion-3 {
   display: block;
 }
 
 @media (min-width:600px) {
-  .emotion-4 {
+  .emotion-3 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -19,33 +19,29 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
 }
 
 .emotion-0 {
-  color: #757575;
-}
-
-.emotion-1 {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
-.emotion-3 {
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: baseline;
-  -webkit-box-align: baseline;
-  -ms-flex-align: baseline;
-  align-items: baseline;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
-.emotion-2 {
+.emotion-1 {
   margin-left: 1rem;
   margin-right: 1rem;
 }
 
 <div
-  className="emotion-4"
+  className="emotion-3"
 >
   <div>
     <h6
@@ -54,19 +50,30 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
       Server Log
     </h6>
     <h6
-      className="MuiTypography-root emotion-0 MuiTypography-subtitle1"
+      className="MuiTypography-root MuiTypography-subtitle1 MuiTypography-colorTextSecondary"
     >
       Streaming
     </h6>
   </div>
   <div
-    className="emotion-1"
+    className="emotion-0"
   />
   <div
-    className="emotion-3"
+    className="emotion-2"
   >
+    <svg
+      aria-hidden="true"
+      className="MuiSvgIcon-root"
+      focusable="false"
+      role="presentation"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"
+      />
+    </svg>
     <div
-      className="MuiFormControl-root MuiTextField-root emotion-2"
+      className="MuiFormControl-root MuiTextField-root emotion-1"
     >
       <label
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
@@ -104,6 +111,40 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
         Supports operators and, or, (), and "str"
       </p>
     </div>
+    <button
+      className="MuiButtonBase-root MuiIconButton-root"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiIconButton-label"
+      >
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+          />
+        </svg>
+      </span>
+    </button>
   </div>
 </div>
 `;

@@ -1,6 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { Typography } from '@material-ui/core';
+import { render } from '@testing-library/react';
 import { makeRawEntry } from '../fixtures';
 import { toEntry } from '../utils';
 import { DefaultEntry } from '../fields';
@@ -9,24 +8,19 @@ import DefaultCard from './Default';
 describe('common/Entry/cards/Default', () => {
   const entry = toEntry(makeRawEntry()) as DefaultEntry;
   it('contains title', () => {
-    const wrapper = mount(<DefaultCard entry={entry} />);
-    const title = wrapper.findWhere(el => el.type() === Typography && el.props().variant === 'h5');
+    const { queryByText } = render(<DefaultCard entry={entry} />);
 
-    expect(title.text()).toEqual(entry.title);
+    expect(queryByText(entry.title)).toBeInTheDocument();
   });
 
   it('contains originalUrl', () => {
-    const wrapper = mount(<DefaultCard entry={entry} />);
-    const originalUrl = wrapper.findWhere(
-      el => el.type() === Typography && el.props().variant === 'body2',
-    );
+    const { queryByText } = render(<DefaultCard entry={entry} />);
 
-    expect(originalUrl.text()).toEqual(entry.originalUrl);
+    expect(queryByText(entry.originalUrl)).toBeInTheDocument();
   });
 
   it('works with className', () => {
-    const wrapper = mount(<DefaultCard entry={entry} className="testClassName" />);
-    const content = wrapper.childAt(0);
-    expect(content.hasClass('testClassName')).toBe(true);
+    const { container } = render(<DefaultCard entry={entry} className="testClassName" />);
+    expect(container.querySelector('.testClassName')).toBeInTheDocument();
   });
 });

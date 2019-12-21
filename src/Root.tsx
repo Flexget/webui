@@ -1,12 +1,9 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader/root';
-import store from 'store';
-import history from 'core/history';
 import { StylesProvider } from '@material-ui/styles';
 import { CssBaseline } from '@material-ui/core';
 import { Provider } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
-import { ConnectedRouter } from 'connected-react-router';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { Global, css } from '@emotion/core';
 import PrivateRoute from 'core/routes/PrivateRoute';
 import Layout from 'core/layout/Layout';
@@ -22,6 +19,8 @@ import { StatusContainer } from 'core/status/hooks';
 import { RouteContainer } from 'core/routes/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
 import { VersionContainer } from 'core/layout/SideNav/hooks';
+import { uriParser } from 'utils';
+import store from 'store';
 
 registerHistory();
 registerLog();
@@ -49,6 +48,9 @@ const globals = css`
 
 const Home = createAsyncComponent(() => import('core/home'));
 const Login = createAsyncComponent(() => import('core/auth/Login'));
+const basename = `${uriParser(document.baseURI).pathname}${
+  process.env.NODE_ENV === 'production' ? 'v2/' : ''
+}`;
 
 const Root = () => (
   <ThemeProvider>
@@ -59,7 +61,7 @@ const Root = () => (
         <StatusContainer.Provider>
           <AuthContainer.Provider>
             <VersionContainer.Provider>
-              <ConnectedRouter history={history}>
+              <BrowserRouter basename={basename}>
                 <Switch>
                   <Route path="/login" exact component={Login} />
                   <Route
@@ -77,7 +79,7 @@ const Root = () => (
                     )}
                   />
                 </Switch>
-              </ConnectedRouter>
+              </BrowserRouter>
             </VersionContainer.Provider>
           </AuthContainer.Provider>
         </StatusContainer.Provider>

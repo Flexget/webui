@@ -2,7 +2,6 @@ import { PluginRegistry } from 'core/routes/registry';
 import { SetStateAction, Dispatch } from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import 'jest-extended';
-import 'jest-chain';
 
 declare global {
   interface Window {
