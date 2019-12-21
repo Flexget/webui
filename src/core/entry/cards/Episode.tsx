@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Typography, Theme } from '@material-ui/core';
 import { css } from '@emotion/core';
-import EntryCardHeader from 'core/entry/cards/EntryCardHeader';
+import LinkDropdown from 'core/entry/cards/LinkDropdown';
 import { EpisodeEntry, TVMazeFields, TVDBFields, TraktFields } from '../fields/episodes';
-import { Bullet } from './styles';
+import { Bullet, titleArea } from './styles';
 import BaseCard from './BaseCard';
 
 interface Props {
@@ -19,6 +19,8 @@ const summary = (theme: Theme) => css`
 
 const EpisodeCard: FC<Props> = ({
   entry: {
+    seriesSeason,
+    seriesEpisode,
     seriesName,
     genres = [],
     description = '',
@@ -26,15 +28,31 @@ const EpisodeCard: FC<Props> = ({
     episodeName,
     contentRating,
     seriesId,
+    quality,
+    ...entry
   },
   className,
 }) => {
+  const traktUrl = entry[TraktFields.Url]
+    ? `${entry[TraktFields.Url]}/seasons/${seriesSeason}/episodes/${seriesEpisode}`
+    : undefined;
+  const options = [
+    { url: entry[TVMazeFields.Url], label: 'TVMaze' },
+    { url: entry[TVDBFields.Url], label: 'TVDB' },
+    { url: traktUrl, label: 'Trakt' },
+  ];
+
   return (
     <BaseCard className={className} images={image} label={`${episodeName} Image`}>
-      <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
-        {seriesName} - {episodeName} - {seriesId}
-      </Typography>
+      <div css={titleArea}>
+        <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
+          {seriesName} - {episodeName} - {seriesId}
+        </Typography>
+        <LinkDropdown options={options} />
+      </div>
       <Typography variant="overline" color="textSecondary">
+        {quality}
+        {!!quality && <Bullet />}
         {contentRating}
         {contentRating && <Bullet />}
         {genres.join(' ')}
@@ -50,19 +68,3 @@ const EpisodeCard: FC<Props> = ({
 };
 
 export default EpisodeCard;
-
-export const EpisodeCardHeader: FC<Props> = ({
-  entry: { seriesName, quality, seriesEpisode, seriesSeason, seriesId, episodeName, ...entry },
-}) => {
-  const title = `${seriesName} - ${episodeName} - ${seriesId}`;
-  const traktUrl = entry[TraktFields.Url]
-    ? `${entry[TraktFields.Url]}/seasons/${seriesSeason}/episodes/${seriesEpisode}`
-    : undefined;
-  const options = [
-    { url: entry[TVMazeFields.Url], label: 'TVMaze' },
-    { url: entry[TVDBFields.Url], label: 'TVDB' },
-    { url: traktUrl, label: 'Trakt' },
-  ];
-
-  return <EntryCardHeader title={title} subheader={quality} options={options} />;
-};

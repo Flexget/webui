@@ -4,8 +4,6 @@ export enum EpisodeFieldNames {
   Name = 'episodeName',
   Genres = 'genres',
   Image = 'image',
-  Rating = 'rating',
-  Votes = 'votes',
   Description = 'description',
   Url = 'url',
   ContentRating = 'contentRating',
@@ -15,7 +13,6 @@ export enum EpisodeFieldNames {
 export const enum TVDBFields {
   Genres = 'tvdbGenres',
   Image = 'tvdbEpImage',
-  Rating = 'tvdbEpRating',
   Description = 'tvdbEpOverview',
   ContentRating = 'tvdbContentRating',
   ID = 'tvdbEpId',
@@ -25,9 +22,7 @@ export const enum TVDBFields {
 export const enum TraktFields {
   Name = 'traktEpName',
   Genres = 'traktGenres',
-  Rating = 'traktEpRating',
   Description = 'traktEpOverview',
-  Votes = 'traktEpVotes',
   ContentRating = 'traktSeriesContentRating',
   ID = 'traktEpId',
   Url = 'traktSeriesUrl',
@@ -38,7 +33,6 @@ export const enum TVMazeFields {
   Genres = 'tvmazeGenres',
   Image = 'tvmazeEpisodeOriginalImage',
   Description = 'tvmazeEpisodeSummary',
-  Rating = 'tvmazeEpisodeRating',
   Url = 'tvmazeEpisodeUrl',
   ID = 'tvmazeEpisodeId',
 }
@@ -50,7 +44,6 @@ export const episodesFieldList = [
   {
     [EpisodeFieldNames.Genres]: TVDBFields.Genres,
     [EpisodeFieldNames.Image]: TVDBFields.Image,
-    [EpisodeFieldNames.Rating]: TVDBFields.Rating,
     [EpisodeFieldNames.Description]: TVDBFields.Description,
     [EpisodeFieldNames.ContentRating]: TVDBFields.ContentRating,
     [EpisodeFieldNames.ID]: TVDBFields.ID,
@@ -60,9 +53,7 @@ export const episodesFieldList = [
   {
     [EpisodeFieldNames.Name]: TraktFields.Name,
     [EpisodeFieldNames.Genres]: TraktFields.Genres,
-    [EpisodeFieldNames.Rating]: TraktFields.Rating,
     [EpisodeFieldNames.Description]: TraktFields.Description,
-    [EpisodeFieldNames.Votes]: TraktFields.Votes,
     [EpisodeFieldNames.ContentRating]: TraktFields.ContentRating,
     [EpisodeFieldNames.ID]: TraktFields.ID,
     [EpisodeFieldNames.Url]: TraktFields.Url,
@@ -73,7 +64,6 @@ export const episodesFieldList = [
     [EpisodeFieldNames.Genres]: TVMazeFields.Genres,
     [EpisodeFieldNames.Image]: TVMazeFields.Image,
     [EpisodeFieldNames.Description]: TVMazeFields.Description,
-    [EpisodeFieldNames.Rating]: TVMazeFields.Rating,
     [EpisodeFieldNames.Url]: TVMazeFields.Url,
     [EpisodeFieldNames.ID]: TVMazeFields.ID,
   },
@@ -83,8 +73,6 @@ interface EpisodeGetters {
   [EpisodeFieldNames.Name]: string;
   [EpisodeFieldNames.Genres]: string[];
   [EpisodeFieldNames.Image]: string;
-  [EpisodeFieldNames.Rating]: number;
-  [EpisodeFieldNames.Votes]: number;
   [EpisodeFieldNames.Description]: string;
   [EpisodeFieldNames.Url]: string;
   [EpisodeFieldNames.ContentRating]: string;
