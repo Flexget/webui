@@ -7,7 +7,7 @@
 
 A new web interface for configuring and viewing FlexGet settings
 
-[![Github Actions](https://github.com/Flexget/webui/workflows/Continuous%20Integration/badge.svg)](https://github.com/Flexget/webui/actions?query=workflow%3A%22Continuous+Integration%22)
+[![Github Actions](https://github.com/flexget/webui/workflows/Continuous%20Integration/badge.svg)](https://github.com/Flexget/webui/actions?query=workflow%3A%22Continuous+Integration%22)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/Flexget/Flexget)
 [![codecov](https://codecov.io/gh/Flexget/webui/branch/develop/graph/badge.svg)](https://codecov.io/gh/Flexget/webui)
 </div>
