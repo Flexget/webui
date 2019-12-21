@@ -37,7 +37,7 @@ const SeriesCard: FC<Props> = ({
     { url: entry[TraktFields.Url], label: 'Trakt' },
   ];
   return (
-    <BaseCard css={className} images={posters} isPoster label={`${seriesName} Image`}>
+    <BaseCard className={className} images={posters} isPoster label={`${seriesName} Image`}>
       <div css={titleArea}>
         <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
           {seriesName}

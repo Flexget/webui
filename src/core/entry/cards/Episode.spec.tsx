@@ -36,7 +36,7 @@ describe('common/Entry/cards/Episode', () => {
         el => el.type() === Typography && el.props().variant === 'overline',
       );
 
-      expect(genres.text()).toEqual('');
+      expect(genres.text()).toEqual(`${entry.quality}•`);
     });
 
     it('does not have description', () => {
@@ -79,7 +79,9 @@ describe('common/Entry/cards/Episode', () => {
         el => el.type() === Typography && el.props().variant === 'overline',
       );
 
-      expect(genres.text()).toEqual(`${entry.contentRating}•${entry.genres?.join(' ')}`);
+      expect(genres.text()).toEqual(
+        `${entry.quality}•${entry.contentRating}•${entry.genres?.join(' ')}`,
+      );
     });
 
     it('does have description', () => {
