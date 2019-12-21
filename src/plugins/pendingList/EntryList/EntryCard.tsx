@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { Check, Clear, Delete, Repeat, CheckCircle } from '@material-ui/icons';
-import Entry from 'core/entry/cards';
+import Entry, { EntryCardHeader } from 'core/entry/cards';
 import { Operation, PendingListEntry } from '../types';
 import { useEntryOperation, useEntryBulkSelect } from '../hooks/entry';
 
@@ -116,6 +116,7 @@ const EntryCard: FC<Props> = ({ entry, onInjectClick, onRemoveClick }) => {
     <Card css={card}>
       <div css={overlayStyles} />
       <CheckCircle css={checkCircleStyles} />
+      <EntryCardHeader entry={entry.entry} />
       <CardActionArea css={actionArea} onClick={toggle} aria-pressed={selected}>
         <Entry entry={entry.entry} css={entryCard} />
       </CardActionArea>

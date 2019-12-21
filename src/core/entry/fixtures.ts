@@ -15,6 +15,7 @@ import {
 export const makeRawEntry = (): RawEntry => ({
   originalUrl: internet.url(),
   title: random.words(),
+  quality: random.words(),
 });
 
 export const withMovieRawEntry = (e: RawEntry) =>

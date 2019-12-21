@@ -19,6 +19,7 @@ export const enum TVDBFields {
   Description = 'tvdbEpOverview',
   ContentRating = 'tvdbContentRating',
   ID = 'tvdbEpId',
+  Url = 'tvdbUrl',
 }
 
 export const enum TraktFields {
@@ -29,6 +30,7 @@ export const enum TraktFields {
   Votes = 'traktEpVotes',
   ContentRating = 'traktSeriesContentRating',
   ID = 'traktEpId',
+  Url = 'traktSeriesUrl',
 }
 
 export const enum TVMazeFields {
@@ -52,6 +54,7 @@ export const episodesFieldList = [
     [EpisodeFieldNames.Description]: TVDBFields.Description,
     [EpisodeFieldNames.ContentRating]: TVDBFields.ContentRating,
     [EpisodeFieldNames.ID]: TVDBFields.ID,
+    [EpisodeFieldNames.Url]: TVDBFields.Url,
   },
   // Trakt
   {
@@ -62,6 +65,7 @@ export const episodesFieldList = [
     [EpisodeFieldNames.Votes]: TraktFields.Votes,
     [EpisodeFieldNames.ContentRating]: TraktFields.ContentRating,
     [EpisodeFieldNames.ID]: TraktFields.ID,
+    [EpisodeFieldNames.Url]: TraktFields.Url,
   },
   // Tvmaze
   {

@@ -2,8 +2,9 @@ import React, { FC } from 'react';
 import { Typography, Theme } from '@material-ui/core';
 import { css } from '@emotion/core';
 import BaseCard from 'core/entry/cards/BaseCard';
-import { SeriesEntry } from '../fields/series';
+import { SeriesEntry, TraktFields, TVDBFields, TVMazeFields } from '../fields/series';
 import { Bullet } from './styles';
+import EntryCardHeader from './EntryCardHeader';
 
 interface Props {
   entry: SeriesEntry;
@@ -41,3 +42,13 @@ const SeriesCard: FC<Props> = ({
 };
 
 export default SeriesCard;
+
+export const SeriesCardHeader: FC<Props> = ({ entry: { seriesName, quality, ...entry } }) => {
+  const options = [
+    { url: entry[TVMazeFields.Url], label: 'TVMaze' },
+    { url: entry[TVDBFields.Url], label: 'TVDB' },
+    { url: entry[TraktFields.Url], label: 'Trakt' },
+  ];
+
+  return <EntryCardHeader title={seriesName} subheader={quality} options={options} />;
+};
