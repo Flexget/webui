@@ -1,4 +1,5 @@
 import React from 'react';
+import { hot } from 'react-hot-loader/root';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import InfoCard from './InfoCard';
 
@@ -7,4 +8,4 @@ const Home = () => {
   return <InfoCard />;
 };
 
-export default Home;
+export default hot(Home);
