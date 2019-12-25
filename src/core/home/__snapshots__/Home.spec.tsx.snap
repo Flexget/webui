@@ -2,7 +2,7 @@
 
 exports[`core/home/Home renders correctly 1`] = `
 <div
-  className="MuiPaper-root MuiPaper-elevation8 MuiCard-root MuiPaper-rounded"
+  className="MuiPaper-root MuiPaper-elevation1 MuiCard-root MuiPaper-rounded"
   css={[Function]}
 >
   <div
@@ -13,12 +13,12 @@ exports[`core/home/Home renders correctly 1`] = `
       className="MuiCardHeader-content"
     >
       <span
-        className="MuiTypography-root MuiCardHeader-title MuiTypography-h5 MuiTypography-displayBlock"
+        className="MuiTypography-root MuiCardHeader-title MuiTypography-h5 MuiTypography-colorInherit MuiTypography-displayBlock"
       >
         Flexget Web Interface
       </span>
       <span
-        className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+        className="MuiTypography-root MuiCardHeader-subheader MuiTypography-body1 MuiTypography-colorInherit MuiTypography-displayBlock"
       >
         Under Development
       </span>
@@ -51,7 +51,10 @@ exports[`core/home/Home renders correctly 1`] = `
     <p>
       There is a functional API with documentation available at 
       <a
+        className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
         href="/api"
+        onBlur={[Function]}
+        onFocus={[Function]}
       >
         /api
       </a>
@@ -60,7 +63,10 @@ exports[`core/home/Home renders correctly 1`] = `
       More information:
        
       <a
+        className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
         href="http://flexget.com/Web-UI/v2"
+        onBlur={[Function]}
+        onFocus={[Function]}
         rel="noopener noreferrer"
         target="_blank"
       >
@@ -71,7 +77,10 @@ exports[`core/home/Home renders correctly 1`] = `
       Chat:
        
       <a
+        className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
         href="https://flexget.com/Chat"
+        onBlur={[Function]}
+        onFocus={[Function]}
         rel="noopener noreferrer"
         target="_blank"
       >
@@ -94,6 +103,7 @@ exports[`core/home/Home renders correctly 1`] = `
     }
   >
     <a
+      aria-describedby={null}
       aria-disabled={false}
       aria-label="Github"
       className="MuiButtonBase-root MuiIconButton-root"
@@ -105,6 +115,7 @@ exports[`core/home/Home renders correctly 1`] = `
       onKeyUp={[Function]}
       onMouseDown={[Function]}
       onMouseLeave={[Function]}
+      onMouseOver={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
@@ -112,6 +123,7 @@ exports[`core/home/Home renders correctly 1`] = `
       rel="noopener noreferrer"
       tabIndex={0}
       target="_blank"
+      title="Github"
     >
       <span
         className="MuiIconButton-label"
@@ -128,8 +140,12 @@ exports[`core/home/Home renders correctly 1`] = `
           />
         </svg>
       </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
     </a>
     <a
+      aria-describedby={null}
       aria-disabled={false}
       aria-label="Flexget.com"
       className="MuiButtonBase-root MuiIconButton-root"
@@ -141,6 +157,7 @@ exports[`core/home/Home renders correctly 1`] = `
       onKeyUp={[Function]}
       onMouseDown={[Function]}
       onMouseLeave={[Function]}
+      onMouseOver={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
@@ -148,6 +165,7 @@ exports[`core/home/Home renders correctly 1`] = `
       rel="noopener noreferrer"
       tabIndex={0}
       target="_blank"
+      title="Flexget.com"
     >
       <span
         className="MuiIconButton-label"
@@ -164,8 +182,12 @@ exports[`core/home/Home renders correctly 1`] = `
           />
         </svg>
       </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
     </a>
     <a
+      aria-describedby={null}
       aria-disabled={false}
       aria-label="Chat"
       className="MuiButtonBase-root MuiIconButton-root"
@@ -177,6 +199,7 @@ exports[`core/home/Home renders correctly 1`] = `
       onKeyUp={[Function]}
       onMouseDown={[Function]}
       onMouseLeave={[Function]}
+      onMouseOver={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
@@ -184,6 +207,7 @@ exports[`core/home/Home renders correctly 1`] = `
       rel="noopener noreferrer"
       tabIndex={0}
       target="_blank"
+      title="Chat"
     >
       <span
         className="MuiIconButton-label"
@@ -200,8 +224,12 @@ exports[`core/home/Home renders correctly 1`] = `
           />
         </svg>
       </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
     </a>
     <a
+      aria-describedby={null}
       aria-disabled={false}
       aria-label="Forum"
       className="MuiButtonBase-root MuiIconButton-root"
@@ -213,6 +241,7 @@ exports[`core/home/Home renders correctly 1`] = `
       onKeyUp={[Function]}
       onMouseDown={[Function]}
       onMouseLeave={[Function]}
+      onMouseOver={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
       onTouchMove={[Function]}
@@ -220,6 +249,7 @@ exports[`core/home/Home renders correctly 1`] = `
       rel="noopener noreferrer"
       tabIndex={0}
       target="_blank"
+      title="Forum"
     >
       <span
         className="MuiIconButton-label"
@@ -236,6 +266,9 @@ exports[`core/home/Home renders correctly 1`] = `
           />
         </svg>
       </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
     </a>
   </div>
 </div>

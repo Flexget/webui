@@ -1,11 +1,19 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import { Card, CardContent, IconButton, CardHeader, CardActions, Theme } from '@material-ui/core';
+import {
+  Card,
+  CardContent,
+  IconButton,
+  CardHeader,
+  CardActions,
+  Theme,
+  Link,
+  Tooltip,
+} from '@material-ui/core';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ForumIcon from '@material-ui/icons/ForumOutlined';
 import HomeIcon from '@material-ui/icons/Home';
 import ChatIcon from '@material-ui/icons/Chat';
-import { backgroundColor } from 'common/styles';
 
 const bold = css`
   font-weight: bold;
@@ -22,12 +30,23 @@ const actions = css`
   justify-content: center;
 `;
 
+const cardHeader = (theme: Theme) => css`
+  background-color: ${theme.palette.primary.main};
+  color: ${theme.palette.primary.contrastText};
+`;
+
 const InfoCard = () => (
-  <Card css={wrapper} raised>
+  <Card css={wrapper}>
     <CardHeader
       title="Flexget Web Interface"
       subheader="Under Development"
-      css={(theme: Theme) => backgroundColor(theme, theme.palette.primary.main)}
+      css={cardHeader}
+      titleTypographyProps={{
+        color: 'inherit',
+      }}
+      subheaderTypographyProps={{
+        color: 'inherit',
+      }}
     />
     <CardContent>
       <p css={bold}>
@@ -40,54 +59,62 @@ const InfoCard = () => (
         etc...
       </p>
       <p>
-        There is a functional API with documentation available at <a href="/api">/api</a>
+        There is a functional API with documentation available at <Link href="/api">/api</Link>
       </p>
       <p>
         More information:{' '}
-        <a href="http://flexget.com/Web-UI/v2" target="_blank" rel="noopener noreferrer">
+        <Link href="http://flexget.com/Web-UI/v2" target="_blank" rel="noopener noreferrer">
           http://flexget.com/Web-UI/v2
-        </a>
+        </Link>
       </p>
       <p>
         Chat:{' '}
-        <a href="https://flexget.com/Chat" target="_blank" rel="noopener noreferrer">
+        <Link href="https://flexget.com/Chat" target="_blank" rel="noopener noreferrer">
           https://flexget.com/Chat
-        </a>
+        </Link>
       </p>
     </CardContent>
     <CardActions css={actions}>
-      <IconButton
-        aria-label="Github"
-        href="https://github.com/Flexget/Flexget"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <GitHubIcon />
-      </IconButton>
-      <IconButton
-        aria-label="Flexget.com"
-        href="https://flexget.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <HomeIcon />
-      </IconButton>
-      <IconButton
-        aria-label="Chat"
-        href="https://flexget.com/Chat"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <ChatIcon />
-      </IconButton>
-      <IconButton
-        aria-label="Forum"
-        href="https://discuss.flexget.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <ForumIcon />
-      </IconButton>
+      <Tooltip title="Github">
+        <IconButton
+          aria-label="Github"
+          href="https://github.com/Flexget/Flexget"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <GitHubIcon />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="Flexget.com">
+        <IconButton
+          aria-label="Flexget.com"
+          href="https://flexget.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <HomeIcon />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="Chat">
+        <IconButton
+          aria-label="Chat"
+          href="https://flexget.com/Chat"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <ChatIcon />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="Forum">
+        <IconButton
+          aria-label="Forum"
+          href="https://discuss.flexget.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <ForumIcon />
+        </IconButton>
+      </Tooltip>
     </CardActions>
   </Card>
 );

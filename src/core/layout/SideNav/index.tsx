@@ -10,11 +10,13 @@ import {
   useMediaQuery,
   useTheme,
   Theme,
+  Divider,
 } from '@material-ui/core';
 import { Settings } from '@material-ui/icons';
 import { RouteContainer } from 'core/routes/hooks';
 import { useHistory } from 'react-router';
 import { Route } from 'core/routes/types';
+import { rgba } from 'polished';
 import Version from './Version';
 import Entry from './Entry';
 import Logo from './Logo';
@@ -43,6 +45,11 @@ const drawerClose = (theme: Theme) => css`
   ${theme.breakpoints.up('sm')} {
     width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.closed)};
   }
+`;
+
+const divider = (theme: Theme) => css`
+  background-color: ${rgba(theme.palette.secondary.light, 0.15)};
+  border-bottom-color: ${theme.palette.secondary.light};
 `;
 
 const paper = css`
@@ -165,7 +172,10 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
             ),
           ])}
         </List>
-        <Version css={!sidebarOpen && hideVersion} className={className} />
+        <div>
+          <Divider css={divider} />
+          <Version css={!sidebarOpen && hideVersion} className={className} />
+        </div>
       </div>
     </Drawer>
   );

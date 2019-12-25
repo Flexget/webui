@@ -14,6 +14,7 @@ interface Props {
 const wrapper = (theme: Theme) => css`
   color: ${theme.palette.primary.main};
   opacity: 1;
+  padding: ${theme.typography.pxToRem(theme.spacing(2))};
 `;
 
 const Version: React.FC<Props> = ({ className }) => {
