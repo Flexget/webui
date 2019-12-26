@@ -1,10 +1,8 @@
 import React, { FC, useMemo, useCallback, useState, ChangeEvent } from 'react';
-import { Drawer, Divider, Button } from '@material-ui/core';
+import { Drawer, Divider, Button, Theme, Typography } from '@material-ui/core';
 import { css } from '@emotion/core';
 import SelectField from 'common/inputs/SelectField';
-import { useFlexgetAPI } from 'core/api';
-import { Method } from 'utils/fetch';
-import { useGetPlugins } from './hooks';
+import { useGetPlugins, DatabaseOperation, useDBOperation } from './hooks';
 
 interface Props {
   open?: boolean;
@@ -13,18 +11,26 @@ interface Props {
 
 const innerDrawer = css`
   width: 300px;
+`;
+
+const drawerSection = (theme: Theme) => css`
+  padding: ${theme.typography.pxToRem(theme.spacing(3))};
   display: flex;
   flex-direction: column;
 `;
 
-export const enum DatabaseOperation {
-  Cleanup = 'cleanup',
-  Vacuum = 'vacuum',
-  PluginReset = 'plugin_reset',
-}
+const button = (theme: Theme) => css`
+  margin-top: ${theme.typography.pxToRem(theme.spacing(2))};
+`;
+
+const header = (theme: Theme) => css`
+  background-color: ${theme.palette.primary.main};
+  color: ${theme.palette.getContrastText(theme.palette.primary.main)};
+  padding: ${theme.typography.pxToRem(theme.spacing(3))};
+`;
 
 const Operations: FC<Props> = ({ open = false, onClose }) => {
-  const [{ loading }, performOperation] = useFlexgetAPI('/database', Method.Post);
+  const [{ loading }, performOperation] = useDBOperation();
   const { loading: pluginsLoading, plugins } = useGetPlugins();
   const [pluginName, setPluginName] = useState('');
 
@@ -53,24 +59,44 @@ const Operations: FC<Props> = ({ open = false, onClose }) => {
   return (
     <Drawer open={open} variant="temporary" onClose={onClose} anchor="right">
       <div css={innerDrawer}>
-        <Button color="primary" disabled={loading} onClick={cleanup}>
-          Cleanup
-        </Button>
+        <div css={header}>
+          <Typography variant="h5">DB Operations</Typography>
+        </div>
+        <div css={drawerSection}>
+          <Typography variant="body2">Removes all old/unneeded data from the database</Typography>
+          <Button css={button} color="primary" disabled={loading} onClick={cleanup}>
+            Cleanup
+          </Button>
+        </div>
         <Divider />
-        <Button color="primary" disabled={loading} onClick={vacuum}>
-          Vacuum
-        </Button>
+        <div css={drawerSection}>
+          <Typography variant="body2">
+            Vacuuming potentially increases performance and decreases database size by removing dead
+            rows.
+          </Typography>
+          <Button css={button} color="primary" disabled={loading} onClick={vacuum}>
+            Vacuum
+          </Button>
+        </div>
         <Divider />
-        <SelectField
-          options={options}
-          value={pluginName}
-          onChange={handleChange}
-          placeholder="Select a Plugin"
-          label="Plugin name"
-        />
-        <Button color="primary" disabled={loading || pluginsLoading} onClick={resetPLugin}>
-          Reset Plugin
-        </Button>
+        <div css={drawerSection}>
+          <Typography variant="body2">Resets the database of a specific plugin</Typography>
+          <SelectField
+            options={options}
+            value={pluginName}
+            onChange={handleChange}
+            placeholder="Select a Plugin"
+            label="Plugin name"
+          />
+          <Button
+            css={button}
+            color="primary"
+            disabled={loading || pluginsLoading}
+            onClick={resetPLugin}
+          >
+            Reset Plugin
+          </Button>
+        </div>
       </div>
     </Drawer>
   );

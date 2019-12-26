@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useFlexgetAPI } from 'core/api';
 import { createContainer } from 'unstated-next';
 import { AuthContainer } from 'core/auth/container';
-import { useGlobalStatus } from 'core/status/hooks';
+import { useGlobalStatus, useGlobalInfo } from 'core/status/hooks';
 import { Method } from 'utils/fetch';
 
 interface VersionResponse {
@@ -64,4 +64,36 @@ export const useGetPlugins = () => {
   }, [getPlugins]);
 
   return { loading, plugins };
+};
+
+export const enum DatabaseOperation {
+  Cleanup = 'cleanup',
+  Vacuum = 'vacuum',
+  PluginReset = 'plugin_reset',
+}
+
+interface DBRequest {
+  operation: DatabaseOperation;
+  pluginName?: string;
+}
+
+interface DBResponse {
+  message: string;
+}
+
+export const useDBOperation = () => {
+  const [state, request] = useFlexgetAPI<DBResponse>('/database', Method.Post);
+  const pushInfo = useGlobalInfo();
+
+  const performOperation = useCallback(
+    async (req: DBRequest) => {
+      const resp = await request(req);
+      if (resp.ok) {
+        pushInfo(resp.data.message);
+      }
+    },
+    [pushInfo, request],
+  );
+
+  return [state, performOperation] as const;
 };

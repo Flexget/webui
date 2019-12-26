@@ -1,4 +1,4 @@
-import { useReducer, useEffect, Reducer, useRef } from 'react';
+import { useCallback, useReducer, useEffect, Reducer, useRef } from 'react';
 import { createContainer, useContainer } from 'unstated-next';
 import uuid from 'uuid/v4';
 import { action } from 'utils/hooks/actions';
@@ -86,4 +86,9 @@ export const useGlobalStatus = (loading: boolean, error?: Error) => {
     }
     dispatch(actions.setLoading(id.current, loading));
   }, [dispatch, error, loading]);
+};
+
+export const useGlobalInfo = () => {
+  const [, dispatch] = useContainer(StatusContainer);
+  return useCallback((message: string) => dispatch(actions.pushInfo(message)), [dispatch]);
 };
