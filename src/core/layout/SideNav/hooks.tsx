@@ -32,12 +32,12 @@ export const VersionContainer = createContainer(() => {
   return { loading, version };
 });
 
-export const enum Operation {
+export const enum ServerOperation {
   Reload = 'reload',
   Shutdown = 'shutdown',
 }
 
-export const useServerOperation = (operation: Operation, onSuccess = () => {}) => {
+export const useServerOperation = (operation: ServerOperation, onSuccess = () => {}) => {
   const [state, request] = useFlexgetAPI('/server/manage', Method.Post);
   const makeRequest = useCallback(async () => {
     const resp = await request({ operation });
@@ -47,4 +47,21 @@ export const useServerOperation = (operation: Operation, onSuccess = () => {}) =
   }, [onSuccess, operation, request]);
 
   return [state, makeRequest] as const;
+};
+
+export const useGetPlugins = () => {
+  const [plugins, setPlugins] = useState<string[]>([]);
+  const [{ loading }, getPlugins] = useFlexgetAPI<string[]>('/database/plugins');
+
+  useEffect(() => {
+    const fn = async () => {
+      const resp = await getPlugins();
+      if (resp.ok) {
+        setPlugins(resp.data);
+      }
+    };
+    fn();
+  }, [getPlugins]);
+
+  return { loading, plugins };
 };

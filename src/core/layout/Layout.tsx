@@ -20,7 +20,7 @@ import { AppBarContainer } from './AppBar/hooks';
 const Layout: React.FC = ({ children }) => {
   const theme = useTheme();
   const matches = window.matchMedia && !window.matchMedia('(max-width: 600px)').matches;
-  const [sidebarOpen, { toggle, close }] = useOverlayState(matches);
+  const [sidebarOpen, { close, toggle }] = useOverlayState(matches);
 
   const sideTransition = sidebarOpen ? enterTransition : leavingTransition;
   const mainTransition = sidebarOpen ? leavingTransition : enterTransition;
