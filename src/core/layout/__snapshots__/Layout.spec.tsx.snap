@@ -48,7 +48,7 @@ exports[`common/layout renders correctly 1`] = `
         Array [
           Object {
             "map": undefined,
-            "name": "je82if",
+            "name": "133kp33",
             "next": undefined,
             "styles": "
   background-color: #37474f;
@@ -57,12 +57,10 @@ exports[`common/layout renders correctly 1`] = `
   white-space: nowrap;
 
   & .MuiDrawer-paper {
-    
-  width: inherit;
-  background-color: inherit;
-  border-right: none !important;
-  position: relative;
-;
+    width: inherit;
+    background-color: inherit;
+    border-right: none !important;
+    position: relative;
   }
 
   @media (min-width:600px) {
@@ -86,7 +84,7 @@ exports[`common/layout renders correctly 1`] = `
       }
     >
       <div
-        className="MuiPaper-root MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft"
+        className="MuiPaper-root MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0"
       >
         <div
           css={[Function]}
@@ -257,7 +255,7 @@ exports[`common/layout renders correctly 1`] = `
     }
   >
     <header
-      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionStatic"
+      className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiPaper-elevation4"
       css={[Function]}
     >
       <div
