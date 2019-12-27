@@ -2,12 +2,12 @@ import { useCallback, useMemo } from 'react';
 import { useFlexgetAPI } from 'core/api';
 import { Method } from 'utils/fetch';
 import { useContainer } from 'unstated-next';
-import { createPluginContainer } from 'plugins/managedList/hooks/api';
-import { EntryContainer, actions } from 'plugins/managedList/hooks/entry';
-import { ListContainer } from 'plugins/managedList/hooks/list';
-import { PendingListEntry, Operation, SortBy } from 'plugins/pendingList/types';
-import { ActionsLeft, Actions } from 'plugins/pendingList/Card';
 import { DoneAll, ClearAll } from '@material-ui/icons';
+import { PendingListEntry, Operation, SortBy } from './types';
+import { ActionsLeft, Actions } from './Card';
+import { createPluginContainer } from '../base/hooks/api';
+import { EntryContainer, actions } from '../base/hooks/entry';
+import { ListContainer } from '../base/hooks/list';
 
 export const useEntryOperation = (entryId: number) => {
   const [{ listId }] = useContainer(ListContainer);

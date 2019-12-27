@@ -12,7 +12,7 @@ import { createAsyncComponent } from 'utils/loading';
 import registerHistory from 'plugins/history';
 import registerLog from 'plugins/log';
 import registerSeries from 'plugins/series';
-import registerPendingList from 'plugins/pendingList';
+import registerPendingList from 'plugins/lists/pending';
 import { AuthContainer } from 'core/auth/container';
 import { TaskContainer } from 'core/tasks/hooks';
 import { StatusContainer } from 'core/status/hooks';

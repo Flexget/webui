@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, FC } from 'react';
 import { useContainer } from 'unstated-next';
 import { Direction } from 'utils/query';
 import { useInjectContent, useSetMenuProps } from 'core/layout/AppBar/hooks';
@@ -7,14 +7,14 @@ import { Delete } from '@material-ui/icons';
 import { OverflowMenuProps } from 'core/layout/AppBar/OverflowMenu';
 import EntryList from './EntryList';
 import EntryListHeader from './EntryListHeader';
-import { Options, Entry } from './types';
+import { Options } from './types';
 import { ListContainer, useGetLists, actions } from './hooks/list';
 import { EntryContainer } from './hooks/entry';
 import AddFab from './AddFab';
 import TabList from './TabList';
 import RemoveListDialog from './RemoveListDialog';
 
-const Entries = <T extends Entry>() => {
+const Entries: FC = () => {
   const [options, setOptions] = useMergeState<Options>({
     page: 0,
     perPage: 30,
@@ -58,7 +58,7 @@ const Entries = <T extends Entry>() => {
   return (
     <EntryContainer.Provider>
       <EntryListHeader setOptions={setOptions} options={options} />
-      <EntryList<T> options={options} />
+      <EntryList options={options} />
       <AddFab />
       <RemoveListDialog open={removeIsOpen} onClose={removeClose} />
     </EntryContainer.Provider>

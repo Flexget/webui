@@ -11,7 +11,7 @@ const TestManagedList: FC = () => {
     <>
       <AppBar toggleSidebar={jest.fn()} />
       <TestContainer.Provider>
-        <ManagedList />
+        <ManagedList title="Managed List" />
       </TestContainer.Provider>
     </>
   );
@@ -109,6 +109,14 @@ describe('plugins/managedList', () => {
           `glob:/api/managed_list/1/entries?*sort_by=${options[1].getAttribute('data-value')}*`,
         ),
       ).toBeTrue();
+    });
+  });
+
+  describe('contextual app bar', () => {
+    it('should have title Managed List', () => {
+      const { queryByText } = renderWithWrapper(<TestManagedList />);
+
+      expect(queryByText('Managed List', { selector: 'h6' })).toBeInTheDocument();
     });
   });
 });

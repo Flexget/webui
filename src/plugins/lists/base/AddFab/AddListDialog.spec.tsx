@@ -3,7 +3,7 @@ import { useContainer } from 'unstated-next';
 import { cleanup, render, fireEvent, within, wait } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
 import fetchMock from 'fetch-mock';
-import { TestContainer } from 'plugins/managedList/TestContainer';
+import { TestContainer } from '../TestContainer';
 import AddListDialog from './AddListDialog';
 import { ListContainer, actions } from '../hooks/list';
 

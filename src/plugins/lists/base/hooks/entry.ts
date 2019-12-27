@@ -5,7 +5,7 @@ import { snakeCase } from 'utils/fetch';
 import { stringify } from 'qs';
 import { useExecuteTask } from 'core/tasks/hooks';
 import { toExecuteRequest } from 'core/tasks/utils';
-import { usePluginContainer } from 'plugins/managedList/hooks/api';
+import { usePluginContainer } from './api';
 import { ListContainer } from './list';
 import { AddEntryRequest, Entry, Options } from '../types';
 

@@ -1,4 +1,4 @@
-import { Entry } from '../managedList/types';
+import { Entry } from '../base/types';
 
 export interface PendingListEntry extends Entry {
   approved: boolean;

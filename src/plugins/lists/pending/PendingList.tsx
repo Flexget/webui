@@ -1,15 +1,12 @@
 import React, { FC } from 'react';
 import { hot } from 'react-hot-loader/root';
-import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
-import ManagedList from 'plugins/managedList';
+import ManagedList from '../base';
 import { PendingListContainer } from './hooks';
 
 const PendingList: FC = () => {
-  useInjectPageTitle('Pending List');
-
   return (
     <PendingListContainer.Provider>
-      <ManagedList />
+      <ManagedList title="Pending List" />
     </PendingListContainer.Provider>
   );
 };

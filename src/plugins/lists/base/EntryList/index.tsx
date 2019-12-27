@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, FC } from 'react';
 import { Grid } from '@material-ui/core';
 import { Repeat, Delete } from '@material-ui/icons';
 import { useContainer } from 'unstated-next';
 import { useContextualAppBar, ContextualProps } from 'core/layout/AppBar/hooks';
-import { usePluginContainer } from 'plugins/managedList/hooks/api';
+import { usePluginContainer } from '../hooks/api';
 import { EntryContainer, useGetEntries, useEntryBulkSelect } from '../hooks/entry';
 import EntryCard from './EntryCard';
-import { Options, Entry } from '../types';
+import { Options } from '../types';
 
 import InjectEntryDialog from './InjectEntryDialog';
 import RemoveEntryDialog from './RemoveEntryDialog';
@@ -21,16 +21,15 @@ interface EntryPromptStates {
   entryId?: number;
 }
 
-const EntryList = <T extends Entry>({ options }: Props) => {
-  const [state] = useContainer(EntryContainer);
-  const entries = state.entries as T[];
+const EntryList: FC<Props> = ({ options }) => {
+  const [{ entries }] = useContainer(EntryContainer);
   const [selectedIds, { clearSelected }] = useEntryBulkSelect();
   useGetEntries(options);
   const [{ entryId, open, type }, setEntryPrompt] = useState<EntryPromptStates>({ open: false });
 
   const defaultValue = useMemo(() => [], []);
 
-  const { useMenuProps = () => defaultValue } = usePluginContainer<T>();
+  const { useMenuProps = () => defaultValue } = usePluginContainer();
   const menuProps = useMenuProps();
 
   const count = selectedIds.size;
@@ -67,7 +66,7 @@ const EntryList = <T extends Entry>({ options }: Props) => {
       <Grid container spacing={2}>
         {entries.map(entry => (
           <Grid item key={entry.id} xs={12} md={6} lg={4}>
-            <EntryCard<T>
+            <EntryCard
               entry={entry}
               onInjectClick={() =>
                 setEntryPrompt({ open: true, type: 'inject', entryId: entry.id })

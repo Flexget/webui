@@ -1,14 +1,14 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, FC } from 'react';
 import { css } from '@emotion/core';
 import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@material-ui/core';
 import { Repeat, CheckCircle, Delete } from '@material-ui/icons';
 import Entry from 'core/entry/cards';
-import { usePluginContainer } from 'plugins/managedList/hooks/api';
+import { usePluginContainer } from '../hooks/api';
 import { Entry as EntryType } from '../types';
 import { useEntryBulkSelect } from '../hooks/entry';
 
-interface Props<T extends EntryType> {
-  entry: T;
+interface Props {
+  entry: EntryType;
   onInjectClick: () => void;
   onRemoveClick: () => void;
 }
@@ -68,9 +68,9 @@ const circleIconVisible = css`
   opacity: 1;
 `;
 
-const EntryCard = <T extends EntryType>({ entry, onInjectClick, onRemoveClick }: Props<T>) => {
+const EntryCard: FC<Props> = ({ entry, onInjectClick, onRemoveClick }) => {
   const [selectedIds, { selectEntry, unselectEntry }] = useEntryBulkSelect();
-  const { card = {} } = usePluginContainer<T>();
+  const { card = {} } = usePluginContainer();
   const { Actions, ActionsLeft } = card;
 
   const selected = selectedIds.has(entry.id);

@@ -4,9 +4,9 @@ import { cleanup, render, fireEvent } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
 import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
-import EntryCard from 'plugins/managedList/EntryList/EntryCard';
-import { ListContainer, actions } from 'plugins/managedList/hooks/list';
-import { EntryContainer } from 'plugins/managedList/hooks/entry';
+import EntryCard from '../base/EntryList/EntryCard';
+import { ListContainer, actions } from '../base/hooks/list';
+import { EntryContainer } from '../base/hooks/entry';
 import { PendingListEntry } from './types';
 import { PendingListContainer } from './hooks';
 

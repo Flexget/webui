@@ -4,20 +4,20 @@ import { cleanup, render, fireEvent, within, wait } from '@testing-library/react
 import { BaseProviders } from 'utils/tests';
 import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
-import { TestContainer } from 'plugins/managedList/TestContainer';
-import AddEntryDialog from './AddEntryDialog';
+import { TestContainer } from '../TestContainer';
+import RemoveEntryDialog from './RemoveEntryDialog';
 import { ListContainer, actions } from '../hooks/list';
 import { EntryContainer } from '../hooks/entry';
 import { Entry } from '../types';
 
-const TestAddEntryDialog: typeof AddEntryDialog = props => {
+const TestRemoveEntryDialog: typeof RemoveEntryDialog = props => {
   const [, dispatch] = useContainer(ListContainer);
 
   useEffect(() => {
     dispatch(actions.selectList(1));
   }, [dispatch]);
 
-  return <AddEntryDialog {...props} />;
+  return <RemoveEntryDialog {...props} />;
 };
 
 const wrapper: FC = ({ children }) => (
@@ -30,24 +30,11 @@ const wrapper: FC = ({ children }) => (
   </BaseProviders>
 );
 
-describe('plugins/managedList/AddFab/AddEntryDialog', () => {
-  const rawEntry = makeRawEntry();
-  const approvedEntry: Entry = {
-    ...rawEntry,
-    id: 1,
-    entry: rawEntry,
-    listId: 1,
-    addedOn: new Date().toUTCString(),
-  };
+describe('plugins/managedList/EntryList/RemoveEntryDialog', () => {
   beforeEach(() => {
     fetchMock
-      .post('/api/managed_list/1/entries', approvedEntry)
-      .get('/api/tasks', [
-        { name: 'task 1' },
-        {
-          name: 'task 2',
-        },
-      ])
+      .delete('glob:/api/managed_list/1/entries/*', {})
+      .get('/api/tasks', 200)
       .catch();
   });
 
@@ -56,8 +43,18 @@ describe('plugins/managedList/AddFab/AddEntryDialog', () => {
     fetchMock.reset();
   });
 
+  const rawEntry = makeRawEntry();
+
+  const entry: Entry = {
+    ...rawEntry,
+    id: 1,
+    entry: rawEntry,
+    listId: 1,
+    addedOn: new Date().toUTCString(),
+  };
+
   const handleClose = jest.fn();
-  const component = <TestAddEntryDialog open onClose={handleClose} />;
+  const component = <TestRemoveEntryDialog open onClose={handleClose} entryId={entry.id} />;
 
   it('should find dialog when open', () => {
     const { queryByRole } = render(component, { wrapper });
@@ -66,34 +63,32 @@ describe('plugins/managedList/AddFab/AddEntryDialog', () => {
   });
 
   it('should not find dialog when closed', () => {
-    const { queryByRole } = render(<TestAddEntryDialog onClose={handleClose} />, { wrapper });
+    const { queryByRole } = render(<TestRemoveEntryDialog onClose={handleClose} />, { wrapper });
 
     expect(queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  it('should call fetch when pressing add', async () => {
+  it('should call fetch when pressing remove', async () => {
     const { getByRole } = render(component, { wrapper });
 
     const submitButton = getByRole(
-      (content, element) => content === 'button' && !!within(element).queryByText('Add'),
+      (content, element) => content === 'button' && !!within(element).queryByText('Remove'),
     );
 
     fireEvent.click(submitButton);
-    await wait(() => {
-      expect(fetchMock.called('/api/managed_list/1/entries')).toBeTrue();
-      expect(handleClose).toHaveBeenCalled();
-    });
+    expect(fetchMock.called('/api/managed_list/1/entries/1')).toBeTrue();
+    await wait(() => expect(handleClose).toHaveBeenCalled());
   });
 
   it('should call close wehn pressing cancel', async () => {
     const { getByRole } = render(component, { wrapper });
 
-    const cancelButton = getByRole(
+    const submitButton = getByRole(
       (content, element) => content === 'button' && !!within(element).queryByText('Cancel'),
     );
 
-    fireEvent.click(cancelButton);
-    expect(fetchMock.called('/api/managed_list/1/entries')).toBeFalse();
+    fireEvent.click(submitButton);
+    expect(fetchMock.called('/api/managed_list/1/entries/1')).toBeFalse();
     expect(handleClose).toHaveBeenCalled();
   });
 });

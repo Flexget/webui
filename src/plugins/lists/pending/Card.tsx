@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Typography, Tooltip, IconButton } from '@material-ui/core';
-import { PendingListEntry, Operation } from 'plugins/pendingList/types';
 import { Check, Clear } from '@material-ui/icons';
-import { useEntryOperation } from 'plugins/pendingList/hooks';
+import { PendingListEntry, Operation } from './types';
+import { useEntryOperation } from './hooks';
 
 interface Props {
   entry: PendingListEntry;
