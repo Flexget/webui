@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useContainer } from 'unstated-next';
 import { Menu, MenuItem, ListItemIcon } from '@material-ui/core';
 import { Sync, Storage, ExitToApp, PowerSettingsNew } from '@material-ui/icons';
@@ -9,7 +9,8 @@ import { useGlobalStatus } from 'core/status/hooks';
 import { Method } from 'utils/fetch';
 import { useOverlayState } from 'utils/hooks';
 import ShutdownDialog from './ShutdownDialog';
-import { useServerOperation, Operation } from './hooks';
+import { useServerOperation, ServerOperation } from './hooks';
+import Operations from './Operations';
 
 interface Props {
   anchorEl?: Element;
@@ -19,21 +20,30 @@ interface Props {
 const NavMenu: FC<Props> = ({ anchorEl, onClose }) => {
   const [, setLoggedIn] = useContainer(AuthContainer);
   const [, request] = useFlexgetAPI('/auth/logout', Method.Post);
-  const [shudownOpen, shudownActions] = useOverlayState();
-  const [{ loading, error }, handleReloadClick] = useServerOperation(Operation.Reload, onClose);
+  const [isShutdownOpen, { open: openShutdown, close: closeShutdown }] = useOverlayState();
+  const [isOpsOpen, { open: openOps, close: closeOps }] = useOverlayState();
+  const [{ loading, error }, handleReloadClick] = useServerOperation(
+    ServerOperation.Reload,
+    onClose,
+  );
   useGlobalStatus(loading, error);
 
-  const logout = async () => {
+  const logout = useCallback(async () => {
     const response = await request();
     if (response.ok) {
       setLoggedIn(false);
     }
-  };
+  }, [request, setLoggedIn]);
 
-  const handleShutdownClick = () => {
-    shudownActions.open();
+  const handleShutdownClick = useCallback(() => {
+    openShutdown();
     onClose();
-  };
+  }, [onClose, openShutdown]);
+
+  const handleDatabaseClick = useCallback(() => {
+    openOps();
+    onClose();
+  }, [onClose, openOps]);
 
   return (
     <>
@@ -50,7 +60,7 @@ const NavMenu: FC<Props> = ({ anchorEl, onClose }) => {
           </ListItemIcon>
           Shutdown
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={handleDatabaseClick}>
           <ListItemIcon>
             <Storage />
           </ListItemIcon>
@@ -63,7 +73,8 @@ const NavMenu: FC<Props> = ({ anchorEl, onClose }) => {
           Logout
         </MenuItem>
       </Menu>
-      <ShutdownDialog open={shudownOpen} onClose={shudownActions.close} />
+      <ShutdownDialog open={isShutdownOpen} onClose={closeShutdown} />
+      <Operations open={isOpsOpen} onClose={closeOps} />
     </>
   );
 };

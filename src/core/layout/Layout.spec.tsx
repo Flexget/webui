@@ -1,39 +1,34 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
+import fetchMock from 'fetch-mock';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
-import { RouteContainer } from 'core/routes/hooks';
-import { AuthContainer } from 'core/auth/container';
-import { StatusContainer } from 'core/status/hooks';
-import ThemeProvider from 'core/theme/ThemeProvider';
+import { BaseProviders } from 'utils/tests';
 import Layout from './Layout';
 import { VersionContainer } from './SideNav/hooks';
 
 const renderLayout = () => (
-  <ThemeProvider>
-    <StatusContainer.Provider>
-      <AuthContainer.Provider>
-        <VersionContainer.Provider>
-          <MemoryRouter>
-            <RouteContainer.Provider>
-              <Layout>
-                <div />
-              </Layout>
-            </RouteContainer.Provider>
-          </MemoryRouter>
-        </VersionContainer.Provider>
-      </AuthContainer.Provider>
-    </StatusContainer.Provider>
-  </ThemeProvider>
+  <BaseProviders>
+    <VersionContainer.Provider>
+      <Layout>
+        <div />
+      </Layout>
+    </VersionContainer.Provider>
+  </BaseProviders>
 );
 describe('common/layout', () => {
   beforeEach(() => {
-    fetchMock.mockResponseOnce(
-      JSON.stringify({
+    fetchMock
+      .get('/api/server/version', {
         apiVersion: '1.1.2',
         flexgetVersion: '2.10.60',
         latestVersion: '2.10.60',
-      }),
-    );
+      })
+      .get('/api/database/plugins', ['plugin', 'another_plugin'])
+      .get('/api/tasks', 200)
+      .catch();
+  });
+
+  afterEach(() => {
+    fetchMock.reset();
   });
 
   it('renders correctly', async () => {

@@ -9,80 +9,25 @@ import {
   IconButton,
   useMediaQuery,
   useTheme,
-  Theme,
   Divider,
 } from '@material-ui/core';
 import { Settings } from '@material-ui/icons';
 import { RouteContainer } from 'core/routes/hooks';
 import { useHistory } from 'react-router';
 import { Route } from 'core/routes/types';
-import { rgba } from 'polished';
 import Version from './Version';
 import Entry from './Entry';
 import Logo from './Logo';
 import Menu from './Menu';
-
-export const nested = (theme: Theme) => css`
-  padding-left: ${theme.spacing(0.4)}rem;
-`;
-
-const innerDrawer = css`
-  width: inherit;
-  height: inherit;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const drawerOpen = (theme: Theme) => css`
-  width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.open)};
-  ${theme.breakpoints.up('sm')} {
-    width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.open)};
-  }
-`;
-
-const drawerClose = (theme: Theme) => css`
-  ${theme.breakpoints.up('sm')} {
-    width: ${theme.typography.pxToRem(theme.mixins.sidebar.width.closed)};
-  }
-`;
-
-const divider = (theme: Theme) => css`
-  background-color: ${rgba(theme.palette.secondary.light, 0.15)};
-  border-bottom-color: ${theme.palette.secondary.light};
-`;
-
-const paper = css`
-  width: inherit;
-  background-color: inherit;
-  border-right: none !important;
-  position: relative;
-`;
-
-const drawer = (theme: Theme) => css`
-  background-color: ${theme.palette.secondary.main};
-  width: 0;
-  height: 100%;
-  white-space: nowrap;
-
-  & .MuiDrawer-paper {
-    ${paper}
-  }
-
-  ${theme.breakpoints.up('sm')} {
-    width: 6rem;
-  }
-`;
-
-const hideVersion = css`
-  opacity: 0;
-`;
-
-const logoWrapper = (theme: Theme) => css`
-  display: flex;
-  justify-content: space-between;
-  color: ${theme.palette.secondary.light};
-`;
+import {
+  drawerOpen,
+  drawerClose,
+  drawer,
+  logoWrapper,
+  innerDrawer,
+  divider,
+  hideVersion,
+} from './styles';
 
 interface Props {
   sidebarOpen?: boolean;

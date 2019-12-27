@@ -9,7 +9,7 @@ import {
   Theme,
 } from '@material-ui/core';
 import { css } from '@emotion/core';
-import { useServerOperation, Operation } from './hooks';
+import { useServerOperation, ServerOperation } from './hooks';
 
 interface Props {
   open?: boolean;
@@ -22,7 +22,7 @@ const errorStyle = (theme: Theme) => css`
 `;
 
 const ShutdownDialog: FC<Props> = ({ open = false, onClose }) => {
-  const [{ loading, error }, handleClick] = useServerOperation(Operation.Shutdown, onClose);
+  const [{ loading, error }, handleClick] = useServerOperation(ServerOperation.Shutdown, onClose);
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
       <DialogTitle>Shutdown</DialogTitle>

@@ -90,7 +90,7 @@ describe('plugins/pendingList/PendingList', () => {
       ).toBeTrue();
     });
 
-    it('should change sorBy when changing the value', async () => {
+    it('should change sortBy when changing the value', async () => {
       const { findAllByRole, getByLabelText } = renderWithWrapper(<TestPendingList />);
       const dropdown = getByLabelText('Sort By');
 
