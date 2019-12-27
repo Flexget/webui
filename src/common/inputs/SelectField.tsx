@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { MenuItem, useTheme, useMediaQuery, TextField, TextFieldProps } from '@material-ui/core';
 
-interface Option {
+export interface Option {
   value: string;
   label: string;
 }

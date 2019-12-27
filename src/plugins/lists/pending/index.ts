@@ -4,7 +4,7 @@ import registry from 'core/routes/registry';
 
 export default () =>
   registry.registerPlugin('pendingList', {
-    component: createAsyncComponent(() => import('plugins/pendingList/PendingList')),
+    component: createAsyncComponent(() => import('plugins/lists/pending/PendingList')),
     routeDisplayName: 'Pending List',
     routeIcon: CheckIcon,
   });

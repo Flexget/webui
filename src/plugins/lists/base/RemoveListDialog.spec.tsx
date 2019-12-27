@@ -5,6 +5,7 @@ import { BaseProviders } from 'utils/tests';
 import fetchMock from 'fetch-mock';
 import RemoveListDialog from './RemoveListDialog';
 import { ListContainer, actions } from './hooks/list';
+import { TestContainer } from './TestContainer';
 
 const TestRemoveListDialog: typeof RemoveListDialog = props => {
   const [, dispatch] = useContainer(ListContainer);
@@ -18,14 +19,16 @@ const TestRemoveListDialog: typeof RemoveListDialog = props => {
 
 const wrapper: FC = ({ children }) => (
   <BaseProviders>
-    <ListContainer.Provider>{children}</ListContainer.Provider>
+    <TestContainer.Provider>
+      <ListContainer.Provider>{children}</ListContainer.Provider>
+    </TestContainer.Provider>
   </BaseProviders>
 );
 
-describe('plugins/pendingList/EntryListHeader/RemoveListDialog', () => {
+describe('plugins/lists/base/EntryListHeader/RemoveListDialog', () => {
   beforeEach(() => {
     fetchMock
-      .delete('glob:/api/pending_list/*', {})
+      .delete('glob:/api/managed_list/*', {})
       .get('/api/tasks', 200)
       .catch();
   });
@@ -58,11 +61,11 @@ describe('plugins/pendingList/EntryListHeader/RemoveListDialog', () => {
     );
 
     fireEvent.click(submitButton);
-    expect(fetchMock.called('/api/pending_list/1')).toBeTrue();
+    expect(fetchMock.called('/api/managed_list/1')).toBeTrue();
     await wait(() => expect(handleClose).toHaveBeenCalled());
   });
 
-  it('should call close wehn pressing cancel', async () => {
+  it('should call close when pressing cancel', async () => {
     const { getByRole } = render(component, { wrapper });
 
     const submitButton = getByRole(
@@ -70,7 +73,7 @@ describe('plugins/pendingList/EntryListHeader/RemoveListDialog', () => {
     );
 
     fireEvent.click(submitButton);
-    expect(fetchMock.called('/api/pending_list/1')).toBeFalse();
+    expect(fetchMock.called('/api/managed_list/1')).toBeFalse();
     expect(handleClose).toHaveBeenCalled();
   });
 });

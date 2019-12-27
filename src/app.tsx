@@ -1,6 +1,6 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import * as React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from 'Root';
 import 'typeface-roboto'; // eslint-disable-line import/extensions

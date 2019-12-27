@@ -1,13 +1,13 @@
 import { useReducer, Reducer, useEffect, useCallback, useMemo } from 'react';
 import { createContainer, useContainer } from 'unstated-next';
-import { useFlexgetAPI } from 'core/api';
 import { action } from 'utils/hooks/actions';
-import { Method, snakeCase } from 'utils/fetch';
+import { snakeCase } from 'utils/fetch';
 import { stringify } from 'qs';
 import { useExecuteTask } from 'core/tasks/hooks';
 import { toExecuteRequest } from 'core/tasks/utils';
+import { usePluginContainer } from './api';
 import { ListContainer } from './list';
-import { Options, AddEntryRequest, Operation, PendingListEntry } from '../types';
+import { AddEntryRequest, Entry, Options } from '../types';
 
 export const enum Constants {
   GET_ENTRIES = '@flexget/pendingList/GET_ENTRIES',
@@ -22,11 +22,11 @@ export const enum Constants {
 }
 
 export const actions = {
-  getEntries: (entries: PendingListEntry[], totalCount: number) =>
+  getEntries: (entries: Entry[], totalCount: number) =>
     action(Constants.GET_ENTRIES, { entries, totalCount }),
-  addEntry: (entry: PendingListEntry) => action(Constants.ADD_ENTRY, entry),
-  updateEntry: (entry: PendingListEntry) => action(Constants.UPDATE_ENTRY, entry),
-  updateEntries: (entries: PendingListEntry[]) => action(Constants.UPDATE_ENTRIES, entries),
+  addEntry: (entry: Entry) => action(Constants.ADD_ENTRY, entry),
+  updateEntry: (entry: Entry) => action(Constants.UPDATE_ENTRY, entry),
+  updateEntries: (entries: Entry[]) => action(Constants.UPDATE_ENTRIES, entries),
   removeEntry: (id: number) => action(Constants.REMOVE_ENTRY, id),
   removeEntries: (ids: number[]) => action(Constants.REMOVE_ENTRIES, ids),
   selectEntry: (id: number) => action(Constants.SELECT_ENTRY, id),
@@ -37,7 +37,7 @@ export const actions = {
 type Actions = PropReturnType<typeof actions>;
 
 interface State {
-  entries: PendingListEntry[];
+  entries: Entry[];
   totalCount: number;
   selectedIds: ReadonlySet<number>;
 }
@@ -126,16 +126,23 @@ export const useGetEntries = (options: Options) => {
   const query = stringify(snakeCase({ ...options, page: options.page + 1 }));
 
   const [{ listId }] = useContainer(ListContainer);
-  const [state, getEntries] = useFlexgetAPI<PendingListEntry[]>(
-    `/pending_list/${listId}/entries?${query}`,
-  );
+
+  const {
+    api: {
+      entry: {
+        get: [state, makeRequest],
+      },
+    },
+  } = usePluginContainer();
+
+  const request = useMemo(() => makeRequest(listId, query), [listId, makeRequest, query]);
 
   useEffect(() => {
     if (!listId) {
       return;
     }
     const fn = async () => {
-      const resp = await getEntries();
+      const resp = await request();
       if (resp.ok) {
         dispatch(
           actions.getEntries(resp.data, parseInt(resp.headers.get('total-count') ?? '0', 10)),
@@ -143,7 +150,7 @@ export const useGetEntries = (options: Options) => {
       }
     };
     fn();
-  }, [dispatch, getEntries, listId]);
+  }, [dispatch, listId, request]);
 
   return state;
 };
@@ -151,10 +158,14 @@ export const useGetEntries = (options: Options) => {
 export const useAddEntry = () => {
   const [{ listId }] = useContainer(ListContainer);
   const [, dispatch] = useContainer(EntryContainer);
-  const [state, request] = useFlexgetAPI<PendingListEntry>(
-    `/pending_list/${listId}/entries`,
-    Method.Post,
-  );
+  const {
+    api: {
+      entry: {
+        add: [state, makeRequest],
+      },
+    },
+  } = usePluginContainer();
+  const request = useMemo(() => makeRequest(listId), [listId, makeRequest]);
 
   const addEntry = useCallback(
     async (req: AddEntryRequest) => {
@@ -173,10 +184,14 @@ export const useAddEntry = () => {
 const useRemoveSingleEntry = (entryId?: number) => {
   const [{ listId }] = useContainer(ListContainer);
   const [, dispatch] = useContainer(EntryContainer);
-  const [state, request] = useFlexgetAPI(
-    `/pending_list/${listId}/entries/${entryId}`,
-    Method.Delete,
-  );
+  const {
+    api: {
+      entry: {
+        remove: [state, makeRequest],
+      },
+    },
+  } = usePluginContainer();
+  const request = useMemo(() => makeRequest(listId, entryId), [entryId, listId, makeRequest]);
 
   const removeEntry = useCallback(async () => {
     const resp = await request();
@@ -193,7 +208,14 @@ const useRemoveSingleEntry = (entryId?: number) => {
 const useRemoveBulkEntry = () => {
   const [{ listId }] = useContainer(ListContainer);
   const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
-  const [state, request] = useFlexgetAPI(`/pending_list/${listId}/entries/batch`, Method.Delete);
+  const {
+    api: {
+      entry: {
+        removeBulk: [state, makeRequest],
+      },
+    },
+  } = usePluginContainer();
+  const request = useMemo(() => makeRequest(listId), [listId, makeRequest]);
 
   const removeEntry = useCallback(async () => {
     const ids = [...selectedIds];
@@ -223,7 +245,7 @@ export const useInjectEntry = (entryId?: number) => {
   const entryMap = useMemo(
     () =>
       entries.reduce(
-        (obj: Record<number, PendingListEntry>, entry) => ({
+        (obj: Record<number, Entry>, entry) => ({
           ...obj,
           [entry.id]: entry,
         }),
@@ -255,54 +277,6 @@ export const useInjectEntry = (entryId?: number) => {
     },
     injectEntry,
   ] as const;
-};
-
-export const useEntryOperation = (entryId: number) => {
-  const [{ listId }] = useContainer(ListContainer);
-  const [, dispatch] = useContainer(EntryContainer);
-  const [state, request] = useFlexgetAPI<PendingListEntry>(
-    `/pending_list/${listId}/entries/${entryId}`,
-    Method.Put,
-  );
-
-  const doOperation = useCallback(
-    async (operation: Operation) => {
-      const resp = await request({ operation });
-      if (resp.ok) {
-        dispatch(actions.updateEntry(resp.data));
-      }
-      return resp;
-    },
-    [dispatch, request],
-  );
-
-  return [state, doOperation] as const;
-};
-
-export const useEntryBulkOperation = () => {
-  const [{ listId }] = useContainer(ListContainer);
-  const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
-  const [state, request] = useFlexgetAPI<PendingListEntry[]>(
-    `/pending_list/${listId}/entries/batch`,
-    Method.Put,
-  );
-
-  const doOperation = useCallback(
-    async (operation: Operation) => {
-      const ids = [...selectedIds];
-      const resp = await request({
-        operation,
-        ids,
-      });
-
-      if (resp.ok) {
-        dispatch(actions.updateEntries(resp.data));
-      }
-      return resp;
-    },
-    [dispatch, request, selectedIds],
-  );
-  return [state, doOperation] as const;
 };
 
 export const useEntryBulkSelect = () => {

@@ -1,8 +1,7 @@
-import { useReducer, Reducer, useEffect } from 'react';
-import { useFlexgetAPI } from 'core/api';
+import { useReducer, Reducer, useEffect, useCallback, useMemo } from 'react';
 import { action } from 'utils/hooks/actions';
-import { Method } from 'utils/fetch';
 import { createContainer, useContainer } from 'unstated-next';
+import { usePluginContainer } from './api';
 import { List, AddListRequest } from '../types';
 
 export const enum Constants {
@@ -55,24 +54,30 @@ const listReducer: Reducer<State, Actions> = (state, act) => {
 };
 
 const useLists = () => useReducer(listReducer, { lists: [] });
+
 export const ListContainer = createContainer(useLists);
 
 export const useGetLists = () => {
   const [, dispatch] = useContainer(ListContainer);
 
-  const [state, getLists] = useFlexgetAPI<List[]>('/pending_list');
-
+  const {
+    api: {
+      list: {
+        get: [state, request],
+      },
+    },
+  } = usePluginContainer();
   // Fetch Lists
   useEffect(() => {
     const fn = async () => {
-      const resp = await getLists();
+      const resp = await request();
 
       if (resp.ok) {
         dispatch(actions.getLists(resp.data));
       }
     };
     fn();
-  }, [dispatch, getLists]);
+  }, [dispatch, request]);
 
   return state;
 };
@@ -80,15 +85,24 @@ export const useGetLists = () => {
 export const useAddList = () => {
   const [, dispatch] = useContainer(ListContainer);
 
-  const [state, request] = useFlexgetAPI<List>('/pending_list', Method.Post);
+  const {
+    api: {
+      list: {
+        add: [state, request],
+      },
+    },
+  } = usePluginContainer();
 
-  const addList = async (req: AddListRequest) => {
-    const resp = await request(req);
-    if (resp.ok) {
-      dispatch(actions.addList(resp.data));
-    }
-    return resp;
-  };
+  const addList = useCallback(
+    async (req: AddListRequest) => {
+      const resp = await request(req);
+      if (resp.ok) {
+        dispatch(actions.addList(resp.data));
+      }
+      return resp;
+    },
+    [dispatch, request],
+  );
 
   return [state, addList] as const;
 };
@@ -96,15 +110,23 @@ export const useAddList = () => {
 export const useRemoveList = () => {
   const [{ listId }, dispatch] = useContainer(ListContainer);
 
-  const [state, request] = useFlexgetAPI(`/pending_list/${listId}`, Method.Delete);
+  const {
+    api: {
+      list: {
+        remove: [state, requestCreator],
+      },
+    },
+  } = usePluginContainer();
 
-  const removeList = async () => {
+  const request = useMemo(() => requestCreator(listId), [listId, requestCreator]);
+
+  const removeList = useCallback(async () => {
     const resp = await request();
     if (resp.ok && listId) {
       dispatch(actions.removeList(listId));
     }
     return resp;
-  };
+  }, [dispatch, listId, request]);
 
   return [state, removeList] as const;
 };

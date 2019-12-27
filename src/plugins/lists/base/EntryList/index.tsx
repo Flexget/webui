@@ -1,18 +1,15 @@
-import React, { FC, useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, FC } from 'react';
 import { Grid } from '@material-ui/core';
-import { Repeat, DoneAll, ClearAll, Delete } from '@material-ui/icons';
+import { Repeat, Delete } from '@material-ui/icons';
 import { useContainer } from 'unstated-next';
 import { useContextualAppBar, ContextualProps } from 'core/layout/AppBar/hooks';
-import RemoveEntryDialog from 'plugins/pendingList/EntryList/RemoveEntryDialog';
-import {
-  EntryContainer,
-  useGetEntries,
-  useEntryBulkSelect,
-  useEntryBulkOperation,
-} from '../hooks/entry';
+import { usePluginContainer } from '../hooks/api';
+import { EntryContainer, useGetEntries, useEntryBulkSelect } from '../hooks/entry';
 import EntryCard from './EntryCard';
-import { Options, Operation } from '../types';
+import { Options } from '../types';
+
 import InjectEntryDialog from './InjectEntryDialog';
+import RemoveEntryDialog from './RemoveEntryDialog';
 
 interface Props {
   options: Options;
@@ -29,28 +26,21 @@ const EntryList: FC<Props> = ({ options }) => {
   const [selectedIds, { clearSelected }] = useEntryBulkSelect();
   useGetEntries(options);
   const [{ entryId, open, type }, setEntryPrompt] = useState<EntryPromptStates>({ open: false });
-  const [{ loading }, doBulkOperation] = useEntryBulkOperation();
+
+  const defaultValue = useMemo(() => [], []);
+
+  const { useMenuProps = () => defaultValue } = usePluginContainer();
+  const menuProps = useMenuProps();
 
   const count = selectedIds.size;
   const contextualProps: ContextualProps = useMemo(
     () => ({
       menuItems: [
+        ...menuProps,
         {
           name: 'Inject All',
           onClick: () => setEntryPrompt({ open: true, type: 'inject' }),
           Icon: Repeat,
-        },
-        {
-          name: 'Approve All',
-          onClick: () => doBulkOperation(Operation.Approve),
-          Icon: DoneAll,
-          disabled: loading,
-        },
-        {
-          name: 'Reject All',
-          onClick: () => doBulkOperation(Operation.Reject),
-          Icon: ClearAll,
-          disabled: loading,
         },
         {
           name: 'Remove All',
@@ -61,7 +51,7 @@ const EntryList: FC<Props> = ({ options }) => {
       title: `${count} selected`,
       onClose: clearSelected,
     }),
-    [clearSelected, count, doBulkOperation, loading],
+    [clearSelected, count, menuProps],
   );
   const { setContextual } = useContextualAppBar(contextualProps);
 

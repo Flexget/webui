@@ -1,26 +1,19 @@
-import React, { FC, useCallback } from 'react';
+import React, { useCallback, FC } from 'react';
 import { css } from '@emotion/core';
-import {
-  Card,
-  CardActionArea,
-  CardActions,
-  IconButton,
-  Tooltip,
-  Theme,
-  Typography,
-} from '@material-ui/core';
-import { Check, Clear, Delete, Repeat, CheckCircle } from '@material-ui/icons';
+import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@material-ui/core';
+import { Repeat, CheckCircle, Delete } from '@material-ui/icons';
 import Entry from 'core/entry/cards';
-import { Operation, PendingListEntry } from '../types';
-import { useEntryOperation, useEntryBulkSelect } from '../hooks/entry';
+import { usePluginContainer } from '../hooks/api';
+import { Entry as EntryType } from '../types';
+import { useEntryBulkSelect } from '../hooks/entry';
 
 interface Props {
-  entry: PendingListEntry;
+  entry: EntryType;
   onInjectClick: () => void;
   onRemoveClick: () => void;
 }
 
-const card = css`
+const cardCss = css`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -76,22 +69,9 @@ const circleIconVisible = css`
 `;
 
 const EntryCard: FC<Props> = ({ entry, onInjectClick, onRemoveClick }) => {
-  const [{ loading: operationLoading }, doOperation] = useEntryOperation(entry.id);
   const [selectedIds, { selectEntry, unselectEntry }] = useEntryBulkSelect();
-
-  const { title, label, Icon, onClick } = entry.approved
-    ? {
-        title: 'Reject',
-        label: 'reject',
-        Icon: Clear,
-        onClick: () => doOperation(Operation.Reject),
-      }
-    : {
-        title: 'Approve',
-        label: 'approve',
-        Icon: Check,
-        onClick: () => doOperation(Operation.Approve),
-      };
+  const { card = {} } = usePluginContainer();
+  const { Actions, ActionsLeft } = card;
 
   const selected = selectedIds.has(entry.id);
 
@@ -113,26 +93,16 @@ const EntryCard: FC<Props> = ({ entry, onInjectClick, onRemoveClick }) => {
   );
 
   return (
-    <Card css={card}>
+    <Card css={cardCss}>
       <div css={overlayStyles} />
       <CheckCircle css={checkCircleStyles} />
       <CardActionArea css={actionArea} onClick={toggle} aria-pressed={selected}>
         <Entry entry={entry.entry} css={entryCard} />
       </CardActionArea>
       <CardActions css={cardActions}>
+        <span>{ActionsLeft && <ActionsLeft entry={entry} />}</span>
         <span>
-          {entry.approved && (
-            <Typography variant="overline" color="primary">
-              Approved
-            </Typography>
-          )}
-        </span>
-        <span>
-          <Tooltip title={title} placement="top">
-            <IconButton aria-label={label} disabled={operationLoading} onClick={onClick}>
-              <Icon />
-            </IconButton>
-          </Tooltip>
+          {Actions && <Actions entry={entry} />}
           <Tooltip title="Remove" placement="top">
             <IconButton aria-label="remove" onClick={onRemoveClick}>
               <Delete />

@@ -1,4 +1,4 @@
-type func = () => any;
+type func = (...args: any[]) => any;
 
 const is = {
   undef: (v): v is undefined => v === null || v === undefined,
