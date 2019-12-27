@@ -27,6 +27,10 @@ describe('common/layout', () => {
       .catch();
   });
 
+  afterEach(() => {
+    fetchMock.reset();
+  });
+
   it('renders correctly', async () => {
     let tree: ReactTestRenderer | undefined;
     await act(async () => {

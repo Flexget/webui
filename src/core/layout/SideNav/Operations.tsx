@@ -85,7 +85,8 @@ const Operations: FC<Props> = ({ open = false, onClose }) => {
             options={options}
             value={pluginName}
             onChange={handleChange}
-            placeholder="Select a Plugin"
+            id="pluginName"
+            name="pluginName"
             label="Plugin name"
           />
           <Button
