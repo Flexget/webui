@@ -22,6 +22,11 @@ const TestAddEntryDialog: typeof AddEntryDialog = props => {
 };
 
 describe('plugins/lists/base/AddFab/AddEntryDialog', () => {
+  describe.each`
+    name         | prefix            | Provider
+    ${'pending'} | ${'pending_list'} | ${PendingListContainer.Provider}
+    ${'entry'}   | ${'entry_list'}   | ${EntryListContainer.Provider}
+  `('$name', ({ prefix, Provider }) => {
     const wrapper: FC = ({ children }) => (
       <BaseProviders>
         <Provider>
