@@ -65,7 +65,7 @@ describe('plugins/managedList/EntryListHeader/RemoveListDialog', () => {
     await wait(() => expect(handleClose).toHaveBeenCalled());
   });
 
-  it('should call close wehn pressing cancel', async () => {
+  it('should call close when pressing cancel', async () => {
     const { getByRole } = render(component, { wrapper });
 
     const submitButton = getByRole(

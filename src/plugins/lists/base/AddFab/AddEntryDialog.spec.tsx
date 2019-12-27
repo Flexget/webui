@@ -85,7 +85,7 @@ describe('plugins/managedList/AddFab/AddEntryDialog', () => {
     });
   });
 
-  it('should call close wehn pressing cancel', async () => {
+  it('should call close when pressing cancel', async () => {
     const { getByRole } = render(component, { wrapper });
 
     const cancelButton = getByRole(
