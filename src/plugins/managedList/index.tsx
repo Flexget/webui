@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import { NoPaddingWrapper } from 'common/styles';
 import { ListContainer } from './hooks/list';
 import Entries from './Entries';
+import { Entry } from './types';
 
 export const content = (theme: Theme) => css`
   flex: 1;
@@ -15,11 +16,11 @@ export const content = (theme: Theme) => css`
   }
 `;
 
-const ManagedList: FC = () => (
+const ManagedList: FC = <T extends Entry>() => (
   <ListContainer.Provider>
     <NoPaddingWrapper>
       <div css={content}>
-        <Entries />
+        <Entries<T> />
       </div>
     </NoPaddingWrapper>
   </ListContainer.Provider>

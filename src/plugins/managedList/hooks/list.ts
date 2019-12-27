@@ -61,8 +61,10 @@ export const useGetLists = () => {
   const [, dispatch] = useContainer(ListContainer);
 
   const {
-    list: {
-      get: [state, request],
+    api: {
+      list: {
+        get: [state, request],
+      },
     },
   } = usePluginContainer();
   // Fetch Lists
@@ -84,8 +86,10 @@ export const useAddList = () => {
   const [, dispatch] = useContainer(ListContainer);
 
   const {
-    list: {
-      add: [state, request],
+    api: {
+      list: {
+        add: [state, request],
+      },
     },
   } = usePluginContainer();
 
@@ -107,8 +111,10 @@ export const useRemoveList = () => {
   const [{ listId }, dispatch] = useContainer(ListContainer);
 
   const {
-    list: {
-      remove: [state, requestCreator],
+    api: {
+      list: {
+        remove: [state, requestCreator],
+      },
     },
   } = usePluginContainer();
 

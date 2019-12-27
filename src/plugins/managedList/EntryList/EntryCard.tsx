@@ -1,13 +1,14 @@
-import React, { FC, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { css } from '@emotion/core';
 import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@material-ui/core';
 import { Repeat, CheckCircle, Delete } from '@material-ui/icons';
 import Entry from 'core/entry/cards';
+import { usePluginContainer } from 'plugins/managedList/hooks/api';
 import { Entry as EntryType } from '../types';
 import { useEntryBulkSelect } from '../hooks/entry';
 
-interface Props {
-  entry: EntryType;
+interface Props<T extends EntryType> {
+  entry: T;
   onInjectClick: () => void;
   onRemoveClick: () => void;
 }
@@ -67,23 +68,11 @@ const circleIconVisible = css`
   opacity: 1;
 `;
 
-const EntryCard: FC<Props> = ({ entry, onInjectClick, onRemoveClick }) => {
-  // const [{ loading: operationLoading }, doOperation] = useEntryOperation(entry.id);
+const EntryCard = <T extends EntryType>({ entry, onInjectClick, onRemoveClick }: Props<T>) => {
   const [selectedIds, { selectEntry, unselectEntry }] = useEntryBulkSelect();
-
-  // const { title, label, Icon, onClick } = entry.approved
-  // ? {
-  // title: 'Reject',
-  // label: 'reject',
-  // Icon: Clear,
-  // onClick: () => doOperation(Operation.Reject),
-  // }
-  // : {
-  // title: 'Approve',
-  // label: 'approve',
-  // Icon: Check,
-  // onClick: () => doOperation(Operation.Approve),
-  // };
+  const {
+    card: { Actions, ActionsLeft },
+  } = usePluginContainer<T>();
 
   const selected = selectedIds.has(entry.id);
 
@@ -112,21 +101,9 @@ const EntryCard: FC<Props> = ({ entry, onInjectClick, onRemoveClick }) => {
         <Entry entry={entry.entry} css={entryCard} />
       </CardActionArea>
       <CardActions css={cardActions}>
+        <span>{ActionsLeft && <ActionsLeft entry={entry} />}</span>
         <span>
-          {/* entry.approved && (
-            <Typography variant="overline" color="primary">
-              Approved
-            </Typography>
-          ) */}
-        </span>
-        <span>
-          {/*
-          <Tooltip title={title} placement="top">
-            <IconButton aria-label={label} disabled={operationLoading} onClick={onClick}>
-              <Icon />
-            </IconButton>
-          </Tooltip>
-          */}
+          {Actions && <Actions entry={entry} />}
           <Tooltip title="Remove" placement="top">
             <IconButton aria-label="remove" onClick={onRemoveClick}>
               <Delete />

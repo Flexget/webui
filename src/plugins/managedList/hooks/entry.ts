@@ -128,8 +128,10 @@ export const useGetEntries = (options: Options) => {
   const [{ listId }] = useContainer(ListContainer);
 
   const {
-    entry: {
-      get: [state, makeRequest],
+    api: {
+      entry: {
+        get: [state, makeRequest],
+      },
     },
   } = usePluginContainer();
 
@@ -157,8 +159,10 @@ export const useAddEntry = () => {
   const [{ listId }] = useContainer(ListContainer);
   const [, dispatch] = useContainer(EntryContainer);
   const {
-    entry: {
-      add: [state, makeRequest],
+    api: {
+      entry: {
+        add: [state, makeRequest],
+      },
     },
   } = usePluginContainer();
   const request = useMemo(() => makeRequest(listId), [listId, makeRequest]);
@@ -181,8 +185,10 @@ const useRemoveSingleEntry = (entryId?: number) => {
   const [{ listId }] = useContainer(ListContainer);
   const [, dispatch] = useContainer(EntryContainer);
   const {
-    entry: {
-      remove: [state, makeRequest],
+    api: {
+      entry: {
+        remove: [state, makeRequest],
+      },
     },
   } = usePluginContainer();
   const request = useMemo(() => makeRequest(listId, entryId), [entryId, listId, makeRequest]);
@@ -203,8 +209,10 @@ const useRemoveBulkEntry = () => {
   const [{ listId }] = useContainer(ListContainer);
   const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
   const {
-    entry: {
-      removeBulk: [state, makeRequest],
+    api: {
+      entry: {
+        removeBulk: [state, makeRequest],
+      },
     },
   } = usePluginContainer();
   const request = useMemo(() => makeRequest(listId), [listId, makeRequest]);
@@ -276,8 +284,10 @@ export const useUpdateEntry = (entryId: number) => {
   const [, dispatch] = useContainer(EntryContainer);
 
   const {
-    entry: {
-      update: [state, makeRequest],
+    api: {
+      entry: {
+        update: [state, makeRequest],
+      },
     },
   } = usePluginContainer();
   const request = useMemo(() => makeRequest(listId, entryId), [entryId, listId, makeRequest]);
@@ -301,8 +311,10 @@ export const useEntryBulkOperation = () => {
   const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
 
   const {
-    entry: {
-      updateBulk: [state, makeRequest],
+    api: {
+      entry: {
+        updateBulk: [state, makeRequest],
+      },
     },
   } = usePluginContainer();
   const request = useMemo(() => makeRequest(listId), [listId, makeRequest]);

@@ -12,8 +12,7 @@ interface Props {
   options: Options;
 }
 
-const wrapper = (theme: Theme) => css`
-  display: flex;
+const wrapper = (theme: Theme) => css` display: flex;
   justify-content: space-between;
   padding-bottom: ${theme.typography.pxToRem(theme.spacing(2))};
   align-items: center;

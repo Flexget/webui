@@ -1,11 +1,12 @@
-import React, { FC, useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Grid } from '@material-ui/core';
 import { Repeat, Delete } from '@material-ui/icons';
 import { useContainer } from 'unstated-next';
 import { useContextualAppBar, ContextualProps } from 'core/layout/AppBar/hooks';
+import { usePluginContainer } from 'plugins/managedList/hooks/api';
 import { EntryContainer, useGetEntries, useEntryBulkSelect } from '../hooks/entry';
 import EntryCard from './EntryCard';
-import { Options } from '../types';
+import { Options, Entry } from '../types';
 
 import InjectEntryDialog from './InjectEntryDialog';
 import RemoveEntryDialog from './RemoveEntryDialog';
@@ -20,34 +21,28 @@ interface EntryPromptStates {
   entryId?: number;
 }
 
-const EntryList: FC<Props> = ({ options }) => {
-  const [{ entries }] = useContainer(EntryContainer);
+const EntryList = <T extends Entry>({ options }: Props) => {
+  const [state] = useContainer(EntryContainer);
+  const entries = state.entries as T[];
   const [selectedIds, { clearSelected }] = useEntryBulkSelect();
   useGetEntries(options);
   const [{ entryId, open, type }, setEntryPrompt] = useState<EntryPromptStates>({ open: false });
-  // const [{ loading }, doBulkOperation] = useEntryBulkOperation();
+
+  const defaultValue = useCallback(() => [], []);
+
+  const { useMenuProps = defaultValue } = usePluginContainer<T>();
+  const menuProps = useMenuProps();
 
   const count = selectedIds.size;
   const contextualProps: ContextualProps = useMemo(
     () => ({
       menuItems: [
+        ...menuProps,
         {
           name: 'Inject All',
           onClick: () => setEntryPrompt({ open: true, type: 'inject' }),
           Icon: Repeat,
         },
-        // {
-        // name: 'Approve All',
-        // onClick: () => doBulkOperation(Operation.Approve),
-        // Icon: DoneAll,
-        // disabled: loading,
-        // },
-        // {
-        // name: 'Reject All',
-        // onClick: () => doBulkOperation(Operation.Reject),
-        // Icon: ClearAll,
-        // disabled: loading,
-        // },
         {
           name: 'Remove All',
           onClick: () => setEntryPrompt({ open: true, type: 'remove' }),
@@ -57,7 +52,7 @@ const EntryList: FC<Props> = ({ options }) => {
       title: `${count} selected`,
       onClose: clearSelected,
     }),
-    [clearSelected, count],
+    [clearSelected, count, menuProps],
   );
   const { setContextual } = useContextualAppBar(contextualProps);
 
@@ -72,7 +67,7 @@ const EntryList: FC<Props> = ({ options }) => {
       <Grid container spacing={2}>
         {entries.map(entry => (
           <Grid item key={entry.id} xs={12} md={6} lg={4}>
-            <EntryCard
+            <EntryCard<T>
               entry={entry}
               onInjectClick={() =>
                 setEntryPrompt({ open: true, type: 'inject', entryId: entry.id })

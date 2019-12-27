@@ -1,6 +1,7 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, ComponentType } from 'react';
 import { RequestState, APIRequest, APIRequestCreator } from 'core/api';
 import { ContainerProviderProps } from 'unstated-next';
+import { OverflowMenuProps } from 'core/layout/AppBar/OverflowMenu';
 import { List, Entry } from '../types';
 
 type SelectedId = number | undefined;
@@ -24,17 +25,34 @@ export interface API {
   entry: EntryAPI;
 }
 
-const PluginContext = createContext<API | null>(null);
+interface EntryProps<T extends Entry> {
+  entry: T;
+}
 
-export const usePluginContainer = () => {
+export interface Card<T extends Entry> {
+  ActionsLeft?: ComponentType<EntryProps<T>>;
+  Actions?: ComponentType<EntryProps<T>>;
+}
+
+interface ListState<T extends Entry> {
+  api: API;
+  card: Card<T>;
+  useMenuProps?: () => OverflowMenuProps[];
+}
+
+const PluginContext = createContext<unknown>(null);
+
+export const usePluginContainer = <T extends Entry>() => {
   const value = useContext(PluginContext);
   if (value === null) {
     throw new Error('Component must be wrapped with <Container.Provider>');
   }
-  return value;
+  return value as ListState<T>;
 };
 
-export function createPluginContainer<State = void>(useHook: (initialState?: State) => API) {
+export function createPluginContainer<T extends Entry, State = void>(
+  useHook: (initialState?: State) => ListState<T>,
+) {
   function Provider({ initialState, children }: ContainerProviderProps<State>) {
     const value = useHook(initialState);
     return <PluginContext.Provider value={value}>{children}</PluginContext.Provider>;
