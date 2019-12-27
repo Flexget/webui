@@ -2,6 +2,7 @@ import React, { createContext, useContext, ComponentType } from 'react';
 import { RequestState, APIRequest, APIRequestCreator } from 'core/api';
 import { ContainerProviderProps } from 'unstated-next';
 import { OverflowMenuProps } from 'core/layout/AppBar/OverflowMenu';
+import { Option } from 'common/inputs/SelectField';
 import { List, Entry } from '../types';
 
 type SelectedId = number | undefined;
@@ -38,6 +39,7 @@ interface ListState<T extends Entry> {
   api: API;
   card: Card<T>;
   useMenuProps?: () => OverflowMenuProps[];
+  sortByOptions: Option[];
 }
 
 const PluginContext = createContext<unknown>(null);

@@ -3,13 +3,13 @@ import { cleanup, fireEvent, within, getNodeText } from '@testing-library/react'
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
-import PendingList from './PendingList';
+import ManagedList from './index';
 
 const TestPendingList: FC = () => {
   return (
     <>
       <AppBar toggleSidebar={jest.fn()} />
-      <PendingList />
+      <ManagedList />
     </>
   );
 };

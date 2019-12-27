@@ -4,8 +4,9 @@ import { css, ClassNames } from '@emotion/core';
 import SelectField from 'common/inputs/SelectField';
 import { Direction } from 'utils/query';
 import { useContainer } from 'unstated-next';
-import { Options, SortBy } from './types';
+import { Options } from './types';
 import { EntryContainer } from './hooks/entry';
+import { usePluginContainer } from './hooks/api';
 
 interface Props {
   setOptions: (opts: Partial<Options>) => void;
@@ -45,25 +46,6 @@ const sortOrderOptions = [
   },
 ];
 
-const sortByOptions = [
-  {
-    value: SortBy.Added,
-    label: 'Date Added',
-  },
-  {
-    value: SortBy.Title,
-    label: 'Title',
-  },
-  {
-    value: SortBy.URL,
-    label: 'URL',
-  },
-  {
-    value: SortBy.Approved,
-    label: 'Approved',
-  },
-];
-
 const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPage, order } }) => {
   const [{ totalCount }] = useContainer(EntryContainer);
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -80,6 +62,8 @@ const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPa
   const handleChangePage = (_: unknown, p: number) => {
     setOptions({ page: p });
   };
+
+  const { sortByOptions } = usePluginContainer();
 
   return (
     <>

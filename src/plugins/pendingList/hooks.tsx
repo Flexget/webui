@@ -5,7 +5,7 @@ import { useContainer } from 'unstated-next';
 import { createPluginContainer } from 'plugins/managedList/hooks/api';
 import { EntryContainer, actions } from 'plugins/managedList/hooks/entry';
 import { ListContainer } from 'plugins/managedList/hooks/list';
-import { PendingListEntry, Operation } from 'plugins/pendingList/types';
+import { PendingListEntry, Operation, SortBy } from 'plugins/pendingList/types';
 import { ActionsLeft, Actions } from 'plugins/pendingList/Card';
 import { DoneAll, ClearAll } from '@material-ui/icons';
 
@@ -59,6 +59,27 @@ export const useEntryBulkOperation = () => {
 
 export const PendingListContainer = createPluginContainer(() => {
   return {
+    sortByOptions: useMemo(
+      () => [
+        {
+          value: SortBy.Added,
+          label: 'Date Added',
+        },
+        {
+          value: SortBy.Title,
+          label: 'Title',
+        },
+        {
+          value: SortBy.URL,
+          label: 'URL',
+        },
+        {
+          value: SortBy.Approved,
+          label: 'Approved',
+        },
+      ],
+      [],
+    ),
     card: {
       ActionsLeft,
       Actions,

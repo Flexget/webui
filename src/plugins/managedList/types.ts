@@ -2,16 +2,10 @@ import { Direction } from 'utils/query';
 import { RawEntry } from 'core/entry/types';
 import { Inject } from 'core/tasks/types';
 
-export const enum SortBy {
-  Added = 'added',
-  Title = 'title',
-  URL = 'original_url',
-  Approved = 'approved'
-}
-export interface Options {
+export interface Options<T extends string = string> {
   page: number;
   perPage: number;
-  sortBy: SortBy;
+  sortBy: T;
   order: Direction;
 }
 export interface List {
@@ -38,7 +32,7 @@ export interface AddEntryRequest {
   originalUrl: string;
 }
 
-export interface GetEntriesOptions extends Partial<Options> {
+export interface GetEntriesOptions<T extends string = string> extends Partial<Options<T>> {
   page?: number;
 }
 

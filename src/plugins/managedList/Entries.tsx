@@ -7,7 +7,7 @@ import { Delete } from '@material-ui/icons';
 import { OverflowMenuProps } from 'core/layout/AppBar/OverflowMenu';
 import EntryList from './EntryList';
 import EntryListHeader from './EntryListHeader';
-import { Options, SortBy, Entry } from './types';
+import { Options, Entry } from './types';
 import { ListContainer, useGetLists, actions } from './hooks/list';
 import { EntryContainer } from './hooks/entry';
 import AddFab from './AddFab';
@@ -18,7 +18,7 @@ const Entries = <T extends Entry>() => {
   const [options, setOptions] = useMergeState<Options>({
     page: 0,
     perPage: 30,
-    sortBy: SortBy.Added,
+    sortBy: 'added',
     order: Direction.Desc,
   });
 
