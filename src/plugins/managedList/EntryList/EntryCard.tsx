@@ -13,7 +13,7 @@ interface Props<T extends EntryType> {
   onRemoveClick: () => void;
 }
 
-const card = css`
+const cardCss = css`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -70,9 +70,8 @@ const circleIconVisible = css`
 
 const EntryCard = <T extends EntryType>({ entry, onInjectClick, onRemoveClick }: Props<T>) => {
   const [selectedIds, { selectEntry, unselectEntry }] = useEntryBulkSelect();
-  const {
-    card: { Actions, ActionsLeft },
-  } = usePluginContainer<T>();
+  const { card = {} } = usePluginContainer<T>();
+  const { Actions, ActionsLeft } = card;
 
   const selected = selectedIds.has(entry.id);
 
@@ -94,7 +93,7 @@ const EntryCard = <T extends EntryType>({ entry, onInjectClick, onRemoveClick }:
   );
 
   return (
-    <Card css={card}>
+    <Card css={cardCss}>
       <div css={overlayStyles} />
       <CheckCircle css={checkCircleStyles} />
       <CardActionArea css={actionArea} onClick={toggle} aria-pressed={selected}>

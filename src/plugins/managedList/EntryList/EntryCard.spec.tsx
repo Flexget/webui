@@ -4,10 +4,11 @@ import { cleanup, render, fireEvent } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
 import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
-import { PendingListEntry } from 'plugins/pendingList/types';
 import EntryCard from './EntryCard';
 import { ListContainer, actions } from '../hooks/list';
 import { EntryContainer } from '../hooks/entry';
+import { TestContainer } from '../TestContainer';
+import { Entry } from '../types';
 
 const TestEntryCard: typeof EntryCard = props => {
   const [, dispatch] = useContainer(ListContainer);
@@ -21,16 +22,19 @@ const TestEntryCard: typeof EntryCard = props => {
 
 const wrapper: FC = ({ children }) => (
   <BaseProviders>
-    <ListContainer.Provider>
-      <EntryContainer.Provider>{children}</EntryContainer.Provider>
-    </ListContainer.Provider>
+    <TestContainer.Provider>
+      <ListContainer.Provider>
+        <EntryContainer.Provider>{children}</EntryContainer.Provider>
+      </ListContainer.Provider>
+    </TestContainer.Provider>
   </BaseProviders>
 );
 
-describe('plugins/pendingList/EntryList/EntryCard', () => {
+describe('plugins/managedList/EntryList/EntryCard', () => {
   beforeEach(() => {
     fetchMock
-      .put('glob:/api/pending_list/1/entries/*', {})
+      .put('glob:/api/managed_list/1/entries/*', {})
+      .delete('glob:/api/managed_list/1/entries/*', {})
       .get('/api/tasks', 200)
       .catch();
   });
@@ -39,94 +43,34 @@ describe('plugins/pendingList/EntryList/EntryCard', () => {
     cleanup();
     fetchMock.reset();
   });
-  const entry = makeRawEntry();
+  const rawEntry = makeRawEntry();
 
-  describe('approved entry', () => {
-    const approvedEntry: PendingListEntry = {
-      ...entry,
-      id: 1,
-      entry,
-      listId: 1,
-      addedOn: new Date().toUTCString(),
-      approved: true,
-    };
-    const handleInjectClick = jest.fn();
-    const handleRemoveClick = jest.fn();
-    const component = (
-      <TestEntryCard
-        entry={approvedEntry}
-        onInjectClick={handleInjectClick}
-        onRemoveClick={handleRemoveClick}
-      />
-    );
+  const entry: Entry = {
+    ...rawEntry,
+    id: 2,
+    entry: rawEntry,
+    listId: 1,
+    addedOn: new Date().toUTCString(),
+  };
+  const handleInjectClick = jest.fn();
+  const handleRemoveClick = jest.fn();
+  const component = (
+    <TestEntryCard
+      entry={entry}
+      onInjectClick={handleInjectClick}
+      onRemoveClick={handleRemoveClick}
+    />
+  );
 
-    it('should render approvedEntry properly', () => {
-      const { queryByText } = render(component, { wrapper });
-
-      expect(queryByText('Approved')).toBeInTheDocument();
-    });
-
-    it('should call endpoint when pressing reject', () => {
-      const { getByLabelText } = render(component, { wrapper });
-      fireEvent.click(getByLabelText('reject'));
-      expect(fetchMock.called('/api/pending_list/1/entries/1')).toBeTrue();
-    });
-
-    it('should call onRemoveClick when remove pressed', () => {
-      const { getByLabelText } = render(component, { wrapper });
-      fireEvent.click(getByLabelText('remove'));
-      expect(handleRemoveClick).toHaveBeenCalled();
-    });
-
-    it('should call onInjectClick when inject pressed', () => {
-      const { getByLabelText } = render(component, { wrapper });
-      fireEvent.click(getByLabelText('inject'));
-      expect(handleInjectClick).toHaveBeenCalled();
-    });
+  it('should call onRemoveClick when remove pressed', () => {
+    const { getByLabelText } = render(component, { wrapper });
+    fireEvent.click(getByLabelText('remove'));
+    expect(handleRemoveClick).toHaveBeenCalled();
   });
 
-  describe('remove entry', () => {
-    const removedEntry: PendingListEntry = {
-      ...entry,
-      id: 2,
-      entry,
-      listId: 1,
-      addedOn: new Date().toUTCString(),
-      approved: false,
-    };
-    const handleInjectClick = jest.fn();
-    const handleRemoveClick = jest.fn();
-    const component = (
-      <TestEntryCard
-        entry={removedEntry}
-        onInjectClick={handleInjectClick}
-        onRemoveClick={handleRemoveClick}
-      />
-    );
-
-    it('should render approvedEntry properly', () => {
-      const { queryByText } = render(component, { wrapper });
-
-      expect(queryByText('Approved')).not.toBeInTheDocument();
-    });
-
-    it('should call endpoint when pressing approve', () => {
-      const { getByLabelText } = render(component, { wrapper });
-      fireEvent.click(getByLabelText('approve'));
-
-      expect(fetchMock.called('/api/pending_list/1/entries/2')).toBeTrue();
-    });
-
-    it('should call onRemoveClick when remove pressed', () => {
-      const { getByLabelText } = render(component, { wrapper });
-      fireEvent.click(getByLabelText('remove'));
-      expect(handleRemoveClick).toHaveBeenCalled();
-    });
-
-    it('should call onInjectClick when inject pressed', () => {
-      const { getByLabelText } = render(component, { wrapper });
-      fireEvent.click(getByLabelText('inject'));
-      expect(handleInjectClick).toHaveBeenCalled();
-    });
+  it('should call onInjectClick when inject pressed', () => {
+    const { getByLabelText } = render(component, { wrapper });
+    fireEvent.click(getByLabelText('inject'));
+    expect(handleInjectClick).toHaveBeenCalled();
   });
 });

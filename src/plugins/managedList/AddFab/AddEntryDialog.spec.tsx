@@ -4,10 +4,11 @@ import { cleanup, render, fireEvent, within, wait } from '@testing-library/react
 import { BaseProviders } from 'utils/tests';
 import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
+import { TestContainer } from 'plugins/managedList/TestContainer';
 import AddEntryDialog from './AddEntryDialog';
 import { ListContainer, actions } from '../hooks/list';
 import { EntryContainer } from '../hooks/entry';
-import { PendingListEntry } from '../../pendingList/types';
+import { Entry } from '../types';
 
 const TestAddEntryDialog: typeof AddEntryDialog = props => {
   const [, dispatch] = useContainer(ListContainer);
@@ -21,25 +22,26 @@ const TestAddEntryDialog: typeof AddEntryDialog = props => {
 
 const wrapper: FC = ({ children }) => (
   <BaseProviders>
-    <ListContainer.Provider>
-      <EntryContainer.Provider>{children}</EntryContainer.Provider>
-    </ListContainer.Provider>
+    <TestContainer.Provider>
+      <ListContainer.Provider>
+        <EntryContainer.Provider>{children}</EntryContainer.Provider>
+      </ListContainer.Provider>
+    </TestContainer.Provider>
   </BaseProviders>
 );
 
-describe('plugins/pendingList/AddFab/AddEntryDialog', () => {
-  const entry = makeRawEntry();
-  const approvedEntry: PendingListEntry = {
-    ...entry,
+describe('plugins/managedList/AddFab/AddEntryDialog', () => {
+  const rawEntry = makeRawEntry();
+  const approvedEntry: Entry = {
+    ...rawEntry,
     id: 1,
-    entry,
+    entry: rawEntry,
     listId: 1,
     addedOn: new Date().toUTCString(),
-    approved: true,
   };
   beforeEach(() => {
     fetchMock
-      .post('/api/pending_list/1/entries', approvedEntry)
+      .post('/api/managed_list/1/entries', approvedEntry)
       .get('/api/tasks', [
         { name: 'task 1' },
         {
@@ -78,7 +80,7 @@ describe('plugins/pendingList/AddFab/AddEntryDialog', () => {
 
     fireEvent.click(submitButton);
     await wait(() => {
-      expect(fetchMock.called('/api/pending_list/1/entries')).toBeTrue();
+      expect(fetchMock.called('/api/managed_list/1/entries')).toBeTrue();
       expect(handleClose).toHaveBeenCalled();
     });
   });
@@ -91,7 +93,7 @@ describe('plugins/pendingList/AddFab/AddEntryDialog', () => {
     );
 
     fireEvent.click(cancelButton);
-    expect(fetchMock.called('/api/pending_list/1/entries')).toBeFalse();
+    expect(fetchMock.called('/api/managed_list/1/entries')).toBeFalse();
     expect(handleClose).toHaveBeenCalled();
   });
 });

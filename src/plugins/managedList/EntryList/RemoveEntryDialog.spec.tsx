@@ -4,6 +4,7 @@ import { cleanup, render, fireEvent, within, wait } from '@testing-library/react
 import { BaseProviders } from 'utils/tests';
 import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
+import { TestContainer } from 'plugins/managedList/TestContainer';
 import RemoveEntryDialog from './RemoveEntryDialog';
 import { ListContainer, actions } from '../hooks/list';
 import { EntryContainer } from '../hooks/entry';
@@ -21,16 +22,18 @@ const TestRemoveEntryDialog: typeof RemoveEntryDialog = props => {
 
 const wrapper: FC = ({ children }) => (
   <BaseProviders>
-    <ListContainer.Provider>
-      <EntryContainer.Provider>{children}</EntryContainer.Provider>
-    </ListContainer.Provider>
+    <TestContainer.Provider>
+      <ListContainer.Provider>
+        <EntryContainer.Provider>{children}</EntryContainer.Provider>
+      </ListContainer.Provider>
+    </TestContainer.Provider>
   </BaseProviders>
 );
 
-describe('plugins/pendingList/EntryList/RemoveEntryDialog', () => {
+describe('plugins/managedList/EntryList/RemoveEntryDialog', () => {
   beforeEach(() => {
     fetchMock
-      .delete('glob:/api/pending_list/1/entries/*', {})
+      .delete('glob:/api/managed_list/1/entries/*', {})
       .get('/api/tasks', 200)
       .catch();
   });
@@ -40,19 +43,18 @@ describe('plugins/pendingList/EntryList/RemoveEntryDialog', () => {
     fetchMock.reset();
   });
 
-  const entry = makeRawEntry();
+  const rawEntry = makeRawEntry();
 
-  const approvedEntry: Entry = {
-    ...entry,
+  const entry: Entry = {
+    ...rawEntry,
     id: 1,
-    entry,
+    entry: rawEntry,
     listId: 1,
     addedOn: new Date().toUTCString(),
-    // approved: true,
   };
 
   const handleClose = jest.fn();
-  const component = <TestRemoveEntryDialog open onClose={handleClose} entryId={approvedEntry.id} />;
+  const component = <TestRemoveEntryDialog open onClose={handleClose} entryId={entry.id} />;
 
   it('should find dialog when open', () => {
     const { queryByRole } = render(component, { wrapper });
@@ -74,7 +76,7 @@ describe('plugins/pendingList/EntryList/RemoveEntryDialog', () => {
     );
 
     fireEvent.click(submitButton);
-    expect(fetchMock.called('/api/pending_list/1/entries/1')).toBeTrue();
+    expect(fetchMock.called('/api/managed_list/1/entries/1')).toBeTrue();
     await wait(() => expect(handleClose).toHaveBeenCalled());
   });
 
@@ -86,7 +88,7 @@ describe('plugins/pendingList/EntryList/RemoveEntryDialog', () => {
     );
 
     fireEvent.click(submitButton);
-    expect(fetchMock.called('/api/pending_list/1/entries/1')).toBeFalse();
+    expect(fetchMock.called('/api/managed_list/1/entries/1')).toBeFalse();
     expect(handleClose).toHaveBeenCalled();
   });
 });

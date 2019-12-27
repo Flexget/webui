@@ -15,10 +15,8 @@ interface ListAPI {
 interface EntryAPI {
   get: [RequestState, APIRequestCreator<[SelectedId, string], Entry[]>];
   add: [RequestState, APIRequestCreator<[SelectedId], Entry>];
-  update: [RequestState, APIRequestCreator<[SelectedId, number], Entry>];
   remove: [RequestState, APIRequestCreator<[SelectedId, SelectedId]>];
   removeBulk: [RequestState, APIRequestCreator<[SelectedId]>];
-  updateBulk: [RequestState, APIRequestCreator<[SelectedId], Entry[]>];
 }
 
 export interface API {
@@ -37,7 +35,7 @@ export interface Card<T extends Entry> {
 
 interface ListState<T extends Entry> {
   api: API;
-  card: Card<T>;
+  card?: Card<T>;
   useMenuProps?: () => OverflowMenuProps[];
   sortByOptions: Option[];
 }

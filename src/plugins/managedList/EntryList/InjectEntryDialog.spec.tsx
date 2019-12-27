@@ -8,6 +8,7 @@ import InjectEntryDialog from './InjectEntryDialog';
 import { ListContainer, actions } from '../hooks/list';
 import { EntryContainer } from '../hooks/entry';
 import { Entry } from '../types';
+import { TestContainer } from '../TestContainer';
 
 const TestInjectEntryDialog: typeof InjectEntryDialog = props => {
   const [, dispatch] = useContainer(ListContainer);
@@ -21,16 +22,18 @@ const TestInjectEntryDialog: typeof InjectEntryDialog = props => {
 
 const wrapper: FC = ({ children }) => (
   <BaseProviders>
-    <ListContainer.Provider>
-      <EntryContainer.Provider>{children}</EntryContainer.Provider>
-    </ListContainer.Provider>
+    <TestContainer.Provider>
+      <ListContainer.Provider>
+        <EntryContainer.Provider>{children}</EntryContainer.Provider>
+      </ListContainer.Provider>
+    </TestContainer.Provider>
   </BaseProviders>
 );
 
-describe('plugins/pendingList/EntryList/InjectEntryDialog', () => {
+describe('plugins/managedList/EntryList/InjectEntryDialog', () => {
   beforeEach(() => {
     fetchMock
-      .delete('glob:/api/pending_list/1/entries/*', {})
+      .delete('glob:/api/managed_list/1/entries/*', {})
       .get('/api/tasks', [
         { name: 'task 1' },
         {
@@ -46,19 +49,18 @@ describe('plugins/pendingList/EntryList/InjectEntryDialog', () => {
     fetchMock.reset();
   });
 
-  const entry = makeRawEntry();
+  const rawEntry = makeRawEntry();
 
-  const approvedEntry: Entry = {
-    ...entry,
+  const entry: Entry = {
+    ...rawEntry,
     id: 1,
-    entry,
+    entry: rawEntry,
     listId: 1,
     addedOn: new Date().toUTCString(),
-    // approved: true,
   };
 
   const handleClose = jest.fn();
-  const component = <TestInjectEntryDialog open onClose={handleClose} entryId={approvedEntry.id} />;
+  const component = <TestInjectEntryDialog open onClose={handleClose} entryId={entry.id} />;
 
   it('should find dialog when open', () => {
     const { queryByRole } = render(component, { wrapper });
@@ -81,7 +83,7 @@ describe('plugins/pendingList/EntryList/InjectEntryDialog', () => {
 
     fireEvent.click(submitButton);
     await wait(() => {
-      expect(fetchMock.called('/api/pending_list/1/entries/1')).toBeTrue();
+      expect(fetchMock.called('/api/managed_list/1/entries/1')).toBeTrue();
       expect(fetchMock.called('/api/tasks/execute')).toBeTrue();
       expect(handleClose).toHaveBeenCalled();
     });
@@ -95,7 +97,7 @@ describe('plugins/pendingList/EntryList/InjectEntryDialog', () => {
     );
 
     fireEvent.click(submitButton);
-    expect(fetchMock.called('/api/pending_list/1/entries/1')).toBeFalse();
+    expect(fetchMock.called('/api/managed_list/1/entries/1')).toBeFalse();
     expect(handleClose).toHaveBeenCalled();
   });
 });

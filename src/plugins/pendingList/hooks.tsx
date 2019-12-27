@@ -124,23 +124,12 @@ export const PendingListContainer = createPluginContainer(() => {
           useCallback((listId: number) => `/pending_list/${listId}/entries`, []),
           Method.Post,
         ),
-        update: useFlexgetAPI(
-          useCallback(
-            (listId: number, entryId: number) => `/pending_list/${listId}/entries/${entryId}`,
-            [],
-          ),
-          Method.Put,
-        ),
         remove: useFlexgetAPI(
           useCallback(
             (listId: number, entryId: number) => `/pending_list/${listId}/entries/${entryId}`,
             [],
           ),
           Method.Delete,
-        ),
-        updateBulk: useFlexgetAPI(
-          useCallback((listId: number) => `/pending_list/${listId}/entries/batch`, []),
-          Method.Put,
         ),
         removeBulk: useFlexgetAPI(
           useCallback((listId: number) => `/pending_list/${listId}/entries/batch`, []),

@@ -28,9 +28,9 @@ const EntryList = <T extends Entry>({ options }: Props) => {
   useGetEntries(options);
   const [{ entryId, open, type }, setEntryPrompt] = useState<EntryPromptStates>({ open: false });
 
-  const defaultValue = useCallback(() => [], []);
+  const defaultValue = useMemo(() => [], []);
 
-  const { useMenuProps = defaultValue } = usePluginContainer<T>();
+  const { useMenuProps = () => defaultValue } = usePluginContainer<T>();
   const menuProps = useMenuProps();
 
   const count = selectedIds.size;

@@ -279,64 +279,6 @@ export const useInjectEntry = (entryId?: number) => {
   ] as const;
 };
 
-export const useUpdateEntry = (entryId: number) => {
-  const [{ listId }] = useContainer(ListContainer);
-  const [, dispatch] = useContainer(EntryContainer);
-
-  const {
-    api: {
-      entry: {
-        update: [state, makeRequest],
-      },
-    },
-  } = usePluginContainer();
-  const request = useMemo(() => makeRequest(listId, entryId), [entryId, listId, makeRequest]);
-
-  const doOperation = useCallback(
-    async (req: any) => {
-      const resp = await request(req);
-      if (resp.ok) {
-        dispatch(actions.updateEntry(resp.data));
-      }
-      return resp;
-    },
-    [dispatch, request],
-  );
-
-  return [state, doOperation] as const;
-};
-
-export const useEntryBulkOperation = () => {
-  const [{ listId }] = useContainer(ListContainer);
-  const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
-
-  const {
-    api: {
-      entry: {
-        updateBulk: [state, makeRequest],
-      },
-    },
-  } = usePluginContainer();
-  const request = useMemo(() => makeRequest(listId), [listId, makeRequest]);
-
-  const doOperation = useCallback(
-    async (req: any) => {
-      const ids = [...selectedIds];
-      const resp = await request({
-        ...req,
-        ids,
-      });
-
-      if (resp.ok) {
-        dispatch(actions.updateEntries(resp.data));
-      }
-      return resp;
-    },
-    [dispatch, request, selectedIds],
-  );
-  return [state, doOperation] as const;
-};
-
 export const useEntryBulkSelect = () => {
   const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
 

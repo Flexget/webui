@@ -1,6 +1,6 @@
 import { Entry } from '../managedList/types';
 
-export interface PendingListEntry  extends Entry {
+export interface PendingListEntry extends Entry {
   approved: boolean;
 }
 
@@ -8,7 +8,7 @@ export const enum SortBy {
   Added = 'added',
   Title = 'title',
   URL = 'original_url',
-  Approved = 'approved'
+  Approved = 'approved',
 }
 
 export const enum Operation {
