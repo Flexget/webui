@@ -1,33 +1,29 @@
 import React, { FC } from 'react';
 import { hot } from 'react-hot-loader/root';
-import { Theme } from '@material-ui/core';
-import { css } from '@emotion/core';
-import { NoPaddingWrapper } from 'common/styles';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
-import { ListContainer } from './hooks/list';
-import Entries from './Entries';
+import { createPluginContainer } from 'plugins/managedList/hooks/api';
+import { useFlexgetAPI } from 'core/api';
+import { Method } from 'utils/fetch';
+import { List } from 'plugins/managedList/types';
+import ManagedList from 'plugins/managedList';
 
-export const content = (theme: Theme) => css`
-  flex: 1;
-  overflow-y: auto;
-  padding: ${theme.typography.pxToRem(theme.spacing(1))};
+const PendingListContainer = createPluginContainer(() => {
+  return {
+    list: {
+      get: useFlexgetAPI<List[]>('/pending_list'),
+      add: useFlexgetAPI<List>('/pending_list', Method.Post),
+      remove: useFlexgetAPI((listId: number) => `/pending_list/${listId}`, Method.Delete),
+    },
+  };
+});
 
-  ${theme.breakpoints.up('sm')} {
-    padding: ${theme.typography.pxToRem(theme.spacing(2))};
-  }
-`;
-
-const PendingList: FC<{}> = () => {
+const PendingList: FC = () => {
   useInjectPageTitle('Pending List');
 
   return (
-    <ListContainer.Provider>
-      <NoPaddingWrapper>
-        <div css={content}>
-          <Entries />
-        </div>
-      </NoPaddingWrapper>
-    </ListContainer.Provider>
+    <PendingListContainer.Provider>
+      <ManagedList />
+    </PendingListContainer.Provider>
   );
 };
 

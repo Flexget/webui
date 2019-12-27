@@ -5,7 +5,7 @@ import { BaseProviders } from 'utils/tests';
 import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
 import RemoveEntryDialog from './RemoveEntryDialog';
-import { ListContainer, actions } from '../hooks/list';
+import { ListContainer, actions } from "../../managedList/hooks/list";
 import { EntryContainer } from '../hooks/entry';
 import { PendingListEntry } from '../types';
 

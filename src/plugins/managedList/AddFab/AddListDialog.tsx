@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import TextField from 'common/inputs/formik/TextField';
 import { Formik, Form } from 'formik';
-import { AddListRequest } from "../AddListRequest";
+import { AddListRequest } from '../types';
 import { useAddList } from '../hooks/list';
 
 interface Props {

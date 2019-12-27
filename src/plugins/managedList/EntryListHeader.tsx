@@ -4,7 +4,7 @@ import { css, ClassNames } from '@emotion/core';
 import SelectField from 'common/inputs/SelectField';
 import { Direction } from 'utils/query';
 import { useContainer } from 'unstated-next';
-import { Options, SortBy } from "../managedList/types";
+import { Options, SortBy } from "./types";
 import { EntryContainer } from './hooks/entry';
 
 interface Props {

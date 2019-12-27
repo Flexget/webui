@@ -7,15 +7,14 @@ import { Delete } from '@material-ui/icons';
 import { OverflowMenuProps } from 'core/layout/AppBar/OverflowMenu';
 import EntryList from './EntryList';
 import EntryListHeader from './EntryListHeader';
-import { Options, SortBy } from "../managedList/types";
-import { useGetLists } from './hooks/list';
-import { ListContainer, actions } from "../managedList/hooks/list";
+import { Options, SortBy } from './types';
+import { ListContainer, useGetLists, actions } from './hooks/list';
 import { EntryContainer } from './hooks/entry';
 import AddFab from './AddFab';
-import TabList from '../managedList/TabList';
+import TabList from './TabList';
 import RemoveListDialog from './RemoveListDialog';
 
-const Entries: FC<{}> = () => {
+const Entries: FC = () => {
   const [options, setOptions] = useMergeState<Options>({
     page: 0,
     perPage: 30,

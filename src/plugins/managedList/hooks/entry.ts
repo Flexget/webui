@@ -6,7 +6,7 @@ import { Method, snakeCase } from 'utils/fetch';
 import { stringify } from 'qs';
 import { useExecuteTask } from 'core/tasks/hooks';
 import { toExecuteRequest } from 'core/tasks/utils';
-import { ListContainer } from "../../managedList/hooks/list";
+import { ListContainer } from "./list";
 import { AddEntryRequest, Operation, PendingListEntry } from '../types';
 import { Options } from "../../managedList/types";
 

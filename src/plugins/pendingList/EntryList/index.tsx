@@ -11,7 +11,8 @@ import {
   useEntryBulkOperation,
 } from '../hooks/entry';
 import EntryCard from './EntryCard';
-import { Options, Operation } from '../types';
+import { Operation } from '../types';
+import { Options } from "../../managedList/types";
 import InjectEntryDialog from './InjectEntryDialog';
 
 interface Props {
