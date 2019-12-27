@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, useState } from 'react';
+import { useEffect, useRef, useCallback, useState, useMemo } from 'react';
 import { Method, APIResponse, request, StatusError, ErrorResponse } from 'utils/fetch';
 import { AuthContainer } from 'core/auth/container';
 import { uriParser } from 'utils';
@@ -76,13 +76,13 @@ export function useFlexgetAPI<Res>(
   );
 
   const state = { error, loading };
+  const fn = useMemo(() => {
+    if (is.string(urlCreator)) {
+      return (body: unknown = undefined) => requestFn(urlCreator, body);
+    }
+    return (...args: Parameters<typeof urlCreator>) => (body: unknown = undefined) =>
+      requestFn(urlCreator(...args), body);
+  }, [requestFn, urlCreator]);
 
-  if (is.string(urlCreator)) {
-    return [state, (body: unknown = undefined) => requestFn(urlCreator, body)];
-  }
-  return [
-    state,
-    (...args: Parameters<typeof urlCreator>) => (body: unknown = undefined) =>
-      requestFn(urlCreator(...args), body),
-  ];
+  return [state, fn];
 }

@@ -1,16 +1,27 @@
 import React, { createContext, useContext } from 'react';
 import { RequestState, APIRequest, APIRequestCreator } from 'core/api';
 import { ContainerProviderProps } from 'unstated-next';
-import { List } from '../types';
+import { List, Entry } from '../types';
 
+type SelectedId = number | undefined;
 interface ListAPI {
   get: [RequestState, APIRequest<List[]>];
   add: [RequestState, APIRequest<List>];
-  remove: [RequestState, APIRequestCreator<[number | undefined]>];
+  remove: [RequestState, APIRequestCreator<[SelectedId]>];
+}
+
+interface EntryAPI {
+  get: [RequestState, APIRequestCreator<[SelectedId, string], Entry[]>];
+  add: [RequestState, APIRequestCreator<[SelectedId], Entry>];
+  update: [RequestState, APIRequestCreator<[SelectedId, number], Entry>];
+  remove: [RequestState, APIRequestCreator<[SelectedId, SelectedId]>];
+  removeBulk: [RequestState, APIRequestCreator<[SelectedId]>];
+  updateBulk: [RequestState, APIRequestCreator<[SelectedId], Entry[]>];
 }
 
 export interface API {
   list: ListAPI;
+  entry: EntryAPI;
 }
 
 const PluginContext = createContext<API | null>(null);

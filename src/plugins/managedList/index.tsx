@@ -1,9 +1,7 @@
 import React, { FC } from 'react';
-import { hot } from 'react-hot-loader/root';
 import { Theme } from '@material-ui/core';
 import { css } from '@emotion/core';
 import { NoPaddingWrapper } from 'common/styles';
-import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { ListContainer } from './hooks/list';
 import Entries from './Entries';
 
@@ -17,18 +15,14 @@ export const content = (theme: Theme) => css`
   }
 `;
 
-const ManagedList: FC<{}> = () => {
-  useInjectPageTitle('Pending List');
+const ManagedList: FC = () => (
+  <ListContainer.Provider>
+    <NoPaddingWrapper>
+      <div css={content}>
+        <Entries />
+      </div>
+    </NoPaddingWrapper>
+  </ListContainer.Provider>
+);
 
-  return (
-    <ListContainer.Provider>
-      <NoPaddingWrapper>
-        <div css={content}>
-          <Entries />
-        </div>
-      </NoPaddingWrapper>
-    </ListContainer.Provider>
-  );
-};
-
-export default hot(ManagedList);
+export default ManagedList;

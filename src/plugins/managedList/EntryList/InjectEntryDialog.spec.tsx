@@ -2,36 +2,42 @@ import React, { FC, useEffect } from 'react';
 import { useContainer } from 'unstated-next';
 import { cleanup, render, fireEvent, within, wait } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
+import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
-import AddListDialog from './AddListDialog';
+import InjectEntryDialog from './InjectEntryDialog';
 import { ListContainer, actions } from '../hooks/list';
+import { EntryContainer } from '../hooks/entry';
+import { Entry } from '../types';
 
-const TestAddListDialog: typeof AddListDialog = props => {
+const TestInjectEntryDialog: typeof InjectEntryDialog = props => {
   const [, dispatch] = useContainer(ListContainer);
 
   useEffect(() => {
     dispatch(actions.selectList(1));
   }, [dispatch]);
 
-  return <AddListDialog {...props} />;
+  return <InjectEntryDialog {...props} />;
 };
 
 const wrapper: FC = ({ children }) => (
   <BaseProviders>
-    <ListContainer.Provider>{children}</ListContainer.Provider>
+    <ListContainer.Provider>
+      <EntryContainer.Provider>{children}</EntryContainer.Provider>
+    </ListContainer.Provider>
   </BaseProviders>
 );
 
-describe('plugins/pendingList/AddFab/AddListDialog', () => {
+describe('plugins/pendingList/EntryList/InjectEntryDialog', () => {
   beforeEach(() => {
     fetchMock
-      .post('/api/pending_list', {})
+      .delete('glob:/api/pending_list/1/entries/*', {})
       .get('/api/tasks', [
         { name: 'task 1' },
         {
           name: 'task 2',
         },
       ])
+      .post('/api/tasks/execute', 200)
       .catch();
   });
 
@@ -40,8 +46,19 @@ describe('plugins/pendingList/AddFab/AddListDialog', () => {
     fetchMock.reset();
   });
 
+  const entry = makeRawEntry();
+
+  const approvedEntry: Entry = {
+    ...entry,
+    id: 1,
+    entry,
+    listId: 1,
+    addedOn: new Date().toUTCString(),
+    // approved: true,
+  };
+
   const handleClose = jest.fn();
-  const component = <TestAddListDialog open onClose={handleClose} />;
+  const component = <TestInjectEntryDialog open onClose={handleClose} entryId={approvedEntry.id} />;
 
   it('should find dialog when open', () => {
     const { queryByRole } = render(component, { wrapper });
@@ -50,21 +67,22 @@ describe('plugins/pendingList/AddFab/AddListDialog', () => {
   });
 
   it('should not find dialog when closed', () => {
-    const { queryByRole } = render(<TestAddListDialog onClose={handleClose} />, { wrapper });
+    const { queryByRole } = render(<TestInjectEntryDialog onClose={handleClose} />, { wrapper });
 
     expect(queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  it('should call fetch when pressing add', async () => {
+  it('should call fetch when pressing inject', async () => {
     const { getByRole } = render(component, { wrapper });
 
     const submitButton = getByRole(
-      (content, element) => content === 'button' && !!within(element).queryByText('Add'),
+      (content, element) => content === 'button' && !!within(element).queryByText('Inject'),
     );
 
     fireEvent.click(submitButton);
     await wait(() => {
-      expect(fetchMock.called('/api/pending_list')).toBeTrue();
+      expect(fetchMock.called('/api/pending_list/1/entries/1')).toBeTrue();
+      expect(fetchMock.called('/api/tasks/execute')).toBeTrue();
       expect(handleClose).toHaveBeenCalled();
     });
   });
@@ -72,12 +90,12 @@ describe('plugins/pendingList/AddFab/AddListDialog', () => {
   it('should call close wehn pressing cancel', async () => {
     const { getByRole } = render(component, { wrapper });
 
-    const cancelButton = getByRole(
+    const submitButton = getByRole(
       (content, element) => content === 'button' && !!within(element).queryByText('Cancel'),
     );
 
-    fireEvent.click(cancelButton);
-    expect(fetchMock.called('/api/pending_list')).toBeFalse();
+    fireEvent.click(submitButton);
+    expect(fetchMock.called('/api/pending_list/1/entries/1')).toBeFalse();
     expect(handleClose).toHaveBeenCalled();
   });
 });

@@ -1,8 +1,7 @@
-import { useReducer, Reducer, useEffect, useCallback, useContext, useMemo } from 'react';
+import { useReducer, Reducer, useEffect, useCallback, useMemo } from 'react';
 import { action } from 'utils/hooks/actions';
 import { createContainer, useContainer } from 'unstated-next';
-import { APIRequest } from 'core/api';
-import { PluginContext, usePluginContainer } from 'plugins/managedList/hooks/api';
+import { usePluginContainer } from 'plugins/managedList/hooks/api';
 import { List, AddListRequest } from '../types';
 
 export const enum Constants {
