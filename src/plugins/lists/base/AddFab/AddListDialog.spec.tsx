@@ -25,7 +25,7 @@ const wrapper: FC = ({ children }) => (
   </BaseProviders>
 );
 
-describe('plugins/managedList/AddFab/AddListDialog', () => {
+describe('plugins/lists/base/AddFab/AddListDialog', () => {
   beforeEach(() => {
     fetchMock
       .post('/api/managed_list', {})

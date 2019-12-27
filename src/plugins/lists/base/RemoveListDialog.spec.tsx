@@ -25,7 +25,7 @@ const wrapper: FC = ({ children }) => (
   </BaseProviders>
 );
 
-describe('plugins/managedList/EntryListHeader/RemoveListDialog', () => {
+describe('plugins/lists/base/EntryListHeader/RemoveListDialog', () => {
   beforeEach(() => {
     fetchMock
       .delete('glob:/api/managed_list/*', {})

@@ -30,7 +30,7 @@ const wrapper: FC = ({ children }) => (
   </BaseProviders>
 );
 
-describe('plugins/managedList/AddFab/AddEntryDialog', () => {
+describe('plugins/lists/base/AddFab/AddEntryDialog', () => {
   const rawEntry = makeRawEntry();
   const approvedEntry: Entry = {
     ...rawEntry,

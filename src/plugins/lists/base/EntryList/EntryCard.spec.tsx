@@ -30,7 +30,7 @@ const wrapper: FC = ({ children }) => (
   </BaseProviders>
 );
 
-describe('plugins/managedList/EntryList/EntryCard', () => {
+describe('plugins/lists/base/EntryList/EntryCard', () => {
   beforeEach(() => {
     fetchMock
       .put('glob:/api/managed_list/1/entries/*', {})

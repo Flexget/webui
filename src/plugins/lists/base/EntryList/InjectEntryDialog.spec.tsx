@@ -30,7 +30,7 @@ const wrapper: FC = ({ children }) => (
   </BaseProviders>
 );
 
-describe('plugins/managedList/EntryList/InjectEntryDialog', () => {
+describe('plugins/lists/base/EntryList/InjectEntryDialog', () => {
   beforeEach(() => {
     fetchMock
       .delete('glob:/api/managed_list/1/entries/*', {})
