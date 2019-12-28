@@ -42,6 +42,7 @@ export const enum TMDBFields {
   Url = 'tmdbHomepage',
   Runtime = 'tmdbRuntime',
   ID = 'tmdbId',
+  Description = 'tmdbOverview',
 }
 
 // NOTE: Thes are in order of priority so if all fields are present, the first one in
@@ -57,6 +58,7 @@ export const movieFieldList = [
     [MovieFieldNames.Url]: TMDBFields.Url,
     [MovieFieldNames.Runtime]: TMDBFields.Runtime,
     [MovieFieldNames.ID]: TMDBFields.ID,
+    [MovieFieldNames.Description]: TMDBFields.Description,
   },
   // Trakt
   {
@@ -90,15 +92,17 @@ interface MovieGetters {
   [MovieFieldNames.Description]: string;
   [MovieFieldNames.Url]: string;
   [MovieFieldNames.Runtime]: number;
-  [MovieFieldNames.ID]: string;
+  [MovieFieldNames.ID]: string | number;
 }
 
 export type MovieFields = Fields<MovieFieldNames, typeof movieFieldList, MovieGetters>;
 
-export interface RawMovieEntry extends BaseEntry, MovieFields {
+export interface RawMovieFields extends MovieFields {
   movieName: string;
   movieYear: number;
 }
+
+export interface RawMovieEntry extends BaseEntry, RawMovieFields {}
 
 export interface MovieEntry extends RawMovieEntry, Partial<MovieGetters> {
   type: CardType.Movie;

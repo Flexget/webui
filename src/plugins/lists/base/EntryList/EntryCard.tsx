@@ -30,6 +30,7 @@ const actionArea = css`
 
 const entryCard = css`
   flex: 1;
+  width: 100%;
 `;
 
 const cardActions = (theme: Theme) => css`
@@ -96,7 +97,7 @@ const EntryCard: FC<Props> = ({ entry, onInjectClick, onRemoveClick }) => {
     <Card css={cardCss}>
       <div css={overlayStyles} />
       <CheckCircle css={checkCircleStyles} />
-      <CardActionArea css={actionArea} onClick={toggle} aria-pressed={selected}>
+      <CardActionArea css={actionArea} onClick={toggle} aria-pressed={selected} component="div">
         <Entry entry={entry.entry} css={entryCard} />
       </CardActionArea>
       <CardActions css={cardActions}>

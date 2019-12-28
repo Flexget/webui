@@ -2,7 +2,7 @@ module.exports = {
   extends: [
     'airbnb',
     'plugin:jest-dom/recommended',
-    'plugin:testing-library/recommended',
+    'plugin:resting-library/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'prettier',
@@ -49,6 +49,7 @@ module.exports = {
     ],
     '@typescript-eslint/prefer-nullish-coalescing': 'error',
     '@typescript-eslint/prefer-optional-chain': 'error',
+    '@typescript-eslint/interface-name-prefix': 'off',
 
     // emotion
     'emotion/import-from-emotion': 'error',

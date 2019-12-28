@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { Typography, Theme } from '@material-ui/core';
 import { normalizeMinutes } from 'utils/time';
 import { css } from '@emotion/core';
@@ -7,6 +7,7 @@ import { MovieEntry, IMDBFields, TMDBFields, TraktFields } from '../fields/movie
 import { Bullet, titleArea, ratingLine } from './styles';
 import BaseCard from './BaseCard';
 import LinkDropdown from './LinkDropdown';
+import { useTraktLookup, useIMDBLookup, useTMDBLookup } from '../lookup/movies';
 
 interface Props {
   entry: MovieEntry;
@@ -20,7 +21,15 @@ const summary = (theme: Theme) => css`
 `;
 
 const MovieCard: FC<Props> = ({
-  entry: {
+  entry,
+  className,
+}) => {
+
+  const { loading: tmdbLoading, entry: tmdbEntry } = useTMDBLookup({ title: entry.movieName,  tmdbId: entry[TMDBFields.ID]});
+  const { loading: traktLoading, entry: traktEntry } = useTraktLookup({ title: entry.movieName, traktId: entry[TraktFields.ID] });
+  // const { loading: imdbLoading, entry: imdbEntry } = useIMDBLookup(entry.movieName || entry[IMDBFields.ID]);
+
+  const {
     backdrops,
     posters,
     movieName,
@@ -31,17 +40,22 @@ const MovieCard: FC<Props> = ({
     quality,
     rating,
     votes,
-    ...entry
-  },
-  className,
-}) => {
+    ...hydratedEntry
+  } = useMemo(() => ({
+    ...entry,
+    ...(traktEntry ?? {}),
+    ...(tmdbEntry ?? {}),
+    // ...(imdbEntry ?? {}),
+  }), []);
+
   const isPoster = !backdrops?.length;
   const images = isPoster ? posters : backdrops;
   const options = [
-    { url: entry[IMDBFields.Url], label: 'IMDB' },
-    { url: entry[TMDBFields.Url], label: 'TMDB' },
-    { url: entry[TraktFields.Url], label: 'Trakt' },
+    { url: hydratedEntry[IMDBFields.Url], label: 'IMDB' },
+    { url: hydratedEntry[TMDBFields.Url], label: 'TMDB' },
+    { url: hydratedEntry[TraktFields.Url], label: 'Trakt' },
   ];
+
   return (
     <>
       <BaseCard
@@ -49,6 +63,7 @@ const MovieCard: FC<Props> = ({
         images={images}
         label={`${movieName} Image`}
         isPoster={isPoster}
+        loading={tmdbLoading || traktLoading}
       >
         <div css={titleArea}>
           <Typography variant="h5" component="h2" color="textPrimary">
