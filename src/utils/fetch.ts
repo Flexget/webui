@@ -29,7 +29,7 @@ export const camelize = <T>(obj: Object | Object[]) =>
 
 export const snakeCase = <T>(obj: Object | Object[]): T =>
   humps.decamelizeKeys(obj, {
-    split: /(?=[A-Z0-9])/,
+    split: /(?=[A-Z])/,
   });
 
 export interface TypedResponse<T, U = undefined> extends Response {
