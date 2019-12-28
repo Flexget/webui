@@ -34,7 +34,7 @@ module.exports = {
   moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
-    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/__mocks__/fileMock.js',
+    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/__mocks__/fileMock.ts',
   },
   snapshotSerializers: ['enzyme-to-json/serializer', 'jest-emotion'],
   setupFiles: ['raf/polyfill', '<rootDir>/src/utils/tests/setupFiles.ts'],
