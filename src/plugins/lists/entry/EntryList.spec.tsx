@@ -3,16 +3,13 @@ import { cleanup } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
-import ManagedList from './index';
-import { TestContainer } from './TestContainer';
+import EntryList from './EntryList';
 
-const TestManagedList: FC = () => {
+const TestEntryList: FC = () => {
   return (
     <>
       <AppBar toggleSidebar={jest.fn()} />
-      <TestContainer.Provider>
-        <ManagedList title="Managed List" />
-      </TestContainer.Provider>
+      <EntryList />
     </>
   );
 };
@@ -20,8 +17,8 @@ const TestManagedList: FC = () => {
 describe('plugins/lists/base', () => {
   beforeEach(() => {
     fetchMock
-      .get('/api/managed_list', [])
-      .get('glob:/api/managed_list/*/entries?*', [])
+      .get('/api/entry_list', [])
+      .get('glob:/api/entry_list/*/entries?*', [])
       .get('/api/tasks', [])
       .catch();
   });
@@ -33,9 +30,9 @@ describe('plugins/lists/base', () => {
 
   describe('contextual app bar', () => {
     it('should have title Managed List', () => {
-      const { queryByText } = renderWithWrapper(<TestManagedList />);
+      const { queryByText } = renderWithWrapper(<TestEntryList />);
 
-      expect(queryByText('Managed List', { selector: 'h6' })).toBeInTheDocument();
+      expect(queryByText('Entry List', { selector: 'h6' })).toBeInTheDocument();
     });
   });
 });

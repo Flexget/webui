@@ -4,10 +4,11 @@ import { cleanup, render, fireEvent } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
 import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
+import { EntryListContainer } from 'plugins/lists/entry/hooks';
+import { PendingListContainer } from 'plugins/lists/pending/hooks';
 import EntryCard from './EntryCard';
 import { ListContainer, actions } from '../hooks/list';
 import { EntryContainer } from '../hooks/entry';
-import { TestContainer } from '../TestContainer';
 import { Entry } from '../types';
 
 const TestEntryCard: typeof EntryCard = props => {
@@ -20,57 +21,62 @@ const TestEntryCard: typeof EntryCard = props => {
   return <EntryCard {...props} />;
 };
 
-const wrapper: FC = ({ children }) => (
-  <BaseProviders>
-    <TestContainer.Provider>
-      <ListContainer.Provider>
-        <EntryContainer.Provider>{children}</EntryContainer.Provider>
-      </ListContainer.Provider>
-    </TestContainer.Provider>
-  </BaseProviders>
-);
-
 describe('plugins/lists/base/EntryList/EntryCard', () => {
-  beforeEach(() => {
-    fetchMock
-      .put('glob:/api/managed_list/1/entries/*', {})
-      .delete('glob:/api/managed_list/1/entries/*', {})
-      .get('/api/tasks', 200)
-      .catch();
-  });
+  describe.each`
+    name         | prefix            | Provider
+    ${'pending'} | ${'pending_list'} | ${PendingListContainer.Provider}
+    ${'entry'}   | ${'entry_list'}   | ${EntryListContainer.Provider}
+  `('$name', ({ prefix, Provider }) => {
+    const wrapper: FC = ({ children }) => (
+      <BaseProviders>
+        <Provider>
+          <ListContainer.Provider>
+            <EntryContainer.Provider>{children}</EntryContainer.Provider>
+          </ListContainer.Provider>
+        </Provider>
+      </BaseProviders>
+    );
+    beforeEach(() => {
+      fetchMock
+        .put(`glob:/api/${prefix}/1/entries/*`, {})
+        .delete(`glob:/api/{prefix}/1/entries/*`, {})
+        .get('/api/tasks', 200)
+        .catch();
+    });
 
-  afterEach(() => {
-    cleanup();
-    fetchMock.reset();
-  });
-  const rawEntry = makeRawEntry();
+    afterEach(() => {
+      cleanup();
+      fetchMock.reset();
+    });
+    const rawEntry = makeRawEntry();
 
-  const entry: Entry = {
-    ...rawEntry,
-    id: 2,
-    entry: rawEntry,
-    listId: 1,
-    addedOn: new Date().toUTCString(),
-  };
-  const handleInjectClick = jest.fn();
-  const handleRemoveClick = jest.fn();
-  const component = (
-    <TestEntryCard
-      entry={entry}
-      onInjectClick={handleInjectClick}
-      onRemoveClick={handleRemoveClick}
-    />
-  );
+    const entry: Entry = {
+      ...rawEntry,
+      id: 2,
+      entry: rawEntry,
+      listId: 1,
+      addedOn: new Date().toUTCString(),
+    };
+    const handleInjectClick = jest.fn();
+    const handleRemoveClick = jest.fn();
+    const component = (
+      <TestEntryCard
+        entry={entry}
+        onInjectClick={handleInjectClick}
+        onRemoveClick={handleRemoveClick}
+      />
+    );
 
-  it('should call onRemoveClick when remove pressed', () => {
-    const { getByLabelText } = render(component, { wrapper });
-    fireEvent.click(getByLabelText('remove'));
-    expect(handleRemoveClick).toHaveBeenCalled();
-  });
+    it('should call onRemoveClick when remove pressed', () => {
+      const { getByLabelText } = render(component, { wrapper });
+      fireEvent.click(getByLabelText('remove'));
+      expect(handleRemoveClick).toHaveBeenCalled();
+    });
 
-  it('should call onInjectClick when inject pressed', () => {
-    const { getByLabelText } = render(component, { wrapper });
-    fireEvent.click(getByLabelText('inject'));
-    expect(handleInjectClick).toHaveBeenCalled();
+    it('should call onInjectClick when inject pressed', () => {
+      const { getByLabelText } = render(component, { wrapper });
+      fireEvent.click(getByLabelText('inject'));
+      expect(handleInjectClick).toHaveBeenCalled();
+    });
   });
 });
