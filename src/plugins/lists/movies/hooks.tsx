@@ -1,21 +1,52 @@
-import { useMemo } from 'react';
-import { useFlexgetAPI } from 'core/api';
-import { Method } from 'utils/fetch';
+import { useMemo, useCallback } from 'react';
+import { useFlexgetAPI, APIRequest, RequestState } from 'core/api';
+import { Method, camelize } from 'utils/fetch';
 import { SortBy, Movie } from './types';
 import { createPluginContainer } from '../base/hooks/api';
 
-// const useMovieApi = (urlCreator: URLCreator, method?: Method) => {
-// const [state, makeRequest] = useFlexgetAPI<Movie | Movie[]>(urlCreator, method);
+const movieToEntry = (movie: Movie): Movie => ({
+  ...movie,
+  entry: camelize(
+    movie.moviesListIds.reduce(
+      (obj, { idName, idValue }) => ({
+        ...obj,
+        [idName]: idValue,
+      }),
+      {
+        movieName: movie.title,
+        movieYear: movie.year,
+      },
+    ),
+  ),
+});
 
-// const request = useCallback(
-// async (...args: Parameters<typeof urlCreator>) => {
-// const r = makeRequest(args);
-// },
-// [makeRequest, urlCreator],
-// );
+function useMovieAPI<T extends Movie>(
+  url: string,
+  method?: Method,
+): [RequestState, APIRequest<Movie>];
+function useMovieAPI<T extends Movie[]>(
+  url: string,
+  method?: Method,
+): [RequestState, APIRequest<Movie[]>];
+function useMovieAPI(url: string, method?: Method) {
+  const [state, makeRequest] = useFlexgetAPI<Movie | Movie[]>(url, method);
 
-// return [state, request];
-// };
+  const request = useCallback(
+    async (...args) => {
+      const resp = await makeRequest(...args);
+
+      if (resp.ok) {
+        resp.data = Array.isArray(resp.data)
+          ? resp.data.map(movieToEntry)
+          : movieToEntry(resp.data);
+      }
+      return resp;
+    },
+    [makeRequest],
+  );
+
+  return [state, request];
+}
 
 export const MovieListContainer = createPluginContainer(() => {
   return {
@@ -44,8 +75,9 @@ export const MovieListContainer = createPluginContainer(() => {
       },
       entry: {
         useGet: (listId: number, query: string) =>
-          useFlexgetAPI(`/movie_list/${listId}/movies?${query}`),
-        useAdd: (listId?: number) => useFlexgetAPI(`/movie_list/${listId}/movies`, Method.Post),
+          useMovieAPI<Movie[]>(`/movie_list/${listId}/movies?${query}`),
+        useAdd: (listId?: number) =>
+          useMovieAPI<Movie>(`/movie_list/${listId}/movies`, Method.Post),
         useRemove: (listId: number, entryId: number) =>
           useFlexgetAPI(`/movie_list/${listId}/movies/${entryId}`, Method.Delete),
         useRemoveBulk: (listId: number) =>

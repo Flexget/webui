@@ -1,4 +1,4 @@
-import { useReducer, Reducer, useEffect, useCallback, useMemo } from 'react';
+import { useReducer, Reducer, useEffect, useCallback, useMemo, useDebugValue } from 'react';
 import { createContainer, useContainer } from 'unstated-next';
 import { action } from 'utils/hooks/actions';
 import { snakeCase } from 'utils/fetch';
@@ -115,9 +115,10 @@ const entryReducer: Reducer<State, Actions> = (state, act) => {
   }
 };
 
-export const EntryContainer = createContainer(() =>
-  useReducer(entryReducer, { entries: [], totalCount: 0, selectedIds: new Set<number>() }),
-);
+export const EntryContainer = createContainer(() => {
+  useDebugValue('EntryContainer');
+  return useReducer(entryReducer, { entries: [], totalCount: 0, selectedIds: new Set<number>() });
+});
 
 export const useGetEntries = (options: Options) => {
   const [, dispatch] = useContainer(EntryContainer);

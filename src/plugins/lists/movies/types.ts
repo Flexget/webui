@@ -7,7 +7,8 @@ export const enum SortBy {
 }
 
 export interface Movie extends Entry {
-  movieListId: MovieListId[];
+  year: number;
+  moviesListIds: MovieListId[];
 }
 
 export const enum MovieIds {
@@ -21,5 +22,5 @@ export interface MovieListId {
   id: number;
   idName: MovieIds;
   idValue: string;
-  movie_id: number;
+  movieId: number;
 }
