@@ -31,7 +31,7 @@ const AddListDialog: FC<Props> = ({ open = false, onClose }) => {
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
-      <DialogTitle>Add New Pending List</DialogTitle>
+      <DialogTitle>Add New List</DialogTitle>
       <Formik
         initialValues={initialValues}
         onSubmit={async (values, actions) => {

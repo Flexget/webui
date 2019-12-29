@@ -6,11 +6,11 @@ import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
 import { PendingListContainer } from 'plugins/lists/pending/hooks';
 import { EntryListContainer } from 'plugins/lists/entry/hooks';
+import { MovieListContainer } from 'plugins/lists/movies/hooks';
 import RemoveEntryDialog from './RemoveEntryDialog';
 import { ListContainer, actions } from '../hooks/list';
 import { EntryContainer } from '../hooks/entry';
 import { Entry } from '../types';
-import { MovieListContainer } from '../../movies/hooks';
 
 const TestRemoveEntryDialog: typeof RemoveEntryDialog = props => {
   const [, dispatch] = useContainer(ListContainer);

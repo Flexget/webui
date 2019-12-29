@@ -3,10 +3,10 @@ import { cleanup, fireEvent, within, getNodeText } from '@testing-library/react'
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
-import { PendingListContainer } from 'plugins/lists/pending/hooks';
-import { EntryListContainer } from 'plugins/lists/entry/hooks';
 import Entries from './Entries';
 import { ListContainer } from './hooks/list';
+import { PendingListContainer } from '../pending/hooks';
+import { EntryListContainer } from '../entry/hooks';
 import { MovieListContainer } from '../movies/hooks';
 
 describe('plugins/lists/base/entries', () => {

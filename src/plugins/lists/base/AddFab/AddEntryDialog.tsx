@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { Form, Formik } from 'formik';
 import { useAddEntry } from '../hooks/entry';
-import { AddEntryRequest } from '../types';
+import { usePluginContainer } from '../hooks/api';
 
 interface Props {
   open?: boolean;
@@ -25,7 +25,14 @@ const errorStyle = (theme: Theme) => css`
 `;
 
 const AddEntryDialog: FC<Props> = ({ open = false, onClose }) => {
-  const initialValues: AddEntryRequest = { title: '', originalUrl: '' };
+  const { addEntryProps } = usePluginContainer();
+  const initialValues: Record<string, string> = addEntryProps.reduce(
+    (obj, { name }) => ({
+      ...obj,
+      [name]: '',
+    }),
+    {},
+  );
   const [{ loading, error }, addEntry] = useAddEntry();
 
   return (
@@ -45,8 +52,16 @@ const AddEntryDialog: FC<Props> = ({ open = false, onClose }) => {
         <Form>
           <DialogContent>
             {error && <DialogContentText css={errorStyle}>{error.message}</DialogContentText>}
-            <TextField autoFocus id="title" label="Entry Title" fullWidth name="title" />
-            <TextField id="entry-url" label="Entry URL" fullWidth name="originalUrl" />
+            {addEntryProps.map(({ name, label }, index) => (
+              <TextField
+                key={name}
+                id={name}
+                label={label}
+                fullWidth
+                name={name}
+                autoFocus={index === 0}
+              />
+            ))}
           </DialogContent>
           <DialogActions>
             <Button onClick={onClose} type="button">

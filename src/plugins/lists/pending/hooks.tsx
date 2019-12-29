@@ -104,6 +104,19 @@ export const PendingListContainer = createPluginContainer(() => {
         [doBulkOperation, loading],
       );
     },
+    addEntryProps: useMemo(
+      () => [
+        {
+          label: 'Entry Title',
+          name: 'title',
+        },
+        {
+          label: 'Entry URL',
+          name: 'originalUrl',
+        },
+      ],
+      [],
+    ),
     api: {
       list: {
         useGet: () => useFlexgetAPI('/pending_list'),

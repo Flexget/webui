@@ -7,7 +7,7 @@ import { useExecuteTask } from 'core/tasks/hooks';
 import { toExecuteRequest } from 'core/tasks/utils';
 import { usePluginContainer } from './api';
 import { ListContainer } from './list';
-import { AddEntryRequest, Entry, Options } from '../types';
+import { Entry, Options } from '../types';
 
 export const enum Constants {
   GET_ENTRIES = '@flexget/pendingList/GET_ENTRIES',
@@ -165,7 +165,7 @@ export const useAddEntry = () => {
   const [state, request] = useAdd(listId);
 
   const addEntry = useCallback(
-    async (req: AddEntryRequest) => {
+    async (req: Record<string, string>) => {
       const resp = await request(req);
       if (resp.ok) {
         dispatch(actions.addEntry(resp.data));

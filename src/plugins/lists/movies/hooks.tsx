@@ -67,6 +67,15 @@ export const MovieListContainer = createPluginContainer(() => {
       ],
       [],
     ),
+    addEntryProps: useMemo(
+      () => [
+        {
+          label: 'Movie Name',
+          name: 'movieName',
+        },
+      ],
+      [],
+    ),
     api: {
       list: {
         useGet: () => useFlexgetAPI('/movie_list'),

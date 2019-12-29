@@ -32,11 +32,17 @@ export interface Card<T extends Entry> {
   Actions?: ComponentType<EntryProps<T>>;
 }
 
+interface EntryFields {
+  label: string;
+  name: string;
+}
+
 interface ListState<T extends Entry> {
   api: API;
   card?: Card<T>;
   useMenuProps?: () => OverflowMenuProps[];
   sortByOptions: Option[];
+  addEntryProps: EntryFields[];
 }
 
 const PluginContext = createContext<unknown>(null);

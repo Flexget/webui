@@ -6,11 +6,11 @@ import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
 import { EntryListContainer } from 'plugins/lists/entry/hooks';
 import { PendingListContainer } from 'plugins/lists/pending/hooks';
+import { MovieListContainer } from 'plugins/lists/movies/hooks';
 import EntryCard from './EntryCard';
 import { ListContainer, actions } from '../hooks/list';
 import { EntryContainer } from '../hooks/entry';
 import { Entry } from '../types';
-import { MovieListContainer } from '../../movies/hooks';
 
 const TestEntryCard: typeof EntryCard = props => {
   const [, dispatch] = useContainer(ListContainer);

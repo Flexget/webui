@@ -5,9 +5,9 @@ import { BaseProviders } from 'utils/tests';
 import fetchMock from 'fetch-mock';
 import { PendingListContainer } from 'plugins/lists/pending/hooks';
 import { EntryListContainer } from 'plugins/lists/entry/hooks';
+import { MovieListContainer } from 'plugins/lists/movies/hooks';
 import AddListDialog from './AddListDialog';
 import { ListContainer, actions } from '../hooks/list';
-import { MovieListContainer } from '../../movies/hooks';
 
 const TestAddListDialog: typeof AddListDialog = props => {
   const [, dispatch] = useContainer(ListContainer);

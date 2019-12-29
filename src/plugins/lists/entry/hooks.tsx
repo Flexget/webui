@@ -23,6 +23,19 @@ export const EntryListContainer = createPluginContainer(() => {
       ],
       [],
     ),
+    addEntryProps: useMemo(
+      () => [
+        {
+          label: 'Entry Title',
+          name: 'title',
+        },
+        {
+          label: 'Entry URL',
+          name: 'originalUrl',
+        },
+      ],
+      [],
+    ),
     api: {
       list: {
         useGet: () => useFlexgetAPI('/entry_list'),
