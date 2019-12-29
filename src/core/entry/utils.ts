@@ -63,7 +63,7 @@ const getMovieProps = makeGetters<MovieFields>(MovieFieldNames, movieFieldList);
 const getSeriesProps = makeGetters<SeriesFields>(SeriesFieldNames, seriesFieldList);
 const getEpisodeProps = makeGetters<EpisodeFields>(EpisodeFieldNames, episodesFieldList);
 
-const toMovieEntry = (entry: RawMovieEntry): MovieEntry => {
+export const toMovieEntry = (entry: RawMovieEntry): MovieEntry => {
   return {
     ...entry,
     type: CardType.Movie,
@@ -71,19 +71,19 @@ const toMovieEntry = (entry: RawMovieEntry): MovieEntry => {
   };
 };
 
-const toSeriesEntry = (entry: RawSeriesEntry): SeriesEntry => ({
+export const toSeriesEntry = (entry: RawSeriesEntry): SeriesEntry => ({
   ...entry,
   type: CardType.Series,
   ...getSeriesProps(entry),
 });
 
-const toEpisodeEntry = (entry: RawEpisodeEntry): EpisodeEntry => ({
+export const toEpisodeEntry = (entry: RawEpisodeEntry): EpisodeEntry => ({
   ...entry,
   type: CardType.Episode,
   ...getEpisodeProps(entry),
 });
 
-const toDefaultEntry = (entry: RawEntry): DefaultEntry => ({
+export const toDefaultEntry = (entry: RawEntry): DefaultEntry => ({
   ...entry,
   type: CardType.Default,
 });

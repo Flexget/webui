@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useFlexgetAPI } from 'core/api';
 import { Method } from 'utils/fetch';
 import { SortBy } from './types';
@@ -23,37 +23,33 @@ export const EntryListContainer = createPluginContainer(() => {
       ],
       [],
     ),
+    addEntryProps: useMemo(
+      () => [
+        {
+          label: 'Entry Title',
+          name: 'title',
+        },
+        {
+          label: 'Entry URL',
+          name: 'originalUrl',
+        },
+      ],
+      [],
+    ),
     api: {
       list: {
-        get: useFlexgetAPI('/entry_list'),
-        add: useFlexgetAPI('/entry_list', Method.Post),
-        remove: useFlexgetAPI(
-          useCallback((listId?: number) => `/entry_list/${listId}`, []),
-          Method.Delete,
-        ),
+        useGet: () => useFlexgetAPI('/entry_list'),
+        useAdd: () => useFlexgetAPI('/entry_list', Method.Post),
+        useRemove: (listId?: number) => useFlexgetAPI(`/entry_list/${listId}`, Method.Delete),
       },
       entry: {
-        get: useFlexgetAPI(
-          useCallback(
-            (listId: number, query: string) => `/entry_list/${listId}/entries?${query}`,
-            [],
-          ),
-        ),
-        add: useFlexgetAPI(
-          useCallback((listId: number) => `/entry_list/${listId}/entries`, []),
-          Method.Post,
-        ),
-        remove: useFlexgetAPI(
-          useCallback(
-            (listId: number, entryId: number) => `/entry_list/${listId}/entries/${entryId}`,
-            [],
-          ),
-          Method.Delete,
-        ),
-        removeBulk: useFlexgetAPI(
-          useCallback((listId: number) => `/entry_list/${listId}/entries/batch`, []),
-          Method.Delete,
-        ),
+        useGet: (listId: number, query: string) =>
+          useFlexgetAPI(`/entry_list/${listId}/entries?${query}`),
+        useAdd: (listId?: number) => useFlexgetAPI(`/entry_list/${listId}/entries`, Method.Post),
+        useRemove: (listId: number, entryId: number) =>
+          useFlexgetAPI(`/entry_list/${listId}/entries/${entryId}`, Method.Delete),
+        useRemoveBulk: (listId: number) =>
+          useFlexgetAPI(`/entry_list/${listId}/entries/batch`, Method.Delete),
       },
     },
   };

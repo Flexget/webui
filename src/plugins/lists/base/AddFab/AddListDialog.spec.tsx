@@ -5,6 +5,7 @@ import { BaseProviders } from 'utils/tests';
 import fetchMock from 'fetch-mock';
 import { PendingListContainer } from 'plugins/lists/pending/hooks';
 import { EntryListContainer } from 'plugins/lists/entry/hooks';
+import { MovieListContainer } from 'plugins/lists/movies/hooks';
 import AddListDialog from './AddListDialog';
 import { ListContainer, actions } from '../hooks/list';
 
@@ -23,6 +24,7 @@ describe('plugins/lists/base/AddFab/AddListDialog', () => {
     name         | prefix            | Provider
     ${'pending'} | ${'pending_list'} | ${PendingListContainer.Provider}
     ${'entry'}   | ${'entry_list'}   | ${EntryListContainer.Provider}
+    ${'movie'}   | ${'movie_list'}   | ${MovieListContainer.Provider}
   `('$name', ({ prefix, Provider }) => {
     const wrapper: FC = ({ children }) => (
       <BaseProviders>

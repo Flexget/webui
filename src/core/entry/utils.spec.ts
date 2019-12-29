@@ -27,7 +27,7 @@ import {
   TraktFields as TraktSeriesFields,
 } from './fields/series';
 
-describe('./utils', () => {
+describe('core/entry/utils', () => {
   describe('toEntry', () => {
     const entry = makeRawEntry();
     describe('default', () => {

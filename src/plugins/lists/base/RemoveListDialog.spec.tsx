@@ -3,10 +3,11 @@ import { useContainer } from 'unstated-next';
 import { cleanup, render, fireEvent, within, wait } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
 import fetchMock from 'fetch-mock';
-import { PendingListContainer } from 'plugins/lists/pending/hooks';
-import { EntryListContainer } from 'plugins/lists/entry/hooks';
 import RemoveListDialog from './RemoveListDialog';
 import { ListContainer, actions } from './hooks/list';
+import { PendingListContainer } from '../pending/hooks';
+import { EntryListContainer } from '../entry/hooks';
+import { MovieListContainer } from '../movies/hooks';
 
 const TestRemoveListDialog: typeof RemoveListDialog = props => {
   const [, dispatch] = useContainer(ListContainer);
@@ -23,6 +24,7 @@ describe('plugins/lists/base/EntryListHeader/RemoveListDialog', () => {
     name         | prefix            | Provider
     ${'pending'} | ${'pending_list'} | ${PendingListContainer.Provider}
     ${'entry'}   | ${'entry_list'}   | ${EntryListContainer.Provider}
+    ${'movie'}   | ${'movie_list'}   | ${MovieListContainer.Provider}
   `('$name', ({ prefix, Provider }) => {
     const wrapper: FC = ({ children }) => (
       <BaseProviders>

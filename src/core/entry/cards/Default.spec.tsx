@@ -3,24 +3,24 @@ import { render } from '@testing-library/react';
 import { makeRawEntry } from '../fixtures';
 import { toEntry } from '../utils';
 import { DefaultEntry } from '../fields';
-import DefaultCard from './Default';
+import Card from './index';
 
 describe('common/Entry/cards/Default', () => {
   const entry = toEntry(makeRawEntry()) as DefaultEntry;
   it('contains title', () => {
-    const { queryByText } = render(<DefaultCard entry={entry} />);
+    const { queryByText } = render(<Card entry={entry} />);
 
     expect(queryByText(entry.title)).toBeInTheDocument();
   });
 
   it('contains originalUrl', () => {
-    const { queryByText } = render(<DefaultCard entry={entry} />);
+    const { queryByText } = render(<Card entry={entry} />);
 
     expect(queryByText(entry.originalUrl)).toBeInTheDocument();
   });
 
   it('works with className', () => {
-    const { container } = render(<DefaultCard entry={entry} className="testClassName" />);
+    const { container } = render(<Card entry={entry} className="testClassName" />);
     expect(container.querySelector('.testClassName')).toBeInTheDocument();
   });
 });

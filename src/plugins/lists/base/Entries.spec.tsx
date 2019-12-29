@@ -3,17 +3,19 @@ import { cleanup, fireEvent, within, getNodeText } from '@testing-library/react'
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
-import { PendingListContainer } from 'plugins/lists/pending/hooks';
-import { EntryListContainer } from 'plugins/lists/entry/hooks';
 import Entries from './Entries';
 import { ListContainer } from './hooks/list';
+import { PendingListContainer } from '../pending/hooks';
+import { EntryListContainer } from '../entry/hooks';
+import { MovieListContainer } from '../movies/hooks';
 
 describe('plugins/lists/base/entries', () => {
   describe.each`
-    name         | prefix            | Provider
-    ${'pending'} | ${'pending_list'} | ${PendingListContainer.Provider}
-    ${'entry'}   | ${'entry_list'}   | ${EntryListContainer.Provider}
-  `('$name', ({ prefix, Provider }) => {
+    name         | prefix            | itemPrefix   | Provider
+    ${'pending'} | ${'pending_list'} | ${'entries'} | ${PendingListContainer.Provider}
+    ${'entry'}   | ${'entry_list'}   | ${'entries'} | ${EntryListContainer.Provider}
+    ${'movie'}   | ${'movie_list'}   | ${'movies'}  | ${MovieListContainer.Provider}
+  `('$name', ({ prefix, Provider, itemPrefix }) => {
     const TestEntries: FC = () => {
       return (
         <>
@@ -41,7 +43,7 @@ describe('plugins/lists/base/entries', () => {
             addedOn: new Date().toUTCString(),
           },
         ])
-        .get(`glob:/api/${prefix}/*/entries?*`, [])
+        .get(`glob:/api/${prefix}/*/${itemPrefix}?*`, [])
         .get('/api/tasks', [])
         .catch();
     });
@@ -58,7 +60,7 @@ describe('plugins/lists/base/entries', () => {
         const tabs = await within(tablist).findAllByRole('tab');
         expect(tabs).toHaveLength(2);
 
-        expect(fetchMock.called(`glob:/api/${prefix}/1/entries?*`)).toBeTrue();
+        expect(fetchMock.called(`glob:/api/${prefix}/1/${itemPrefix}?*`)).toBeTrue();
         expect(tabs[0]).toHaveAttribute('aria-selected', 'true');
         expect(tabs[0]).toHaveTextContent('List 1');
         expect(tabs[1]).toHaveAttribute('aria-selected', 'false');
@@ -72,7 +74,7 @@ describe('plugins/lists/base/entries', () => {
         fireEvent.click(tabs[1]);
         expect(tabs[0]).toHaveAttribute('aria-selected', 'false');
         expect(tabs[1]).toHaveAttribute('aria-selected', 'true');
-        expect(fetchMock.called(`glob:/api/${prefix}/2/entries?*`)).toBeTrue();
+        expect(fetchMock.called(`glob:/api/${prefix}/2/${itemPrefix}?*`)).toBeTrue();
       });
     });
 
@@ -97,7 +99,7 @@ describe('plugins/lists/base/entries', () => {
         expect(dropdown).toHaveTextContent(getNodeText(options[1]));
         expect(
           fetchMock.called(
-            `glob:/api/${prefix}/1/entries?*order=${options[1].getAttribute('data-value')}*`,
+            `glob:/api/${prefix}/1/${itemPrefix}?*order=${options[1].getAttribute('data-value')}*`,
           ),
         ).toBeTrue();
       });
@@ -114,7 +116,9 @@ describe('plugins/lists/base/entries', () => {
         expect(dropdown).toHaveTextContent(getNodeText(options[1]));
         expect(
           fetchMock.called(
-            `glob:/api/${prefix}/1/entries?*sort_by=${options[1].getAttribute('data-value')}*`,
+            `glob:/api/${prefix}/1/${itemPrefix}?*sort_by=${options[1].getAttribute(
+              'data-value',
+            )}*`,
           ),
         ).toBeTrue();
       });

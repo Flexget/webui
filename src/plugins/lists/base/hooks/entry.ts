@@ -1,4 +1,4 @@
-import { useReducer, Reducer, useEffect, useCallback, useMemo } from 'react';
+import { useReducer, Reducer, useEffect, useCallback, useMemo, useDebugValue } from 'react';
 import { createContainer, useContainer } from 'unstated-next';
 import { action } from 'utils/hooks/actions';
 import { snakeCase } from 'utils/fetch';
@@ -7,7 +7,7 @@ import { useExecuteTask } from 'core/tasks/hooks';
 import { toExecuteRequest } from 'core/tasks/utils';
 import { usePluginContainer } from './api';
 import { ListContainer } from './list';
-import { AddEntryRequest, Entry, Options } from '../types';
+import { Entry, Options } from '../types';
 
 export const enum Constants {
   GET_ENTRIES = '@flexget/pendingList/GET_ENTRIES',
@@ -115,9 +115,10 @@ const entryReducer: Reducer<State, Actions> = (state, act) => {
   }
 };
 
-export const EntryContainer = createContainer(() =>
-  useReducer(entryReducer, { entries: [], totalCount: 0, selectedIds: new Set<number>() }),
-);
+export const EntryContainer = createContainer(() => {
+  useDebugValue('EntryContainer');
+  return useReducer(entryReducer, { entries: [], totalCount: 0, selectedIds: new Set<number>() });
+});
 
 export const useGetEntries = (options: Options) => {
   const [, dispatch] = useContainer(EntryContainer);
@@ -129,13 +130,11 @@ export const useGetEntries = (options: Options) => {
 
   const {
     api: {
-      entry: {
-        get: [state, makeRequest],
-      },
+      entry: { useGet },
     },
   } = usePluginContainer();
 
-  const request = useMemo(() => makeRequest(listId, query), [listId, makeRequest, query]);
+  const [state, request] = useGet(listId, query);
 
   useEffect(() => {
     if (!listId) {
@@ -160,15 +159,13 @@ export const useAddEntry = () => {
   const [, dispatch] = useContainer(EntryContainer);
   const {
     api: {
-      entry: {
-        add: [state, makeRequest],
-      },
+      entry: { useAdd },
     },
   } = usePluginContainer();
-  const request = useMemo(() => makeRequest(listId), [listId, makeRequest]);
+  const [state, request] = useAdd(listId);
 
   const addEntry = useCallback(
-    async (req: AddEntryRequest) => {
+    async (req: Record<string, string>) => {
       const resp = await request(req);
       if (resp.ok) {
         dispatch(actions.addEntry(resp.data));
@@ -186,12 +183,10 @@ const useRemoveSingleEntry = (entryId?: number) => {
   const [, dispatch] = useContainer(EntryContainer);
   const {
     api: {
-      entry: {
-        remove: [state, makeRequest],
-      },
+      entry: { useRemove },
     },
   } = usePluginContainer();
-  const request = useMemo(() => makeRequest(listId, entryId), [entryId, listId, makeRequest]);
+  const [state, request] = useRemove(listId, entryId);
 
   const removeEntry = useCallback(async () => {
     const resp = await request();
@@ -210,12 +205,10 @@ const useRemoveBulkEntry = () => {
   const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
   const {
     api: {
-      entry: {
-        removeBulk: [state, makeRequest],
-      },
+      entry: { useRemoveBulk },
     },
   } = usePluginContainer();
-  const request = useMemo(() => makeRequest(listId), [listId, makeRequest]);
+  const [state, request] = useRemoveBulk(listId);
 
   const removeEntry = useCallback(async () => {
     const ids = [...selectedIds];

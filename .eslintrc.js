@@ -49,6 +49,7 @@ module.exports = {
     ],
     '@typescript-eslint/prefer-nullish-coalescing': 'error',
     '@typescript-eslint/prefer-optional-chain': 'error',
+    '@typescript-eslint/interface-name-prefix': 'off',
 
     // emotion
     'emotion/import-from-emotion': 'error',

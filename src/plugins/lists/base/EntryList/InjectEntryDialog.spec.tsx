@@ -6,6 +6,7 @@ import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
 import { PendingListContainer } from 'plugins/lists/pending/hooks';
 import { EntryListContainer } from 'plugins/lists/entry/hooks';
+import { MovieListContainer } from 'plugins/lists/movies/hooks';
 import InjectEntryDialog from './InjectEntryDialog';
 import { ListContainer, actions } from '../hooks/list';
 import { EntryContainer } from '../hooks/entry';
@@ -23,10 +24,11 @@ const TestInjectEntryDialog: typeof InjectEntryDialog = props => {
 
 describe('plugins/lists/base/EntryList/InjectEntryDialog', () => {
   describe.each`
-    name         | prefix            | Provider
-    ${'pending'} | ${'pending_list'} | ${PendingListContainer.Provider}
-    ${'entry'}   | ${'entry_list'}   | ${EntryListContainer.Provider}
-  `('$name', ({ prefix, Provider }) => {
+    name         | prefix            | itemPrefix   | Provider
+    ${'pending'} | ${'pending_list'} | ${'entries'} | ${PendingListContainer.Provider}
+    ${'entry'}   | ${'entry_list'}   | ${'entries'} | ${EntryListContainer.Provider}
+    ${'movie'}   | ${'movie_list'}   | ${'movies'}  | ${MovieListContainer.Provider}
+  `('$name', ({ prefix, Provider, itemPrefix }) => {
     const wrapper: FC = ({ children }) => (
       <BaseProviders>
         <Provider>
@@ -38,7 +40,7 @@ describe('plugins/lists/base/EntryList/InjectEntryDialog', () => {
     );
     beforeEach(() => {
       fetchMock
-        .delete(`glob:/api/${prefix}/1/entries/*`, {})
+        .delete(`glob:/api/${prefix}/1/${itemPrefix}/*`, {})
         .get('/api/tasks', [
           { name: 'task 1' },
           {
@@ -88,7 +90,7 @@ describe('plugins/lists/base/EntryList/InjectEntryDialog', () => {
 
       fireEvent.click(submitButton);
       await wait(() => {
-        expect(fetchMock.called(`/api/${prefix}/1/entries/1`)).toBeTrue();
+        expect(fetchMock.called(`/api/${prefix}/1/${itemPrefix}/1`)).toBeTrue();
         expect(fetchMock.called('/api/tasks/execute')).toBeTrue();
         expect(handleClose).toHaveBeenCalled();
       });
@@ -102,7 +104,7 @@ describe('plugins/lists/base/EntryList/InjectEntryDialog', () => {
       );
 
       fireEvent.click(submitButton);
-      expect(fetchMock.called(`/api/${prefix}/1/entries/1`)).toBeFalse();
+      expect(fetchMock.called(`/api/${prefix}/1/${itemPrefix}/1`)).toBeFalse();
       expect(handleClose).toHaveBeenCalled();
     });
   });

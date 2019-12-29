@@ -3,22 +3,22 @@ import { cleanup } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
-import PendingList from './PendingList';
+import EntryList from './MovieList';
 
-const TestPendingList: FC = () => {
+const TestEntryList: FC = () => {
   return (
     <>
       <AppBar toggleSidebar={jest.fn()} />
-      <PendingList />
+      <EntryList />
     </>
   );
 };
 
-describe('plugins/lists/pending', () => {
+describe('plugins/lists/movies', () => {
   beforeEach(() => {
     fetchMock
-      .get('/api/pending_list', [])
-      .get('glob:/api/pending_list/*/entries?*', [])
+      .get('/api/movie_list', [])
+      .get('glob:/api/movie_list/*/movies?*', [])
       .get('/api/tasks', [])
       .catch();
   });
@@ -30,9 +30,9 @@ describe('plugins/lists/pending', () => {
 
   describe('contextual app bar', () => {
     it('should have title Managed List', () => {
-      const { queryByText } = renderWithWrapper(<TestPendingList />);
+      const { queryByText } = renderWithWrapper(<TestEntryList />);
 
-      expect(queryByText('Pending List', { selector: 'h6' })).toBeInTheDocument();
+      expect(queryByText('Movie List', { selector: 'h6' })).toBeInTheDocument();
     });
   });
 });
