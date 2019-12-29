@@ -1,7 +1,8 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { Typography } from '@material-ui/core';
+import fetchMock from 'fetch-mock';
 import { compose } from 'utils';
+import { renderWithWrapper } from 'utils/tests';
+import { cleanup } from '@testing-library/react';
 import {
   makeRawEntry,
   withEpisodeRawEntry,
@@ -10,9 +11,18 @@ import {
 } from '../fixtures';
 import { toEntry } from '../utils';
 import { EpisodeEntry } from '../fields/episodes';
-import EpisodeCard from './Episode';
+import Card from './index';
 
 describe('common/Entry/cards/Episode', () => {
+  beforeEach(() => {
+    fetchMock.get('/api/tasks', []).catch();
+  });
+
+  afterEach(() => {
+    fetchMock.reset();
+    cleanup();
+  });
+
   describe('no additional fields', () => {
     const rawEntry = compose(
       e => ({ ...e, traktEpName: 'some name' }),
@@ -20,38 +30,19 @@ describe('common/Entry/cards/Episode', () => {
     )(makeRawEntry());
     const entry = toEntry(rawEntry) as EpisodeEntry;
     it('contains header', () => {
-      const wrapper = mount(<EpisodeCard entry={entry} />);
-      const header = wrapper.findWhere(
-        el => el.type() === Typography && el.props().variant === 'h5',
-      );
+      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
 
-      expect(header.text()).toEqual(
-        `${entry.seriesName} - ${entry.episodeName} - ${entry.seriesId}`,
-      );
+      expect(
+        queryByText(`${entry.seriesName} - ${entry.episodeName} - ${entry.seriesId}`, {
+          selector: 'h2',
+        }),
+      ).toBeInTheDocument();
     });
 
-    it('does not have genres', () => {
-      const wrapper = mount(<EpisodeCard entry={entry} />);
-      const genres = wrapper.findWhere(
-        el => el.type() === Typography && el.props().variant === 'overline',
-      );
+    it('has quality', () => {
+      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
 
-      expect(genres.text()).toEqual(`${entry.quality}•`);
-    });
-
-    it('does not have description', () => {
-      const wrapper = mount(<EpisodeCard entry={entry} />);
-      const description = wrapper.findWhere(
-        el => el.type() === Typography && el.props().variant === 'body2',
-      );
-
-      expect(description.text()).toEqual('');
-    });
-
-    it('works with className', () => {
-      const wrapper = mount(<EpisodeCard entry={entry} className="testClassName" />);
-      const content = wrapper.childAt(0);
-      expect(content.hasClass('testClassName')).toBe(true);
+      expect(queryByText(entry.quality, { selector: 'span' })).toBeInTheDocument();
     });
   });
 
@@ -63,40 +54,33 @@ describe('common/Entry/cards/Episode', () => {
     )(makeRawEntry());
     const entry = toEntry(rawEntry) as EpisodeEntry;
     it('contains header', () => {
-      const wrapper = mount(<EpisodeCard entry={entry} />);
-      const header = wrapper.findWhere(
-        el => el.type() === Typography && el.props().variant === 'h5',
-      );
+      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
 
-      expect(header.text()).toEqual(
-        `${entry.seriesName} - ${entry.episodeName} - ${entry.seriesId}`,
-      );
+      expect(
+        queryByText(`${entry.seriesName} - ${entry.episodeName} - ${entry.seriesId}`, {
+          selector: 'h2',
+        }),
+      ).toBeInTheDocument();
     });
 
-    it('does have genres', () => {
-      const wrapper = mount(<EpisodeCard entry={entry} />);
-      const genres = wrapper.findWhere(
-        el => el.type() === Typography && el.props().variant === 'overline',
-      );
+    it('has quality, contentRating, and genres', () => {
+      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
 
-      expect(genres.text()).toEqual(
-        `${entry.quality}•${entry.contentRating}•${entry.genres?.join(' ')}`,
-      );
+      expect(
+        queryByText(`${entry.quality}${entry.contentRating}${entry.genres?.join(' ')}`, {
+          selector: 'span',
+        }),
+      ).toBeInTheDocument();
     });
 
-    it('does have description', () => {
-      const wrapper = mount(<EpisodeCard entry={entry} />);
-      const description = wrapper.findWhere(
-        el => el.type() === Typography && el.props().variant === 'body2',
-      );
+    it('has description', () => {
+      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
 
-      expect(description.text()).toEqual(entry.description);
-    });
-
-    it('works with className', () => {
-      const wrapper = mount(<EpisodeCard entry={entry} className="testClassName" />);
-      const content = wrapper.childAt(0);
-      expect(content.hasClass('testClassName')).toBe(true);
+      expect(
+        queryByText(`${entry.description}`, {
+          selector: 'p',
+        }),
+      ).toBeInTheDocument();
     });
   });
 });

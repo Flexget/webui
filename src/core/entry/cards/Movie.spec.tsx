@@ -1,87 +1,66 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { Typography } from '@material-ui/core';
+import { cleanup } from '@testing-library/react';
+import fetchMock from 'fetch-mock';
 import { compose } from 'utils';
 import { normalizeMinutes } from 'utils/time';
+import { renderWithWrapper } from 'utils/tests';
 import { makeRawEntry, withMovieRawEntry, withTMDBFields, withTraktFields } from '../fixtures';
 import { toEntry } from '../utils';
 import { MovieEntry } from '../fields/movies';
-import MovieCard from './Movie';
+import Card from './index';
 
 describe('common/Entry/cards/Movie', () => {
+  beforeEach(() => {
+    fetchMock
+      .get('/api/tasks', [])
+      .get('glob:/api/tmdb/movies?*', 404)
+      .get('glob:/api/trakt/movies?*', 404)
+      .catch();
+  });
+
+  afterEach(() => {
+    fetchMock.reset();
+    cleanup();
+  });
+
   describe('no additional fields', () => {
     const rawEntry = compose(withMovieRawEntry)(makeRawEntry());
     const entry = toEntry(rawEntry) as MovieEntry;
-    it('contains header', () => {
-      const wrapper = mount(<MovieCard entry={entry} />);
-      const header = wrapper.findWhere(
-        el => el.type() === Typography && el.props().variant === 'h5',
-      );
+    it('contains header', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
-      expect(header.text()).toEqual(`${entry.movieName} (${entry.movieYear})`);
+      expect(await findByText(`${entry.movieName} (${entry.movieYear})`)).toBeInTheDocument();
     });
 
-    it('does not have genres', () => {
-      const wrapper = mount(<MovieCard entry={entry} />);
-      const genres = wrapper.findWhere(
-        el => el.type() === Typography && el.props().variant === 'overline',
-      );
+    it('contains quality', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
-      expect(genres.text()).toEqual(`${entry.quality}•`);
-    });
-
-    it('does not have description', () => {
-      const wrapper = mount(<MovieCard entry={entry} />);
-      const description = wrapper.findWhere(
-        el => el.type() === Typography && el.props().variant === 'body2',
-      );
-
-      expect(description.text()).toEqual('');
-    });
-
-    it('works with className', () => {
-      const wrapper = mount(<MovieCard entry={entry} className="testClassName" />);
-      const content = wrapper.childAt(0);
-      expect(content.hasClass('testClassName')).toBe(true);
+      expect(await findByText(entry.quality)).toBeInTheDocument();
     });
   });
 
   describe('with fields', () => {
     const rawEntry = compose(withTraktFields, withTMDBFields, withMovieRawEntry)(makeRawEntry());
     const entry = toEntry(rawEntry) as MovieEntry;
-    it('contains header', () => {
-      const wrapper = mount(<MovieCard entry={entry} />);
-      const header = wrapper.findWhere(
-        el => el.type() === Typography && el.props().variant === 'h5',
-      );
+    it('contains header', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
-      expect(header.text()).toEqual(`${entry.movieName} (${entry.movieYear})`);
+      expect(await findByText(`${entry.movieName} (${entry.movieYear})`)).toBeInTheDocument();
     });
 
-    it('does have genres', () => {
-      const wrapper = mount(<MovieCard entry={entry} />);
-      const genres = wrapper.findWhere(
-        el => el.type() === Typography && el.props().variant === 'overline',
-      );
+    it('contains quality, runtime, and genres', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
-      expect(genres.text()).toEqual(
-        `${entry.quality}•${normalizeMinutes(entry.runtime ?? 0)}•${entry.genres?.join(' ')}`,
-      );
+      expect(
+        await findByText(
+          `${entry.quality}${normalizeMinutes(entry.runtime ?? 0)}${entry.genres?.join(' ')}`,
+        ),
+      ).toBeInTheDocument();
     });
+    it('contains description', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
-    it('does have description', () => {
-      const wrapper = mount(<MovieCard entry={entry} />);
-      const description = wrapper.findWhere(
-        el => el.type() === Typography && el.props().variant === 'body2',
-      );
-
-      expect(description.text()).toEqual(entry.description);
-    });
-
-    it('works with className', () => {
-      const wrapper = mount(<MovieCard entry={entry} className="testClassName" />);
-      const content = wrapper.childAt(0);
-      expect(content.hasClass('testClassName')).toBe(true);
+      expect(await findByText(`${entry.description}`)).toBeInTheDocument();
     });
   });
 });
