@@ -129,13 +129,11 @@ export const useGetEntries = (options: Options) => {
 
   const {
     api: {
-      entry: {
-        get: [state, makeRequest],
-      },
+      entry: { useGet },
     },
   } = usePluginContainer();
 
-  const request = useMemo(() => makeRequest(listId, query), [listId, makeRequest, query]);
+  const [state, request] = useGet(listId, query);
 
   useEffect(() => {
     if (!listId) {
@@ -160,12 +158,10 @@ export const useAddEntry = () => {
   const [, dispatch] = useContainer(EntryContainer);
   const {
     api: {
-      entry: {
-        add: [state, makeRequest],
-      },
+      entry: { useAdd },
     },
   } = usePluginContainer();
-  const request = useMemo(() => makeRequest(listId), [listId, makeRequest]);
+  const [state, request] = useAdd(listId);
 
   const addEntry = useCallback(
     async (req: AddEntryRequest) => {
@@ -186,12 +182,10 @@ const useRemoveSingleEntry = (entryId?: number) => {
   const [, dispatch] = useContainer(EntryContainer);
   const {
     api: {
-      entry: {
-        remove: [state, makeRequest],
-      },
+      entry: { useRemove },
     },
   } = usePluginContainer();
-  const request = useMemo(() => makeRequest(listId, entryId), [entryId, listId, makeRequest]);
+  const [state, request] = useRemove(listId, entryId);
 
   const removeEntry = useCallback(async () => {
     const resp = await request();
@@ -210,12 +204,10 @@ const useRemoveBulkEntry = () => {
   const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
   const {
     api: {
-      entry: {
-        removeBulk: [state, makeRequest],
-      },
+      entry: { useRemoveBulk },
     },
   } = usePluginContainer();
-  const request = useMemo(() => makeRequest(listId), [listId, makeRequest]);
+  const [state, request] = useRemoveBulk(listId);
 
   const removeEntry = useCallback(async () => {
     const ids = [...selectedIds];

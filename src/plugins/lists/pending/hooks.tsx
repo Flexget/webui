@@ -106,35 +106,18 @@ export const PendingListContainer = createPluginContainer(() => {
     },
     api: {
       list: {
-        get: useFlexgetAPI('/pending_list'),
-        add: useFlexgetAPI('/pending_list', Method.Post),
-        remove: useFlexgetAPI(
-          useCallback((listId?: number) => `/pending_list/${listId}`, []),
-          Method.Delete,
-        ),
+        useGet: () => useFlexgetAPI('/pending_list'),
+        useAdd: () => useFlexgetAPI('/pending_list', Method.Post),
+        useRemove: (listId?: number) => useFlexgetAPI(`/pending_list/${listId}`, Method.Delete),
       },
       entry: {
-        get: useFlexgetAPI(
-          useCallback(
-            (listId: number, query: string) => `/pending_list/${listId}/entries?${query}`,
-            [],
-          ),
-        ),
-        add: useFlexgetAPI(
-          useCallback((listId: number) => `/pending_list/${listId}/entries`, []),
-          Method.Post,
-        ),
-        remove: useFlexgetAPI(
-          useCallback(
-            (listId: number, entryId: number) => `/pending_list/${listId}/entries/${entryId}`,
-            [],
-          ),
-          Method.Delete,
-        ),
-        removeBulk: useFlexgetAPI(
-          useCallback((listId: number) => `/pending_list/${listId}/entries/batch`, []),
-          Method.Delete,
-        ),
+        useGet: (listId: number, query: string) =>
+          useFlexgetAPI(`/pending_list/${listId}/entries?${query}`),
+        useAdd: (listId?: number) => useFlexgetAPI(`/pending_list/${listId}/entries`, Method.Post),
+        useRemove: (listId: number, pendingId: number) =>
+          useFlexgetAPI(`/pending_list/${listId}/entries/${pendingId}`, Method.Delete),
+        useRemoveBulk: (listId: number) =>
+          useFlexgetAPI(`/pending_list/${listId}/entries/batch`, Method.Delete),
       },
     },
   };

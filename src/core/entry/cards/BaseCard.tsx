@@ -29,48 +29,59 @@ const poster = (theme: Theme) => css`
 const text = css`
   height: 1.4rem;
   width: 100%;
-`
+`;
 
-const summary = (theme: Theme) =>  css`
+const summary = (theme: Theme) => css`
   height: 1.4rem;
   width: 25%;
   margin: ${theme.typography.pxToRem(theme.spacing(2))} 0;
-`
+`;
 
-const header = (theme: Theme) =>  css`
+const header = (theme: Theme) => css`
   width: 70%;
   margin-bottom: ${theme.typography.pxToRem(theme.spacing(1))};
-`
+`;
 
-const BaseCard: FC<Props> = ({ images, label, isPoster = false, children, className, loading = false }) => {
+const BaseCard: FC<Props> = ({
+  images,
+  label,
+  isPoster = false,
+  children,
+  className,
+  loading = false,
+}) => {
   const imageCss = useCallback((theme: Theme) => [image, isPoster && poster(theme)], [isPoster]);
 
   const imageUrl = images && Array.isArray(images) ? images[0] : images;
   return (
     <div className={className}>
-
       {loading ? (
         <Skeleton variant="rect" css={imageCss} />
-      ) :
+      ) : (
         !!imageUrl && (
-        <CardMedia
-          css={imageCss}
-          component={isPoster ? 'img' : 'div'}
-          role="img"
-          aria-label={label}
-          image={getCachedUrl(imageUrl)}
-          title={label}
-        />
+          <CardMedia
+            css={imageCss}
+            component={isPoster ? 'img' : 'div'}
+            role="img"
+            aria-label={label}
+            image={getCachedUrl(imageUrl)}
+            title={label}
+          />
+        )
       )}
-          <CardContent>{loading ? (
-            <>
-              <Skeleton  css={header} />
-              <Skeleton css={summary} />
-              <Skeleton  css={text} />
-              <Skeleton  css={text} />
-              <Skeleton  css={text} />
-            </>
-          ) : children}</CardContent>
+      <CardContent>
+        {loading ? (
+          <>
+            <Skeleton css={header} />
+            <Skeleton css={summary} />
+            <Skeleton css={text} />
+            <Skeleton css={text} />
+            <Skeleton css={text} />
+          </>
+        ) : (
+          children
+        )}
+      </CardContent>
     </div>
   );
 };

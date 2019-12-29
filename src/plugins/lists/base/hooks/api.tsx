@@ -1,22 +1,21 @@
 import React, { createContext, useContext, ComponentType } from 'react';
-import { RequestState, APIRequest, APIRequestCreator } from 'core/api';
+import { RequestState, APIRequest } from 'core/api';
 import { ContainerProviderProps } from 'unstated-next';
 import { OverflowMenuProps } from 'core/layout/AppBar/OverflowMenu';
 import { Option } from 'common/inputs/SelectField';
 import { List, Entry } from '../types';
 
-type SelectedId = number | undefined;
 interface ListAPI {
-  get: [RequestState, APIRequest<List[]>];
-  add: [RequestState, APIRequest<List>];
-  remove: [RequestState, APIRequestCreator<[SelectedId]>];
+  useGet: () => [RequestState, APIRequest<List[]>];
+  useAdd: () => [RequestState, APIRequest<List>];
+  useRemove: (listId?: number) => [RequestState, APIRequest];
 }
 
 interface EntryAPI {
-  get: [RequestState, APIRequestCreator<[SelectedId, string], Entry[]>];
-  add: [RequestState, APIRequestCreator<[SelectedId], Entry>];
-  remove: [RequestState, APIRequestCreator<[SelectedId, SelectedId]>];
-  removeBulk: [RequestState, APIRequestCreator<[SelectedId]>];
+  useGet: (listId: number | undefined, query: string) => [RequestState, APIRequest<Entry[]>];
+  useAdd: (listId?: number) => [RequestState, APIRequest<Entry>];
+  useRemove: (listId?: number, entryId?: number) => [RequestState, APIRequest];
+  useRemoveBulk: (listId?: number) => [RequestState, APIRequest];
 }
 
 export interface API {

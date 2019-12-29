@@ -1,4 +1,4 @@
-import { useReducer, Reducer, useEffect, useCallback, useMemo } from 'react';
+import { useReducer, Reducer, useEffect, useCallback } from 'react';
 import { action } from 'utils/hooks/actions';
 import { createContainer, useContainer } from 'unstated-next';
 import { usePluginContainer } from './api';
@@ -62,11 +62,11 @@ export const useGetLists = () => {
 
   const {
     api: {
-      list: {
-        get: [state, request],
-      },
+      list: { useGet },
     },
   } = usePluginContainer();
+
+  const [state, request] = useGet();
   // Fetch Lists
   useEffect(() => {
     const fn = async () => {
@@ -87,11 +87,11 @@ export const useAddList = () => {
 
   const {
     api: {
-      list: {
-        add: [state, request],
-      },
+      list: { useAdd },
     },
   } = usePluginContainer();
+
+  const [state, request] = useAdd();
 
   const addList = useCallback(
     async (req: AddListRequest) => {
@@ -112,13 +112,11 @@ export const useRemoveList = () => {
 
   const {
     api: {
-      list: {
-        remove: [state, requestCreator],
-      },
+      list: { useRemove },
     },
   } = usePluginContainer();
 
-  const request = useMemo(() => requestCreator(listId), [listId, requestCreator]);
+  const [state, request] = useRemove(listId);
 
   const removeList = useCallback(async () => {
     const resp = await request();
