@@ -7,7 +7,7 @@ import { createPluginContainer } from '../base/hooks/api';
 const movieToEntry = (movie: Movie): Movie => ({
   ...movie,
   entry: camelize(
-    movie.moviesListIds.reduce(
+    movie.moviesListIds?.reduce(
       (obj, { idName, idValue }) => ({
         ...obj,
         [idName]: idValue,

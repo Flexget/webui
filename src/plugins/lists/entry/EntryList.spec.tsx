@@ -14,7 +14,7 @@ const TestEntryList: FC = () => {
   );
 };
 
-describe('plugins/lists/base', () => {
+describe('plugins/lists/entry', () => {
   beforeEach(() => {
     fetchMock
       .get('/api/entry_list', [])

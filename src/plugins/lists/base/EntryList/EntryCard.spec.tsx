@@ -10,6 +10,7 @@ import EntryCard from './EntryCard';
 import { ListContainer, actions } from '../hooks/list';
 import { EntryContainer } from '../hooks/entry';
 import { Entry } from '../types';
+import { MovieListContainer } from '../../movies/hooks';
 
 const TestEntryCard: typeof EntryCard = props => {
   const [, dispatch] = useContainer(ListContainer);
@@ -23,9 +24,10 @@ const TestEntryCard: typeof EntryCard = props => {
 
 describe('plugins/lists/base/EntryList/EntryCard', () => {
   describe.each`
-    name         | prefix            | Provider
-    ${'pending'} | ${'pending_list'} | ${PendingListContainer.Provider}
-    ${'entry'}   | ${'entry_list'}   | ${EntryListContainer.Provider}
+    name         | prefix            | itemPrefix   | Provider
+    ${'pending'} | ${'pending_list'} | ${'entries'} | ${PendingListContainer.Provider}
+    ${'entry'}   | ${'entry_list'}   | ${'entries'} | ${EntryListContainer.Provider}
+    ${'movie'}   | ${'movie_list'}   | ${'movies'}  | ${MovieListContainer.Provider}
   `('$name', ({ prefix, Provider }) => {
     const wrapper: FC = ({ children }) => (
       <BaseProviders>

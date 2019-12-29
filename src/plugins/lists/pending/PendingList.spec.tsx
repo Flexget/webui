@@ -14,7 +14,7 @@ const TestPendingList: FC = () => {
   );
 };
 
-describe('plugins/lists/base', () => {
+describe('plugins/lists/pending', () => {
   beforeEach(() => {
     fetchMock
       .get('/api/pending_list', [])

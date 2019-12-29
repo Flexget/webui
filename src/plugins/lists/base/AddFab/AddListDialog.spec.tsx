@@ -7,6 +7,7 @@ import { PendingListContainer } from 'plugins/lists/pending/hooks';
 import { EntryListContainer } from 'plugins/lists/entry/hooks';
 import AddListDialog from './AddListDialog';
 import { ListContainer, actions } from '../hooks/list';
+import { MovieListContainer } from '../../movies/hooks';
 
 const TestAddListDialog: typeof AddListDialog = props => {
   const [, dispatch] = useContainer(ListContainer);
@@ -23,6 +24,7 @@ describe('plugins/lists/base/AddFab/AddListDialog', () => {
     name         | prefix            | Provider
     ${'pending'} | ${'pending_list'} | ${PendingListContainer.Provider}
     ${'entry'}   | ${'entry_list'}   | ${EntryListContainer.Provider}
+    ${'movie'}   | ${'movie_list'}   | ${MovieListContainer.Provider}
   `('$name', ({ prefix, Provider }) => {
     const wrapper: FC = ({ children }) => (
       <BaseProviders>

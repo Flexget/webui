@@ -10,6 +10,7 @@ import AddEntryDialog from './AddEntryDialog';
 import { ListContainer, actions } from '../hooks/list';
 import { EntryContainer } from '../hooks/entry';
 import { Entry } from '../types';
+import { MovieListContainer } from '../../movies/hooks';
 
 const TestAddEntryDialog: typeof AddEntryDialog = props => {
   const [, dispatch] = useContainer(ListContainer);
@@ -23,10 +24,11 @@ const TestAddEntryDialog: typeof AddEntryDialog = props => {
 
 describe('plugins/lists/base/AddFab/AddEntryDialog', () => {
   describe.each`
-    name         | prefix            | Provider
-    ${'pending'} | ${'pending_list'} | ${PendingListContainer.Provider}
-    ${'entry'}   | ${'entry_list'}   | ${EntryListContainer.Provider}
-  `('$name', ({ prefix, Provider }) => {
+    name         | prefix            | itemPrefix   | Provider
+    ${'pending'} | ${'pending_list'} | ${'entries'} | ${PendingListContainer.Provider}
+    ${'entry'}   | ${'entry_list'}   | ${'entries'} | ${EntryListContainer.Provider}
+    ${'movie'}   | ${'movie_list'}   | ${'movies'}  | ${MovieListContainer.Provider}
+  `('$name', ({ prefix, Provider, itemPrefix }) => {
     const wrapper: FC = ({ children }) => (
       <BaseProviders>
         <Provider>
@@ -37,7 +39,7 @@ describe('plugins/lists/base/AddFab/AddEntryDialog', () => {
       </BaseProviders>
     );
     const rawEntry = makeRawEntry();
-    const approvedEntry: Entry = {
+    const entry: Entry = {
       ...rawEntry,
       id: 1,
       entry: rawEntry,
@@ -46,7 +48,7 @@ describe('plugins/lists/base/AddFab/AddEntryDialog', () => {
     };
     beforeEach(() => {
       fetchMock
-        .post(`/api/${prefix}/1/entries`, approvedEntry)
+        .post(`/api/${prefix}/1/${itemPrefix}`, entry)
         .get('/api/tasks', [
           { name: 'task 1' },
           {
@@ -85,7 +87,7 @@ describe('plugins/lists/base/AddFab/AddEntryDialog', () => {
 
       fireEvent.click(submitButton);
       await wait(() => {
-        expect(fetchMock.called(`/api/${prefix}/1/entries`)).toBeTrue();
+        expect(fetchMock.called(`/api/${prefix}/1/${itemPrefix}`)).toBeTrue();
         expect(handleClose).toHaveBeenCalled();
       });
     });
@@ -98,7 +100,7 @@ describe('plugins/lists/base/AddFab/AddEntryDialog', () => {
       );
 
       fireEvent.click(cancelButton);
-      expect(fetchMock.called(`/api/${prefix}/1/entries`)).toBeFalse();
+      expect(fetchMock.called(`/api/${prefix}/1/${itemPrefix}`)).toBeFalse();
       expect(handleClose).toHaveBeenCalled();
     });
   });

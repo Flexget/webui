@@ -14,11 +14,11 @@ const TestEntryList: FC = () => {
   );
 };
 
-describe('plugins/lists/base', () => {
+describe('plugins/lists/movies', () => {
   beforeEach(() => {
     fetchMock
-      .get('/api/entry_list', [])
-      .get('glob:/api/entry_list/*/entries?*', [])
+      .get('/api/movie_list', [])
+      .get('glob:/api/movie_list/*/movies?*', [])
       .get('/api/tasks', [])
       .catch();
   });
@@ -32,7 +32,7 @@ describe('plugins/lists/base', () => {
     it('should have title Managed List', () => {
       const { queryByText } = renderWithWrapper(<TestEntryList />);
 
-      expect(queryByText('Entry List', { selector: 'h6' })).toBeInTheDocument();
+      expect(queryByText('Movie List', { selector: 'h6' })).toBeInTheDocument();
     });
   });
 });
