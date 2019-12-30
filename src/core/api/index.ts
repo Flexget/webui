@@ -67,27 +67,19 @@ export enum ReadyState {
 }
 
 export const useFlexgetStream = <Message>(url: string) => {
-  const [readyState, setReadyState] = useState<ReadyState>(ReadyState.Closed);
+  const [readyState, setReadyState] = useState<ReadyState>(ReadyState.Connecting);
+
   const stream = useRef<Oboe>();
   const baseURI = useRef(uriParser(document.baseURI));
   const [messages, addMessage] = useReducer(
     (state: Message[], message: Message | 'clear') =>
-      message !== 'clear' ? [...state, message] : [],
+      message !== 'clear' ? [message, ...state] : [],
     [],
   );
 
   const clear = useCallback(() => addMessage('clear'), []);
 
-  const connect = useCallback(() => {
-    clear();
-    stream.current = oboe({
-      url: `${baseURI.current.pathname}api${url}`,
-      method: Method.Get,
-    })
-      .start(() => setReadyState(ReadyState.Open))
-      .node('{message task}', (message: Message) => addMessage(camelize(message)))
-      .fail(() => setReadyState(ReadyState.Closed));
-  }, [clear, url]);
+  const connect = useCallback(() => setReadyState(ReadyState.Connecting), []);
 
   const disconnect = useCallback(() => {
     stream.current?.abort();
@@ -100,7 +92,22 @@ export const useFlexgetStream = <Message>(url: string) => {
       disconnect();
       connect();
     }
-  }, [connect, disconnect]);
+
+    return disconnect;
+  }, [connect, disconnect, url]);
+
+  useEffect(() => {
+    if (readyState === ReadyState.Connecting) {
+      clear();
+      stream.current = oboe({
+        url: `${baseURI.current.pathname}api${url}`,
+        method: Method.Get,
+      })
+        .start(() => setReadyState(ReadyState.Open))
+        .node('{message task}', (message: Message) => addMessage(camelize(message)))
+        .fail(() => setReadyState(ReadyState.Closed));
+    }
+  }, [clear, readyState, url]);
 
   return [
     { messages, readyState },
