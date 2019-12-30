@@ -1,4 +1,4 @@
-import { useState, useCallback, useReducer, useEffect } from 'react';
+import { useState, useCallback, useReducer } from 'react';
 
 export const useOverlayState = (defaultState = false) => {
   const [isOpen, setOpen] = useState(defaultState);
@@ -18,20 +18,4 @@ export const useMergeState = <T>(defaultState: T) => {
     }),
     defaultState,
   );
-};
-
-export const useDebounce = <T>(value: T, delay = 500) => {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [delay, value]);
-
-  return debouncedValue;
 };
