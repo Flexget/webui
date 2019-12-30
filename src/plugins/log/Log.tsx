@@ -5,6 +5,7 @@ import { PaperWrapper } from 'common/styles';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { useFlexgetStream } from 'core/api';
 import { useMergeState } from 'utils/hooks';
+import { stringify } from 'qs';
 import { LogMessage, Options } from './types';
 import Header from './Header';
 import LogTable from './LogTable';
@@ -16,14 +17,17 @@ const wrapper = css`
 
 const LogPage: FC = () => {
   useInjectPageTitle('Log');
-  const [{ readyState, messages }, { connect, disconnect, clear }] = useFlexgetStream<LogMessage>(
-    '/server/log',
-  );
 
   const [options, setOptions] = useMergeState<Options>({
     lines: 200,
     query: '',
   });
+
+  const queryString = stringify(options);
+
+  const [{ readyState, messages }, { connect, disconnect, clear }] = useFlexgetStream<LogMessage>(
+    `/server/log?${queryString}`,
+  );
 
   return (
     <PaperWrapper elevation={4}>

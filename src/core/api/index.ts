@@ -89,15 +89,13 @@ export const useFlexgetStream = <Message>(url: string) => {
 
   useEffect(() => {
     if (stream.current) {
-      disconnect();
       connect();
     }
-
-    return disconnect;
-  }, [connect, disconnect, url]);
+  }, [connect, url]);
 
   useEffect(() => {
     if (readyState === ReadyState.Connecting) {
+      stream.current?.abort();
       clear();
       stream.current = oboe({
         url: `${baseURI.current.pathname}api${url}`,

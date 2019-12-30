@@ -1,12 +1,4 @@
-import React, {
-  FC,
-  useState,
-  useCallback,
-  MouseEvent,
-  KeyboardEvent,
-  useMemo,
-  ComponentType,
-} from 'react';
+import React, { FC, useState, useCallback, MouseEvent, useMemo, ComponentType } from 'react';
 import { Formik } from 'formik';
 import {
   Theme,
@@ -96,11 +88,16 @@ const Header: FC<Props> = ({ readyState, connect, disconnect, clear, options, se
     [],
   );
 
-  const handleKeyPress = useCallback((event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.which === ENTER_KEY) {
-      // this.reload();
-    }
-  }, []);
+  const handleKeyPress = useCallback(
+    event => {
+      if (event.which === ENTER_KEY) {
+        setOptions({
+          [event.target.name]: event.target.value,
+        });
+      }
+    },
+    [setOptions],
+  );
 
   return (
     <Formik initialValues={options} onSubmit={values => setOptions(values)}>
