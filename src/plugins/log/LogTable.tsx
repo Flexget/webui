@@ -33,6 +33,8 @@ const LogTable: FC<Props> = ({ messages }) => {
           [LogLevel.Critical]: cssString(color(theme, '#f2dede')),
           [LogLevel.Warning]: cssString(color(theme, '#fcf8e3')),
         };
+
+        console.log(cssMap);
         return (
           <AutoSizer>
             {({ height, width }) => (
@@ -44,7 +46,10 @@ const LogTable: FC<Props> = ({ messages }) => {
                 width={width}
                 height={height}
                 rowGetter={({ index }) => messages[index]}
-                rowClassName={({ index }) => cssMap[messages[index]?.logLevel]}
+                rowClassName={({ index }) => {
+                  console.log(messages[index]?.logLevel);
+                  return cssMap[messages[index]?.logLevel];
+                }}
               >
                 <Column label="Time" dataKey="timestamp" width={100} />
                 <Column label="Level" dataKey="logLevel" width={100} />

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useCallback, useState, useReducer } from 'react';
-import { Method, APIResponse, request, StatusError, ErrorResponse } from 'utils/fetch';
+import { Method, APIResponse, request, StatusError, ErrorResponse, camelize } from 'utils/fetch';
 import { AuthContainer } from 'core/auth/container';
 import { uriParser } from 'utils';
 import { useContainer } from 'unstated-next';
+import oboe, { Oboe } from 'oboe';
 
 export interface RequestState {
   error?: StatusError;
@@ -67,7 +68,7 @@ export enum ReadyState {
 
 export const useFlexgetStream = <Message>(url: string) => {
   const [readyState, setReadyState] = useState<ReadyState>(ReadyState.Closed);
-  const eventSource = useRef<EventSource>();
+  const stream = useRef<Oboe>();
   const baseURI = useRef(uriParser(document.baseURI));
   const [messages, addMessage] = useReducer(
     (state: Message[], message: Message | 'clear') =>
@@ -79,25 +80,23 @@ export const useFlexgetStream = <Message>(url: string) => {
 
   const connect = useCallback(() => {
     clear();
-    eventSource.current = new EventSource(`${baseURI.current.pathname}api${url}`);
-    eventSource.current.addEventListener('open', () => setReadyState(ReadyState.Open));
-    eventSource.current.addEventListener('message', (e: MessageEvent) => {
-      const message = JSON.parse(e.data);
-      if (Object.keys(message).length !== 0) {
-        addMessage(message);
-      }
-    });
-    eventSource.current.addEventListener('error', () => setReadyState(ReadyState.Closed));
+    stream.current = oboe({
+      url: `${baseURI.current.pathname}api${url}`,
+      method: Method.Get,
+    })
+      .start(() => setReadyState(ReadyState.Open))
+      .node('{message task}', (message: Message) => addMessage(camelize(message)))
+      .fail(() => setReadyState(ReadyState.Closed));
   }, [clear, url]);
 
   const disconnect = useCallback(() => {
-    eventSource.current?.close();
-    eventSource.current = undefined;
+    stream.current?.abort();
+    stream.current = undefined;
     setReadyState(ReadyState.Closed);
   }, []);
 
   useEffect(() => {
-    if (eventSource.current) {
+    if (stream.current) {
       disconnect();
       connect();
     }
