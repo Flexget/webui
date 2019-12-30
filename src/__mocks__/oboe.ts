@@ -4,6 +4,8 @@ export default function oboe() {
     on: () => self,
     fail: () => self,
     done: () => self,
+    start: () => self,
+    node: () => self,
   };
 
   return self;

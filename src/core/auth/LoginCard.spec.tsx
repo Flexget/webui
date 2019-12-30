@@ -37,8 +37,9 @@ describe('core/Login/LoginCard', () => {
       );
 
       expect(wrapper.find('#state').text()).toBe('false');
-      await act(async () => {
+      await act(() => {
         wrapper.find('form').simulate('submit');
+        return Promise.resolve();
       });
       expect(wrapper.find('#state').text()).toBe('true');
     });

@@ -79,7 +79,7 @@ describe('plugins/lists/base/entries', () => {
     });
 
     describe('EntryListHeader', () => {
-      it('should open a dialog when pressing remove list button', async () => {
+      it('should open a dialog when pressing remove list button', () => {
         const { getByLabelText, queryByRole } = renderWithWrapper(<TestEntries />);
         const removeListButton = getByLabelText('Remove List');
         fireEvent.click(removeListButton);

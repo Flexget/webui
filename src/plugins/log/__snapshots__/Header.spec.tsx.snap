@@ -1,47 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`plugins/log/components/Header Header renders correctly 1`] = `
-.emotion-3 {
-  display: block;
-}
-
-@media (min-width:600px) {
-  .emotion-3 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-align-items: baseline;
-    -webkit-box-align: baseline;
-    -ms-flex-align: baseline;
-    align-items: baseline;
-  }
-}
-
+exports[`plugins/log/Header renders correctly 1`] = `
 .emotion-0 {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
-.emotion-2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-1 {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
 <div
-  className="emotion-3"
+  css={[Function]}
 >
   <div>
     <h6
@@ -59,7 +26,18 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
     className="emotion-0"
   />
   <div
-    className="emotion-2"
+    css={
+      Object {
+        "map": undefined,
+        "name": "1sg2lsz",
+        "next": undefined,
+        "styles": "
+  display: flex;
+  align-items: center;
+",
+        "toString": [Function],
+      }
+    }
   >
     <svg
       aria-hidden="true"
@@ -73,13 +51,25 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
       />
     </svg>
     <div
-      className="MuiFormControl-root MuiTextField-root emotion-1"
+      className="MuiFormControl-root MuiTextField-root"
+      css={
+        Object {
+          "map": undefined,
+          "name": "1o7zzk8",
+          "next": undefined,
+          "styles": "
+  margin-left: 1rem;
+  margin-right: 1rem;
+",
+          "toString": [Function],
+        }
+      }
     >
       <label
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
         data-shrink={false}
-        htmlFor="filter"
-        id="filter-label"
+        htmlFor="query"
+        id="query-label"
       >
         Filter
       </label>
@@ -88,12 +78,13 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
         onClick={[Function]}
       >
         <input
-          aria-describedby="filter-helper-text"
+          aria-describedby="query-helper-text"
           aria-invalid={false}
           autoFocus={false}
           className="MuiInputBase-input MuiInput-input"
           disabled={false}
-          id="filter"
+          id="query"
+          name="query"
           onAnimationStart={[Function]}
           onBlur={[Function]}
           onChange={[Function]}
@@ -106,7 +97,7 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
       </div>
       <p
         className="MuiFormHelperText-root"
-        id="filter-helper-text"
+        id="query-helper-text"
       >
         Supports operators and, or, (), and "str"
       </p>
@@ -147,10 +138,4 @@ exports[`plugins/log/components/Header Header renders correctly 1`] = `
     </button>
   </div>
 </div>
-`;
-
-exports[`plugins/log/components/Header mapStateToProps should return the right stuff 1`] = `
-Object {
-  "connected": true,
-}
 `;

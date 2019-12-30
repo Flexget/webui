@@ -3,7 +3,9 @@ module.exports = {
     'airbnb',
     'plugin:jest-dom/recommended',
     'plugin:testing-library/recommended',
-    'plugin:@typescript-eslint/recommended',
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     'plugin:prettier/recommended',
     'prettier',
     'prettier/@typescript-eslint',
@@ -36,8 +38,10 @@ module.exports = {
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
+    '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+'@typescript-eslint/no-unused-expressions': 'error',
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
@@ -49,7 +53,7 @@ module.exports = {
     ],
     '@typescript-eslint/prefer-nullish-coalescing': 'error',
     '@typescript-eslint/prefer-optional-chain': 'error',
-    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/unified-signatures': 'warn',
 
     // emotion
     'emotion/import-from-emotion': 'error',
@@ -64,6 +68,7 @@ module.exports = {
     // core
     'no-constant-condition': 'off',
     'no-underscore-dangle': 'off',
+    'no-unused-expressions': 'off',
 
     // React
     'react/destructuring-assignment': ['error', 'always', { ignoreClassFields: true }],

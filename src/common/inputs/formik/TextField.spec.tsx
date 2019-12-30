@@ -1,13 +1,19 @@
 import React from 'react';
+import { Formik } from 'formik';
 import TextField from 'common/inputs/formik/TextField';
 import renderer from 'react-test-renderer';
-import { themed, formik } from 'utils/tests';
+import ThemeProvider from 'core/theme/ThemeProvider';
 
 describe('common/TextField', () => {
   it('renders correctly', () => {
-    const textFied = <TextField name="field" />;
     const tree = renderer
-      .create(formik(themed(textFied), { initialValues: { field: '' }, onSubmit: jest.fn() }))
+      .create(
+        <Formik initialValues={{ field: '' }} onSubmit={jest.fn()}>
+          <ThemeProvider>
+            <TextField name="field" />
+          </ThemeProvider>
+        </Formik>,
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

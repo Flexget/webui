@@ -1,10 +1,10 @@
 import { random, date } from 'faker';
-import { LogMessage } from './types';
+import { LogMessage, LogLevel } from './types';
 
-export const makeLogMessage = (): LogMessage => ({
+export const makeLogMessage = (logLevel = LogLevel.Warning): LogMessage => ({
   timestamp: date.past().toUTCString(),
   message: random.words(),
   task: random.words(),
-  logLevel: random.word(),
+  logLevel,
   plugin: random.words(),
 });
