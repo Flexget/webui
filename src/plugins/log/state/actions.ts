@@ -2,7 +2,7 @@ import { action, ActionsUnion } from 'utils/actions';
 import statusActions from 'core/status/state/actions';
 import { RequestsOfType as ROT } from 'core/status/state/types';
 import { StatusError } from 'utils/fetch';
-import { LogMessage } from './types';
+import { LogMessage } from '../types';
 
 export const enum Constants {
   LOG_CONNECT = '@flexget/log/LOG_CONNECT',

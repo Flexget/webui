@@ -1,5 +1,5 @@
 import { Constants, ActionTypes } from './actions';
-import { LogMessage } from './types';
+import { LogMessage } from '../types';
 
 interface State {
   messages: LogMessage[];

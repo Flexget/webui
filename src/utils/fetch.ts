@@ -61,7 +61,7 @@ const status = async <T>(r: Response): Promise<APIResponse<T>> => {
   } else {
     response.error = new StatusError(response.data?.message, response.status);
   }
-  return response as APIResponse<T>;
+  return response;
 };
 
 export const request = async <PayloadType, BodyType = undefined>(

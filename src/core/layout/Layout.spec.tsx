@@ -33,8 +33,9 @@ describe('common/layout', () => {
 
   it('renders correctly', async () => {
     let tree: ReactTestRenderer | undefined;
-    await act(async () => {
+    await act(() => {
       tree = create(renderLayout());
+      return Promise.resolve();
     });
     expect(tree?.toJSON()).toMatchSnapshot();
   });

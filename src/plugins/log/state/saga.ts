@@ -4,7 +4,7 @@ import { call, take, put, cancel, cancelled, fork } from 'redux-saga/effects';
 import { requesting } from 'core/status/state/util';
 import { StatusError } from 'utils/fetch';
 import actions, { Constants, RequestsOfType } from './actions';
-import { LogMessage } from './types';
+import { LogMessage } from '../types';
 
 export function logStream({ payload }: RequestsOfType<Constants.LOG_CONNECT>) {
   const { lines, query } = payload;

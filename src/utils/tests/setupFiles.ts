@@ -34,4 +34,4 @@ global.navigator = {
 };
 copyProps(window, global);
 
-console.error = jest.fn(); // eslint-disable-line no-console
+console.error = jest.fn(); // eslint-disable-line no-console,@typescript-eslint/unbound-method

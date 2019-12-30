@@ -1,5 +1,5 @@
 import { random, date } from 'faker';
-import { LogMessage } from './types';
+import { LogMessage } from '../types';
 
 export const makeLogMessage = (): LogMessage => ({
   timestamp: date.past().toUTCString(),

@@ -79,7 +79,7 @@ describe('plugins/lists/base/AddFab/AddListDialog', () => {
       });
     });
 
-    it('should call close when pressing cancel', async () => {
+    it('should call close when pressing cancel', () => {
       const { getByRole } = render(component, { wrapper });
 
       const cancelButton = getByRole(

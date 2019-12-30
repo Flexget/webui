@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, useState } from 'react';
+import { useEffect, useRef, useCallback, useState, useReducer } from 'react';
 import { Method, APIResponse, request, StatusError, ErrorResponse } from 'utils/fetch';
 import { AuthContainer } from 'core/auth/container';
 import { uriParser } from 'utils';
@@ -9,12 +9,14 @@ export interface RequestState {
   loading: boolean;
 }
 
-export type APIRequest<Res = unknown, Req = unknown> = (body?: Req) => Promise<APIResponse<Res>>;
+export type APIRequest<Response = unknown, Request = unknown> = (
+  body?: Request,
+) => Promise<APIResponse<Response>>;
 
-export function useFlexgetAPI<Res>(
+export function useFlexgetAPI<Response>(
   url: string,
   method: Method = Method.Get,
-): [RequestState, APIRequest<Res>] {
+): [RequestState, APIRequest<Response>] {
   const [, setLoggedIn] = useContainer(AuthContainer);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<StatusError>();
@@ -25,7 +27,7 @@ export function useFlexgetAPI<Res>(
     async (body: unknown = undefined) => {
       try {
         setLoading(true);
-        const payload: APIResponse<Res> = await request<Res, unknown>(
+        const payload: APIResponse<Response> = await request<Response, unknown>(
           `${baseURI.current.pathname}api${url}`,
           method,
           body,
@@ -56,3 +58,53 @@ export function useFlexgetAPI<Res>(
 
   return [{ loading, error }, requestFn];
 }
+
+export enum ReadyState {
+  Closed = EventSource.CLOSED,
+  Connecting = EventSource.CONNECTING,
+  Open = EventSource.OPEN,
+}
+
+export const useFlexgetStream = <Message>(url: string) => {
+  const [readyState, setReadyState] = useState<ReadyState>(ReadyState.Closed);
+  const eventSource = useRef<EventSource>();
+  const baseURI = useRef(uriParser(document.baseURI));
+  const [messages, addMessage] = useReducer(
+    (state: Message[], message: Message | 'clear') =>
+      message !== 'clear' ? [...state, message] : [],
+    [],
+  );
+
+  const clear = useCallback(() => addMessage('clear'), []);
+
+  const connect = useCallback(() => {
+    clear();
+    eventSource.current = new EventSource(`${baseURI.current.pathname}api${url}`);
+    eventSource.current.addEventListener('open', () => setReadyState(ReadyState.Open));
+    eventSource.current.addEventListener('message', (e: MessageEvent) => {
+      const message = JSON.parse(e.data);
+      if (Object.keys(message).length !== 0) {
+        addMessage(message);
+      }
+    });
+    eventSource.current.addEventListener('error', () => setReadyState(ReadyState.Closed));
+  }, [clear, url]);
+
+  const disconnect = useCallback(() => {
+    eventSource.current?.close();
+    eventSource.current = undefined;
+    setReadyState(ReadyState.Closed);
+  }, []);
+
+  useEffect(() => {
+    if (eventSource.current) {
+      disconnect();
+      connect();
+    }
+  }, [connect, disconnect]);
+
+  return [
+    { messages, readyState },
+    { connect, disconnect, clear },
+  ] as const;
+};
