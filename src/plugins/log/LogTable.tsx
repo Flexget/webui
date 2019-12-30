@@ -36,24 +36,32 @@ const LogTable: FC<Props> = ({ messages }) => {
 
         return (
           <AutoSizer>
-            {({ height, width }) => (
-              <Table
-                css={table}
-                rowCount={messages.length}
-                rowHeight={20}
-                headerHeight={50}
-                width={width}
-                height={height}
-                rowGetter={({ index }) => messages[index]}
-                rowClassName={({ index }) => cssMap[messages[index]?.logLevel]}
-              >
-                <Column label="Time" dataKey="timestamp" width={100} />
-                <Column label="Level" dataKey="logLevel" width={100} />
-                <Column label="Plugin" dataKey="plugin" width={100} />
-                <Column label="Task" dataKey="task" width={100} />
-                <Column label="Message" dataKey="message" width={100} flexGrow={1} />
-              </Table>
-            )}
+            {({ height, width }) => {
+              let actualWidth = width;
+              let actualHeight = height;
+              if (process.env.NODE_ENV === 'test') {
+                actualWidth = window.innerWidth;
+                actualHeight = window.innerHeight;
+              }
+              return (
+                <Table
+                  css={table}
+                  rowCount={messages.length}
+                  rowHeight={20}
+                  headerHeight={50}
+                  width={actualWidth}
+                  height={actualHeight}
+                  rowGetter={({ index }) => messages[index]}
+                  rowClassName={({ index }) => cssMap[messages[index]?.logLevel]}
+                >
+                  <Column label="Time" dataKey="timestamp" width={100} />
+                  <Column label="Level" dataKey="logLevel" width={100} />
+                  <Column label="Plugin" dataKey="plugin" width={100} />
+                  <Column label="Task" dataKey="task" width={100} />
+                  <Column label="Message" dataKey="message" width={100} flexGrow={1} />
+                </Table>
+              );
+            }}
           </AutoSizer>
         );
       }}
