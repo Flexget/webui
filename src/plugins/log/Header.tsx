@@ -1,4 +1,12 @@
-import React, { FC, useState, useCallback, MouseEvent, KeyboardEvent, useMemo } from 'react';
+import React, {
+  FC,
+  useState,
+  useCallback,
+  MouseEvent,
+  KeyboardEvent,
+  useMemo,
+  ComponentType,
+} from 'react';
 import { Formik } from 'formik';
 import {
   Theme,
@@ -44,11 +52,19 @@ interface Props {
   setOptions: SetState<Partial<Options>>;
 }
 
+interface StateOptions {
+  onClick?: () => void;
+  Icon: ComponentType;
+  label: string;
+  heading: string;
+  disabled?: boolean;
+}
+
 const Header: FC<Props> = ({ readyState, connect, disconnect, clear, options, setOptions }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement>();
   const helperText = 'Supports operators and, or, (), and "str"';
 
-  const stateMap = useMemo(
+  const stateMap: Record<ReadyState, StateOptions> = useMemo(
     () => ({
       [ReadyState.Open]: {
         onClick: disconnect,

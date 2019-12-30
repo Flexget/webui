@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`plugins/log/components/LogTable LogTable renders correctly 1`] = `
+exports[`plugins/log/LogTable LogTable renders correctly 1`] = `
 <Provider>
   <Theme>
     <LogTable
@@ -8,10 +8,4 @@ exports[`plugins/log/components/LogTable LogTable renders correctly 1`] = `
     />
   </Theme>
 </Provider>
-`;
-
-exports[`plugins/log/components/LogTable mapStateToProps should return the right stuff 1`] = `
-Object {
-  "messages": Array [],
-}
 `;

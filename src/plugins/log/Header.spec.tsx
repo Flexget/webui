@@ -14,8 +14,8 @@ describe('plugins/log/components/Header', () => {
               connect={jest.fn()}
               readyState={ReadyState.Open}
               disconnect={jest.fn()}
-              query=""
-              lines="400"
+              options={{ query: '', lines: 400 }}
+              setOptions={jest.fn()}
               clear={jest.fn()}
             />,
           ),

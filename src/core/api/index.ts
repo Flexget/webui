@@ -61,9 +61,9 @@ export function useFlexgetAPI<Response>(
 }
 
 export enum ReadyState {
-  Closed = EventSource.CLOSED,
-  Connecting = EventSource.CONNECTING,
-  Open = EventSource.OPEN,
+  Closed,
+  Connecting,
+  Open,
 }
 
 export const useFlexgetStream = <Message>(url: string) => {
