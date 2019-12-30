@@ -3,7 +3,6 @@ import { render, RenderOptions } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
-import { Formik, FormikConfig } from 'formik';
 import { AuthContainer } from 'core/auth/container';
 import { StatusContainer } from 'core/status/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
