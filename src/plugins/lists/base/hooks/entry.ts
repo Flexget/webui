@@ -10,15 +10,15 @@ import { ListContainer } from './list';
 import { Entry, Options } from '../types';
 
 export const enum Constants {
-  GET_ENTRIES = '@flexget/pendingList/GET_ENTRIES',
-  ADD_ENTRY = '@flexget/pendingList/ADD_ENTRY',
-  UPDATE_ENTRY = '@flexget/pendingList/UPDATE_ENTRY',
-  UPDATE_ENTRIES = '@flexget/pendingList/UPDATE_ENTRIES',
-  REMOVE_ENTRY = '@flexget/pendingList/REMOVE_ENTRY',
-  REMOVE_ENTRIES = '@flexget/pendingList/REMOVE_ENTRIES',
-  SELECT_ENTRY = '@flexget/pendingList/SELECT_ENTRY',
-  UNSELECT_ENTRY = '@flexget/pendingList/UNSELECT_ENTRY',
-  CLEAR_SELECTED = '@flexget/pendingList/CLEAR_SELECTED',
+  GET_ENTRIES = '@flexget/list/GET_ENTRIES',
+  ADD_ENTRY = '@flexget/list/ADD_ENTRY',
+  UPDATE_ENTRY = '@flexget/list/UPDATE_ENTRY',
+  UPDATE_ENTRIES = '@flexget/list/UPDATE_ENTRIES',
+  REMOVE_ENTRY = '@flexget/list/REMOVE_ENTRY',
+  REMOVE_ENTRIES = '@flexget/list/REMOVE_ENTRIES',
+  SELECT_ENTRY = '@flexget/list/SELECT_ENTRY',
+  UNSELECT_ENTRY = '@flexget/list/UNSELECT_ENTRY',
+  CLEAR_SELECTED = '@flexget/list/CLEAR_SELECTED',
 }
 
 export const actions = {

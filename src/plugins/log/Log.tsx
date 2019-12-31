@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Formik } from 'formik';
 import { hot } from 'react-hot-loader/root';
 import { css } from '@emotion/core';
 import { PaperWrapper } from 'common/styles';
@@ -31,14 +32,9 @@ const LogPage: FC = () => {
 
   return (
     <PaperWrapper elevation={4}>
-      <Header
-        readyState={readyState}
-        connect={connect}
-        disconnect={disconnect}
-        clear={clear}
-        options={options}
-        setOptions={setOptions}
-      />
+      <Formik initialValues={options} onSubmit={values => setOptions(values)}>
+        <Header readyState={readyState} connect={connect} disconnect={disconnect} clear={clear} />
+      </Formik>
       <div css={wrapper}>
         <LogTable messages={messages} />
       </div>

@@ -3,22 +3,23 @@ import { cleanup } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
-import Log from './Log';
+import History from './History';
 
-jest.mock('oboe');
-
-const TestLog: FC = () => {
+const TestHistory: FC = () => {
   return (
     <>
       <AppBar toggleSidebar={jest.fn()} />
-      <Log />
+      <History />
     </>
   );
 };
 
-describe('plugins/log', () => {
+describe('plugins/history', () => {
   beforeEach(() => {
-    fetchMock.get('/api/tasks', []).catch();
+    fetchMock
+      .get('/api/tasks', [])
+      .get('glob:/api/history?*', [])
+      .catch();
   });
 
   afterEach(() => {
@@ -27,10 +28,10 @@ describe('plugins/log', () => {
   });
 
   describe('contextual app bar', () => {
-    it('should have title Log', () => {
-      const { queryByText } = renderWithWrapper(<TestLog />);
+    it('should have title History', () => {
+      const { queryByText } = renderWithWrapper(<TestHistory />);
 
-      expect(queryByText('Log', { selector: 'h6' })).toBeInTheDocument();
+      expect(queryByText('History', { selector: 'h6' })).toBeInTheDocument();
     });
   });
 });
