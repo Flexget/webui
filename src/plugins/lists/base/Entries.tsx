@@ -22,16 +22,14 @@ const Entries: FC = () => {
     order: Direction.Desc,
   });
 
-  const setPage = useCallback((n: number) => setOptions({ page: n }), [setOptions]);
-
   const [{ lists, listId }, dispatch] = useContainer(ListContainer);
 
   const handleChange = useCallback(
     (_, selected: number) => {
       dispatch(actions.selectList(selected));
-      return setPage(0);
+      return setOptions({ page: 0 });
     },
-    [dispatch, setPage],
+    [dispatch, setOptions],
   );
   const [removeIsOpen, { open: removeOpen, close: removeClose }] = useOverlayState();
   const content = useMemo(

@@ -1,14 +1,26 @@
 import React, { FC } from 'react';
-import { Grid } from '@material-ui/core';
+import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
+import { Direction } from 'utils/query';
+import { useMergeState } from 'utils/hooks';
+import { ShowContainer } from '../hooks/shows';
+import ShowList from './ShowList';
+import { GetShowOptions, SortBy } from '../types/shows';
 
-const List: FC = () => {
+const ShowPage: FC = () => {
+  useInjectPageTitle('Series');
+
+  const [options, setOptions] = useMergeState<GetShowOptions>({
+    page: 0,
+    perPage: 30,
+    sortBy: SortBy.ShowName,
+    order: Direction.Desc,
+  });
+
   return (
-    <Grid container spacing={2}>
-      {entries.ma(entry => (
-        <Grid item key={entry.id} xs={12} md={6} lg={4} />
-      ))}
-    </Grid>
+    <ShowContainer.Provider>
+      <ShowList options={options} />
+    </ShowContainer.Provider>
   );
 };
 
-export default List;
+export default ShowPage;

@@ -2,7 +2,7 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
     '!src/{app,Root}.tsx',
-    // '!src/utils/*.{js,jsx,ts,tsx}',
+    '!src/utils/*.{ts,tsx}',
     '!**/node_modules/**',
     '!**/dist/**',
     '!src/**/fixtures.{ts,tsx}',
