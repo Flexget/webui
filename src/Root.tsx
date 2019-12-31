@@ -75,7 +75,7 @@ const Root = () => (
                           <Layout>
                             <Switch>
                               <PrivateRoute path="/" exact component={Home} />
-                              <Route render={() => <Routes />} />
+                              <Route component={Routes} />
                             </Switch>
                           </Layout>
                         </TaskContainer.Provider>

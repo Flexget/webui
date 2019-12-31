@@ -12,7 +12,7 @@ export const enum IdentifiedBy {
   Date = 'date',
 }
 
-interface Release {
+export interface Release {
   downloaded: boolean;
   episodeId: number;
   firstSeen: string;

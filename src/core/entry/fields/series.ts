@@ -97,5 +97,5 @@ export interface RawSeriesEntry extends BaseEntry, SeriesFields {
 }
 
 export interface SeriesEntry extends RawSeriesEntry, Partial<SeriesGetters> {
-  type: CardType.Series;
+  type: CardType.Show;
 }
