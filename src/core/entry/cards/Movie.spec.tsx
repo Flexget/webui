@@ -9,7 +9,7 @@ import { toEntry } from '../utils';
 import { MovieEntry } from '../fields/movies';
 import Card from './index';
 
-describe('common/Entry/cards/Movie', () => {
+describe('core/entry/cards/Movie', () => {
   beforeEach(() => {
     fetchMock
       .get('/api/tasks', [])

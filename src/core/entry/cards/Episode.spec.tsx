@@ -13,7 +13,7 @@ import { toEntry } from '../utils';
 import { EpisodeEntry } from '../fields/episodes';
 import Card from './index';
 
-describe('common/Entry/cards/Episode', () => {
+describe('core/entry/cards/Episode', () => {
   beforeEach(() => {
     fetchMock.get('/api/tasks', []).catch();
   });

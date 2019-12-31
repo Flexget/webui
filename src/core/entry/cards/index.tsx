@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { RawEntry, CardType } from '../types';
 import { toEntry } from '../utils';
 import MovieCard from './Movie';
-import ShowCard from './Show';
+import ShowCard from './Series';
 import EpisodeCard from './Episode';
 import DefaultCard from './Default';
 
@@ -17,7 +17,7 @@ const EntryCard: FC<Props> = ({ entry: rawEntry, className }) => {
   switch (entry.type) {
     case CardType.Movie:
       return <MovieCard entry={entry} className={className} />;
-    case CardType.Show:
+    case CardType.Series:
       return <ShowCard entry={entry} className={className} />;
     case CardType.Episode:
       return <EpisodeCard entry={entry} className={className} />;

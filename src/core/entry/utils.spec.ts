@@ -69,13 +69,13 @@ describe('core/entry/utils', () => {
       it('should work with no additional fields', () => {
         const rawSeries = compose(withSeriesRawEntry)(entry);
         const series = toEntry(rawSeries);
-        expect(series.type).toBe(CardType.Show);
+        expect(series.type).toBe(CardType.Series);
       });
 
       it('should work with imdb additional fields', () => {
         const rawSeries = compose(withTVMazeSeriesFields, withSeriesRawEntry)(entry);
         const series = toEntry(rawSeries) as SeriesEntry;
-        expect(series.type).toBe(CardType.Show);
+        expect(series.type).toBe(CardType.Series);
         expect(series.genres).toBeDefined();
         expect(series.genres).toEqual(rawSeries[TVMazeSeriesFields.Genres]);
         expect(series.posters).toBeDefined();
@@ -89,7 +89,7 @@ describe('core/entry/utils', () => {
           withSeriesRawEntry,
         )(entry);
         const series = toEntry(rawSeries) as SeriesEntry;
-        expect(series.type).toBe(CardType.Show);
+        expect(series.type).toBe(CardType.Series);
         expect(series.genres).toBeDefined();
         expect(series.genres).toEqual(rawSeries[TraktSeriesFields.Genres]);
         expect(series.posters).toBeDefined();

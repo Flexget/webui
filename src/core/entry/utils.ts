@@ -73,7 +73,7 @@ export const toMovieEntry = (entry: RawMovieEntry): MovieEntry => {
 
 export const toSeriesEntry = (entry: RawSeriesEntry): SeriesEntry => ({
   ...entry,
-  type: CardType.Show,
+  type: CardType.Series,
   ...getSeriesProps(entry),
 });
 

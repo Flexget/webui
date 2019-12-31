@@ -1,7 +1,7 @@
 export const enum CardType {
   Default = 'default',
   Movie = 'movie',
-  Show = 'show',
+  Series = 'series',
   Episode = 'episode',
 }
 

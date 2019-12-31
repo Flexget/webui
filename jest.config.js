@@ -1,15 +1,11 @@
 module.exports = {
   collectCoverageFrom: [
-    'src/**/*.{js,jsx,ts,tsx}',
-    '!src/store.js',
-    '!src/core/reducers.ts',
-    '!src/plugins/series/**',
-    '!src/{app,Root,theme}.{ts,tsx,js,jsx}',
-    '!src/utils/*.{js,jsx,ts,tsx}',
+    'src/**/*.{ts,tsx}',
+    '!src/{app,Root}.tsx',
+    // '!src/utils/*.{js,jsx,ts,tsx}',
     '!**/node_modules/**',
     '!**/dist/**',
-    '!src/store/**/shapes.js',
-    '!src/**/fixtures.{ts, tsx, js, jsx}',
+    '!src/**/fixtures.{ts,tsx}',
   ],
   coverageThreshold: {
     global: {

@@ -5,7 +5,7 @@ import { toEntry } from '../utils';
 import { DefaultEntry } from '../fields';
 import Card from './index';
 
-describe('common/Entry/cards/Default', () => {
+describe('core/entry/cards/Default', () => {
   const entry = toEntry(makeRawEntry()) as DefaultEntry;
   it('contains title', () => {
     const { queryByText } = render(<Card entry={entry} />);

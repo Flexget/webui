@@ -10,12 +10,11 @@ interface State {
 
 interface Action {
   items: HistoryItem[];
-  headers: Headers;
+  total: number;
   reset: boolean;
 }
 
-const historyReducer: Reducer<State, Action> = (state, { items, headers, reset }) => {
-  const total = parseInt(headers.get('total-count') ?? '0', 10);
+const historyReducer: Reducer<State, Action> = (state, { items, total, reset }) => {
   if (reset) {
     return {
       items,
@@ -37,7 +36,11 @@ export const useHistoryPlugin = (options: GetHistoryOptions) => {
     const fn = async () => {
       const resp = await request();
       if (resp.ok) {
-        dispatch({ items: resp.data, headers: resp.headers, reset: options.page === 1 });
+        dispatch({
+          items: resp.data,
+          total: parseInt(resp.headers.get('total-count') ?? '0', 10),
+          reset: options.page === 1,
+        });
       }
     };
     fn();
