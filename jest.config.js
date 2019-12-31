@@ -26,7 +26,7 @@ module.exports = {
     },
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  preset: 'ts-jest/presets/js-with-ts',
+  preset: 'ts-jest',
   moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
