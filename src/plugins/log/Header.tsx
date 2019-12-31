@@ -100,7 +100,7 @@ const Header: FC<Props> = ({ readyState, connect, disconnect, clear }) => {
 
   useEffect(() => {
     submitForm();
-  }, [...Object.values(debouncedValues), submitForm]);
+  }, [...Object.values(debouncedValues), submitForm]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div css={wrapper}>

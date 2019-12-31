@@ -1,4 +1,5 @@
 import { random, internet, system } from 'faker';
+
 export const makeItem = (time: string, task: string) => ({
   time,
   task,
@@ -8,4 +9,3 @@ export const makeItem = (time: string, task: string) => ({
   details: random.words(),
   id: random.number(),
 });
-

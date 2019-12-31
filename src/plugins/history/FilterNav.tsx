@@ -71,7 +71,7 @@ const FilterNav: FC = () => {
 
   useEffect(() => {
     submitForm();
-  }, [...Object.values(debouncedValues), submitForm]);
+  }, [...Object.values(debouncedValues), submitForm]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Toolbar>
