@@ -1,6 +1,7 @@
 import React from 'react';
 import { cleanup } from '@testing-library/react';
 import renderer from 'react-test-renderer';
+import { Formik } from 'formik';
 import fetchMock from 'fetch-mock';
 import { themed } from 'utils/tests';
 import { ReadyState } from 'core/api';
@@ -15,18 +16,19 @@ describe('plugins/log/Header', () => {
     cleanup();
     fetchMock.reset();
   });
+
   it('renders correctly', () => {
     const tree = renderer
       .create(
         themed(
-          <Header
-            connect={jest.fn()}
-            readyState={ReadyState.Open}
-            disconnect={jest.fn()}
-            options={{ query: '', lines: 400 }}
-            setOptions={jest.fn()}
-            clear={jest.fn()}
-          />,
+          <Formik initialValues={{ query: '', lines: 400 }} onSubmit={jest.fn()}>
+            <Header
+              connect={jest.fn()}
+              readyState={ReadyState.Open}
+              disconnect={jest.fn()}
+              clear={jest.fn()}
+            />
+          </Formik>,
         ),
       )
       .toJSON();

@@ -1,5 +1,13 @@
-import React, { FC, useState, useCallback, MouseEvent, useMemo, ComponentType } from 'react';
-import { Formik } from 'formik';
+import React, {
+  FC,
+  useState,
+  useCallback,
+  MouseEvent,
+  useMemo,
+  ComponentType,
+  useEffect,
+} from 'react';
+import { useFormikContext } from 'formik';
 import {
   Theme,
   Typography,
@@ -13,8 +21,8 @@ import { css } from '@emotion/core';
 import { Spacer } from 'common/styles';
 import TextField from 'common/inputs/formik/TextField';
 import { PlayArrow, Stop, FilterList, MoreVert, ClearAll } from '@material-ui/icons';
-import { ENTER_KEY } from 'utils/keys';
 import { ReadyState } from 'core/api';
+import { useDebounce } from 'utils/hooks';
 import { Options } from './types';
 
 export const wrapper = (theme: Theme) => css`
@@ -40,8 +48,6 @@ interface Props {
   connect: () => void;
   disconnect: () => void;
   clear: () => void;
-  options: Options;
-  setOptions: SetState<Partial<Options>>;
 }
 
 interface StateOptions {
@@ -52,7 +58,7 @@ interface StateOptions {
   disabled?: boolean;
 }
 
-const Header: FC<Props> = ({ readyState, connect, disconnect, clear, options, setOptions }) => {
+const Header: FC<Props> = ({ readyState, connect, disconnect, clear }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement>();
   const helperText = 'Supports operators and, or, (), and "str"';
 
@@ -88,70 +94,54 @@ const Header: FC<Props> = ({ readyState, connect, disconnect, clear, options, se
     [],
   );
 
-  const handleKeyPress = useCallback(
-    event => {
-      if (event.which === ENTER_KEY) {
-        setOptions({
-          [event.target.name]: event.target.value,
-        });
-      }
-    },
-    [setOptions],
-  );
+  const { values, submitForm } = useFormikContext<Options>();
+
+  const debouncedValues = useDebounce(values);
+
+  useEffect(() => {
+    submitForm();
+  }, [...Object.values(debouncedValues), submitForm]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Formik initialValues={options} onSubmit={values => setOptions(values)}>
-      <div css={wrapper}>
-        <div>
-          <Typography variant="h6">Server Log</Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            {heading}
-          </Typography>
-        </div>
-        <Spacer />
-        <div css={filterWrapper}>
-          <FilterList />
-          <TextField
-            css={filterField}
-            id="query"
-            name="query"
-            label="Filter"
-            inputProps={{
-              onKeyPress: handleKeyPress,
-            }}
-            helperText={helperText}
-          />
-          <IconButton onClick={handleMenuOpen}>
-            <MoreVert />
-          </IconButton>
-        </div>
-        <Menu id="log-menu" anchorEl={anchorEl} open={!!anchorEl} onClose={handleMenuClose}>
-          <MenuItem>
-            <TextField
-              id="lines"
-              name="lines"
-              label="Max Lines"
-              type="number"
-              inputProps={{
-                onKeyPress: handleKeyPress,
-              }}
-            />
-          </MenuItem>
-          <MenuItem onClick={clear}>
-            <ListItemIcon>
-              <ClearAll />
-            </ListItemIcon>
-            Clear
-          </MenuItem>
-          <MenuItem onClick={onClick} disabled={disabled}>
-            <ListItemIcon>
-              <Icon />
-            </ListItemIcon>
-            {label}
-          </MenuItem>
-        </Menu>
+    <div css={wrapper}>
+      <div>
+        <Typography variant="h6">Server Log</Typography>
+        <Typography variant="subtitle1" color="textSecondary">
+          {heading}
+        </Typography>
       </div>
-    </Formik>
+      <Spacer />
+      <div css={filterWrapper}>
+        <FilterList />
+        <TextField
+          css={filterField}
+          id="query"
+          name="query"
+          label="Filter"
+          helperText={helperText}
+        />
+        <IconButton onClick={handleMenuOpen}>
+          <MoreVert />
+        </IconButton>
+      </div>
+      <Menu id="log-menu" anchorEl={anchorEl} open={!!anchorEl} onClose={handleMenuClose}>
+        <MenuItem>
+          <TextField id="lines" name="lines" label="Max Lines" type="number" />
+        </MenuItem>
+        <MenuItem onClick={clear}>
+          <ListItemIcon>
+            <ClearAll />
+          </ListItemIcon>
+          Clear
+        </MenuItem>
+        <MenuItem onClick={onClick} disabled={disabled}>
+          <ListItemIcon>
+            <Icon />
+          </ListItemIcon>
+          {label}
+        </MenuItem>
+      </Menu>
+    </div>
   );
 };
 

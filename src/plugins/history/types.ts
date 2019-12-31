@@ -16,14 +16,14 @@ export const enum SortByFields {
 }
 
 export interface GetHistoryOptions {
-  page?: number;
-  sortBy?: SortByFields;
-  order?: Direction;
-  task?: string;
-  groupBy?: GroupByFields;
+  page: number;
+  sort: SortByFields;
+  order: Direction;
+  task: string;
+  grouping: GroupByFields;
 }
 
-export interface History {
+export interface HistoryItem {
   task: string;
   title: string;
   url: string;

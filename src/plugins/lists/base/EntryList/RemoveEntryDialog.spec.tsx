@@ -57,7 +57,7 @@ describe('plugins/lists/base/EntryList/RemoveEntryDialog', () => {
       id: 1,
       entry: rawEntry,
       listId: 1,
-      addedOn: new Date().toUTCString(),
+      addedOn: new Date().toISOString(),
     };
 
     const handleClose = jest.fn();

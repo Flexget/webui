@@ -51,7 +51,7 @@ describe('plugins/pendingList/EntryList/EntryCard', () => {
       id: 1,
       entry,
       listId: 1,
-      addedOn: new Date().toUTCString(),
+      addedOn: new Date().toISOString(),
       approved: true,
     };
     const handleInjectClick = jest.fn();
@@ -83,7 +83,7 @@ describe('plugins/pendingList/EntryList/EntryCard', () => {
       id: 2,
       entry,
       listId: 1,
-      addedOn: new Date().toUTCString(),
+      addedOn: new Date().toISOString(),
       approved: false,
     };
     const handleInjectClick = jest.fn();

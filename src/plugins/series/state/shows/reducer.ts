@@ -1,5 +1,5 @@
 import { Constants, ActionTypes } from './actions';
-import { Show } from './types';
+import { Show } from '../../types';
 
 export interface State {
   totalCount: number;

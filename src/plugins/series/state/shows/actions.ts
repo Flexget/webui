@@ -2,7 +2,7 @@ import statusActions from 'core/status/state/actions';
 import { action, ActionsUnion } from 'utils/actions';
 import { StatusError } from 'utils/fetch';
 import { RequestsOfType as ROT } from 'core/status/state/types';
-import { Show, GetShowOptions } from './types';
+import { Show, GetShowOptions } from '../../types';
 
 export const enum Constants {
   GET_SHOWS = '@flexget/series/shows/GET_SHOWS',

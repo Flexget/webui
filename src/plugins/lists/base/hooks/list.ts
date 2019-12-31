@@ -5,10 +5,10 @@ import { usePluginContainer } from './api';
 import { List, AddListRequest } from '../types';
 
 export const enum Constants {
-  GET_LISTS = '@flexget/pedingList/GET_LISTS',
-  ADD_LIST = '@flexget/pedingList/ADD_LIST',
-  REMOVE_LIST = '@flexget/pedingList/REMOVE_LIST',
-  SELECT_LIST = '@flexget/pedingList/SELECT_LIST',
+  GET_LISTS = '@flexget/list/GET_LISTS',
+  ADD_LIST = '@flexget/list/ADD_LIST',
+  REMOVE_LIST = '@flexget/list/REMOVE_LIST',
+  SELECT_LIST = '@flexget/list/SELECT_LIST',
 }
 
 export const actions = {

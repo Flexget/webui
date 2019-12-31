@@ -4,7 +4,7 @@ import { requesting } from 'core/status/state/util';
 import { get } from 'utils/fetch';
 import { Direction } from 'utils/query';
 import actions, { Constants, RequestsOfType } from './actions';
-import { GetShowOptions } from './types';
+import { GetShowOptions } from '../../types';
 
 export const defaultOptions: GetShowOptions = {
   perPage: 10,

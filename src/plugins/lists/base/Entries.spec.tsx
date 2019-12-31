@@ -35,12 +35,12 @@ describe('plugins/lists/base/entries', () => {
           {
             id: 1,
             name: 'List 1',
-            addedOn: new Date().toUTCString(),
+            addedOn: new Date().toISOString(),
           },
           {
             id: 2,
             name: 'List 2',
-            addedOn: new Date().toUTCString(),
+            addedOn: new Date().toISOString(),
           },
         ])
         .get(`glob:/api/${prefix}/*/${itemPrefix}?*`, [])

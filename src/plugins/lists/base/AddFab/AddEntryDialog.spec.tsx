@@ -44,7 +44,7 @@ describe('plugins/lists/base/AddFab/AddEntryDialog', () => {
       id: 1,
       entry: rawEntry,
       listId: 1,
-      addedOn: new Date().toUTCString(),
+      addedOn: new Date().toISOString(),
     };
     beforeEach(() => {
       fetchMock

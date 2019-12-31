@@ -1,66 +1,110 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`plugins/history/components/FilterNav renders correctly 1`] = `
+exports[`plugins/history/FilterNav renders correctly 1`] = `
 .emotion-0 {
-  padding: 0.5rem 2rem 0.5rem;
-}
-
-.emotion-1 {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-}
-
-.emotion-4 {
-  -webkit-transition: all 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
-  transition: all 300ms cubic-bezier(0.4,0,0.2,1) 0ms;
 }
 
 <div
   className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
 >
   <div
-    className="emotion-0"
+    css={
+      Object {
+        "map": undefined,
+        "name": "vm19w5",
+        "next": undefined,
+        "styles": "
+  padding: 0.5rem 2rem 0.5rem;
+",
+        "toString": [Function],
+      }
+    }
   >
     <div
       className="MuiFormControl-root MuiTextField-root"
-      onKeyPress={[Function]}
+      css={
+        Object {
+          "map": undefined,
+          "name": "tr6zgo",
+          "next": undefined,
+          "styles": "
+  min-width: 20rem;
+",
+          "toString": [Function],
+        }
+      }
     >
       <label
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
         data-shrink={false}
-        htmlFor="task-filter"
-        id="task-filter-label"
+        htmlFor="task"
+        id="task-label"
       >
-        Filter By Task
+        Task Name
       </label>
       <div
         className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
         onClick={[Function]}
       >
-        <input
-          aria-invalid={false}
-          autoFocus={false}
-          className="MuiInputBase-input MuiInput-input"
-          disabled={false}
-          id="task-filter"
-          onAnimationStart={[Function]}
+        <div
+          aria-haspopup="listbox"
+          aria-labelledby="task-label task"
+          className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+          id="task"
           onBlur={[Function]}
-          onChange={[Function]}
           onFocus={[Function]}
-          placeholder="Task Name"
-          required={false}
-          type="text"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          <span
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "&#8203;",
+              }
+            }
+          />
+        </div>
+        <input
+          autoFocus={true}
+          name="task"
+          onAnimationStart={[Function]}
+          type="hidden"
           value=""
         />
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root MuiSelect-icon"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
       </div>
     </div>
   </div>
   <div
-    className="emotion-1"
+    className="emotion-0"
   />
   <div
-    className="emotion-0"
+    css={
+      Object {
+        "map": undefined,
+        "name": "vm19w5",
+        "next": undefined,
+        "styles": "
+  padding: 0.5rem 2rem 0.5rem;
+",
+        "toString": [Function],
+      }
+    }
   >
     <div
       className="MuiFormControl-root MuiTextField-root"
@@ -79,8 +123,8 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       <label
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
         data-shrink={true}
-        htmlFor="sort-by"
-        id="sort-by-label"
+        htmlFor="sort"
+        id="sort-label"
       >
         Sort By
       </label>
@@ -90,9 +134,9 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       >
         <div
           aria-haspopup="listbox"
-          aria-labelledby="sort-by-label sort-by"
+          aria-labelledby="sort-label sort"
           className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
-          id="sort-by"
+          id="sort"
           onBlur={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
@@ -104,6 +148,7 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
         </div>
         <input
           autoFocus={false}
+          name="sort"
           onAnimationStart={[Function]}
           type="hidden"
           value="time"
@@ -122,9 +167,7 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       </div>
     </div>
   </div>
-  <div
-    className="emotion-0"
-  >
+  <div>
     <div
       className="MuiFormControl-root MuiTextField-root"
       css={
@@ -142,8 +185,8 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       <label
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
         data-shrink={true}
-        htmlFor="group-by"
-        id="group-by-label"
+        htmlFor="grouping"
+        id="grouping-label"
       >
         Group By
       </label>
@@ -153,9 +196,9 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
       >
         <div
           aria-haspopup="listbox"
-          aria-labelledby="group-by-label group-by"
+          aria-labelledby="grouping-label grouping"
           className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
-          id="group-by"
+          id="grouping"
           onBlur={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
@@ -167,6 +210,7 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
         </div>
         <input
           autoFocus={false}
+          name="grouping"
           onAnimationStart={[Function]}
           type="hidden"
           value="time"
@@ -186,32 +230,48 @@ exports[`plugins/history/components/FilterNav renders correctly 1`] = `
     </div>
   </div>
   <button
+    aria-describedby={null}
+    aria-label="Toggle Direction"
     className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
     disabled={false}
+    id="order"
+    name="order"
     onBlur={[Function]}
-    onClick={[MockFunction]}
+    onClick={[Function]}
     onDragLeave={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     onMouseDown={[Function]}
     onMouseLeave={[Function]}
+    onMouseOver={[Function]}
     onMouseUp={[Function]}
     onTouchEnd={[Function]}
     onTouchMove={[Function]}
     onTouchStart={[Function]}
     tabIndex={0}
+    title="Toggle Direction"
     type="button"
   >
     <span
       className="MuiIconButton-label"
     >
-      <span
-        aria-hidden={true}
-        className="material-icons MuiIcon-root fa fa-chevron-up emotion-4"
-        rotate={false}
-      />
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root"
+        css={[Function]}
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+        />
+      </svg>
     </span>
+    <span
+      className="MuiTouchRipple-root"
+    />
   </button>
 </div>
 `;
