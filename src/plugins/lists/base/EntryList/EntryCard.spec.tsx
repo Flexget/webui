@@ -57,7 +57,7 @@ describe('plugins/lists/base/EntryList/EntryCard', () => {
       id: 2,
       entry: rawEntry,
       listId: 1,
-      addedOn: new Date().toUTCString(),
+      addedOn: new Date().toISOString(),
     };
     const handleInjectClick = jest.fn();
     const handleRemoveClick = jest.fn();

@@ -1,16 +1,6 @@
-import { random, internet, system } from 'faker';
 import { GroupByFields } from 'plugins/history/types';
 import { getGroupedHistory } from './utils';
-
-const makeItem = (time: string, task: string) => ({
-  time,
-  task,
-  title: random.words(),
-  url: internet.url(),
-  filename: system.fileName(),
-  details: random.words(),
-  id: random.number(),
-});
+import { makeItem } from './fixtures';
 
 describe('plugins/history/utils', () => {
   describe('getGroupedHistory', () => {

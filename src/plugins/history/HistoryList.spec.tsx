@@ -1,63 +1,40 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { mapStateToProps, HistoryList } from 'plugins/history/HistoryList';
+import { cleanup } from '@testing-library/react';
+import fetchMock from 'fetch-mock';
+import { renderWithWrapper } from 'utils/tests';
+import { Direction } from 'utils/query';
+import HistoryList from './HistoryList';
+import { SortByFields, GroupByFields } from './types';
 
-describe('plugins/history/components/HistoryList', () => {
-  describe('HistoryList', () => {
-    it('renders correctly', () => {
-      const tree = shallow(
-        <HistoryList
-          getHistory={jest.fn()}
-          history={{
-            '2017-09-09': [
-              {
-                task: 'task',
-                id: 1,
-                title: 'something',
-              },
-            ],
-          }}
-          grouping="time"
-          hasMore
-        />,
-      );
-      expect(tree).toMatchSnapshot();
-    });
+describe('plugins/history/HistoryList', () => {
+  beforeEach(() => {
+    fetchMock
+      .get('/api/tasks', [])
+      .get('glob:/api/history?*', [
+        { task: 'task', id: 1, title: 'something', time: new Date('2017-09-09').toISOString() },
+      ])
+      .catch();
   });
 
-  describe('mapStateToProps', () => {
-    it('should return the right params if there are more', () => {
-      const result = mapStateToProps(
-        {
-          history: {
-            items: [{ task: 'task_name' }],
-            totalCount: 3,
-          },
-        },
-        {
-          grouping: 'task',
-        },
-      );
+  afterEach(() => {
+    cleanup();
+    fetchMock.reset();
+  });
 
-      expect(result.history).toMatchSnapshot();
-      expect(result.hasMore).toBe(true);
-    });
+  it('renders correctly', async () => {
+    const { findByText } = renderWithWrapper(
+      <HistoryList
+        options={{
+          order: Direction.Desc,
+          sort: SortByFields.Time,
+          task: '',
+          page: 1,
+          grouping: GroupByFields.Time,
+        }}
+        loadMore={jest.fn()}
+      />,
+    );
 
-    it('should return the right params if there are not more', () => {
-      const result = mapStateToProps(
-        {
-          history: {
-            items: [{ task: 'task_name' }],
-            totalCount: 1,
-          },
-        },
-        {
-          grouping: 'task',
-        },
-      );
-
-      expect(result.history).toMatchSnapshot();
-      expect(result.hasMore).toBe(false);
-    });
+    expect(await findByText('2017-09-09')).toBeInTheDocument();
   });
 });

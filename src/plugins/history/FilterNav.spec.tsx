@@ -1,15 +1,38 @@
 import React from 'react';
+import { Formik } from 'formik';
+import fetchMock from 'fetch-mock';
 import renderer from 'react-test-renderer';
-import FilterNav from 'plugins/history/FilterNav';
-import ThemeProvider from 'core/theme/ThemeProvider';
+import { Direction } from 'utils/query';
+import { BaseProviders } from 'utils/tests';
+import { GroupByFields, SortByFields } from './types';
+import FilterNav from './FilterNav';
 
-describe('plugins/history/components/FilterNav', () => {
+describe('plugins/history/FilterNav', () => {
+  beforeEach(() => {
+    fetchMock.get('/api/tasks', []).catch();
+  });
+
+  afterEach(() => {
+    fetchMock.reset();
+  });
+
   it('renders correctly', () => {
     const tree = renderer
       .create(
-        <ThemeProvider>
-          <FilterNav handleChange={jest.fn()} toggleOrder={jest.fn()} grouping="time" sort="time" />
-        </ThemeProvider>,
+        <BaseProviders>
+          <Formik
+            initialValues={{
+              grouping: GroupByFields.Time,
+              task: '',
+              page: 1,
+              order: Direction.Desc,
+              sort: SortByFields.Time,
+            }}
+            onSubmit={jest.fn()}
+          >
+            <FilterNav />
+          </Formik>
+        </BaseProviders>,
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

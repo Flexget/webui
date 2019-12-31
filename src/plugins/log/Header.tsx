@@ -1,4 +1,12 @@
-import React, { FC, useState, useCallback, MouseEvent, useMemo, ComponentType } from 'react';
+import React, {
+  FC,
+  useState,
+  useCallback,
+  MouseEvent,
+  useMemo,
+  ComponentType,
+  useEffect,
+} from 'react';
 import { useFormikContext } from 'formik';
 import {
   Theme,
@@ -13,8 +21,9 @@ import { css } from '@emotion/core';
 import { Spacer } from 'common/styles';
 import TextField from 'common/inputs/formik/TextField';
 import { PlayArrow, Stop, FilterList, MoreVert, ClearAll } from '@material-ui/icons';
-import { ENTER_KEY } from 'utils/keys';
 import { ReadyState } from 'core/api';
+import { useDebounce } from 'utils/hooks';
+import { Options } from './types';
 
 export const wrapper = (theme: Theme) => css`
   display: block;
@@ -85,15 +94,13 @@ const Header: FC<Props> = ({ readyState, connect, disconnect, clear }) => {
     [],
   );
 
-  const { submitForm } = useFormikContext();
-  const handleKeyPress = useCallback(
-    event => {
-      if (event.which === ENTER_KEY) {
-        submitForm();
-      }
-    },
-    [submitForm],
-  );
+  const { values, submitForm } = useFormikContext<Options>();
+
+  const debouncedValues = useDebounce(values);
+
+  useEffect(() => {
+    submitForm();
+  }, [...Object.values(debouncedValues), submitForm]);
 
   return (
     <div css={wrapper}>
@@ -111,9 +118,6 @@ const Header: FC<Props> = ({ readyState, connect, disconnect, clear }) => {
           id="query"
           name="query"
           label="Filter"
-          inputProps={{
-            onKeyPress: handleKeyPress,
-          }}
           helperText={helperText}
         />
         <IconButton onClick={handleMenuOpen}>
@@ -122,15 +126,7 @@ const Header: FC<Props> = ({ readyState, connect, disconnect, clear }) => {
       </div>
       <Menu id="log-menu" anchorEl={anchorEl} open={!!anchorEl} onClose={handleMenuClose}>
         <MenuItem>
-          <TextField
-            id="lines"
-            name="lines"
-            label="Max Lines"
-            type="number"
-            inputProps={{
-              onKeyPress: handleKeyPress,
-            }}
-          />
+          <TextField id="lines" name="lines" label="Max Lines" type="number" />
         </MenuItem>
         <MenuItem onClick={clear}>
           <ListItemIcon>

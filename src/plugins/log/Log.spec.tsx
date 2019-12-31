@@ -27,7 +27,7 @@ describe('plugins/log', () => {
   });
 
   describe('contextual app bar', () => {
-    it('should have title Managed List', () => {
+    it('should have title Log', () => {
       const { queryByText } = renderWithWrapper(<TestLog />);
 
       expect(queryByText('Log', { selector: 'h6' })).toBeInTheDocument();

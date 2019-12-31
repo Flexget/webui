@@ -24,7 +24,11 @@ const History: FC = () => {
 
   useEffect(() => {
     if (scroll.current && options.page === 1) {
-      (findDOMNode(scroll.current) as HTMLElement).scrollIntoView(); // eslint-disable-line react/no-find-dom-node
+      const node = findDOMNode(scroll.current); // eslint-disable-line react/no-find-dom-node
+
+      if (node && 'scrollIntoView' in node) {
+        node.scrollIntoView();
+      }
       scroll.current.pageLoaded = 1;
     }
   }, [options.page]);
