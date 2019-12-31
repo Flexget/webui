@@ -1,42 +1,20 @@
-import { camelize } from 'humps';
-import { ReducersMapObject } from 'redux';
-import { Route, ReducerHandler, SagaHandler, RouteHandler, Plugin } from './types';
+import { Route, RouteHandler, Plugin } from './types';
 
 export class PluginRegistry {
-  reducers: ReducersMapObject;
-
-  reducerHandler: ReducerHandler;
-
-  sagaHandler: SagaHandler;
-
   routeHandler: RouteHandler;
 
   routes: Record<string, Route>;
 
   constructor() {
-    this.reducers = {};
     this.routes = {};
-    this.reducerHandler = () => {};
-    this.sagaHandler = () => {};
     this.routeHandler = () => {};
-  }
-
-  set onRegisterReducer(fn: ReducerHandler) {
-    this.reducerHandler = fn;
-  }
-
-  set onRegisterSaga(fn: SagaHandler) {
-    this.sagaHandler = fn;
   }
 
   set onRegisterRoute(fn: RouteHandler) {
     this.routeHandler = fn;
   }
 
-  registerPlugin = <S = any>(
-    name: string,
-    { component, children, routeDisplayName, routeIcon, reducer, saga }: Plugin<S>,
-  ) => {
+  registerPlugin = (name: string, { component, routeDisplayName, routeIcon }: Plugin) => {
     if (!name) {
       throw Error('Plugin requires name');
     }
@@ -56,28 +34,6 @@ export class PluginRegistry {
       this.routes = { ...this.routes, [route.path]: route };
 
       this.routeHandler({ [route.path]: route });
-    }
-
-    if (children) {
-      children.forEach(child => {
-        if (child.reducer) {
-          this.reducers[camelize(name)] = child.reducer;
-          this.reducerHandler(this.reducers);
-        }
-
-        if (child.saga) {
-          this.sagaHandler(child.saga);
-        }
-      });
-    }
-
-    if (reducer) {
-      this.reducers[camelize(name)] = reducer;
-      this.reducerHandler(this.reducers);
-    }
-
-    if (saga) {
-      this.sagaHandler(saga);
     }
   };
 }
