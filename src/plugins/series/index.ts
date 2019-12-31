@@ -4,7 +4,12 @@ import LiveTvIcon from '@material-ui/icons/LiveTv';
 
 export default () =>
   registry.registerPlugin('series', {
-    component: createAsyncComponent(() => import('plugins/series/Series')),
+    component: createAsyncComponent(() =>
+      import(
+        /* webpackChunkName: 'SeriesPlugin' */
+        'plugins/series/Series'
+      ),
+    ),
     routeDisplayName: 'Series',
     routeIcon: LiveTvIcon,
   });

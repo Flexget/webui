@@ -4,7 +4,12 @@ import HistoryIcon from '@material-ui/icons/History';
 
 export default () =>
   registry.registerPlugin('history', {
-    component: createAsyncComponent(() => import('plugins/history/History')),
+    component: createAsyncComponent(() =>
+      import(
+        /* webpackChunkName: 'HistoryPlugin' */
+        'plugins/history/History'
+      ),
+    ),
     routeDisplayName: 'History',
     routeIcon: HistoryIcon,
   });

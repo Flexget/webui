@@ -4,7 +4,12 @@ import { MovieOutlined } from '@material-ui/icons';
 
 export default () =>
   registry.registerPlugin('movieList', {
-    component: createAsyncComponent(() => import('plugins/lists/movies/MovieList')),
+    component: createAsyncComponent(() =>
+      import(
+        /* webpackChunkName: 'MovieListPlugin' */
+        'plugins/lists/movies/MovieList'
+      ),
+    ),
     routeDisplayName: 'Movie List',
     routeIcon: MovieOutlined,
   });

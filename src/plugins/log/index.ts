@@ -4,7 +4,12 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 
 export default () =>
   registry.registerPlugin('log', {
-    component: createAsyncComponent(() => import('plugins/log/Log')),
+    component: createAsyncComponent(() =>
+      import(
+        /* webpackChunkName: 'LogPlugin' */
+        'plugins/log/Log'
+      ),
+    ),
     routeDisplayName: 'Log',
     routeIcon: ListAltIcon,
   });
