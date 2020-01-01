@@ -1,17 +1,16 @@
 import React, { FC, ChangeEvent, useEffect } from 'react';
-import { FormControl, TablePagination, Theme } from '@material-ui/core';
+import { TablePagination, Theme } from '@material-ui/core';
 import { css, ClassNames } from '@emotion/core';
 import SelectField from 'common/inputs/formik/SelectField';
-import { Direction } from 'utils/query';
 import { useContainer } from 'unstated-next';
 import { useFormikContext } from 'formik';
 import { useDebounce } from 'utils/hooks';
-import { Options } from './types';
-import { EntryContainer } from './hooks/entry';
-import { usePluginContainer } from './hooks/api';
+import { Direction } from 'utils/query';
+import { GetShowOptions, SortByShow, ConfigState } from '../types';
+import { ShowContainer } from '../hooks/shows';
 
 interface Props {
-  options: Options;
+  options: GetShowOptions;
 }
 
 const wrapper = (theme: Theme) => css`
@@ -36,7 +35,18 @@ const input = css`
   font-size: inherit;
 `;
 
-const sortOrderOptions = [
+const sortByOptions = [
+  {
+    value: SortByShow.ShowName,
+    label: 'Show Name',
+  },
+  {
+    value: SortByShow.LastDownloadDate,
+    label: 'Last Download Date',
+  },
+];
+
+const orderByOptions = [
   {
     value: Direction.Desc,
     label: 'Desc',
@@ -47,12 +57,25 @@ const sortOrderOptions = [
   },
 ];
 
-const EntryListHeader: FC<Props> = ({ options: { page, perPage } }) => {
-  const [{ totalCount }] = useContainer(EntryContainer);
+const configOptions = [
+  {
+    value: ConfigState.Configured,
+    label: 'Configured',
+  },
+  {
+    value: ConfigState.Unconfigured,
+    label: 'Unconfigured',
+  },
+  {
+    value: ConfigState.All,
+    label: 'All Shows',
+  },
+];
 
-  const { sortByOptions } = usePluginContainer();
+const Header: FC<Props> = ({ options: { page, perPage } }) => {
+  const [{ totalCount }] = useContainer(ShowContainer);
 
-  const { values, submitForm, setFieldValue } = useFormikContext<Options>();
+  const { values, submitForm, setFieldValue } = useFormikContext<GetShowOptions>();
 
   const handleChangePerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setFieldValue('perPage', parseInt(event.target.value, 10));
@@ -76,26 +99,32 @@ const EntryListHeader: FC<Props> = ({ options: { page, perPage } }) => {
           <div css={wrapper}>
             <div css={container} />
             <div css={container}>
-              <FormControl css={item}>
-                <SelectField
-                  label="Sort By"
-                  name="sortBy"
-                  id="sortBy"
-                  size="small"
-                  InputProps={{ className: cssString(input) }}
-                  options={sortByOptions}
-                />
-              </FormControl>
-              <FormControl css={item}>
-                <SelectField
-                  label="Order"
-                  name="order"
-                  id="order"
-                  size="small"
-                  InputProps={{ className: cssString(input) }}
-                  options={sortOrderOptions}
-                />
-              </FormControl>
+              <SelectField
+                label="Configured"
+                name="inConfig"
+                id="inConfig"
+                size="small"
+                InputProps={{ className: cssString(input) }}
+                options={configOptions}
+              />
+              <SelectField
+                css={item}
+                label="Sort By"
+                name="sortBy"
+                id="sortBy"
+                size="small"
+                InputProps={{ className: cssString(input) }}
+                options={sortByOptions}
+              />
+              <SelectField
+                css={item}
+                label="Order"
+                name="order"
+                id="order"
+                size="small"
+                InputProps={{ className: cssString(input) }}
+                options={orderByOptions}
+              />
 
               <TablePagination
                 rowsPerPageOptions={[30, 60, 90]}
@@ -114,4 +143,4 @@ const EntryListHeader: FC<Props> = ({ options: { page, perPage } }) => {
   );
 };
 
-export default EntryListHeader;
+export default Header;

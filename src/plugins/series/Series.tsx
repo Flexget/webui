@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { hot } from 'react-hot-loader/root';
 import { Route, Switch, useRouteMatch } from 'react-router';
 import Shows from './Shows';
 import Episodes from './Episodes';
@@ -16,4 +17,4 @@ const Series: FC = () => {
   );
 };
 
-export default Series;
+export default hot(Series);

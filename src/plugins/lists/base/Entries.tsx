@@ -5,6 +5,7 @@ import { useInjectContent, useSetMenuProps } from 'core/layout/AppBar/hooks';
 import { useMergeState, useOverlayState } from 'utils/hooks';
 import { Delete } from '@material-ui/icons';
 import { OverflowMenuProps } from 'core/layout/AppBar/OverflowMenu';
+import { Formik } from 'formik';
 import EntryList from './EntryList';
 import EntryListHeader from './EntryListHeader';
 import { Options } from './types';
@@ -55,7 +56,9 @@ const Entries: FC = () => {
 
   return (
     <EntryContainer.Provider>
-      <EntryListHeader setOptions={setOptions} options={options} />
+      <Formik initialValues={options} onSubmit={values => setOptions(values)}>
+        <EntryListHeader options={options} />
+      </Formik>
       <EntryList options={options} />
       <AddFab />
       <RemoveListDialog open={removeIsOpen} onClose={removeClose} />
