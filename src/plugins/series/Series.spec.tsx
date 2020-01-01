@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { cleanup } from '@testing-library/react';
-import { useHistory } from 'react-router';
+import { useHistory, Route, Switch } from 'react-router';
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
@@ -18,7 +18,11 @@ const TestSeries: FC<Props> = ({ path }) => {
   return (
     <>
       <AppBar toggleSidebar={jest.fn()} />
-      <PendingList />
+      <Switch>
+        <Route path="/series">
+          <PendingList />
+        </Route>
+      </Switch>
     </>
   );
 };
@@ -38,8 +42,10 @@ describe('plugins/series', () => {
 
   describe('contextual app bar', () => {
     describe.each`
-      name        | title       | path
-      ${'series'} | ${'Series'} | ${'/series'}
+      name          | title         | path
+      ${'series'}   | ${'Series'}   | ${'/series'}
+      ${'episodes'} | ${'Episodes'} | ${'/series/1'}
+      ${'releases'} | ${'Releases'} | ${'/series/1/episodes/2'}
     `('$name', ({ title, path }) => {
       it(`should have title ${title} on ${path}`, async () => {
         const { findByText } = renderWithWrapper(<TestSeries path={path} />);

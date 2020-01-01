@@ -12,11 +12,15 @@ export const themed = (component: ReactNode) => <ThemeProvider>{component}</Them
 
 export const router = (component: ReactNode) => <MemoryRouter>{component}</MemoryRouter>;
 
-export const BaseProviders: FC = ({ children }) => {
+interface Props {
+  path?: string;
+}
+
+export const BaseProviders: FC<Props> = ({ path = '/', children }) => {
   return (
     <StatusContainer.Provider>
       <AuthContainer.Provider>
-        <MemoryRouter>
+        <MemoryRouter initialEntries={[path]}>
           <ThemeProvider>
             <RouteContainer.Provider>
               <TaskContainer.Provider>
@@ -30,5 +34,12 @@ export const BaseProviders: FC = ({ children }) => {
   );
 };
 
-export const renderWithWrapper = (ui: ReactElement, options: Omit<RenderOptions, 'queries'> = {}) =>
-  render(ui, { wrapper: BaseProviders, ...options });
+export const renderWithWrapper = (
+  ui: ReactElement,
+  path = '/',
+  options: Omit<RenderOptions, 'wrapper'> = {},
+) =>
+  render(ui, {
+    wrapper: ({ children }) => <BaseProviders path={path}>{children}</BaseProviders>,
+    ...options,
+  });

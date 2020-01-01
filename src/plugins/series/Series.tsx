@@ -12,7 +12,7 @@ const Series: FC = () => {
     <Switch>
       <Route exact path={path} component={Shows} />
       <Route exact path={`${path}/:showId`} component={Episodes} />
-      <Route exact path={`${path}/:showId/epsiodes/:episodeId`} component={Releases} />
+      <Route exact path={`${path}/:showId/episodes/:episodeId`} component={Releases} />
     </Switch>
   );
 };
