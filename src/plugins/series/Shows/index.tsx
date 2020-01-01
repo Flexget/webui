@@ -4,16 +4,17 @@ import { Direction } from 'utils/query';
 import { useMergeState } from 'utils/hooks';
 import { ShowContainer } from '../hooks/shows';
 import ShowList from './ShowList';
-import { GetShowOptions, SortByShow } from '../types';
+import { GetShowOptions, SortByShow, ConfigState } from '../types';
 
 const ShowPage: FC = () => {
   useInjectPageTitle('Series');
 
-  const [options, setOptions] = useMergeState<GetShowOptions>({
+  const [options] = useMergeState<GetShowOptions>({
     page: 0,
     perPage: 30,
     sortBy: SortByShow.ShowName,
     order: Direction.Desc,
+    // inConfig: ConfigState.All,
   });
 
   return (

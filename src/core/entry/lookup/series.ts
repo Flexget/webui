@@ -174,7 +174,7 @@ const traktToFields = (series: TraktSeries): RawSeriesFields => ({
   [TraktFields.Rating]: series.rating,
   [TraktFields.Description]: series.overview,
   [TraktFields.Votes]: series.votes,
-  [TraktFields.Url]: `https://trakt.tv/shows${series.slug}`,
+  [TraktFields.Url]: `https://trakt.tv/shows/${series.slug}`,
   [TraktFields.ContentRating]: series.certification,
   [TraktFields.Network]: series.network,
   [TraktFields.Runtime]: series.runtime,

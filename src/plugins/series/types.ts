@@ -14,11 +14,18 @@ export const enum SortByShow {
   LastDownloadDate = 'last_download_date',
 }
 
+export const enum ConfigState {
+  Configured = 'configured',
+  Unconfigured = 'unconfigured',
+  All = 'all',
+}
+
 export interface GetShowOptions {
   page: number;
   perPage: number;
   order: Direction;
   sortBy: SortByShow;
+  inConfig?: ConfigState;
 }
 
 export interface ShowRequest {
