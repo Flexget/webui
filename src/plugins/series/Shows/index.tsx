@@ -16,7 +16,7 @@ const ShowPage: FC = () => {
     perPage: 30,
     sortBy: SortByShow.ShowName,
     order: Direction.Desc,
-    inConfig: ConfigState.All,
+    inConfig: ConfigState.Configured,
   });
 
   const handleSubmit = useCallback(values => setOptions(values), [setOptions]);

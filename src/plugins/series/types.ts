@@ -4,7 +4,7 @@ export interface Show {
   name: string;
   alternateNames: string[];
   beginEpisode?: Episode;
-  id: 23;
+  id: number;
   inTasks: string[];
   latestEntity?: Episode;
 }
