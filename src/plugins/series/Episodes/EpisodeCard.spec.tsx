@@ -2,17 +2,17 @@ import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
 import { renderWithWrapper } from 'utils/tests';
 import fetchMock from 'fetch-mock';
-import ShowCard from './ShowCard';
-import { Show } from '../types';
-import { ShowContainer } from '../hooks/shows';
+import EpisodeCard from './EpisodeCard';
+import { Episode, Show, IdentifiedBy } from '../types';
+import { EpisodeContainer } from '../hooks/episodes';
 
-const TestShowCard: typeof ShowCard = props => (
-  <ShowContainer.Provider>
-    <ShowCard {...props} />
-  </ShowContainer.Provider>
+const TestEpisodeCard: typeof EpisodeCard = props => (
+  <EpisodeContainer.Provider>
+    <EpisodeCard {...props} />
+  </EpisodeContainer.Provider>
 );
 
-describe('plugins/series/shows', () => {
+describe('plugins/series/episodes', () => {
   beforeEach(() => {
     fetchMock
       .get('/api/tasks', 200)
@@ -33,8 +33,22 @@ describe('plugins/series/shows', () => {
     alternateNames: [],
     inTasks: ['task 1'],
   };
+
+  const episode: Episode = {
+    firstSeen: new Date().toUTCString(),
+    seriesId: 1,
+    id: 3,
+    identifier: 'S01E01',
+    season: 1,
+    number: 1,
+    numberOfReleases: 0,
+    premier: false,
+    identifiedBy: IdentifiedBy.Ep,
+  };
   const handleRemoveClick = jest.fn();
-  const component = <TestShowCard show={show} onRemoveClick={handleRemoveClick} />;
+  const component = (
+    <TestEpisodeCard show={show} episode={episode} onRemoveClick={handleRemoveClick} />
+  );
 
   it('should call onRemoveClick when remove pressed', () => {
     const { getByLabelText } = renderWithWrapper(component);

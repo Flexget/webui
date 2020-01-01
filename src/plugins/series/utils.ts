@@ -15,5 +15,5 @@ export const episodeToEntry = (show: Show, episode: Episode): RawEntry => ({
   seriesName: show.name,
   seriesSeason: episode.season,
   seriesEpisode: episode.number,
-  seriesId: episode.seriesId,
+  seriesId: episode.identifier,
 });

@@ -51,7 +51,7 @@ export const EpisodeContainer = createContainer(() => {
   return useReducer(episodeReducer, { episodes: [], totalCount: 0 });
 });
 
-export const useGetEpisodes = (showId: number, options: GetEpisodeOptions) => {
+export const useGetEpisodes = (showId: number | undefined, options: GetEpisodeOptions) => {
   const [, dispatch] = useContainer(EpisodeContainer);
   // NOTE: Material-UI Table Pagination uses 0 based indexing for pages, so we add
   // one here to account for that
@@ -60,21 +60,23 @@ export const useGetEpisodes = (showId: number, options: GetEpisodeOptions) => {
   const [state, request] = useFlexgetAPI<Episode[]>(`/series/${showId}/episodes?${query}`);
 
   useEffect(() => {
-    const fn = async () => {
-      const resp = await request();
-      if (resp.ok) {
-        dispatch(
-          actions.getEpisodes(resp.data, parseInt(resp.headers.get('total-count') ?? '0', 10)),
-        );
-      }
-    };
-    fn();
-  }, [dispatch, request]);
+    if (showId) {
+      const fn = async () => {
+        const resp = await request();
+        if (resp.ok) {
+          dispatch(
+            actions.getEpisodes(resp.data, parseInt(resp.headers.get('total-count') ?? '0', 10)),
+          );
+        }
+      };
+      fn();
+    }
+  }, [dispatch, request, showId]);
 
   return state;
 };
 
-export const useRemoveEpisode = (showId: number, episodeId?: number) => {
+export const useRemoveEpisode = (showId?: number, episodeId?: number) => {
   const [, dispatch] = useContainer(EpisodeContainer);
   const [state, request] = useFlexgetAPI<Episode>(
     `/series/${showId}/episodes/${episodeId}`,

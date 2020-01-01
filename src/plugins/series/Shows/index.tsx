@@ -39,7 +39,7 @@ const ShowPage: FC = () => {
         <Header options={options} />
       </Formik>
       <ShowList options={options} />
-      <Fab aria-label="Add" onClick={open} css={speedDialCss}>
+      <Fab aria-label="Add" onClick={open} css={speedDialCss} color="primary">
         <Add />
       </Fab>
       <AddShowDialog open={isOpen} onClose={close} />

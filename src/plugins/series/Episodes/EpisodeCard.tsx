@@ -5,11 +5,12 @@ import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@
 import { Delete } from '@material-ui/icons';
 import Entry from 'core/entry/cards';
 import { Link } from 'common/styles';
-import { Show } from '../types';
-import { showToEntry } from '../utils';
+import { Show, Episode } from '../types';
+import { episodeToEntry } from '../utils';
 
 interface Props {
   show: Show;
+  episode: Episode;
   onRemoveClick: () => void;
 }
 
@@ -38,12 +39,12 @@ const cardActions = (theme: Theme) => css`
   justify-content: space-between;
 `;
 
-const ShowCard: FC<Props> = ({ show, onRemoveClick }) => {
+const EpisodeCard: FC<Props> = ({ show, episode, onRemoveClick }) => {
   const { url } = useRouteMatch();
   return (
     <Card css={cardCss}>
-      <CardActionArea css={actionArea} component={Link} to={`${url}/${show.id}`}>
-        <Entry entry={showToEntry(show)} css={entryCard} />
+      <CardActionArea css={actionArea} component={Link} to={`${url}/episodes/${episode.id}`}>
+        <Entry entry={episodeToEntry(show, episode)} css={entryCard} />
       </CardActionArea>
       <CardActions css={cardActions}>
         <span />
@@ -59,4 +60,4 @@ const ShowCard: FC<Props> = ({ show, onRemoveClick }) => {
   );
 };
 
-export default ShowCard;
+export default EpisodeCard;

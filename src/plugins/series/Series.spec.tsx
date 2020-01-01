@@ -30,6 +30,7 @@ const TestSeries: FC<Props> = ({ path }) => {
 describe('plugins/series', () => {
   beforeEach(() => {
     fetchMock
+      .get('glob:/api/series/1', {})
       .get('glob:/api/series?*', [])
       .get('glob:/api/series/1/episodes?*', [])
       .get('glob:/api/series/1/episodes/2/releases?*', [])
