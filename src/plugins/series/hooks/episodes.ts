@@ -74,7 +74,7 @@ export const useGetEpisodes = (showId: number, options: GetEpisodeOptions) => {
   return state;
 };
 
-export const useRemoveEpisode = (showId: number, episodeId: number) => {
+export const useRemoveEpisode = (showId: number, episodeId?: number) => {
   const [, dispatch] = useContainer(EpisodeContainer);
   const [state, request] = useFlexgetAPI<Episode>(
     `/series/${showId}/episodes/${episodeId}`,
@@ -83,7 +83,7 @@ export const useRemoveEpisode = (showId: number, episodeId: number) => {
 
   const addEntry = useCallback(async () => {
     const resp = await request();
-    if (resp.ok) {
+    if (resp.ok && episodeId) {
       dispatch(actions.removeEpisode(episodeId));
     }
     return resp;

@@ -4,7 +4,7 @@ import { useHistory, Route, Switch } from 'react-router';
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
-import PendingList from './Series';
+import Series from './Series';
 
 interface Props {
   path: string;
@@ -20,7 +20,7 @@ const TestSeries: FC<Props> = ({ path }) => {
       <AppBar toggleSidebar={jest.fn()} />
       <Switch>
         <Route path="/series">
-          <PendingList />
+          <Series />
         </Route>
       </Switch>
     </>
@@ -31,6 +31,8 @@ describe('plugins/series', () => {
   beforeEach(() => {
     fetchMock
       .get('glob:/api/series?*', [])
+      .get('glob:/api/series/1/episodes?*', [])
+      .get('glob:/api/series/1/episodes/2/releases?*', [])
       .get('/api/tasks', [])
       .catch();
   });

@@ -72,38 +72,38 @@ export const useTMDBLookup = (options: TMDBOptions) => {
   return { ...state, entry };
 };
 
-interface IMDBMovie {
-  imdbId: string;
-  name: string;
-  year: number;
-  url: string;
-}
+// interface IMDBMovie {
+// imdbId: string;
+// name: string;
+// year: number;
+// url: string;
+// }
 
-const imdbToFields = (movie: IMDBMovie): RawMovieFields => ({
-  movieName: movie.name,
-  movieYear: movie.year,
-  [IMDBFields.Url]: movie.url,
-  [IMDBFields.ID]: movie.imdbId,
-});
+// const imdbToFields = (movie: IMDBMovie): RawMovieFields => ({
+// movieName: movie.name,
+// movieYear: movie.year,
+// [IMDBFields.Url]: movie.url,
+// [IMDBFields.ID]: movie.imdbId,
+// });
 
-export const useIMDBLookup = (titleOrId?: string | number) => {
-  const [entry, setEntry] = useState<RawMovieFields>();
+// export const useIMDBLookup = (titleOrId?: string | number) => {
+// const [entry, setEntry] = useState<RawMovieFields>();
 
-  const [state, request] = useFlexgetAPI<IMDBMovie[]>(`/imdb/search/${titleOrId}`);
+// const [state, request] = useFlexgetAPI<IMDBMovie[]>(`/imdb/search/${titleOrId}`);
 
-  useEffect(() => {
-    const fn = async () => {
-      const resp = await request();
-      if (resp.ok) {
-        setEntry(imdbToFields(resp.data[0]));
-      }
-      return resp;
-    };
-    fn();
-  }, [request]);
+// useEffect(() => {
+// const fn = async () => {
+// const resp = await request();
+// if (resp.ok) {
+// setEntry(imdbToFields(resp.data[0]));
+// }
+// return resp;
+// };
+// fn();
+// }, [request]);
 
-  return { ...state, entry };
-};
+// return { ...state, entry };
+// };
 
 interface TraktOptions {
   title?: string;

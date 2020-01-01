@@ -14,7 +14,7 @@ const TestShows: FC = () => {
   );
 };
 
-describe('plugins/lists/base/shows', () => {
+describe('plugins/series/shows', () => {
   beforeEach(() => {
     fetchMock
       .get('glob:/api/series?*', [])
@@ -27,7 +27,7 @@ describe('plugins/lists/base/shows', () => {
     fetchMock.reset();
   });
 
-  describe('EntryListHeader', () => {
+  describe('Header', () => {
     it('should change order when changing the value', async () => {
       const { findAllByRole, getByLabelText } = renderWithWrapper(<TestShows />);
       const dropdown = getByLabelText('Order');
