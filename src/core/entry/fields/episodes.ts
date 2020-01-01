@@ -11,6 +11,7 @@ export enum EpisodeFieldNames {
 }
 
 export const enum TVDBFields {
+  Name = 'tvdbEpName',
   Genres = 'tvdbGenres',
   Image = 'tvdbEpImage',
   Description = 'tvdbEpOverview',
@@ -42,6 +43,7 @@ export const enum TVMazeFields {
 export const episodesFieldList = [
   // TVDB
   {
+    [EpisodeFieldNames.Name]: TVDBFields.Name,
     [EpisodeFieldNames.Genres]: TVDBFields.Genres,
     [EpisodeFieldNames.Image]: TVDBFields.Image,
     [EpisodeFieldNames.Description]: TVDBFields.Description,
@@ -76,17 +78,21 @@ interface EpisodeGetters {
   [EpisodeFieldNames.Description]: string;
   [EpisodeFieldNames.Url]: string;
   [EpisodeFieldNames.ContentRating]: string;
-  [EpisodeFieldNames.ID]: string;
+  [EpisodeFieldNames.ID]: string | number;
 }
 
 export type EpisodeFields = Fields<EpisodeFieldNames, typeof episodesFieldList, EpisodeGetters>;
 
-export interface RawEpisodeEntry extends BaseEntry, EpisodeFields {
+export interface RawEpisodeFields extends EpisodeFields {
   seriesEpisode: number;
   seriesSeason: number;
+}
+
+export interface RawEpisodeEntry extends BaseEntry, RawEpisodeFields {
   seriesName: string;
   seriesId: string;
 }
+
 export interface EpisodeEntry extends RawEpisodeEntry, Partial<EpisodeGetters> {
   type: CardType.Episode;
 }

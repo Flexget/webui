@@ -8,13 +8,13 @@ import { Episode, GetEpisodeOptions } from '../types';
 
 export const enum Constants {
   GET_EPISODES = '@flexget/series/GET_EPISODES',
-  REMOVE_EPISODE = '@flexget/series/REMOVE_EPISODE',
-  REMOVE_EPISODES = '@flexget/series/REMOVE_EPISODES',
+    REMOVE_EPISODE = '@flexget/series/REMOVE_EPISODE',
+    REMOVE_EPISODES = '@flexget/series/REMOVE_EPISODES',
 }
 
 export const actions = {
   getEpisodes: (episodes: Episode[], totalCount: number) =>
-    action(Constants.GET_EPISODES, { episodes, totalCount }),
+  action(Constants.GET_EPISODES, { episodes, totalCount }),
   removeEpisode: (id: number) => action(Constants.REMOVE_EPISODE, id),
   removeEpisodes: () => action(Constants.REMOVE_EPISODES),
 };
@@ -83,7 +83,7 @@ export const useRemoveEpisode = (showId?: number, episodeId?: number) => {
     Method.Delete,
   );
 
-  const addEntry = useCallback(async () => {
+  const removeEpisode = useCallback(async () => {
     const resp = await request();
     if (resp.ok && episodeId) {
       dispatch(actions.removeEpisode(episodeId));
@@ -91,14 +91,14 @@ export const useRemoveEpisode = (showId?: number, episodeId?: number) => {
     return resp;
   }, [dispatch, episodeId, request]);
 
-  return [state, addEntry] as const;
+  return [state, removeEpisode] as const;
 };
 
 export const useRemoveEpisodes = (showId: number) => {
   const [, dispatch] = useContainer(EpisodeContainer);
   const [state, request] = useFlexgetAPI<Episode>(`/series/${showId}/episodes`, Method.Delete);
 
-  const addEntry = useCallback(async () => {
+  const removeEpisodes = useCallback(async () => {
     const resp = await request();
     if (resp.ok) {
       dispatch(actions.removeEpisodes());
@@ -106,7 +106,7 @@ export const useRemoveEpisodes = (showId: number) => {
     return resp;
   }, [dispatch, request]);
 
-  return [state, addEntry] as const;
+  return [state, removeEpisodes] as const;
 };
 
 export const useGetEpisodeDetail = (showId: number, episodeId: number) => {
