@@ -17,8 +17,9 @@ describe('core/entry/cards/Series', () => {
   beforeEach(() => {
     fetchMock
       .get('/api/tasks', [])
-      .get('glob:/api/tmdb/movies?*', 404)
-      .get('glob:/api/trakt/movies?*', 404)
+      .get('glob:/api/tvdb/series/*', 404)
+      .get('glob:/api/trakt/series/?*', 404)
+      .get('glob:/api/tvmaze/series/*', 404)
       .catch();
   });
 
@@ -49,31 +50,31 @@ describe('core/entry/cards/Series', () => {
       withSeriesRawEntry,
     )(makeRawEntry());
     const entry = toEntry(rawEntry) as SeriesEntry;
-    it('contains header', () => {
-      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
+    it('contains header', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        queryByText(entry.seriesName, {
+        await findByText(entry.seriesName, {
           selector: 'h2',
         }),
       ).toBeInTheDocument();
     });
 
-    it('has quality, contentRating, and genres', () => {
-      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
+    it('has quality, contentRating, and genres', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        queryByText(`${entry.quality}${entry.contentRating}${entry.genres?.join(' ')}`, {
+        await findByText(`${entry.quality}${entry.contentRating}${entry.genres?.join(' ')}`, {
           selector: 'span',
         }),
       ).toBeInTheDocument();
     });
 
-    it('has description', () => {
-      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
+    it('has description', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        queryByText(`${entry.description}`, {
+        await findByText(`${entry.description}`, {
           selector: 'p',
         }),
       ).toBeInTheDocument();

@@ -112,6 +112,8 @@ interface TraktOptions {
   tmdbId?: string;
   imdbId?: string;
   year?: number;
+  includeActors?: boolean;
+  includeTranslations?: boolean;
 }
 
 interface TraktMovie {
