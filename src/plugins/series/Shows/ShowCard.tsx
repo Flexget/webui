@@ -4,6 +4,7 @@ import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@
 import { Delete } from '@material-ui/icons';
 import Entry from 'core/entry/cards';
 import { Show } from '../types';
+import { showToEntry } from '../utils';
 
 interface Props {
   show: Show;

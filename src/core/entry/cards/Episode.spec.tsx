@@ -29,20 +29,20 @@ describe('core/entry/cards/Episode', () => {
       withEpisodeRawEntry,
     )(makeRawEntry());
     const entry = toEntry(rawEntry) as EpisodeEntry;
-    it('contains header', () => {
-      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
+    it('contains header', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        queryByText(`${entry.seriesName} - ${entry.episodeName} - ${entry.seriesId}`, {
+        await findByText(`${entry.seriesName} - ${entry.episodeName} - ${entry.seriesId}`, {
           selector: 'h2',
         }),
       ).toBeInTheDocument();
     });
 
-    it('has quality', () => {
-      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
+    it('has quality', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
-      expect(queryByText(entry.quality, { selector: 'span' })).toBeInTheDocument();
+      expect(await findByText(entry.quality, { selector: 'span' })).toBeInTheDocument();
     });
   });
 
@@ -53,31 +53,31 @@ describe('core/entry/cards/Episode', () => {
       withEpisodeRawEntry,
     )(makeRawEntry());
     const entry = toEntry(rawEntry) as EpisodeEntry;
-    it('contains header', () => {
-      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
+    it('contains header', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        queryByText(`${entry.seriesName} - ${entry.episodeName} - ${entry.seriesId}`, {
+        await findByText(`${entry.seriesName} - ${entry.episodeName} - ${entry.seriesId}`, {
           selector: 'h2',
         }),
       ).toBeInTheDocument();
     });
 
-    it('has quality, contentRating, and genres', () => {
-      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
+    it('has quality, contentRating, and genres', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        queryByText(`${entry.quality}${entry.contentRating}${entry.genres?.join(' ')}`, {
+        await findByText(`${entry.quality}${entry.contentRating}${entry.genres?.join(' ')}`, {
           selector: 'span',
         }),
       ).toBeInTheDocument();
     });
 
-    it('has description', () => {
-      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
+    it('has description', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        queryByText(`${entry.description}`, {
+        await findByText(`${entry.description}`, {
           selector: 'p',
         }),
       ).toBeInTheDocument();

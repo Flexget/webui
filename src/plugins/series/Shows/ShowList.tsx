@@ -3,7 +3,7 @@ import { useContainer } from 'unstated-next';
 import { Grid } from '@material-ui/core';
 import RemoveDialog from '../RemoveDialog';
 import { useGetShows, ShowContainer, useRemoveShow } from '../hooks/shows';
-import { GetShowOptions } from '../types/shows';
+import { GetShowOptions } from '../types';
 import ShowCard from './ShowCard';
 
 interface Props {

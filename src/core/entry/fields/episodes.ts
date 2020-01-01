@@ -1,7 +1,6 @@
 import { BaseEntry, CardType, Fields } from '../types';
 
 export enum EpisodeFieldNames {
-  SeriesName = 'seriesName',
   Name = 'episodeName',
   Genres = 'genres',
   Image = 'image',
