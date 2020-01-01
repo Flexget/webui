@@ -4,7 +4,7 @@ import { action } from 'utils/hooks/actions';
 import { stringify } from 'qs';
 import { snakeCase, Method } from 'utils/fetch';
 import { useFlexgetAPI } from 'core/api';
-import { Release, GetReleaseOptions } from '../types/releases';
+import { Release, GetReleaseOptions } from '../types';
 
 export const enum Constants {
   GET_RELEASES = '@flexget/series/GET_RELEASES',

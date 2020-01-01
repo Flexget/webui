@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { css } from '@emotion/core';
 import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@material-ui/core';
-import { CheckCircle, Delete } from '@material-ui/icons';
+import { Delete } from '@material-ui/icons';
 import Entry from 'core/entry/cards';
-import { Show } from 'plugins/series/types/shows';
+import { Show } from '../types';
 
 interface Props {
   show: Show;
@@ -39,7 +39,7 @@ const ShowCard: FC<Props> = ({ show, onRemoveClick }) => {
   return (
     <Card css={cardCss}>
       <CardActionArea css={actionArea} component="div">
-        <Entry entry={entry.entry} css={entryCard} />
+        <Entry entry={showToEntry(show)} css={entryCard} />
       </CardActionArea>
       <CardActions css={cardActions}>
         <span />

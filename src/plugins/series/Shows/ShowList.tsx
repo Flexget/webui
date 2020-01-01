@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useCallback } from 'react';
 import { useContainer } from 'unstated-next';
 import { Grid } from '@material-ui/core';
-import { useGetShows, ShowContainer } from '../hooks/shows';
+import RemoveDialog from '../RemoveDialog';
+import { useGetShows, ShowContainer, useRemoveShow } from '../hooks/shows';
 import { GetShowOptions } from '../types/shows';
 import ShowCard from './ShowCard';
 
@@ -13,15 +14,28 @@ const ShowList: FC<Props> = ({ options }) => {
   useGetShows(options);
 
   const [{ shows }] = useContainer(ShowContainer);
+  const [showId, setShowId] = useState<number>();
+  const handleClose = useCallback(() => setShowId(undefined), []);
+
+  const [state, request] = useRemoveShow(showId);
 
   return (
-    <Grid container spacing={2}>
-      {shows.map(show => (
-        <Grid item key={show.id} xs={12} md={6} lg={4}>
-          <ShowCard show={show} />
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <Grid container spacing={2}>
+        {shows.map(show => (
+          <Grid item key={show.id} xs={12} md={6} lg={4}>
+            <ShowCard show={show} onRemoveClick={() => setShowId(showId)} />
+          </Grid>
+        ))}
+      </Grid>
+      <RemoveDialog
+        open={!!showId}
+        onClose={handleClose}
+        request={request}
+        state={state}
+        name="Show"
+      />
+    </>
   );
 };
 

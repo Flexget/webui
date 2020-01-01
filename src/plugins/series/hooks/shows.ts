@@ -4,7 +4,7 @@ import { action } from 'utils/hooks/actions';
 import { stringify } from 'qs';
 import { snakeCase, Method } from 'utils/fetch';
 import { useFlexgetAPI } from 'core/api';
-import { Show, GetShowOptions, ShowRequest } from '../types/shows';
+import { Show, GetShowOptions, ShowRequest } from '../types';
 
 export const enum Constants {
   GET_SHOWS = '@flexget/series/GET_SHOWS',
@@ -122,13 +122,13 @@ export const useUpdateShow = (showId: number) => {
   return [state, updateShow] as const;
 };
 
-export const useRemoveShow = (showId: number) => {
+export const useRemoveShow = (showId?: number) => {
   const [, dispatch] = useContainer(ShowContainer);
   const [state, request] = useFlexgetAPI<Show>(`/series/${showId}`, Method.Delete);
 
   const removeShow = useCallback(async () => {
     const resp = await request();
-    if (resp.ok) {
+    if (resp.ok && showId) {
       dispatch(actions.removeShow(showId));
     }
     return resp;

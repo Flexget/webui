@@ -15,7 +15,7 @@ interface Props {
   options: Options;
 }
 
-interface EntryPromptStates {
+interface EntryPromptState {
   type?: 'inject' | 'remove';
   open: boolean;
   entryId?: number;
@@ -25,7 +25,7 @@ const EntryList: FC<Props> = ({ options }) => {
   const [{ entries }] = useContainer(EntryContainer);
   const [selectedIds, { clearSelected }] = useEntryBulkSelect();
   useGetEntries(options);
-  const [{ entryId, open, type }, setEntryPrompt] = useState<EntryPromptStates>({ open: false });
+  const [{ entryId, open, type }, setEntryPrompt] = useState<EntryPromptState>({ open: false });
 
   const defaultValue = useMemo(() => [], []);
 
