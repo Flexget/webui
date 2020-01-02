@@ -24,3 +24,8 @@ export const ratingLine = css`
   display: flex;
   align-items: center;
 `;
+
+export const selectableType = css`
+  user-select: text;
+  cursor: text;
+`;

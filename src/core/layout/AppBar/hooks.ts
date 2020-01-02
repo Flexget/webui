@@ -1,11 +1,19 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, ComponentType } from 'react';
 import { createContainer, useContainer } from 'unstated-next';
 import { OverflowMenuProps } from './OverflowMenu';
+
+interface AppBarIcon {
+  Component: ComponentType;
+  onClick: () => void;
+  label: string;
+}
 
 export interface ContextualProps {
   menuItems?: OverflowMenuProps[];
   title?: string;
   onClose?: () => void;
+  content?: JSX.Element;
+  icon?: AppBarIcon;
 }
 
 const defaultTitle = 'Flexget Manager';
@@ -16,27 +24,21 @@ export const AppBarContainer = createContainer(() => {
   const [menuProps, setMenuProps] = useState<OverflowMenuProps[]>();
   const [contextualProps, setContextualProps] = useState<ContextualProps>();
   const [contextualMode, setContextual] = useState(false);
+  const [icon, setIcon] = useState<AppBarIcon>();
 
   return [
-    { title, content, contextualProps, contextualMode, menuProps },
-    { setTitle, setContent, setContextualProps, setContextual, setMenuProps },
+    { title, content, contextualProps, contextualMode, menuProps, icon },
+    { setTitle, setContent, setContextualProps, setContextual, setMenuProps, setIcon },
   ] as const;
 });
 
 export const useInjectPageTitle = (title: string) => {
   const [, { setTitle }] = useContainer(AppBarContainer);
 
-  const clear = useCallback(() => {
-    setTitle(defaultTitle);
-    document.title = defaultTitle;
-  }, [setTitle]);
-
   useEffect(() => {
     setTitle(title);
     document.title = `${defaultTitle} - ${title}`;
   }, [setTitle, title]);
-
-  return clear;
 };
 
 export const useInjectContent = (content: JSX.Element) => {
@@ -74,4 +76,14 @@ export const useContextualAppBar = (props?: ContextualProps) => {
   }, [clear, props, setContextualProps]);
 
   return { setContextual, clear };
+};
+
+export const useSetAppBarIcon = (icon: AppBarIcon) => {
+  const [, { setIcon }] = useContainer(AppBarContainer);
+
+  useEffect(() => {
+    setIcon(icon);
+
+    return () => setIcon(undefined);
+  }, [icon, setIcon]);
 };

@@ -1,9 +1,10 @@
-import React, { FC, useCallback } from 'react';
-import { useParams } from 'react-router';
+import React, { FC, useCallback, useMemo } from 'react';
+import { useParams, useHistory } from 'react-router';
 import { Formik } from 'formik';
-import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
+import { useInjectPageTitle, useSetAppBarIcon } from 'core/layout/AppBar/hooks';
 import { Direction } from 'utils/query';
 import { useMergeState } from 'utils/hooks';
+import { ArrowBackIos } from '@material-ui/icons';
 import { EpisodeContainer } from '../hooks/episodes';
 import { GetEpisodeOptions } from '../types';
 import Header from './Header';
@@ -17,9 +18,26 @@ interface Match {
 const EpisodesPage: FC = () => {
   const showId = parseInt(useParams<Match>().showId, 10);
 
-  const { show } = useGetShowDetail(showId);
+  const { push } = useHistory();
 
-  useInjectPageTitle('Episodes');
+  const { show } = useGetShowDetail(showId);
+  const title = show ? `${show.name} - Episodes` : 'Episodes';
+
+  const onClick = useCallback(() => {
+    push('/series');
+  }, [push]);
+
+  const icon = useMemo(
+    () => ({
+      Component: ArrowBackIos,
+      onClick,
+      label: 'go back',
+    }),
+    [onClick],
+  );
+
+  useInjectPageTitle(title);
+  useSetAppBarIcon(icon);
 
   const [options, setOptions] = useMergeState<GetEpisodeOptions>({
     page: 0,

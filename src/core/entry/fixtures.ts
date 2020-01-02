@@ -107,6 +107,7 @@ export const withTraktSeriesFields = (e: RawSeriesEntry) => ({
   [TraktSeriesFields.ID]: random.word(),
   [TraktSeriesFields.ContentRating]: random.words(),
   [TraktSeriesFields.Url]: internet.url(),
+  [TraktSeriesFields.Network]: random.words(),
 });
 
 export const withTVDBSeriesFields = (e: RawSeriesEntry) => ({
@@ -118,6 +119,7 @@ export const withTVDBSeriesFields = (e: RawSeriesEntry) => ({
   [TVDBSeriesFields.Url]: internet.url(),
   [TVDBSeriesFields.Backdrops]: image.imageUrl(),
   [TVDBSeriesFields.ContentRating]: random.words(),
+  [TVDBSeriesFields.Network]: random.words(),
   [TVDBSeriesFields.ID]: random.word(),
 });
 
@@ -128,5 +130,6 @@ export const withTVMazeSeriesFields = (e: RawSeriesEntry) => ({
   [TVMazeSeriesFields.Rating]: random.number(10),
   [TVMazeSeriesFields.Description]: lorem.paragraph(),
   [TVMazeSeriesFields.Url]: internet.url(),
+  [TVMazeSeriesFields.Network]: random.words(),
   [TVMazeSeriesFields.ID]: random.word(),
 });

@@ -4,7 +4,7 @@ import { normalizeMinutes } from 'utils/time';
 import { css } from '@emotion/core';
 import { StarRate } from '@material-ui/icons';
 import { MovieEntry, IMDBFields, TMDBFields, TraktFields } from '../fields/movies';
-import { Bullet, titleArea, ratingLine } from './styles';
+import { Bullet, titleArea, ratingLine, selectableType } from './styles';
 import BaseCard from './BaseCard';
 import LinkDropdown from './LinkDropdown';
 import { useMovieLookup } from '../lookup/movies';
@@ -56,7 +56,7 @@ const MovieCard: FC<Props> = ({ entry, className }) => {
         loading={loading}
       >
         <div css={titleArea}>
-          <Typography variant="h5" component="h2" color="textPrimary">
+          <Typography css={selectableType} variant="h5" component="h2" color="textPrimary">
             {movieName} ({movieYear})
           </Typography>
           <LinkDropdown options={options} />

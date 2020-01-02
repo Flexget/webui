@@ -5,7 +5,7 @@ import LinkDropdown from 'core/entry/cards/LinkDropdown';
 import { useEpisodeLookup } from 'core/entry/lookup/episodes';
 import { EpisodeEntry, TVMazeFields, TVDBFields } from '../fields/episodes';
 import { SeriesEntry, TraktFields } from '../fields/series';
-import { Bullet, titleArea } from './styles';
+import { Bullet, titleArea, selectableType } from './styles';
 import BaseCard from './BaseCard';
 
 interface Props {
@@ -23,7 +23,7 @@ const summary = (theme: Theme) => css`
 const EpisodeCard: FC<Props> = ({ series: rawSeries, entry: rawEpisode, className }) => {
   const {
     loading,
-    seriesEntry: { seriesName, genres = [], contentRating, ...series },
+    seriesEntry: { seriesName, genres = [], contentRating, network, ...series },
     entry: {
       seriesSeason,
       seriesEpisode,
@@ -47,7 +47,13 @@ const EpisodeCard: FC<Props> = ({ series: rawSeries, entry: rawEpisode, classNam
   return (
     <BaseCard className={className} images={image} label={`${episodeName} Image`} loading={loading}>
       <div css={titleArea}>
-        <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h2"
+          color="textPrimary"
+          css={selectableType}
+        >
           {seriesName} - {episodeName} - {seriesId}
         </Typography>
         <LinkDropdown options={options} />
@@ -55,6 +61,8 @@ const EpisodeCard: FC<Props> = ({ series: rawSeries, entry: rawEpisode, classNam
       <Typography variant="overline" color="textSecondary">
         {quality}
         {!!quality && <Bullet />}
+        {network}
+        {!!network && <Bullet />}
         {contentRating}
         {contentRating && <Bullet />}
         {genres.join(' ')}
