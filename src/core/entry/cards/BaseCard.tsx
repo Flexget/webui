@@ -26,6 +26,17 @@ const poster = (theme: Theme) => css`
   }
 `;
 
+const posterSkeletonWrapper = (theme: Theme) => css`
+  margin-left: 55%;
+  padding-left: 55%;
+  max-width: 45%;
+  ${theme.breakpoints.up('sm')} {
+    padding-left: 40%;
+    margin-left: 40%;
+    max-width: 60%;
+  }
+`;
+
 const text = css`
   height: 1.4rem;
   width: 100%;
@@ -51,6 +62,17 @@ const BaseCard: FC<Props> = ({
   loading = false,
 }) => {
   const imageCss = useCallback((theme: Theme) => [image, isPoster && poster(theme)], [isPoster]);
+  const textCss = useCallback((theme: Theme) => [text, isPoster && posterSkeletonWrapper(theme)], [
+    isPoster,
+  ]);
+  const summaryCss = useCallback(
+    (theme: Theme) => [summary(theme), isPoster && posterSkeletonWrapper(theme)],
+    [isPoster],
+  );
+  const headerCss = useCallback(
+    (theme: Theme) => [header(theme), isPoster && posterSkeletonWrapper(theme)],
+    [isPoster],
+  );
 
   const imageUrl = images && Array.isArray(images) ? images[0] : images;
   return (
@@ -72,11 +94,11 @@ const BaseCard: FC<Props> = ({
       <CardContent>
         {loading ? (
           <>
-            <Skeleton css={header} />
-            <Skeleton css={summary} />
-            <Skeleton css={text} />
-            <Skeleton css={text} />
-            <Skeleton css={text} />
+            <Skeleton css={headerCss} />
+            <Skeleton css={summaryCss} />
+            <Skeleton css={textCss} />
+            <Skeleton css={textCss} />
+            <Skeleton css={textCss} />
           </>
         ) : (
           children
