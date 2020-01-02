@@ -54,7 +54,13 @@ const OverflowMenu: FC<Props> = ({ OverflowMenuIcon = MoreVert, icons = [] }) =>
     <>
       {items[0].map(({ name, Icon, ...props }) => (
         <Tooltip key={name} title={name}>
-          <IconButton aria-label={name} key={name} color="inherit" {...props}>
+          <IconButton
+            aria-label={name}
+            key={name}
+            color="inherit"
+            edge={items[1].length ? false : 'end'}
+            {...props}
+          >
             <Icon />
           </IconButton>
         </Tooltip>
@@ -62,7 +68,12 @@ const OverflowMenu: FC<Props> = ({ OverflowMenuIcon = MoreVert, icons = [] }) =>
       {!!items[1].length && (
         <>
           <Tooltip title="View More">
-            <IconButton onClick={handleOverflowClick} aria-label="view more" color="inherit">
+            <IconButton
+              edge="end"
+              onClick={handleOverflowClick}
+              aria-label="view more"
+              color="inherit"
+            >
               <OverflowMenuIcon />
             </IconButton>
           </Tooltip>

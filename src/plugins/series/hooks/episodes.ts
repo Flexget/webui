@@ -1,4 +1,4 @@
-import { Reducer, useReducer, useEffect, useCallback, useState } from 'react';
+import { Reducer, useReducer, useEffect, useCallback } from 'react';
 import { createContainer, useContainer } from 'unstated-next';
 import { action } from 'utils/hooks/actions';
 import { stringify } from 'qs';
@@ -107,21 +107,4 @@ export const useRemoveEpisodes = (showId: number) => {
   }, [dispatch, request]);
 
   return [state, removeEpisodes] as const;
-};
-
-// export const useGetEpisodeDetail = (showId: number, episodeId: number) => {
-  // const [state, request] = useFlexgetAPI<Episode>(`/series/${showId}/episodes/${episodeId}`);
-  // const [episode, setEpisode] = useState<Episode>();
-
-  // useEffect(() => {
-    // const fn = async () => {
-      // const resp = await request();
-      // if (resp.ok) {
-        // setEpisode(resp.data);
-      // }
-    // };
-    // fn();
-  // }, [request]);
-
-  // return { ...state, show: episode };
 };

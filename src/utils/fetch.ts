@@ -77,7 +77,7 @@ export const request = async <PayloadType, BodyType = undefined>(
     Accept: 'application/json',
   };
 
-  if (method !== Method.Get) {
+  if (method !== Method.Get && rawBody) {
     headers['Content-Type'] = 'application/json';
   }
 

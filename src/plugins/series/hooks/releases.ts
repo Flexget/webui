@@ -98,7 +98,7 @@ export const useGetReleases = (showId: number, episodeId: number, options: GetRe
   return state;
 };
 
-export const useUpdateRelease = (showId: number, episodeId: number, releaseId: number) => {
+export const useUpdateSingleRelease = (showId: number, episodeId: number, releaseId?: number) => {
   const [, dispatch] = useContainer(ReleaseContainer);
   const [state, request] = useFlexgetAPI<Release>(
     `/series/${showId}/episodes/${episodeId}/releases/${releaseId}`,
@@ -134,7 +134,14 @@ export const useUpdateReleases = (showId: number, episodeId: number) => {
   return [state, updateReleases] as const;
 };
 
-export const useRemoveRelease = (showId: number, episodeId: number, releaseId: number) => {
+export const useUpdateRelease = (showId: number, episodeId: number, releaseId?: number) => {
+  const singleState = useUpdateSingleRelease(showId, episodeId, releaseId);
+  const bulkState = useUpdateReleases(showId, episodeId);
+
+  return releaseId ? singleState : bulkState;
+};
+
+export const useRemoveSingleRelease = (showId: number, episodeId: number, releaseId?: number) => {
   const [, dispatch] = useContainer(ReleaseContainer);
   const [state, request] = useFlexgetAPI<Release>(
     `/series/${showId}/episodes/${episodeId}/releases/${releaseId}`,
@@ -143,11 +150,11 @@ export const useRemoveRelease = (showId: number, episodeId: number, releaseId: n
 
   const removeRelease = useCallback(async () => {
     const resp = await request();
-    if (resp.ok) {
-      dispatch(actions.removeRelease(episodeId));
+    if (resp.ok && releaseId) {
+      dispatch(actions.removeRelease(releaseId));
     }
     return resp;
-  }, [dispatch, episodeId, request]);
+  }, [dispatch, releaseId, request]);
 
   return [state, removeRelease] as const;
 };
@@ -168,4 +175,11 @@ export const useRemoveReleases = (showId: number, episodeId: number) => {
   }, [dispatch, request]);
 
   return [state, removeReleases] as const;
+};
+
+export const useRemoveRelease = (showId: number, episodeId: number, releaseId?: number) => {
+  const singleState = useRemoveSingleRelease(showId, episodeId, releaseId);
+  const bulkState = useRemoveReleases(showId, episodeId);
+
+  return releaseId ? singleState : bulkState;
 };

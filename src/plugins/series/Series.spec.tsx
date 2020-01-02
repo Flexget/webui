@@ -48,7 +48,6 @@ describe('plugins/series', () => {
       name          | title         | path
       ${'series'}   | ${'Series'}   | ${'/series'}
       ${'episodes'} | ${'Episodes'} | ${'/series/1'}
-      ${'releases'} | ${'Releases'} | ${'/series/1/episodes/2'}
     `('$name', ({ title, path }) => {
       it(`should have title ${title} on ${path}`, async () => {
         const { findByText } = renderWithWrapper(<TestSeries path={path} />);

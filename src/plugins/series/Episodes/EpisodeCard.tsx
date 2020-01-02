@@ -1,19 +1,8 @@
 import React, { FC } from 'react';
-import { useRouteMatch } from 'react-router';
 import { css } from '@emotion/core';
-import {
-  Card,
-  CardActionArea,
-  CardActions,
-  IconButton,
-  Tooltip,
-  Theme,
-  Collapse,
-  CardContent,
-} from '@material-ui/core';
+import { Card, CardActions, IconButton, Tooltip, Theme, Collapse } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import Entry from 'core/entry/cards';
-import { Link } from 'common/styles';
 import ExpandButton from 'common/ExpandButton';
 import { useOverlayState } from 'utils/hooks';
 import Releases from './Releases';
@@ -35,13 +24,6 @@ const cardCss = css`
   height: 100%;
 `;
 
-const actionArea = css`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
 const entryCard = css`
   flex: 1;
   width: 100%;
@@ -53,15 +35,11 @@ const cardActions = (theme: Theme) => css`
 `;
 
 const EpisodeCard: FC<Props> = ({ show, episode, onRemoveClick }) => {
-  const { url } = useRouteMatch();
-
   const [expanded, { toggle }] = useOverlayState();
 
   return (
     <Card css={cardCss}>
-      <CardActionArea css={actionArea} component={Link} to={`${url}/episodes/${episode.id}`}>
-        <Entry entry={episodeToEntry(show, episode)} css={entryCard} />
-      </CardActionArea>
+      <Entry entry={episodeToEntry(show, episode)} css={entryCard} />
       <CardActions css={cardActions}>
         <span>
           <Tooltip title="Remove" placement="top">
@@ -71,7 +49,7 @@ const EpisodeCard: FC<Props> = ({ show, episode, onRemoveClick }) => {
           </Tooltip>
         </span>
         <span>
-          <ExpandButton dedge="end" open={expanded} onClick={toggle} />
+          <ExpandButton open={expanded} onClick={toggle} />
         </span>
       </CardActions>
       <ReleaseContainer.Provider>

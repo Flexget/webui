@@ -62,8 +62,10 @@ export const useTVDBLookup = (tvdbId: string | number | undefined, options: TVDB
       }
       return resp;
     };
-    fn();
-  }, [request]);
+    if (tvdbId) {
+      fn();
+    }
+  }, [request, tvdbId]);
 
   return { ...state, entry };
 };
