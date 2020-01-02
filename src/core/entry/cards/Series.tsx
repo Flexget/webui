@@ -4,7 +4,7 @@ import { css } from '@emotion/core';
 import BaseCard from 'core/entry/cards/BaseCard';
 import { StarRate } from '@material-ui/icons';
 import { SeriesEntry, TraktFields, TVDBFields, TVMazeFields } from '../fields/series';
-import { Bullet, titleArea, ratingLine } from './styles';
+import { Bullet, titleArea, ratingLine, selectableType } from './styles';
 import LinkDropdown from './LinkDropdown';
 import { useSeriesLookup } from '../lookup/series';
 
@@ -48,7 +48,7 @@ const SeriesCard: FC<Props> = ({ entry, className }) => {
       loading={loading}
     >
       <div css={titleArea}>
-        <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
+        <Typography gutterBottom variant="h5" component="h2" color="textPrimary" css={selectableType}>
           {seriesName}
         </Typography>
         <LinkDropdown options={options} />
