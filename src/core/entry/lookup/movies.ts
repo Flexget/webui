@@ -3,6 +3,7 @@ import { snakeCase } from 'utils/fetch';
 import { useFlexgetAPI } from 'core/api';
 import { useState, useEffect, useMemo } from 'react';
 import { TMDBFields, RawMovieFields, IMDBFields, TraktFields, MovieEntry } from '../fields/movies';
+import { toMovieEntry } from '../utils';
 
 export interface TMDBOptions {
   title?: string;
@@ -178,12 +179,13 @@ export const useMovieLookup = (movie: MovieEntry) => {
   // const { loading: imdbLoading, entry: imdbEntry } = useIMDBLookup(entry.movieName || entry[IMDBFields.ID]);
 
   const entry = useMemo(
-    () => ({
-      ...movie,
-      ...(traktEntry ?? {}),
-      ...(tmdbEntry ?? {}),
-      // ...(imdbEntry ?? {}),
-    }),
+    () =>
+      toMovieEntry({
+        ...movie,
+        ...(traktEntry ?? {}),
+        ...(tmdbEntry ?? {}),
+        // ...(imdbEntry ?? {}),
+      }),
     [movie, tmdbEntry, traktEntry],
   );
 
