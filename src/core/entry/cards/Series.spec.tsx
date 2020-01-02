@@ -36,12 +36,6 @@ describe('core/entry/cards/Series', () => {
 
       expect(await findByText(entry.seriesName)).toBeInTheDocument();
     });
-
-    it('contains quality', async () => {
-      const { findByText } = renderWithWrapper(<Card entry={entry} />);
-
-      expect(await findByText(entry.quality)).toBeInTheDocument();
-    });
   });
 
   describe('with fields', () => {
@@ -57,11 +51,11 @@ describe('core/entry/cards/Series', () => {
       ).toBeInTheDocument();
     });
 
-    it('has quality, contentRating, and genres', async () => {
+    it('has network, contentRating, and genres', async () => {
       const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        await findByText(`${entry.quality}${entry.contentRating}${entry.genres?.join(' ')}`, {
+        await findByText(`${entry.network}${entry.contentRating}${entry.genres?.join(' ')}`, {
           selector: 'span',
         }),
       ).toBeInTheDocument();

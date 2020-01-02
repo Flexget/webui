@@ -23,7 +23,7 @@ const summary = (theme: Theme) => css`
 const EpisodeCard: FC<Props> = ({ series: rawSeries, entry: rawEpisode, className }) => {
   const {
     loading,
-    seriesEntry: { seriesName, genres = [], contentRating, ...series },
+    seriesEntry: { seriesName, genres = [], contentRating, network, ...series },
     entry: {
       seriesSeason,
       seriesEpisode,
@@ -61,6 +61,8 @@ const EpisodeCard: FC<Props> = ({ series: rawSeries, entry: rawEpisode, classNam
       <Typography variant="overline" color="textSecondary">
         {quality}
         {!!quality && <Bullet />}
+        {network}
+        {!!network && <Bullet />}
         {contentRating}
         {contentRating && <Bullet />}
         {genres.join(' ')}

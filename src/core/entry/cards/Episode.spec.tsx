@@ -77,9 +77,12 @@ describe('core/entry/cards/Episode', () => {
       const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        await findByText(`${entry.quality}${series.contentRating}${series.genres?.join(' ')}`, {
-          selector: 'span',
-        }),
+        await findByText(
+          `${entry.quality}${series.network}${series.contentRating}${series.genres?.join(' ')}`,
+          {
+            selector: 'span',
+          },
+        ),
       ).toBeInTheDocument();
     });
 

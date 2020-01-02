@@ -25,8 +25,8 @@ const SeriesCard: FC<Props> = ({ entry, className }) => {
     entry: {
       posters,
       seriesName,
-      quality,
       rating,
+      network,
       genres = [],
       description = '',
       contentRating = '',
@@ -48,7 +48,13 @@ const SeriesCard: FC<Props> = ({ entry, className }) => {
       loading={loading}
     >
       <div css={titleArea}>
-        <Typography gutterBottom variant="h5" component="h2" color="textPrimary" css={selectableType}>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h2"
+          color="textPrimary"
+          css={selectableType}
+        >
           {seriesName}
         </Typography>
         <LinkDropdown options={options} />
@@ -57,8 +63,8 @@ const SeriesCard: FC<Props> = ({ entry, className }) => {
         <StarRate color="primary" /> {rating}
       </Typography>
       <Typography variant="overline" color="textSecondary">
-        {quality}
-        {!!quality && <Bullet />}
+        {network}
+        {!!network && <Bullet />}
         {contentRating}
         {!!contentRating && <Bullet />}
         {genres.join(' ')}

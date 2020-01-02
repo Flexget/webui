@@ -31,7 +31,7 @@ const EpisodesPage: FC = () => {
     () => ({
       Component: ArrowBackIos,
       onClick,
-      label: 'go back'
+      label: 'go back',
     }),
     [onClick],
   );
