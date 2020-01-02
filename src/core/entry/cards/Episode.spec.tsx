@@ -3,19 +3,27 @@ import fetchMock from 'fetch-mock';
 import { compose } from 'utils';
 import { renderWithWrapper } from 'utils/tests';
 import { cleanup } from '@testing-library/react';
+import { RawEpisodeEntry } from 'core/entry/fields/episodes';
 import {
   makeRawEntry,
   withEpisodeRawEntry,
   withTraktEpisodeFields,
   withTVMazeEpisodeFields,
+  withTraktSeriesFields,
 } from '../fixtures';
-import { toEntry } from '../utils';
-import { EpisodeEntry } from '../fields/episodes';
+import { toEpisodeEntry, toSeriesEntry } from '../utils';
 import Card from './index';
 
 describe('core/entry/cards/Episode', () => {
   beforeEach(() => {
-    fetchMock.get('/api/tasks', []).catch();
+    fetchMock
+      .get('/api/tasks', [])
+      .get('glob:/api/tvdb/series/*', 404)
+      .get('glob:/api/tvdb/episode/*', 404)
+      .get('glob:/api/trakt/series/?*', 404)
+      .get('glob:/api/tvmaze/series/*', 404)
+      .get('glob:/api/tvmaze/episode/*', 404)
+      .catch();
   });
 
   afterEach(() => {
@@ -23,12 +31,13 @@ describe('core/entry/cards/Episode', () => {
     cleanup();
   });
 
+  const baseRawEntry = withEpisodeRawEntry(makeRawEntry());
   describe('no additional fields', () => {
-    const rawEntry = compose(
-      e => ({ ...e, traktEpName: 'some name' }),
-      withEpisodeRawEntry,
-    )(makeRawEntry());
-    const entry = toEntry(rawEntry) as EpisodeEntry;
+    const rawEntry = {
+      ...baseRawEntry,
+      traktEpName: 'some name',
+    };
+    const entry = toEpisodeEntry(rawEntry);
     it('contains header', async () => {
       const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
@@ -48,16 +57,17 @@ describe('core/entry/cards/Episode', () => {
 
   describe('with fields', () => {
     const rawEntry = compose(
+      withTraktSeriesFields,
       withTraktEpisodeFields,
       withTVMazeEpisodeFields,
-      withEpisodeRawEntry,
-    )(makeRawEntry());
-    const entry = toEntry(rawEntry) as EpisodeEntry;
+    )(baseRawEntry) as RawEpisodeEntry;
+    const entry = toEpisodeEntry(rawEntry);
+    const series = toSeriesEntry(rawEntry);
     it('contains header', async () => {
       const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        await findByText(`${entry.seriesName} - ${entry.episodeName} - ${entry.seriesId}`, {
+        await findByText(`${series.seriesName} - ${entry.episodeName} - ${entry.seriesId}`, {
           selector: 'h2',
         }),
       ).toBeInTheDocument();
@@ -67,7 +77,7 @@ describe('core/entry/cards/Episode', () => {
       const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        await findByText(`${entry.quality}${entry.contentRating}${entry.genres?.join(' ')}`, {
+        await findByText(`${entry.quality}${series.contentRating}${series.genres?.join(' ')}`, {
           selector: 'span',
         }),
       ).toBeInTheDocument();

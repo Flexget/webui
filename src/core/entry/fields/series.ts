@@ -1,4 +1,4 @@
-import { BaseEntry, CardType, Fields } from '../types';
+import { BaseEntry, Fields } from '../types';
 
 export enum SeriesFieldNames {
   Genres = 'genres',
@@ -105,15 +105,11 @@ interface SeriesGetters {
   [SeriesFieldNames.Network]: string;
 }
 
-export type SeriesFields = Fields<SeriesFieldNames, typeof seriesFieldList, SeriesGetters>;
-
-export interface RawSeriesFields extends SeriesFields {
+export type RawSeriesFields = Fields<SeriesFieldNames, typeof seriesFieldList, SeriesGetters> & {
   seriesName: string;
   seriesYear?: number;
-}
+};
 
-export interface RawSeriesEntry extends BaseEntry, RawSeriesFields {}
+export type RawSeriesEntry = RawSeriesFields & BaseEntry;
 
-export interface SeriesEntry extends RawSeriesEntry, Partial<SeriesGetters> {
-  type: CardType.Series;
-}
+export type SeriesEntry = RawSeriesEntry & Partial<SeriesGetters>;

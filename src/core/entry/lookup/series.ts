@@ -1,8 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { stringify } from 'qs';
 import { snakeCase } from 'utils/fetch';
 import { useFlexgetAPI } from 'core/api';
-import { RawSeriesFields, TVDBFields, TVMazeFields, TraktFields } from '../fields/series';
+import { toSeriesEntry } from 'core/entry/utils';
+import {
+  RawSeriesFields,
+  TVDBFields,
+  TVMazeFields,
+  TraktFields,
+  SeriesEntry,
+} from '../fields/series';
 
 export interface TVDBOptions {
   includeActors?: boolean;
@@ -200,4 +207,33 @@ export const useTraktLookup = (options: TraktOptions) => {
   }, [request]);
 
   return { ...state, entry };
+};
+
+export const useSeriesLookup = (series: SeriesEntry) => {
+  const { loading: tvdbLoading, entry: tvdbEntry } = useTVDBLookup(
+    series[TVDBFields.ID] ?? series.seriesName,
+    {},
+  );
+  const { loading: traktLoading, entry: traktEntry } = useTraktLookup({
+    title: series.seriesName,
+    traktId: series[TraktFields.ID],
+  });
+  const { loading: tvMazeLoading, entry: tvMazeEntry } = useTVMazeLookup(
+    series[TVMazeFields.ID] ?? series.seriesName,
+  );
+
+  const entry = useMemo(
+    () =>
+      toSeriesEntry({
+        ...series,
+        ...(traktEntry ?? {}),
+        ...(tvdbEntry ?? {}),
+        ...(tvMazeEntry ?? {}),
+      }),
+    [series, traktEntry, tvMazeEntry, tvdbEntry],
+  );
+
+  const loading = tvdbLoading || traktLoading || tvMazeLoading;
+
+  return { entry, loading };
 };

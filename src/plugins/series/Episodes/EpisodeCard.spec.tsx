@@ -17,8 +17,10 @@ describe('plugins/series/episodes', () => {
     fetchMock
       .get('/api/tasks', 200)
       .get('glob:/api/tvdb/series/*', 404)
+      .get('glob:/api/tvdb/episode/*', 404)
       .get('glob:/api/trakt/series/?*', 404)
       .get('glob:/api/tvmaze/series/*', 404)
+      .get('glob:/api/tvmaze/episode/*', 404)
       .catch();
   });
 

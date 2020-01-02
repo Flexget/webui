@@ -5,8 +5,7 @@ import { compose } from 'utils';
 import { normalizeMinutes } from 'utils/time';
 import { renderWithWrapper } from 'utils/tests';
 import { makeRawEntry, withMovieRawEntry, withTMDBFields, withTraktFields } from '../fixtures';
-import { toEntry } from '../utils';
-import { MovieEntry } from '../fields/movies';
+import { toMovieEntry } from '../utils';
 import Card from './index';
 
 describe('core/entry/cards/Movie', () => {
@@ -23,9 +22,10 @@ describe('core/entry/cards/Movie', () => {
     cleanup();
   });
 
+  const baseRawEntry = withMovieRawEntry(makeRawEntry());
   describe('no additional fields', () => {
-    const rawEntry = compose(withMovieRawEntry)(makeRawEntry());
-    const entry = toEntry(rawEntry) as MovieEntry;
+    const rawEntry = baseRawEntry;
+    const entry = toMovieEntry(rawEntry);
     it('contains header', async () => {
       const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
@@ -40,8 +40,8 @@ describe('core/entry/cards/Movie', () => {
   });
 
   describe('with fields', () => {
-    const rawEntry = compose(withTraktFields, withTMDBFields, withMovieRawEntry)(makeRawEntry());
-    const entry = toEntry(rawEntry) as MovieEntry;
+    const rawEntry = compose(withTraktFields, withTMDBFields)(baseRawEntry);
+    const entry = toMovieEntry(rawEntry);
     it('contains header', async () => {
       const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
@@ -57,6 +57,7 @@ describe('core/entry/cards/Movie', () => {
         ),
       ).toBeInTheDocument();
     });
+
     it('contains description', async () => {
       const { findByText } = renderWithWrapper(<Card entry={entry} />);
 

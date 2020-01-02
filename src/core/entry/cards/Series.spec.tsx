@@ -9,8 +9,7 @@ import {
   withTVMazeSeriesFields,
   withTVDBSeriesFields,
 } from '../fixtures';
-import { toEntry } from '../utils';
-import { SeriesEntry } from '../fields/series';
+import { toSeriesEntry } from '../utils';
 import Card from './index';
 
 describe('core/entry/cards/Series', () => {
@@ -27,9 +26,11 @@ describe('core/entry/cards/Series', () => {
     fetchMock.reset();
     cleanup();
   });
+
+  const baseRawEntry = withSeriesRawEntry(makeRawEntry());
   describe('no additional fields', () => {
-    const rawEntry = compose(withSeriesRawEntry)(makeRawEntry());
-    const entry = toEntry(rawEntry) as SeriesEntry;
+    const rawEntry = baseRawEntry;
+    const entry = toSeriesEntry(rawEntry);
     it('contains header', async () => {
       const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
@@ -44,12 +45,8 @@ describe('core/entry/cards/Series', () => {
   });
 
   describe('with fields', () => {
-    const rawEntry = compose(
-      withTVDBSeriesFields,
-      withTVMazeSeriesFields,
-      withSeriesRawEntry,
-    )(makeRawEntry());
-    const entry = toEntry(rawEntry) as SeriesEntry;
+    const rawEntry = compose(withTVDBSeriesFields, withTVMazeSeriesFields)(baseRawEntry);
+    const entry = toSeriesEntry(rawEntry);
     it('contains header', async () => {
       const { findByText } = renderWithWrapper(<Card entry={entry} />);
 

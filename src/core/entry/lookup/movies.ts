@@ -1,8 +1,8 @@
 import { stringify } from 'qs';
 import { snakeCase } from 'utils/fetch';
 import { useFlexgetAPI } from 'core/api';
-import { useState, useEffect } from 'react';
-import { TMDBFields, RawMovieFields, IMDBFields, TraktFields } from '../fields/movies';
+import { useState, useEffect, useMemo } from 'react';
+import { TMDBFields, RawMovieFields, IMDBFields, TraktFields, MovieEntry } from '../fields/movies';
 
 export interface TMDBOptions {
   title?: string;
@@ -162,4 +162,33 @@ export const useTraktLookup = (options: TraktOptions) => {
   }, [request]);
 
   return { ...state, entry };
+};
+
+export const useMovieLookup = (movie: MovieEntry) => {
+  const { loading: tmdbLoading, entry: tmdbEntry } = useTMDBLookup({
+    title: movie.movieName,
+    tmdbId: movie[TMDBFields.ID],
+    includePosters: true,
+    includeBackdrops: true,
+  });
+  const { loading: traktLoading, entry: traktEntry } = useTraktLookup({
+    title: movie.movieName,
+    traktId: movie[TraktFields.ID],
+  });
+  // const { loading: imdbLoading, entry: imdbEntry } = useIMDBLookup(entry.movieName || entry[IMDBFields.ID]);
+
+  const entry = useMemo(
+    () => ({
+      ...movie,
+      ...(traktEntry ?? {}),
+      ...(tmdbEntry ?? {}),
+      // ...(imdbEntry ?? {}),
+    }),
+    [movie, tmdbEntry, traktEntry],
+  );
+
+  // const loading = tmdbLoading || traktLoading || imdbLoading;
+  const loading = tmdbLoading || traktLoading;
+
+  return { loading, entry };
 };

@@ -8,13 +8,13 @@ import { Episode, GetEpisodeOptions } from '../types';
 
 export const enum Constants {
   GET_EPISODES = '@flexget/series/GET_EPISODES',
-    REMOVE_EPISODE = '@flexget/series/REMOVE_EPISODE',
-    REMOVE_EPISODES = '@flexget/series/REMOVE_EPISODES',
+  REMOVE_EPISODE = '@flexget/series/REMOVE_EPISODE',
+  REMOVE_EPISODES = '@flexget/series/REMOVE_EPISODES',
 }
 
 export const actions = {
   getEpisodes: (episodes: Episode[], totalCount: number) =>
-  action(Constants.GET_EPISODES, { episodes, totalCount }),
+    action(Constants.GET_EPISODES, { episodes, totalCount }),
   removeEpisode: (id: number) => action(Constants.REMOVE_EPISODE, id),
   removeEpisodes: () => action(Constants.REMOVE_EPISODES),
 };

@@ -1,14 +1,13 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { Typography, Theme } from '@material-ui/core';
 import { normalizeMinutes } from 'utils/time';
 import { css } from '@emotion/core';
 import { StarRate } from '@material-ui/icons';
-import { toMovieEntry } from 'core/entry/utils';
 import { MovieEntry, IMDBFields, TMDBFields, TraktFields } from '../fields/movies';
 import { Bullet, titleArea, ratingLine } from './styles';
 import BaseCard from './BaseCard';
 import LinkDropdown from './LinkDropdown';
-import { useTraktLookup, useTMDBLookup } from '../lookup/movies';
+import { useMovieLookup } from '../lookup/movies';
 
 interface Props {
   entry: MovieEntry;
@@ -22,40 +21,22 @@ const summary = (theme: Theme) => css`
 `;
 
 const MovieCard: FC<Props> = ({ entry, className }) => {
-  const { loading: tmdbLoading, entry: tmdbEntry } = useTMDBLookup({
-    title: entry.movieName,
-    tmdbId: entry[TMDBFields.ID],
-    includePosters: true,
-    includeBackdrops: true,
-  });
-  const { loading: traktLoading, entry: traktEntry } = useTraktLookup({
-    title: entry.movieName,
-    traktId: entry[TraktFields.ID],
-  });
-  // const { loading: imdbLoading, entry: imdbEntry } = useIMDBLookup(entry.movieName || entry[IMDBFields.ID]);
-
   const {
-    backdrops,
-    posters,
-    movieName,
-    movieYear,
-    runtime = 0,
-    genres = [],
-    description = '',
-    quality,
-    rating,
-    votes,
-    ...hydratedEntry
-  } = useMemo(
-    () =>
-      toMovieEntry({
-        ...entry,
-        ...(traktEntry ?? {}),
-        ...(tmdbEntry ?? {}),
-        // ...(imdbEntry ?? {}),
-      }),
-    [entry, tmdbEntry, traktEntry],
-  );
+    loading,
+    entry: {
+      backdrops,
+      posters,
+      movieName,
+      movieYear,
+      runtime = 0,
+      genres = [],
+      description = '',
+      quality,
+      rating,
+      votes,
+      ...hydratedEntry
+    },
+  } = useMovieLookup(entry);
 
   const isPoster = !backdrops?.length;
   const images = isPoster ? posters : backdrops;
@@ -64,8 +45,6 @@ const MovieCard: FC<Props> = ({ entry, className }) => {
     { url: hydratedEntry[TMDBFields.Url], label: 'TMDB' },
     { url: hydratedEntry[TraktFields.Url], label: 'Trakt' },
   ];
-
-  const loading = tmdbLoading || traktLoading;
 
   return (
     <>

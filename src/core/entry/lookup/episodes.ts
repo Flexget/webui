@@ -1,8 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { stringify } from 'qs';
 import { snakeCase } from 'utils/fetch';
 import { useFlexgetAPI } from 'core/api';
-import { RawEpisodeFields, TVDBFields, TVMazeFields } from '../fields/episodes';
+import { toEpisodeEntry } from 'core/entry/utils';
+import { useSeriesLookup } from 'core/entry/lookup/series';
+import { EpisodeFields, TVDBFields, TVMazeFields, EpisodeEntry } from '../fields/episodes';
+import {
+  SeriesEntry,
+  TVDBFields as SeriesTVDBFields,
+  TVMazeFields as SeriesTVMazeFields,
+} from '../fields/series';
 
 export interface TVDBOptions {
   airDate?: number;
@@ -28,9 +35,12 @@ interface TVDBEpisode {
   seriesId: number;
 }
 
-const tvdbToFields = (episode: TVDBEpisode): RawEpisodeFields => ({
+const pad = (num: number) => `${num}`.padStart(2, '0');
+
+const tvdbToFields = (episode: TVDBEpisode): EpisodeFields => ({
   seriesEpisode: episode.episodeNumber,
   seriesSeason: episode.seasonNumber,
+  seriesId: `S${pad(episode.seasonNumber)}E${pad(episode.episodeNumber)}`,
   [TVDBFields.Name]: episode.episodeName,
   [TVDBFields.Image]: episode.image,
   [TVDBFields.Description]: episode.overview,
@@ -38,11 +48,11 @@ const tvdbToFields = (episode: TVDBEpisode): RawEpisodeFields => ({
   [TVDBFields.ID]: episode.id,
 });
 
-export const useTVDBLookup = (tvdbId: string | number, options: TVDBOptions) => {
+export const useTVDBLookup = (tvdbId: string | number | undefined, options: TVDBOptions) => {
   const query = stringify(snakeCase(options));
-  const [entry, setEntry] = useState<RawEpisodeFields>();
+  const [entry, setEntry] = useState<EpisodeFields>();
 
-  const [state, request] = useFlexgetAPI<TVDBEpisode>(`/tvdb/series/${tvdbId}?${query}`);
+  const [state, request] = useFlexgetAPI<TVDBEpisode>(`/tvdb/episode/${tvdbId}?${query}`);
 
   useEffect(() => {
     const fn = async () => {
@@ -82,20 +92,21 @@ export interface TVMazeOptions {
   seasonNum?: number;
 }
 
-const tvMazeToFields = (episode: TVMazeEpisode): RawEpisodeFields => ({
+const tvMazeToFields = (episode: TVMazeEpisode): EpisodeFields => ({
   seriesEpisode: episode.number,
   seriesSeason: episode.seasonNumber,
+  seriesId: `S${pad(episode.number)}E${pad(episode.seasonNumber)}`,
   [TVMazeFields.Image]: episode.originalImage,
   [TVMazeFields.Description]: episode.summary,
   [TVMazeFields.Url]: episode.url,
   [TVMazeFields.ID]: episode.tvmazeId,
 });
 
-export const useTVMazeLookup = (seriesId: string | number, options: TVMazeOptions) => {
+export const useTVMazeLookup = (seriesId: string | number | undefined, options: TVMazeOptions) => {
   const query = stringify(snakeCase(options));
-  const [entry, setEntry] = useState<RawEpisodeFields>();
+  const [entry, setEntry] = useState<EpisodeFields>();
 
-  const [state, request] = useFlexgetAPI<TVMazeEpisode>(`/tvmaze/series/${seriesId}?${query}`);
+  const [state, request] = useFlexgetAPI<TVMazeEpisode>(`/tvmaze/episode/${seriesId}?${query}`);
 
   useEffect(() => {
     const fn = async () => {
@@ -105,8 +116,42 @@ export const useTVMazeLookup = (seriesId: string | number, options: TVMazeOption
       }
       return resp;
     };
-    fn();
-  }, [request]);
+    if (seriesId) {
+      fn();
+    }
+  }, [request, seriesId]);
 
   return { ...state, entry };
+};
+
+export const useEpisodeLookup = (series: SeriesEntry, episode: EpisodeEntry) => {
+  const { loading: seriesLoading, entry: seriesEntry } = useSeriesLookup(series);
+  const { loading: tvdbLoading, entry: tvdbEntry } = useTVDBLookup(
+    seriesEntry[SeriesTVDBFields.ID],
+    {
+      epNumber: episode.seriesEpisode,
+      seasonNumber: episode.seriesSeason,
+    },
+  );
+  const { loading: tvMazeLoading, entry: tvMazeEntry } = useTVMazeLookup(
+    seriesEntry[SeriesTVMazeFields.ID],
+    {
+      epNum: episode.seriesEpisode,
+      seasonNum: episode.seriesSeason,
+    },
+  );
+
+  const entry = useMemo(
+    () =>
+      toEpisodeEntry({
+        ...episode,
+        ...(tvdbEntry ?? {}),
+        ...(tvMazeEntry ?? {}),
+      }),
+    [episode, tvMazeEntry, tvdbEntry],
+  );
+
+  const loading = tvdbLoading || tvMazeLoading || seriesLoading;
+
+  return { entry, seriesEntry, loading };
 };

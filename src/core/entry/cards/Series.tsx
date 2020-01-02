@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { Typography, Theme } from '@material-ui/core';
 import { css } from '@emotion/core';
 import BaseCard from 'core/entry/cards/BaseCard';
@@ -6,8 +6,7 @@ import { StarRate } from '@material-ui/icons';
 import { SeriesEntry, TraktFields, TVDBFields, TVMazeFields } from '../fields/series';
 import { Bullet, titleArea, ratingLine } from './styles';
 import LinkDropdown from './LinkDropdown';
-import { toSeriesEntry } from '../utils';
-import { useTraktLookup, useTVDBLookup, useTVMazeLookup } from '../lookup/series';
+import { useSeriesLookup } from '../lookup/series';
 
 interface Props {
   entry: SeriesEntry;
@@ -21,44 +20,25 @@ const summary = (theme: Theme) => css`
 `;
 
 const SeriesCard: FC<Props> = ({ entry, className }) => {
-  const { loading: tvdbLoading, entry: tvdbEntry } = useTVDBLookup(
-    entry[TVDBFields.ID] ?? entry.seriesName,
-    {},
-  );
-  const { loading: traktLoading, entry: traktEntry } = useTraktLookup({
-    title: entry.seriesName,
-    traktId: entry[TraktFields.ID],
-  });
-  const { loading: tvMazeLoading, entry: tvMazeEntry } = useTVMazeLookup(
-    entry[TVMazeFields.ID] ?? entry.seriesName,
-  );
-
   const {
-    posters,
-    seriesName,
-    quality,
-    rating,
-    genres = [],
-    description = '',
-    contentRating = '',
-    ...hydratedEntry
-  } = useMemo(
-    () =>
-      toSeriesEntry({
-        ...entry,
-        ...(traktEntry ?? {}),
-        ...(tvdbEntry ?? {}),
-        ...(tvMazeEntry ?? {}),
-      }),
-    [entry, traktEntry, tvdbEntry, tvMazeEntry],
-  );
+    loading,
+    entry: {
+      posters,
+      seriesName,
+      quality,
+      rating,
+      genres = [],
+      description = '',
+      contentRating = '',
+      ...hydratedEntry
+    },
+  } = useSeriesLookup(entry);
   const options = [
     { url: hydratedEntry[TVMazeFields.Url], label: 'TVMaze' },
     { url: hydratedEntry[TVDBFields.Url], label: 'TVDB' },
     { url: hydratedEntry[TraktFields.Url], label: 'Trakt' },
   ];
 
-  const loading = tvdbLoading || traktLoading || tvMazeLoading;
   return (
     <BaseCard
       className={className}

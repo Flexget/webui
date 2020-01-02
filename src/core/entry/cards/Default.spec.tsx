@@ -1,12 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { makeRawEntry } from '../fixtures';
-import { toEntry } from '../utils';
-import { DefaultEntry } from '../fields';
+import { toDefaultEntry } from '../utils';
 import Card from './index';
 
 describe('core/entry/cards/Default', () => {
-  const entry = toEntry(makeRawEntry()) as DefaultEntry;
+  const entry = toDefaultEntry(makeRawEntry());
   it('contains title', () => {
     const { queryByText } = render(<Card entry={entry} />);
 

@@ -1,22 +1,11 @@
-export const enum CardType {
-  Default = 'default',
-  Movie = 'movie',
-  Series = 'series',
-  Episode = 'episode',
-}
-
-export interface RawEntry {
-  readonly title: string;
-  readonly originalUrl: string;
-  readonly quality: string;
-  readonly [k: string]: any;
-}
-
 export interface BaseEntry {
   readonly title: string;
   readonly originalUrl: string;
-  readonly type: CardType;
   readonly quality: string;
+}
+
+export interface RawEntry extends BaseEntry {
+  readonly [k: string]: any;
 }
 
 export type FieldMapping<U extends string> = Partial<Record<U, string>>;

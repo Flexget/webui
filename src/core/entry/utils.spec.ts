@@ -1,5 +1,4 @@
 import { compose } from 'utils';
-import { CardType } from './types';
 import {
   makeRawEntry,
   withMovieRawEntry,
@@ -13,119 +12,128 @@ import {
   withTraktEpisodeFields,
   withTraktSeriesFields,
 } from './fixtures';
-import { toEntry } from './utils';
-import { MovieEntry, TraktFields, TMDBFields, IMDBFields } from './fields/movies';
+import { isMovie, isSeries, isEpisode, toMovieEntry, toSeriesEntry, toEpisodeEntry } from './utils';
+import { TraktFields, TMDBFields, IMDBFields } from './fields/movies';
 
 import {
-  EpisodeEntry,
   TVMazeFields as TVMazeEpisodeFields,
   TraktFields as TraktEpisodeFields,
 } from './fields/episodes';
 import {
-  SeriesEntry,
   TVMazeFields as TVMazeSeriesFields,
   TraktFields as TraktSeriesFields,
 } from './fields/series';
 
 describe('core/entry/utils', () => {
   describe('toEntry', () => {
-    const entry = makeRawEntry();
+    const rawEntry = makeRawEntry();
     describe('default', () => {
-      const defaultEntry = toEntry(entry);
       it('should work with no additional fields', () => {
-        expect(defaultEntry.type).toBe(CardType.Default);
+        expect(isSeries(rawEntry) || isEpisode(rawEntry) || isMovie(rawEntry)).toBeFalse();
       });
     });
 
     describe('movies', () => {
       it('should work with no additional fields', () => {
-        const rawMovie = compose(withMovieRawEntry)(entry);
-        const movie = toEntry(rawMovie);
-        expect(movie.type).toBe(CardType.Movie);
+        const entry = compose(withMovieRawEntry)(rawEntry);
+        expect.assertions(2);
+        if (isMovie(entry)) {
+          const movie = toMovieEntry(entry);
+          expect(movie.movieName).toBeDefined();
+          expect(movie.movieYear).toBeDefined();
+        }
       });
 
       it('should work with imdb additional fields', () => {
-        const rawMovie = compose(withTMDBFields, withMovieRawEntry)(entry);
-        const movie = toEntry(rawMovie) as MovieEntry;
-        expect(movie.type).toBe(CardType.Movie);
-        expect(movie.genres).toBeDefined();
-        expect(movie.genres).toEqual(rawMovie[TMDBFields.Genres]);
-        expect(movie.posters).toBeDefined();
-        expect(movie.posters).toEqual(rawMovie[TMDBFields.Posters]);
+        const entry = compose(withTMDBFields, withMovieRawEntry)(rawEntry);
+        expect.assertions(2);
+        if (isMovie(entry)) {
+          const movie = toMovieEntry(entry);
+          expect(movie.genres).toEqual(entry[TMDBFields.Genres]);
+          expect(movie.posters).toEqual(entry[TMDBFields.Posters]);
+        }
       });
 
       it('should work with multiple additional fields', () => {
-        const rawMovie = compose(withTraktFields, withIMDBFields, withMovieRawEntry)(entry);
-        const movie = toEntry(rawMovie) as MovieEntry;
-        expect(movie.type).toBe(CardType.Movie);
-        expect(movie.genres).toBeDefined();
-        expect(movie.genres).toEqual(rawMovie[TraktFields.Genres]);
-        expect(movie.posters).toBeDefined();
-        expect(movie.posters).toEqual(rawMovie[IMDBFields.Posters]);
+        const entry = compose(withTraktFields, withIMDBFields, withMovieRawEntry)(rawEntry);
+        expect.assertions(2);
+        if (isMovie(entry)) {
+          const movie = toMovieEntry(entry);
+          expect(movie.genres).toEqual(entry[TraktFields.Genres]);
+          expect(movie.posters).toEqual(entry[IMDBFields.Posters]);
+        }
       });
     });
 
     describe('series', () => {
       it('should work with no additional fields', () => {
-        const rawSeries = compose(withSeriesRawEntry)(entry);
-        const series = toEntry(rawSeries);
-        expect(series.type).toBe(CardType.Series);
+        const entry = compose(withSeriesRawEntry)(rawEntry);
+        expect.assertions(2);
+        if (isSeries(entry)) {
+          const series = toSeriesEntry(entry);
+          expect(series.seriesName).toBeDefined();
+          expect(series.seriesYear).toBeDefined();
+        }
       });
 
       it('should work with imdb additional fields', () => {
-        const rawSeries = compose(withTVMazeSeriesFields, withSeriesRawEntry)(entry);
-        const series = toEntry(rawSeries) as SeriesEntry;
-        expect(series.type).toBe(CardType.Series);
-        expect(series.genres).toBeDefined();
-        expect(series.genres).toEqual(rawSeries[TVMazeSeriesFields.Genres]);
-        expect(series.posters).toBeDefined();
-        expect(series.posters).toEqual(rawSeries[TVMazeSeriesFields.Posters]);
+        const entry = compose(withTVMazeSeriesFields, withSeriesRawEntry)(rawEntry);
+        expect.assertions(2);
+        if (isSeries(entry)) {
+          const series = toSeriesEntry(entry);
+          expect(series.genres).toEqual(entry[TVMazeSeriesFields.Genres]);
+          expect(series.posters).toEqual(entry[TVMazeSeriesFields.Posters]);
+        }
       });
 
       it('should work with multiple additional fields', () => {
-        const rawSeries = compose(
+        const entry = compose(
           withTraktSeriesFields,
           withTVMazeSeriesFields,
           withSeriesRawEntry,
-        )(entry);
-        const series = toEntry(rawSeries) as SeriesEntry;
-        expect(series.type).toBe(CardType.Series);
-        expect(series.genres).toBeDefined();
-        expect(series.genres).toEqual(rawSeries[TraktSeriesFields.Genres]);
-        expect(series.posters).toBeDefined();
-        expect(series.posters).toEqual(rawSeries[TVMazeSeriesFields.Posters]);
+        )(rawEntry);
+        expect.assertions(2);
+        if (isSeries(entry)) {
+          const series = toSeriesEntry(entry);
+          expect(series.genres).toEqual(entry[TraktSeriesFields.Genres]);
+          expect(series.posters).toEqual(entry[TVMazeSeriesFields.Posters]);
+        }
       });
     });
 
     describe('episodes', () => {
       it('should work with no additional fields', () => {
-        const rawEpisode = compose(withEpisodeRawEntry)(entry);
-        const episode = toEntry(rawEpisode);
-        expect(episode.type).toBe(CardType.Episode);
+        const entry = compose(withEpisodeRawEntry)(rawEntry);
+        expect.assertions(2);
+        if (isEpisode(entry)) {
+          const episode = toEpisodeEntry(entry);
+          expect(episode.seriesEpisode).toBeDefined();
+          expect(episode.seriesSeason).toBeDefined();
+        }
       });
 
       it('should work with imdb additional fields', () => {
-        const rawEpisode = compose(withTVMazeEpisodeFields, withEpisodeRawEntry)(entry);
-        const episode = toEntry(rawEpisode) as EpisodeEntry;
-        expect(episode.type).toBe(CardType.Episode);
-        expect(episode.genres).toBeDefined();
-        expect(episode.genres).toEqual(rawEpisode[TVMazeEpisodeFields.Genres]);
-        expect(episode.image).toBeDefined();
-        expect(episode.image).toEqual(rawEpisode[TVMazeEpisodeFields.Image]);
+        const entry = compose(withTVMazeEpisodeFields, withEpisodeRawEntry)(rawEntry);
+        expect.assertions(2);
+        if (isEpisode(entry)) {
+          const episode = toEpisodeEntry(entry);
+          expect(episode.description).toEqual(entry[TVMazeEpisodeFields.Description]);
+          expect(episode.image).toEqual(entry[TVMazeEpisodeFields.Image]);
+        }
       });
 
       it('should work with multiple additional fields', () => {
-        const rawEpisode = compose(
+        const entry = compose(
           withTraktEpisodeFields,
           withTVMazeEpisodeFields,
           withEpisodeRawEntry,
-        )(entry);
-        const episode = toEntry(rawEpisode) as EpisodeEntry;
-        expect(episode.type).toBe(CardType.Episode);
-        expect(episode.genres).toBeDefined();
-        expect(episode.genres).toEqual(rawEpisode[TraktEpisodeFields.Genres]);
-        expect(episode.image).toBeDefined();
-        expect(episode.image).toEqual(rawEpisode[TVMazeEpisodeFields.Image]);
+        )(rawEntry);
+        expect.assertions(2);
+        if (isEpisode(entry)) {
+          const episode = toEpisodeEntry(entry);
+          expect(episode.description).toEqual(entry[TraktEpisodeFields.Description]);
+          expect(episode.image).toEqual(entry[TVMazeEpisodeFields.Image]);
+        }
       });
     });
   });
