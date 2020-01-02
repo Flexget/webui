@@ -1,12 +1,25 @@
 import React, { FC } from 'react';
 import { useRouteMatch } from 'react-router';
 import { css } from '@emotion/core';
-import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@material-ui/core';
+import {
+  Card,
+  CardActionArea,
+  CardActions,
+  IconButton,
+  Tooltip,
+  Theme,
+  Collapse,
+  CardContent,
+} from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import Entry from 'core/entry/cards';
 import { Link } from 'common/styles';
+import ExpandButton from 'common/ExpandButton';
+import { useOverlayState } from 'utils/hooks';
+import Releases from './Releases';
 import { Show, Episode } from '../types';
 import { episodeToEntry } from '../utils';
+import { ReleaseContainer } from '../hooks/releases';
 
 interface Props {
   show: Show;
@@ -41,21 +54,31 @@ const cardActions = (theme: Theme) => css`
 
 const EpisodeCard: FC<Props> = ({ show, episode, onRemoveClick }) => {
   const { url } = useRouteMatch();
+
+  const [expanded, { toggle }] = useOverlayState();
+
   return (
     <Card css={cardCss}>
       <CardActionArea css={actionArea} component={Link} to={`${url}/episodes/${episode.id}`}>
         <Entry entry={episodeToEntry(show, episode)} css={entryCard} />
       </CardActionArea>
       <CardActions css={cardActions}>
-        <span />
         <span>
           <Tooltip title="Remove" placement="top">
-            <IconButton aria-label="remove" onClick={onRemoveClick}>
+            <IconButton edge="start" aria-label="remove" onClick={onRemoveClick}>
               <Delete />
             </IconButton>
           </Tooltip>
         </span>
+        <span>
+          <ExpandButton dedge="end" open={expanded} onClick={toggle} />
+        </span>
       </CardActions>
+      <ReleaseContainer.Provider>
+        <Collapse in={expanded} timeout="auto" mountOnEnter>
+          <Releases show={show} episode={episode} />
+        </Collapse>
+      </ReleaseContainer.Provider>
     </Card>
   );
 };

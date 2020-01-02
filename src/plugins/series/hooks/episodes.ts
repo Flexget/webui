@@ -109,19 +109,19 @@ export const useRemoveEpisodes = (showId: number) => {
   return [state, removeEpisodes] as const;
 };
 
-export const useGetEpisodeDetail = (showId: number, episodeId: number) => {
-  const [state, request] = useFlexgetAPI<Episode>(`/series/${showId}/episodes/${episodeId}`);
-  const [episode, setEpisode] = useState<Episode>();
+// export const useGetEpisodeDetail = (showId: number, episodeId: number) => {
+  // const [state, request] = useFlexgetAPI<Episode>(`/series/${showId}/episodes/${episodeId}`);
+  // const [episode, setEpisode] = useState<Episode>();
 
-  useEffect(() => {
-    const fn = async () => {
-      const resp = await request();
-      if (resp.ok) {
-        setEpisode(resp.data);
-      }
-    };
-    fn();
-  }, [request]);
+  // useEffect(() => {
+    // const fn = async () => {
+      // const resp = await request();
+      // if (resp.ok) {
+        // setEpisode(resp.data);
+      // }
+    // };
+    // fn();
+  // }, [request]);
 
-  return { ...state, show: episode };
+  // return { ...state, show: episode };
 };

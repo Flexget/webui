@@ -8,9 +8,11 @@ import Episodes from './index';
 
 const TestEpisodes: FC = () => {
   const { push } = useHistory();
+
   useEffect(() => {
     push('/series/1');
   }, [push]);
+
   return (
     <>
       <AppBar toggleSidebar={jest.fn()} />
