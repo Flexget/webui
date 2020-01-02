@@ -35,7 +35,18 @@ interface Props {
 
 const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
   const [
-    { title, content, contextualMode, contextualProps = {}, menuProps },
+    {
+      title,
+      content,
+      contextualMode,
+      contextualProps = {},
+      menuProps,
+      icon = {
+        Component: MenuIcon,
+        onClick: toggleSidebar,
+        label: 'toggle sidebar',
+      },
+    },
     { setContextual },
   ] = useContainer(AppBarContainer);
 
@@ -51,13 +62,13 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
     setContextual(false);
   }, [contextualProps, setContextual]);
 
-  const menuClick = useMemo(() => (contextualMode ? handleContextualClose : toggleSidebar), [
+  const menuClick = useMemo(() => (contextualMode ? handleContextualClose : icon.onClick), [
     contextualMode,
     handleContextualClose,
-    toggleSidebar,
+    icon.onClick,
   ]);
 
-  const menuLabel = contextualMode ? 'close context' : 'toggle sidebar';
+  const menuLabel = contextualMode ? 'close context' : icon.label;
   const [mode, toggleMode] = useContainer(ThemeContainer);
 
   const LightMode = mode === 'light' ? EmojiObjects : EmojiObjectsOutlined;
@@ -68,7 +79,7 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
     <MUIAppBar color="inherit" position="static" css={appbarStyles} className={className}>
       <Toolbar>
         <IconButton onClick={menuClick} aria-label={menuLabel} color="inherit">
-          <SpeedDialIcon icon={<MenuIcon />} openIcon={<Clear />} open={contextualMode} />
+          <SpeedDialIcon icon={<icon.Component />} openIcon={<Clear />} open={contextualMode} />
         </IconButton>
         <Typography variant="h6" color="inherit" noWrap>
           {contextualMode && contextualProps?.title ? contextualProps.title : title}
