@@ -1,3 +1,5 @@
 coverage:
   status:
-    patch: off
+    project:
+      informational: true
+      only_pulls: true

@@ -16,9 +16,9 @@ const Routes: FC = () => {
     <Switch>
       {routes.map(({ children, ...pr }) => {
         if (children) {
-          return (children || []).map(p => <PrivateRoute exact {...p} key={p.path} />);
+          return (children || []).map(p => <PrivateRoute {...p} key={p.path} />);
         }
-        return <PrivateRoute exact {...pr} key={pr.path} />;
+        return <PrivateRoute {...pr} key={pr.path} />;
       })}
     </Switch>
   );

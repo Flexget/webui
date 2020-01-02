@@ -233,6 +233,7 @@ exports[`plugins/history/FilterNav renders correctly 1`] = `
     aria-describedby={null}
     aria-label="Toggle Direction"
     className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+    css={[Function]}
     disabled={false}
     id="order"
     name="order"
@@ -259,13 +260,12 @@ exports[`plugins/history/FilterNav renders correctly 1`] = `
       <svg
         aria-hidden="true"
         className="MuiSvgIcon-root"
-        css={[Function]}
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
       >
         <path
-          d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+          d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
         />
       </svg>
     </span>

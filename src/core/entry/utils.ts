@@ -1,33 +1,18 @@
-import { RawEntry, CardType, FieldNames, MappingType, GettersType } from './types';
-import { Entry, DefaultEntry } from './fields';
+import { RawEntry, FieldNames, MappingType, GettersType, BaseEntry } from './types';
+import { MovieEntry, movieFieldList, RawMovieEntry, MovieFieldNames } from './fields/movies';
+import { SeriesEntry, seriesFieldList, SeriesFieldNames, RawSeriesEntry } from './fields/series';
 import {
-  RawMovieEntry,
-  MovieEntry,
-  movieFieldList,
-  MovieFields,
-  MovieFieldNames,
-} from './fields/movies';
-import {
-  RawSeriesEntry,
-  SeriesEntry,
-  seriesFieldList,
-  SeriesFields,
-  SeriesFieldNames,
-} from './fields/series';
-
-import {
-  RawEpisodeEntry,
   EpisodeEntry,
-  EpisodeFields,
+  RawEpisodeEntry,
   episodesFieldList,
   EpisodeFieldNames,
 } from './fields/episodes';
 
-const isMovie = (entry: RawEntry): entry is RawMovieEntry => !!entry.movieName;
-const isSeries = (entry: RawEntry): entry is RawSeriesEntry =>
+export const isMovie = (entry: RawEntry): entry is RawMovieEntry => !!entry.movieName;
+export const isSeries = (entry: RawEntry): entry is RawSeriesEntry =>
   !!entry.seriesName && !entry.seriesSeason;
-const isEpisode = (entry: RawEntry): entry is RawEpisodeEntry =>
-  !!(entry.seriesSeason && entry.seriesEpisode);
+export const isEpisode = (entry: RawEntry): entry is RawEpisodeEntry & SeriesEntry =>
+  !!(entry.seriesSeason && entry.seriesEpisode && entry.seriesName);
 
 const getPropFn = <U>(mapping: MappingType<U>) => {
   const mapByField = mapping.reduce<Partial<Record<FieldNames<U>, string[]>>>(
@@ -59,44 +44,27 @@ const makeGetters = <T>(names: Record<string, FieldNames<T>>, mapping: MappingTy
     );
 };
 
-const getMovieProps = makeGetters<MovieFields>(MovieFieldNames, movieFieldList);
-const getSeriesProps = makeGetters<SeriesFields>(SeriesFieldNames, seriesFieldList);
-const getEpisodeProps = makeGetters<EpisodeFields>(EpisodeFieldNames, episodesFieldList);
+const getMovieProps = makeGetters<RawMovieEntry>(MovieFieldNames, movieFieldList);
+const getSeriesProps = makeGetters<RawSeriesEntry>(SeriesFieldNames, seriesFieldList);
+const getEpisodeProps = makeGetters<RawEpisodeEntry>(EpisodeFieldNames, episodesFieldList);
 
 export const toMovieEntry = (entry: RawMovieEntry): MovieEntry => {
   return {
     ...entry,
-    type: CardType.Movie,
     ...getMovieProps(entry),
   };
 };
 
 export const toSeriesEntry = (entry: RawSeriesEntry): SeriesEntry => ({
   ...entry,
-  type: CardType.Series,
   ...getSeriesProps(entry),
 });
 
 export const toEpisodeEntry = (entry: RawEpisodeEntry): EpisodeEntry => ({
   ...entry,
-  type: CardType.Episode,
   ...getEpisodeProps(entry),
 });
 
-export const toDefaultEntry = (entry: RawEntry): DefaultEntry => ({
+export const toDefaultEntry = (entry: BaseEntry): BaseEntry => ({
   ...entry,
-  type: CardType.Default,
 });
-
-export const toEntry = (entry: RawEntry): Entry => {
-  if (isMovie(entry)) {
-    return toMovieEntry(entry);
-  }
-  if (isSeries(entry)) {
-    return toSeriesEntry(entry);
-  }
-  if (isEpisode(entry)) {
-    return toEpisodeEntry(entry);
-  }
-  return toDefaultEntry(entry);
-};

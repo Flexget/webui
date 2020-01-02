@@ -2,7 +2,6 @@ import * as React from 'react';
 import { hot } from 'react-hot-loader/root';
 import { StylesProvider } from '@material-ui/styles';
 import { CssBaseline } from '@material-ui/core';
-import { Provider } from 'react-redux';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { Global, css } from '@emotion/core';
 import PrivateRoute from 'core/routes/PrivateRoute';
@@ -22,7 +21,6 @@ import { RouteContainer } from 'core/routes/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
 import { VersionContainer } from 'core/layout/SideNav/hooks';
 import { uriParser } from 'utils';
-import store from 'store';
 
 registerHistory();
 registerLog();
@@ -61,33 +59,31 @@ const Root = () => (
     <Global styles={globals} />
     <CssBaseline />
     <StylesProvider injectFirst>
-      <Provider store={store}>
-        <StatusContainer.Provider>
-          <AuthContainer.Provider>
-            <VersionContainer.Provider>
-              <BrowserRouter basename={basename}>
-                <Switch>
-                  <Route path="/login" exact component={Login} />
-                  <Route
-                    render={() => (
-                      <RouteContainer.Provider>
-                        <TaskContainer.Provider>
-                          <Layout>
-                            <Switch>
-                              <PrivateRoute path="/" exact component={Home} />
-                              <Route render={() => <Routes />} />
-                            </Switch>
-                          </Layout>
-                        </TaskContainer.Provider>
-                      </RouteContainer.Provider>
-                    )}
-                  />
-                </Switch>
-              </BrowserRouter>
-            </VersionContainer.Provider>
-          </AuthContainer.Provider>
-        </StatusContainer.Provider>
-      </Provider>
+      <StatusContainer.Provider>
+        <AuthContainer.Provider>
+          <VersionContainer.Provider>
+            <BrowserRouter basename={basename}>
+              <Switch>
+                <Route path="/login" exact component={Login} />
+                <Route
+                  render={() => (
+                    <RouteContainer.Provider>
+                      <TaskContainer.Provider>
+                        <Layout>
+                          <Switch>
+                            <PrivateRoute path="/" exact component={Home} />
+                            <Route component={Routes} />
+                          </Switch>
+                        </Layout>
+                      </TaskContainer.Provider>
+                    </RouteContainer.Provider>
+                  )}
+                />
+              </Switch>
+            </BrowserRouter>
+          </VersionContainer.Provider>
+        </AuthContainer.Provider>
+      </StatusContainer.Provider>
     </StylesProvider>
   </ThemeProvider>
 );

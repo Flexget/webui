@@ -2,11 +2,14 @@ import React, { FC } from 'react';
 import { Typography, Theme } from '@material-ui/core';
 import { css } from '@emotion/core';
 import LinkDropdown from 'core/entry/cards/LinkDropdown';
-import { EpisodeEntry, TVMazeFields, TVDBFields, TraktFields } from '../fields/episodes';
+import { useEpisodeLookup } from 'core/entry/lookup/episodes';
+import { EpisodeEntry, TVMazeFields, TVDBFields } from '../fields/episodes';
+import { SeriesEntry, TraktFields } from '../fields/series';
 import { Bullet, titleArea } from './styles';
 import BaseCard from './BaseCard';
 
 interface Props {
+  series: SeriesEntry;
   entry: EpisodeEntry;
   className?: string;
 }
@@ -17,23 +20,22 @@ const summary = (theme: Theme) => css`
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
 `;
 
-const EpisodeCard: FC<Props> = ({
-  entry: {
-    seriesSeason,
-    seriesEpisode,
-    seriesName,
-    genres = [],
-    description = '',
-    image = '',
-    episodeName,
-    contentRating,
-    seriesId,
-    quality,
-    ...entry
-  },
-  className,
-}) => {
-  const traktUrl = entry[TraktFields.Url]
+const EpisodeCard: FC<Props> = ({ series: rawSeries, entry: rawEpisode, className }) => {
+  const {
+    loading,
+    seriesEntry: { seriesName, genres = [], contentRating, ...series },
+    entry: {
+      seriesSeason,
+      seriesEpisode,
+      description = '',
+      image = '',
+      episodeName,
+      seriesId,
+      quality,
+      ...entry
+    },
+  } = useEpisodeLookup(rawSeries, rawEpisode);
+  const traktUrl = series[TraktFields.Url]
     ? `${entry[TraktFields.Url]}/seasons/${seriesSeason}/episodes/${seriesEpisode}`
     : undefined;
   const options = [
@@ -43,7 +45,7 @@ const EpisodeCard: FC<Props> = ({
   ];
 
   return (
-    <BaseCard className={className} images={image} label={`${episodeName} Image`}>
+    <BaseCard className={className} images={image} label={`${episodeName} Image`} loading={loading}>
       <div css={titleArea}>
         <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
           {seriesName} - {episodeName} - {seriesId}

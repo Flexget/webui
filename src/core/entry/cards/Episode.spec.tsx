@@ -3,19 +3,27 @@ import fetchMock from 'fetch-mock';
 import { compose } from 'utils';
 import { renderWithWrapper } from 'utils/tests';
 import { cleanup } from '@testing-library/react';
+import { RawEpisodeEntry } from 'core/entry/fields/episodes';
 import {
   makeRawEntry,
   withEpisodeRawEntry,
   withTraktEpisodeFields,
   withTVMazeEpisodeFields,
+  withTraktSeriesFields,
 } from '../fixtures';
-import { toEntry } from '../utils';
-import { EpisodeEntry } from '../fields/episodes';
+import { toEpisodeEntry, toSeriesEntry } from '../utils';
 import Card from './index';
 
-describe('common/Entry/cards/Episode', () => {
+describe('core/entry/cards/Episode', () => {
   beforeEach(() => {
-    fetchMock.get('/api/tasks', []).catch();
+    fetchMock
+      .get('/api/tasks', [])
+      .get('glob:/api/tvdb/series/*', 404)
+      .get('glob:/api/tvdb/episode/*', 404)
+      .get('glob:/api/trakt/series/?*', 404)
+      .get('glob:/api/tvmaze/series/*', 404)
+      .get('glob:/api/tvmaze/episode/*', 404)
+      .catch();
   });
 
   afterEach(() => {
@@ -23,61 +31,63 @@ describe('common/Entry/cards/Episode', () => {
     cleanup();
   });
 
+  const baseRawEntry = withEpisodeRawEntry(makeRawEntry());
   describe('no additional fields', () => {
-    const rawEntry = compose(
-      e => ({ ...e, traktEpName: 'some name' }),
-      withEpisodeRawEntry,
-    )(makeRawEntry());
-    const entry = toEntry(rawEntry) as EpisodeEntry;
-    it('contains header', () => {
-      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
+    const rawEntry = {
+      ...baseRawEntry,
+      traktEpName: 'some name',
+    };
+    const entry = toEpisodeEntry(rawEntry);
+    it('contains header', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        queryByText(`${entry.seriesName} - ${entry.episodeName} - ${entry.seriesId}`, {
+        await findByText(`${entry.seriesName} - ${entry.episodeName} - ${entry.seriesId}`, {
           selector: 'h2',
         }),
       ).toBeInTheDocument();
     });
 
-    it('has quality', () => {
-      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
+    it('has quality', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
-      expect(queryByText(entry.quality, { selector: 'span' })).toBeInTheDocument();
+      expect(await findByText(entry.quality, { selector: 'span' })).toBeInTheDocument();
     });
   });
 
   describe('with fields', () => {
     const rawEntry = compose(
+      withTraktSeriesFields,
       withTraktEpisodeFields,
       withTVMazeEpisodeFields,
-      withEpisodeRawEntry,
-    )(makeRawEntry());
-    const entry = toEntry(rawEntry) as EpisodeEntry;
-    it('contains header', () => {
-      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
+    )(baseRawEntry) as RawEpisodeEntry;
+    const entry = toEpisodeEntry(rawEntry);
+    const series = toSeriesEntry(rawEntry);
+    it('contains header', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        queryByText(`${entry.seriesName} - ${entry.episodeName} - ${entry.seriesId}`, {
+        await findByText(`${series.seriesName} - ${entry.episodeName} - ${entry.seriesId}`, {
           selector: 'h2',
         }),
       ).toBeInTheDocument();
     });
 
-    it('has quality, contentRating, and genres', () => {
-      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
+    it('has quality, contentRating, and genres', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        queryByText(`${entry.quality}${entry.contentRating}${entry.genres?.join(' ')}`, {
+        await findByText(`${entry.quality}${series.contentRating}${series.genres?.join(' ')}`, {
           selector: 'span',
         }),
       ).toBeInTheDocument();
     });
 
-    it('has description', () => {
-      const { queryByText } = renderWithWrapper(<Card entry={entry} />);
+    it('has description', async () => {
+      const { findByText } = renderWithWrapper(<Card entry={entry} />);
 
       expect(
-        queryByText(`${entry.description}`, {
+        await findByText(`${entry.description}`, {
           selector: 'p',
         }),
       ).toBeInTheDocument();

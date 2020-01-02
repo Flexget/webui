@@ -12,15 +12,6 @@ const PATH_PREFIX = 'v2';
 
 const entry = {
   main: [...(__DEV__ ? ['react-hot-loader/patch'] : []), 'whatwg-fetch', './src/app.tsx'],
-  vendor: [
-    'redux',
-    'react-redux',
-    'react-router',
-    'react-router-dom',
-    'react',
-    'react-dom',
-    'redux-saga',
-  ],
 };
 
 const output = {
@@ -79,6 +70,18 @@ const config = {
   },
   optimization: {
     sideEffects: true,
+    splitChunks: {
+      cacheGroups: {
+        default: {
+          chunks: 'async',
+          minChunks: 2,
+        },
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'initial',
+        },
+      },
+    },
   },
   module: {
     rules: [
@@ -127,11 +130,5 @@ const config = {
     ],
   },
 };
-
-if (!__DEV__) {
-  config.optimization.splitChunks = {
-      chunks: 'all',
-  };
-}
 
 module.exports = config;

@@ -1,15 +1,11 @@
 module.exports = {
   collectCoverageFrom: [
-    'src/**/*.{js,jsx,ts,tsx}',
-    '!src/store.js',
-    '!src/core/reducers.ts',
-    '!src/plugins/series/**',
-    '!src/{app,Root,theme}.{ts,tsx,js,jsx}',
-    '!src/utils/*.{js,jsx,ts,tsx}',
+    'src/**/*.{ts,tsx}',
+    '!src/{app,Root}.tsx',
+    '!src/utils/*.{ts,tsx}',
     '!**/node_modules/**',
     '!**/dist/**',
-    '!src/store/**/shapes.js',
-    '!src/**/fixtures.{ts, tsx, js, jsx}',
+    '!src/**/fixtures.{ts,tsx}',
   ],
   coverageThreshold: {
     global: {
@@ -30,7 +26,7 @@ module.exports = {
     },
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  preset: 'ts-jest/presets/js-with-ts',
+  preset: 'ts-jest',
   moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',

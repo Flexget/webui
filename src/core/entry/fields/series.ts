@@ -1,4 +1,4 @@
-import { BaseEntry, CardType, Fields } from '../types';
+import { BaseEntry, Fields } from '../types';
 
 export enum SeriesFieldNames {
   Genres = 'genres',
@@ -9,6 +9,8 @@ export enum SeriesFieldNames {
   Description = 'description',
   Url = 'url',
   ContentRating = 'contentRating',
+  Runtime = 'runtime',
+  Network = 'network',
   ID = 'seriesId',
 }
 
@@ -20,6 +22,8 @@ export const enum TVDBFields {
   Description = 'tvdbOverview',
   Url = 'tvdbUrl',
   ContentRating = 'tvdbContentRating',
+  Network = 'tvdbNetwork',
+  Runtime = 'tvdbRuntime',
   ID = 'tvdbId',
 }
 
@@ -30,6 +34,8 @@ export const enum TraktFields {
   Votes = 'traktSeriesVotes',
   Url = 'traktSeriesUrl',
   ContentRating = 'traktSeriesContentRating',
+  Network = 'traktSeriesNetwork',
+  Runtime = 'traktSeriesRuntime',
   ID = 'traktId',
 }
 
@@ -39,6 +45,8 @@ export const enum TVMazeFields {
   Description = 'tvmazeSeriesSummary',
   Rating = 'tvmazeSeriesRating',
   Url = 'tvmazeSeriesUrl',
+  Network = 'tvmazeSeriesNetwork',
+  Runtime = 'tvmazeSeriesRuntime',
   ID = 'tvmazeSeriesId',
 }
 
@@ -54,6 +62,8 @@ export const seriesFieldList = [
     [SeriesFieldNames.Url]: TVDBFields.Url,
     [SeriesFieldNames.ContentRating]: TVDBFields.ContentRating,
     [SeriesFieldNames.Backdrops]: TVDBFields.Backdrops,
+    [SeriesFieldNames.Runtime]: TVDBFields.Runtime,
+    [SeriesFieldNames.Network]: TVDBFields.Network,
     [SeriesFieldNames.ID]: TVDBFields.ID,
   },
   // Trakt
@@ -64,6 +74,8 @@ export const seriesFieldList = [
     [SeriesFieldNames.Votes]: TraktFields.Votes,
     [SeriesFieldNames.Url]: TraktFields.Url,
     [SeriesFieldNames.ContentRating]: TraktFields.ContentRating,
+    [SeriesFieldNames.Network]: TraktFields.Network,
+    [SeriesFieldNames.Runtime]: TraktFields.Runtime,
     [SeriesFieldNames.ID]: TraktFields.ID,
   },
   // Tvmaze
@@ -74,6 +86,8 @@ export const seriesFieldList = [
     [SeriesFieldNames.Rating]: TVMazeFields.Rating,
     [SeriesFieldNames.Url]: TVMazeFields.Url,
     [SeriesFieldNames.ID]: TVMazeFields.ID,
+    [SeriesFieldNames.Runtime]: TVMazeFields.Runtime,
+    [SeriesFieldNames.Network]: TVMazeFields.Network,
   },
 ] as const;
 
@@ -86,16 +100,16 @@ interface SeriesGetters {
   [SeriesFieldNames.Description]: string;
   [SeriesFieldNames.Url]: string;
   [SeriesFieldNames.ContentRating]: string;
-  [SeriesFieldNames.ID]: string;
+  [SeriesFieldNames.ID]: string | number;
+  [SeriesFieldNames.Runtime]: number;
+  [SeriesFieldNames.Network]: string;
 }
 
-export type SeriesFields = Fields<SeriesFieldNames, typeof seriesFieldList, SeriesGetters>;
-
-export interface RawSeriesEntry extends BaseEntry, SeriesFields {
+export type RawSeriesFields = Fields<SeriesFieldNames, typeof seriesFieldList, SeriesGetters> & {
   seriesName: string;
-  seriesYear: number;
-}
+  seriesYear?: number;
+};
 
-export interface SeriesEntry extends RawSeriesEntry, Partial<SeriesGetters> {
-  type: CardType.Series;
-}
+export type RawSeriesEntry = RawSeriesFields & BaseEntry;
+
+export type SeriesEntry = RawSeriesEntry & Partial<SeriesGetters>;

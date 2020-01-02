@@ -1,15 +1,16 @@
-import React, { FC, ChangeEvent } from 'react';
+import React, { FC, ChangeEvent, useEffect } from 'react';
 import { FormControl, TablePagination, Theme } from '@material-ui/core';
 import { css, ClassNames } from '@emotion/core';
-import SelectField from 'common/inputs/SelectField';
+import SelectField from 'common/inputs/formik/SelectField';
 import { Direction } from 'utils/query';
 import { useContainer } from 'unstated-next';
+import { useFormikContext } from 'formik';
+import { useDebounce } from 'utils/hooks';
 import { Options } from './types';
 import { EntryContainer } from './hooks/entry';
 import { usePluginContainer } from './hooks/api';
 
 interface Props {
-  setOptions: (opts: Partial<Options>) => void;
   options: Options;
 }
 
@@ -46,24 +47,27 @@ const sortOrderOptions = [
   },
 ];
 
-const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPage, order } }) => {
+const EntryListHeader: FC<Props> = ({ options: { page, perPage } }) => {
   const [{ totalCount }] = useContainer(EntryContainer);
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setOptions({
-      [event.target.name]: event.target.value,
-    } as Partial<Options>);
-  };
+
+  const { sortByOptions } = usePluginContainer();
+
+  const { values, submitForm, setFieldValue } = useFormikContext<Options>();
 
   const handleChangePerPage = (event: ChangeEvent<HTMLInputElement>) => {
-    setOptions({ perPage: parseInt(event.target.value, 10) });
-    setOptions({ page: 0 });
+    setFieldValue('perPage', parseInt(event.target.value, 10));
+    setFieldValue('page', 0);
   };
 
   const handleChangePage = (_: unknown, p: number) => {
-    setOptions({ page: p });
+    setFieldValue('page', p);
   };
 
-  const { sortByOptions } = usePluginContainer();
+  const debouncedValues = useDebounce(values);
+
+  useEffect(() => {
+    submitForm();
+  }, [...Object.values(debouncedValues), submitForm]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -75,8 +79,6 @@ const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPa
               <FormControl css={item}>
                 <SelectField
                   label="Sort By"
-                  value={sortBy}
-                  onChange={handleChange}
                   name="sortBy"
                   id="sortBy"
                   size="small"
@@ -87,8 +89,6 @@ const EntryListHeader: FC<Props> = ({ setOptions, options: { sortBy, page, perPa
               <FormControl css={item}>
                 <SelectField
                   label="Order"
-                  value={order}
-                  onChange={handleChange}
                   name="order"
                   id="order"
                   size="small"

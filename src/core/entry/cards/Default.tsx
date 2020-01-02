@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { CardContent, Typography } from '@material-ui/core';
-import { DefaultEntry } from '../fields';
+import { BaseEntry } from '../types';
 
 interface Props {
-  entry: DefaultEntry;
+  entry: BaseEntry;
   className?: string;
 }
 

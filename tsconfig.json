@@ -10,7 +10,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "jsx": "preserve",
-    "allowJs": true,
     "typeRoots": ["./node_modules/@types"],
     "skipLibCheck": true,
     "lib": [

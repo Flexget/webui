@@ -1,7 +1,8 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 import fetchMock from 'fetch-mock';
-import { provider, router, themed, authProvider } from 'utils/tests';
+import { router, themed } from 'utils/tests';
+import { AuthContainer } from 'core/auth/container';
 import Login from './Login';
 
 describe('core/auth/Login', () => {
@@ -18,12 +19,16 @@ describe('core/auth/Login', () => {
   });
 
   it('renders correctly when logged in', () => {
-    const tree = create(provider(authProvider(router(themed(<Login />)), true)));
+    const tree = create(
+      <AuthContainer.Provider initialState>{router(themed(<Login />))}</AuthContainer.Provider>,
+    );
     expect(tree.toJSON()).toMatchSnapshot();
   });
 
   it('renders correctly when logged out', () => {
-    const tree = create(provider(authProvider(router(themed(<Login />)))));
+    const tree = create(
+      <AuthContainer.Provider>{router(themed(<Login />))}</AuthContainer.Provider>,
+    );
     expect(tree.toJSON()).toMatchSnapshot();
   });
 });

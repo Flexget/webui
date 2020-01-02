@@ -1,15 +1,17 @@
 import { random, internet, image, date, lorem } from 'faker';
 import { RawEntry } from './types';
-import { IMDBFields, TraktFields, TMDBFields } from './fields/movies';
+import { IMDBFields, TraktFields, TMDBFields, RawMovieEntry } from './fields/movies';
 import {
   TVDBFields as TVDBEpisodeFields,
   TVMazeFields as TVMazeEpisodeFields,
   TraktFields as TraktEpisodeFields,
+  RawEpisodeEntry,
 } from './fields/episodes';
 import {
   TVDBFields as TVDBSeriesFields,
   TVMazeFields as TVMazeSeriesFields,
   TraktFields as TraktSeriesFields,
+  RawSeriesEntry,
 } from './fields/series';
 
 export const makeRawEntry = (): RawEntry => ({
@@ -18,14 +20,13 @@ export const makeRawEntry = (): RawEntry => ({
   quality: random.words(),
 });
 
-export const withMovieRawEntry = (e: RawEntry) =>
-  ({
-    ...e,
-    movieName: random.words(),
-    movieYear: date.past().getFullYear(),
-  } as const);
+export const withMovieRawEntry = (e: RawEntry) => ({
+  ...e,
+  movieName: random.words(),
+  movieYear: date.past().getFullYear(),
+});
 
-export const withIMDBFields = (e: RawEntry) => ({
+export const withIMDBFields = (e: RawMovieEntry) => ({
   ...e,
   [IMDBFields.Genres]: random.words().split(' '),
   [IMDBFields.Posters]: image.imageUrl(),
@@ -37,7 +38,7 @@ export const withIMDBFields = (e: RawEntry) => ({
   [IMDBFields.ID]: random.word(),
 });
 
-export const withTraktFields = (e: RawEntry) => ({
+export const withTraktFields = (e: RawMovieEntry) => ({
   ...e,
   [TraktFields.Genres]: random.words().split(' '),
   [TraktFields.Rating]: random.number(10),
@@ -48,7 +49,7 @@ export const withTraktFields = (e: RawEntry) => ({
   [TraktFields.Runtime]: random.number(150),
 });
 
-export const withTMDBFields = (e: RawEntry) => ({
+export const withTMDBFields = (e: RawMovieEntry) => ({
   ...e,
   [TMDBFields.Genres]: random.words().split(' '),
   [TMDBFields.Posters]: image.imageUrl(),
@@ -60,7 +61,7 @@ export const withTMDBFields = (e: RawEntry) => ({
   [TMDBFields.ID]: random.word(),
 });
 
-export const withEpisodeRawEntry = (e: RawEntry) => ({
+export const withEpisodeRawEntry = (e: RawEntry): RawEpisodeEntry => ({
   ...e,
   seriesEpisode: 1,
   seriesSeason: 2,
@@ -68,28 +69,23 @@ export const withEpisodeRawEntry = (e: RawEntry) => ({
   seriesId: 'S02E01',
 });
 
-export const withTraktEpisodeFields = (e: RawEntry) => ({
+export const withTraktEpisodeFields = (e: RawEpisodeEntry) => ({
   ...e,
   [TraktEpisodeFields.Name]: random.words(),
-  [TraktEpisodeFields.Genres]: random.words().split(' '),
   [TraktEpisodeFields.Description]: lorem.paragraph(),
-  [TraktEpisodeFields.ContentRating]: random.word(),
   [TraktEpisodeFields.ID]: random.word(),
 });
 
-export const withTVDBEpisodeFields = (e: RawEntry) => ({
+export const withTVDBEpisodeFields = (e: RawEpisodeEntry) => ({
   ...e,
-  [TVDBEpisodeFields.Genres]: random.words().split(' '),
   [TVDBEpisodeFields.Image]: image.imageUrl(),
   [TVDBEpisodeFields.Description]: lorem.paragraph(),
-  [TVDBEpisodeFields.ContentRating]: random.word(),
   [TVDBEpisodeFields.ID]: random.word(),
 });
 
-export const withTVMazeEpisodeFields = (e: RawEntry) => ({
+export const withTVMazeEpisodeFields = (e: RawEpisodeEntry) => ({
   ...e,
   [TVMazeEpisodeFields.Name]: random.words(),
-  [TVMazeEpisodeFields.Genres]: random.words().split(' '),
   [TVMazeEpisodeFields.Image]: image.imageUrl(),
   [TVMazeEpisodeFields.Description]: lorem.paragraph(),
   [TVMazeEpisodeFields.Url]: internet.url(),
@@ -99,9 +95,10 @@ export const withTVMazeEpisodeFields = (e: RawEntry) => ({
 export const withSeriesRawEntry = (e: RawEntry) => ({
   ...e,
   seriesName: random.word(),
+  seriesYear: date.past().getFullYear(),
 });
 
-export const withTraktSeriesFields = (e: RawEntry) => ({
+export const withTraktSeriesFields = (e: RawSeriesEntry) => ({
   ...e,
   [TraktSeriesFields.Genres]: random.words().split(' '),
   [TraktSeriesFields.Rating]: random.number(10),
@@ -112,7 +109,7 @@ export const withTraktSeriesFields = (e: RawEntry) => ({
   [TraktSeriesFields.Url]: internet.url(),
 });
 
-export const withTVDBSeriesFields = (e: RawEntry) => ({
+export const withTVDBSeriesFields = (e: RawSeriesEntry) => ({
   ...e,
   [TVDBSeriesFields.Genres]: random.words().split(' '),
   [TVDBSeriesFields.Posters]: image.imageUrl(),
@@ -124,7 +121,7 @@ export const withTVDBSeriesFields = (e: RawEntry) => ({
   [TVDBSeriesFields.ID]: random.word(),
 });
 
-export const withTVMazeSeriesFields = (e: RawEntry) => ({
+export const withTVMazeSeriesFields = (e: RawSeriesEntry) => ({
   ...e,
   [TVMazeSeriesFields.Genres]: random.words().split(' '),
   [TVMazeSeriesFields.Posters]: image.imageUrl(),

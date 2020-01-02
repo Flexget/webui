@@ -25,7 +25,7 @@ const LinkDropdown: FC<Props> = ({ options }) => {
 
   return (
     <>
-      <IconButton onClick={handleClick}>
+      <IconButton edge="end" onClick={handleClick}>
         <MoreVert />
       </IconButton>
       <Menu anchorEl={anchorEl} open={!!anchorEl} onClose={handleClose}>

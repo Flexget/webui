@@ -1,4 +1,4 @@
-import { Fields, CardType, BaseEntry } from '../types';
+import { Fields, BaseEntry } from '../types';
 
 export enum MovieFieldNames {
   Genres = 'genres',
@@ -95,15 +95,10 @@ interface MovieGetters {
   [MovieFieldNames.ID]: string | number;
 }
 
-export type MovieFields = Fields<MovieFieldNames, typeof movieFieldList, MovieGetters>;
-
-export interface RawMovieFields extends MovieFields {
+export type RawMovieFields = Fields<MovieFieldNames, typeof movieFieldList, MovieGetters> & {
   movieName: string;
   movieYear: number;
-}
+};
+export type RawMovieEntry = RawMovieFields & BaseEntry;
 
-export interface RawMovieEntry extends BaseEntry, RawMovieFields {}
-
-export interface MovieEntry extends RawMovieEntry, Partial<MovieGetters> {
-  type: CardType.Movie;
-}
+export type MovieEntry = RawMovieEntry & Partial<MovieGetters>;

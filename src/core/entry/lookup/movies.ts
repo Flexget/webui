@@ -1,8 +1,8 @@
 import { stringify } from 'qs';
 import { snakeCase } from 'utils/fetch';
 import { useFlexgetAPI } from 'core/api';
-import { useState, useEffect } from 'react';
-import { TMDBFields, RawMovieFields, IMDBFields, TraktFields } from '../fields/movies';
+import { useState, useEffect, useMemo } from 'react';
+import { TMDBFields, RawMovieFields, IMDBFields, TraktFields, MovieEntry } from '../fields/movies';
 
 export interface TMDBOptions {
   title?: string;
@@ -72,38 +72,38 @@ export const useTMDBLookup = (options: TMDBOptions) => {
   return { ...state, entry };
 };
 
-interface IMDBMovie {
-  imdbId: string;
-  name: string;
-  year: number;
-  url: string;
-}
+// interface IMDBMovie {
+// imdbId: string;
+// name: string;
+// year: number;
+// url: string;
+// }
 
-const imdbToFields = (movie: IMDBMovie): RawMovieFields => ({
-  movieName: movie.name,
-  movieYear: movie.year,
-  [IMDBFields.Url]: movie.url,
-  [IMDBFields.ID]: movie.imdbId,
-});
+// const imdbToFields = (movie: IMDBMovie): RawMovieFields => ({
+// movieName: movie.name,
+// movieYear: movie.year,
+// [IMDBFields.Url]: movie.url,
+// [IMDBFields.ID]: movie.imdbId,
+// });
 
-export const useIMDBLookup = (titleOrId?: string | number) => {
-  const [entry, setEntry] = useState<RawMovieFields>();
+// export const useIMDBLookup = (titleOrId?: string | number) => {
+// const [entry, setEntry] = useState<RawMovieFields>();
 
-  const [state, request] = useFlexgetAPI<IMDBMovie[]>(`/imdb/search/${titleOrId}`);
+// const [state, request] = useFlexgetAPI<IMDBMovie[]>(`/imdb/search/${titleOrId}`);
 
-  useEffect(() => {
-    const fn = async () => {
-      const resp = await request();
-      if (resp.ok) {
-        setEntry(imdbToFields(resp.data[0]));
-      }
-      return resp;
-    };
-    fn();
-  }, [request]);
+// useEffect(() => {
+// const fn = async () => {
+// const resp = await request();
+// if (resp.ok) {
+// setEntry(imdbToFields(resp.data[0]));
+// }
+// return resp;
+// };
+// fn();
+// }, [request]);
 
-  return { ...state, entry };
-};
+// return { ...state, entry };
+// };
 
 interface TraktOptions {
   title?: string;
@@ -112,6 +112,8 @@ interface TraktOptions {
   tmdbId?: string;
   imdbId?: string;
   year?: number;
+  includeActors?: boolean;
+  includeTranslations?: boolean;
 }
 
 interface TraktMovie {
@@ -160,4 +162,33 @@ export const useTraktLookup = (options: TraktOptions) => {
   }, [request]);
 
   return { ...state, entry };
+};
+
+export const useMovieLookup = (movie: MovieEntry) => {
+  const { loading: tmdbLoading, entry: tmdbEntry } = useTMDBLookup({
+    title: movie.movieName,
+    tmdbId: movie[TMDBFields.ID],
+    includePosters: true,
+    includeBackdrops: true,
+  });
+  const { loading: traktLoading, entry: traktEntry } = useTraktLookup({
+    title: movie.movieName,
+    traktId: movie[TraktFields.ID],
+  });
+  // const { loading: imdbLoading, entry: imdbEntry } = useIMDBLookup(entry.movieName || entry[IMDBFields.ID]);
+
+  const entry = useMemo(
+    () => ({
+      ...movie,
+      ...(traktEntry ?? {}),
+      ...(tmdbEntry ?? {}),
+      // ...(imdbEntry ?? {}),
+    }),
+    [movie, tmdbEntry, traktEntry],
+  );
+
+  // const loading = tmdbLoading || traktLoading || imdbLoading;
+  const loading = tmdbLoading || traktLoading;
+
+  return { loading, entry };
 };

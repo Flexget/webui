@@ -6,6 +6,7 @@ import { StarRate } from '@material-ui/icons';
 import { SeriesEntry, TraktFields, TVDBFields, TVMazeFields } from '../fields/series';
 import { Bullet, titleArea, ratingLine } from './styles';
 import LinkDropdown from './LinkDropdown';
+import { useSeriesLookup } from '../lookup/series';
 
 interface Props {
   entry: SeriesEntry;
@@ -18,26 +19,34 @@ const summary = (theme: Theme) => css`
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
 `;
 
-const SeriesCard: FC<Props> = ({
-  entry: {
-    posters,
-    seriesName,
-    quality,
-    rating,
-    genres = [],
-    description = '',
-    contentRating = '',
-    ...entry
-  },
-  className,
-}) => {
+const SeriesCard: FC<Props> = ({ entry, className }) => {
+  const {
+    loading,
+    entry: {
+      posters,
+      seriesName,
+      quality,
+      rating,
+      genres = [],
+      description = '',
+      contentRating = '',
+      ...hydratedEntry
+    },
+  } = useSeriesLookup(entry);
   const options = [
-    { url: entry[TVMazeFields.Url], label: 'TVMaze' },
-    { url: entry[TVDBFields.Url], label: 'TVDB' },
-    { url: entry[TraktFields.Url], label: 'Trakt' },
+    { url: hydratedEntry[TVMazeFields.Url], label: 'TVMaze' },
+    { url: hydratedEntry[TVDBFields.Url], label: 'TVDB' },
+    { url: hydratedEntry[TraktFields.Url], label: 'Trakt' },
   ];
+
   return (
-    <BaseCard className={className} images={posters} isPoster label={`${seriesName} Image`}>
+    <BaseCard
+      className={className}
+      images={posters}
+      isPoster
+      label={`${seriesName} Image`}
+      loading={loading}
+    >
       <div css={titleArea}>
         <Typography gutterBottom variant="h5" component="h2" color="textPrimary">
           {seriesName}
