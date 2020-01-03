@@ -20,7 +20,7 @@ const summary = (theme: Theme) => css`
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
 `;
 
-const EpisodeCard: FC<Props> = ({ series: rawSeries, entry: rawEpisode, className }) => {
+const EpisodeCard: FC<Props> = ({ series: rawSeries, entry: rawEpisode, className, children }) => {
   const {
     loading,
     seriesEntry: { seriesName, genres = [], contentRating, network, ...series },
@@ -73,6 +73,7 @@ const EpisodeCard: FC<Props> = ({ series: rawSeries, entry: rawEpisode, classNam
       <Typography color="textSecondary" variant="body2">
         {description}
       </Typography>
+      {children}
     </BaseCard>
   );
 };

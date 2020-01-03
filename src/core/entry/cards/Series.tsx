@@ -19,7 +19,7 @@ const summary = (theme: Theme) => css`
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
 `;
 
-const SeriesCard: FC<Props> = ({ entry, className }) => {
+const SeriesCard: FC<Props> = ({ entry, className, children }) => {
   const {
     loading,
     entry: {
@@ -69,6 +69,7 @@ const SeriesCard: FC<Props> = ({ entry, className }) => {
         {!!contentRating && <Bullet />}
         {genres.join(' ')}
       </Typography>
+      {children}
       <Typography css={summary} variant="body1" component="h3">
         Summary
       </Typography>
