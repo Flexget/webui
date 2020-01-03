@@ -97,7 +97,7 @@ const Releases: FC<Props> = ({ show, episode }) => {
         onClose={removeClose}
         state={removeState}
         request={removeRelease}
-        name={selectedRelease ? 'Release' : 'Releases'}
+        name="Release"
       />
     </List>
   );
