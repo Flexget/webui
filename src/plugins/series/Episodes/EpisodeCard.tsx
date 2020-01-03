@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
 import { css } from '@emotion/core';
-import { Card, CardActions, IconButton, Tooltip, Theme, Collapse } from '@material-ui/core';
-import { Delete } from '@material-ui/icons';
+import { Card, CardActions, Theme, Collapse, Button } from '@material-ui/core';
 import Entry from 'core/entry/cards';
 import ExpandButton from 'common/ExpandButton';
 import { useOverlayState } from 'utils/hooks';
+import RemoveDialog from 'plugins/series/RemoveDialog';
 import Releases from './Releases';
 import { Show, Episode } from '../types';
 import { episodeToEntry } from '../utils';
-import { ReleaseContainer } from '../hooks/releases';
+import { useUpdateReleases, useRemoveReleases } from '../hooks/releases';
 
 interface Props {
   show: Show;
@@ -36,27 +36,39 @@ const cardActions = (theme: Theme) => css`
 
 const EpisodeCard: FC<Props> = ({ show, episode, onRemoveClick }) => {
   const [expanded, { toggle }] = useOverlayState();
+  const [isRemoveOpen, { open: removeOpen, close: removeClose }] = useOverlayState();
+  const [removeState, removeReleases] = useRemoveReleases(show.id, episode.id);
+  const [{ loading: updateLoading }, updateReleases] = useUpdateReleases(show.id, episode.id);
 
   return (
     <Card css={cardCss}>
       <Entry entry={episodeToEntry(show, episode)} css={entryCard} />
       <CardActions css={cardActions}>
         <span>
-          <Tooltip title="Remove" placement="top">
-            <IconButton edge="start" aria-label="remove" onClick={onRemoveClick}>
-              <Delete />
-            </IconButton>
-          </Tooltip>
+          <Button onClick={removeOpen} color="primary" size="small">
+            Delete Releases
+          </Button>
+          <Button onClick={updateReleases} disabled={updateLoading} size="small" color="primary">
+            Reset Releases
+          </Button>
         </span>
         <span>
+          <Button onClick={onRemoveClick} color="primary" size="small">
+            Delete Episode
+          </Button>
           <ExpandButton open={expanded} onClick={toggle} />
         </span>
       </CardActions>
-      <ReleaseContainer.Provider>
-        <Collapse in={expanded} timeout="auto" mountOnEnter>
-          <Releases show={show} episode={episode} />
-        </Collapse>
-      </ReleaseContainer.Provider>
+      <Collapse in={expanded} timeout="auto" mountOnEnter>
+        <Releases show={show} episode={episode} />
+      </Collapse>
+      <RemoveDialog
+        open={isRemoveOpen}
+        onClose={removeClose}
+        state={removeState}
+        request={removeReleases}
+        name="Releases"
+      />
     </Card>
   );
 };

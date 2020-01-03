@@ -5,10 +5,13 @@ import fetchMock from 'fetch-mock';
 import EpisodeCard from './EpisodeCard';
 import { Episode, Show, IdentifiedBy } from '../types';
 import { EpisodeContainer } from '../hooks/episodes';
+import { ReleaseContainer } from '../hooks/releases';
 
 const TestEpisodeCard: typeof EpisodeCard = props => (
   <EpisodeContainer.Provider>
-    <EpisodeCard {...props} />
+    <ReleaseContainer.Provider>
+      <EpisodeCard {...props} />
+    </ReleaseContainer.Provider>
   </EpisodeContainer.Provider>
 );
 
@@ -21,6 +24,7 @@ describe('plugins/series/episodes', () => {
       .get('glob:/api/trakt/series/?*', 404)
       .get('glob:/api/tvmaze/series/*', 404)
       .get('glob:/api/tvmaze/episode/*', 404)
+      .put('glob:/api/series/2/episodes/3/releases', 200)
       .catch();
   });
 
@@ -53,8 +57,14 @@ describe('plugins/series/episodes', () => {
   );
 
   it('should call onRemoveClick when remove pressed', () => {
-    const { getByLabelText } = renderWithWrapper(component);
-    fireEvent.click(getByLabelText('remove'));
+    const { getByText } = renderWithWrapper(component);
+    fireEvent.click(getByText('Delete Episode'));
     expect(handleRemoveClick).toHaveBeenCalled();
+  });
+
+  it('should endpoint with pressing update releases', () => {
+    const { getByText } = renderWithWrapper(component);
+    fireEvent.click(getByText('Reset Releases'));
+    expect(fetchMock.called('/api/series/2/episodes/3/releases')).toBeTrue();
   });
 });

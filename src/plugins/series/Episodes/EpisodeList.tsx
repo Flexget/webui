@@ -5,6 +5,7 @@ import RemoveDialog from '../RemoveDialog';
 import { EpisodeContainer, useGetEpisodes, useRemoveEpisode } from '../hooks/episodes';
 import { GetEpisodeOptions, Show } from '../types';
 import EpisodeCard from './EpisodeCard';
+import { ReleaseContainer } from '../hooks/releases';
 
 interface Props {
   show?: Show;
@@ -29,11 +30,13 @@ const EpisodeList: FC<Props> = ({ show, options }) => {
       <Grid container spacing={2}>
         {episodes.map(episode => (
           <Grid item key={episode.id} xs={12} md={6} lg={4}>
-            <EpisodeCard
-              show={show}
-              episode={episode}
-              onRemoveClick={() => setEpisodeId(episodeId)}
-            />
+            <ReleaseContainer.Provider>
+              <EpisodeCard
+                show={show}
+                episode={episode}
+                onRemoveClick={() => setEpisodeId(episode.id)}
+              />
+            </ReleaseContainer.Provider>
           </Grid>
         ))}
       </Grid>
