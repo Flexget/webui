@@ -9,7 +9,7 @@ import {
   toEpisodeEntry,
 } from '../utils';
 import MovieCard from './Movie';
-import ShowCard from './Series';
+import SeriesCard from './Series';
 import EpisodeCard from './Episode';
 import DefaultCard from './Default';
 
@@ -18,13 +18,21 @@ interface Props {
   className?: string;
 }
 
-const EntryCard: FC<Props> = ({ entry, className }) => {
+const EntryCard: FC<Props> = ({ entry, className, children }) => {
   if (isMovie(entry)) {
-    return <MovieCard entry={toMovieEntry(entry)} className={className} />;
+    return (
+      <MovieCard entry={toMovieEntry(entry)} className={className}>
+        {children}
+      </MovieCard>
+    );
   }
 
   if (isSeries(entry)) {
-    return <ShowCard entry={toSeriesEntry(entry)} className={className} />;
+    return (
+      <SeriesCard entry={toSeriesEntry(entry)} className={className}>
+        {children}
+      </SeriesCard>
+    );
   }
 
   if (isEpisode(entry)) {
@@ -33,7 +41,9 @@ const EntryCard: FC<Props> = ({ entry, className }) => {
         series={toSeriesEntry(entry)}
         entry={toEpisodeEntry(entry)}
         className={className}
-      />
+      >
+        {children}
+      </EpisodeCard>
     );
   }
 

@@ -20,7 +20,7 @@ const summary = (theme: Theme) => css`
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
 `;
 
-const MovieCard: FC<Props> = ({ entry, className }) => {
+const MovieCard: FC<Props> = ({ entry, className, children }) => {
   const {
     loading,
     entry: {
@@ -77,6 +77,7 @@ const MovieCard: FC<Props> = ({ entry, className }) => {
         <Typography color="textSecondary" variant="body2">
           {description}
         </Typography>
+        {children}
       </BaseCard>
     </>
   );

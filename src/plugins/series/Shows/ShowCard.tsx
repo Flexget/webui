@@ -1,7 +1,15 @@
 import React, { FC } from 'react';
 import { useRouteMatch } from 'react-router';
 import { css } from '@emotion/core';
-import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@material-ui/core';
+import {
+  Card,
+  CardActionArea,
+  CardActions,
+  IconButton,
+  Tooltip,
+  Theme,
+  Typography,
+} from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import Entry from 'core/entry/cards';
 import { Link } from 'common/styles';
@@ -12,6 +20,10 @@ interface Props {
   show: Show;
   onRemoveClick: () => void;
 }
+
+const heading = css`
+  font-weight: 500;
+`;
 
 const cardCss = css`
   position: relative;
@@ -43,7 +55,24 @@ const ShowCard: FC<Props> = ({ show, onRemoveClick }) => {
   return (
     <Card css={cardCss}>
       <CardActionArea css={actionArea} component={Link} to={`${url}/${show.id}`}>
-        <Entry entry={showToEntry(show)} css={entryCard} />
+        <Entry entry={showToEntry(show)} css={entryCard}>
+          {!!show.beginEpisode && (
+            <Typography variant="body2" color="textSecondary">
+              <Typography variant="body2" css={heading} color="textPrimary" component="span">
+                Begin Episode:
+              </Typography>{' '}
+              {show.beginEpisode.identifier}
+            </Typography>
+          )}
+          {!!show.latestEntity && (
+            <Typography variant="body2" color="textSecondary">
+              <Typography variant="body2" color="textPrimary" component="span" css={heading}>
+                Latest Release:
+              </Typography>{' '}
+              {show.latestEntity.identifier} ({show.latestEntity.latestRelease?.quality})
+            </Typography>
+          )}
+        </Entry>
       </CardActionArea>
       <CardActions css={cardActions}>
         <span />
