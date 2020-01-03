@@ -1,6 +1,6 @@
 import { Direction } from 'utils/query';
 import { RawEntry } from 'core/entry/types';
-import { Inject } from 'core/tasks/types';
+import { Inject } from 'plugins/tasks/types';
 
 export interface Options<T extends string = string> {
   page: number;

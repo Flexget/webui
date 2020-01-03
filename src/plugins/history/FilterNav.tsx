@@ -6,7 +6,7 @@ import { Spacer } from 'common/styles';
 import { useFormikContext } from 'formik';
 import { useDebounce } from 'utils/hooks';
 import DirectionButton from 'common/inputs/formik/DirectionButton';
-import { TaskContainer } from 'core/tasks/hooks';
+import { TaskContainer } from 'plugins/tasks/hooks';
 import { useContainer } from 'unstated-next';
 import { GroupByFields, GetHistoryOptions, SortByFields } from './types';
 

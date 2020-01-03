@@ -12,7 +12,7 @@ export const useOverlayState = (defaultState = false) => {
 
 export const useMergeState = <T>(defaultState: T) => {
   return useReducer(
-    (state: T, action: Partial<T>) => ({
+    (state: T, action: Partial<T>): T => ({
       ...state,
       ...action,
     }),

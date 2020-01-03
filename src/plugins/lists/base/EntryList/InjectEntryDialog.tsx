@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { Formik, Form } from 'formik';
 import SelectField from 'common/inputs/formik/SelectField';
-import { TaskContainer } from 'core/tasks/hooks';
+import { TaskContainer } from 'plugins/tasks/hooks';
 import { useInjectEntry } from '../hooks/entry';
 
 interface Props {
