@@ -1,9 +1,6 @@
 import React from 'react';
-import sty, { CreateStyled } from '@emotion/styled';
-import { keyframes } from '@emotion/core';
+import { keyframes, css } from '@emotion/core';
 import { Theme } from '@material-ui/core';
-
-const styled = sty as CreateStyled<Theme>;
 
 const stretchDelay = keyframes`
   0%, 40%, 100% {
@@ -15,7 +12,7 @@ const stretchDelay = keyframes`
   }
 `;
 
-const Spinner = styled.div`
+const spinner = css`
   margin: 10rem auto;
   width: 5rem;
   height: 4rem;
@@ -23,8 +20,8 @@ const Spinner = styled.div`
   font-size: 1rem;
 `;
 
-const Rect1 = styled.div`
-  background-color: ${({ theme }) => theme.palette.primary[500]};
+const rect1 = (theme: Theme) => css`
+  background-color: ${theme.palette.primary.main};
   height: 100%;
   width: 0.6rem;
   display: inline-block;
@@ -32,30 +29,34 @@ const Rect1 = styled.div`
   animation: ${stretchDelay} 1.2s infinite ease-in-out;
 `;
 
-const Rect2 = styled(Rect1)`
+const rect2 = (theme: Theme) => css`
+  ${rect1(theme)};
   animation-delay: -1.1s;
 `;
 
-const Rect3 = styled(Rect1)`
+const rect3 = (theme: Theme) => css`
+  ${rect1(theme)};
   animation-delay: -1s;
 `;
 
-const Rect4 = styled(Rect1)`
+const rect4 = (theme: Theme) => css`
+  ${rect1(theme)};
   animation-delay: -0.9s;
 `;
 
-const Rect5 = styled(Rect1)`
+const rect5 = (theme: Theme) => css`
+  ${rect1(theme)};
   animation-delay: -0.8s;
 `;
 
 const WaveSpinner = () => (
-  <Spinner>
-    <Rect1 />
-    <Rect2 />
-    <Rect3 />
-    <Rect4 />
-    <Rect5 />
-  </Spinner>
+  <div css={spinner}>
+    <div css={rect1} />
+    <div css={rect2} />
+    <div css={rect3} />
+    <div css={rect4} />
+    <div css={rect5} />
+  </div>
 );
 
 export default WaveSpinner;

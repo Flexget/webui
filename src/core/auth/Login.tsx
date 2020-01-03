@@ -25,12 +25,12 @@ const LoginPage: FC<Props> = ({ location }) => {
     fn();
   }, [getVersion, setLoggedIn]);
 
-  if (loggedIn) {
-    return <Redirect to={from} />;
-  }
-
   if (versionState.loading) {
     return <SplashScreen />;
+  }
+
+  if (loggedIn) {
+    return <Redirect to={from} />;
   }
 
   return (

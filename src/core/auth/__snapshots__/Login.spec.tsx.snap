@@ -1,6 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`core/auth/Login renders correctly when logged in 1`] = `null`;
+exports[`core/auth/Login renders correctly when logged in 1`] = `
+<div>
+  <div
+    css={[Function]}
+  />
+  <div
+    css={
+      Object {
+        "map": undefined,
+        "name": "1kz9hf7",
+        "next": undefined,
+        "styles": "
+  margin: 10rem auto;
+  width: 5rem;
+  height: 4rem;
+  text-align: center;
+  font-size: 1rem;
+",
+        "toString": [Function],
+      }
+    }
+  >
+    <div
+      css={[Function]}
+    />
+    <div
+      css={[Function]}
+    />
+    <div
+      css={[Function]}
+    />
+    <div
+      css={[Function]}
+    />
+    <div
+      css={[Function]}
+    />
+  </div>
+</div>
+`;
 
 exports[`core/auth/Login renders correctly when logged out 1`] = `
 <div>
