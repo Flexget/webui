@@ -1,4 +1,5 @@
-import React, { FC, ChangeEvent } from 'react';
+import React, { ChangeEvent, useCallback, Key } from 'react';
+import { useFormikContext } from 'formik';
 import {
   TableContainer,
   Paper,
@@ -8,39 +9,65 @@ import {
   TableBody,
   Table,
   TablePagination,
+  TableSortLabel,
+  TableRowProps,
 } from '@material-ui/core';
-import { useGetTaskStatus } from 'plugins/tasks/hooks';
-import { useMergeState, useDebounce } from 'utils/hooks';
-import { TaskStatusOptions, SortByStatus } from 'plugins/tasks/types';
-import { Direction } from 'utils/query';
+import { useDebounceFormikSubmit } from 'utils/hooks';
+import { Direction, DefaultOptions, toggleDirection } from 'utils/query';
 
-const headers = [{
+interface Row<T> {
+  key: Key;
+  data: T;
+  props: TableRowProps;
+}
 
-}] 
+export interface Header<T extends Key> {
+  id: T;
+  label?: string;
+  sortByField?: boolean;
+  numeric?: boolean;
+}
 
-export const TaskTable: FC = () => {
-  const [options, setOptions] = useMergeState<TaskStatusOptions>({
-    page: 0,
-    perPage: 10,
-    order: Direction.Desc,
-    sortBy: SortByStatus.LastExecutionTime,
-  });
+interface Props<T> {
+  rows: Row<T>[];
+  headers: Header<Extract<keyof T, Key>>[];
+  total: number;
+}
 
-  const handleChangePerPage = (event: ChangeEvent<HTMLInputElement>) => {
-    setOptions({
-      perPage: parseInt(event.target.value, 10),
-      page: 0,
-    });
-  };
+const TaskTable = <T extends {}>({ total, headers, rows }: Props<T>) => {
+  const {
+    setFieldValue,
+    values: { order, perPage, page, sortBy },
+  } = useFormikContext<DefaultOptions>();
 
-  const handleChangePage = (_: unknown, page: number) => {
-    setOptions({
-      page,
-    });
-  };
+  const handleChangePerPage = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setFieldValue('perPage', parseInt(event.target.value, 10));
+      setFieldValue('page', 0);
+    },
+    [setFieldValue],
+  );
 
-  const debouncedOptions = useDebounce(options);
-  const { tasks, total } = useGetTaskStatus(debouncedOptions);
+  const handleChangePage = useCallback(
+    (_: unknown, p: number) => {
+      setFieldValue('page', p);
+    },
+    [setFieldValue],
+  );
+
+  const handleSortClick = useCallback(
+    (field: keyof T) => {
+      if (sortBy === field) {
+        setFieldValue('order', toggleDirection(order));
+      } else {
+        setFieldValue('sortBy', field);
+        setFieldValue('order', Direction.Asc);
+      }
+    },
+    [order, setFieldValue, sortBy],
+  );
+
+  useDebounceFormikSubmit(500);
 
   return (
     <Paper>
@@ -48,35 +75,35 @@ export const TaskTable: FC = () => {
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell align="right">Start Time</TableCell>
-              <TableCell align="right">End Time</TableCell>
-              <TableCell align="right">Produced</TableCell>
-              <TableCell align="right">Accepted</TableCell>
-              <TableCell align="right">Rejected</TableCell>
-              <TableCell align="right">Failed</TableCell>
+              {headers.map(({ id, label, sortByField, numeric }) => (
+                <TableCell
+                  key={id}
+                  align={numeric ? 'right' : 'left'}
+                  sortDirection={id === sortBy ? order : false}
+                >
+                  {sortByField ? (
+                    <TableSortLabel
+                      active={id === sortBy}
+                      direction={id === sortBy ? order : Direction.Asc}
+                      onClick={() => handleSortClick(id)}
+                    >
+                      {label}
+                    </TableSortLabel>
+                  ) : (
+                    label
+                  )}
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {tasks.map(
-              ({
-                name,
-                id,
-                lastExecution: { start, end, produced, rejected, accepted, failed },
-              }) => (
-                <TableRow key={id}>
-                  <TableCell component="th" scope="row">
-                    {name}
-                  </TableCell>
-                  <TableCell align="right">{start}</TableCell>
-                  <TableCell align="right">{end}</TableCell>
-                  <TableCell align="right">{produced}</TableCell>
-                  <TableCell align="right">{accepted}</TableCell>
-                  <TableCell align="right">{rejected}</TableCell>
-                  <TableCell align="right">{failed}</TableCell>
-                </TableRow>
-              ),
-            )}
+            {rows.map(({ key, data, props }) => (
+              <TableRow key={key} {...props}>
+                {headers.map(({ id, numeric }) => (
+                  <TableCell align={numeric ? 'right' : 'left'}>{data[id]}</TableCell>
+                ))}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
@@ -84,11 +111,13 @@ export const TaskTable: FC = () => {
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
         count={total}
-        rowsPerPage={debouncedOptions.perPage}
-        page={debouncedOptions.page}
+        rowsPerPage={perPage}
+        page={page}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangePerPage}
       />
     </Paper>
   );
 };
+
+export default TaskTable;

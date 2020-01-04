@@ -1,13 +1,4 @@
-import React, {
-  FC,
-  useState,
-  useCallback,
-  MouseEvent,
-  useMemo,
-  ComponentType,
-  useEffect,
-} from 'react';
-import { useFormikContext } from 'formik';
+import React, { FC, useState, useCallback, MouseEvent, useMemo, ComponentType } from 'react';
 import {
   Theme,
   Typography,
@@ -22,8 +13,7 @@ import { Spacer } from 'common/styles';
 import TextField from 'common/inputs/formik/TextField';
 import { PlayArrow, Stop, FilterList, MoreVert, ClearAll } from '@material-ui/icons';
 import { ReadyState } from 'core/api';
-import { useDebounce } from 'utils/hooks';
-import { Options } from './types';
+import { useDebounceFormikSubmit } from 'utils/hooks';
 
 export const wrapper = (theme: Theme) => css`
   display: block;
@@ -94,14 +84,7 @@ const Header: FC<Props> = ({ readyState, connect, disconnect, clear }) => {
     [],
   );
 
-  const { values, submitForm } = useFormikContext<Options>();
-
-  const debouncedValues = useDebounce(values);
-
-  useEffect(() => {
-    submitForm();
-  }, [...Object.values(debouncedValues), submitForm]); // eslint-disable-line react-hooks/exhaustive-deps
-
+  useDebounceFormikSubmit();
   return (
     <div css={wrapper}>
       <div>

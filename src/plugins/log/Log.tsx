@@ -32,7 +32,7 @@ const LogPage: FC = () => {
 
   return (
     <PaperWrapper elevation={4}>
-      <Formik initialValues={options} onSubmit={values => setOptions(values)}>
+      <Formik initialValues={options} onSubmit={setOptions}>
         <Header readyState={readyState} connect={connect} disconnect={disconnect} clear={clear} />
       </Formik>
       <div css={wrapper}>

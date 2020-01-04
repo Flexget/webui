@@ -1,4 +1,5 @@
 import { useState, useCallback, useReducer, useEffect } from 'react';
+import { useFormikContext } from 'formik';
 
 export const useOverlayState = (defaultState = false) => {
   const [isOpen, setOpen] = useState(defaultState);
@@ -34,4 +35,13 @@ export const useDebounce = <T>(value: T, delay = 500) => {
   }, [delay, value]);
 
   return debouncedValue;
+};
+
+export const useDebounceFormikSubmit = (delay?: number) => {
+  const { values, submitForm } = useFormikContext<{}>();
+
+  const debouncedValues = useDebounce(values, delay);
+  useEffect(() => {
+    submitForm();
+  }, [...Object.values(debouncedValues), submitForm]); // eslint-disable-line react-hooks/exhaustive-deps
 };

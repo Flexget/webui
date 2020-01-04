@@ -1,5 +1,5 @@
 import React, { useCallback, forwardRef, useMemo } from 'react';
-import { useFormikContext } from 'formik';
+import { useField } from 'formik';
 import { IconButtonProps } from '@material-ui/core';
 import { Direction, toggleDirection } from 'utils/query';
 import ExpandButton from 'common/ExpandButton';
@@ -10,18 +10,15 @@ export type Props = IconButtonProps & {
 
 const DirectionButton = forwardRef<HTMLButtonElement, Props>(
   ({ name, onClick = () => {}, ...props }, ref) => {
-    const { values, setFieldValue, setFieldTouched } = useFormikContext<
-      Record<string, Direction>
-    >();
-    const open = useMemo(() => values.order === Direction.Desc, [values.order]);
+    const [{ value }, , { setValue }] = useField<Direction>(name);
+    const open = useMemo(() => value === Direction.Desc, [value]);
 
     const handleClick = useCallback(
       (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        setFieldTouched(name, true);
-        setFieldValue(name, toggleDirection(values[name]));
+        setValue(toggleDirection(value));
         onClick(e);
       },
-      [name, onClick, setFieldTouched, setFieldValue, values],
+      [onClick, setValue, value],
     );
 
     return <ExpandButton {...props} open={open} onClick={handleClick} name={name} ref={ref} />;

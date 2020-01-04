@@ -38,12 +38,13 @@ export const enum SortByStatus {
   LastExecutionTime = 'last_execution_time',
   ID = 'id',
   Name = 'name',
-}
-
-export const enum SortByExecutions {
-  LastExecutionTime = 'last_execution_time',
-  ID = 'id',
-  Name = 'name',
+  Start = 'start',
+  End = 'end',
+  Produced = 'produced',
+  Rejected = 'rejected',
+  Accepted = 'accepted',
+  Failed = 'failed',
+  Succeeded = 'succeeded',
 }
 
 export interface TaskStatusOptions extends DefaultOptions {

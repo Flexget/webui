@@ -7,6 +7,7 @@ export interface DefaultOptions {
   perPage: number;
   page: number;
   order: Direction;
+  sortBy: string;
 }
 
 export const toggleDirection = (d: Direction) =>
