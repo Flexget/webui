@@ -14,8 +14,6 @@ async function run() {
       prerelease: false,
     });
 
-    debug(data);
-
     const fileStream = fs.createReadStream('/tmp/dist.zip');
     const stats = fs.statSync('/tmp/dist.zip');
     const headers = {

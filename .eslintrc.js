@@ -41,7 +41,7 @@ module.exports = {
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-'@typescript-eslint/no-unused-expressions': 'error',
+    '@typescript-eslint/no-unused-expressions': 'error',
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
@@ -77,6 +77,7 @@ module.exports = {
     'react/jsx-no-bind': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/no-array-index-key': 'off',
+    'react/prop-types': 'off',
     'react/state-in-constructor': ['error', 'never'],
     'react/static-property-placement': 'off',
 
@@ -94,13 +95,4 @@ module.exports = {
       },
     ],
   },
-
-  overrides: [
-    {
-      files: ['*.tsx', '*.ts'],
-      rules: {
-        'react/prop-types': 'off',
-      },
-    },
-  ],
 };

@@ -4,11 +4,10 @@ import path from 'path';
 
 const args = process.argv.slice(2);
 
-const config = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../package.json')));
+const config = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../package.json') as string));
 
 if (args[0] === 'dev') {
-  // change this to patch once we hit 2.0.0
-  config.version = `${semver.inc(config.version, 'prerelease')}.dev`;
+  config.version = `${semver.inc(config.version, 'patch')}.dev`;
 } else if (args[0] === 'release') {
   config.version = config.version.replace(/.dev$/, '');
 }

@@ -22,5 +22,3 @@ server.listen(process.env.PORT || 8000, process.env.HOST || '0.0.0.0', (err) => 
   }
   console.log(`Listening at ${process.env.HOST || 'localhost'}:${process.env.PORT || 8000}`);
 });
-
-server.c
