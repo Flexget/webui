@@ -8,7 +8,6 @@ const webpack = require('webpack');
 const __DEBUG__ = !!process.env.DEBUG;
 const __DEV__ = process.env.NODE_ENV !== 'production';
 const mode = __DEV__ ? 'development' : 'production';
-const PATH_PREFIX = 'v2';
 
 const entry = {
   main: [...(__DEV__ ? ['react-hot-loader/patch'] : []), 'whatwg-fetch', './src/app.tsx'],
@@ -17,11 +16,11 @@ const entry = {
 const output = {
   path: __DEV__ ? __dirname : path.join(__dirname, 'dist', 'assets'),
   filename: __DEV__ ? '[name].bundle.js' : '[name].[chunkhash].js',
-  publicPath: __DEV__ ? '/' : `${PATH_PREFIX}/assets/`,
+  publicPath: __DEV__ ? '/' : `/assets/`,
 };
 
 const htmlConfig = {
-  title: 'FlexGet Manager v2',
+  title: 'FlexGet Manager',
   template: './src/index.ejs',
 };
 

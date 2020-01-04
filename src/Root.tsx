@@ -52,9 +52,7 @@ const globals = css`
 
 const Home = createAsyncComponent(() => import('core/home'));
 const Login = createAsyncComponent(() => import('core/auth/Login'));
-const basename = `${uriParser(document.baseURI).pathname}${
-  process.env.NODE_ENV === 'production' ? 'v2/' : ''
-}`;
+const basename = uriParser(document.baseURI).pathname;
 
 const Root = () => (
   <ThemeProvider>
