@@ -1,10 +1,10 @@
-import React, { FC, ChangeEvent, useEffect } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import { TablePagination, Theme } from '@material-ui/core';
 import { css, ClassNames } from '@emotion/core';
 import SelectField from 'common/inputs/formik/SelectField';
 import { useContainer } from 'unstated-next';
 import { useFormikContext } from 'formik';
-import { useDebounce } from 'utils/hooks';
+import { useDebounceFormikSubmit } from 'utils/hooks';
 import { Direction } from 'utils/query';
 import { EpisodeContainer } from '../hooks/episodes';
 import { GetEpisodeOptions } from '../types';
@@ -49,7 +49,7 @@ const orderByOptions = [
 const Header: FC<Props> = ({ options: { page, perPage } }) => {
   const [{ totalCount }] = useContainer(EpisodeContainer);
 
-  const { values, submitForm, setFieldValue } = useFormikContext<GetEpisodeOptions>();
+  const { setFieldValue } = useFormikContext<GetEpisodeOptions>();
 
   const handleChangePerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setFieldValue('perPage', parseInt(event.target.value, 10));
@@ -60,42 +60,36 @@ const Header: FC<Props> = ({ options: { page, perPage } }) => {
     setFieldValue('page', p);
   };
 
-  const debouncedValues = useDebounce(values);
-
-  useEffect(() => {
-    submitForm();
-  }, [...Object.values(debouncedValues), submitForm]); // eslint-disable-line react-hooks/exhaustive-deps
+  useDebounceFormikSubmit();
 
   return (
-    <>
-      <ClassNames>
-        {({ css: cssString }) => (
-          <div css={wrapper}>
-            <div css={container} />
-            <div css={container}>
-              <SelectField
-                css={item}
-                label="Order"
-                name="order"
-                id="order"
-                size="small"
-                InputProps={{ className: cssString(input) }}
-                options={orderByOptions}
-              />
-              <TablePagination
-                rowsPerPageOptions={[30, 60, 90]}
-                count={totalCount}
-                rowsPerPage={perPage}
-                page={page}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangePerPage}
-                component="div"
-              />
-            </div>
+    <ClassNames>
+      {({ css: cssString }) => (
+        <div css={wrapper}>
+          <div css={container} />
+          <div css={container}>
+            <SelectField
+              css={item}
+              label="Order"
+              name="order"
+              id="order"
+              size="small"
+              InputProps={{ className: cssString(input) }}
+              options={orderByOptions}
+            />
+            <TablePagination
+              rowsPerPageOptions={[30, 60, 90]}
+              count={totalCount}
+              rowsPerPage={perPage}
+              page={page}
+              onChangePage={handleChangePage}
+              onChangeRowsPerPage={handleChangePerPage}
+              component="div"
+            />
           </div>
-        )}
-      </ClassNames>
-    </>
+        </div>
+      )}
+    </ClassNames>
   );
 };
 

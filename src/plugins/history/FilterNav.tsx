@@ -1,14 +1,13 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Toolbar, Tooltip } from '@material-ui/core';
 import { css } from '@emotion/core';
 import SelectField from 'common/inputs/formik/SelectField';
 import { Spacer } from 'common/styles';
-import { useFormikContext } from 'formik';
-import { useDebounce } from 'utils/hooks';
+import { useDebounceFormikSubmit } from 'utils/hooks';
 import DirectionButton from 'common/inputs/formik/DirectionButton';
-import { TaskContainer } from 'core/tasks/hooks';
+import { TaskContainer } from 'plugins/tasks/hooks';
 import { useContainer } from 'unstated-next';
-import { GroupByFields, GetHistoryOptions, SortByFields } from './types';
+import { GroupByFields, SortByFields } from './types';
 
 const fieldWrapper = css`
   padding: 0.5rem 2rem 0.5rem;
@@ -64,14 +63,9 @@ const sortByFields = [
 ];
 
 const FilterNav: FC = () => {
-  const { values, submitForm } = useFormikContext<GetHistoryOptions>();
-
-  const debouncedValues = useDebounce(values);
   const { tasks } = useContainer(TaskContainer);
 
-  useEffect(() => {
-    submitForm();
-  }, [...Object.values(debouncedValues), submitForm]); // eslint-disable-line react-hooks/exhaustive-deps
+  useDebounceFormikSubmit();
 
   return (
     <Toolbar>

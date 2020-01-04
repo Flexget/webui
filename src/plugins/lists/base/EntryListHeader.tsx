@@ -1,11 +1,11 @@
-import React, { FC, ChangeEvent, useEffect } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import { FormControl, TablePagination, Theme } from '@material-ui/core';
 import { css, ClassNames } from '@emotion/core';
 import SelectField from 'common/inputs/formik/SelectField';
 import { Direction } from 'utils/query';
 import { useContainer } from 'unstated-next';
 import { useFormikContext } from 'formik';
-import { useDebounce } from 'utils/hooks';
+import { useDebounceFormikSubmit } from 'utils/hooks';
 import { Options } from './types';
 import { EntryContainer } from './hooks/entry';
 import { usePluginContainer } from './hooks/api';
@@ -52,7 +52,7 @@ const EntryListHeader: FC<Props> = ({ options: { page, perPage } }) => {
 
   const { sortByOptions } = usePluginContainer();
 
-  const { values, submitForm, setFieldValue } = useFormikContext<Options>();
+  const { setFieldValue } = useFormikContext<Options>();
 
   const handleChangePerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setFieldValue('perPage', parseInt(event.target.value, 10));
@@ -63,54 +63,48 @@ const EntryListHeader: FC<Props> = ({ options: { page, perPage } }) => {
     setFieldValue('page', p);
   };
 
-  const debouncedValues = useDebounce(values);
-
-  useEffect(() => {
-    submitForm();
-  }, [...Object.values(debouncedValues), submitForm]); // eslint-disable-line react-hooks/exhaustive-deps
+  useDebounceFormikSubmit();
 
   return (
-    <>
-      <ClassNames>
-        {({ css: cssString }) => (
-          <div css={wrapper}>
-            <div css={container} />
-            <div css={container}>
-              <FormControl css={item}>
-                <SelectField
-                  label="Sort By"
-                  name="sortBy"
-                  id="sortBy"
-                  size="small"
-                  InputProps={{ className: cssString(input) }}
-                  options={sortByOptions}
-                />
-              </FormControl>
-              <FormControl css={item}>
-                <SelectField
-                  label="Order"
-                  name="order"
-                  id="order"
-                  size="small"
-                  InputProps={{ className: cssString(input) }}
-                  options={sortOrderOptions}
-                />
-              </FormControl>
-
-              <TablePagination
-                rowsPerPageOptions={[30, 60, 90]}
-                count={totalCount}
-                rowsPerPage={perPage}
-                page={page}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangePerPage}
-                component="div"
+    <ClassNames>
+      {({ css: cssString }) => (
+        <div css={wrapper}>
+          <div css={container} />
+          <div css={container}>
+            <FormControl css={item}>
+              <SelectField
+                label="Sort By"
+                name="sortBy"
+                id="sortBy"
+                size="small"
+                InputProps={{ className: cssString(input) }}
+                options={sortByOptions}
               />
-            </div>
+            </FormControl>
+            <FormControl css={item}>
+              <SelectField
+                label="Order"
+                name="order"
+                id="order"
+                size="small"
+                InputProps={{ className: cssString(input) }}
+                options={sortOrderOptions}
+              />
+            </FormControl>
+
+            <TablePagination
+              rowsPerPageOptions={[30, 60, 90]}
+              count={totalCount}
+              rowsPerPage={perPage}
+              page={page}
+              onChangePage={handleChangePage}
+              onChangeRowsPerPage={handleChangePerPage}
+              component="div"
+            />
           </div>
-        )}
-      </ClassNames>
-    </>
+        </div>
+      )}
+    </ClassNames>
   );
 };
 

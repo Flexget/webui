@@ -1,10 +1,10 @@
-import React, { FC, ChangeEvent, useEffect } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import { TablePagination, Theme } from '@material-ui/core';
 import { css, ClassNames } from '@emotion/core';
 import SelectField from 'common/inputs/formik/SelectField';
 import { useContainer } from 'unstated-next';
 import { useFormikContext } from 'formik';
-import { useDebounce } from 'utils/hooks';
+import { useDebounceFormikSubmit } from 'utils/hooks';
 import { Direction } from 'utils/query';
 import { GetShowOptions, SortByShow, ConfigState } from '../types';
 import { ShowContainer } from '../hooks/shows';
@@ -75,7 +75,7 @@ const configOptions = [
 const Header: FC<Props> = ({ options: { page, perPage } }) => {
   const [{ totalCount }] = useContainer(ShowContainer);
 
-  const { values, submitForm, setFieldValue } = useFormikContext<GetShowOptions>();
+  const { setFieldValue } = useFormikContext<GetShowOptions>();
 
   const handleChangePerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setFieldValue('perPage', parseInt(event.target.value, 10));
@@ -86,11 +86,7 @@ const Header: FC<Props> = ({ options: { page, perPage } }) => {
     setFieldValue('page', p);
   };
 
-  const debouncedValues = useDebounce(values);
-
-  useEffect(() => {
-    submitForm();
-  }, [...Object.values(debouncedValues), submitForm]); // eslint-disable-line react-hooks/exhaustive-deps
+  useDebounceFormikSubmit();
 
   return (
     <>

@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { AuthContainer } from 'core/auth/container';
 import { StatusContainer } from 'core/status/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
-import { TaskContainer } from 'core/tasks/hooks';
+import { TaskContainer } from 'plugins/tasks/hooks';
 import { RouteContainer } from 'core/routes/hooks';
 import { AppBarContainer } from 'core/layout/AppBar/hooks';
 

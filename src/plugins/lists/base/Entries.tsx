@@ -56,7 +56,7 @@ const Entries: FC = () => {
 
   return (
     <EntryContainer.Provider>
-      <Formik initialValues={options} onSubmit={values => setOptions(values)}>
+      <Formik initialValues={options} onSubmit={setOptions}>
         <EntryListHeader options={options} />
       </Formik>
       <EntryList options={options} />
