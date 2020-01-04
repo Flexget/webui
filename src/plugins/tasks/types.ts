@@ -50,3 +50,11 @@ export const enum SortByStatus {
 export interface TaskStatusOptions extends DefaultOptions {
   sortBy: SortByStatus;
 }
+
+export interface TaskExecutionOptions extends DefaultOptions {
+  sortBy: SortByStatus;
+  endDate?: Date;
+  startDate?: Date;
+  produced?: boolean;
+  succeeded?: boolean;
+}

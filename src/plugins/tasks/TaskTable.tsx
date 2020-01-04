@@ -11,6 +11,7 @@ import {
   TablePagination,
   TableSortLabel,
   TableRowProps,
+  TableFooter,
 } from '@material-ui/core';
 import { useDebounceFormikSubmit } from 'utils/hooks';
 import { Direction, DefaultOptions, toggleDirection } from 'utils/query';
@@ -18,7 +19,7 @@ import { Direction, DefaultOptions, toggleDirection } from 'utils/query';
 interface Row<T> {
   key: Key;
   data: T;
-  props: TableRowProps;
+  props?: TableRowProps;
 }
 
 export interface Header<T extends Key> {
@@ -97,10 +98,12 @@ const TaskTable = <T extends {}>({ total, headers, rows }: Props<T>) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(({ key, data, props }) => (
+            {rows.map(({ key, data, props = {} }) => (
               <TableRow key={key} {...props}>
                 {headers.map(({ id, numeric }) => (
-                  <TableCell align={numeric ? 'right' : 'left'}>{data[id]}</TableCell>
+                  <TableCell key={id} align={numeric ? 'right' : 'left'}>
+                    {data[id]}
+                  </TableCell>
                 ))}
               </TableRow>
             ))}
@@ -108,8 +111,8 @@ const TaskTable = <T extends {}>({ total, headers, rows }: Props<T>) => {
         </Table>
       </TableContainer>
       <TablePagination
+        size="medium"
         rowsPerPageOptions={[5, 10, 25]}
-        component="div"
         count={total}
         rowsPerPage={perPage}
         page={page}

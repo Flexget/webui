@@ -6,7 +6,7 @@ import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { Direction } from 'utils/query';
 import { SortByStatus, TaskStatusOptions } from './types';
 import TaskTable from './TaskTable';
-import { useGetTaskStatus } from './hooks';
+import { useGetTaskStatuses } from './hooks';
 
 const headers = [
   {
@@ -61,7 +61,7 @@ const Latest: FC = () => {
     sortBy: SortByStatus.LastExecutionTime,
   });
 
-  const { tasks, total } = useGetTaskStatus(options);
+  const { tasks, total } = useGetTaskStatuses(options);
   const rows = useMemo(
     () =>
       tasks.map(
@@ -88,7 +88,7 @@ const Latest: FC = () => {
             ),
           },
           props: {
-            onClick: () => push(`${url}${id}`),
+            onClick: () => push(`${url}/${id}`),
             hover: true,
           },
         }),
