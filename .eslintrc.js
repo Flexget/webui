@@ -77,7 +77,7 @@ module.exports = {
     'react/jsx-no-bind': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/no-array-index-key': 'off',
-        'react/prop-types': 'off',
+    'react/prop-types': 'off',
     'react/state-in-constructor': ['error', 'never'],
     'react/static-property-placement': 'off',
 

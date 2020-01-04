@@ -12,7 +12,7 @@
     "test": "NODE_ENV=test jest",
     "test:watch": "jest --watch",
     "release:bump": "NODE_ENV=release babel-node --extensions .ts ./scripts/bump-version.ts",
-    "retease:upload": "NODE_ENV=release babel-node --extensions .ts ./scripts/create-release.ts",
+    "release:upload": "NODE_ENV=release babel-node --extensions .ts ./scripts/create-release.ts",
     "deploy:status": "NODE_ENV=release babel-node --extensions .ts ./scripts/set-deployment-status.ts"
   },
   "repository": {

@@ -52,6 +52,7 @@ module.exports = function config(api) {
               modules: 'commonjs',
             },
           ],
+          '@babel/preset-typescript',
         ],
       },
     },
