@@ -12,12 +12,6 @@ A new web interface for configuring and viewing FlexGet settings
 [![codecov](https://codecov.io/gh/Flexget/webui/branch/develop/graph/badge.svg)](https://codecov.io/gh/Flexget/webui)
 </div>
 
----
-
-**This repo and documentation is for the new WebUI v2. If you are looking for WebUI v1, you can find documentation here: https://flexget.com/Web-UI and report issues to the main [FlexGet repo](https://github.com/Flexget/Flexget).**
-
----
-
 ## Usage
 See [flexget.com](https://flexget.com/Web-UI/v2#enabling-web-ui) for usage instructions
 
