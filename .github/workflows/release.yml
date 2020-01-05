@@ -8,13 +8,21 @@ jobs:
       matrix:
         node: [12.x]
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        name: Checkout Flexget
+        with:
+          ref: develop
+          path: flexget
       - name: Setup Git
         run: |
-          git config --local user.email $GIT_EMAIL
-          git config --local user.name $GIT_USERNAME
+          git config user.email $GIT_EMAIL
+          git config user.name $GIT_USERNAME
           git checkout ${GITHUB_REF:11}
           git remote set-url origin https://$GIT_USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
+          cd flexget
+          git remote set-url origin https://$GIT_USERNAME:$GITHUB_TOKEN@github.com/Flexget/flexget
+          cd ..
         env:
           GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
