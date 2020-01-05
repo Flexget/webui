@@ -11,7 +11,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          path: webui
       - uses: actions/checkout@v2
         name: Checkout Flexget
         with:
@@ -23,6 +22,7 @@ jobs:
         run: |
           git config --global user.email $GIT_EMAIL
           git config --global user.name $GIT_USERNAME
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/master:refs/remotes/origin/master
         env:
           GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
@@ -31,31 +31,24 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: Install Dependencies
-        working-directory: ./webui
         run: yarn install --frozen-lockfile
       - name: Set Deployment Status In Progress
-        working-directory: ./webui
         run: yarn deploy:status in_progress
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Build
-        working-directory: ./webui
         run: yarn build
       - name: Zip Dist Folder
-        working-directory: ./webui
         run: zip -r /tmp/dist.zip ./dist
       - name: Release
-        working-directory: ./webui
         run: scripts/release.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set Deployment Status Success
-        working-directory: ./webui
         run: yarn deploy:status success
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set Deployment Status Failure
-        working-directory: ./webui
         run: yarn deploy:status failure
         if: failure()
         env:
