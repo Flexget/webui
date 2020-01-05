@@ -28,7 +28,7 @@ if git log --skip 1 origin/master..origin/develop|grep '^commit '; then
   fi
   # Add empty commit to main repo
   cd flexget
-  git commit --allow-empty  -m "[Add] New webui release"
+  git commit --allow-empty  -m "[Add] webui version $VERSION"
   git push
 else
   echo "No commits, skipping release"
