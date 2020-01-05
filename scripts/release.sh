@@ -26,6 +26,10 @@ if git log --skip 1 origin/master..origin/develop|grep '^commit '; then
   if [ $? -eq 0 ]; then
     yarn release:upload $VERSION
   fi
+  # Add empty commit to main repo
+  cd flexget
+  git commit --allow-empty  -m "[Add] New webui release"
+  git push
 else
   echo "No commits, skipping release"
 fi

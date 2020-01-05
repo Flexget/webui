@@ -3,11 +3,10 @@ name: Continuous Integration
 on:
   push:
     branches:
-      - '**'
-      - '!master'
+      - 'develop'
   pull_request:
     branches:
-      - '**'
+      - 'develop'
 jobs:
   tests:
     name: Run Tests
@@ -17,7 +16,12 @@ jobs:
         node:
           - 12.x
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+        if: github.event_name == 'push'
+      - use: actions/checkout@v2
+        if: github.event_name == 'pull_request'
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v1
         with:
@@ -39,7 +43,6 @@ jobs:
         run: yarn test --ci --coverage -i
       - name: Send to Code Cov
         uses: codecov/codecov-action@v1
-        if: github.event_name == 'push'
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          yml: './codecov.yml'
+
