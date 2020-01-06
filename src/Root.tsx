@@ -12,6 +12,7 @@ import registerHistory from 'plugins/history';
 import registerLog from 'plugins/log';
 import registerTasks from 'plugins/tasks';
 import registerSeries from 'plugins/series';
+import registerConfig from 'plugins/config';
 import registerPendingList from 'plugins/lists/pending';
 import registerMovieList from 'plugins/lists/movies';
 import registerEntryList from 'plugins/lists/entry';
@@ -25,6 +26,7 @@ import { uriParser } from 'utils';
 
 registerHistory();
 registerLog();
+registerConfig();
 registerTasks();
 registerSeries();
 registerPendingList();
