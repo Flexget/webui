@@ -16,7 +16,7 @@ const entry = {
 const output = {
   path: __DEV__ ? __dirname : path.join(__dirname, 'dist', 'assets'),
   filename: __DEV__ ? '[name].bundle.js' : '[name].[chunkhash].js',
-  publicPath: __DEV__ ? '/' : `/assets/`,
+  publicPath: __DEV__ ? '/' : 'assets/',
 };
 
 const htmlConfig = {
