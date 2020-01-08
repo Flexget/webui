@@ -34,9 +34,10 @@ jobs:
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
       - name: Set Deployment Status In Progress
-        run: yarn deploy:status in_progress
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: deliverybot/deployment-status@v1
+        with:
+          state: in_progress
+          token: ${{ github.token }}
       - name: Run Build
         run: yarn build
       - name: Zip Dist Folder
@@ -46,11 +47,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set Deployment Status Success
-        run: yarn deploy:status success
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: deliverybot/deployment-status@v1
+        with:
+          state: success
+          token: ${{ github.token }}
       - name: Set Deployment Status Failure
-        run: yarn deploy:status failure
-        if: failure()
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: failure() || cancelled()
+        uses: deliverybot/deployment-status@v1
+        with:
+          state: failure
+          token: ${{ github.token }}

@@ -62,6 +62,7 @@
     "@types/semver": "^6.2.0",
     "@types/semver-compare": "^1.0.1",
     "@types/uuid": "^3.4.6",
+    "@types/yaml": "^1.2.0",
     "@typescript-eslint/eslint-plugin": "^2.9.0",
     "@typescript-eslint/parser": "^2.9.0",
     "babel-eslint": "^9.0.0",
@@ -152,6 +153,7 @@
     "typeface-roboto": "0.0.54",
     "unstated-next": "^1.1.0",
     "uuid": "^3.3.3",
-    "whatwg-fetch": "^2.0.4"
+    "whatwg-fetch": "^2.0.4",
+    "yaml": "^1.7.2"
   }
 }

@@ -1,6 +1,6 @@
 import { createAsyncComponent } from 'utils/loading';
 import registry from 'core/routes/registry';
-import { CreateOutlined, CreateTwoTone } from '@material-ui/icons';
+import { CreateTwoTone } from '@material-ui/icons';
 
 export default () =>
   registry.registerPlugin('config', {

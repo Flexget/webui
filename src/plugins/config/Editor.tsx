@@ -1,10 +1,14 @@
-import React, { FC, useCallback, useRef } from 'react';
+import React, { FC, useCallback } from 'react';
+import { useField } from 'formik';
 import { useTheme } from '@material-ui/core';
 import MonacoEditor from 'react-monaco-editor';
 import { editor } from 'monaco-editor';
-import { useGetConfig } from './hooks';
 
-const Editor: FC = () => {
+interface Props {
+  name: string;
+}
+
+const Editor: FC<Props> = ({ name }) => {
   const options: editor.IEditorConstructionOptions = {
     selectOnLineNumbers: true,
     minimap: {
@@ -12,30 +16,18 @@ const Editor: FC = () => {
     },
     scrollBeyondLastLine: false,
   };
-
   const theme = useTheme();
 
-  const editorInstance = useRef<editor.IStandaloneCodeEditor>();
-  const editorDidMount = useCallback((e: editor.IStandaloneCodeEditor) => {
-    editorInstance.current = e;
-  }, []);
+  const [{ value }, , { setValue }] = useField<string>(name);
 
-  const [{ config }, setConfig] = useGetConfig();
-
-  const handleChange = useCallback(
-    (value: string) => {
-      setConfig(value);
-    },
-    [setConfig],
-  );
+  const handleChange = useCallback((v: string) => setValue(v), [setValue]);
 
   return (
     <MonacoEditor
       language="yaml"
       theme={theme.palette.type}
       options={options}
-      editorDidMount={editorDidMount}
-      value={config}
+      value={value}
       onChange={handleChange}
     />
   );
