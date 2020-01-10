@@ -1,18 +1,20 @@
 import React, { useEffect, FC } from 'react';
 import { useFormikContext } from 'formik';
-import { Button } from '@material-ui/core';
+import { Button, ButtonProps } from '@material-ui/core';
 import { FormState } from './Config';
 
-interface SubmitProps {
+interface SubmitProps extends ButtonProps {
   loading: boolean;
+  className: string;
 }
-const SubmitButton: FC<SubmitProps> = ({ loading, children }) => {
+const SubmitButton: FC<SubmitProps> = ({ loading, children, ...props }) => {
   const { submitForm, isSubmitting, setSubmitting } = useFormikContext<FormState>();
   useEffect(() => {
     setSubmitting(loading);
   }, [loading, setSubmitting]);
   return (
     <Button
+      {...props}
       variant="contained"
       color="primary"
       onClick={submitForm}
