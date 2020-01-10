@@ -97,7 +97,7 @@ export interface TVMazeOptions {
 const tvMazeToFields = (episode: TVMazeEpisode): EpisodeFields => ({
   seriesEpisode: episode.number,
   seriesSeason: episode.seasonNumber,
-  seriesId: `S${pad(episode.number)}E${pad(episode.seasonNumber)}`,
+  seriesId: `S${pad(episode.seasonNumber)}E${pad(episode.number)}`,
   [TVMazeFields.Image]: episode.originalImage,
   [TVMazeFields.Description]: episode.summary,
   [TVMazeFields.Url]: episode.url,
