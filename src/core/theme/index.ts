@@ -80,7 +80,7 @@ const themes = {
 } as const;
 
 const addEditorTheme = (name: PaletteType, data: editor.IStandaloneThemeData) =>
-  editor.defineTheme(name, {
+  editor?.defineTheme(name, {
     ...data,
     colors: {
       ...data.colors,

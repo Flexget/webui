@@ -133,7 +133,7 @@
     "humps": "^2.0.1",
     "jss": "^9.8.7",
     "jss-preset-default": "^4.5.0",
-    "monaco-editor": "^0.19.0",
+    "monaco-editor": "^0.19.2",
     "monaco-themes": "^0.3.3",
     "normalize.css": "^8.0.1",
     "oboe": "^2.1.4",
