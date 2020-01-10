@@ -50,7 +50,7 @@ jobs:
         uses: ./.github/actions/deployment-status
         with:
           status: success
-          tokenu: ${{ github.token }}
+          token: ${{ github.token }}
       - name: Set Deployment Status Failure
         if: failure() || cancelled()
         uses: ./.github/actions/deployment-status
