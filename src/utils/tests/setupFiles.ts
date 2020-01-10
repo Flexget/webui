@@ -3,6 +3,8 @@ import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { GlobalWithFetchMock } from 'jest-fetch-mock';
 
+jest.mock('monaco-editor/esm/vs/editor/editor.api.js');
+
 Enzyme.configure({ adapter: new Adapter() });
 
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>');

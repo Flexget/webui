@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const webpack = require('webpack');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const __DEBUG__ = !!process.env.DEBUG;
 const __DEV__ = process.env.NODE_ENV !== 'production';
@@ -33,6 +34,9 @@ if (__DEV__) {
 
 const plugins = [
   new webpack.DefinePlugin({ __DEV__ }),
+  new MonacoWebpackPlugin({
+    languages: ['yaml'],
+  }),
   new ForkTsCheckerWebpackPlugin({
     tsconfig: path.resolve('tsconfig.json'),
   }),

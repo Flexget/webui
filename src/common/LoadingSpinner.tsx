@@ -9,13 +9,15 @@ const spinner = css`
 const wrapper = css`
   display: flex;
   align-items: center;
+  width: inherit;
+  height: inherit;
 `;
 
 interface Props {
   loading?: boolean;
 }
 
-const LoadingSpinner: FC<Props> = ({ loading = false }) => {
+const LoadingSpinner: FC<Props> = ({ loading = false, children }) => {
   if (loading) {
     return (
       <div css={wrapper}>
@@ -23,7 +25,7 @@ const LoadingSpinner: FC<Props> = ({ loading = false }) => {
       </div>
     );
   }
-  return null;
+  return <>{children}</>;
 };
 
 export default LoadingSpinner;

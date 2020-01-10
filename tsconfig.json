@@ -20,6 +20,7 @@
       "dom.iterable"
     ],
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "experimentalDecorators": true
   },
   "include": [
