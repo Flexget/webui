@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useContainer } from 'unstated-next';
-import semver from 'semver-compare';
+import { gt } from 'semver';
 import { css } from '@emotion/core';
 import { IconButton, Theme } from '@material-ui/core';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
@@ -17,8 +17,9 @@ const wrapper = (theme: Theme) => css`
   padding: ${theme.typography.pxToRem(theme.spacing(2))};
 `;
 
-const Version: React.FC<Props> = ({ className }) => {
+const Version: FC<Props> = ({ className }) => {
   const { loading, version } = useContainer(VersionContainer);
+
   if (loading || !version) {
     // showProgress
     return null;
@@ -26,13 +27,20 @@ const Version: React.FC<Props> = ({ className }) => {
 
   const { flexgetVersion, apiVersion, latestVersion } = version;
 
+  const normalizedVersion = flexgetVersion.replace('.dev', '-dev.0');
+
   return (
     <div css={wrapper} className={className}>
       <Typography>Version Info</Typography>
       <Typography>
         {`Flexget: ${flexgetVersion} `}
-        {semver(latestVersion, flexgetVersion) !== 1 && (
-          <IconButton href="https://flexget.com/ChangeLog" color="inherit" size="small">
+        {gt(latestVersion, normalizedVersion) && (
+          <IconButton
+            href="https://flexget.com/ChangeLog"
+            color="inherit"
+            size="small"
+            aria-label="flexget update available"
+          >
             <HelpOutlineIcon />
           </IconButton>
         )}
