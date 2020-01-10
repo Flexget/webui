@@ -34,9 +34,9 @@ jobs:
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
       - name: Set Deployment Status In Progress
-        uses: deliverybot/deployment-status@v1
+        uses: ./.github/actions/deployment-status
         with:
-          state: in_progress
+          status: in_progress
           token: ${{ github.token }}
       - name: Run Build
         run: yarn build
@@ -47,13 +47,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set Deployment Status Success
-        uses: deliverybot/deployment-status@v1
+        uses: ./.github/actions/deployment-status
         with:
-          state: success
-          token: ${{ github.token }}
+          status: success
+          tokenu: ${{ github.token }}
       - name: Set Deployment Status Failure
         if: failure() || cancelled()
-        uses: deliverybot/deployment-status@v1
+        uses: ./.github/actions/deployment-status
         with:
-          state: failure
+          status: failure
           token: ${{ github.token }}

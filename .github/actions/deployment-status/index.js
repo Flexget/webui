@@ -1,17 +1,8 @@
-import { setFailed } from '@actions/core';
-import { GitHub, context } from '@actions/github';
-
-type Status =
-      | "error"
-      | "failure"
-      | "inactive"
-      | "in_progress"
-      | "queued"
-      | "pending"
-      | "success";
+const { setFailed } = require('@actions/core');
+const { GitHub, context } = require('@actions/github');
 
 async function run() {
-  const state = process.argv[2] as Status;
+  const state = process.argv[2];
 
   const { repo, payload } = context;
   const { repos } = new GitHub(process.env.GITHUB_TOKEN, { previews: ['flash'] });
