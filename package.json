@@ -149,7 +149,6 @@
     "react-virtualized": "^9.21.1",
     "regenerator-runtime": "^0.13.3",
     "semver": "^5.7.0",
-    "semver-compare": "^1.0.0",
     "typeface-roboto": "0.0.54",
     "unstated-next": "^1.1.0",
     "uuid": "^3.3.3",
