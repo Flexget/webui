@@ -5,7 +5,6 @@ import { FormState } from './Config';
 
 interface SubmitProps extends ButtonProps {
   loading: boolean;
-  className: string;
 }
 const SubmitButton: FC<SubmitProps> = ({ loading, children, ...props }) => {
   const { submitForm, isSubmitting, setSubmitting } = useFormikContext<FormState>();
