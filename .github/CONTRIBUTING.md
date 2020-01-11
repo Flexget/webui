@@ -1,4 +1,6 @@
-## How to Contribute
+# How to Contribute
+
+## General
 
 The UI has a solid base but we need help building the plugins and maintaining. If you would like to get your hands dirty in React, CSS or UX Design then please read below and join our [chat](https://flexget.com/Chat).
 
