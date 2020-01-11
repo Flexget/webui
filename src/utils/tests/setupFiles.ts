@@ -1,7 +1,7 @@
 import { JSDOM, DOMWindow } from 'jsdom';
+import fetch, { Headers, Response, Request } from 'node-fetch';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { GlobalWithFetchMock } from 'jest-fetch-mock';
 
 jest.mock('monaco-editor/esm/vs/editor/editor.api.js');
 
@@ -17,19 +17,25 @@ function copyProps(src, target) {
   Object.defineProperties(target, props as any);
 }
 
-declare const global: GlobalWithFetchMock & {
+declare const global: {
   window: DOMWindow;
   document: Document;
   navigator: {
     userAgent: string;
   };
+  Response: typeof Response;
+  Headers: typeof Headers;
+  Request: typeof Request;
+  fetch: typeof fetch;
 };
 
 global.window = window;
 global.document = window.document;
-global.fetch = require('jest-fetch-mock');
+global.fetch = fetch;
 
-global.fetchMock = global.fetch;
+global.Response = Response;
+global.Headers = Headers;
+global.Request = Request;
 
 global.navigator = {
   userAgent: 'node.js',
