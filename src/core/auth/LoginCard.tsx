@@ -22,7 +22,7 @@ const field = css`
 `;
 
 const errorMessage = (theme: Theme) => css`
-  color: ${theme.palette.error[500]};
+  color: ${theme.palette.error.main};
   text-align: center;
   padding: 1rem;
 `;

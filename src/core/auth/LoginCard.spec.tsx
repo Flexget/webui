@@ -1,7 +1,8 @@
 import React from 'react';
-import renderer, { act } from 'react-test-renderer';
-import { mount } from 'enzyme';
+import { cleanup, fireEvent } from '@testing-library/react';
+import fetchMock from 'fetch-mock';
 import { AuthContainer } from 'core/auth/container';
+import { renderWithWrapper } from 'utils/tests';
 import LoginCard from './LoginCard';
 
 const TestLogin = () => {
@@ -9,39 +10,31 @@ const TestLogin = () => {
 
   return (
     <>
-      <div id="state">{`${loggedIn}`}</div>
+      <div aria-label="login-state">{`${loggedIn}`}</div>
       <LoginCard />
     </>
   );
 };
 
 describe('core/Login/LoginCard', () => {
-  describe('LoginCard', () => {
-    it('renders correctly', () => {
-      const tree = renderer
-        .create(
-          <AuthContainer.Provider>
-            <LoginCard />
-          </AuthContainer.Provider>,
-        )
-        .toJSON();
-      expect(tree).toMatchSnapshot();
-    });
+  beforeEach(() => {
+    fetchMock
+      .get('/api/tasks', [])
+      .post('/api/auth/login', {})
+      .catch();
+  });
 
-    it('should call handleSubmit on submit', async () => {
-      fetchMock.mockResponse(JSON.stringify({}));
-      const wrapper = mount(
-        <AuthContainer.Provider>
-          <TestLogin />
-        </AuthContainer.Provider>,
-      );
+  afterEach(() => {
+    cleanup();
+    fetchMock.reset();
+  });
 
-      expect(wrapper.find('#state').text()).toBe('false');
-      await act(() => {
-        wrapper.find('form').simulate('submit');
-        return Promise.resolve();
-      });
-      expect(wrapper.find('#state').text()).toBe('true');
-    });
+  it('should call handleSubmit on submit', async () => {
+    const { findByLabelText, getByRole } = renderWithWrapper(<TestLogin />);
+    expect(await findByLabelText('login-state')).toHaveTextContent('false');
+
+    const form = getByRole('form');
+    fireEvent.submit(form);
+    expect(await findByLabelText('login-state')).toHaveTextContent('true');
   });
 });
