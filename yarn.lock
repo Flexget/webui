@@ -1151,6 +1151,12 @@
   dependencies:
     js-yaml "^3.12.0"
 
+"@magicsandbox/monaco-yaml@https://github.com/kristenmills/monaco-yaml":
+  version "2.1.2"
+  resolved "https://github.com/kristenmills/monaco-yaml#d22776465445ddd9874b4b5b51b05888237a74b1"
+  dependencies:
+    js-yaml "^3.12.0"
+
 "@material-ui/core@^4.8.1":
   version "4.8.3"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.8.3.tgz#858f758b26d8417eb39310f07fb9d7a72beb8b03"
@@ -7209,10 +7215,10 @@ mkdirp@0.x, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-monaco-editor@^0.16.2:
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.16.2.tgz#950084ed82eeaef1c8c9d3c1bcab849fe11b2415"
-  integrity sha512-NtGrFzf54jADe7qsWh3lazhS7Kj0XHkJUGBq9fA/Jbwc+sgVcyfsYF6z2AQ7hPqDC+JmdOt/OwFjBnRwqXtx6w==
+monaco-editor@^0.19.2:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.19.2.tgz#57f07151e462640874561c89c0b41dfb08c3ca59"
+  integrity sha512-LqsdIU3cNUSS9Zrxrpjirloa5KT36bc725JK7Dwu7eAVqqairlGVs8ioxUaVNQ96svOJaOEKXqcIHVVbSSrveg==
 
 monaco-themes@^0.3.3:
   version "0.3.3"

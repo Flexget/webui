@@ -1,13 +1,14 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useEffect, useRef } from 'react';
 import { useField } from 'formik';
 import { useTheme } from '@material-ui/core';
 import MonacoEditor from 'react-monaco-editor';
-import { editor } from 'monaco-editor';
-
+import { languages, editor } from 'monaco-editor';
 import '@magicsandbox/monaco-yaml/lib/esm/monaco.contribution';
+import { uriParser } from 'utils';
+import { YamlLanguage, Schema } from './types';
 
 window.MonacoEnvironment = {
-  getWorkerUrl(_, label: string) {
+  getWorkerUrl(_: unknown, label: string) {
     if (label === 'yaml') {
       return 'yaml.worker.bundle.js';
     }
@@ -17,9 +18,12 @@ window.MonacoEnvironment = {
 
 interface Props {
   name: string;
+  schemas?: Schema[];
 }
 
-const Editor: FC<Props> = ({ name }) => {
+const { yaml } = (languages as unknown) as { yaml: YamlLanguage };
+
+const Editor: FC<Props> = ({ name, schemas }) => {
   const options: editor.IEditorConstructionOptions = {
     selectOnLineNumbers: true,
     minimap: {
@@ -30,40 +34,16 @@ const Editor: FC<Props> = ({ name }) => {
   const theme = useTheme();
 
   const [{ value }, , { setValue }] = useField<string>(name);
+  const baseURI = useRef(uriParser(document.baseURI));
 
-  const setupYamlConfig = useCallback(monaco => {
-    monaco.languages.yaml.yamlDefaults.setDiagnosticsOptions({
+  useEffect(() => {
+    yaml?.yamlDefaults.setDiagnosticsOptions({
       validate: true,
-      schemas: [
-        {
-          uri: 'http://myserver/foo-schema.json',
-          fileMatch: ['*'],
-          schema: {
-            type: 'object',
-            properties: {
-              p1: {
-                enum: ['v1', 'v2'],
-              },
-              p2: {
-                $ref: 'http://myserver/bar-schema.json',
-              },
-            },
-          },
-        },
-        {
-          uri: 'http://myserver/bar-schema.json', // id of the first schema
-          schema: {
-            type: 'object',
-            properties: {
-              q1: {
-                enum: ['x1', 'x2'],
-              },
-            },
-          },
-        },
-      ],
+      schemas,
+      enableSchemaRequest: true,
+      prefix: `${baseURI.current.pathname}api`,
     });
-  }, []);
+  }, [schemas]);
 
   const handleChange = useCallback((v: string) => setValue(v), [setValue]);
 
@@ -74,7 +54,6 @@ const Editor: FC<Props> = ({ name }) => {
       options={options}
       value={value}
       onChange={handleChange}
-      editorWillMount={setupYamlConfig}
     />
   );
 };
