@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const webpack = require('webpack');
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const __DEBUG__ = !!process.env.DEBUG;
 const __DEV__ = process.env.NODE_ENV !== 'production';
@@ -12,12 +11,18 @@ const mode = __DEV__ ? 'development' : 'production';
 
 const entry = {
   main: [...(__DEV__ ? ['react-hot-loader/patch'] : []), 'whatwg-fetch', './src/app.tsx'],
+  'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker',
+  'yaml.worker': 'monaco-editor/esm/vs/language/yaml/yaml.worker',
 };
 
 const output = {
   path: __DEV__ ? __dirname : path.join(__dirname, 'dist', 'assets'),
-  filename: __DEV__ ? '[name].bundle.js' : '[name].[chunkhash].js',
+  filename: chunkData =>
+    __DEV__ || chunkData.chunk.name === 'editor.worker' || chunkData.chunk.name === 'yaml.worker'
+      ? '[name].bundle.js'
+      : '[name].[chunkhash].js',
   publicPath: __DEV__ ? '/' : 'assets/',
+  globalObject: 'this',
 };
 
 const htmlConfig = {
@@ -34,9 +39,6 @@ if (__DEV__) {
 
 const plugins = [
   new webpack.DefinePlugin({ __DEV__ }),
-  new MonacoWebpackPlugin({
-    languages: ['yaml'],
-  }),
   new ForkTsCheckerWebpackPlugin({
     tsconfig: path.resolve('tsconfig.json'),
   }),
@@ -68,6 +70,8 @@ const config = {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [path.resolve('./src'), 'node_modules'],
     alias: {
+      'monaco-yaml': '@magicsandbox/monaco-yaml',
+      'monaco-editor/esm/vs/language/yaml': 'monaco-yaml/lib/esm',
       'react-dom': '@hot-loader/react-dom',
     },
   },
@@ -81,7 +85,7 @@ const config = {
         },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          chunks: 'initial',
+          chunks: chunk => chunk.name === 'main',
         },
       },
     },

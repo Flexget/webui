@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "pretty": true,
+    "outDir": "./dist/",
+    "strictNullChecks": true,
+    "target": "esnext",
+    "module": "esnext",
+    "baseUrl": "./src",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "jsx": "preserve",
+    "typeRoots": ["./node_modules/@types"],
+    "skipLibCheck": true,
+    "lib": [
+      "esnext",
+      "webworker.importscripts",
+      "dom",
+      "scripthost",
+      "dom.iterable"
+    ],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "allowJs": true
+  },
+  "include": [
+    "./**/*.ts",
+    "./**/*.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

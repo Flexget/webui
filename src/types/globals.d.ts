@@ -6,6 +6,7 @@ import 'jest-extended';
 declare global {
   interface Window {
     registerFlexgetPlugin: PluginRegistry['registerPlugin'];
+    MonacoEnvironment: Record<string, any>;
   }
 
   type SetState<T> = Dispatch<SetStateAction<T>>;
