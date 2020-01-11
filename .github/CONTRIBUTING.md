@@ -33,18 +33,15 @@ Then you can go to http://localhost:8000 (use `PORT` env variable to run on a di
 ### Notes
 * We are in the process of moving from javascript to typescript and if you are making substantial changes to a javascript file, please convert it to typescript if you feel comfortable doing so. All new files should be written in typescript. 
 
-## Testing
-We currently use [Jest](https://facebook.github.io/jest/) and primarily [Snapshot Testing](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest) for tests. Going forward we are deprecating snapshot testing outside of inline snapshots.
+## Testing 
 
 ### Technologies we use:
 * [Jest](https://facebook.github.io/jest/)
-* [Snapshot Testing](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest) (old tests only)
+* [react-testing-library](https://github.com/testing-library/react-testing-library) 
+
+We also use the following in some older tests that haven't been migrated to to `react-testing-library` yet. 
+* [Snapshot Testing](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest)
 * [Enzyme](https://airbnb.io/enzyme)
-* [redux-saga-test-plan](https://github.com/jfairbank/redux-saga-test-plan) (only old saga tests)
-* [react-test-renderer](https://reactjs.org/docs/test-renderer.html)
-* [react-testing-library](https://github.com/testing-library/react-testing-library) (looking into using this over enzyme)
+* [react-test-renderer](https://reactjs.org/docs/test-renderer.html) (old enzyme tests)
 
 To run the tests, run `yarn test`. To run the tests in watch mode, run `yarn test --watch`. To run tests with coverage, run `yarn test --coverage`.  You can also view coverage on [Codecov](https://codecov.io/gh/Flexget/webui) once you've made a PR.
-
-
-
