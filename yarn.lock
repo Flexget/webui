@@ -978,6 +978,13 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
+"@flexget/monaco-yaml@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@flexget/monaco-yaml/-/monaco-yaml-2.2.0.tgz#afcdd4f40b6d2f9f9795fc16128368d8c4ad60b2"
+  integrity sha512-O4LNU+QCq4n7sdL6gwPRG8qhAmMJv0TiTmlUf0wBQvsEEGtNWLoQBmYtTaqtaIUM58NgzUWrEGz+MxQAsE66UQ==
+  dependencies:
+    js-yaml "^3.12.0"
+
 "@hot-loader/react-dom@^16.11.0":
   version "16.11.0"
   resolved "https://registry.yarnpkg.com/@hot-loader/react-dom/-/react-dom-16.11.0.tgz#c0b483923b289db5431516f56ee2a69448ebf9bd"
@@ -1143,19 +1150,6 @@
   dependencies:
     "@babel/runtime" "^7.7.4"
     hoist-non-react-statics "^3.3.1"
-
-"@magicsandbox/monaco-yaml@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@magicsandbox/monaco-yaml/-/monaco-yaml-2.1.2.tgz#d0c4bf94e949cc402bffde1039b7e9a9e246af43"
-  integrity sha512-Y6VhDdgMQeCzHeSIcnKVhq66rIXCCNLJ/IGTOi6DtrEZUuukgBv34vRUwDCBsF0UUIac93MDQw53l2SI1vFo2w==
-  dependencies:
-    js-yaml "^3.12.0"
-
-"@magicsandbox/monaco-yaml@https://github.com/kristenmills/monaco-yaml":
-  version "2.1.2"
-  resolved "https://github.com/kristenmills/monaco-yaml#d22776465445ddd9874b4b5b51b05888237a74b1"
-  dependencies:
-    js-yaml "^3.12.0"
 
 "@material-ui/core@^4.8.1":
   version "4.8.3"

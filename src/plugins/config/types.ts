@@ -1,4 +1,4 @@
-import { IEvent, Thenable } from 'monaco-editor';
+import { IEvent } from 'monaco-editor';
 
 export type Mode = 'config' | 'variables';
 

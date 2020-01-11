@@ -12,7 +12,7 @@ const mode = __DEV__ ? 'development' : 'production';
 const entry = {
   main: [...(__DEV__ ? ['react-hot-loader/patch'] : []), 'whatwg-fetch', './src/app.tsx'],
   'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker',
-  'yaml.worker': 'monaco-editor/esm/vs/language/yaml/yaml.worker',
+  'yaml.worker': '@flexget/monaco-yaml/lib/esm/yaml.worker',
 };
 
 const output = {
@@ -70,8 +70,6 @@ const config = {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [path.resolve('./src'), 'node_modules'],
     alias: {
-      'monaco-yaml': '@magicsandbox/monaco-yaml',
-      'monaco-editor/esm/vs/language/yaml': 'monaco-yaml/lib/esm',
       'react-dom': '@hot-loader/react-dom',
     },
   },

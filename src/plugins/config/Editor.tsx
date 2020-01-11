@@ -3,7 +3,6 @@ import { useField } from 'formik';
 import { useTheme } from '@material-ui/core';
 import MonacoEditor from 'react-monaco-editor';
 import { languages, editor } from 'monaco-editor';
-import '@magicsandbox/monaco-yaml/lib/esm/monaco.contribution';
 import { uriParser } from 'utils';
 import { YamlLanguage, Schema } from './types';
 
@@ -21,7 +20,7 @@ interface Props {
   schemas?: Schema[];
 }
 
-const { yaml } = (languages as unknown) as { yaml: YamlLanguage };
+const { yaml } = ((languages ?? {}) as unknown) as { yaml?: YamlLanguage };
 
 const Editor: FC<Props> = ({ name, schemas }) => {
   const options: editor.IEditorConstructionOptions = {

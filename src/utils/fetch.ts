@@ -1,6 +1,4 @@
 import * as humps from 'humps';
-import { uriParser } from 'utils';
-import is from 'utils/is';
 
 export class StatusError extends Error {
   status?: number;
@@ -89,4 +87,3 @@ export const request = async <PayloadType, BodyType = undefined>(
   const response: Response = await fetch(resource, { ...options, ...opts, headers });
   return status<PayloadType>(response, skipCamelize);
 };
-
