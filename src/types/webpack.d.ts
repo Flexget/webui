@@ -15,10 +15,8 @@ declare module '*.otf';
 declare module '*.mp4';
 
 // workers
-declare module "worker-loader!*" {
-  class WebpackWorker extends Worker {
-    constructor();
-  }
+declare module 'worker-loader!*' {
+  class WebpackWorker extends Worker {}
 
   export default WebpackWorker;
 }
