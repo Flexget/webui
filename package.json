@@ -114,7 +114,8 @@
     "webpack": "^4.36.1",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.7.2"
+    "webpack-dev-server": "^3.7.2",
+    "worker-loader": "^2.0.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",

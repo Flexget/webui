@@ -3,14 +3,20 @@ import { useField } from 'formik';
 import { useTheme } from '@material-ui/core';
 import MonacoEditor from 'react-monaco-editor';
 import { languages, editor } from 'monaco-editor';
+/* eslint-disable import/no-webpack-loader-syntax */
+// NOTE: using loader syntax becuase Yaml worker imports editor.worker directly and that
+// import shouldn't go through loader syntax.
+import EditorWorker from 'worker-loader!monaco-editor/esm/vs/editor/editor.worker';
+import YamlWorker from 'worker-loader!@flexget/monaco-yaml/lib/esm/yaml.worker';
+/* eslint-enable import/no-webpack-loader-syntax */
 import { YamlLanguage, Schema } from './types';
 
 window.MonacoEnvironment = {
-  getWorkerUrl(_: unknown, label: string) {
+  getWorker(_: unknown, label: string) {
     if (label === 'yaml') {
-      return 'yaml.worker.bundle.js';
+      return new YamlWorker();
     }
-    return 'editor.worker.bundle.js';
+    return new EditorWorker();
   },
 };
 
