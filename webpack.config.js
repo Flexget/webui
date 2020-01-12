@@ -78,7 +78,7 @@ const config = {
         },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          chunks: chunk => chunk.name === 'main',
+          chunks: 'initial',
         },
       },
     },
