@@ -61,7 +61,7 @@ const Config: FC = () => {
           saveState: variablesState.post,
         };
 
-  useGlobalStatus(getState.loading, getState.error);
+  useGlobalStatus(getState.loading, getState.error ?? saveState.error);
 
   const initialValues = useMemo(
     () => ({
