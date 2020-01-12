@@ -9,11 +9,10 @@ import {
   Theme,
   Link,
   Tooltip,
+  Typography,
 } from '@material-ui/core';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import ForumIcon from '@material-ui/icons/ForumOutlined';
-import HomeIcon from '@material-ui/icons/Home';
-import ChatIcon from '@material-ui/icons/Chat';
+import { GitHub, ForumOutlined, Home, Chat } from '@material-ui/icons';
+import YAML from 'yaml';
 
 const bold = css`
   font-weight: bold;
@@ -53,26 +52,41 @@ const InfoCard = () => (
         We need your help! If you are a React developer or can help with the layout/design/css then
         please join in the effort!
       </p>
-      <p>The interface is not yet ready for end users. Consider this preview only state.</p>
-      <p>
-        If you still use it anyways, please report back to us on how well it works, issues, ideas
-        etc...
-      </p>
-      <p>
+      <Typography>
+        This is the new webui written from the ground up in React and Typescript. lease report back
+        to us on how well it works, issues, ideas etc...
+      </Typography>
+      <Typography>
+        The new webui is very close to feature parity with v1. In the meantime, if v2 is suiting
+        your needs you can add the following to your config:
+      </Typography>
+      <pre>
+        {YAML.stringify({
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          web_server: {
+            // eslint-disable-next-line @typescript-eslint/camelcase
+            run_v1: true,
+          },
+        })}
+      </pre>
+      <Typography gutterBottom>
+        Then you can visit <Link href="/v1">/v1</Link> to access old webui
+      </Typography>
+      <Typography gutterBottom>
         There is a functional API with documentation available at <Link href="/api">/api</Link>
-      </p>
-      <p>
+      </Typography>
+      <Typography gutterBottom>
         More information:{' '}
         <Link href="http://flexget.com/Web-UI/v2" target="_blank" rel="noopener noreferrer">
           http://flexget.com/Web-UI/v2
         </Link>
-      </p>
-      <p>
+      </Typography>
+      <Typography gutterBottom>
         Chat:{' '}
         <Link href="https://flexget.com/Chat" target="_blank" rel="noopener noreferrer">
           https://flexget.com/Chat
         </Link>
-      </p>
+      </Typography>
     </CardContent>
     <CardActions css={actions}>
       <Tooltip title="Github">
@@ -82,7 +96,7 @@ const InfoCard = () => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          <GitHubIcon />
+          <GitHub />
         </IconButton>
       </Tooltip>
       <Tooltip title="Flexget.com">
@@ -92,7 +106,7 @@ const InfoCard = () => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          <HomeIcon />
+          <Home />
         </IconButton>
       </Tooltip>
       <Tooltip title="Chat">
@@ -102,7 +116,7 @@ const InfoCard = () => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          <ChatIcon />
+          <Chat />
         </IconButton>
       </Tooltip>
       <Tooltip title="Forum">
@@ -112,7 +126,7 @@ const InfoCard = () => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          <ForumIcon />
+          <ForumOutlined />
         </IconButton>
       </Tooltip>
     </CardActions>

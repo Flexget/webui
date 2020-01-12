@@ -42,13 +42,38 @@ exports[`core/home/Home renders correctly 1`] = `
     >
       We need your help! If you are a React developer or can help with the layout/design/css then please join in the effort!
     </p>
-    <p>
-      The interface is not yet ready for end users. Consider this preview only state.
+    <p
+      className="MuiTypography-root MuiTypography-body1"
+    >
+      This is the new webui written from the ground up in React and Typescript. lease report back to us on how well it works, issues, ideas etc...
     </p>
-    <p>
-      If you still use it anyways, please report back to us on how well it works, issues, ideas etc...
+    <p
+      className="MuiTypography-root MuiTypography-body1"
+    >
+      The new webui is very close to feature parity with v1. In the meantime, if v2 is suiting your needs you can add the following to your config:
     </p>
-    <p>
+    <pre>
+      web_server:
+  run_v1: true
+
+    </pre>
+    <p
+      className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+    >
+      Then you can visit 
+      <a
+        className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+        href="/v1"
+        onBlur={[Function]}
+        onFocus={[Function]}
+      >
+        /v1
+      </a>
+       to access old webui
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+    >
       There is a functional API with documentation available at 
       <a
         className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
@@ -59,7 +84,9 @@ exports[`core/home/Home renders correctly 1`] = `
         /api
       </a>
     </p>
-    <p>
+    <p
+      className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+    >
       More information:
        
       <a
@@ -73,7 +100,9 @@ exports[`core/home/Home renders correctly 1`] = `
         http://flexget.com/Web-UI/v2
       </a>
     </p>
-    <p>
+    <p
+      className="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom"
+    >
       Chat:
        
       <a
