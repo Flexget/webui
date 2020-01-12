@@ -1,9 +1,8 @@
-import React, { FC, useCallback, useEffect, useRef } from 'react';
+import React, { FC, useCallback, useEffect } from 'react';
 import { useField } from 'formik';
 import { useTheme } from '@material-ui/core';
 import MonacoEditor from 'react-monaco-editor';
 import { languages, editor } from 'monaco-editor';
-import { uriParser } from 'utils';
 import { YamlLanguage, Schema } from './types';
 
 window.MonacoEnvironment = {
