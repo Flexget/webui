@@ -52,9 +52,9 @@ paste log output here
 ### Additional information:
 
 - FlexGet version:
-- Python version:
 - Installation method:
 - OS and version:
+- Browser Verson:
 
 <!---
 In config and debug/crash logs, remember to redact any personal or sensitive information such as passwords, API keys, private URLs and so on.
