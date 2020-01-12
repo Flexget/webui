@@ -27,6 +27,7 @@ declare const global: {
   Headers: typeof Headers;
   Request: typeof Request;
   fetch: typeof fetch;
+  monaco: any;
 };
 
 global.window = window;

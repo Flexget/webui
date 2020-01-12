@@ -30,6 +30,9 @@ describe('plugins/config/Config', () => {
         message: 'Success',
       })
       .get('/api/variables', {})
+      .get('/api/schema', {
+        schemas: [],
+      })
       .put('/api/variables', {})
       .catch();
   });

@@ -3,6 +3,7 @@ import YAML from 'yaml';
 import { useFlexgetAPI } from 'core/api';
 import { Method } from 'utils/fetch';
 import { useGlobalInfo } from 'core/status/hooks';
+import { Schema } from './types';
 
 interface RawConfigResp {
   rawConfig: string;
@@ -74,4 +75,31 @@ export const useGetVariables = () => {
   );
 
   return [{ variables, state: { get, post } }, saveVariables] as const;
+};
+
+interface SchemaResponse {
+  schemas: Record<string, any>[];
+}
+
+export const useGetSchema = () => {
+  const [state, getRequest] = useFlexgetAPI<SchemaResponse>('/schema', Method.Get, true);
+  const [schemas, setSchemas] = useState<Schema[]>([]);
+
+  useEffect(() => {
+    const fn = async () => {
+      const resp = await getRequest();
+      if (resp.ok) {
+        setSchemas(
+          resp.data.schemas.map(schema => ({
+            uri: schema.id,
+            fileMatch: schema.id === `${document.baseURI}api/schema/config` ? ['*'] : undefined,
+            schema,
+          })),
+        );
+      }
+    };
+    fn();
+  }, [getRequest]);
+
+  return { ...state, schemas };
 };

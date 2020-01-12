@@ -7,7 +7,7 @@ import { Alert } from '@material-ui/lab';
 import { useGlobalStatus } from 'core/status/hooks';
 import { NoPaddingWrapper } from 'common/styles';
 import { css } from '@emotion/core';
-import { useGetConfig, useGetVariables } from './hooks';
+import { useGetConfig, useGetVariables, useGetSchema } from './hooks';
 import { Mode } from './types';
 import Editor from './Editor';
 import SubmitButton from './SubmitButton';
@@ -38,6 +38,7 @@ const Config: FC = () => {
   const [mode, setMode] = useState<Mode>('config');
   const [{ config, state: configState }, saveConfig] = useGetConfig();
   const [{ variables, state: variablesState }, saveVariables] = useGetVariables();
+  const { schemas } = useGetSchema();
 
   const toggleMode = useCallback(() => setMode(m => (m === 'config' ? 'variables' : 'config')), []);
 
@@ -70,6 +71,7 @@ const Config: FC = () => {
   );
 
   const handleSubmit = useCallback((v: FormState) => save(v.yaml), [save]);
+  const schemaValues = useMemo(() => (mode === 'config' ? schemas : undefined), [mode, schemas]);
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -94,7 +96,7 @@ const Config: FC = () => {
             Taking a backup is recommended before saving a new config.
           </Alert>
         </div>
-        <Editor name="yaml" />
+        <Editor name="yaml" schemas={schemaValues} />
       </NoPaddingWrapper>
     </Formik>
   );

@@ -17,6 +17,7 @@ export type APIRequest<Response = unknown, Request = unknown> = (
 export function useFlexgetAPI<Response>(
   url: string,
   method: Method = Method.Get,
+  skipCamelize = false,
 ): [RequestState, APIRequest<Response>] {
   const [, setLoggedIn] = useContainer(AuthContainer);
   const [loading, setLoading] = useState(false);
@@ -33,6 +34,7 @@ export function useFlexgetAPI<Response>(
           method,
           body,
           { signal: controller.current.signal },
+          skipCamelize,
         );
 
         if (payload.status === 401) {
@@ -47,7 +49,7 @@ export function useFlexgetAPI<Response>(
         return { ok: false, error: err, data: err } as ErrorResponse;
       }
     },
-    [method, setLoggedIn, url],
+    [method, setLoggedIn, skipCamelize, url],
   );
 
   useEffect(

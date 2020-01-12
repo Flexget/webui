@@ -31,7 +31,7 @@ module.exports = {
   },
   parserOptions: {
     warnOnUnsupportedTypeScriptVersion: false,
-    project: './tsconfig.json',
+    project: './tsconfig.eslint.json',
   },
   rules: {
     // typescript
