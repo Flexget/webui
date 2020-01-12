@@ -78,7 +78,7 @@ export const useGetVariables = () => {
 };
 
 interface SchemaResponse {
-  schemas: Record<string, any>;
+  schemas: Record<string, any>[];
 }
 
 export const useGetSchema = () => {
@@ -90,9 +90,9 @@ export const useGetSchema = () => {
       const resp = await getRequest();
       if (resp.ok) {
         setSchemas(
-          Object.entries(resp.data.schemas).map(([uri, schema]) => ({
-            uri,
-            fileMatch: uri === '/schema/config' ? ['*'] : undefined,
+          resp.data.schemas.map(schema => ({
+            uri: schema.id,
+            fileMatch: schema.id === `${document.baseURI}api/schema/config` ? ['*'] : undefined,
             schema,
           })),
         );

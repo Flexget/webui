@@ -33,14 +33,12 @@ const Editor: FC<Props> = ({ name, schemas }) => {
   const theme = useTheme();
 
   const [{ value }, , { setValue }] = useField<string>(name);
-  const baseURI = useRef(uriParser(document.baseURI));
 
   useEffect(() => {
     yaml?.yamlDefaults.setDiagnosticsOptions({
       validate: true,
       schemas,
       enableSchemaRequest: true,
-      prefix: `${baseURI.current.pathname}api`,
     });
   }, [schemas]);
 
