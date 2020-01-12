@@ -11,16 +11,11 @@ const mode = __DEV__ ? 'development' : 'production';
 
 const entry = {
   main: [...(__DEV__ ? ['react-hot-loader/patch'] : []), 'whatwg-fetch', './src/app.tsx'],
-  'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker',
-  'yaml.worker': '@flexget/monaco-yaml/lib/esm/yaml.worker',
 };
 
 const output = {
   path: __DEV__ ? __dirname : path.join(__dirname, 'dist', 'assets'),
-  filename: chunkData =>
-    __DEV__ || chunkData.chunk.name === 'editor.worker' || chunkData.chunk.name === 'yaml.worker'
-      ? '[name].bundle.js'
-      : '[name].[chunkhash].js',
+  filename: __DEV__ ? '[name].bundle.js' : '[name].[chunkhash].js',
   publicPath: __DEV__ ? '/' : 'assets/',
   globalObject: 'this',
 };
