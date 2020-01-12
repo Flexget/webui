@@ -28,12 +28,13 @@ interface Props {
 const { yaml } = ((languages ?? {}) as unknown) as { yaml?: YamlLanguage };
 
 const Editor: FC<Props> = ({ name, schemas }) => {
-  const options: editor.IEditorConstructionOptions = {
+  const options: editor.IStandaloneEditorConstructionOptions = {
     selectOnLineNumbers: true,
     minimap: {
       enabled: false,
     },
     scrollBeyondLastLine: false,
+    tabSize: 2,
   };
   const theme = useTheme();
 
