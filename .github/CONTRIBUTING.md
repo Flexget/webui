@@ -8,8 +8,6 @@ The UI has a solid base but we need help building the plugins and maintaining. I
 * [Typescript](https://www.typescriptlang.org)
 * [React](https://reactjs.org)
 * [Unstated Next](https://github.com/jamiebuilds/unstated-next)
-* [Redux](https://redux.js.org) (old - new componets use hooks/unstated)
-* [Redux Saga](https://github.com/redux-saga/redux-saga) (old - new components use hooks/unstated)
 * [Material UI](https://material-ui.com)
 * [Emotion](https://emotion.sh)
 * [Webpack](https://webpack.js.org/)
@@ -17,8 +15,11 @@ The UI has a solid base but we need help building the plugins and maintaining. I
 ### Getting Setup:
 
 This assumes you have the following technologies installed and on your path:
-* [Node 12+](https://nodejs.org)
-* [Yarn](https://yarnpkg.com/lang/en/)
+* [Node 12+](https://nodejs.org) ([Install instructions](https://nodejs.org/en/download/package-manager/))
+* [Yarn](https://yarnpkg.com/lang/en/) ([Install instructions](https://yarnpkg.com/lang/en/docs/install/))
+
+I recommend using something like [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) for installing and managing versions of node but any method will work. 
+
 
 1. Fork the repo (Once we see any semi-serious input from a developer we will grant write permissions to our central repository. You can also request this earlier if you wish.)
 2. Install dependencies
