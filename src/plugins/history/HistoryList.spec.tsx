@@ -9,7 +9,6 @@ import { SortByFields, GroupByFields } from './types';
 describe('plugins/history/HistoryList', () => {
   beforeEach(() => {
     fetchMock
-      .get('/api/tasks', [])
       .get('glob:/api/history?*', [
         { task: 'task', id: 1, title: 'something', time: new Date('2017-09-09').toISOString() },
       ])

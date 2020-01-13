@@ -1,7 +1,7 @@
 import React, { FC, ComponentType } from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { useContainer } from 'unstated-next';
-import { AuthContainer } from 'core/auth/container';
+import { AuthContainer } from 'core/auth/hooks';
 
 interface Props extends RouteProps {
   component: ComponentType<any>;

@@ -34,15 +34,7 @@ describe('plugins/lists/base/AddFab/AddListDialog', () => {
       </BaseProviders>
     );
     beforeEach(() => {
-      fetchMock
-        .post(`/api/${prefix}`, {})
-        .get('/api/tasks', [
-          { name: 'task 1' },
-          {
-            name: 'task 2',
-          },
-        ])
-        .catch();
+      fetchMock.post(`/api/${prefix}`, {}).catch();
     });
 
     afterEach(() => {

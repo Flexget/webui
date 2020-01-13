@@ -2,10 +2,8 @@ import { ComponentType } from 'react';
 
 export interface Plugin {
   component?: ComponentType;
-  children?: Plugin[];
   routeDisplayName: string;
   routeIcon: ComponentType;
-  name?: string;
 }
 
 export interface RouteConfig {

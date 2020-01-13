@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useFlexgetAPI } from 'core/api';
 import { createContainer } from 'unstated-next';
-import { AuthContainer } from 'core/auth/container';
+import { AuthContainer } from 'core/auth/hooks';
 import { useGlobalStatus, useGlobalInfo } from 'core/status/hooks';
 import { Method } from 'utils/fetch';
 

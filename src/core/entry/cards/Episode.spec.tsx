@@ -17,7 +17,6 @@ import Card from './index';
 describe('core/entry/cards/Episode', () => {
   beforeEach(() => {
     fetchMock
-      .get('/api/tasks', [])
       .get('glob:/api/tvdb/series/*', 404)
       .get('glob:/api/tvdb/episode/*', 404)
       .get('glob:/api/trakt/series/?*', 404)

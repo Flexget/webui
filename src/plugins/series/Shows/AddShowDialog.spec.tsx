@@ -22,10 +22,7 @@ describe('plugins/series/Shows/AddShowDialog', () => {
     inTasks: ['task 1'],
   };
   beforeEach(() => {
-    fetchMock
-      .post('/api/series', show)
-      .get('/api/tasks', [{ name: 'task 1' }, { name: 'task 2' }])
-      .catch();
+    fetchMock.post('/api/series', show).catch();
   });
 
   afterEach(() => {

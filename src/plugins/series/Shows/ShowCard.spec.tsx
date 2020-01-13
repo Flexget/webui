@@ -15,7 +15,6 @@ const TestShowCard: typeof ShowCard = props => (
 describe('plugins/series/shows', () => {
   beforeEach(() => {
     fetchMock
-      .get('/api/tasks', 200)
       .get('glob:/api/tvdb/series/*', 404)
       .get('glob:/api/trakt/series/?*', 404)
       .get('glob:/api/tvmaze/series/*', 404)

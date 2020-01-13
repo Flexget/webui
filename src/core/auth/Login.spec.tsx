@@ -2,7 +2,7 @@ import React from 'react';
 import { create } from 'react-test-renderer';
 import fetchMock from 'fetch-mock';
 import { router, themed } from 'utils/tests';
-import { AuthContainer } from 'core/auth/container';
+import { AuthContainer } from 'core/auth/hooks';
 import Login from './Login';
 
 describe('core/auth/Login', () => {

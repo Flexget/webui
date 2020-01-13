@@ -33,7 +33,6 @@ describe('plugins/tasks', () => {
       .get('glob:/api/tasks/status?*', [])
       .get('glob:/api/tasks/status/1', {})
       .get('glob:/api/tasks/status/1/executions?*', [])
-      .get('/api/tasks', [])
       .catch();
   });
 

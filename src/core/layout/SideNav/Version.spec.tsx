@@ -6,10 +6,6 @@ import Version from './Version';
 import { VersionContainer } from './hooks';
 
 describe('core/layout/Version', () => {
-  beforeEach(() => {
-    fetchMock.get('/api/tasks', []).catch();
-  });
-
   afterEach(() => {
     cleanup();
     fetchMock.reset();

@@ -29,7 +29,6 @@ describe('core/layout/SideNav/Operations', () => {
   beforeEach(() => {
     fetchMock
       .get('/api/database/plugins', ['plugin', 'another_plugin'])
-      .get('/api/tasks', 200)
       .post('/api/database', { message: 'success' })
       .catch();
   });

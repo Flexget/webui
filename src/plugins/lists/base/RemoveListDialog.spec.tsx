@@ -34,10 +34,7 @@ describe('plugins/lists/base/EntryListHeader/RemoveListDialog', () => {
       </BaseProviders>
     );
     beforeEach(() => {
-      fetchMock
-        .delete(`glob:/api/${prefix}/*`, {})
-        .get('/api/tasks', 200)
-        .catch();
+      fetchMock.delete(`glob:/api/${prefix}/*`, {}).catch();
     });
 
     afterEach(() => {

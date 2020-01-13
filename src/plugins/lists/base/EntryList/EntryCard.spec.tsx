@@ -42,7 +42,6 @@ describe('plugins/lists/base/EntryList/EntryCard', () => {
       fetchMock
         .put(`glob:/api/${prefix}/1/entries/*`, {})
         .delete(`glob:/api/{prefix}/1/entries/*`, {})
-        .get('/api/tasks', 200)
         .catch();
     });
 

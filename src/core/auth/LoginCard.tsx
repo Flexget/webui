@@ -6,7 +6,7 @@ import { CardContent, Card, Button, CardActions, Theme } from '@material-ui/core
 import { useFlexgetAPI } from 'core/api';
 import { Method } from 'utils/fetch';
 import TextField from 'common/inputs/formik/TextField';
-import { AuthContainer } from './container';
+import { AuthContainer } from './hooks';
 import { LoginReq } from './types';
 
 const card = (theme: Theme) => css`

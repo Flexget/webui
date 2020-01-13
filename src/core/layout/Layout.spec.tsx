@@ -23,7 +23,6 @@ describe('common/layout', () => {
         latestVersion: '2.10.60',
       })
       .get('/api/database/plugins', ['plugin', 'another_plugin'])
-      .get('/api/tasks', 200)
       .catch();
   });
 

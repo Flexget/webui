@@ -34,7 +34,6 @@ describe('plugins/series', () => {
       .get('glob:/api/series?*', [])
       .get('glob:/api/series/1/episodes?*', [])
       .get('glob:/api/series/1/episodes/2/releases?*', [])
-      .get('/api/tasks', [])
       .catch();
   });
 

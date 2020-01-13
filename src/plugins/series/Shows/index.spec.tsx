@@ -16,10 +16,7 @@ const TestShows: FC = () => {
 
 describe('plugins/series/shows', () => {
   beforeEach(() => {
-    fetchMock
-      .get('glob:/api/series?*', [])
-      .get('/api/tasks', [])
-      .catch();
+    fetchMock.get('glob:/api/series?*', []).catch();
   });
 
   afterEach(() => {

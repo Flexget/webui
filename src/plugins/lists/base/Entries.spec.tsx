@@ -3,6 +3,7 @@ import { cleanup, fireEvent, within, getNodeText, wait } from '@testing-library/
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
+import { TaskContainer } from 'plugins/tasks/hooks';
 import Entries from './Entries';
 import { ListContainer } from './hooks/list';
 import { PendingListContainer } from '../pending/hooks';
@@ -18,14 +19,14 @@ describe('plugins/lists/base/entries', () => {
   `('$name', ({ prefix, Provider, itemPrefix }) => {
     const TestEntries: FC = () => {
       return (
-        <>
+        <TaskContainer.Provider>
           <AppBar toggleSidebar={jest.fn()} />
           <Provider>
             <ListContainer.Provider>
               <Entries />
             </ListContainer.Provider>
           </Provider>
-        </>
+        </TaskContainer.Provider>
       );
     };
 
