@@ -11,8 +11,9 @@ export interface Schema {
 interface DiagnosticsOptions {
   readonly validate?: boolean;
   readonly schemas?: Schema[];
+  readonly hover?: boolean;
+  readonly completion?: boolean;
   readonly enableSchemaRequest?: boolean;
-  readonly prefix?: string;
 }
 
 interface LanguageServiceDefaults {

@@ -45,6 +45,8 @@ const Editor: FC<Props> = ({ name, schemas }) => {
       validate: true,
       schemas,
       enableSchemaRequest: true,
+      hover: true,
+      completion: true,
     });
   }, [schemas]);
 
