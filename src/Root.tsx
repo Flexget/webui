@@ -16,7 +16,7 @@ import registerConfig from 'plugins/config';
 import registerPendingList from 'plugins/lists/pending';
 import registerMovieList from 'plugins/lists/movies';
 import registerEntryList from 'plugins/lists/entry';
-import { AuthContainer } from 'core/auth/container';
+import { AuthContainer } from 'core/auth/hooks';
 import { TaskContainer } from 'plugins/tasks/hooks';
 import { StatusContainer } from 'core/status/hooks';
 import { RouteContainer } from 'core/routes/hooks';

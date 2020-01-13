@@ -1,6 +1,5 @@
 import React from 'react';
 import { cleanup, within } from '@testing-library/react';
-import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import { makeLogMessage } from './fixtures';
 import { LogLevel } from './types';
@@ -9,13 +8,8 @@ import LogTable from './LogTable';
 jest.mock('oboe');
 
 describe('plugins/log/LogTable', () => {
-  beforeEach(() => {
-    fetchMock.get('/api/tasks', []).catch();
-  });
-
   afterEach(() => {
     cleanup();
-    fetchMock.reset();
   });
 
   const messages = [

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback, useState, useReducer } from 'react';
 import { Method, APIResponse, request, StatusError, ErrorResponse, camelize } from 'utils/fetch';
-import { AuthContainer } from 'core/auth/container';
+import { AuthContainer } from 'core/auth/hooks';
 import { uriParser } from 'utils';
 import { useContainer } from 'unstated-next';
 import oboe, { Oboe } from 'oboe';

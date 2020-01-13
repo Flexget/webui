@@ -3,14 +3,15 @@ import { cleanup } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
+import { TaskContainer } from 'plugins/tasks/hooks';
 import EntryList from './EntryList';
 
 const TestEntryList: FC = () => {
   return (
-    <>
+    <TaskContainer.Provider>
       <AppBar toggleSidebar={jest.fn()} />
       <EntryList />
-    </>
+    </TaskContainer.Provider>
   );
 };
 

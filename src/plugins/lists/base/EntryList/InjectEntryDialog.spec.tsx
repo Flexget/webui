@@ -7,6 +7,7 @@ import fetchMock from 'fetch-mock';
 import { PendingListContainer } from 'plugins/lists/pending/hooks';
 import { EntryListContainer } from 'plugins/lists/entry/hooks';
 import { MovieListContainer } from 'plugins/lists/movies/hooks';
+import { TaskContainer } from 'plugins/tasks/hooks';
 import InjectEntryDialog from './InjectEntryDialog';
 import { ListContainer, actions } from '../hooks/list';
 import { EntryContainer } from '../hooks/entry';
@@ -31,11 +32,13 @@ describe('plugins/lists/base/EntryList/InjectEntryDialog', () => {
   `('$name', ({ prefix, Provider, itemPrefix }) => {
     const wrapper: FC = ({ children }) => (
       <BaseProviders>
-        <Provider>
-          <ListContainer.Provider>
-            <EntryContainer.Provider>{children}</EntryContainer.Provider>
-          </ListContainer.Provider>
-        </Provider>
+        <TaskContainer.Provider>
+          <Provider>
+            <ListContainer.Provider>
+              <EntryContainer.Provider>{children}</EntryContainer.Provider>
+            </ListContainer.Provider>
+          </Provider>
+        </TaskContainer.Provider>
       </BaseProviders>
     );
     beforeEach(() => {

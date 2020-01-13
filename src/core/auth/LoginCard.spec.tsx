@@ -1,7 +1,7 @@
 import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
-import { AuthContainer } from 'core/auth/container';
+import { AuthContainer } from 'core/auth/hooks';
 import { renderWithWrapper } from 'utils/tests';
 import LoginCard from './LoginCard';
 
@@ -18,10 +18,7 @@ const TestLogin = () => {
 
 describe('core/Login/LoginCard', () => {
   beforeEach(() => {
-    fetchMock
-      .get('/api/tasks', [])
-      .post('/api/auth/login', {})
-      .catch();
+    fetchMock.post('/api/auth/login', {}).catch();
   });
 
   afterEach(() => {

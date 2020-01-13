@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { mount } from 'enzyme';
 import { IconButton } from '@material-ui/core';
-import { AuthContainer } from 'core/auth/container';
+import { AuthContainer } from 'core/auth/hooks';
 import { StatusContainer } from 'core/status/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
 import { Check } from '@material-ui/icons';

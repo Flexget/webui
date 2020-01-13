@@ -3,7 +3,7 @@ import { useContainer } from 'unstated-next';
 import { Menu, MenuItem, ListItemIcon } from '@material-ui/core';
 import { Sync, Storage, ExitToApp, PowerSettingsNew } from '@material-ui/icons';
 
-import { AuthContainer } from 'core/auth/container';
+import { AuthContainer } from 'core/auth/hooks';
 import { useFlexgetAPI } from 'core/api';
 import { useGlobalStatus } from 'core/status/hooks';
 import { Method } from 'utils/fetch';
