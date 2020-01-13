@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { cleanup } from '@testing-library/react';
-import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
 import Log from './Log';
@@ -17,13 +16,8 @@ const TestLog: FC = () => {
 };
 
 describe('plugins/log', () => {
-  beforeEach(() => {
-    fetchMock.get('/api/tasks', []).catch();
-  });
-
   afterEach(() => {
     cleanup();
-    fetchMock.reset();
   });
 
   describe('contextual app bar', () => {

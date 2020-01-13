@@ -22,7 +22,6 @@ tasks: []
 describe('plugins/config/Config', () => {
   beforeEach(() => {
     fetchMock
-      .get('/api/tasks', [])
       .get('/api/server/raw_config', {
         rawConfig: btoa(config),
       })

@@ -47,15 +47,7 @@ describe('plugins/lists/base/AddFab/AddEntryDialog', () => {
       addedOn: new Date().toISOString(),
     };
     beforeEach(() => {
-      fetchMock
-        .post(`/api/${prefix}/1/${itemPrefix}`, entry)
-        .get('/api/tasks', [
-          { name: 'task 1' },
-          {
-            name: 'task 2',
-          },
-        ])
-        .catch();
+      fetchMock.post(`/api/${prefix}/1/${itemPrefix}`, entry).catch();
     });
 
     afterEach(() => {

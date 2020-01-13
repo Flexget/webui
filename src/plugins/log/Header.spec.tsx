@@ -2,19 +2,13 @@ import React from 'react';
 import { cleanup } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import { Formik } from 'formik';
-import fetchMock from 'fetch-mock';
 import { themed } from 'utils/tests';
 import { ReadyState } from 'core/api';
 import Header from './Header';
 
 describe('plugins/log/Header', () => {
-  beforeEach(() => {
-    fetchMock.get('/api/tasks', []).catch();
-  });
-
   afterEach(() => {
     cleanup();
-    fetchMock.reset();
   });
 
   it('renders correctly', () => {

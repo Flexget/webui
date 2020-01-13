@@ -18,7 +18,6 @@ const TestEpisodeCard: typeof EpisodeCard = props => (
 describe('plugins/series/episodes', () => {
   beforeEach(() => {
     fetchMock
-      .get('/api/tasks', 200)
       .get('glob:/api/tvdb/series/*', 404)
       .get('glob:/api/tvdb/episode/*', 404)
       .get('glob:/api/trakt/series/?*', 404)

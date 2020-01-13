@@ -19,10 +19,7 @@ describe('plugins/series/RemoveDialog', () => {
     };
 
     beforeEach(() => {
-      fetchMock
-        .delete(`/api/series${path}`, 200)
-        .get('/api/tasks', [])
-        .catch();
+      fetchMock.delete(`/api/series${path}`, 200).catch();
     });
     afterEach(() => {
       cleanup();

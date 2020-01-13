@@ -28,7 +28,6 @@ describe('plugins/series/episodes', () => {
     fetchMock
       .get('/api/series/1', {})
       .get('glob:/api/series/1/episodes?*', [])
-      .get('/api/tasks', [])
       .catch();
   });
 
