@@ -13,7 +13,7 @@ import {
 } from './types';
 
 export const enum Constants {
-  GET_TASKS = '@flexget/pendingList/GET_TASKS',
+  GET_TASKS = '@flexget/tasks/GET_TASKS',
 }
 
 export const TaskContainer = createContainer(() => {

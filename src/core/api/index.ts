@@ -68,49 +68,38 @@ export enum ReadyState {
   Open,
 }
 
-export const useFlexgetStream = <Message>(url: string) => {
+export const useFlexgetStream = (url: string) => {
   const [readyState, setReadyState] = useState<ReadyState>(ReadyState.Connecting);
 
-  const stream = useRef<Oboe>();
+  const [stream, setStream] = useState<Oboe>();
   const baseURI = useRef(uriParser(document.baseURI));
-  const [messages, addMessage] = useReducer(
-    (state: Message[], message: Message | 'clear') =>
-      message !== 'clear' ? [message, ...state] : [],
-    [],
-  );
-
-  const clear = useCallback(() => addMessage('clear'), []);
 
   const connect = useCallback(() => setReadyState(ReadyState.Connecting), []);
 
-  const disconnect = useCallback(() => {
-    stream.current?.abort();
-    stream.current = undefined;
-    setReadyState(ReadyState.Closed);
-  }, []);
-
-  useEffect(() => {
-    if (stream.current) {
-      connect();
-    }
-  }, [connect, url]);
+  const disconnect = useCallback(() => setReadyState(ReadyState.Closed), []);
 
   useEffect(() => {
     if (readyState === ReadyState.Connecting) {
-      stream.current?.abort();
-      clear();
-      stream.current = oboe({
-        url: `${baseURI.current.pathname}api${url}`,
-        method: Method.Get,
-      })
-        .start(() => setReadyState(ReadyState.Open))
-        .node('{message task}', (message: Message) => addMessage(camelize(message)))
-        .fail(() => setReadyState(ReadyState.Closed));
+      setStream(s => {
+        s?.abort();
+
+        return oboe({
+          url: `${baseURI.current.pathname}api${url}`,
+          method: Method.Get,
+        })
+          .start(() => setReadyState(ReadyState.Open))
+          .fail(() => setReadyState(ReadyState.Closed));
+      });
+    } else if (readyState === ReadyState.Closed) {
+      setStream(s => {
+        s?.abort();
+        return undefined;
+      });
     }
-  }, [clear, readyState, url]);
+  }, [readyState, url]);
 
   return [
-    { messages, readyState },
-    { connect, disconnect, clear },
+    { stream, readyState },
+    { connect, disconnect },
   ] as const;
 };
