@@ -1,6 +1,6 @@
 {
   "name": "flexget",
-  "version": "2.0.8.dev",
+  "version": "2.0.8",
   "description": "Flexget Web UI",
   "main": "index.js",
   "scripts": {
