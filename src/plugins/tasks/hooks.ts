@@ -1,15 +1,24 @@
-import { createContainer } from 'unstated-next';
-import { useState, useEffect } from 'react';
-import { useFlexgetAPI } from 'core/api';
-import { Method, snakeCase } from 'utils/fetch';
+import { Reducer, useCallback, useEffect, useState, useReducer } from 'react';
 import { stringify } from 'qs';
+import { createContainer } from 'unstated-next';
+import { useFlexgetAPI, useFlexgetStream } from 'core/api';
+import { Method, snakeCase, camelize } from 'utils/fetch';
+import { action } from 'utils/hooks/actions';
+import { RawEntry } from 'core/entry/types';
 import {
-  Task,
+  EntryDumpEvent,
+  EventTypes,
   ExecuteTaskRequest,
+  Execution,
+  Progress,
+  ProgressEvent,
+  StreamEvent,
+  Summary,
+  SummaryEvent,
+  Task,
+  TaskExecutionOptions,
   TaskStatus,
   TaskStatusOptions,
-  Execution,
-  TaskExecutionOptions,
 } from './types';
 
 export const enum Constants {
@@ -34,9 +43,11 @@ export const TaskContainer = createContainer(() => {
 });
 
 export const useExecuteTask = () => {
-  const [state, request] = useFlexgetAPI('/tasks/execute', Method.Post);
+  const [state, requestFn] = useFlexgetAPI('/tasks/execute', Method.Post);
 
-  return [state, (req: ExecuteTaskRequest) => request(req)] as const;
+  const request = useCallback((req: ExecuteTaskRequest) => requestFn(req), [requestFn]);
+
+  return [state, request] as const;
 };
 
 interface TaskState {
@@ -103,4 +114,93 @@ export const useGetTaskExecutions = (id: number, options: TaskExecutionOptions) 
   }, [request]);
 
   return { ...state, ...executions };
+};
+
+interface TaskExecuteState extends Task {
+  progress: Progress[];
+  summary?: Summary;
+  entries?: RawEntry[];
+}
+
+const actions = {
+  stream: (e: StreamEvent) => action(EventTypes.Stream, e),
+  progress: (e: ProgressEvent) => action(EventTypes.Progress, e),
+  entryDump: (e: EntryDumpEvent) => action(EventTypes.EntryDump, e),
+  summary: (e: SummaryEvent) => action(EventTypes.Summary, e),
+};
+
+type Actions = PropReturnType<typeof actions>;
+
+const taskReducer: Reducer<Record<number, TaskExecuteState>, Actions> = (state, act) => {
+  switch (act.type) {
+    case EventTypes.Stream:
+      return act.payload.stream.reduce(
+        (ts, task) => ({
+          ...ts,
+          [task.id]: {
+            ...task,
+            progress: [],
+          },
+        }),
+        {},
+      );
+    case EventTypes.Progress: {
+      const e = act.payload;
+      const task = state[e.taskId];
+      return {
+        ...state,
+        [task.id]: {
+          ...task,
+          progress: [e.progress, ...task.progress],
+        },
+      };
+    }
+    case EventTypes.EntryDump: {
+      const e = act.payload;
+      const task = state[e.taskId];
+      return {
+        ...state,
+        [task.id]: {
+          ...task,
+          entries: e.entryDump,
+        },
+      };
+    }
+    case EventTypes.Summary: {
+      const e = act.payload;
+      const task = state[e.taskId];
+      return {
+        ...state,
+        [task.id]: {
+          ...task,
+          summary: e.summary,
+        },
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+export const useExecuteTaskStream = () => {
+  const [{ readyState, stream }, { connect, disconnect }] = useFlexgetStream(
+    '/tasks/execute',
+    Method.Post,
+  );
+
+  const [state, dispatch] = useReducer(taskReducer, {});
+
+  useEffect(() => disconnect, [disconnect]);
+
+  useEffect(() => {
+    stream
+      ?.node(EventTypes.Stream, (e: StreamEvent) => dispatch(actions.stream(camelize(e))))
+      .node(EventTypes.Progress, (e: ProgressEvent) => dispatch(actions.progress(camelize(e))))
+      .node(EventTypes.EntryDump, (e: EntryDumpEvent) => dispatch(actions.entryDump(camelize(e))))
+      .node(EventTypes.Summary, (e: SummaryEvent) => dispatch(actions.entryDump(camelize(e))));
+  }, [stream]);
+
+  const execute = useCallback((body: ExecuteTaskRequest) => connect(body), [connect]);
+
+  return [{ state, readyState }, { execute }];
 };

@@ -1,5 +1,5 @@
-import { useEffect, useRef, useCallback, useState, useReducer } from 'react';
-import { Method, APIResponse, request, StatusError, ErrorResponse, camelize } from 'utils/fetch';
+import { useEffect, useRef, useCallback, useState } from 'react';
+import { Method, APIResponse, request, StatusError, ErrorResponse } from 'utils/fetch';
 import { AuthContainer } from 'core/auth/hooks';
 import { uriParser } from 'utils';
 import { useContainer } from 'unstated-next';
@@ -68,35 +68,35 @@ export enum ReadyState {
   Open,
 }
 
-export const useFlexgetStream = (url: string) => {
+export const useFlexgetStream = (url: string, method: Method = Method.Get) => {
   const [readyState, setReadyState] = useState<ReadyState>(ReadyState.Connecting);
 
   const [stream, setStream] = useState<Oboe>();
   const baseURI = useRef(uriParser(document.baseURI));
 
-  const connect = useCallback(() => setReadyState(ReadyState.Connecting), []);
-
-  const disconnect = useCallback(() => setReadyState(ReadyState.Closed), []);
-
-  useEffect(() => {
-    if (readyState === ReadyState.Connecting) {
-      setStream(s => {
-        s?.abort();
-
-        return oboe({
+  const connect = useCallback(
+    (body: unknown = undefined) => {
+      setReadyState(ReadyState.Connecting);
+      setStream(
+        oboe({
           url: `${baseURI.current.pathname}api${url}`,
-          method: Method.Get,
+          method,
+          body,
         })
           .start(() => setReadyState(ReadyState.Open))
-          .fail(() => setReadyState(ReadyState.Closed));
-      });
-    } else if (readyState === ReadyState.Closed) {
-      setStream(s => {
-        s?.abort();
-        return undefined;
-      });
-    }
-  }, [readyState, url]);
+          .fail(() => setReadyState(ReadyState.Closed)),
+      );
+    },
+    [method, url],
+  );
+
+  const disconnect = useCallback(() => {
+    setReadyState(ReadyState.Closed);
+    setStream(s => {
+      s?.abort();
+      return undefined;
+    });
+  }, []);
 
   return [
     { stream, readyState },

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Formik } from 'formik';
 import { hot } from 'react-hot-loader/root';
 import { css } from '@emotion/core';
@@ -24,6 +24,12 @@ const LogPage: FC = () => {
   });
 
   const [{ messages, readyState }, { connect, disconnect, clear }] = useLogStream(options);
+
+  useEffect(() => {
+    connect();
+
+    return disconnect;
+  }, [connect, disconnect]);
 
   return (
     <PaperWrapper elevation={4}>

@@ -1,6 +1,8 @@
 import { DefaultOptions } from 'utils/query';
+import { RawEntry } from 'core/entry/types';
 
 export interface Task {
+  id: string;
   name: string;
 }
 
@@ -12,7 +14,15 @@ export interface Inject {
 
 export interface ExecuteTaskRequest {
   tasks: string[];
-  inject: Inject[];
+  inject?: Inject[];
+  learn?: boolean;
+  noCache?: boolean;
+  disableTracking?: boolean;
+  discoverNow?: boolean;
+  now?: boolean;
+  progress?: boolean;
+  summary?: boolean;
+  entryDump?: boolean;
 }
 
 export interface Execution {
@@ -57,4 +67,55 @@ export interface TaskExecutionOptions extends DefaultOptions {
   startDate?: Date;
   produced?: boolean;
   succeeded?: boolean;
+}
+
+export const enum EventTypes {
+  Stream = 'stream',
+  Progress = 'progress',
+  EntryDump = 'entry_dump',
+  Summary = 'summary',
+}
+
+export const enum Status {
+  Pending = 'pending',
+  Running = 'running',
+  Complete = 'complete',
+}
+
+export const enum Phase {}
+
+export interface Progress {
+  status: Status;
+  phase: Phase;
+  plugin: string;
+  percent: number;
+}
+
+export interface Summary {
+  accepted: number;
+  rejected: number;
+  failed: number;
+  undecided: number;
+  aborted: boolean;
+  abortReason?: string;
+}
+
+interface TaskEvent {
+  taskId: number;
+}
+
+export interface StreamEvent {
+  stream: Task[];
+}
+
+export interface ProgressEvent extends TaskEvent {
+  progress: Progress;
+}
+
+export interface EntryDumpEvent extends TaskEvent {
+  entryDump: RawEntry[];
+}
+
+export interface SummaryEvent extends TaskEvent {
+  summary: Summary;
 }
