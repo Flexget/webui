@@ -2,7 +2,7 @@ import { DefaultOptions } from 'utils/query';
 import { RawEntry } from 'core/entry/types';
 
 export interface Task {
-  id: string;
+  id: number;
   name: string;
 }
 
@@ -39,7 +39,6 @@ export interface Execution {
 }
 
 export interface TaskStatus extends Task {
-  id: number;
   lastExecutionTime: string;
   lastExecution: Execution;
 }
