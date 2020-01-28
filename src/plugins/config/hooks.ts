@@ -3,6 +3,7 @@ import YAML from 'yaml';
 import { useFlexgetAPI } from 'core/api';
 import { Method } from 'utils/fetch';
 import { useGlobalInfo } from 'core/status/hooks';
+import { atobUTF16, btoaUTF16 } from 'utils/encoding';
 import { Schema } from './types';
 
 interface RawConfigResp {
@@ -23,7 +24,7 @@ export const useGetConfig = () => {
     const fn = async () => {
       const resp = await getRequest();
       if (resp.ok) {
-        setConfig(atob(resp.data.rawConfig));
+        setConfig(atobUTF16(resp.data.rawConfig));
       }
     };
 
@@ -32,7 +33,7 @@ export const useGetConfig = () => {
 
   const saveConfig = useCallback(
     async (v: string) => {
-      const resp = await postRequest({ rawConfig: btoa(v) });
+      const resp = await postRequest({ rawConfig: btoaUTF16(v) });
       if (resp.ok) {
         setConfig(v);
         pushInfo(resp.data.message);
