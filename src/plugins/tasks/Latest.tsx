@@ -7,6 +7,7 @@ import { Direction } from 'utils/query';
 import { SortByStatus, TaskStatusOptions } from './types';
 import TaskTable from './TaskTable';
 import { useGetTaskStatuses } from './hooks';
+import Execute from './Execute';
 
 const headers = [
   {
@@ -97,9 +98,12 @@ const Latest: FC = () => {
   );
 
   return (
-    <Formik initialValues={options} onSubmit={setOptions}>
-      <TaskTable total={total} rows={rows} headers={headers} />
-    </Formik>
+    <>
+      <Execute />
+      <Formik initialValues={options} onSubmit={setOptions}>
+        <TaskTable total={total} rows={rows} headers={headers} />
+      </Formik>
+    </>
   );
 };
 

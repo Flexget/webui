@@ -17,7 +17,7 @@ interface Props {
 }
 
 const errorStyle = (theme: Theme) => css`
-  color: ${theme.palette.error[500]};
+  color: ${theme.palette.error.main};
   text-align: center;
 `;
 

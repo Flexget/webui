@@ -202,5 +202,5 @@ export const useExecuteTaskStream = () => {
 
   const execute = useCallback((body: ExecuteTaskRequest) => connect(body), [connect]);
 
-  return [{ state, readyState }, { execute }];
+  return [{ state, readyState }, { execute }] as const;
 };
