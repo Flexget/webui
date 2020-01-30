@@ -54,6 +54,7 @@ export const enum SortByStatus {
   Accepted = 'accepted',
   Failed = 'failed',
   Succeeded = 'succeeded',
+  AbortReason = 'abort_reason',
 }
 
 export interface TaskStatusOptions extends DefaultOptions {

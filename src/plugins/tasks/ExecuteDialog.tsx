@@ -8,21 +8,36 @@ import {
   DialogTitle,
   Checkbox,
   FormControlLabel,
+  FormControl,
+  FormLabel,
+  FormGroup,
+  Theme,
+  Tooltip,
 } from '@material-ui/core';
 import { Form, useFormikContext, Field } from 'formik';
 import Autocomplete from 'common/inputs/formik/Autocomplete';
 import { TaskContainer } from 'plugins/tasks/hooks';
-import { useOverlayState } from 'utils/hooks';
 import { ReadyState } from 'core/api';
 import { ExecuteTaskRequest } from 'plugins/tasks/types';
+import { css } from '@emotion/core';
 
 interface Props {
   readyState: ReadyState;
+  open: boolean;
+  close: () => void;
 }
 
-const ExecuteDialog: FC<Props> = ({ readyState }) => {
+const group = css`
+  display: flex;
+  flex-direction: row;
+`;
+
+const control = (theme: Theme) => css`
+  margin: ${theme.typography.pxToRem(theme.spacing(2))} 0;
+`;
+
+const ExecuteDialog: FC<Props> = ({ readyState, open, close }) => {
   const { tasks } = useContainer(TaskContainer);
-  const [isOpen, { open, close }] = useOverlayState();
 
   const { setSubmitting, isSubmitting, resetForm } = useFormikContext<ExecuteTaskRequest>();
   useEffect(() => {
@@ -35,37 +50,58 @@ const ExecuteDialog: FC<Props> = ({ readyState }) => {
 
   return (
     <>
-      <Button onClick={open} color="primary">
-        Execute
-      </Button>
-      <Dialog open={isOpen} onClose={close} fullWidth maxWidth="xs">
+      <Dialog open={open} onClose={close} fullWidth maxWidth="xs">
         <DialogTitle>Execute Tasks</DialogTitle>
         <Form>
           <DialogContent>
             <Autocomplete
               multiple
               options={tasks.map(t => t.name)}
-              getOptionLabel={option => option}
               filterSelectedOptions
               name="tasks"
               InputProps={{
                 label: 'Task(s)',
+                placeholder: 'Select Tasks',
+                fullWidth: true,
+                InputLabelProps: {
+                  shrink: true,
+                },
               }}
             />
-            <FormControlLabel
-              control={<Field name="noCache" component={Checkbox} />}
-              label="No Cache"
-            />
-            <FormControlLabel
-              control={<Field name="disableTracking" component={Checkbox} />}
-              label="Disable Tracking"
-            />
-            <FormControlLabel
-              control={<Field name="discoverNow" component={Checkbox} />}
-              label="Discover Now"
-            />
-            <FormControlLabel control={<Field name="learn" component={Checkbox} />} label="Learn" />
-            <FormControlLabel control={<Field name="now" component={Checkbox} />} label="Now" />
+            <FormControl css={control}>
+              <FormGroup css={group}>
+                <Tooltip title="Disable caches. works only in plugins that have explicit support">
+                  <FormControlLabel
+                    control={<Field name="noCache" component={Checkbox} />}
+                    label="No Cache"
+                  />
+                </Tooltip>
+                <Tooltip title="Disable episode advancement for this run">
+                  <FormControlLabel
+                    control={<Field name="disableTracking" component={Checkbox} />}
+                    label="Disable Tracking"
+                  />
+                </Tooltip>
+                <Tooltip title="Immediately try to discover everything">
+                  <FormControlLabel
+                    control={<Field name="discoverNow" component={Checkbox} />}
+                    label="Discover Now"
+                  />
+                </Tooltip>
+                <Tooltip title="Matches are not downloaded but will be skipped in the future">
+                  <FormControlLabel
+                    control={<Field name="learn" component={Checkbox} />}
+                    label="Learn"
+                  />
+                </Tooltip>
+                <Tooltip title="Run task(s) even if the interval plugin would normally prevent it">
+                  <FormControlLabel
+                    control={<Field name="now" component={Checkbox} />}
+                    label="Now"
+                  />
+                </Tooltip>
+              </FormGroup>
+            </FormControl>
           </DialogContent>
           <DialogActions>
             <Button onClick={close} type="button">

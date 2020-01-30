@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback, ChangeEvent } from 'react';
 import { useField } from 'formik';
 import { AutocompleteProps, Autocomplete as BaseAutocomplete } from '@material-ui/lab';
 import { TextFieldProps, TextField } from '@material-ui/core';
@@ -10,7 +10,9 @@ type Props = Omit<AutocompleteProps, 'renderInput'> & {
 };
 
 const Autocomplete: FC<Props> = ({ name, InputProps, ...props }) => {
-  const [field, { touched, error }] = useField(name);
+  const [field, { touched, error }, { setValue }] = useField(name);
+
+  const handleChange = useCallback((_: ChangeEvent, value: unknown) => setValue(value), [setValue]);
 
   return (
     <BaseAutocomplete
@@ -19,6 +21,7 @@ const Autocomplete: FC<Props> = ({ name, InputProps, ...props }) => {
       )}
       {...field}
       {...props}
+      onChange={handleChange}
     />
   );
 };

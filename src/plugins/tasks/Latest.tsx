@@ -49,6 +49,10 @@ const headers = [
     label: 'Failed',
     numeric: true,
   },
+  {
+    id: SortByStatus.AbortReason,
+    label: 'Abort Reason',
+  },
 ];
 
 const Latest: FC = () => {
@@ -69,7 +73,16 @@ const Latest: FC = () => {
         ({
           name,
           id,
-          lastExecution: { start, end, produced, rejected, accepted, failed, succeeded },
+          lastExecution: {
+            start,
+            end,
+            produced,
+            rejected,
+            accepted,
+            failed,
+            succeeded,
+            abortReason,
+          },
         }) => ({
           key: id,
           data: {
@@ -82,6 +95,7 @@ const Latest: FC = () => {
             [SortByStatus.Rejected]: rejected,
             [SortByStatus.Accepted]: accepted,
             [SortByStatus.Failed]: failed,
+            [SortByStatus.AbortReason]: abortReason,
             [SortByStatus.Succeeded]: succeeded ? (
               <CheckCircle fontSize="small" color="primary" />
             ) : (
