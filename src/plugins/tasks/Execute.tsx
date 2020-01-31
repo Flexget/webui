@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Formik } from 'formik';
-import { Button, Theme, Tabs, Tab, CircularProgress } from '@material-ui/core';
+import { Button, Theme, Tabs, Tab, CircularProgress, Typography } from '@material-ui/core';
 import { useOverlayState } from 'utils/hooks';
 import { css } from '@emotion/core';
 import { ReadyState } from 'core/api';
@@ -33,12 +33,27 @@ const executeWrapper = (theme: Theme) => css`
   margin-top: ${theme.typography.pxToRem(theme.spacing(2))};
 `;
 
-const tabSection = () => css`
+const tabSection = css`
   flex-grow: 1;
 `;
 
 const infoSection = css`
+  display: flex;
   text-align: center;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const list = css`
+  display: flex;
+  max-width: 500px;
+`;
+
+const listItem = (theme: Theme) => css`
+  margin-right: ${theme.typography.pxToRem(theme.spacing(2))};
+  &:last-child {
+    margin-right: 0;
+  }
 `;
 
 const Execute: FC = () => {
@@ -74,24 +89,32 @@ const Execute: FC = () => {
               </Tabs>
               <div css={infoSection}>
                 <CircularProgress variant="determinate" value={displayProgress?.percent ?? 0} />
-                <div>Current Status: {displayProgress?.status}</div>
-                <div>
+                <Typography>Current Status: {displayProgress?.status}</Typography>
+                <Typography>
                   Phase: {getDescription(displayProgress?.phase)} - {displayProgress?.plugin}
-                </div>
+                </Typography>
                 {summary && (
                   <div>
                     {summary.aborted ? (
                       <>
-                        <span>Aborted!!</span>
-                        <span>Reason: {summary.abortReason}</span>
+                        <Typography>Aborted!!</Typography>
+                        <Typography>Reason: {summary.abortReason}</Typography>
                       </>
                     ) : (
-                      <>
-                        <span>Accepted: {summary.accepted}</span>
-                        <span>Rejected: {summary.rejected}</span>
-                        <span>Failed: {summary.failed}</span>
-                        <span>Undecided: {summary.undecided}</span>
-                      </>
+                      <div css={list}>
+                        <div css={listItem}>
+                          <Typography variant="body2">Accepted: {summary.accepted}</Typography>
+                        </div>
+                        <div css={listItem}>
+                          <Typography variant="body2">Rejected: {summary.rejected}</Typography>
+                        </div>
+                        <div css={listItem}>
+                          <Typography variant="body2">Failed: {summary.failed}</Typography>
+                        </div>
+                        <div css={listItem}>
+                          <Typography variant="body2">Undecided: {summary.undecided}</Typography>
+                        </div>
+                      </div>
                     )}
                   </div>
                 )}

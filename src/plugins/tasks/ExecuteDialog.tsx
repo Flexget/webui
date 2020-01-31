@@ -6,7 +6,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Checkbox,
   FormControlLabel,
   FormControl,
   FormGroup,
@@ -15,6 +14,7 @@ import {
 } from '@material-ui/core';
 import { Form, useFormikContext, Field } from 'formik';
 import Autocomplete from 'common/inputs/formik/Autocomplete';
+import Checkbox from 'common/inputs/formik/Checkbox';
 import { TaskContainer } from 'plugins/tasks/hooks';
 import { ReadyState } from 'core/api';
 import { ExecuteTaskRequest } from 'plugins/tasks/types';
@@ -71,34 +71,25 @@ const ExecuteDialog: FC<Props> = ({ readyState, open, close }) => {
             <FormControl css={control}>
               <FormGroup css={group}>
                 <Tooltip title="Disable caches. works only in plugins that have explicit support">
-                  <FormControlLabel
-                    control={<Field name="noCache" component={Checkbox} />}
-                    label="No Cache"
-                  />
+                  <FormControlLabel control={<Checkbox name="noCache" />} label="No Cache" />
                 </Tooltip>
                 <Tooltip title="Disable episode advancement for this run">
                   <FormControlLabel
-                    control={<Field name="disableTracking" component={Checkbox} />}
+                    control={<Checkbox name="disableTracking" />}
                     label="Disable Tracking"
                   />
                 </Tooltip>
                 <Tooltip title="Immediately try to discover everything">
                   <FormControlLabel
-                    control={<Field name="discoverNow" component={Checkbox} />}
+                    control={<Checkbox name="discoverNow" />}
                     label="Discover Now"
                   />
                 </Tooltip>
                 <Tooltip title="Matches are not downloaded but will be skipped in the future">
-                  <FormControlLabel
-                    control={<Field name="learn" component={Checkbox} />}
-                    label="Learn"
-                  />
+                  <FormControlLabel control={<Checkbox name="learn" />} label="Learn" />
                 </Tooltip>
                 <Tooltip title="Run task(s) even if the interval plugin would normally prevent it">
-                  <FormControlLabel
-                    control={<Field name="now" component={Checkbox} />}
-                    label="Now"
-                  />
+                  <FormControlLabel control={<Checkbox name="now" />} label="Now" />
                 </Tooltip>
               </FormGroup>
             </FormControl>

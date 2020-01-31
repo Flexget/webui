@@ -176,7 +176,7 @@ const taskReducer: Reducer<ExecuteState, Actions> = (state, act) => {
     }
     case EventTypes.Summary: {
       const e = act.payload;
-      const task = state[e.taskId];
+      const task = state.tasks[e.taskId];
       return {
         ...state,
         tasks: {
@@ -228,7 +228,7 @@ export const useExecuteTaskStream = () => {
       ?.node('{tasks}', (e: TasksEvent) => dispatch(actions.tasks(camelize(e))))
       .node('{progress}', (e: ProgressEvent) => dispatch(actions.progress(camelize(e))))
       .node('{entry_dump}', (e: EntryDumpEvent) => dispatch(actions.entryDump(camelize(e))))
-      .node('{summary}', (e: SummaryEvent) => dispatch(actions.entryDump(camelize(e))));
+      .node('{summary}', (e: SummaryEvent) => dispatch(actions.summary(camelize(e))));
   }, [stream]);
 
   const setTask = useCallback((_: ChangeEvent, id: number) => dispatch(actions.setTask(id)), []);
