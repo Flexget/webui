@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
-import { Method, APIResponse, request, StatusError, ErrorResponse } from 'utils/fetch';
+import { Method, APIResponse, request, StatusError, ErrorResponse, snakeCase } from 'utils/fetch';
 import { AuthContainer } from 'core/auth/hooks';
 import { uriParser } from 'utils';
 import { useContainer } from 'unstated-next';
@@ -69,19 +69,19 @@ export enum ReadyState {
 }
 
 export const useFlexgetStream = (url: string, method: Method = Method.Get) => {
-  const [readyState, setReadyState] = useState<ReadyState>(ReadyState.Connecting);
+  const [readyState, setReadyState] = useState<ReadyState>(ReadyState.Closed);
 
   const [stream, setStream] = useState<Oboe>();
   const baseURI = useRef(uriParser(document.baseURI));
 
   const connect = useCallback(
-    (body: unknown = undefined) => {
+    (body?: Object) => {
       setReadyState(ReadyState.Connecting);
       setStream(
         oboe({
           url: `${baseURI.current.pathname}api${url}`,
           method,
-          body,
+          body: body ? snakeCase(body) : body,
         })
           .start(() => setReadyState(ReadyState.Open))
           .fail(() => setReadyState(ReadyState.Closed)),

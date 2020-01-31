@@ -70,10 +70,12 @@ export interface TaskExecutionOptions extends DefaultOptions {
 }
 
 export const enum EventTypes {
-  Stream = 'stream',
+  Tasks = 'tasks',
   Progress = 'progress',
   EntryDump = 'entry_dump',
   Summary = 'summary',
+  Clear = 'clear',
+  SetTask = 'setTask',
 }
 
 export const enum Status {
@@ -82,7 +84,15 @@ export const enum Status {
   Complete = 'complete',
 }
 
-export const enum Phase {}
+export const enum Phase {
+  Input = 'input',
+  Metainfo = 'metainfo',
+  Filter = 'filter',
+  Download = 'download',
+  Modify = 'modify',
+  Output = 'output',
+  Exit = 'exit',
+}
 
 export interface Progress {
   status: Status;
@@ -100,22 +110,28 @@ export interface Summary {
   abortReason?: string;
 }
 
-interface TaskEvent {
+interface BaseTaskEvent {
   taskId: number;
 }
 
-export interface StreamEvent {
-  stream: Task[];
+export interface TasksEvent {
+  tasks: Task[];
 }
 
-export interface ProgressEvent extends TaskEvent {
+export interface ProgressEvent extends BaseTaskEvent {
   progress: Progress;
 }
 
-export interface EntryDumpEvent extends TaskEvent {
+export interface EntryDumpEvent extends BaseTaskEvent {
   entryDump: RawEntry[];
 }
 
-export interface SummaryEvent extends TaskEvent {
+export interface SummaryEvent extends BaseTaskEvent {
   summary: Summary;
+}
+
+export interface TaskExecuteState extends Task {
+  progress: Progress[];
+  summary?: Summary;
+  entries?: RawEntry[];
 }

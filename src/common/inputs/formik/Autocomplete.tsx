@@ -1,15 +1,21 @@
-import React, { FC, useCallback, ChangeEvent } from 'react';
+import React, { useCallback, ChangeEvent } from 'react';
 import { useField } from 'formik';
-import { AutocompleteProps, Autocomplete as BaseAutocomplete } from '@material-ui/lab';
+import {
+  AutocompleteProps,
+  Autocomplete as BaseAutocomplete,
+  UseAutocompleteSingleProps,
+  UseAutocompleteMultipleProps,
+} from '@material-ui/lab';
 import { TextFieldProps, TextField } from '@material-ui/core';
 
-type Props = Omit<AutocompleteProps, 'renderInput'> & {
-  name: string;
-  InputProps: TextFieldProps;
-  renderInput?: AutocompleteProps['renderInput'];
-};
+type Props<Multiple extends boolean, T = any> = Omit<AutocompleteProps<T>, 'renderInput'> &
+  (Multiple extends true ? UseAutocompleteMultipleProps<T> : UseAutocompleteSingleProps<T>) & {
+    name: string;
+    InputProps: TextFieldProps;
+    renderInput?: AutocompleteProps<T>['renderInput'];
+  };
 
-const Autocomplete: FC<Props> = ({ name, InputProps, ...props }) => {
+const Autocomplete = ({ name, InputProps, multiple, ...props }: Props<typeof multiple>) => {
   const [field, { touched, error }, { setValue }] = useField(name);
 
   const handleChange = useCallback((_: ChangeEvent, value: unknown) => setValue(value), [setValue]);
@@ -22,6 +28,7 @@ const Autocomplete: FC<Props> = ({ name, InputProps, ...props }) => {
       {...field}
       {...props}
       onChange={handleChange}
+      multiple={multiple}
     />
   );
 };

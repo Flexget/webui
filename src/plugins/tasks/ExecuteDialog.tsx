@@ -9,7 +9,6 @@ import {
   Checkbox,
   FormControlLabel,
   FormControl,
-  FormLabel,
   FormGroup,
   Theme,
   Tooltip,
@@ -40,13 +39,14 @@ const ExecuteDialog: FC<Props> = ({ readyState, open, close }) => {
   const { tasks } = useContainer(TaskContainer);
 
   const { setSubmitting, isSubmitting, resetForm } = useFormikContext<ExecuteTaskRequest>();
+
   useEffect(() => {
-    if (isSubmitting && readyState === ReadyState.Open) {
+    if (readyState === ReadyState.Open) {
       resetForm();
-      close();
       setSubmitting(false);
+      close();
     }
-  }, [close, isSubmitting, readyState, resetForm, setSubmitting]);
+  }, [close, readyState, resetForm, setSubmitting]);
 
   return (
     <>

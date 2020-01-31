@@ -142,7 +142,7 @@
     "polished": "^3.4.2",
     "qs": "^6.7.0",
     "react": "^16.12.0",
-    "react-dom": "^16.8.6",
+    "react-dom": "^16.12.0",
     "react-hot-loader": "^4.12.10",
     "react-infinite-scroller": "^1.2.4",
     "react-monaco-editor": "^0.32.1",

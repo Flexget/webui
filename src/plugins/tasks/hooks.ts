@@ -1,24 +1,22 @@
-import { Reducer, useCallback, useEffect, useState, useReducer } from 'react';
+import { Reducer, useCallback, useEffect, useState, useReducer, ChangeEvent } from 'react';
 import { stringify } from 'qs';
 import { createContainer } from 'unstated-next';
 import { useFlexgetAPI, useFlexgetStream } from 'core/api';
 import { Method, snakeCase, camelize } from 'utils/fetch';
 import { action } from 'utils/hooks/actions';
-import { RawEntry } from 'core/entry/types';
 import {
   EntryDumpEvent,
   EventTypes,
   ExecuteTaskRequest,
   Execution,
-  Progress,
   ProgressEvent,
-  StreamEvent,
-  Summary,
+  TasksEvent,
   SummaryEvent,
   Task,
   TaskExecutionOptions,
   TaskStatus,
   TaskStatusOptions,
+  TaskExecuteState,
 } from './types';
 
 export const enum Constants {
@@ -116,53 +114,63 @@ export const useGetTaskExecutions = (id: number, options: TaskExecutionOptions) 
   return { ...state, ...executions };
 };
 
-interface TaskExecuteState extends Task {
-  progress: Progress[];
-  summary?: Summary;
-  entries?: RawEntry[];
-}
-
 const actions = {
-  stream: (e: StreamEvent) => action(EventTypes.Stream, e),
+  tasks: (e: TasksEvent) => action(EventTypes.Tasks, e),
   progress: (e: ProgressEvent) => action(EventTypes.Progress, e),
   entryDump: (e: EntryDumpEvent) => action(EventTypes.EntryDump, e),
   summary: (e: SummaryEvent) => action(EventTypes.Summary, e),
+  clear: () => action(EventTypes.Clear),
+  setTask: (id: number) => action(EventTypes.SetTask, id),
 };
 
 type Actions = PropReturnType<typeof actions>;
 
-const taskReducer: Reducer<Record<number, TaskExecuteState>, Actions> = (state, act) => {
+interface ExecuteState {
+  tasks: Record<number, TaskExecuteState>;
+  selectedTask?: number;
+}
+
+const taskReducer: Reducer<ExecuteState, Actions> = (state, act) => {
   switch (act.type) {
-    case EventTypes.Stream:
-      return act.payload.stream.reduce(
-        (ts, task) => ({
-          ...ts,
-          [task.id]: {
-            ...task,
-            progress: [],
-          },
-        }),
-        {},
-      );
+    case EventTypes.Tasks:
+      return {
+        tasks: act.payload.tasks.reduce(
+          (ts, task) => ({
+            ...ts,
+            [task.id]: {
+              ...task,
+              progress: [],
+            },
+          }),
+          {},
+        ),
+        selectedTask: act.payload.tasks[0].id,
+      };
     case EventTypes.Progress: {
       const e = act.payload;
-      const task = state[e.taskId];
+      const task = state.tasks[e.taskId];
       return {
         ...state,
-        [task.id]: {
-          ...task,
-          progress: [e.progress, ...task.progress],
+        tasks: {
+          ...state.tasks,
+          [task.id]: {
+            ...task,
+            progress: [e.progress, ...task.progress],
+          },
         },
       };
     }
     case EventTypes.EntryDump: {
       const e = act.payload;
-      const task = state[e.taskId];
+      const task = state.tasks[e.taskId];
       return {
         ...state,
-        [task.id]: {
-          ...task,
-          entries: e.entryDump,
+        tasks: {
+          ...state.tasks,
+          [task.id]: {
+            ...task,
+            entries: e.entryDump,
+          },
         },
       };
     }
@@ -171,12 +179,24 @@ const taskReducer: Reducer<Record<number, TaskExecuteState>, Actions> = (state, 
       const task = state[e.taskId];
       return {
         ...state,
-        [task.id]: {
-          ...task,
-          summary: e.summary,
+        tasks: {
+          ...state.tasks,
+          [task.id]: {
+            ...task,
+            summary: e.summary,
+          },
         },
       };
     }
+    case EventTypes.SetTask:
+      return {
+        ...state,
+        selectedTask: act.payload,
+      };
+    case EventTypes.Clear:
+      return {
+        tasks: {},
+      };
     default:
       return state;
   }
@@ -188,19 +208,33 @@ export const useExecuteTaskStream = () => {
     Method.Post,
   );
 
-  const [state, dispatch] = useReducer(taskReducer, {});
+  const [state, dispatch] = useReducer(taskReducer, {
+    tasks: {},
+  });
+
+  const execute = useCallback(
+    (body: ExecuteTaskRequest) => {
+      disconnect();
+      dispatch(actions.clear());
+      connect(body);
+    },
+    [connect, disconnect],
+  );
 
   useEffect(() => disconnect, [disconnect]);
 
   useEffect(() => {
     stream
-      ?.node(EventTypes.Stream, (e: StreamEvent) => dispatch(actions.stream(camelize(e))))
-      .node(EventTypes.Progress, (e: ProgressEvent) => dispatch(actions.progress(camelize(e))))
-      .node(EventTypes.EntryDump, (e: EntryDumpEvent) => dispatch(actions.entryDump(camelize(e))))
-      .node(EventTypes.Summary, (e: SummaryEvent) => dispatch(actions.entryDump(camelize(e))));
+      ?.node('{tasks}', (e: TasksEvent) => dispatch(actions.tasks(camelize(e))))
+      .node('{progress}', (e: ProgressEvent) => dispatch(actions.progress(camelize(e))))
+      .node('{entry_dump}', (e: EntryDumpEvent) => dispatch(actions.entryDump(camelize(e))))
+      .node('{summary}', (e: SummaryEvent) => dispatch(actions.entryDump(camelize(e))));
   }, [stream]);
 
-  const execute = useCallback((body: ExecuteTaskRequest) => connect(body), [connect]);
+  const setTask = useCallback((_: ChangeEvent, id: number) => dispatch(actions.setTask(id)), []);
 
-  return [{ state, readyState }, { execute }] as const;
+  return [
+    { state, readyState },
+    { execute, setTask },
+  ] as const;
 };
