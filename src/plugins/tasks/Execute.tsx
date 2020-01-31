@@ -4,7 +4,7 @@ import { Button, Theme, Tabs, Tab, CircularProgress, Typography } from '@materia
 import { useOverlayState } from 'utils/hooks';
 import { css } from '@emotion/core';
 import { ReadyState } from 'core/api';
-import { ExecuteTaskRequest, Phase, TaskExecuteState } from './types';
+import { ExecuteTaskRequest, Phase, TaskExecuteState, Task } from './types';
 import { useExecuteTaskStream } from './hooks';
 import ExecuteDialog from './ExecuteDialog';
 
@@ -56,7 +56,11 @@ const listItem = (theme: Theme) => css`
   }
 `;
 
-const Execute: FC = () => {
+interface Props {
+  tasks: Task[];
+}
+
+const Execute: FC<Props> = ({ tasks: taskStatuses }) => {
   const [
     {
       state: { tasks, selectedTask },
@@ -129,7 +133,7 @@ const Execute: FC = () => {
         </div>
       </div>
       <Formik initialValues={initialValues} onSubmit={value => execute(value)}>
-        <ExecuteDialog readyState={readyState} close={close} open={isOpen} />
+        <ExecuteDialog readyState={readyState} close={close} open={isOpen} tasks={taskStatuses} />
       </Formik>
     </>
   );

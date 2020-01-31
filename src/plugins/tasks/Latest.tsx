@@ -116,7 +116,7 @@ const Latest: FC = () => {
       <Formik initialValues={options} onSubmit={setOptions}>
         <TaskTable total={total} rows={rows} headers={headers} />
       </Formik>
-      <Execute />
+      <Execute tasks={tasks} />
     </>
   );
 };

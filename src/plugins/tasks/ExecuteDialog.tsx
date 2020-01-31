@@ -1,5 +1,4 @@
 import React, { FC, useEffect } from 'react';
-import { useContainer } from 'unstated-next';
 import {
   Button,
   Dialog,
@@ -12,18 +11,18 @@ import {
   Theme,
   Tooltip,
 } from '@material-ui/core';
-import { Form, useFormikContext, Field } from 'formik';
+import { Form, useFormikContext } from 'formik';
 import Autocomplete from 'common/inputs/formik/Autocomplete';
 import Checkbox from 'common/inputs/formik/Checkbox';
-import { TaskContainer } from 'plugins/tasks/hooks';
 import { ReadyState } from 'core/api';
-import { ExecuteTaskRequest } from 'plugins/tasks/types';
+import { ExecuteTaskRequest, Task } from 'plugins/tasks/types';
 import { css } from '@emotion/core';
 
 interface Props {
   readyState: ReadyState;
   open: boolean;
   close: () => void;
+  tasks: Task[];
 }
 
 const group = css`
@@ -35,9 +34,7 @@ const control = (theme: Theme) => css`
   margin: ${theme.typography.pxToRem(theme.spacing(2))} 0;
 `;
 
-const ExecuteDialog: FC<Props> = ({ readyState, open, close }) => {
-  const { tasks } = useContainer(TaskContainer);
-
+const ExecuteDialog: FC<Props> = ({ readyState, open, close, tasks }) => {
   const { setSubmitting, isSubmitting, resetForm } = useFormikContext<ExecuteTaskRequest>();
 
   useEffect(() => {
