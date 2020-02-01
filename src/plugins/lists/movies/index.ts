@@ -1,9 +1,9 @@
 import { createAsyncComponent } from 'utils/loading';
-import registry from 'core/routes/registry';
+import { registerPlugin } from 'core/routes/registry';
 import { MovieOutlined } from '@material-ui/icons';
 
 export default () =>
-  registry.registerPlugin('movieList', {
+  registerPlugin('movieList', {
     component: createAsyncComponent(() =>
       import(
         /* webpackChunkName: 'MovieListPlugin' */

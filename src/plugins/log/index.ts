@@ -1,9 +1,9 @@
 import { createAsyncComponent } from 'utils/loading';
-import registry from 'core/routes/registry';
+import { registerPlugin } from 'core/routes/registry';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 
 export default () =>
-  registry.registerPlugin('log', {
+  registerPlugin('log', {
     component: createAsyncComponent(() =>
       import(
         /* webpackChunkName: 'LogPlugin' */

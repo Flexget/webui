@@ -1,9 +1,9 @@
 import { createAsyncComponent } from 'utils/loading';
-import registry from 'core/routes/registry';
+import { registerPlugin } from 'core/routes/registry';
 import { CreateTwoTone } from '@material-ui/icons';
 
 export default () =>
-  registry.registerPlugin('config', {
+  registerPlugin('/config', {
     component: createAsyncComponent(async () => {
       await import(
         /* webpackChunkName: 'ConfigPlugin' */
