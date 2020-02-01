@@ -60,7 +60,7 @@ const EpisodeCard: FC<Props> = ({ show, episode, onRemoveClick }) => {
         </span>
       </CardActions>
       <Collapse in={expanded} timeout="auto" mountOnEnter>
-        <Releases show={show} episode={episode} />
+        <Releases showId={show.id} episodeId={episode.id} />
       </Collapse>
       <RemoveDialog
         open={isRemoveOpen}
