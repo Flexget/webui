@@ -6,6 +6,8 @@ module.exports = {
     '!**/node_modules/**',
     '!**/dist/**',
     '!src/**/fixtures.{ts,tsx}',
+    '!src/plugins/*/index.ts',
+    '!src/plugins/lists/{entry,movies,pending}/index.ts',
   ],
   coverageThreshold: {
     global: {
