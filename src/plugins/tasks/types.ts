@@ -101,14 +101,20 @@ export interface Progress {
   percent: number;
 }
 
-export interface Summary {
+interface Aborted {
+  aborted: true;
+  abortReason?: string;
+}
+
+interface NotAborted {
   accepted: number;
   rejected: number;
   failed: number;
   undecided: number;
-  aborted: boolean;
-  abortReason?: string;
+  aborted: false;
 }
+
+export type Summary = Aborted | NotAborted;
 
 interface BaseTaskEvent {
   taskId: number;
