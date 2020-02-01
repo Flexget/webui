@@ -92,22 +92,19 @@ export const useAddShow = () => {
   return [state, addShow] as const;
 };
 
-export const useUpdateShow = (showId: number) => {
+export const useRemoveShow = (showId?: number) => {
   const [, dispatch] = useContainer(ShowContainer);
-  const [state, request] = useFlexgetAPI<Show>(`/series/${showId}`, Method.Put);
+  const [state, request] = useFlexgetAPI<Show>(`/series/${showId}`, Method.Delete);
 
-  const updateShow = useCallback(
-    async (req: ShowRequest) => {
-      const resp = await request(req);
-      if (resp.ok) {
-        dispatch(actions.updateShow(resp.data));
-      }
-      return resp;
-    },
-    [dispatch, request],
-  );
+  const removeShow = useCallback(async () => {
+    const resp = await request();
+    if (resp.ok && showId) {
+      dispatch(actions.removeShow(showId));
+    }
+    return resp;
+  }, [dispatch, request, showId]);
 
-  return [state, updateShow] as const;
+  return [state, removeShow] as const;
 };
 
 export const useGetShowDetail = (showId: number) => {
