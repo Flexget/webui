@@ -20,11 +20,11 @@ import {
   useRemoveRelease,
   useUpdateRelease,
 } from '../hooks/releases';
-import { Episode, Show, GetReleaseOptions, SortByRelease, Release } from '../types';
+import { GetReleaseOptions, SortByRelease, Release } from '../types';
 
 interface Props {
-  show: Show;
-  episode: Episode;
+  showId: number;
+  episodeId: number;
 }
 
 interface MenuState {
@@ -32,7 +32,7 @@ interface MenuState {
   release: Release;
 }
 
-const Releases: FC<Props> = ({ show, episode }) => {
+const Releases: FC<Props> = ({ showId, episodeId }) => {
   const [{ releases }] = useContainer(ReleaseContainer);
   const [options] = useMergeState<GetReleaseOptions>({
     page: 0,
@@ -54,11 +54,11 @@ const Releases: FC<Props> = ({ show, episode }) => {
     [],
   );
 
-  useGetReleases(show.id, episode.id, options);
-  const [removeState, removeRelease] = useRemoveRelease(show.id, episode.id, selectedRelease?.id);
+  useGetReleases(showId, episodeId, options);
+  const [removeState, removeRelease] = useRemoveRelease(showId, episodeId, selectedRelease?.id);
   const [{ loading: updateLoading }, updateRelease] = useUpdateRelease(
-    show.id,
-    episode.id,
+    showId,
+    episodeId,
     selectedRelease?.id,
   );
 

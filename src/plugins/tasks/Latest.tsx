@@ -7,6 +7,7 @@ import { Direction } from 'utils/query';
 import { SortByStatus, TaskStatusOptions } from './types';
 import TaskTable from './TaskTable';
 import { useGetTaskStatuses } from './hooks';
+import Execute from './Execute';
 
 const headers = [
   {
@@ -48,6 +49,10 @@ const headers = [
     label: 'Failed',
     numeric: true,
   },
+  {
+    id: SortByStatus.AbortReason,
+    label: 'Abort Reason',
+  },
 ];
 
 const Latest: FC = () => {
@@ -68,7 +73,16 @@ const Latest: FC = () => {
         ({
           name,
           id,
-          lastExecution: { start, end, produced, rejected, accepted, failed, succeeded },
+          lastExecution: {
+            start,
+            end,
+            produced,
+            rejected,
+            accepted,
+            failed,
+            succeeded,
+            abortReason,
+          },
         }) => ({
           key: id,
           data: {
@@ -81,6 +95,7 @@ const Latest: FC = () => {
             [SortByStatus.Rejected]: rejected,
             [SortByStatus.Accepted]: accepted,
             [SortByStatus.Failed]: failed,
+            [SortByStatus.AbortReason]: abortReason,
             [SortByStatus.Succeeded]: succeeded ? (
               <CheckCircle fontSize="small" color="primary" />
             ) : (
@@ -97,9 +112,12 @@ const Latest: FC = () => {
   );
 
   return (
-    <Formik initialValues={options} onSubmit={setOptions}>
-      <TaskTable total={total} rows={rows} headers={headers} />
-    </Formik>
+    <>
+      <Formik initialValues={options} onSubmit={setOptions}>
+        <TaskTable total={total} rows={rows} headers={headers} />
+      </Formik>
+      <Execute tasks={tasks} />
+    </>
   );
 };
 

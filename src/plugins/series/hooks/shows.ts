@@ -9,7 +9,6 @@ import { Show, GetShowOptions, ShowRequest } from '../types';
 export const enum Constants {
   GET_SHOWS = '@flexget/series/GET_SHOWS',
   ADD_SHOW = '@flexget/series/ADD_SHOW',
-  UPDATE_SHOW = '@flexget/series/UPDATE_SHOW',
   REMOVE_SHOW = '@flexget/series/REMOVE_SHOW',
 }
 
@@ -17,7 +16,6 @@ export const actions = {
   getShows: (shows: Show[], totalCount: number) =>
     action(Constants.GET_SHOWS, { shows, totalCount }),
   addShow: (show: Show) => action(Constants.ADD_SHOW, show),
-  updateShow: (show: Show) => action(Constants.UPDATE_SHOW, show),
   removeShow: (id: number) => action(Constants.REMOVE_SHOW, id),
 };
 
@@ -45,16 +43,6 @@ const showReducer: Reducer<State, Actions> = (state, act) => {
         ...state,
         totalCount: state.totalCount - 1,
         shows: state.shows.filter(show => show.id !== act.payload),
-      };
-    case Constants.UPDATE_SHOW:
-      return {
-        ...state,
-        shows: state.shows.map(item => {
-          if (item.id === act.payload.id) {
-            return act.payload;
-          }
-          return item;
-        }),
       };
     default:
       return state;
@@ -102,24 +90,6 @@ export const useAddShow = () => {
   );
 
   return [state, addShow] as const;
-};
-
-export const useUpdateShow = (showId: number) => {
-  const [, dispatch] = useContainer(ShowContainer);
-  const [state, request] = useFlexgetAPI<Show>(`/series/${showId}`, Method.Put);
-
-  const updateShow = useCallback(
-    async (req: ShowRequest) => {
-      const resp = await request(req);
-      if (resp.ok) {
-        dispatch(actions.updateShow(resp.data));
-      }
-      return resp;
-    },
-    [dispatch, request],
-  );
-
-  return [state, updateShow] as const;
 };
 
 export const useRemoveShow = (showId?: number) => {

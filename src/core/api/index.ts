@@ -1,5 +1,5 @@
-import { useEffect, useRef, useCallback, useState, useReducer } from 'react';
-import { Method, APIResponse, request, StatusError, ErrorResponse, camelize } from 'utils/fetch';
+import { useEffect, useRef, useCallback, useState } from 'react';
+import { Method, APIResponse, request, StatusError, ErrorResponse, snakeCase } from 'utils/fetch';
 import { AuthContainer } from 'core/auth/hooks';
 import { uriParser } from 'utils';
 import { useContainer } from 'unstated-next';
@@ -68,49 +68,38 @@ export enum ReadyState {
   Open,
 }
 
-export const useFlexgetStream = <Message>(url: string) => {
-  const [readyState, setReadyState] = useState<ReadyState>(ReadyState.Connecting);
+export const useFlexgetStream = (url: string, method: Method = Method.Get) => {
+  const [readyState, setReadyState] = useState<ReadyState>(ReadyState.Closed);
 
-  const stream = useRef<Oboe>();
+  const [stream, setStream] = useState<Oboe>();
   const baseURI = useRef(uriParser(document.baseURI));
-  const [messages, addMessage] = useReducer(
-    (state: Message[], message: Message | 'clear') =>
-      message !== 'clear' ? [message, ...state] : [],
-    [],
+
+  const connect = useCallback(
+    (body?: Object) => {
+      setReadyState(ReadyState.Connecting);
+      setStream(
+        oboe({
+          url: `${baseURI.current.pathname}api${url}`,
+          method,
+          body: body ? snakeCase(body) : body,
+        })
+          .start(() => setReadyState(ReadyState.Open))
+          .fail(() => setReadyState(ReadyState.Closed)),
+      );
+    },
+    [method, url],
   );
 
-  const clear = useCallback(() => addMessage('clear'), []);
-
-  const connect = useCallback(() => setReadyState(ReadyState.Connecting), []);
-
   const disconnect = useCallback(() => {
-    stream.current?.abort();
-    stream.current = undefined;
     setReadyState(ReadyState.Closed);
+    setStream(s => {
+      s?.abort();
+      return undefined;
+    });
   }, []);
 
-  useEffect(() => {
-    if (stream.current) {
-      connect();
-    }
-  }, [connect, url]);
-
-  useEffect(() => {
-    if (readyState === ReadyState.Connecting) {
-      stream.current?.abort();
-      clear();
-      stream.current = oboe({
-        url: `${baseURI.current.pathname}api${url}`,
-        method: Method.Get,
-      })
-        .start(() => setReadyState(ReadyState.Open))
-        .node('{message task}', (message: Message) => addMessage(camelize(message)))
-        .fail(() => setReadyState(ReadyState.Closed));
-    }
-  }, [clear, readyState, url]);
-
   return [
-    { messages, readyState },
-    { connect, disconnect, clear },
+    { stream, readyState },
+    { connect, disconnect },
   ] as const;
 };

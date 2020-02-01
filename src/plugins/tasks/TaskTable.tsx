@@ -110,6 +110,7 @@ const TaskTable = <T extends {}>({ total, headers, rows }: Props<T>) => {
         </Table>
       </TableContainer>
       <TablePagination
+        component="div"
         size="medium"
         rowsPerPageOptions={[5, 10, 25]}
         count={total}

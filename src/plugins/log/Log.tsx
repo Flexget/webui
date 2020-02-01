@@ -1,13 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Formik } from 'formik';
 import { hot } from 'react-hot-loader/root';
 import { css } from '@emotion/core';
 import { PaperWrapper } from 'common/styles';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
-import { useFlexgetStream } from 'core/api';
 import { useMergeState } from 'utils/hooks';
-import { stringify } from 'qs';
-import { LogMessage, Options } from './types';
+import { useLogStream } from 'plugins/log/hooks';
+import { Options } from './types';
 import Header from './Header';
 import LogTable from './LogTable';
 
@@ -24,11 +23,13 @@ const LogPage: FC = () => {
     query: '',
   });
 
-  const queryString = stringify(options);
+  const [{ messages, readyState }, { connect, disconnect, clear }] = useLogStream(options);
 
-  const [{ readyState, messages }, { connect, disconnect, clear }] = useFlexgetStream<LogMessage>(
-    `/server/log?${queryString}`,
-  );
+  useEffect(() => {
+    connect();
+
+    return disconnect;
+  }, [connect, disconnect]);
 
   return (
     <PaperWrapper elevation={4}>

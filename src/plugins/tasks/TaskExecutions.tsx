@@ -53,6 +53,10 @@ const headers = [
     numeric: true,
     sortByField: true,
   },
+  {
+    id: SortByStatus.AbortReason,
+    label: 'Abort Reason',
+  },
 ];
 
 const TaskExecutions: FC = () => {
@@ -62,6 +66,7 @@ const TaskExecutions: FC = () => {
     perPage: 10,
     order: Direction.Desc,
     sortBy: SortByStatus.Start,
+    succeeded: false,
   });
   const { task } = useGetTask(taskId);
   const { executions, total } = useGetTaskExecutions(taskId, options);
@@ -88,25 +93,28 @@ const TaskExecutions: FC = () => {
 
   const rows = useMemo(
     () =>
-      executions.map(({ id, start, end, produced, rejected, accepted, failed, succeeded }) => ({
-        key: id,
-        data: {
-          [SortByStatus.ID]: id,
-          [SortByStatus.Name]: name,
-          [SortByStatus.LastExecutionTime]: start,
-          [SortByStatus.Start]: start,
-          [SortByStatus.End]: end,
-          [SortByStatus.Produced]: produced,
-          [SortByStatus.Rejected]: rejected,
-          [SortByStatus.Accepted]: accepted,
-          [SortByStatus.Failed]: failed,
-          [SortByStatus.Succeeded]: succeeded ? (
-            <CheckCircle fontSize="small" color="primary" />
-          ) : (
-            <Error fontSize="small" color="error" />
-          ),
-        },
-      })),
+      executions.map(
+        ({ id, start, end, produced, rejected, accepted, failed, succeeded, abortReason }) => ({
+          key: id,
+          data: {
+            [SortByStatus.ID]: id,
+            [SortByStatus.Name]: name,
+            [SortByStatus.LastExecutionTime]: start,
+            [SortByStatus.Start]: start,
+            [SortByStatus.End]: end,
+            [SortByStatus.Produced]: produced,
+            [SortByStatus.Rejected]: rejected,
+            [SortByStatus.Accepted]: accepted,
+            [SortByStatus.Failed]: failed,
+            [SortByStatus.AbortReason]: abortReason,
+            [SortByStatus.Succeeded]: succeeded ? (
+              <CheckCircle fontSize="small" color="primary" />
+            ) : (
+              <Error fontSize="small" color="error" />
+            ),
+          },
+        }),
+      ),
     [executions, name],
   );
 
