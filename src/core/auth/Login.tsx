@@ -10,7 +10,7 @@ import Logo from './Logo';
 type Props = Partial<RouteComponentProps>;
 
 const LoginPage: FC<Props> = ({ location }) => {
-  const { from } = location?.state || { from: { pathname: '/' } };
+  const { from } = location?.state ?? { from: { pathname: '/' } };
   const [loggedIn, setLoggedIn] = useContainer(AuthContainer);
 
   const [versionState, getVersion] = useFlexgetAPI('/server/version');
