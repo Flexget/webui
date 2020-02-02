@@ -1,4 +1,4 @@
-import { JSDOM, DOMWindow } from 'jsdom';
+// import { JSDOM, DOMWindow } from 'jsdom';
 import fetch, { Headers, Response, Request } from 'node-fetch';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -6,9 +6,6 @@ import Adapter from 'enzyme-adapter-react-16';
 jest.mock('monaco-editor/esm/vs/editor/editor.api.js');
 
 Enzyme.configure({ adapter: new Adapter() });
-
-const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
-const { window } = jsdom;
 
 function copyProps(src, target) {
   const props = Object.getOwnPropertyNames(src)
@@ -18,7 +15,7 @@ function copyProps(src, target) {
 }
 
 declare const global: {
-  window: DOMWindow;
+  // window: DOMWindow;
   document: Document;
   navigator: {
     userAgent: string;
@@ -30,8 +27,8 @@ declare const global: {
   monaco: any;
 };
 
-global.window = window;
-global.document = window.document;
+// global.window = window;
+// global.document = window.document;
 global.fetch = fetch;
 
 global.Response = Response;

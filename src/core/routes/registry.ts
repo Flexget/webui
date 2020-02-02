@@ -1,14 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { createContainer } from 'unstated-next';
 
-import {
-  Route,
-  PluginUpdateHandler,
-  Plugin,
-  PluginEvent,
-  PluginMap,
-  SubscribeHandler,
-} from './types';
+import { Route, Plugin, PluginEvent, PluginMap, SubscribeHandler } from './types';
 
 const enum Events {
   RegisterPlugin = 'register',
@@ -16,26 +9,13 @@ const enum Events {
   Update = 'update',
 }
 
-export class PluginRegistry extends EventTarget {
+export class PluginRegistry {
   _plugins: Record<string, Plugin> = {};
 
   constructor() {
-    super();
-    this.addEventListener(Events.RegisterPlugin, (e: CustomEvent<PluginEvent>) => {
+    document.addEventListener(Events.RegisterPlugin, (e: CustomEvent<PluginEvent>) => {
       this.registerPlugin(e.detail.path, e.detail.plugin);
     });
-  }
-
-  subscribe(fn: SubscribeHandler) {
-    const handler = (e: CustomEvent<PluginMap>) => {
-      fn(e.detail);
-    };
-    this.addEventListener(Events.Update, handler);
-    return () => this.unsubscribe(handler);
-  }
-
-  unsubscribe(fn: PluginUpdateHandler) {
-    this.removeEventListener(Events.Update, fn);
   }
 
   get plugins() {
@@ -44,7 +24,7 @@ export class PluginRegistry extends EventTarget {
 
   set plugins(plugins: PluginMap) {
     this._plugins = plugins;
-    this.dispatchEvent(new CustomEvent(Events.Update, { detail: plugins }));
+    document.dispatchEvent(new CustomEvent(Events.Update, { detail: plugins }));
   }
 
   registerPlugin(path: string, plugin: Plugin) {
@@ -62,6 +42,17 @@ export class PluginRegistry extends EventTarget {
 
 const registry = new PluginRegistry();
 
+export const subscribe = (fn: SubscribeHandler) => {
+  const handler = (e: CustomEvent<PluginMap>) => {
+    fn(e.detail);
+  };
+
+  // Make an inital call incase all plugins have already been registered
+  fn(registry.plugins);
+  document.addEventListener(Events.Update, handler);
+  return () => document.removeEventListener(Events.Update, handler);
+};
+
 export const registerPlugin = (path: string, plugin: Plugin) => {
   const event = new CustomEvent<PluginEvent>(Events.RegisterPlugin, {
     detail: {
@@ -69,16 +60,17 @@ export const registerPlugin = (path: string, plugin: Plugin) => {
       plugin,
     },
   });
-  registry.dispatchEvent(event);
+  document.dispatchEvent(event);
 };
 
 window.registerFlexgetPlugin = registerPlugin;
+window.subscribeFlexgetPlugins = subscribe;
 
 export const PluginContainer = createContainer(() => {
-  const [pluginMap, setPlugins] = useState<PluginMap>(registry.plugins);
+  const [pluginMap, setPlugins] = useState<PluginMap>({});
 
   useEffect(() => {
-    const unsubscribe = registry.subscribe(setPlugins);
+    const unsubscribe = subscribe(setPlugins);
 
     return unsubscribe;
   }, []);

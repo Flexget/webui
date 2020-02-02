@@ -3,7 +3,7 @@ import { registerPlugin } from 'core/routes/registry';
 import { Assignment } from '@material-ui/icons';
 
 export default () =>
-  registerPlugin('tasks', {
+  registerPlugin('/tasks', {
     component: createAsyncComponent(() =>
       import(
         /* webpackChunkName: 'TasksPlugin' */

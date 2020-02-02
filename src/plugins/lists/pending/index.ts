@@ -3,7 +3,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import { registerPlugin } from 'core/routes/registry';
 
 export default () =>
-  registerPlugin('pendingList', {
+  registerPlugin('/pendingList', {
     component: createAsyncComponent(() =>
       import(
         /* webpackChunkName: 'PendingListPlugin' */

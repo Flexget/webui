@@ -6,7 +6,7 @@ import { Home } from '@material-ui/icons';
 import { useContainer } from 'unstated-next';
 import { renderWithWrapper } from 'utils/tests';
 import Routes from './Routes';
-import registry from './registry';
+import { registerPlugin } from './registry';
 
 const LoginPage: FC = () => <div>Login Page</div>;
 
@@ -16,7 +16,7 @@ interface Props {
   loggedIn?: boolean;
 }
 
-registry.registerPlugin('home', {
+registerPlugin('/home', {
   routeDisplayName: 'Home',
   routeIcon: Home,
   component: PrivatePage,

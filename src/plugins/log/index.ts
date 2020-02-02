@@ -3,7 +3,7 @@ import { registerPlugin } from 'core/routes/registry';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 
 export default () =>
-  registerPlugin('log', {
+  registerPlugin('/log', {
     component: createAsyncComponent(() =>
       import(
         /* webpackChunkName: 'LogPlugin' */
