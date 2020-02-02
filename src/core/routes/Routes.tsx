@@ -2,11 +2,11 @@ import React, { useEffect, FC } from 'react';
 import { useContainer } from 'unstated-next';
 import { Switch, useLocation } from 'react-router-dom';
 import { StatusContainer, actions } from 'core/status/hooks';
-import { RouteContainer } from './hooks';
+import { PluginContainer } from './hooks';
 import PrivateRoute from './PrivateRoute';
 
 const Routes: FC = () => {
-  const [routes] = useContainer(RouteContainer);
+  const { routes } = useContainer(PluginContainer);
 
   const location = useLocation();
   const [, dispatch] = useContainer(StatusContainer);
@@ -14,11 +14,8 @@ const Routes: FC = () => {
 
   return (
     <Switch>
-      {routes.map(({ children, ...pr }) => {
-        if (children) {
-          return (children || []).map(p => <PrivateRoute {...p} key={p.path} />);
-        }
-        return <PrivateRoute {...pr} key={pr.path} />;
+      {routes.map(props => {
+        return <PrivateRoute {...props} key={props.path} />;
       })}
     </Switch>
   );

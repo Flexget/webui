@@ -1,15 +1,23 @@
 import { useEffect, useState, useMemo } from 'react';
 import { createContainer } from 'unstated-next';
-import registry from 'core/routes/registry';
+import { Route, PluginMap } from './types';
+import { subscribe } from './registry';
 
-export const RouteContainer = createContainer(() => {
-  const [routeObj, setRoutes] = useState(registry.routes);
-
+export const PluginContainer = createContainer(() => {
+  const [pluginMap, setPlugins] = useState<PluginMap>({});
   useEffect(() => {
-    registry.onRegisterRoute = route => setRoutes(r => ({ ...r, ...route }));
+    const unsubscribe = subscribe(setPlugins);
+    return unsubscribe;
   }, []);
-
-  const routes = useMemo(() => Object.values(routeObj), [routeObj]);
-
-  return [routes, setRoutes] as const;
+  const routes: Route[] = useMemo(
+    () =>
+      Object.entries(pluginMap).map(([path, { component, routeDisplayName, routeIcon }]) => ({
+        path,
+        component,
+        Icon: routeIcon,
+        name: routeDisplayName,
+      })),
+    [pluginMap],
+  );
+  return { routes };
 });

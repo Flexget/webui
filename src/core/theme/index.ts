@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { createContainer } from 'unstated-next';
-import { editor } from 'monaco-editor';
+import { editor } from 'monaco-editor/esm/vs/editor/editor.api';
+
 import { common, orange, blueGrey } from '@material-ui/core/colors';
 import { createMuiTheme, Theme, PaletteType } from '@material-ui/core';
 import { rgba } from 'polished';

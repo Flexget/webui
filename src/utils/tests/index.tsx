@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { AuthContainer } from 'core/auth/hooks';
 import { StatusContainer } from 'core/status/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
-import { RouteContainer } from 'core/routes/hooks';
+import { PluginContainer } from 'core/routes/hooks';
 import { AppBarContainer } from 'core/layout/AppBar/hooks';
 
 export const themed = (component: ReactNode) => <ThemeProvider>{component}</ThemeProvider>;
@@ -17,9 +17,9 @@ export const BaseProviders: FC = ({ children }) => {
       <AuthContainer.Provider>
         <MemoryRouter>
           <ThemeProvider>
-            <RouteContainer.Provider>
+            <PluginContainer.Provider>
               <AppBarContainer.Provider>{children}</AppBarContainer.Provider>
-            </RouteContainer.Provider>
+            </PluginContainer.Provider>
           </ThemeProvider>
         </MemoryRouter>
       </AuthContainer.Provider>

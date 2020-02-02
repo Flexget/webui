@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { debug, setFailed } from '@actions/core';
+import { setFailed } from '@actions/core';
 import { GitHub, context } from '@actions/github';
 
 async function run() {

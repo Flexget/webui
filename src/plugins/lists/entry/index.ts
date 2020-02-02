@@ -1,9 +1,9 @@
 import { createAsyncComponent } from 'utils/loading';
-import registry from 'core/routes/registry';
+import { registerPlugin } from 'core/routes/registry';
 import { ViewList } from '@material-ui/icons';
 
 export default () =>
-  registry.registerPlugin('entryList', {
+  registerPlugin('/entryList', {
     component: createAsyncComponent(() =>
       import(
         /* webpackChunkName: 'EntryListPlugin' */

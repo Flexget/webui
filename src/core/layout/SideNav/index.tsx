@@ -1,10 +1,9 @@
-import React, { FC, useCallback, useReducer, useMemo, useState } from 'react';
+import React, { FC, useCallback, useMemo, useState } from 'react';
 import { useContainer } from 'unstated-next';
 import { css } from '@emotion/core';
 import {
   Drawer,
   List,
-  Collapse,
   Tooltip,
   IconButton,
   useMediaQuery,
@@ -12,7 +11,7 @@ import {
   Divider,
 } from '@material-ui/core';
 import { Settings } from '@material-ui/icons';
-import { RouteContainer } from 'core/routes/hooks';
+import { PluginContainer } from 'core/routes/hooks';
 import { useHistory } from 'react-router';
 import { Route } from 'core/routes/types';
 import Version from './Version';
@@ -36,17 +35,10 @@ interface Props {
 }
 
 const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
-  const [routes] = useContainer(RouteContainer);
+  const { routes } = useContainer(PluginContainer);
   const history = useHistory();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
-  const [openMap, setOpen] = useReducer(
-    (state: Record<string, boolean>, name: string) => ({
-      ...state,
-      [name]: !state[name],
-    }),
-    {},
-  );
 
   const drawerCss = useMemo(() => (sidebarOpen ? drawerOpen(theme) : drawerClose(theme)), [
     sidebarOpen,
@@ -56,20 +48,13 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
   const drawerRootCss = useMemo(() => [drawer(theme), drawerCss], [drawerCss, theme]);
 
   const handleClick = useCallback(
-    ({ path, name }: Route) => () => {
-      if (path) {
-        if (isMobile) {
-          onClose();
-        }
-        history.push(path);
-        return;
-      }
-      setOpen(name);
-      if (!sidebarOpen) {
+    ({ path }: Route) => () => {
+      if (isMobile) {
         onClose();
       }
+      history.push(path);
     },
-    [history, isMobile, onClose, sidebarOpen],
+    [history, isMobile, onClose],
   );
 
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement>();
@@ -106,16 +91,9 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
             width: inherit;
           `}
         >
-          {routes.flatMap(({ children, ...route }) => [
-            <Entry key={route.path} onClick={handleClick(route)} {...route} />,
-            children && (
-              <Collapse in={openMap[route.name]} timeout="auto" unmountOnExit key={route.name}>
-                {children.map(child => (
-                  <Entry key={child.path} onClick={handleClick(child)} {...child} />
-                ))}
-              </Collapse>
-            ),
-          ])}
+          {routes.map(route => (
+            <Entry key={route.path} onClick={handleClick(route)} {...route} />
+          ))}
         </List>
         <div>
           <Divider css={divider} />

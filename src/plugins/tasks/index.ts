@@ -1,9 +1,9 @@
 import { createAsyncComponent } from 'utils/loading';
-import registry from 'core/routes/registry';
+import { registerPlugin } from 'core/routes/registry';
 import { Assignment } from '@material-ui/icons';
 
 export default () =>
-  registry.registerPlugin('tasks', {
+  registerPlugin('/tasks', {
     component: createAsyncComponent(() =>
       import(
         /* webpackChunkName: 'TasksPlugin' */

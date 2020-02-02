@@ -1,47 +1,64 @@
-import { Route, RouteHandler, Plugin } from './types';
+import { Plugin, PluginEvent, PluginMap, SubscribeHandler } from './types';
+
+const enum Events {
+  RegisterPlugin = 'register',
+  UnregisterPlugin = 'unregister',
+  Update = 'update',
+}
 
 export class PluginRegistry {
-  routeHandler: RouteHandler;
-
-  routes: Record<string, Route>;
+  _plugins: Record<string, Plugin> = {};
 
   constructor() {
-    this.routes = {};
-    this.routeHandler = () => {};
+    document.addEventListener(Events.RegisterPlugin, (e: CustomEvent<PluginEvent>) => {
+      this.registerPlugin(e.detail.path, e.detail.plugin);
+    });
   }
 
-  set onRegisterRoute(fn: RouteHandler) {
-    this.routeHandler = fn;
+  get plugins() {
+    return this._plugins;
   }
 
-  registerPlugin = (name: string, { component, routeDisplayName, routeIcon }: Plugin) => {
-    if (!name) {
-      throw Error('Plugin requires name');
+  set plugins(plugins: PluginMap) {
+    this._plugins = plugins;
+    document.dispatchEvent(new CustomEvent(Events.Update, { detail: plugins }));
+  }
+
+  registerPlugin(path: string, plugin: Plugin) {
+    if (!path) {
+      throw Error('Plugin requires path');
     }
 
-    if (!routeDisplayName || !routeIcon) {
-      throw Error('Component requires routeDisplayname and routeIcon');
+    if (!plugin.routeDisplayName || !plugin.routeIcon || !plugin.component) {
+      throw Error('Plugin requires routeDisplayname, routeIcon, and component');
     }
 
-    if (component) {
-      const route = {
-        name: routeDisplayName,
-        component,
-        Icon: routeIcon,
-        path: `/${name}`,
-      };
-
-      this.routes = { ...this.routes, [route.path]: route };
-
-      this.routeHandler({ [route.path]: route });
-    }
-  };
+    this.plugins = { ...this.plugins, [path]: plugin };
+  }
 }
 
 const registry = new PluginRegistry();
 
-// Exposed on window so that custom plugins can be registered
+export const subscribe = (fn: SubscribeHandler) => {
+  const handler = (e: CustomEvent<PluginMap>) => {
+    fn(e.detail);
+  };
 
-window.registerFlexgetPlugin = registry.registerPlugin;
+  // Make an inital call incase all plugins have already been registered
+  fn(registry.plugins);
+  document.addEventListener(Events.Update, handler);
+  return () => document.removeEventListener(Events.Update, handler);
+};
 
-export default registry;
+export const registerPlugin = (path: string, plugin: Plugin) => {
+  const event = new CustomEvent<PluginEvent>(Events.RegisterPlugin, {
+    detail: {
+      path,
+      plugin,
+    },
+  });
+  document.dispatchEvent(event);
+};
+
+window.registerFlexgetPlugin = registerPlugin;
+window.subscribeFlexgetPlugins = subscribe;

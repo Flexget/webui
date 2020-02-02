@@ -1,11 +1,12 @@
-import { PluginRegistry } from 'core/routes/registry';
+import { registerPlugin, subscribe } from 'core/routes/registry';
 import { SetStateAction, Dispatch } from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import 'jest-extended';
 
 declare global {
   interface Window {
-    registerFlexgetPlugin: PluginRegistry['registerPlugin'];
+    registerFlexgetPlugin: typeof registerPlugin;
+    subscribeFlexgetPlugins: typeof subscribe;
     MonacoEnvironment: Record<string, any>;
   }
 

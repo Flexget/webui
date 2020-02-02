@@ -1,9 +1,9 @@
 import { createAsyncComponent } from 'utils/loading';
-import registry from 'core/routes/registry';
+import { registerPlugin } from 'core/routes/registry';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
 
 export default () =>
-  registry.registerPlugin('series', {
+  registerPlugin('/series', {
     component: createAsyncComponent(() =>
       import(
         /* webpackChunkName: 'SeriesPlugin' */

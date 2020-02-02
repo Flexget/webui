@@ -61,6 +61,12 @@ module.exports = {
     'emotion/styled-import': 'error',
 
     // import
+    'import/extensions': ['error', 'ignorePackages', {
+      ts: 'never',
+      tsx: 'never',
+      js: 'never',
+      jsx: 'never',
+    }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/no-named-as-default': 'off',
     'import/prefer-default-export': 'off',

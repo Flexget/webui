@@ -2,7 +2,10 @@ import React, { FC, useCallback, useEffect } from 'react';
 import { useField } from 'formik';
 import { useTheme } from '@material-ui/core';
 import MonacoEditor from 'react-monaco-editor';
-import { languages, editor } from 'monaco-editor';
+import { languages, editor } from 'monaco-editor/esm/vs/editor/editor.api';
+
+import './monaco';
+
 /* eslint-disable import/no-webpack-loader-syntax */
 // NOTE: using loader syntax becuase Yaml worker imports editor.worker directly and that
 // import shouldn't go through loader syntax.
