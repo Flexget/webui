@@ -1,7 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
-import { createContainer } from 'unstated-next';
-
-import { Route, Plugin, PluginEvent, PluginMap, SubscribeHandler } from './types';
+import { Plugin, PluginEvent, PluginMap, SubscribeHandler } from './types';
 
 const enum Events {
   RegisterPlugin = 'register',
@@ -65,27 +62,3 @@ export const registerPlugin = (path: string, plugin: Plugin) => {
 
 window.registerFlexgetPlugin = registerPlugin;
 window.subscribeFlexgetPlugins = subscribe;
-
-export const PluginContainer = createContainer(() => {
-  const [pluginMap, setPlugins] = useState<PluginMap>({});
-
-  useEffect(() => {
-    const unsubscribe = subscribe(setPlugins);
-
-    return unsubscribe;
-  }, []);
-
-  const routes: Route[] = useMemo(
-    () =>
-      Object.entries(pluginMap).map(([path, { component, routeDisplayName, routeIcon }]) => ({
-        path,
-        component,
-        Icon: routeIcon,
-        name: routeDisplayName,
-      })),
-    [pluginMap],
-  );
-
-  return { routes };
-});
-// Exposed on window so that custom plugins can be registered

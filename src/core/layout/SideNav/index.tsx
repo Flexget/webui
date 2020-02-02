@@ -11,7 +11,7 @@ import {
   Divider,
 } from '@material-ui/core';
 import { Settings } from '@material-ui/icons';
-import { PluginContainer } from 'core/routes/registry';
+import { PluginContainer } from 'core/routes/hooks';
 import { useHistory } from 'react-router';
 import { Route } from 'core/routes/types';
 import Version from './Version';

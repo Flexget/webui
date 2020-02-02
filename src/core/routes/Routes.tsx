@@ -2,7 +2,7 @@ import React, { useEffect, FC } from 'react';
 import { useContainer } from 'unstated-next';
 import { Switch, useLocation } from 'react-router-dom';
 import { StatusContainer, actions } from 'core/status/hooks';
-import { PluginContainer } from './registry';
+import { PluginContainer } from './hooks';
 import PrivateRoute from './PrivateRoute';
 
 const Routes: FC = () => {
