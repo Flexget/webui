@@ -12,7 +12,7 @@ export const useGetHomeCards = () => {
           ? [
               {
                 path,
-                component: cardComponent,
+                Component: cardComponent,
                 name: routeDisplayName,
               },
             ]
