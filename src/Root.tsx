@@ -19,7 +19,7 @@ import registerEntryList from 'plugins/lists/entry';
 import { AuthContainer } from 'core/auth/hooks';
 import { TaskContainer } from 'plugins/tasks/hooks';
 import { StatusContainer } from 'core/status/hooks';
-import { PluginContainer } from 'core/routes/hooks';
+import { PluginContainer } from 'core/plugins/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
 import { VersionContainer } from 'core/layout/SideNav/hooks';
 import { uriParser } from 'utils';

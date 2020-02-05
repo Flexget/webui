@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { AuthContainer } from 'core/auth/hooks';
 import { StatusContainer } from 'core/status/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
-import { PluginContainer } from 'core/routes/hooks';
+import { PluginContainer } from 'core/plugins/hooks';
 import { AppBarContainer } from 'core/layout/AppBar/hooks';
 
 export const themed = (component: ReactNode) => <ThemeProvider>{component}</ThemeProvider>;

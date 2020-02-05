@@ -1,4 +1,4 @@
-import { registerPlugin, subscribe } from 'core/routes/registry';
+import { registerPlugin, subscribe } from 'core/plugins/registry';
 import { SetStateAction, Dispatch } from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import 'jest-extended';

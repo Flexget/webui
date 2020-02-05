@@ -1,4 +1,4 @@
-import { Plugin, PluginEvent, PluginMap, SubscribeHandler } from './types';
+import { PluginEvent, Plugin, PluginMap, SubscribeHandler } from './types';
 
 const enum Events {
   RegisterPlugin = 'register',

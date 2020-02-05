@@ -1,5 +1,5 @@
 import { createAsyncComponent } from 'utils/loading';
-import { registerPlugin } from 'core/routes/registry';
+import { registerPlugin } from 'core/plugins/registry';
 import { MovieOutlined } from '@material-ui/icons';
 
 export default () =>

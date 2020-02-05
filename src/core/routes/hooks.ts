@@ -1,14 +1,10 @@
-import { useEffect, useState, useMemo } from 'react';
-import { createContainer } from 'unstated-next';
-import { Route, PluginMap } from './types';
-import { subscribe } from './registry';
+import { useMemo } from 'react';
+import { useContainer } from 'unstated-next';
+import { PluginContainer } from 'core/plugins/hooks';
+import { Route } from './types';
 
-export const PluginContainer = createContainer(() => {
-  const [pluginMap, setPlugins] = useState<PluginMap>({});
-  useEffect(() => {
-    const unsubscribe = subscribe(setPlugins);
-    return unsubscribe;
-  }, []);
+export const useGetRoutes = () => {
+  const { pluginMap } = useContainer(PluginContainer);
   const routes: Route[] = useMemo(
     () =>
       Object.entries(pluginMap).map(([path, { component, routeDisplayName, routeIcon }]) => ({
@@ -20,4 +16,4 @@ export const PluginContainer = createContainer(() => {
     [pluginMap],
   );
   return { routes };
-});
+};

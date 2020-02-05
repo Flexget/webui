@@ -10,7 +10,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "jsx": "preserve",
-    "typeRoots": ["./node_modules/@types"],
     "skipLibCheck": true,
     "lib": [
       "esnext",
@@ -25,8 +24,5 @@
   },
   "include": [
     "./src"
-  ],
-  "exclude": [
-    "node_modules"
   ]
 }

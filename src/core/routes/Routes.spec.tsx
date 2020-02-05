@@ -6,7 +6,7 @@ import { Home } from '@material-ui/icons';
 import { useContainer } from 'unstated-next';
 import { renderWithWrapper } from 'utils/tests';
 import Routes from './Routes';
-import { registerPlugin } from './registry';
+import { registerPlugin } from '../plugins/registry';
 
 const LoginPage: FC = () => <div>Login Page</div>;
 
