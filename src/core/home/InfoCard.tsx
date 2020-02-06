@@ -53,12 +53,16 @@ const InfoCard = () => (
         please join in the effort!
       </p>
       <Typography>
-        This is the new webui written from the ground up in React and Typescript. lease report back
+        This is the new webui written from the ground up in React and Typescript. Please report back
         to us on how well it works, issues, ideas etc...
       </Typography>
+      <Typography gutterBottom>
+        There is a functional API with documentation available at <Link href="/api">/api</Link>
+      </Typography>
       <Typography>
-        The new webui is very close to feature parity with v1. In the meantime, if v2 isn&apos;t
-        suiting your needs you can add the following to your config:
+        The new webui has feature parity with v1. But if for whatever reason, if v2 is not suiting{' '}
+        your needs you can add the following to your config and then you can visit{' '}
+        <Link href="/v1">/v1</Link> to access old webui.
       </Typography>
       <pre>
         {YAML.stringify({
@@ -69,12 +73,6 @@ const InfoCard = () => (
           },
         })}
       </pre>
-      <Typography gutterBottom>
-        Then you can visit <Link href="/v1">/v1</Link> to access old webui
-      </Typography>
-      <Typography gutterBottom>
-        There is a functional API with documentation available at <Link href="/api">/api</Link>
-      </Typography>
       <Typography gutterBottom>
         More information:{' '}
         <Link href="http://flexget.com/Web-UI/v2" target="_blank" rel="noopener noreferrer">

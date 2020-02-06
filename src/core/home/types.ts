@@ -4,4 +4,5 @@ export interface CardInfo {
   path: string;
   Component: ComponentType;
   name: string;
+  Icon: ComponentType;
 }

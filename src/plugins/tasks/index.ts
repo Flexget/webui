@@ -1,3 +1,4 @@
+import { lazy } from 'react';
 import { createAsyncComponent } from 'utils/loading';
 import { registerPlugin } from 'core/plugins/registry';
 import { Assignment } from '@material-ui/icons';
@@ -12,4 +13,10 @@ export default () =>
     ),
     routeDisplayName: 'Tasks',
     routeIcon: Assignment,
+    cardComponent: lazy(() =>
+      import(
+        /* webpackChunkName: 'TasksHomeCard' */
+        'plugins/tasks/Card'
+      ),
+    ),
   });

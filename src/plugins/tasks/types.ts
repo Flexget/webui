@@ -43,6 +43,11 @@ export interface TaskStatus extends Task {
   lastExecution: Execution;
 }
 
+export interface TaskQueueEntry extends Task {
+  currentPhase: string;
+  currentPlugin: string;
+}
+
 export const enum SortByStatus {
   LastExecutionTime = 'last_execution_time',
   ID = 'id',
@@ -57,7 +62,7 @@ export const enum SortByStatus {
   AbortReason = 'abort_reason',
 }
 
-export interface TaskStatusOptions extends DefaultOptions {
+export interface TaskStatusOptions extends Partial<DefaultOptions> {
   sortBy: SortByStatus;
 }
 
