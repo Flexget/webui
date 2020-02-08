@@ -77,6 +77,12 @@ const Config: FC = () => {
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <NoPaddingWrapper>
         <ResetForm initialValues={initialValues} />
+        <div>
+          <p style={{marginLeft: '3%', marginTop: '1%', marginBottom: '0px'}}>Variables allow you reuse sections of your config file.
+          They are also useful for hiding sensitive information like passwords.<br /> Any variables you create in the WebUI are saved
+          in the DB and not to a file. You can find out more <a href='https://flexget.com/Plugins/variables'>here</a>.
+          </p>
+        </div>
         <div css={toolbar}>
           <div>
             <Button
