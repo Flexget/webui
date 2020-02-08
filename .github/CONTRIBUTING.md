@@ -31,7 +31,7 @@ $ yarn install
 SERVER=<flexget_api:port> yarn start
 ```
 Then you can go to http://localhost:8000 (use `PORT` env variable to run on a different port) in your browser.
-4. After you've made your changes, open a PR.
+4. After you've made your changes, run `yarn lint`, `yarn test` and then open a PR.
 
 ### Notes
 * We are in the process of moving from javascript to typescript and if you are making substantial changes to a javascript file, please convert it to typescript if you feel comfortable doing so. All new files should be written in typescript. 
