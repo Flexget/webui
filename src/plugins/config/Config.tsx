@@ -2,7 +2,7 @@ import React, { useState, useCallback, useMemo, FC } from 'react';
 import { hot } from 'react-hot-loader/root';
 import { Formik } from 'formik';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
-import { Button, Theme } from '@material-ui/core';
+import { Button, Theme, Link } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { useGlobalStatus } from 'core/status/hooks';
 import { NoPaddingWrapper } from 'common/styles';
@@ -20,6 +20,11 @@ export interface FormState {
 const toolbar = (theme: Theme) => css`
   display: flex;
   align-items: center;
+  padding: ${theme.typography.pxToRem(theme.spacing(2))}
+    ${theme.typography.pxToRem(theme.spacing(4))};
+`;
+
+const varDescription = (theme: Theme) => css`
   padding: ${theme.typography.pxToRem(theme.spacing(2))}
     ${theme.typography.pxToRem(theme.spacing(4))};
 `;
@@ -78,9 +83,11 @@ const Config: FC = () => {
       <NoPaddingWrapper>
         <ResetForm initialValues={initialValues} />
         <div>
-          <p style={{marginLeft: '3%', marginTop: '1%', marginBottom: '0px'}}>Variables allow you reuse sections of your config file.
-          They are also useful for hiding sensitive information like passwords.<br /> Any variables you create in the WebUI are saved
-          in the DB and not to a file. You can find out more <a href='https://flexget.com/Plugins/variables'>here</a>.
+          <p css={varDescription}>
+            Variables allow you reuse sections of your config file. They are also useful for hiding
+            sensitive information like passwords.
+            <br /> Any variables you create in the WebUI are saved in the DB and not to a file. You
+            can find out more <Link href="https://flexget.com/Plugins/variables">here</Link>.
           </p>
         </div>
         <div css={toolbar}>
