@@ -57,8 +57,8 @@ const InfoCard = () => (
         to us on how well it works, issues, ideas etc...
       </Typography>
       <Typography>
-        The new webui is very close to feature parity with v1. In the meantime, if v2 isn't suiting
-        your needs you can add the following to your config:
+        The new webui is very close to feature parity with v1. In the meantime, if v2 isn&apos;t
+        suiting your needs you can add the following to your config:
       </Typography>
       <pre>
         {YAML.stringify({
