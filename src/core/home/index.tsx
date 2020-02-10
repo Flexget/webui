@@ -5,12 +5,11 @@ import LoadingSpinner from 'common/LoadingSpinner';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { useGetHomeCards } from './hooks';
 import PluginCard from './PluginCard';
-import InfoCard from './InfoCard';
 
 const Home = () => {
   useInjectPageTitle('Flexget Manager');
   const { cards } = useGetHomeCards();
-  return cards.length ? (
+  return (
     <Suspense fallback={<LoadingSpinner />}>
       <Grid container>
         {cards.map(card => (
@@ -20,8 +19,6 @@ const Home = () => {
         ))}
       </Grid>
     </Suspense>
-  ) : (
-    <InfoCard />
   );
 };
 

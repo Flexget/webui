@@ -9,12 +9,20 @@ import {
   Theme,
   Tooltip,
 } from '@material-ui/core';
-import { EmojiObjects, EmojiObjectsOutlined, Menu as MenuIcon, Clear } from '@material-ui/icons';
+import {
+  EmojiObjects,
+  EmojiObjectsOutlined,
+  Menu as MenuIcon,
+  Clear,
+  Help,
+} from '@material-ui/icons';
 import { Spacer } from 'common/styles';
 import LoadingBar from 'core/status/LoadingBar';
 import { SpeedDialIcon } from '@material-ui/lab';
 import { ThemeContainer } from 'core/theme';
+import { useOverlayState } from 'utils/hooks';
 import { AppBarContainer } from './hooks';
+import InfoCard from './InfoCard';
 import OverflowMenu from './OverflowMenu';
 
 const appbar = (theme: Theme) => css`
@@ -75,6 +83,8 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
   const overflowMenuProps =
     contextualMode && contextualProps.menuItems ? contextualProps.menuItems : menuProps;
 
+  const [isHelpOpen, { open: openHelp, close: closeHelp }] = useOverlayState();
+
   return (
     <MUIAppBar color="inherit" position="static" css={appbarStyles} className={className}>
       <Toolbar>
@@ -90,6 +100,12 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
             <LightMode />
           </IconButton>
         </Tooltip>
+        <Tooltip title="More Info">
+          <IconButton onClick={openHelp} color="inherit" aria-label="more info">
+            <Help />
+          </IconButton>
+        </Tooltip>
+        <InfoCard open={isHelpOpen} onClose={closeHelp} />
         {!!overflowMenuProps && <OverflowMenu icons={overflowMenuProps} />}
       </Toolbar>
       {content}

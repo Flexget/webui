@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { css } from '@emotion/core';
 import {
-  Card,
-  CardContent,
   IconButton,
-  CardHeader,
   CardActions,
   Theme,
   Link,
   Tooltip,
   Typography,
+  Dialog,
+  DialogTitle,
+  DialogContent,
 } from '@material-ui/core';
 import { GitHub, ForumOutlined, Home, Chat } from '@material-ui/icons';
 import YAML from 'yaml';
@@ -29,30 +29,20 @@ const actions = css`
   justify-content: center;
 `;
 
-const cardHeader = (theme: Theme) => css`
-  background-color: ${theme.palette.primary.main};
-  color: ${theme.palette.primary.contrastText};
-`;
+interface Props {
+  open: boolean;
+  onClose: () => void;
+}
 
-const InfoCard = () => (
-  <Card css={wrapper}>
-    <CardHeader
-      title="Flexget Web Interface"
-      subheader="Under Development"
-      css={cardHeader}
-      titleTypographyProps={{
-        color: 'inherit',
-      }}
-      subheaderTypographyProps={{
-        color: 'inherit',
-      }}
-    />
-    <CardContent>
-      <p css={bold}>
+const InfoCard: FC<Props> = ({ open, onClose }) => (
+  <Dialog css={wrapper} open={open} onClose={onClose}>
+    <DialogTitle>Flexget Web Interface</DialogTitle>
+    <DialogContent dividers>
+      <Typography css={bold} gutterBottom>
         We need your help! If you are a React developer or can help with the layout/design/css then
         please join in the effort!
-      </p>
-      <Typography>
+      </Typography>
+      <Typography gutterBottom>
         This is the new webui written from the ground up in React and Typescript. Please report back
         to us on how well it works, issues, ideas etc...
       </Typography>
@@ -85,7 +75,7 @@ const InfoCard = () => (
           https://flexget.com/Chat
         </Link>
       </Typography>
-    </CardContent>
+    </DialogContent>
     <CardActions css={actions}>
       <Tooltip title="Github">
         <IconButton
@@ -128,7 +118,7 @@ const InfoCard = () => (
         </IconButton>
       </Tooltip>
     </CardActions>
-  </Card>
+  </Dialog>
 );
 
 export default InfoCard;
