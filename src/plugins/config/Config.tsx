@@ -25,8 +25,9 @@ const toolbar = (theme: Theme) => css`
 `;
 
 const varDescription = (theme: Theme) => css`
-  padding: ${theme.typography.pxToRem(theme.spacing(2))}
+  margin: ${theme.typography.pxToRem(theme.spacing(2))}
     ${theme.typography.pxToRem(theme.spacing(4))};
+  margin-bottom: 0;
 `;
 
 const button = (theme: Theme) => css`
