@@ -11,7 +11,20 @@ export enum SeriesFieldNames {
   ContentRating = 'contentRating',
   Runtime = 'runtime',
   Network = 'network',
+  FirstAiredDate = 'firstAiredDate',
   ID = 'seriesId',
+  Status = 'status',
+}
+
+export const enum IMDBFields {
+  Genres = 'imdbGenres',
+  Posters = 'imdbPhoto',
+  Rating = 'imdbScore',
+  Votes = 'imdbVotes',
+  Description = 'imdbPlotOutline',
+  Url = 'imdbUrl',
+  Runtime = 'imdbRuntime',
+  ID = 'imdbId',
 }
 
 export const enum TVDBFields {
@@ -25,6 +38,8 @@ export const enum TVDBFields {
   Network = 'tvdbNetwork',
   Runtime = 'tvdbRuntime',
   ID = 'tvdbId',
+  Status = 'tvdbStatus',
+  FirstAiredDate = 'tvdbFirstAirDate',
 }
 
 export const enum TraktFields {
@@ -53,10 +68,22 @@ export const enum TVMazeFields {
 // NOTE: Thes are in order of priority so if all fields are present, the first one in
 // the list will be used when rendered...possibly we can make this configurable later.
 export const seriesFieldList = [
+  // IMDB
+  {
+    [SeriesFieldNames.Genres]: IMDBFields.Genres,
+    [SeriesFieldNames.Posters]: IMDBFields.Posters,
+    [SeriesFieldNames.Rating]: IMDBFields.Rating,
+    [SeriesFieldNames.Votes]: IMDBFields.Votes,
+    [SeriesFieldNames.Description]: IMDBFields.Description,
+    [SeriesFieldNames.Url]: IMDBFields.Url,
+    [SeriesFieldNames.Runtime]: IMDBFields.Runtime,
+    [SeriesFieldNames.ID]: TVDBFields.ID,
+  },
   // TVDB
   {
     [SeriesFieldNames.Genres]: TVDBFields.Genres,
     [SeriesFieldNames.Posters]: TVDBFields.Posters,
+    [SeriesFieldNames.FirstAiredDate]: TVDBFields.FirstAiredDate,
     [SeriesFieldNames.Rating]: TVDBFields.Rating,
     [SeriesFieldNames.Description]: TVDBFields.Description,
     [SeriesFieldNames.Url]: TVDBFields.Url,
@@ -65,6 +92,8 @@ export const seriesFieldList = [
     [SeriesFieldNames.Runtime]: TVDBFields.Runtime,
     [SeriesFieldNames.Network]: TVDBFields.Network,
     [SeriesFieldNames.ID]: TVDBFields.ID,
+    [SeriesFieldNames.Status]: TVDBFields.Status,
+    [SeriesFieldNames.FirstAiredDate]: TVDBFields.FirstAiredDate,
   },
   // Trakt
   {
@@ -95,8 +124,10 @@ interface SeriesGetters {
   [SeriesFieldNames.Genres]: string[];
   [SeriesFieldNames.Posters]: string | string[];
   [SeriesFieldNames.Backdrops]: string | string[];
+  [SeriesFieldNames.Status]: string;
   [SeriesFieldNames.Rating]: number;
   [SeriesFieldNames.Votes]: number;
+  [SeriesFieldNames.FirstAiredDate]: string;
   [SeriesFieldNames.Description]: string;
   [SeriesFieldNames.Url]: string;
   [SeriesFieldNames.ContentRating]: string;

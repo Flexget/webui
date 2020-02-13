@@ -19,11 +19,15 @@ interface Props {
 }
 
 const EntryCard: FC<Props> = ({ entry, className, children }) => {
-  if (isMovie(entry)) {
+  if (isEpisode(entry)) {
     return (
-      <MovieCard entry={toMovieEntry(entry)} className={className}>
+      <EpisodeCard
+        series={toSeriesEntry(entry)}
+        entry={toEpisodeEntry(entry)}
+        className={className}
+      >
         {children}
-      </MovieCard>
+      </EpisodeCard>
     );
   }
 
@@ -35,15 +39,11 @@ const EntryCard: FC<Props> = ({ entry, className, children }) => {
     );
   }
 
-  if (isEpisode(entry)) {
+  if (isMovie(entry)) {
     return (
-      <EpisodeCard
-        series={toSeriesEntry(entry)}
-        entry={toEpisodeEntry(entry)}
-        className={className}
-      >
+      <MovieCard entry={toMovieEntry(entry)} className={className}>
         {children}
-      </EpisodeCard>
+      </MovieCard>
     );
   }
 

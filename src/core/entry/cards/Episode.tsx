@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
 import { Typography, Theme } from '@material-ui/core';
 import { css } from '@emotion/core';
+import { StarRate } from '@material-ui/icons';
 import LinkDropdown from 'core/entry/cards/LinkDropdown';
 import { useEpisodeLookup } from 'core/entry/lookup/episodes';
 import { EpisodeEntry, TVMazeFields, TVDBFields } from '../fields/episodes';
 import { SeriesEntry, TraktFields } from '../fields/series';
-import { Bullet, titleArea, selectableType } from './styles';
+import { Bullet, titleArea, ratingLine, selectableType } from './styles';
 import BaseCard from './BaseCard';
 
 interface Props {
@@ -23,7 +24,17 @@ const summary = (theme: Theme) => css`
 const EpisodeCard: FC<Props> = ({ series: rawSeries, entry: rawEpisode, className, children }) => {
   const {
     loading,
-    seriesEntry: { seriesName, genres = [], contentRating, network, ...series },
+    seriesEntry: {
+      seriesName,
+      genres = [],
+      contentRating,
+      network,
+      firstAiredDate,
+      votes,
+      status,
+      rating,
+      ...series
+    },
     entry: {
       seriesSeason,
       seriesEpisode,
@@ -58,6 +69,9 @@ const EpisodeCard: FC<Props> = ({ series: rawSeries, entry: rawEpisode, classNam
         </Typography>
         <LinkDropdown options={options} />
       </div>
+      <Typography variant="h6" color="textPrimary" css={ratingLine}>
+        <StarRate color="primary" /> {rating} ({votes}) - ({firstAiredDate}) - ({status})
+      </Typography>
       <Typography variant="overline" color="textSecondary">
         {quality}
         {!!quality && <Bullet />}

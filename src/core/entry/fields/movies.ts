@@ -48,6 +48,17 @@ export const enum TMDBFields {
 // NOTE: Thes are in order of priority so if all fields are present, the first one in
 // the list will be used when rendered...possibly we can make this configurable later.
 export const movieFieldList = [
+  // IMDB
+  {
+    [MovieFieldNames.Genres]: IMDBFields.Genres,
+    [MovieFieldNames.Posters]: IMDBFields.Posters,
+    [MovieFieldNames.Rating]: IMDBFields.Rating,
+    [MovieFieldNames.Votes]: IMDBFields.Votes,
+    [MovieFieldNames.Description]: IMDBFields.Description,
+    [MovieFieldNames.Url]: IMDBFields.Url,
+    [MovieFieldNames.Runtime]: IMDBFields.Runtime,
+    [MovieFieldNames.ID]: IMDBFields.ID,
+  },
   // TMDB
   {
     [MovieFieldNames.Genres]: TMDBFields.Genres,
@@ -69,18 +80,7 @@ export const movieFieldList = [
     [MovieFieldNames.Url]: TraktFields.Url,
     [MovieFieldNames.Runtime]: TraktFields.Runtime,
     [MovieFieldNames.ID]: TraktFields.ID,
-  },
-  // IMDB
-  {
-    [MovieFieldNames.Genres]: IMDBFields.Genres,
-    [MovieFieldNames.Posters]: IMDBFields.Posters,
-    [MovieFieldNames.Rating]: IMDBFields.Rating,
-    [MovieFieldNames.Votes]: IMDBFields.Votes,
-    [MovieFieldNames.Description]: IMDBFields.Description,
-    [MovieFieldNames.Url]: IMDBFields.Url,
-    [MovieFieldNames.Runtime]: IMDBFields.Runtime,
-    [MovieFieldNames.ID]: IMDBFields.ID,
-  },
+  }
 ] as const;
 
 interface MovieGetters {
