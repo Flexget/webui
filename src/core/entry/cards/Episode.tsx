@@ -5,7 +5,7 @@ import { StarRate } from '@material-ui/icons';
 import LinkDropdown from 'core/entry/cards/LinkDropdown';
 import { useEpisodeLookup } from 'core/entry/lookup/episodes';
 import { EpisodeEntry, TVMazeFields, TVDBFields } from '../fields/episodes';
-import { SeriesEntry, TraktFields } from '../fields/series';
+import { IMDBFields, SeriesEntry, TraktFields } from '../fields/series';
 import { Bullet, titleArea, ratingLine, selectableType } from './styles';
 import BaseCard from './BaseCard';
 
@@ -43,15 +43,16 @@ const EpisodeCard: FC<Props> = ({ series: rawSeries, entry: rawEpisode, classNam
       episodeName,
       seriesId,
       quality,
-      ...entry
+      ...hydratedEntry
     },
   } = useEpisodeLookup(rawSeries, rawEpisode);
   const traktUrl = series[TraktFields.Url]
-    ? `${entry[TraktFields.Url]}/seasons/${seriesSeason}/episodes/${seriesEpisode}`
+    ? `${hydratedEntry[TraktFields.Url]}/seasons/${seriesSeason}/episodes/${seriesEpisode}`
     : undefined;
   const options = [
-    { url: entry[TVMazeFields.Url], label: 'TVMaze' },
-    { url: entry[TVDBFields.Url], label: 'TVDB' },
+    { url: hydratedEntry[IMDBFields.Url], label: 'IMDB' },
+    { url: hydratedEntry[TVMazeFields.Url], label: 'TVMaze' },
+    { url: hydratedEntry[TVDBFields.Url], label: 'TVDB' },
     { url: traktUrl, label: 'Trakt' },
   ];
 

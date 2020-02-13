@@ -3,7 +3,7 @@ import { Typography, Theme } from '@material-ui/core';
 import { css } from '@emotion/core';
 import BaseCard from 'core/entry/cards/BaseCard';
 import { StarRate } from '@material-ui/icons';
-import { SeriesEntry, TraktFields, TVDBFields, TVMazeFields } from '../fields/series';
+import { SeriesEntry, TraktFields, TVDBFields, TVMazeFields, IMDBFields } from '../fields/series';
 import { Bullet, titleArea, ratingLine, selectableType } from './styles';
 import LinkDropdown from './LinkDropdown';
 import { useSeriesLookup } from '../lookup/series';
@@ -34,6 +34,7 @@ const SeriesCard: FC<Props> = ({ entry, className, children }) => {
     },
   } = useSeriesLookup(entry);
   const options = [
+    { url: hydratedEntry[IMDBFields.Url], label: 'IMDB' },
     { url: hydratedEntry[TVMazeFields.Url], label: 'TVMaze' },
     { url: hydratedEntry[TVDBFields.Url], label: 'TVDB' },
     { url: hydratedEntry[TraktFields.Url], label: 'Trakt' },
