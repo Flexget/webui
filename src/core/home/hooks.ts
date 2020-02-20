@@ -7,14 +7,14 @@ export const useGetHomeCards = () => {
   const { pluginMap } = useContainer(PluginContainer);
   const cards: CardInfo[] = useMemo(
     () =>
-      Object.entries(pluginMap).flatMap(([path, { routeIcon, cardComponent, routeDisplayName }]) =>
+      Object.entries(pluginMap).flatMap(([path, { icon, component, cardComponent, displayName }]) =>
         cardComponent
           ? [
               {
-                path,
+                path: component && path,
                 Component: cardComponent,
-                name: routeDisplayName,
-                Icon: routeIcon,
+                name: displayName,
+                Icon: icon,
               },
             ]
           : [],

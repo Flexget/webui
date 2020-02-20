@@ -17,8 +17,8 @@ interface Props {
 }
 
 registerPlugin('/home', {
-  routeDisplayName: 'Home',
-  routeIcon: Home,
+  displayName: 'Home',
+  icon: Home,
   component: PrivatePage,
 });
 

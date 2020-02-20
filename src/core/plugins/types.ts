@@ -1,9 +1,9 @@
 import { ComponentType } from 'react';
 
 export interface Plugin {
-  component: ComponentType;
-  routeDisplayName: string;
-  routeIcon: ComponentType;
+  component?: ComponentType;
+  displayName: string;
+  icon: ComponentType;
   cardComponent?: ComponentType;
 }
 export type PluginMap = Record<string, Plugin>;

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { css } from '@emotion/core';
-import { Card, CardActionArea, Avatar, Theme, Typography } from '@material-ui/core';
+import { Card, Avatar, Theme, Typography, CardActions, Button } from '@material-ui/core';
 import { Link } from 'common/styles';
 import { CardInfo } from './types';
 
@@ -21,17 +21,33 @@ const avatar = (theme: Theme) => css`
   margin-right: ${theme.typography.pxToRem(theme.spacing(1))};
 `;
 
+const button = () => css`
+  margin-left: auto;
+`;
+
+const card = () => css`
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 const PluginCard: FC<Props> = ({ card: { Component, Icon, path, name } }) => (
-  <Card>
-    <CardActionArea component={Link} to={path}>
-      <div css={header}>
-        <Avatar css={avatar}>
-          <Icon />
-        </Avatar>
-        <Typography variant="h5">{name}</Typography>
-      </div>
-      <Component />
-    </CardActionArea>
+  <Card css={card}>
+    <div css={header}>
+      <Avatar css={avatar}>
+        <Icon />
+      </Avatar>
+      <Typography variant="h5">{name}</Typography>
+    </div>
+    <Component />
+    {path && (
+      <CardActions>
+        <Button css={button} color="primary" component={Link} to={path}>
+          See More
+        </Button>
+      </CardActions>
+    )}
   </Card>
 );
 

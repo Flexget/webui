@@ -16,22 +16,22 @@ const TestHome: FC = () => {
 };
 
 registerPlugin('/tasks', {
-  routeDisplayName: 'Tasks',
-  routeIcon: Home,
+  displayName: 'Tasks',
+  icon: Home,
   component: () => <div />,
   cardComponent: () => <div />,
 });
 
 registerPlugin('/series', {
-  routeDisplayName: 'Series',
-  routeIcon: Tv,
+  displayName: 'Series',
+  icon: Tv,
   component: () => <div />,
   cardComponent: () => <div />,
 });
 
 registerPlugin('/movies', {
-  routeDisplayName: 'Movies',
-  routeIcon: Movie,
+  displayName: 'Movies',
+  icon: Movie,
   component: () => <div />,
 });
 

@@ -1,15 +1,15 @@
-import { createAsyncComponent } from 'utils/loading';
-import { registerPlugin } from 'core/plugins/registry';
+import { lazy } from 'react';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
+import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>
   registerPlugin('/series', {
-    component: createAsyncComponent(() =>
+    component: lazy(() =>
       import(
         /* webpackChunkName: 'SeriesPlugin' */
         'plugins/series/Series'
       ),
     ),
-    routeDisplayName: 'Series',
-    routeIcon: LiveTvIcon,
+    displayName: 'Series',
+    icon: LiveTvIcon,
   });

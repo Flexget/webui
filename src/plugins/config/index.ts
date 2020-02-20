@@ -1,10 +1,10 @@
-import { createAsyncComponent } from 'utils/loading';
-import { registerPlugin } from 'core/plugins/registry';
+import { lazy } from 'react';
 import { CreateTwoTone } from '@material-ui/icons';
+import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>
   registerPlugin('/config', {
-    component: createAsyncComponent(async () => {
+    component: lazy(async () => {
       await import(
         /* webpackChunkName: 'ConfigPlugin' */
         '@flexget/monaco-yaml/lib/esm/monaco.contribution'
@@ -14,6 +14,6 @@ export default () =>
         'plugins/config/Config'
       );
     }),
-    routeDisplayName: 'Config',
-    routeIcon: CreateTwoTone,
+    displayName: 'Config',
+    icon: CreateTwoTone,
   });

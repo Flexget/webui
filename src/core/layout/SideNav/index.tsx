@@ -15,10 +15,10 @@ import { useHistory } from 'react-router';
 import { Route } from 'core/routes/types';
 import { useGetRoutes } from 'core/routes/hooks';
 
+import Menu from 'core/layout/SideNav/Menu';
 import Version from './Version';
 import Entry from './Entry';
 import Logo from './Logo';
-import Menu from './Menu';
 import {
   drawerOpen,
   drawerClose,

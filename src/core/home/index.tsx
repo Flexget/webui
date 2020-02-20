@@ -11,7 +11,7 @@ const Home = () => {
   const { cards } = useGetHomeCards();
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <Grid container>
+      <Grid container spacing={3}>
         {cards.map(card => (
           <Grid item key={card.path} xs={12} md={6} lg={4}>
             <PluginCard card={card} />

@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
 
 export interface CardInfo {
-  path: string;
+  path?: string;
   Component: ComponentType;
   name: string;
   Icon: ComponentType;

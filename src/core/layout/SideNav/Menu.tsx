@@ -6,11 +6,12 @@ import { Sync, Storage, ExitToApp, PowerSettingsNew } from '@material-ui/icons';
 import { AuthContainer } from 'core/auth/hooks';
 import { useFlexgetAPI } from 'core/api';
 import { useGlobalStatus } from 'core/status/hooks';
+import ShutdownDialog from 'core/operations/ShutdownDialog';
+import { useServerOperation } from 'core/operations/hooks';
+import Operations from 'core/operations/Operations';
+import { ServerOperation } from 'core/operations/types';
 import { Method } from 'utils/fetch';
 import { useOverlayState } from 'utils/hooks';
-import ShutdownDialog from './ShutdownDialog';
-import { useServerOperation, ServerOperation } from './hooks';
-import Operations from './Operations';
 
 interface Props {
   anchorEl?: Element;

@@ -1,15 +1,15 @@
-import { createAsyncComponent } from 'utils/loading';
+import { lazy } from 'react';
 import CheckIcon from '@material-ui/icons/Check';
 import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>
   registerPlugin('/pendingList', {
-    component: createAsyncComponent(() =>
+    component: lazy(() =>
       import(
         /* webpackChunkName: 'PendingListPlugin' */
         'plugins/lists/pending/PendingList'
       ),
     ),
-    routeDisplayName: 'Pending List',
-    routeIcon: CheckIcon,
+    displayName: 'Pending List',
+    icon: CheckIcon,
   });
