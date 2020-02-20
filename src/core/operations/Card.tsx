@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from 'react';
-import { MenuItem, ListItemIcon, CardContent, CardActions, Button } from '@material-ui/core';
+import { CardActions, Button } from '@material-ui/core';
 import { Sync, Storage, PowerSettingsNew } from '@material-ui/icons';
 
 import { useGlobalStatus } from 'core/status/hooks';
