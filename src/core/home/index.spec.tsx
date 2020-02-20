@@ -22,10 +22,9 @@ registerPlugin('/tasks', {
   cardComponent: () => <div />,
 });
 
-registerPlugin('/series', {
+registerPlugin('series', {
   displayName: 'Series',
   icon: Tv,
-  component: () => <div />,
   cardComponent: () => <div />,
 });
 
@@ -55,9 +54,12 @@ describe('core/home', () => {
   });
 
   it('should have plugin links', () => {
-    const { queryByText } = renderWithWrapper(<TestHome />);
+    const { queryAllByText } = renderWithWrapper(<TestHome />);
 
-    expect(queryByText('Tasks')?.closest('a')).toHaveAttribute('href', '/tasks');
-    expect(queryByText('Series')?.closest('a')).toHaveAttribute('href', '/series');
+    const buttons = queryAllByText('See More');
+
+    expect(buttons).toHaveLength(1);
+
+    expect(buttons[0].closest('a')).toHaveAttribute('href', '/tasks');
   });
 });
