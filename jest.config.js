@@ -8,6 +8,7 @@ module.exports = {
     '!src/**/fixtures.{ts,tsx}',
     '!src/plugins/*/index.ts',
     '!src/plugins/lists/{entry,movies,pending}/index.ts',
+    '!src/core/operations/index.ts',
   ],
   coverageThreshold: {
     global: {
