@@ -7,7 +7,7 @@ export default () =>
     component: lazy(async () => {
       await import(
         /* webpackChunkName: 'ConfigPlugin' */
-        '@flexget/monaco-yaml/lib/esm/monaco.contribution'
+        'monaco-yaml/esm/monaco.contribution'
       );
       return import(
         /* webpackChunkName: 'ConfigPlugin' */

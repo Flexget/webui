@@ -38,6 +38,6 @@ module.exports = {
   },
   snapshotSerializers: ['enzyme-to-json/serializer', 'jest-emotion'],
   setupFiles: ['raf/polyfill', '<rootDir>/src/utils/tests/setupFiles.ts'],
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect', 'jest-extended', 'jest-chain'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect', 'jest-extended'],
   testURL: 'http://localhost/',
 };

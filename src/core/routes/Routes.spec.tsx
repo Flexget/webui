@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { cleanup } from '@testing-library/react';
 import { AuthContainer } from 'core/auth/hooks';
 import { MemoryRouter, Route, Switch, useHistory } from 'react-router';
-import { Home } from '@material-ui/icons';
+import { Home, PowerSettingsNew } from '@material-ui/icons';
 import { useContainer } from 'unstated-next';
 import { renderWithWrapper } from 'utils/tests';
 import Routes from './Routes';
@@ -20,6 +20,12 @@ registerPlugin('/home', {
   displayName: 'Home',
   icon: Home,
   component: PrivatePage,
+});
+
+registerPlugin('settings', {
+  displayName: 'Settings',
+  icon: PowerSettingsNew,
+  cardComponent: () => <div />,
 });
 
 const TestRoutes: FC<Props> = ({ loggedIn = false }) => {
