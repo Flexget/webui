@@ -17,6 +17,7 @@ import {
   TaskStatus,
   TaskStatusOptions,
   TaskExecuteState,
+  TaskQueueEntry,
 } from './types';
 
 export const enum Constants {
@@ -55,7 +56,7 @@ interface TaskState {
 
 export const useGetTaskStatuses = (options: TaskStatusOptions) => {
   const [tasks, setTasks] = useState<TaskState>({ tasks: [], total: 0 });
-  const query = stringify(snakeCase({ ...options, page: options.page + 1 }));
+  const query = stringify(snakeCase({ ...options, page: (options.page ?? 0) + 1 }));
   const [state, request] = useFlexgetAPI<TaskStatus[]>(`/tasks/status?${query}`);
 
   useEffect(() => {
@@ -69,6 +70,23 @@ export const useGetTaskStatuses = (options: TaskStatusOptions) => {
   }, [request]);
 
   return { ...state, ...tasks };
+};
+
+export const useGetTaskQueue = () => {
+  const [tasks, setTasks] = useState<TaskQueueEntry[]>([]);
+  const [state, request] = useFlexgetAPI<TaskQueueEntry[]>(`/tasks/queue`);
+
+  useEffect(() => {
+    const fn = async () => {
+      const resp = await request();
+      if (resp.ok) {
+        setTasks(resp.data);
+      }
+    };
+    fn();
+  }, [request]);
+
+  return { ...state, tasks };
 };
 
 export const useGetTask = (id: number) => {

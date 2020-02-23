@@ -1,15 +1,15 @@
-import { createAsyncComponent } from 'utils/loading';
-import { registerPlugin } from 'core/routes/registry';
+import { lazy } from 'react';
 import { MovieOutlined } from '@material-ui/icons';
+import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>
   registerPlugin('/movieList', {
-    component: createAsyncComponent(() =>
+    component: lazy(() =>
       import(
         /* webpackChunkName: 'MovieListPlugin' */
         'plugins/lists/movies/MovieList'
       ),
     ),
-    routeDisplayName: 'Movie List',
-    routeIcon: MovieOutlined,
+    displayName: 'Movie List',
+    icon: MovieOutlined,
   });

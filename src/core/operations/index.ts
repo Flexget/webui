@@ -1,15 +1,15 @@
 import { lazy } from 'react';
-import ListAltIcon from '@material-ui/icons/ListAlt';
+import { Settings } from '@material-ui/icons';
 import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>
-  registerPlugin('/log', {
-    component: lazy(() =>
+  registerPlugin('settings', {
+    cardComponent: lazy(() =>
       import(
         /* webpackChunkName: 'LogPlugin' */
-        'plugins/log/Log'
+        './Card'
       ),
     ),
-    displayName: 'Log',
-    icon: ListAltIcon,
+    displayName: 'Server Settings',
+    icon: Settings,
   });

@@ -1,4 +1,4 @@
-import { Plugin, PluginEvent, PluginMap, SubscribeHandler } from './types';
+import { PluginEvent, Plugin, PluginMap, SubscribeHandler } from './types';
 
 const enum Events {
   RegisterPlugin = 'register',
@@ -29,8 +29,8 @@ export class PluginRegistry {
       throw Error('Plugin requires path');
     }
 
-    if (!plugin.routeDisplayName || !plugin.routeIcon || !plugin.component) {
-      throw Error('Plugin requires routeDisplayname, routeIcon, and component');
+    if (!plugin.displayName || !plugin.icon) {
+      throw Error('Plugin requires displayName and icon');
     }
 
     this.plugins = { ...this.plugins, [path]: plugin };

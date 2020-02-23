@@ -17,7 +17,7 @@ interface Props {
   loading?: boolean;
 }
 
-const LoadingSpinner: FC<Props> = ({ loading = false, children }) => {
+const LoadingSpinner: FC<Props> = ({ loading = true, children }) => {
   if (loading) {
     return (
       <div css={wrapper}>

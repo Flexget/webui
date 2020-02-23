@@ -1,8 +1,8 @@
 import { ComponentType } from 'react';
 
-export interface Route {
-  component: ComponentType;
+export interface CardInfo {
+  path?: string;
+  Component: ComponentType;
   name: string;
   Icon: ComponentType;
-  path: string;
 }

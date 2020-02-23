@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Suspense, FC, lazy } from 'react';
 import { hot } from 'react-hot-loader/root';
 import { StylesProvider } from '@material-ui/styles';
 import { CssBaseline } from '@material-ui/core';
@@ -7,7 +7,6 @@ import { Global, css } from '@emotion/core';
 import PrivateRoute from 'core/routes/PrivateRoute';
 import Layout from 'core/layout/Layout';
 import Routes from 'core/routes/Routes';
-import { createAsyncComponent } from 'utils/loading';
 import registerHistory from 'plugins/history';
 import registerLog from 'plugins/log';
 import registerTasks from 'plugins/tasks';
@@ -16,14 +15,17 @@ import registerConfig from 'plugins/config';
 import registerPendingList from 'plugins/lists/pending';
 import registerMovieList from 'plugins/lists/movies';
 import registerEntryList from 'plugins/lists/entry';
+import registerOperations from 'core/operations';
 import { AuthContainer } from 'core/auth/hooks';
 import { TaskContainer } from 'plugins/tasks/hooks';
 import { StatusContainer } from 'core/status/hooks';
-import { PluginContainer } from 'core/routes/hooks';
+import { PluginContainer } from 'core/plugins/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
 import { VersionContainer } from 'core/layout/SideNav/hooks';
 import { uriParser } from 'utils';
+import LoadingSpinner from 'common/LoadingSpinner';
 
+registerOperations();
 registerHistory();
 registerLog();
 registerConfig();
@@ -52,11 +54,11 @@ const globals = css`
   }
 `;
 
-const Home = createAsyncComponent(() => import('core/home'));
-const Login = createAsyncComponent(() => import('core/auth/Login'));
+const Home = lazy(() => import('core/home'));
+const Login = lazy(() => import('core/auth/Login'));
 const basename = uriParser(document.baseURI).pathname;
 
-const Root = () => (
+const Root: FC = () => (
   <ThemeProvider>
     <Global styles={globals} />
     <CssBaseline />
@@ -65,23 +67,27 @@ const Root = () => (
         <AuthContainer.Provider>
           <VersionContainer.Provider>
             <BrowserRouter basename={basename}>
-              <Switch>
-                <Route path="/login" exact component={Login} />
-                <Route
-                  render={() => (
-                    <PluginContainer.Provider>
-                      <TaskContainer.Provider>
-                        <Layout>
-                          <Switch>
-                            <PrivateRoute path="/" exact component={Home} />
-                            <Route component={Routes} />
-                          </Switch>
-                        </Layout>
-                      </TaskContainer.Provider>
-                    </PluginContainer.Provider>
-                  )}
-                />
-              </Switch>
+              <Suspense fallback={LoadingSpinner}>
+                <Switch>
+                  <Route path="/login" exact component={Login} />
+                  <Route
+                    render={() => (
+                      <PluginContainer.Provider>
+                        <TaskContainer.Provider>
+                          <Layout>
+                            <Suspense fallback={LoadingSpinner}>
+                              <Switch>
+                                <PrivateRoute path="/" exact component={Home} />
+                                <Route component={Routes} />
+                              </Switch>
+                            </Suspense>
+                          </Layout>
+                        </TaskContainer.Provider>
+                      </PluginContainer.Provider>
+                    )}
+                  />
+                </Switch>
+              </Suspense>
             </BrowserRouter>
           </VersionContainer.Provider>
         </AuthContainer.Provider>

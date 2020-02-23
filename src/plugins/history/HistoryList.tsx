@@ -33,7 +33,7 @@ const HistoryList = forwardRef<InfiniteScroll, Props>(({ options, loadMore }, sc
       <InfiniteScroll
         hasMore={loading ? false : items.length < total}
         loadMore={loadMore}
-        loader={<LoadingSpinner loading key={0} />}
+        loader={<LoadingSpinner key={0} />}
         ref={scrollRef}
         useWindow={false}
       >
