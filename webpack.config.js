@@ -33,7 +33,10 @@ if (__DEV__) {
 }
 
 const plugins = [
-  new webpack.DefinePlugin({ __DEV__ }),
+  new webpack.DefinePlugin({
+    __DEV__,
+    'process.env.npm_package_version': JSON.stringify(process.env.npm_package_version)
+  }),
   new ForkTsCheckerWebpackPlugin({
     tsconfig: path.resolve('tsconfig.json'),
   }),
