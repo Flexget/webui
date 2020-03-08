@@ -7,6 +7,7 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import Typography from '@material-ui/core/Typography';
 import { VersionContainer } from './hooks';
 
+const webVersion = process.env.npm_package_version;
 interface Props {
   className?: string;
 }
@@ -45,6 +46,7 @@ const Version: FC<Props> = ({ className }) => {
           </IconButton>
         )}
       </Typography>
+      <Typography>{`Web UI: ${webVersion}`}</Typography>
       <Typography>{`API: ${apiVersion}`}</Typography>
     </div>
   );
