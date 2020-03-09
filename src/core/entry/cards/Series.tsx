@@ -30,6 +30,9 @@ const SeriesCard: FC<Props> = ({ entry, className, children }) => {
       genres = [],
       description = '',
       contentRating = '',
+      firstAiredDate,
+      votes,
+      status,
       ...hydratedEntry
     },
   } = useSeriesLookup(entry);
@@ -61,7 +64,7 @@ const SeriesCard: FC<Props> = ({ entry, className, children }) => {
         <LinkDropdown options={options} />
       </div>
       <Typography variant="h6" color="textPrimary" css={ratingLine}>
-        <StarRate color="primary" /> {rating}
+        <StarRate color="primary" /> {rating} ({votes}) - ({firstAiredDate}) - ({status})
       </Typography>
       <Typography variant="overline" color="textSecondary">
         {network}
