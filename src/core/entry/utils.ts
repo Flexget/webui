@@ -10,7 +10,7 @@ import {
 
 export const isMovie = (entry: RawEntry): entry is RawMovieEntry => !!entry.movieName;
 export const isSeries = (entry: RawEntry): entry is RawSeriesEntry =>
-  !!entry.seriesName && !entry.seriesSeason;
+  !!entry.seriesName && !!entry.seriesSeason;
 export const isEpisode = (entry: RawEntry): entry is RawEpisodeEntry & SeriesEntry =>
   !!(entry.seriesSeason && entry.seriesEpisode && entry.seriesName);
 
