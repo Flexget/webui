@@ -1,15 +1,15 @@
-import { createAsyncComponent } from 'utils/loading';
-import { registerPlugin } from 'core/routes/registry';
+import { lazy } from 'react';
 import HistoryIcon from '@material-ui/icons/History';
+import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>
   registerPlugin('/history', {
-    component: createAsyncComponent(() =>
+    component: lazy(() =>
       import(
         /* webpackChunkName: 'HistoryPlugin' */
         'plugins/history/History'
       ),
     ),
-    routeDisplayName: 'History',
-    routeIcon: HistoryIcon,
+    displayName: 'History',
+    icon: HistoryIcon,
   });

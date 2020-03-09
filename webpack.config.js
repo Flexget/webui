@@ -113,6 +113,7 @@ const config = {
       },
       {
         test: /\.css$/,
+
         use: [
           ...(__DEV__
             ? ['style-loader']

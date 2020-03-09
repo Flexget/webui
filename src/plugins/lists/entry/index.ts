@@ -1,15 +1,15 @@
-import { createAsyncComponent } from 'utils/loading';
-import { registerPlugin } from 'core/routes/registry';
+import { lazy } from 'react';
 import { ViewList } from '@material-ui/icons';
+import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>
   registerPlugin('/entryList', {
-    component: createAsyncComponent(() =>
+    component: lazy(() =>
       import(
         /* webpackChunkName: 'EntryListPlugin' */
         'plugins/lists/entry/EntryList'
       ),
     ),
-    routeDisplayName: 'Entry List',
-    routeIcon: ViewList,
+    displayName: 'Entry List',
+    icon: ViewList,
   });

@@ -2,7 +2,8 @@ import React, { FC, useMemo, useCallback, useState, ChangeEvent } from 'react';
 import { Drawer, Divider, Button, Theme, Typography } from '@material-ui/core';
 import { css } from '@emotion/core';
 import SelectField from 'common/inputs/SelectField';
-import { useGetPlugins, DatabaseOperation, useDBOperation } from './hooks';
+import { useGetPlugins, useDBOperation } from './hooks';
+import { DatabaseOperation } from './types';
 
 interface Props {
   open?: boolean;

@@ -8,6 +8,7 @@ module.exports = {
     '!src/**/fixtures.{ts,tsx}',
     '!src/plugins/*/index.ts',
     '!src/plugins/lists/{entry,movies,pending}/index.ts',
+    '!src/core/operations/index.ts',
   ],
   coverageThreshold: {
     global: {
@@ -38,6 +39,6 @@ module.exports = {
   },
   snapshotSerializers: ['enzyme-to-json/serializer', 'jest-emotion'],
   setupFiles: ['raf/polyfill', '<rootDir>/src/utils/tests/setupFiles.ts'],
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect', 'jest-extended', 'jest-chain'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect', 'jest-extended'],
   testURL: 'http://localhost/',
 };

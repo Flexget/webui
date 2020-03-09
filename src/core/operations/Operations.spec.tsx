@@ -3,7 +3,7 @@ import fetchMock from 'fetch-mock';
 import { cleanup, fireEvent, RenderResult } from '@testing-library/react';
 import { renderWithWrapper } from 'utils/tests';
 import InfoStatus from 'core/status/InfoStatus';
-import { DatabaseOperation } from 'core/layout/SideNav/hooks';
+import { DatabaseOperation } from './types';
 import Operations from './Operations';
 
 interface Props {
