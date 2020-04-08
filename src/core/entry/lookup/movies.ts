@@ -7,6 +7,7 @@ import { toMovieEntry } from '../utils';
 
 export interface TMDBOptions {
   title?: string;
+  imdbId?: string | number;
   tmdbId?: string | number;
   language?: string;
   year?: number;
@@ -168,6 +169,7 @@ export const useTraktLookup = (options: TraktOptions) => {
 export const useMovieLookup = (movie: MovieEntry) => {
   const { loading: tmdbLoading, entry: tmdbEntry } = useTMDBLookup({
     title: movie.movieName,
+    imdbId: movie[IMDBFields.ID],    
     tmdbId: movie[TMDBFields.ID],
     includePosters: true,
     includeBackdrops: true,
