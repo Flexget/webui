@@ -169,7 +169,7 @@ export const useTraktLookup = (options: TraktOptions) => {
 export const useMovieLookup = (movie: MovieEntry) => {
   const { loading: tmdbLoading, entry: tmdbEntry } = useTMDBLookup({
     title: movie.movieName,
-    imdbId: movie[IMDBFields.ID],    
+    imdbId: movie[IMDBFields.ID],
     tmdbId: movie[TMDBFields.ID],
     includePosters: true,
     includeBackdrops: true,
