@@ -62,6 +62,7 @@ const AddEntryDialog: FC<Props> = ({ open = false, onClose }) => {
                 autoFocus={index === 0}
               />
             ))}
+            <TextField id="movie_year" label="Movie Year" fullWidth name="movie_year" type="number"/>
           </DialogContent>
           <DialogActions>
             <Button onClick={onClose} type="button">
