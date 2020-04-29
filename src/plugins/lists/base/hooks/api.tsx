@@ -35,7 +35,7 @@ export interface Card<T extends Entry> {
 interface EntryFields {
   label: string;
   name: string;
-  type: string;
+  type?: string;
 }
 
 interface ListState<T extends Entry> {
