@@ -28,12 +28,10 @@ export const EntryListContainer = createPluginContainer(() => {
         {
           label: 'Entry Title',
           name: 'title',
-          type: 'text',
         },
         {
           label: 'Entry URL',
           name: 'originalUrl',
-          type: 'text',
         },
       ],
       [],
