@@ -73,6 +73,11 @@ export const MovieListContainer = createPluginContainer(() => {
           label: 'Movie Name',
           name: 'movieName',
         },
+        {
+          label: 'Movie Year',
+          name: 'movieYear',
+          type: 'number',
+        },
       ],
       [],
     ),
