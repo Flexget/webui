@@ -42,7 +42,6 @@ interface TMDBMovie {
 
 const tmdbToFields = (movie: TMDBMovie): RawMovieFields => ({
   movieName: movie.name,
-  //  movieName: movie.originalName,
   movieYear: movie.year,
   [TMDBFields.Originalname]: movie.originalName,
   [TMDBFields.Genres]: movie.genres,
