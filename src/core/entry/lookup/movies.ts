@@ -50,7 +50,7 @@ const tmdbToFields = (movie: TMDBMovie): RawMovieFields => ({
   [TMDBFields.Backdrops]: movie.backdrops?.map(({ urls }) => urls.original),
   [TMDBFields.Rating]: movie.rating,
   [TMDBFields.Votes]: movie.votes,
-  [TMDBFields.Url]: movie.imdbId,
+  [TMDBFields.Url]: movie.homepage,
   [TMDBFields.Runtime]: movie.runtime,
   [TMDBFields.ID]: movie.id,
   [TMDBFields.Description]: movie.overview,
