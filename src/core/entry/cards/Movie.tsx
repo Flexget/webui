@@ -31,7 +31,6 @@ const MovieCard: FC<Props> = ({ entry, className, children }) => {
       runtime = 0,
       genres = [],
       description = '',
-      originalname,
       quality,
       rating,
       votes,
@@ -58,9 +57,7 @@ const MovieCard: FC<Props> = ({ entry, className, children }) => {
       >
         <div css={titleArea}>
           <Typography css={selectableType} variant="h5" component="h2" color="textPrimary">
-            {movieName}
-            {originalname !== movieName && ' - '}
-            {originalname !== movieName && originalname} ({movieYear})
+            {movieName} ({movieYear})
           </Typography>
           <LinkDropdown options={options} />
         </div>

@@ -29,7 +29,6 @@ interface TMDBMovie {
   homepage: string;
   imdbId: string;
   name: string;
-  originalName: string;
   year: number;
   runtime: number;
   overview: string;
@@ -43,7 +42,6 @@ interface TMDBMovie {
 const tmdbToFields = (movie: TMDBMovie): RawMovieFields => ({
   movieName: movie.name,
   movieYear: movie.year,
-  [TMDBFields.Originalname]: movie.originalName,
   [TMDBFields.Genres]: movie.genres,
   [TMDBFields.Posters]: movie.posters?.map(({ urls }) => urls.original),
   [TMDBFields.Backdrops]: movie.backdrops?.map(({ urls }) => urls.original),

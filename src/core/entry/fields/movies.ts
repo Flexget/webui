@@ -10,7 +10,6 @@ export enum MovieFieldNames {
   Url = 'url',
   Runtime = 'runtime',
   ID = 'movieId',
-  Originalname = 'originalname',
 }
 
 export const enum IMDBFields {
@@ -44,7 +43,6 @@ export const enum TMDBFields {
   Runtime = 'tmdbRuntime',
   ID = 'tmdbId',
   Description = 'tmdbOverview',
-  Originalname = 'tmdbOriginalName',
 }
 
 // NOTE: Thes are in order of priority so if all fields are present, the first one in
@@ -61,7 +59,6 @@ export const movieFieldList = [
     [MovieFieldNames.Runtime]: TMDBFields.Runtime,
     [MovieFieldNames.ID]: TMDBFields.ID,
     [MovieFieldNames.Description]: TMDBFields.Description,
-    [MovieFieldNames.Originalname]: TMDBFields.Originalname,
   },
   // Trakt
   {
@@ -96,7 +93,6 @@ interface MovieGetters {
   [MovieFieldNames.Url]: string;
   [MovieFieldNames.Runtime]: number;
   [MovieFieldNames.ID]: string | number;
-  [MovieFieldNames.Originalname]: string;
 }
 
 export type RawMovieFields = Fields<MovieFieldNames, typeof movieFieldList, MovieGetters> & {
