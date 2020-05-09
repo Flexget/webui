@@ -26,6 +26,7 @@ const errorStyle = (theme: Theme) => css`
 
 const AddEntryDialog: FC<Props> = ({ open = false, onClose }) => {
   const { addEntryProps } = usePluginContainer();
+  const { addEntryOptionalProps } = usePluginContainer();
   const initialValues: Record<string, string> = addEntryProps.reduce(
     (obj, { name }) => ({
       ...obj,
@@ -61,6 +62,16 @@ const AddEntryDialog: FC<Props> = ({ open = false, onClose }) => {
                 name={name}
                 type={type}
                 autoFocus={index === 0}
+              />
+            ))}
+            {addEntryOptionalProps?.map(({ name, label, type, arrayid }, index) => (
+              <TextField
+                key={name}
+                id={name}
+                label={label}
+                type={type}
+                fullWidth
+                name={type === 'array' ? `${arrayid}[${index - 1}].${name}` : name}
               />
             ))}
           </DialogContent>
