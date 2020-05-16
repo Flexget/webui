@@ -22,7 +22,7 @@ See [flexget.com](https://flexget.com/Web-UI/v2#enabling-web-ui) for usage instr
 ## Contributing
 See [CONTRIBUTING.md](https://github.com/Flexget/webui/blob/develop/.github/CONTRIBUTING.md). We welcome any contributions.
 
-## Authors
+## Authors/Maintainers
 
 - Kristen Mills [@kristenmills](https://github.com/kristenmills)
 - Steve Adams [@stevezau](https://github.com/stevezau)
