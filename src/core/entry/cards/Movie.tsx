@@ -20,6 +20,13 @@ const summary = (theme: Theme) => css`
   margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
 `;
 
+const originaltitle = (theme: Theme) => css`
+  font-size: 2.2rem;
+  font-weight: 400;
+  font-style: oblique;
+  margin-bottom: ${theme.typography.pxToRem(theme.spacing(0.5))};
+`;
+
 const MovieCard: FC<Props> = ({ entry, className, children }) => {
   const {
     loading,
@@ -31,7 +38,7 @@ const MovieCard: FC<Props> = ({ entry, className, children }) => {
       runtime = 0,
       genres = [],
       description = '',
-      originalname,
+      originalName,
       quality,
       rating,
       votes,
@@ -58,12 +65,13 @@ const MovieCard: FC<Props> = ({ entry, className, children }) => {
       >
         <div css={titleArea}>
           <Typography css={selectableType} variant="h5" component="h2" color="textPrimary">
-            {movieName}
-            {originalname !== movieName && ' - '}
-            {originalname !== movieName && originalname} ({movieYear})
+            {movieName} ({movieYear})
           </Typography>
           <LinkDropdown options={options} />
         </div>
+        <Typography css={originaltitle} variant="h5" component="h2" color="textPrimary">
+          {originalName && originalName !== movieName && `${originalName}`}
+        </Typography>
         <Typography variant="h6" color="textPrimary" css={ratingLine}>
           <StarRate color="primary" /> {rating} ({votes})
         </Typography>
