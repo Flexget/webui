@@ -44,7 +44,7 @@ export const enum TMDBFields {
   Runtime = 'tmdbRuntime',
   ID = 'tmdbId',
   Description = 'tmdbOverview',
-  Originalname = 'tmdbOriginalName',
+  OriginalName = 'tmdbOriginalName',
 }
 
 // NOTE: Thes are in order of priority so if all fields are present, the first one in
@@ -61,7 +61,7 @@ export const movieFieldList = [
     [MovieFieldNames.Runtime]: TMDBFields.Runtime,
     [MovieFieldNames.ID]: TMDBFields.ID,
     [MovieFieldNames.Description]: TMDBFields.Description,
-    [MovieFieldNames.OriginalName]: TMDBFields.Originalname,
+    [MovieFieldNames.OriginalName]: TMDBFields.OriginalName,
   },
   // Trakt
   {
