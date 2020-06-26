@@ -69,11 +69,11 @@ const MovieCard: FC<Props> = ({ entry, className, children }) => {
           </Typography>
           <LinkDropdown options={options} />
         </div>
-       {originalName && originalName !== movieName &&
-        <Typography css={originalTitle} variant="h5" component="h2" color="textPrimary">
-          {originalName}
-        </Typography>
-        }
+        {originalName && originalName !== movieName && (
+          <Typography css={originalTitle} variant="h5" component="h2" color="textPrimary">
+            {originalName}
+          </Typography>
+        )}
         <Typography variant="h6" color="textPrimary" css={ratingLine}>
           <StarRate color="primary" /> {rating} ({votes})
         </Typography>
