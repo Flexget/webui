@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFlexgetAPI } from 'core/api';
-import { createContainer } from 'unstated-next';
+import { createContainer, useContainer } from 'unstated-next';
 import { AuthContainer } from 'core/auth/hooks';
-import { useGlobalStatus } from 'core/status/hooks';
 
 interface VersionResponse {
   apiVersion: string;
@@ -11,10 +10,9 @@ interface VersionResponse {
 }
 
 export const VersionContainer = createContainer(() => {
-  const [loggedIn] = AuthContainer.useContainer();
+  const [loggedIn] = useContainer(AuthContainer);
   const [version, setVersion] = useState<VersionResponse>();
-  const [{ loading, error }, getVersion] = useFlexgetAPI<VersionResponse>('/server/version');
-  useGlobalStatus(loading, error);
+  const [{ loading }, getVersion] = useFlexgetAPI<VersionResponse>('/server/version');
 
   useEffect(() => {
     const fn = async () => {
