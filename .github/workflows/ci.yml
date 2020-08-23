@@ -23,7 +23,7 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Cache Dependencies
         id: cache-dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: node_modules
           key: ${{ matrix.node }}-deps-${{ hashFiles('yarn.lock') }}

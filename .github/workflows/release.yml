@@ -31,6 +31,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
+      - name: Cache Dependencies
+        id: cache-dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ matrix.node }}-deps-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ matrix.node }}-deps-
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
       - name: Set Deployment Status Pending
