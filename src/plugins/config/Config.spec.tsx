@@ -4,14 +4,15 @@ import { cleanup, fireEvent, wait } from '@testing-library/react';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
 import { Method } from 'utils/fetch';
+import { TaskContainer } from 'plugins/tasks/hooks';
 import Config from './Config';
 
 const TestConfig: FC = () => {
   return (
-    <>
+    <TaskContainer.Provider>
       <AppBar toggleSidebar={jest.fn()} />
       <Config />
-    </>
+    </TaskContainer.Provider>
   );
 };
 const config = `
@@ -29,6 +30,7 @@ describe('plugins/config/Config', () => {
         message: 'Success',
       })
       .get('/api/variables', {})
+      .get('/api/tasks', [])
       .get('/api/schema', {
         schemas: [],
       })
@@ -68,9 +70,8 @@ describe('plugins/config/Config', () => {
       fireEvent.click(saveButton);
     }
 
-    await wait(() =>
-      expect(fetchMock.called('/api/server/raw_config', { method: Method.Post })).toBeTrue(),
-    );
+    await wait(() => expect(fetchMock.called('/api/tasks')).toBeTrue());
+    expect(fetchMock.called('/api/server/raw_config', { method: Method.Post })).toBeTrue();
   });
 
   it('clicking load variables should switch to variables mode', async () => {
