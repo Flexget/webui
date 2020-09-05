@@ -4,9 +4,10 @@ import { useHistory, useRouteMatch } from 'react-router';
 import { CheckCircle, Error } from '@material-ui/icons';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { Direction } from 'utils/query';
+import { useContainer } from 'unstated-next';
 import { SortByStatus, TaskStatusOptions } from './types';
 import TaskTable from './TaskTable';
-import { useGetTaskStatuses } from './hooks';
+import { useGetTaskStatuses, TaskContainer } from './hooks';
 import Execute from './Execute';
 
 const headers = [
@@ -67,6 +68,7 @@ const Latest: FC = () => {
   });
 
   const { tasks, total } = useGetTaskStatuses(options);
+  const { tasks: configTasks } = useContainer(TaskContainer);
   const rows = useMemo(
     () =>
       tasks.map(
@@ -116,7 +118,7 @@ const Latest: FC = () => {
       <Formik initialValues={options} onSubmit={setOptions}>
         <TaskTable total={total} rows={rows} headers={headers} />
       </Formik>
-      <Execute tasks={tasks} />
+      <Execute tasks={configTasks} />
     </>
   );
 };

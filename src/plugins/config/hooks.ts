@@ -4,6 +4,8 @@ import { useFlexgetAPI } from 'core/api';
 import { Method } from 'utils/fetch';
 import { useGlobalInfo } from 'core/status/hooks';
 import { atobUTF16, btoaUTF16 } from 'utils/encoding';
+import { TaskContainer } from 'plugins/tasks/hooks';
+import { useContainer } from 'unstated-next';
 import { Schema } from './types';
 
 interface RawConfigResp {
@@ -18,6 +20,7 @@ export const useGetConfig = () => {
   const [get, getRequest] = useFlexgetAPI<RawConfigResp>('/server/raw_config');
   const [post, postRequest] = useFlexgetAPI<MessageResponse>('/server/raw_config', Method.Post);
   const [config, setConfig] = useState('');
+  const { refresh } = useContainer(TaskContainer);
   const pushInfo = useGlobalInfo();
 
   useEffect(() => {
@@ -37,10 +40,11 @@ export const useGetConfig = () => {
       if (resp.ok) {
         setConfig(v);
         pushInfo(resp.data.message);
+        refresh();
       }
       return resp;
     },
-    [postRequest, pushInfo],
+    [postRequest, pushInfo, refresh],
   );
 
   return [{ config, state: { get, post } }, saveConfig] as const;

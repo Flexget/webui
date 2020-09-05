@@ -62,7 +62,7 @@ export const enum SortByStatus {
   AbortReason = 'abort_reason',
 }
 
-export interface TaskStatusOptions extends Partial<DefaultOptions> {
+export interface TaskStatusOptions extends Partial<DefaultOptions {
   sortBy: SortByStatus;
 }
 
