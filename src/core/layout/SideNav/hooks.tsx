@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useFlexgetAPI } from 'core/api';
-import { createContainer, useContainer } from 'unstated-next';
-import { AuthContainer } from 'core/auth/hooks';
 
 interface VersionResponse {
   apiVersion: string;
@@ -9,22 +7,19 @@ interface VersionResponse {
   latestVersion: string;
 }
 
-export const VersionContainer = createContainer(() => {
-  const [loggedIn] = useContainer(AuthContainer);
+export const useVersion = () => {
   const [version, setVersion] = useState<VersionResponse>();
   const [{ loading }, getVersion] = useFlexgetAPI<VersionResponse>('/server/version');
 
   useEffect(() => {
     const fn = async () => {
-      if (!loggedIn) {
-        const resp = await getVersion();
-        if (resp.ok) {
-          setVersion(resp.data);
-        }
+      const resp = await getVersion();
+      if (resp.ok) {
+        setVersion(resp.data);
       }
     };
     fn();
-  }, [getVersion, loggedIn]);
+  }, [getVersion]);
 
   return { loading, version };
-});
+};

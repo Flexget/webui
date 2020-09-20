@@ -14,19 +14,19 @@ const LoginPage: FC<Props> = ({ location }) => {
   const { from } = location?.state ?? { from: { pathname: '/' } };
   const [loggedIn, setLoggedIn] = useContainer(AuthContainer);
 
-  const [versionState, getVersion] = useFlexgetAPI('/server/version');
+  const [loginState, checkLogin] = useFlexgetAPI('/auth/verify');
 
   useEffect(() => {
     const fn = async () => {
-      const resp = await getVersion();
+      const resp = await checkLogin();
       if (resp.ok) {
         setLoggedIn(true);
       }
     };
     fn();
-  }, [getVersion, setLoggedIn]);
+  }, [checkLogin, setLoggedIn]);
 
-  if (versionState.loading) {
+  if (loginState.loading) {
     return <SplashScreen />;
   }
 
