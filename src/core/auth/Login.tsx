@@ -14,7 +14,7 @@ const LoginPage: FC<Props> = ({ location }) => {
   const { from } = location?.state ?? { from: { pathname: '/' } };
   const [loggedIn, setLoggedIn] = useContainer(AuthContainer);
 
-  const [loginState, checkLogin] = useFlexgetAPI('/auth/verify');
+  const [loginState, checkLogin] = useFlexgetAPI('/user/token');
 
   useEffect(() => {
     const fn = async () => {
