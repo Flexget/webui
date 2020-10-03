@@ -3,7 +3,6 @@ import fetchMock from 'fetch-mock';
 import { cleanup } from '@testing-library/react';
 import { renderWithWrapper } from 'utils/tests';
 import Version from './Version';
-import { VersionContainer } from './hooks';
 
 describe('core/layout/Version', () => {
   afterEach(() => {
@@ -11,11 +10,7 @@ describe('core/layout/Version', () => {
     fetchMock.reset();
   });
 
-  const component = (
-    <VersionContainer.Provider>
-      <Version />
-    </VersionContainer.Provider>
-  );
+  const component = <Version />;
 
   it('does not show icon with latest version', async () => {
     fetchMock.get('/api/server/version', {
