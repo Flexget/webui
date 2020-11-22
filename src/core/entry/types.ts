@@ -26,20 +26,4 @@ export type Fields<
   readonly [P in Extract<ArrayPairs<U, T>[1], string>]?: W[Extract<ArrayPairs<U, T>, [any, P]>[0]];
 };
 
-export type FieldNames<T> = T extends Fields<
-  infer U,
-  ReadonlyArray<FieldMapping<infer U>>,
-  Partial<Record<infer U, infer _>>
->
-  ? U
-  : never;
 
-export type MappingType<T> = T extends Fields<any, infer U, any> ? U : never;
-
-export type GettersType<T> = T extends Fields<
-  infer _,
-  ReadonlyArray<FieldMapping<infer _>>,
-  infer R
->
-  ? R
-  : never;

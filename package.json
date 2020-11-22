@@ -105,7 +105,7 @@
     "style-loader": "^1.1.3",
     "ts-jest": "^25.1.0",
     "ts-loader": "^6.0.4",
-    "typescript": "~3.7.2",
+    "typescript": "^4.1.2",
     "url-loader": "^3.0.0",
     "webpack": "^4.36.1",
     "webpack-bundle-analyzer": "^3.3.2",

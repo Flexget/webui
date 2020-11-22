@@ -91,7 +91,7 @@ export const seriesFieldList = [
   },
 ] as const;
 
-interface SeriesGetters {
+export interface SeriesGetters {
   [SeriesFieldNames.Genres]: string[];
   [SeriesFieldNames.Posters]: string | string[];
   [SeriesFieldNames.Backdrops]: string | string[];

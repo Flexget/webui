@@ -86,7 +86,7 @@ export const movieFieldList = [
   },
 ] as const;
 
-interface MovieGetters {
+export interface MovieGetters {
   [MovieFieldNames.Genres]: string[];
   [MovieFieldNames.Posters]: string | string[];
   [MovieFieldNames.Backdrops]: string | string[];
