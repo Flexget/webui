@@ -64,7 +64,7 @@ const TaskTable = <T extends {}>({ total, headers, rows }: Props<T>) => {
         setFieldValue('order', Direction.Asc);
       }
     },
-    [order, setFieldValue, sortBy],
+    [T, order, setFieldValue, sortBy],
   );
 
   useDebounceFormikSubmit(500);

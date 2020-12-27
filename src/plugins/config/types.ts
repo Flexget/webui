@@ -25,3 +25,7 @@ interface LanguageServiceDefaults {
 export interface YamlLanguage {
   yamlDefaults: LanguageServiceDefaults;
 }
+
+export interface FormState {
+  yaml: string;
+}

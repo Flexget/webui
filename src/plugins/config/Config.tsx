@@ -8,14 +8,10 @@ import { useGlobalStatus } from 'core/status/hooks';
 import { NoPaddingWrapper } from 'common/styles';
 import { css } from '@emotion/core';
 import { useGetConfig, useGetVariables, useGetSchema } from './hooks';
-import { Mode } from './types';
+import { Mode, FormState } from './types';
 import Editor from './Editor';
 import SubmitButton from './SubmitButton';
 import ResetForm from './ResetForm';
-
-export interface FormState {
-  yaml: string;
-}
 
 const toolbar = (theme: Theme) => css`
   display: flex;

@@ -25,10 +25,7 @@ const TestEpisodes: FC = () => {
 
 describe('plugins/series/episodes', () => {
   beforeEach(() => {
-    fetchMock
-      .get('/api/series/1', {})
-      .get('glob:/api/series/1/episodes?*', [])
-      .catch();
+    fetchMock.get('/api/series/1', {}).get('glob:/api/series/1/episodes?*', []).catch();
   });
 
   afterEach(() => {

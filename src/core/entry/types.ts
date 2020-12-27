@@ -25,5 +25,3 @@ export type Fields<
 > = {
   readonly [P in Extract<ArrayPairs<U, T>[1], string>]?: W[Extract<ArrayPairs<U, T>, [any, P]>[0]];
 };
-
-
