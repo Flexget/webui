@@ -107,7 +107,7 @@ describe('core/layout/SideNav/Operations', () => {
 
       expect(
         fetchMock.called('/api/database', {
-          body: { operation: DatabaseOperation.PluginReset, plugin_name: 'another_plugin' }, // eslint-disable-line @typescript-eslint/camelcase
+          body: { operation: DatabaseOperation.PluginReset, plugin_name: 'another_plugin' }, // eslint-disable-line @typescript-eslint/naming-convention
         }),
       ).toBeTrue();
       buttonsDisabled(getByText);

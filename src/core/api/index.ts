@@ -49,7 +49,7 @@ export function useFlexgetAPI<Response>(
         return { ok: false, error: err, data: err } as ErrorResponse;
       }
     },
-    [Response, method, setLoggedIn, skipCamelize, url],
+    [method, setLoggedIn, skipCamelize, url],
   );
 
   useEffect(

@@ -56,9 +56,9 @@ const InfoCard: FC<Props> = ({ open, onClose }) => (
       </Typography>
       <pre>
         {YAML.stringify({
-          // eslint-disable-next-line @typescript-eslint/camelcase
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           web_server: {
-            // eslint-disable-next-line @typescript-eslint/camelcase
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             run_v1: true,
           },
         })}

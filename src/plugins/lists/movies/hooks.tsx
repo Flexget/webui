@@ -20,14 +20,11 @@ const movieToEntry = (movie: Movie): Movie => ({
   ),
 });
 
-function useMovieAPI<T extends Movie>(
-  url: string,
-  method?: Method,
-): [RequestState, APIRequest<Movie>];
+function useMovieAPI<T extends Movie>(url: string, method?: Method): [RequestState, APIRequest<T>];
 function useMovieAPI<T extends Movie[]>(
   url: string,
   method?: Method,
-): [RequestState, APIRequest<Movie[]>];
+): [RequestState, APIRequest<T[]>];
 function useMovieAPI(url: string, method?: Method) {
   const [state, makeRequest] = useFlexgetAPI<Movie | Movie[]>(url, method);
 
