@@ -57,7 +57,7 @@ export const episodesFieldList = [
   },
 ] as const;
 
-interface EpisodeGetters {
+export interface EpisodeGetters {
   [EpisodeFieldNames.Name]: string;
   [EpisodeFieldNames.Image]: string;
   [EpisodeFieldNames.Description]: string;

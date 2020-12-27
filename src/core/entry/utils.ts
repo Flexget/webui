@@ -1,11 +1,24 @@
-import { RawEntry, FieldNames, MappingType, GettersType, BaseEntry } from './types';
-import { MovieEntry, movieFieldList, RawMovieEntry, MovieFieldNames } from './fields/movies';
-import { SeriesEntry, seriesFieldList, SeriesFieldNames, RawSeriesEntry } from './fields/series';
+import { RawEntry, BaseEntry } from './types';
+import {
+  MovieEntry,
+  movieFieldList,
+  RawMovieEntry,
+  MovieFieldNames,
+  MovieGetters,
+} from './fields/movies';
+import {
+  SeriesEntry,
+  seriesFieldList,
+  SeriesFieldNames,
+  RawSeriesEntry,
+  SeriesGetters,
+} from './fields/series';
 import {
   EpisodeEntry,
   RawEpisodeEntry,
   episodesFieldList,
   EpisodeFieldNames,
+  EpisodeGetters,
 } from './fields/episodes';
 
 export const isMovie = (entry: RawEntry): entry is RawMovieEntry => !!entry.movieName;
@@ -14,8 +27,8 @@ export const isSeries = (entry: RawEntry): entry is RawSeriesEntry =>
 export const isEpisode = (entry: RawEntry): entry is RawEpisodeEntry & SeriesEntry =>
   !!(entry.seriesSeason && entry.seriesEpisode && entry.seriesName);
 
-const getPropFn = <U>(mapping: MappingType<U>) => {
-  const mapByField = mapping.reduce<Partial<Record<FieldNames<U>, string[]>>>(
+const getPropFn = <T, U>(mapping: ReadonlyArray<Partial<Record<keyof T, string>>>) => {
+  const mapByField = mapping.reduce<Partial<Record<keyof T, string[]>>>(
     (res, item) =>
       Object.entries(item).reduce(
         (out, [k, v]) => ({
@@ -26,27 +39,36 @@ const getPropFn = <U>(mapping: MappingType<U>) => {
       ),
     {},
   );
-  return (entry: U, field: FieldNames<U>) =>
+  return (entry: U, field: keyof T) =>
     (mapByField[field] ?? ([] as string[])).reduce((res, val) => res ?? entry[val], undefined);
 };
 
-const makeGetters = <T>(names: Record<string, FieldNames<T>>, mapping: MappingType<T>) => {
-  const getProp = getPropFn<T>(mapping);
-  return (entry: T) =>
+const makeGetters = <T, U>(
+  names: Record<string, keyof T>,
+  mapping: ReadonlyArray<Partial<Record<keyof T, string>>>,
+) => {
+  const getProp = getPropFn<T, U>(mapping);
+  return (entry: U) =>
     Object.values(names).reduce(
-      (obj, key: FieldNames<T>) => ({
+      (obj, key) => ({
         ...obj,
         get [key]() {
           return getProp(entry, key);
         },
       }),
-      {} as GettersType<T>,
+      {} as T,
     );
 };
 
-const getMovieProps = makeGetters<RawMovieEntry>(MovieFieldNames, movieFieldList);
-const getSeriesProps = makeGetters<RawSeriesEntry>(SeriesFieldNames, seriesFieldList);
-const getEpisodeProps = makeGetters<RawEpisodeEntry>(EpisodeFieldNames, episodesFieldList);
+const getMovieProps = makeGetters<MovieGetters, RawMovieEntry>(MovieFieldNames, movieFieldList);
+const getSeriesProps = makeGetters<SeriesGetters, RawSeriesEntry>(
+  SeriesFieldNames,
+  seriesFieldList,
+);
+const getEpisodeProps = makeGetters<EpisodeGetters, RawEpisodeEntry>(
+  EpisodeFieldNames,
+  episodesFieldList,
+);
 
 export const toMovieEntry = (entry: RawMovieEntry): MovieEntry => {
   return {

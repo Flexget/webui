@@ -12,7 +12,7 @@ type Props<Multiple extends boolean, T = any> = Omit<AutocompleteProps<T>, 'rend
   (Multiple extends true ? UseAutocompleteMultipleProps<T> : UseAutocompleteSingleProps<T>) & {
     name: string;
     InputProps: TextFieldProps;
-    renderInput?: AutocompleteProps<T>['renderInput'];
+    renderInput?: AutocompleteProps<T>['renderInput']; // eslint-disable-line react/require-default-props
   };
 
 const Autocomplete = ({ name, InputProps, multiple, ...props }: Props<typeof multiple>) => {

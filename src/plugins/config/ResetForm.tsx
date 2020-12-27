@@ -1,6 +1,6 @@
 import { useEffect, FC } from 'react';
 import { useFormikContext } from 'formik';
-import { FormState } from './Config';
+import { FormState } from './types';
 
 interface ResetProps {
   initialValues: FormState;

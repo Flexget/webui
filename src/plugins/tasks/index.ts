@@ -4,18 +4,20 @@ import { Assignment } from '@material-ui/icons';
 
 export default () =>
   registerPlugin('/tasks', {
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: 'TasksPlugin' */
-        'plugins/tasks/Tasks'
-      ),
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: 'TasksPlugin' */
+          'plugins/tasks/Tasks'
+        ),
     ),
     displayName: 'Tasks',
     icon: Assignment,
-    cardComponent: lazy(() =>
-      import(
-        /* webpackChunkName: 'TasksHomeCard' */
-        'plugins/tasks/Card'
-      ),
+    cardComponent: lazy(
+      () =>
+        import(
+          /* webpackChunkName: 'TasksHomeCard' */
+          'plugins/tasks/Card'
+        ),
     ),
   });

@@ -4,11 +4,12 @@ import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>
   registerPlugin('/series', {
-    component: lazy(() =>
-      import(
-        /* webpackChunkName: 'SeriesPlugin' */
-        'plugins/series/Series'
-      ),
+    component: lazy(
+      () =>
+        import(
+          /* webpackChunkName: 'SeriesPlugin' */
+          'plugins/series/Series'
+        ),
     ),
     displayName: 'Series',
     icon: LiveTvIcon,

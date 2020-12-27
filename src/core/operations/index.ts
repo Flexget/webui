@@ -4,11 +4,12 @@ import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>
   registerPlugin('settings', {
-    cardComponent: lazy(() =>
-      import(
-        /* webpackChunkName: 'LogPlugin' */
-        './Card'
-      ),
+    cardComponent: lazy(
+      () =>
+        import(
+          /* webpackChunkName: 'LogPlugin' */
+          './Card'
+        ),
     ),
     displayName: 'Server Settings',
     icon: Settings,

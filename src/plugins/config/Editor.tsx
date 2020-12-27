@@ -6,12 +6,12 @@ import { languages, editor } from 'monaco-editor/esm/vs/editor/editor.api';
 
 import './monaco';
 
-/* eslint-disable import/no-webpack-loader-syntax */
+/* eslint-disable import/no-webpack-loader-syntax,import/no-extraneous-dependencies */
 // NOTE: using loader syntax becuase Yaml worker imports editor.worker directly and that
 // import shouldn't go through loader syntax.
 import EditorWorker from 'worker-loader!monaco-editor/esm/vs/editor/editor.worker';
 import YamlWorker from 'worker-loader!monaco-yaml/esm/yaml.worker';
-/* eslint-enable import/no-webpack-loader-syntax */
+/* eslint-enable import/no-webpack-loader-syntax,import/no-extraneous-dependencies */
 import { YamlLanguage, Schema } from './types';
 
 window.MonacoEnvironment = {
