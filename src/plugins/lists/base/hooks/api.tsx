@@ -36,6 +36,7 @@ interface EntryFields {
   label: string;
   name: string;
   type?: string;
+  arrayid?: string;
 }
 
 interface ListState<T extends Entry> {
@@ -44,6 +45,7 @@ interface ListState<T extends Entry> {
   useMenuProps?: () => OverflowMenuProps[];
   sortByOptions: Option[];
   addEntryProps: EntryFields[];
+  addEntryOptionalProps?: EntryFields[];
 }
 
 const PluginContext = createContext<unknown>(null);
