@@ -197,7 +197,7 @@ exports[`common/layout renders correctly 1`] = `
               <p
                 className="MuiTypography-root MuiTypography-body1"
               >
-                Web UI: 2.0.1-5.dev
+                Web UI: 2.0.28
               </p>
               <p
                 className="MuiTypography-root MuiTypography-body1"

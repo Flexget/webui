@@ -12,9 +12,11 @@ if (args[0] === 'dev') {
   config.version = config.version.replace(/.dev$/, '');
 }
 
-fs.writeFileSync(
-  path.resolve(__dirname, '../package.json'),
-  `${JSON.stringify(config, null, 2)}\n`,
-);
+if (args[1] !== '--dry-run') {
+  fs.writeFileSync(
+    path.resolve(__dirname, '../package.json'),
+    `${JSON.stringify(config, null, 2)}\n`,
+  );
+}
 
 console.log(config.version);

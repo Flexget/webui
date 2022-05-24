@@ -4,10 +4,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const webpack = require('webpack');
+const cfg = require('./package.json')
 
 const __DEBUG__ = !!process.env.DEBUG;
 const __DEV__ = process.env.NODE_ENV !== 'production';
 const mode = __DEV__ ? 'development' : 'production';
+const __VERSION__ = process.env.VERSION || cfg.version;
 
 const entry = {
   main: [...(__DEV__ ? ['react-hot-loader/patch'] : []), 'whatwg-fetch', './src/app.tsx'],
@@ -35,7 +37,7 @@ if (__DEV__) {
 const plugins = [
   new webpack.DefinePlugin({
     __DEV__,
-    'process.env.npm_package_version': JSON.stringify(process.env.npm_package_version)
+    __VERSION__: JSON.stringify(__VERSION__),
   }),
   new ForkTsCheckerWebpackPlugin({
     tsconfig: path.resolve('tsconfig.json'),
