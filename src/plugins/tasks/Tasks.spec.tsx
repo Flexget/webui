@@ -5,6 +5,7 @@ import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
 import Tasks from './Tasks';
+import { TaskContainer } from './hooks';
 
 interface Props {
   path: string;
@@ -16,14 +17,14 @@ const TestTasks: FC<Props> = ({ path }) => {
     push(path);
   }, [path, push]);
   return (
-    <>
+    <TaskContainer.Provider>
       <AppBar toggleSidebar={jest.fn()} />
       <Switch>
         <Route path="/tasks">
           <Tasks />
         </Route>
       </Switch>
-    </>
+    </TaskContainer.Provider>
   );
 };
 
@@ -33,6 +34,7 @@ describe('plugins/tasks', () => {
       .get('glob:/api/tasks/status?*', [])
       .get('glob:/api/tasks/status/1', {})
       .get('glob:/api/tasks/status/1/executions?*', [])
+      .get('/api/tasks', [])
       .catch();
   });
 

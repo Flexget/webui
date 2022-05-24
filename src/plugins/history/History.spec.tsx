@@ -17,10 +17,7 @@ const TestHistory: FC = () => {
 
 describe('plugins/history', () => {
   beforeEach(() => {
-    fetchMock
-      .get('/api/tasks', [])
-      .get('glob:/api/history?*', [])
-      .catch();
+    fetchMock.get('/api/tasks', []).get('glob:/api/history?*', []).catch();
   });
 
   afterEach(() => {

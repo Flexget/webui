@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
-import { useContainer } from 'unstated-next';
 import { gt } from 'semver';
 import { css } from '@emotion/core';
 import { IconButton, Theme } from '@material-ui/core';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import Typography from '@material-ui/core/Typography';
-import { VersionContainer } from './hooks';
+import { useVersion } from './hooks';
 
 const webVersion = process.env.npm_package_version;
 interface Props {
@@ -19,7 +18,7 @@ const wrapper = (theme: Theme) => css`
 `;
 
 const Version: FC<Props> = ({ className }) => {
-  const { loading, version } = useContainer(VersionContainer);
+  const { loading, version } = useVersion();
 
   if (loading || !version) {
     // showProgress

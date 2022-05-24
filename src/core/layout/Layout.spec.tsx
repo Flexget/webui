@@ -3,15 +3,12 @@ import fetchMock from 'fetch-mock';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
 import { BaseProviders } from 'utils/tests';
 import Layout from './Layout';
-import { VersionContainer } from './SideNav/hooks';
 
 const renderLayout = () => (
   <BaseProviders>
-    <VersionContainer.Provider>
-      <Layout>
-        <div />
-      </Layout>
-    </VersionContainer.Provider>
+    <Layout>
+      <div />
+    </Layout>
   </BaseProviders>
 );
 describe('common/layout', () => {

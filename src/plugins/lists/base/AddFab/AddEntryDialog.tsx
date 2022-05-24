@@ -52,13 +52,14 @@ const AddEntryDialog: FC<Props> = ({ open = false, onClose }) => {
         <Form>
           <DialogContent>
             {error && <DialogContentText css={errorStyle}>{error.message}</DialogContentText>}
-            {addEntryProps.map(({ name, label }, index) => (
+            {addEntryProps.map(({ name, label, type }, index) => (
               <TextField
                 key={name}
                 id={name}
                 label={label}
                 fullWidth
                 name={name}
+                type={type}
                 autoFocus={index === 0}
               />
             ))}

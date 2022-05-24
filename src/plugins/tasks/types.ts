@@ -4,6 +4,8 @@ import { RawEntry } from 'core/entry/types';
 export interface Task {
   id: number;
   name: string;
+  lastExecutionTime?: string;
+  lastExecution?: Partial<Execution>;
 }
 
 export interface Inject {

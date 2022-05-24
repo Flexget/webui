@@ -6,10 +6,7 @@ import Card from './Card';
 
 describe('core/operations/Card', () => {
   beforeEach(() => {
-    fetchMock
-      .post('/api/server/manage', 200)
-      .get('/api/database/plugins', [])
-      .catch();
+    fetchMock.post('/api/server/manage', 200).get('/api/database/plugins', []).catch();
   });
 
   afterEach(() => {

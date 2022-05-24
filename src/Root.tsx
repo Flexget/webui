@@ -21,7 +21,6 @@ import { TaskContainer } from 'plugins/tasks/hooks';
 import { StatusContainer } from 'core/status/hooks';
 import { PluginContainer } from 'core/plugins/hooks';
 import ThemeProvider from 'core/theme/ThemeProvider';
-import { VersionContainer } from 'core/layout/SideNav/hooks';
 import { uriParser } from 'utils';
 import LoadingSpinner from 'common/LoadingSpinner';
 
@@ -65,31 +64,29 @@ const Root: FC = () => (
     <StylesProvider injectFirst>
       <StatusContainer.Provider>
         <AuthContainer.Provider>
-          <VersionContainer.Provider>
-            <BrowserRouter basename={basename}>
-              <Suspense fallback={LoadingSpinner}>
-                <Switch>
-                  <Route path="/login" exact component={Login} />
-                  <Route
-                    render={() => (
-                      <PluginContainer.Provider>
-                        <TaskContainer.Provider>
-                          <Layout>
-                            <Suspense fallback={LoadingSpinner}>
-                              <Switch>
-                                <PrivateRoute path="/" exact component={Home} />
-                                <Route component={Routes} />
-                              </Switch>
-                            </Suspense>
-                          </Layout>
-                        </TaskContainer.Provider>
-                      </PluginContainer.Provider>
-                    )}
-                  />
-                </Switch>
-              </Suspense>
-            </BrowserRouter>
-          </VersionContainer.Provider>
+          <BrowserRouter basename={basename}>
+            <Suspense fallback={LoadingSpinner}>
+              <Switch>
+                <Route path="/login" exact component={Login} />
+                <Route
+                  render={() => (
+                    <PluginContainer.Provider>
+                      <TaskContainer.Provider>
+                        <Layout>
+                          <Suspense fallback={LoadingSpinner}>
+                            <Switch>
+                              <PrivateRoute path="/" exact component={Home} />
+                              <Route component={Routes} />
+                            </Switch>
+                          </Suspense>
+                        </Layout>
+                      </TaskContainer.Provider>
+                    </PluginContainer.Provider>
+                  )}
+                />
+              </Switch>
+            </Suspense>
+          </BrowserRouter>
         </AuthContainer.Provider>
       </StatusContainer.Provider>
     </StylesProvider>

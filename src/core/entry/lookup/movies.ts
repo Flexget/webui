@@ -7,6 +7,7 @@ import { toMovieEntry } from '../utils';
 
 export interface TMDBOptions {
   title?: string;
+  imdbId?: string | number;
   tmdbId?: string | number;
   language?: string;
   year?: number;
@@ -28,6 +29,7 @@ interface TMDBMovie {
   homepage: string;
   imdbId: string;
   name: string;
+  originalName: string;
   year: number;
   runtime: number;
   overview: string;
@@ -41,6 +43,7 @@ interface TMDBMovie {
 const tmdbToFields = (movie: TMDBMovie): RawMovieFields => ({
   movieName: movie.name,
   movieYear: movie.year,
+  [TMDBFields.OriginalName]: movie.originalName,
   [TMDBFields.Genres]: movie.genres,
   [TMDBFields.Posters]: movie.posters?.map(({ urls }) => urls.original),
   [TMDBFields.Backdrops]: movie.backdrops?.map(({ urls }) => urls.original),
@@ -168,6 +171,7 @@ export const useTraktLookup = (options: TraktOptions) => {
 export const useMovieLookup = (movie: MovieEntry) => {
   const { loading: tmdbLoading, entry: tmdbEntry } = useTMDBLookup({
     title: movie.movieName,
+    imdbId: movie[IMDBFields.ID],
     tmdbId: movie[TMDBFields.ID],
     includePosters: true,
     includeBackdrops: true,

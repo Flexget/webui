@@ -28,17 +28,18 @@ export const TaskContainer = createContainer(() => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [state, request] = useFlexgetAPI<Task[]>('/tasks');
 
-  useEffect(() => {
-    const fn = async () => {
-      const resp = await request();
-      if (resp.ok) {
-        setTasks(resp.data);
-      }
-    };
-    fn();
+  const refresh = useCallback(async () => {
+    const resp = await request();
+    if (resp.ok) {
+      setTasks(resp.data);
+    }
   }, [request]);
 
-  return { ...state, tasks };
+  useEffect(() => {
+    refresh();
+  }, [refresh]);
+
+  return { ...state, tasks, refresh };
 });
 
 export const useExecuteTask = () => {
@@ -58,6 +59,8 @@ export const useGetTaskStatuses = (options: TaskStatusOptions) => {
   const [tasks, setTasks] = useState<TaskState>({ tasks: [], total: 0 });
   const query = stringify(snakeCase({ ...options, page: (options.page ?? 0) + 1 }));
   const [state, request] = useFlexgetAPI<TaskStatus[]>(`/tasks/status?${query}`);
+  // const { tasks: configTasks } = useContainer(TaskContainer);
+  // const { sortBy } = options;
 
   useEffect(() => {
     const fn = async () => {
@@ -68,6 +71,20 @@ export const useGetTaskStatuses = (options: TaskStatusOptions) => {
     };
     fn();
   }, [request]);
+
+  // useMemo(() => {
+  // const map = {};
+  // const nt: Task[] = [...tasks];
+
+  // tasks.tasks.forEach(t => {
+  // map[t.id] = t;
+  // });
+  // configTasks.forEach(t => {
+  // if (!map[t.id]) {
+  // nt.push(t);
+  // }
+  // });
+  // });
 
   return { ...state, ...tasks };
 };

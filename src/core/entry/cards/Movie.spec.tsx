@@ -10,10 +10,7 @@ import Card from './index';
 
 describe('core/entry/cards/Movie', () => {
   beforeEach(() => {
-    fetchMock
-      .get('glob:/api/tmdb/movies?*', 404)
-      .get('glob:/api/trakt/movies?*', 404)
-      .catch();
+    fetchMock.get('glob:/api/tmdb/movies?*', 404).get('glob:/api/trakt/movies?*', 404).catch();
   });
 
   afterEach(() => {
