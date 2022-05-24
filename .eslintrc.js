@@ -28,7 +28,7 @@ module.exports = {
   globals: {
     fetchMock: true,
     __DEV__: true,
-    __VERSION__: '2.0.28',
+    __VERSION__: true,
   },
   parserOptions: {
     warnOnUnsupportedTypeScriptVersion: false,
