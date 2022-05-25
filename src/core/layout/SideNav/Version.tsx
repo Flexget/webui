@@ -44,6 +44,7 @@ const Version: FC<Props> = ({ className }) => {
           </IconButton>
         )}
       </Typography>
+      <Typography>{`Web UI: ${__VERSION__}`}</Typography>
       <Typography>{`API: ${apiVersion}`}</Typography>
     </div>
   );

@@ -20,6 +20,7 @@ module.exports = {
   },
   globals: {
     __DEV__: false,
+    __VERSION__: '2.0.28',
     'ts-jest': {
       tsConfig: 'tsconfig.jest.json',
       babelConfig: true,
