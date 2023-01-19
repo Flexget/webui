@@ -13,7 +13,7 @@ A new web interface for configuring and viewing FlexGet settings
 </div>
 
 ## Usage
-See [flexget.com](https://flexget.com/Web-UI/v2#enabling-web-ui) for usage instructions
+See [flexget.com](https://flexget.com/Web-UI#enabling-web-ui) for usage instructions
 
 ## Questions
 - **Forum**: https://discuss.flexget.com/
