@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import { IconButton, Theme } from '@material-ui/core';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import Typography from '@material-ui/core/Typography';
+import { cleanFlexgetVersion } from 'utils/version';
 import { useVersion } from './hooks';
 
 interface Props {
@@ -26,14 +27,15 @@ const Version: FC<Props> = ({ className }) => {
 
   const { flexgetVersion, apiVersion, latestVersion } = version;
 
-  const normalizedVersion = flexgetVersion.replace('.dev', '-dev.0');
+  const normalizedVersion = cleanFlexgetVersion(flexgetVersion);
+  const normalizedLatest = cleanFlexgetVersion(latestVersion);
 
   return (
     <div css={wrapper} className={className}>
       <Typography>Version Info</Typography>
       <Typography>
         {`Flexget: ${flexgetVersion} `}
-        {gt(latestVersion, normalizedVersion) && (
+        {gt(normalizedLatest, normalizedVersion) && (
           <IconButton
             href="https://flexget.com/ChangeLog"
             color="inherit"
