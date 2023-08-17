@@ -55,4 +55,15 @@ describe('core/layout/Version', () => {
     expect(await findByText('Flexget: 2.10.11')).toBeInTheDocument();
     expect(queryByLabelText('flexget update available')).toBeInTheDocument();
   });
+
+  it('handles incomplete semver versions', async () => {
+    fetchMock.get('/api/server/version', {
+      apiVersion: '1.1.2',
+      flexgetVersion: '2.10',
+      latestVersion: '2.11',
+    });
+    const { findByText, queryByLabelText } = renderWithWrapper(component);
+    expect(await findByText('Flexget: 2.10')).toBeInTheDocument();
+    expect(queryByLabelText('flexget update available')).toBeInTheDocument();
+  });
 });
