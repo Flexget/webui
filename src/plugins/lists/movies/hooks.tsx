@@ -1,7 +1,7 @@
 import { useMemo, useCallback } from 'react';
 import { useFlexgetAPI, APIRequest, RequestState } from 'core/api';
 import { Method, camelize } from 'utils/fetch';
-import { SortBy, Movie } from './types';
+import { SortBy, Movie, MovieIds } from './types';
 import { createPluginContainer } from '../base/hooks/api';
 
 const movieToEntry = (movie: Movie): Movie => ({
@@ -70,10 +70,27 @@ export const MovieListContainer = createPluginContainer(() => {
           label: 'Movie Name',
           name: 'movieName',
         },
+      ],
+      [],
+    ),
+    addEntryOptionalProps: useMemo(
+      () => [
         {
           label: 'Movie Year',
           name: 'movieYear',
           type: 'number',
+        },
+        {
+          label: 'IMDB ID',
+          name: MovieIds.IMDB,
+          type: 'array',
+          arrayid: 'movie_identifiers',
+        },
+        {
+          label: 'TMDB ID',
+          name: MovieIds.TMDB,
+          type: 'array',
+          arrayid: 'movie_identifiers',
         },
       ],
       [],
