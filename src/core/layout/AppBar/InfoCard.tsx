@@ -65,8 +65,8 @@ const InfoCard: FC<Props> = ({ open, onClose }) => (
       </pre>
       <Typography gutterBottom>
         More information:{' '}
-        <Link href="http://flexget.com/Web-UI/v2" target="_blank" rel="noopener noreferrer">
-          http://flexget.com/Web-UI/v2
+        <Link href="http://flexget.com/Web-UI" target="_blank" rel="noopener noreferrer">
+          http://flexget.com/Web-UI
         </Link>
       </Typography>
       <Typography gutterBottom>
