@@ -31,6 +31,7 @@ const actionArea = css`
 const entryCard = css`
   flex: 1;
   width: 100%;
+  overflow-wrap: break-word;
 `;
 
 const cardActions = (theme: Theme) => css`
