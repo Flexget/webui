@@ -42,7 +42,7 @@ export const leavingTransition = (theme: Theme) => css`
 `;
 
 export const content = (theme: Theme) => css`
-  overflow-y: auto;
+  overflow-y: scroll;
   padding: ${theme.typography.pxToRem(theme.spacing(2))};
   height: 100%;
 

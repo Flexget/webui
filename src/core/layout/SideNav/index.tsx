@@ -92,7 +92,7 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
             width: inherit;
           `}
         >
-          {routes.map(route => (
+          {routes.filter(route => !route.hidden).map(route => (
             <Entry key={route.path} onClick={handleClick(route)} {...route} />
           ))}
         </List>

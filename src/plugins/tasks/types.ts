@@ -62,6 +62,7 @@ export const enum SortByStatus {
   Failed = 'failed',
   Succeeded = 'succeeded',
   AbortReason = 'abort_reason',
+  Backfill = 'backfill',
 }
 
 export interface TaskStatusOptions extends Partial<DefaultOptions> {

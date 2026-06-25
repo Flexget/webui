@@ -112,6 +112,7 @@ const TaskExecutions: FC = () => {
             ) : (
               <Error fontSize="small" color="error" />
             ),
+            [SortByStatus.Backfill]: undefined,
           },
         }),
       ),

@@ -15,6 +15,7 @@ import registerConfig from 'plugins/config';
 import registerPendingList from 'plugins/lists/pending';
 import registerMovieList from 'plugins/lists/movies';
 import registerEntryList from 'plugins/lists/entry';
+import registerBackfill from 'plugins/backfill';
 import registerOperations from 'core/operations';
 import { AuthContainer } from 'core/auth/hooks';
 import { TaskContainer } from 'plugins/tasks/hooks';
@@ -33,6 +34,7 @@ registerSeries();
 registerPendingList();
 registerEntryList();
 registerMovieList();
+registerBackfill();
 
 const globals = css`
   html {

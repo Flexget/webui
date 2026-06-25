@@ -7,7 +7,7 @@ export const useGetRoutes = () => {
   const { pluginMap } = useContainer(PluginContainer);
   const routes: Route[] = useMemo(
     () =>
-      Object.entries(pluginMap).flatMap(([path, { component, displayName, icon }]) =>
+      Object.entries(pluginMap).flatMap(([path, { component, displayName, icon, hidden }]) =>
         component
           ? [
               {
@@ -15,6 +15,7 @@ export const useGetRoutes = () => {
                 component,
                 Icon: icon,
                 name: displayName,
+                hidden,
               },
             ]
           : [],

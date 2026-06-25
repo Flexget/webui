@@ -395,10 +395,10 @@ exports[`common/layout renders correctly 1`] = `
         Array [
           Object {
             "map": undefined,
-            "name": "1a7v7et",
+            "name": "10zn699",
             "next": undefined,
             "styles": "
-  overflow-y: auto;
+  overflow-y: scroll;
   padding: 1.6rem;
   height: 100%;
 

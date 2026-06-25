@@ -5,4 +5,5 @@ export interface Route {
   name: string;
   Icon: ComponentType;
   path: string;
+  hidden?: boolean;
 }
