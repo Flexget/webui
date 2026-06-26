@@ -122,15 +122,15 @@ const Latest: FC = () => {
         }) => ({
           key: id,
           data: {
-            [SortByStatus.ID]: id,
+            [SortByStatus.ID]: id as number | undefined,
             [SortByStatus.Name]: name,
-            [SortByStatus.LastExecutionTime]: start,
-            [SortByStatus.Start]: start,
-            [SortByStatus.End]: end,
-            [SortByStatus.Produced]: produced,
-            [SortByStatus.Rejected]: rejected,
-            [SortByStatus.Accepted]: accepted,
-            [SortByStatus.Failed]: failed,
+            [SortByStatus.LastExecutionTime]: start as string | undefined,
+            [SortByStatus.Start]: start as string | undefined,
+            [SortByStatus.End]: end as string | undefined,
+            [SortByStatus.Produced]: produced as number | undefined,
+            [SortByStatus.Rejected]: rejected as number | undefined,
+            [SortByStatus.Accepted]: accepted as number | undefined,
+            [SortByStatus.Failed]: failed as number | undefined,
             [SortByStatus.AbortReason]: abortReason,
             [SortByStatus.Succeeded]: succeeded ? (
               <CheckCircle fontSize="small" color="primary" />
