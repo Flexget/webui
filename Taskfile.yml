@@ -1,0 +1,64 @@
+version: '3'
+
+tasks:
+  setup:
+    desc: Install Node.js via nvm and project dependencies
+    cmds:
+      - bash -c '. "$HOME/.nvm/nvm.sh" && nvm install'
+      - bash -c '. "$HOME/.nvm/nvm.sh" && nvm use && npm install -g yarn'
+      - task: install
+
+  install:
+    desc: Install project dependencies
+    cmds:
+      - yarn install
+    sources:
+      - package.json
+      - yarn.lock
+    generates:
+      - node_modules/.yarn-integrity
+
+  dev:
+    desc: Start development server
+    cmds:
+      - yarn start
+
+  build:
+    desc: Build for production
+    cmds:
+      - yarn build
+
+  test:
+    desc: Run test suite
+    cmds:
+      - yarn test
+
+  test:watch:
+    desc: Run tests in watch mode
+    cmds:
+      - yarn test:watch
+
+  test:coverage:
+    desc: Run tests with coverage report
+    cmds:
+      - yarn test --coverage
+
+  lint:
+    desc: Run ESLint
+    cmds:
+      - yarn lint
+
+  lint:fix:
+    desc: Fix auto-fixable ESLint errors
+    cmds:
+      - yarn lint --fix
+
+  typecheck:
+    desc: Type-check without emitting
+    cmds:
+      - ./node_modules/.bin/tsc --noEmit
+
+  clean:
+    desc: Remove build output
+    cmds:
+      - rm -rf dist/
