@@ -8,13 +8,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/github-script@0.9.0
+      - uses: actions/checkout@v4
+      - uses: actions/github-script@v7
         name: Create Deployment
         with:
           github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           script: |
-            await github.repos.createDeployment({
+            await github.rest.repos.createDeployment({
               ...context.repo,
               ref: context.ref.slice(11),
             });

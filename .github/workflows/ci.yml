@@ -14,30 +14,21 @@ jobs:
     strategy:
       matrix:
         node:
-          - 12.x
+          - 20.x
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-      - name: Cache Dependencies
-        id: cache-dependencies
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ matrix.node }}-deps-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ matrix.node }}-deps-
+          cache: 'yarn'
       - name: Install Dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
       - name: Run Linter
         run: yarn lint
       - name: Run Tests
         run: yarn test --ci --coverage -i
       - name: Send to Code Cov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-
