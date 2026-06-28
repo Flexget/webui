@@ -1,6 +1,6 @@
 import React, { FC, useMemo, useState } from 'react';
 import { Formik } from 'formik';
-import { useHistory, useRouteMatch } from 'react-router';
+import { useNavigate, useHref } from 'react-router-dom';
 import { CheckCircle, Error } from '@material-ui/icons';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { Direction } from 'utils/query';
@@ -58,8 +58,8 @@ const headers = [
 
 const Latest: FC = () => {
   useInjectPageTitle('Tasks - Latest Executions');
-  const { push } = useHistory();
-  const { url } = useRouteMatch();
+  const navigate = useNavigate();
+  const basePath = useHref('.');
   const [options, setOptions] = useState<TaskStatusOptions>({
     page: 0,
     perPage: 10,
@@ -105,12 +105,12 @@ const Latest: FC = () => {
             ),
           },
           props: {
-            onClick: () => push(`${url}/${id}`),
+            onClick: () => navigate(`${basePath}/${id}`),
             hover: true,
           },
         }),
       ),
-    [push, tasks, url],
+    [navigate, tasks, basePath],
   );
 
   return (

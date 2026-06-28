@@ -12,6 +12,7 @@ import { useMovieLookup } from '../lookup/movies';
 interface Props {
   entry: MovieEntry;
   className?: string;
+  children?: React.ReactNode;
 }
 
 const summary = (theme: Theme) => css`

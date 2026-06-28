@@ -17,7 +17,7 @@ import {
 } from './styles';
 import { AppBarContainer } from './AppBar/hooks';
 
-const Layout: React.FC = ({ children }) => {
+const Layout: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
   const theme = useTheme();
   const matches = window.matchMedia && !window.matchMedia('(max-width: 600px)').matches;
   const [sidebarOpen, { close, toggle }] = useOverlayState(matches);

@@ -11,7 +11,7 @@ export const themed = (component: ReactNode) => <ThemeProvider>{component}</Them
 
 export const router = (component: ReactNode) => <MemoryRouter>{component}</MemoryRouter>;
 
-export const BaseProviders: FC = ({ children }) => {
+export const BaseProviders: FC<{ children?: ReactNode }> = ({ children }) => {
   return (
     <StatusContainer.Provider>
       <AuthContainer.Provider>

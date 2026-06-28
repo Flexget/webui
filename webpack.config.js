@@ -12,7 +12,7 @@ const mode = __DEV__ ? 'development' : 'production';
 const __VERSION__ = process.env.VERSION || cfg.version;
 
 const entry = {
-  main: [...(__DEV__ ? ['react-hot-loader/patch'] : []), 'whatwg-fetch', './src/app.tsx'],
+  main: ['whatwg-fetch', './src/app.tsx'],
 };
 
 const output = {
@@ -69,9 +69,7 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [path.resolve('./src'), 'node_modules'],
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
+    alias: {},
   },
   optimization: {
     sideEffects: true,

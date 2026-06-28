@@ -10,6 +10,7 @@ interface Props {
   className?: string;
   label: string;
   loading?: boolean;
+  children?: React.ReactNode;
 }
 
 const image = css`

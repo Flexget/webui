@@ -1,31 +1,16 @@
-import React, { FC, ComponentType } from 'react';
-import { Route, Redirect, RouteProps } from 'react-router-dom';
+import React, { FC, ReactElement } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useContainer } from 'unstated-next';
 import { AuthContainer } from 'core/auth/hooks';
 
-interface Props extends RouteProps {
-  component: ComponentType<any>;
+interface Props {
+  element: ReactElement;
 }
 
-const PrivateRoute: FC<Props> = ({ component: Component, ...rest }) => {
+const PrivateRoute: FC<Props> = ({ element }) => {
   const [loggedIn] = useContainer(AuthContainer);
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        loggedIn ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: '/login',
-              state: { from: props.location }, // eslint-disable-line react/prop-types
-            }}
-          />
-        )
-      }
-    />
-  );
+  const location = useLocation();
+  return loggedIn ? element : <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 export default PrivateRoute;

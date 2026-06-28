@@ -12,6 +12,7 @@ interface Props {
   series: SeriesEntry;
   entry: EpisodeEntry;
   className?: string;
+  children?: React.ReactNode;
 }
 
 const summary = (theme: Theme) => css`

@@ -11,6 +11,7 @@ import { useSeriesLookup } from '../lookup/series';
 interface Props {
   entry: SeriesEntry;
   className?: string;
+  children?: React.ReactNode;
 }
 
 const summary = (theme: Theme) => css`

@@ -1,18 +1,13 @@
 import React, { FC } from 'react';
-import { hot } from 'react-hot-loader/root';
-import { Route, Switch, useRouteMatch } from 'react-router';
+import { Routes, Route } from 'react-router-dom';
 import Shows from './Shows';
 import Episodes from './Episodes';
 
-const Series: FC = () => {
-  const { path } = useRouteMatch();
+const Series: FC = () => (
+  <Routes>
+    <Route index element={<Shows />} />
+    <Route path=":showId/*" element={<Episodes />} />
+  </Routes>
+);
 
-  return (
-    <Switch>
-      <Route exact path={path} component={Shows} />
-      <Route exact path={`${path}/:showId`} component={Episodes} />
-    </Switch>
-  );
-};
-
-export default hot(Series);
+export default Series;

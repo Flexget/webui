@@ -26,7 +26,7 @@ describe('plugins/lists/base/AddFab/AddListDialog', () => {
     ${'entry'}   | ${'entry_list'}   | ${EntryListContainer.Provider}
     ${'movie'}   | ${'movie_list'}   | ${MovieListContainer.Provider}
   `('$name', ({ prefix, Provider }) => {
-    const wrapper: FC = ({ children }) => (
+    const wrapper: FC<{ children?: React.ReactNode }> = ({ children }) => (
       <BaseProviders>
         <Provider>
           <ListContainer.Provider>{children}</ListContainer.Provider>

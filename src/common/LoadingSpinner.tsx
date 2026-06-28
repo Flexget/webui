@@ -15,6 +15,7 @@ const wrapper = css`
 
 interface Props {
   loading?: boolean;
+  children?: React.ReactNode;
 }
 
 const LoadingSpinner: FC<Props> = ({ loading = true, children }) => {

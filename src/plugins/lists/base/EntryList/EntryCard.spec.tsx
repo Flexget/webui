@@ -29,7 +29,7 @@ describe('plugins/lists/base/EntryList/EntryCard', () => {
     ${'entry'}   | ${'entry_list'}   | ${'entries'} | ${EntryListContainer.Provider}
     ${'movie'}   | ${'movie_list'}   | ${'movies'}  | ${MovieListContainer.Provider}
   `('$name', ({ prefix, Provider }) => {
-    const wrapper: FC = ({ children }) => (
+    const wrapper: FC<{ children?: React.ReactNode }> = ({ children }) => (
       <BaseProviders>
         <Provider>
           <ListContainer.Provider>

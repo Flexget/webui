@@ -101,7 +101,7 @@ const TaskTable = <T extends {}>({ total, headers, rows }: Props<T>) => {
               <TableRow key={key} {...props}>
                 {headers.map(({ id, numeric }) => (
                   <TableCell key={id} align={numeric ? 'right' : 'left'}>
-                    {data[id]}
+                    {data[id] as React.ReactNode}
                   </TableCell>
                 ))}
               </TableRow>

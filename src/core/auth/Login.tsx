@@ -1,17 +1,15 @@
 import React, { FC, useEffect } from 'react';
 import { useContainer } from 'unstated-next';
-import { Redirect, RouteComponentProps } from 'react-router-dom';
-import { StaticContext } from 'react-router';
+import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContainer } from 'core/auth/hooks';
 import { useFlexgetAPI } from 'core/api';
 import LoginCard from './LoginCard';
 import SplashScreen from './Splash';
 import Logo from './Logo';
 
-type Props = Partial<RouteComponentProps<{}, StaticContext, { from: Location }>>;
-
-const LoginPage: FC<Props> = ({ location }) => {
-  const { from } = location?.state ?? { from: { pathname: '/' } };
+const LoginPage: FC = () => {
+  const location = useLocation();
+  const from = (location.state as { from?: { pathname: string } })?.from?.pathname ?? '/';
   const [loggedIn, setLoggedIn] = useContainer(AuthContainer);
 
   const [loginState, checkLogin] = useFlexgetAPI('/user/token');
@@ -31,7 +29,7 @@ const LoginPage: FC<Props> = ({ location }) => {
   }
 
   if (loggedIn) {
-    return <Redirect to={from} />;
+    return <Navigate to={from} replace />;
   }
 
   return (

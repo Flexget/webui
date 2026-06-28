@@ -30,7 +30,7 @@ describe('plugins/lists/base/EntryList/InjectEntryDialog', () => {
     ${'entry'}   | ${'entry_list'}   | ${'entries'} | ${EntryListContainer.Provider}
     ${'movie'}   | ${'movie_list'}   | ${'movies'}  | ${MovieListContainer.Provider}
   `('$name', ({ prefix, Provider, itemPrefix }) => {
-    const wrapper: FC = ({ children }) => (
+    const wrapper: FC<{ children?: React.ReactNode }> = ({ children }) => (
       <BaseProviders>
         <TaskContainer.Provider>
           <Provider>

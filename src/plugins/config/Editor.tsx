@@ -1,7 +1,9 @@
 import React, { FC, useCallback, useEffect } from 'react';
 import { useField } from 'formik';
 import { useTheme } from '@material-ui/core';
-import MonacoEditor from 'react-monaco-editor';
+// ponytail: cast bridges react-monaco-editor / React 18 JSX type gap; replaced in Phase 7
+import MonacoEditor_ from 'react-monaco-editor';
+const MonacoEditor = MonacoEditor_ as unknown as React.FC<any>;
 import { languages, editor } from 'monaco-editor/esm/vs/editor/editor.api';
 
 import './monaco';

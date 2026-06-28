@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useMemo, FC } from 'react';
-import { hot } from 'react-hot-loader/root';
 import { Formik } from 'formik';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { Button, Theme, Link } from '@material-ui/core';
@@ -110,4 +109,4 @@ const Config: FC = () => {
   );
 };
 
-export default hot(Config);
+export default Config;

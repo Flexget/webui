@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { useHistory, Route } from 'react-router-dom';
+import { useNavigate, Routes, Route } from 'react-router-dom';
 import { cleanup, fireEvent, getNodeText, wait } from '@testing-library/react';
 import * as fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
@@ -7,18 +7,18 @@ import AppBar from 'core/layout/AppBar';
 import Episodes from './index';
 
 const TestEpisodes: FC = () => {
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    push('/series/1');
-  }, [push]);
+    navigate('/series/1');
+  }, [navigate]);
 
   return (
     <>
       <AppBar toggleSidebar={jest.fn()} />
-      <Route path="/series/:showId">
-        <Episodes />
-      </Route>
+      <Routes>
+        <Route path="/series/:showId/*" element={<Episodes />} />
+      </Routes>
     </>
   );
 };

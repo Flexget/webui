@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { Settings } from '@material-ui/icons';
 
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { Route } from 'core/routes/types';
 import { useGetRoutes } from 'core/routes/hooks';
 
@@ -37,7 +37,7 @@ interface Props {
 
 const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
   const { routes } = useGetRoutes();
-  const history = useHistory();
+  const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
 
@@ -54,9 +54,9 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
         if (isMobile) {
           onClose();
         }
-        history.push(path);
+        navigate(path);
       },
-    [history, isMobile, onClose],
+    [navigate, isMobile, onClose],
   );
 
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement>();

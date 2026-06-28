@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useMemo } from 'react';
-import { useParams, useHistory } from 'react-router';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import { useInjectPageTitle, useSetAppBarIcon } from 'core/layout/AppBar/hooks';
 import { Direction } from 'utils/query';
@@ -11,21 +11,17 @@ import Header from './Header';
 import EpisodeList from './EpisodeList';
 import { useGetShowDetail } from '../hooks/shows';
 
-interface Match {
-  showId: string;
-}
-
 const EpisodesPage: FC = () => {
-  const showId = parseInt(useParams<Match>().showId, 10);
+  const showId = parseInt(useParams().showId!, 10);
 
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
   const { show } = useGetShowDetail(showId);
   const title = show ? `${show.name} - Episodes` : 'Episodes';
 
   const onClick = useCallback(() => {
-    push('/series');
-  }, [push]);
+    navigate('/series');
+  }, [navigate]);
 
   const icon = useMemo(
     () => ({

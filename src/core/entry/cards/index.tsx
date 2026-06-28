@@ -16,6 +16,7 @@ import DefaultCard from './Default';
 interface Props {
   entry: RawEntry;
   className?: string;
+  children?: React.ReactNode;
 }
 
 const EntryCard: FC<Props> = ({ entry, className, children }) => {

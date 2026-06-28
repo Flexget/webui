@@ -1,6 +1,5 @@
 import React, { FC, useEffect } from 'react';
 import { Formik } from 'formik';
-import { hot } from 'react-hot-loader/root';
 import { css } from '@emotion/core';
 import { PaperWrapper } from 'common/styles';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
@@ -43,4 +42,4 @@ const LogPage: FC = () => {
   );
 };
 
-export default hot(LogPage);
+export default LogPage;

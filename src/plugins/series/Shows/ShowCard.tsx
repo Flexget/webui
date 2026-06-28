@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useRouteMatch } from 'react-router';
+import { useHref } from 'react-router-dom';
 import { css } from '@emotion/core';
 import {
   Card,
@@ -51,10 +51,10 @@ const cardActions = (theme: Theme) => css`
 `;
 
 const ShowCard: FC<Props> = ({ show, onRemoveClick }) => {
-  const { url } = useRouteMatch();
+  const basePath = useHref('.');
   return (
     <Card css={cardCss}>
-      <CardActionArea css={actionArea} component={Link} to={`${url}/${show.id}`}>
+      <CardActionArea css={actionArea} component={Link} to={`${basePath}/${show.id}`}>
         <Entry entry={showToEntry(show)} css={entryCard}>
           {!!show.beginEpisode && (
             <Typography variant="body2" color="textSecondary">

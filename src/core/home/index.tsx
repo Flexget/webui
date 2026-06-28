@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react';
-import { hot } from 'react-hot-loader/root';
 import { Grid } from '@material-ui/core';
 import LoadingSpinner from 'common/LoadingSpinner';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
@@ -22,4 +21,4 @@ const Home = () => {
   );
 };
 
-export default hot(Home);
+export default Home;
