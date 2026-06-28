@@ -76,12 +76,10 @@ const EntryCard: FC<Props> = ({ entry, onInjectClick, onRemoveClick }) => {
 
   const selected = selectedIds.has(entry.id);
 
-  const toggle = useCallback(() => (selected ? unselectEntry(entry.id) : selectEntry(entry.id)), [
-    entry.id,
-    selectEntry,
-    selected,
-    unselectEntry,
-  ]);
+  const toggle = useCallback(
+    () => (selected ? unselectEntry(entry.id) : selectEntry(entry.id)),
+    [entry.id, selectEntry, selected, unselectEntry],
+  );
 
   const checkCircleStyles = useCallback(
     (theme: Theme) => [circleIcon(theme), selected && circleIconVisible],

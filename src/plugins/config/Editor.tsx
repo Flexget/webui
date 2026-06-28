@@ -28,7 +28,7 @@ interface Props {
   schemas?: Schema[];
 }
 
-const { yaml } = ((languages ?? {}) as unknown) as { yaml?: YamlLanguage };
+const { yaml } = (languages ?? {}) as unknown as { yaml?: YamlLanguage };
 
 const Editor: FC<Props> = ({ name, schemas }) => {
   const options: editor.IStandaloneEditorConstructionOptions = {

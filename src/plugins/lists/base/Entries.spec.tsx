@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { cleanup, fireEvent, within, getNodeText, wait } from '@testing-library/react';
-import fetchMock from 'fetch-mock';
+import * as fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
 import { TaskContainer } from 'plugins/tasks/hooks';

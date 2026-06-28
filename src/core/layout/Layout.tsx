@@ -25,10 +25,10 @@ const Layout: React.FC = ({ children }) => {
   const sideTransition = sidebarOpen ? enterTransition : leavingTransition;
   const mainTransition = sidebarOpen ? leavingTransition : enterTransition;
 
-  const contentCss = useMemo(() => [content(theme), mainTransition(theme)], [
-    mainTransition,
-    theme,
-  ]);
+  const contentCss = useMemo(
+    () => [content(theme), mainTransition(theme)],
+    [mainTransition, theme],
+  );
 
   return (
     <AppBarContainer.Provider>

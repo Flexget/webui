@@ -6,7 +6,7 @@ import { Paper, Theme } from '@material-ui/core';
 
 const styled = st as CreateStyled<Theme>;
 
-export const PaperWrapper = styled(Paper)`
+export const PaperWrapper = styled(Paper)<{ elevation?: number }>`
   padding: 2.4rem;
   display: flex;
   flex: 1;

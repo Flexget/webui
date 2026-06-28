@@ -35,17 +35,20 @@ const Operations: FC<Props> = ({ open = false, onClose }) => {
   const { loading: pluginsLoading, plugins } = useGetPlugins();
   const [pluginName, setPluginName] = useState('');
 
-  const options = useMemo(() => plugins.map(plugin => ({ label: plugin, value: plugin })), [
-    plugins,
-  ]);
+  const options = useMemo(
+    () => plugins.map(plugin => ({ label: plugin, value: plugin })),
+    [plugins],
+  );
 
-  const vacuum = useCallback(() => performOperation({ operation: DatabaseOperation.Vacuum }), [
-    performOperation,
-  ]);
+  const vacuum = useCallback(
+    () => performOperation({ operation: DatabaseOperation.Vacuum }),
+    [performOperation],
+  );
 
-  const cleanup = useCallback(() => performOperation({ operation: DatabaseOperation.Cleanup }), [
-    performOperation,
-  ]);
+  const cleanup = useCallback(
+    () => performOperation({ operation: DatabaseOperation.Cleanup }),
+    [performOperation],
+  );
 
   const resetPLugin = useCallback(
     () => performOperation({ operation: DatabaseOperation.PluginReset, pluginName }),

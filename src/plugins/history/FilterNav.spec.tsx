@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import fetchMock from 'fetch-mock';
+import * as fetchMock from 'fetch-mock';
 import renderer from 'react-test-renderer';
 import { Direction } from 'utils/query';
 import { BaseProviders } from 'utils/tests';

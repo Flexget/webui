@@ -3,7 +3,7 @@ import { useContainer } from 'unstated-next';
 import { cleanup, render, fireEvent } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
 import { makeRawEntry } from 'core/entry/fixtures';
-import fetchMock from 'fetch-mock';
+import * as fetchMock from 'fetch-mock';
 import EntryCard from '../base/EntryList/EntryCard';
 import { ListContainer, actions } from '../base/hooks/list';
 import { EntryContainer } from '../base/hooks/entry';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, fireEvent, within, wait } from '@testing-library/react';
-import fetchMock from 'fetch-mock';
+import * as fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import RemoveDialog from './RemoveDialog';
 import { EpisodeContainer, useRemoveEpisode } from './hooks/episodes';

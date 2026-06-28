@@ -1,5 +1,5 @@
 import React from 'react';
-import fetchMock from 'fetch-mock';
+import * as fetchMock from 'fetch-mock';
 import { cleanup } from '@testing-library/react';
 import { renderWithWrapper } from 'utils/tests';
 import Version from './Version';

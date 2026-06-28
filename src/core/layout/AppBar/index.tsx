@@ -70,11 +70,10 @@ const AppBar: FC<Props> = ({ toggleSidebar, className }) => {
     setContextual(false);
   }, [contextualProps, setContextual]);
 
-  const menuClick = useMemo(() => (contextualMode ? handleContextualClose : icon.onClick), [
-    contextualMode,
-    handleContextualClose,
-    icon.onClick,
-  ]);
+  const menuClick = useMemo(
+    () => (contextualMode ? handleContextualClose : icon.onClick),
+    [contextualMode, handleContextualClose, icon.onClick],
+  );
 
   const menuLabel = contextualMode ? 'close context' : icon.label;
   const [mode, toggleMode] = useContainer(ThemeContainer);

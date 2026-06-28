@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { cleanup } from '@testing-library/react';
 import { useHistory, Route, Switch } from 'react-router';
-import fetchMock from 'fetch-mock';
+import * as fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
 import Series from './Series';

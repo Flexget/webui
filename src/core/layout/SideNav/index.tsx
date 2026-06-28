@@ -41,20 +41,21 @@ const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
 
-  const drawerCss = useMemo(() => (sidebarOpen ? drawerOpen(theme) : drawerClose(theme)), [
-    sidebarOpen,
-    theme,
-  ]);
+  const drawerCss = useMemo(
+    () => (sidebarOpen ? drawerOpen(theme) : drawerClose(theme)),
+    [sidebarOpen, theme],
+  );
 
   const drawerRootCss = useMemo(() => [drawer(theme), drawerCss], [drawerCss, theme]);
 
   const handleClick = useCallback(
-    ({ path }: Route) => () => {
-      if (isMobile) {
-        onClose();
-      }
-      history.push(path);
-    },
+    ({ path }: Route) =>
+      () => {
+        if (isMobile) {
+          onClose();
+        }
+        history.push(path);
+      },
     [history, isMobile, onClose],
   );
 

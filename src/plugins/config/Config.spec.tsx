@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import fetchMock from 'fetch-mock';
+import * as fetchMock from 'fetch-mock';
 import { cleanup, fireEvent, wait } from '@testing-library/react';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';

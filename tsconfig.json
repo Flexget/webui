@@ -19,6 +19,7 @@
       "dom.iterable"
     ],
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "experimentalDecorators": true
   },

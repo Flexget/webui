@@ -62,9 +62,10 @@ const BaseCard: FC<Props> = ({
   loading = false,
 }) => {
   const imageCss = useCallback((theme: Theme) => [image, isPoster && poster(theme)], [isPoster]);
-  const textCss = useCallback((theme: Theme) => [text, isPoster && posterSkeletonWrapper(theme)], [
-    isPoster,
-  ]);
+  const textCss = useCallback(
+    (theme: Theme) => [text, isPoster && posterSkeletonWrapper(theme)],
+    [isPoster],
+  );
   const summaryCss = useCallback(
     (theme: Theme) => [summary(theme), isPoster && posterSkeletonWrapper(theme)],
     [isPoster],

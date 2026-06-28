@@ -145,7 +145,7 @@ const traktToFields = (movie: TraktMovie): RawMovieFields => ({
   [TraktFields.ID]: movie.id,
   [TraktFields.Description]: movie.overview,
   [IMDBFields.ID]: movie.imdbId,
-  [TraktFields.ID]: movie.tmdbId,
+  [TMDBFields.ID]: movie.tmdbId,
 });
 
 export const useTraktLookup = (options: TraktOptions) => {

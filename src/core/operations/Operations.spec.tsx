@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import fetchMock from 'fetch-mock';
+import * as fetchMock from 'fetch-mock';
 import { cleanup, fireEvent, RenderResult } from '@testing-library/react';
 import { renderWithWrapper } from 'utils/tests';
 import InfoStatus from 'core/status/InfoStatus';

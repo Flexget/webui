@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { useContainer } from 'unstated-next';
 import { cleanup, render, fireEvent, within, wait } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
-import fetchMock from 'fetch-mock';
+import * as fetchMock from 'fetch-mock';
 import RemoveListDialog from './RemoveListDialog';
 import { ListContainer, actions } from './hooks/list';
 import { PendingListContainer } from '../pending/hooks';

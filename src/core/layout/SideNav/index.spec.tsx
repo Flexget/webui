@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { themed, router } from 'utils/tests';
-import fetchMock from 'fetch-mock';
+import * as fetchMock from 'fetch-mock';
 import SideNav from './index';
 
 describe('core/layout/SideNav', () => {

@@ -3,7 +3,7 @@ module.exports = {
     'airbnb-typescript',
     'plugin:jest-dom/recommended',
     'plugin:testing-library/recommended',
-    "plugin:@typescript-eslint/eslint-recommended",
+    'plugin:@typescript-eslint/eslint-recommended',
     // "plugin:@typescript-eslint/recommended",
     // "plugin:@typescript-eslint/recommended-requiring-type-checking",
     'plugin:prettier/recommended',
@@ -62,12 +62,16 @@ module.exports = {
     'emotion/styled-import': 'error',
 
     // import
-    'import/extensions': ['error', 'ignorePackages', {
-      ts: 'never',
-      tsx: 'never',
-      js: 'never',
-      jsx: 'never',
-    }],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        ts: 'never',
+        tsx: 'never',
+        js: 'never',
+        jsx: 'never',
+      },
+    ],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/no-named-as-default': 'off',
     'import/prefer-default-export': 'off',

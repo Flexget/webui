@@ -23,10 +23,10 @@ interface Props {
 
 const HistoryList = forwardRef<InfiniteScroll, Props>(({ options, loadMore }, scrollRef) => {
   const { items, total, loading } = useHistoryPlugin(options);
-  const history = useMemo(() => getGroupedHistory(items, options.grouping), [
-    items,
-    options.grouping,
-  ]);
+  const history = useMemo(
+    () => getGroupedHistory(items, options.grouping),
+    [items, options.grouping],
+  );
 
   return (
     <div css={wrapper}>

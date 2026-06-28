@@ -8,7 +8,7 @@ import {
 } from '@material-ui/lab';
 import { TextFieldProps, TextField } from '@material-ui/core';
 
-type Props<Multiple extends boolean, T = any> = Omit<AutocompleteProps<T>, 'renderInput'> &
+type Props<Multiple extends boolean | undefined, T = any> = Omit<AutocompleteProps<T>, 'renderInput'> &
   (Multiple extends true ? UseAutocompleteMultipleProps<T> : UseAutocompleteSingleProps<T>) & {
     name: string;
     InputProps: TextFieldProps;

@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const webpack = require('webpack');
-const cfg = require('./package.json')
+const cfg = require('./package.json');
 
 const __DEBUG__ = !!process.env.DEBUG;
 const __DEV__ = process.env.NODE_ENV !== 'production';

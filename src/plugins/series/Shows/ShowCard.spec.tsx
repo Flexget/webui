@@ -1,7 +1,7 @@
 import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
 import { renderWithWrapper } from 'utils/tests';
-import fetchMock from 'fetch-mock';
+import * as fetchMock from 'fetch-mock';
 import ShowCard from './ShowCard';
 import { Show } from '../types';
 import { ShowContainer } from '../hooks/shows';

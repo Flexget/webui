@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
-import fetchMock from 'fetch-mock';
+import * as fetchMock from 'fetch-mock';
 import { AuthContainer } from 'core/auth/hooks';
 import { renderWithWrapper } from 'utils/tests';
 import LoginCard from './LoginCard';

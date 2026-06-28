@@ -1,5 +1,5 @@
 import React from 'react';
-import fetchMock from 'fetch-mock';
+import * as fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import Releases from './Releases';
 import { ReleaseContainer } from '../hooks/releases';

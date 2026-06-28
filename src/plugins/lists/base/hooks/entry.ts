@@ -275,9 +275,10 @@ export const useEntryBulkSelect = () => {
   const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
 
   const selectEntry = useCallback((id: number) => dispatch(actions.selectEntry(id)), [dispatch]);
-  const unselectEntry = useCallback((id: number) => dispatch(actions.unselectEntry(id)), [
-    dispatch,
-  ]);
+  const unselectEntry = useCallback(
+    (id: number) => dispatch(actions.unselectEntry(id)),
+    [dispatch],
+  );
 
   const clearSelected = useCallback(() => dispatch(actions.clearSelected()), [dispatch]);
 
