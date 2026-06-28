@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { CardContent, Typography } from '@material-ui/core';
+import { CardContent, Typography } from '@mui/material';
 import { BaseEntry } from '../types';
 
 interface Props {

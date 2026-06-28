@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { Check } from '@material-ui/icons';
+import { Check } from '@mui/icons-material';
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithWrapper } from 'utils/tests';
 import {

@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { Formik } from 'formik';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { PaperWrapper } from 'common/styles';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { useMergeState } from 'utils/hooks';

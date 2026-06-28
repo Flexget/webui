@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { MenuItem, useMediaQuery, useTheme } from '@material-ui/core';
+import { MenuItem, useMediaQuery, useTheme } from '@mui/material';
 import TextField, { Props as TextFieldProps } from './TextField';
 
 interface Option {

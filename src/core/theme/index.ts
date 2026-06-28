@@ -2,14 +2,14 @@ import { useState, useCallback } from 'react';
 import { createContainer } from 'unstated-next';
 import { editor } from 'monaco-editor/esm/vs/editor/editor.api';
 
-import { common, orange, blueGrey } from '@material-ui/core/colors';
-import { createMuiTheme, Theme, PaletteType } from '@material-ui/core';
+import { common, orange, blueGrey } from '@mui/material/colors';
+import { createTheme as createMuiTheme, Theme, PaletteMode } from '@mui/material';
 import { rgba } from 'polished';
 import lightEditorTheme from 'monaco-themes/themes/Tomorrow.json';
 import darkEditorTheme from 'monaco-themes/themes/Oceanic Next.json';
 
 export const ThemeContainer = createContainer(() => {
-  const [state, setState] = useState<PaletteType>('light');
+  const [state, setState] = useState<PaletteMode>('light');
 
   const toggle = useCallback(() => setState(state === 'light' ? 'dark' : 'light'), [state]);
 
@@ -21,8 +21,6 @@ const dark = {
     primary: blueGrey.A200,
     secondary: rgba(blueGrey.A200, 0.7),
     disabled: rgba(blueGrey.A200, 0.5),
-    hint: rgba(blueGrey.A200, 0.5),
-    icon: rgba(blueGrey.A200, 0.5),
   },
   divider: rgba(blueGrey.A200, 0.12),
   background: {
@@ -48,8 +46,6 @@ const light = {
     secondary: rgba(blueGrey[800], 0.54),
     // Disabled text have even lower visual prominence.
     disabled: rgba(blueGrey[800], 0.38),
-    // Text hints.
-    hint: rgba(blueGrey[800], 0.38),
   },
   // The color used to divide different elements.
   divider: rgba(blueGrey[800], 0.12),
@@ -80,7 +76,7 @@ const themes = {
   dark,
 } as const;
 
-const addEditorTheme = (name: PaletteType, data: editor.IStandaloneThemeData) =>
+const addEditorTheme = (name: PaletteMode, data: editor.IStandaloneThemeData) =>
   editor?.defineTheme(name, {
     ...data,
     colors: {
@@ -92,7 +88,7 @@ const addEditorTheme = (name: PaletteType, data: editor.IStandaloneThemeData) =>
 addEditorTheme('light', lightEditorTheme as editor.IStandaloneThemeData);
 addEditorTheme('dark', darkEditorTheme as editor.IStandaloneThemeData);
 
-export const createTheme = (type: PaletteType = 'light'): Theme =>
+export const createTheme = (type: PaletteMode = 'light'): Theme =>
   createMuiTheme({
     palette: {
       primary: {
@@ -102,7 +98,7 @@ export const createTheme = (type: PaletteType = 'light'): Theme =>
         main: blueGrey[800],
         light: blueGrey.A200,
       },
-      type,
+      mode: type,
       ...themes[type],
     },
     typography: {
@@ -122,9 +118,11 @@ export const createTheme = (type: PaletteType = 'light'): Theme =>
         },
       },
     },
-    props: {
+    components: {
       MuiPaper: {
-        square: true,
+        defaultProps: {
+          square: true,
+        },
       },
     },
   });

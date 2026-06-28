@@ -7,11 +7,11 @@ import {
   MenuItem,
   ListItemIcon,
   CircularProgress,
-} from '@material-ui/core';
-import { css } from '@emotion/core';
+} from '@mui/material';
+import { css } from '@emotion/react';
 import { Spacer } from 'common/styles';
 import TextField from 'common/inputs/formik/TextField';
-import { PlayArrow, Stop, FilterList, MoreVert, ClearAll } from '@material-ui/icons';
+import { PlayArrow, Stop, FilterList, MoreVert, ClearAll } from '@mui/icons-material';
 import { ReadyState } from 'core/api';
 import { useDebounceFormikSubmit } from 'utils/hooks';
 

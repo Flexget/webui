@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import fetchMock from 'fetch-mock';
-import renderer from 'react-test-renderer';
+import { cleanup, render } from '@testing-library/react';
 import { Direction } from 'utils/query';
 import { BaseProviders } from 'utils/tests';
 import { TaskContainer } from 'plugins/tasks/hooks';
@@ -14,30 +14,29 @@ describe('plugins/history/FilterNav', () => {
   });
 
   afterEach(() => {
+    cleanup();
     fetchMock.reset();
   });
 
   it('renders correctly', () => {
-    const tree = renderer
-      .create(
-        <BaseProviders>
-          <TaskContainer.Provider>
-            <Formik
-              initialValues={{
-                grouping: GroupByFields.Time,
-                task: '',
-                page: 1,
-                order: Direction.Desc,
-                sort: SortByFields.Time,
-              }}
-              onSubmit={jest.fn()}
-            >
-              <FilterNav />
-            </Formik>
-          </TaskContainer.Provider>
-        </BaseProviders>,
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const { container } = render(
+      <BaseProviders>
+        <TaskContainer.Provider>
+          <Formik
+            initialValues={{
+              grouping: GroupByFields.Time,
+              task: '',
+              page: 1,
+              order: Direction.Desc,
+              sort: SortByFields.Time,
+            }}
+            onSubmit={jest.fn()}
+          >
+            <FilterNav />
+          </Formik>
+        </TaskContainer.Provider>
+      </BaseProviders>,
+    );
+    expect(container).toMatchSnapshot();
   });
 });

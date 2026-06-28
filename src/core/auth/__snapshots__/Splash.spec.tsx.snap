@@ -8,7 +8,6 @@ exports[`pages/splash renders correctly 1`] = `
   <div
     css={
       {
-        "map": undefined,
         "name": "1kz9hf7",
         "next": undefined,
         "styles": "
@@ -18,7 +17,6 @@ exports[`pages/splash renders correctly 1`] = `
   text-align: center;
   font-size: 1rem;
 ",
-        "toString": [Function],
       }
     }
   >

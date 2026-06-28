@@ -1,5 +1,5 @@
-import { css } from '@emotion/core';
-import { Theme } from '@material-ui/core';
+import { css } from '@emotion/react';
+import { Theme } from '@mui/material';
 
 export const wrapper = css`
   display: grid;

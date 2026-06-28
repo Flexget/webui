@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { css } from '@emotion/core';
-import { Card, CardActions, Theme, Collapse, Button } from '@material-ui/core';
+import { css } from '@emotion/react';
+import { Card, CardActions, Theme, Collapse, Button } from '@mui/material';
 import Entry from 'core/entry/cards';
 import ExpandButton from 'common/ExpandButton';
 import { useOverlayState } from 'utils/hooks';

@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { cleanup } from '@testing-library/react';
 import { AuthContainer } from 'core/auth/hooks';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { Home, PowerSettingsNew } from '@material-ui/icons';
+import { Home, PowerSettingsNew } from '@mui/icons-material';
 import { useContainer } from 'unstated-next';
 import { renderWithWrapper } from 'utils/tests';
 import AppRoutes from './Routes';

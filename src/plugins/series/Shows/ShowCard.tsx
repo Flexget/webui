@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useHref } from 'react-router-dom';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   Card,
   CardActionArea,
@@ -9,8 +9,8 @@ import {
   Tooltip,
   Theme,
   Typography,
-} from '@material-ui/core';
-import { Delete } from '@material-ui/icons';
+} from '@mui/material';
+import { Delete } from '@mui/icons-material';
 import Entry from 'core/entry/cards';
 import { Link } from 'common/styles';
 import { Show } from '../types';

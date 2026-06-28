@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, ChangeEvent } from 'react';
-import { Checkbox as BaseCheckbox, CheckboxProps } from '@material-ui/core';
+import { Checkbox as BaseCheckbox, CheckboxProps } from '@mui/material';
 import { useField } from 'formik';
 
 export type Props = CheckboxProps & {

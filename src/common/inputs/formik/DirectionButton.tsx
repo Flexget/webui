@@ -1,6 +1,6 @@
 import React, { useCallback, forwardRef, useMemo } from 'react';
 import { useField } from 'formik';
-import { IconButtonProps } from '@material-ui/core';
+import { IconButtonProps } from '@mui/material';
 import { Direction, toggleDirection } from 'utils/query';
 import ExpandButton from 'common/ExpandButton';
 

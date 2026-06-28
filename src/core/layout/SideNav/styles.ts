@@ -1,5 +1,5 @@
-import { Theme } from '@material-ui/core';
-import { css } from '@emotion/core';
+import { Theme } from '@mui/material';
+import { css } from '@emotion/react';
 import { rgba } from 'polished';
 
 export const nested = (theme: Theme) => css`

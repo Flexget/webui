@@ -20,9 +20,9 @@ const TestOperations: FC<Props> = ({ open = false }) => {
 };
 
 const buttonsDisabled = (getByText: RenderResult['getByText']) => {
-  expect(getByText('Cleanup', { selector: 'span' }).closest('button')).toBeDisabled();
-  expect(getByText('Vacuum', { selector: 'span' }).closest('button')).toBeDisabled();
-  expect(getByText('Reset Plugin', { selector: 'span' }).closest('button')).toBeDisabled();
+  expect(getByText('Cleanup').closest('button')).toBeDisabled();
+  expect(getByText('Vacuum').closest('button')).toBeDisabled();
+  expect(getByText('Reset Plugin').closest('button')).toBeDisabled();
 };
 
 describe('core/layout/SideNav/Operations', () => {
@@ -53,7 +53,7 @@ describe('core/layout/SideNav/Operations', () => {
   describe('cleanup', () => {
     it('should make request when clicked', () => {
       const { getByText } = renderWithWrapper(<TestOperations open />);
-      const button = getByText('Cleanup', { selector: 'span' }).closest('button');
+      const button = getByText('Cleanup').closest('button');
 
       if (button) {
         fireEvent.click(button);
@@ -71,7 +71,7 @@ describe('core/layout/SideNav/Operations', () => {
   describe('vacuum', () => {
     it('should make request when clicked', () => {
       const { getByText } = renderWithWrapper(<TestOperations open />);
-      const button = getByText('Vacuum', { selector: 'span' }).closest('button');
+      const button = getByText('Vacuum').closest('button');
 
       if (button) {
         fireEvent.click(button);
@@ -90,7 +90,7 @@ describe('core/layout/SideNav/Operations', () => {
       const { getByLabelText, getByText, findAllByRole } = renderWithWrapper(
         <TestOperations open />,
       );
-      const button = getByText('Reset Plugin', { selector: 'span' }).closest('button');
+      const button = getByText('Reset Plugin').closest('button');
 
       const dropdown = getByLabelText('Plugin name');
 

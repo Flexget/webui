@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import ErrorStatus from 'core/status/ErrorStatus';
 import InfoStatus from 'core/status/InfoStatus';
-import { useTheme } from '@material-ui/core';
+import { useTheme } from '@mui/material';
 import { useOverlayState } from 'utils/hooks';
 
 import AppBar from './AppBar';

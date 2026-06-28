@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { Typography, Theme } from '@material-ui/core';
+import { Typography, Theme } from '@mui/material';
 import { normalizeMinutes } from 'utils/time';
-import { css } from '@emotion/core';
-import { StarRate } from '@material-ui/icons';
+import { css } from '@emotion/react';
+import { StarRate } from '@mui/icons-material';
 import { MovieEntry, IMDBFields, TMDBFields, TraktFields } from '../fields/movies';
 import { Bullet, titleArea, ratingLine, selectableType } from './styles';
 import BaseCard from './BaseCard';

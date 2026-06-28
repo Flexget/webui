@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { Typography, Theme } from '@material-ui/core';
-import { css } from '@emotion/core';
+import { Typography, Theme } from '@mui/material';
+import { css } from '@emotion/react';
 import LinkDropdown from 'core/entry/cards/LinkDropdown';
 import { useEpisodeLookup } from 'core/entry/lookup/episodes';
 import { EpisodeEntry, TVMazeFields, TVDBFields } from '../fields/episodes';

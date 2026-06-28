@@ -12,7 +12,7 @@ module.exports = {
     'prettier/react',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['jest', 'emotion', 'react-hooks'],
+  plugins: ['jest', '@emotion', 'react-hooks'],
   env: {
     browser: true,
     node: true,
@@ -57,9 +57,9 @@ module.exports = {
     '@typescript-eslint/unified-signatures': 'warn',
 
     // emotion
-    'emotion/import-from-emotion': 'error',
-    'emotion/no-vanilla': 'error',
-    'emotion/styled-import': 'error',
+    '@emotion/import-from-emotion': 'error',
+    '@emotion/no-vanilla': 'error',
+    '@emotion/styled-import': 'error',
 
     // import
     'import/extensions': [

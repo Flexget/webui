@@ -1,11 +1,11 @@
 import React, { useState, useCallback, useMemo, FC } from 'react';
 import { Formik } from 'formik';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
-import { Button, Theme, Link } from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
+import { Button, Theme, Link } from '@mui/material';
+import { Alert } from '@mui/material';
 import { useGlobalStatus } from 'core/status/hooks';
 import { NoPaddingWrapper } from 'common/styles';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { useGetConfig, useGetVariables, useGetSchema } from './hooks';
 import { Mode, FormState } from './types';
 import Editor from './Editor';

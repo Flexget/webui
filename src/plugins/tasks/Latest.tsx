@@ -1,7 +1,7 @@
 import React, { FC, useMemo, useState } from 'react';
 import { Formik } from 'formik';
 import { useNavigate, useHref } from 'react-router-dom';
-import { CheckCircle, Error } from '@material-ui/icons';
+import { CheckCircle, Error } from '@mui/icons-material';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { Direction } from 'utils/query';
 import { useContainer } from 'unstated-next';

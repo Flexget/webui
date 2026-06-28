@@ -1,6 +1,6 @@
 import React, { FC, useState, useCallback } from 'react';
-import { MoreVert } from '@material-ui/icons';
-import { IconButton, Menu, MenuItem } from '@material-ui/core';
+import { MoreVert } from '@mui/icons-material';
+import { IconButton, Menu, MenuItem } from '@mui/material';
 
 interface Option {
   label: string;

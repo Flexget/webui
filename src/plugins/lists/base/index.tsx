@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { Theme } from '@material-ui/core';
-import { css } from '@emotion/core';
+import { Theme } from '@mui/material';
+import { css } from '@emotion/react';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { NoPaddingWrapper } from 'common/styles';
 import { ListContainer } from './hooks/list';

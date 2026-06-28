@@ -9,10 +9,10 @@ import {
   Menu,
   MenuItem,
   ListItemIcon,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useMergeState, useOverlayState } from 'utils/hooks';
 import { Direction } from 'utils/query';
-import { GetApp, Delete, MoreVert } from '@material-ui/icons';
+import { GetApp, Delete, MoreVert } from '@mui/icons-material';
 import RemoveDialog from 'plugins/series/RemoveDialog';
 import {
   ReleaseContainer,

@@ -9,11 +9,9 @@ module.exports = function config(api) {
       },
     ],
     '@babel/preset-react',
-    ...(api.env() !== 'test'
-      ? ['@emotion/babel-preset-css-prop', { sourceMap: api.env() !== 'test' }]
-      : []),
   ];
   const plugins = [
+    '@emotion/babel-plugin',
     '@babel/plugin-syntax-dynamic-import',
     '@babel/plugin-proposal-nullish-coalescing-operator',
     '@babel/plugin-proposal-optional-chaining',

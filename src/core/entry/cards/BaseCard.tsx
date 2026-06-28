@@ -1,8 +1,8 @@
 import React, { FC, useCallback } from 'react';
-import { css } from '@emotion/core';
-import { CardMedia, Theme, CardContent } from '@material-ui/core';
+import { css } from '@emotion/react';
+import { CardMedia, Theme, CardContent } from '@mui/material';
 import { getCachedUrl } from 'utils/image';
-import { Skeleton } from '@material-ui/lab';
+import { Skeleton } from '@mui/material';
 
 interface Props {
   images?: string[] | string;

@@ -1,7 +1,7 @@
 import React, { useCallback, FC } from 'react';
-import { css } from '@emotion/core';
-import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@material-ui/core';
-import { Repeat, CheckCircle, Delete } from '@material-ui/icons';
+import { css } from '@emotion/react';
+import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@mui/material';
+import { Repeat, CheckCircle, Delete } from '@mui/icons-material';
 import Entry from 'core/entry/cards';
 import { usePluginContainer } from '../hooks/api';
 import { Entry as EntryType } from '../types';

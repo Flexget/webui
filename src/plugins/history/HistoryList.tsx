@@ -1,9 +1,9 @@
 import React, { forwardRef, useMemo } from 'react';
-import { Theme, ListItemText, ListItem, ListSubheader, List } from '@material-ui/core';
+import { Theme, ListItemText, ListItem, ListSubheader, List } from '@mui/material';
 import InfiniteScroll from 'react-infinite-scroller';
 import { GroupByFields, GetHistoryOptions, HistoryItem } from 'plugins/history/types';
 import LoadingSpinner from 'common/LoadingSpinner';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { getGroupedHistory } from 'plugins/history/utils';
 import { useHistoryPlugin } from './hooks';
 

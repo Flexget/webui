@@ -1,6 +1,6 @@
 import React, { FC, ChangeEvent } from 'react';
-import { TablePagination, Theme } from '@material-ui/core';
-import { css, ClassNames } from '@emotion/core';
+import { TablePagination, Theme } from '@mui/material';
+import { css, ClassNames } from '@emotion/react';
 import SelectField from 'common/inputs/formik/SelectField';
 import { useContainer } from 'unstated-next';
 import { useFormikContext } from 'formik';

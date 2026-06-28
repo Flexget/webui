@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { CircularProgress } from '@material-ui/core';
-import { css } from '@emotion/core';
+import { CircularProgress } from '@mui/material';
+import { css } from '@emotion/react';
 
 const spinner = css`
   margin: 0 auto;

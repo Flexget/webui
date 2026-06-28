@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { css } from '@emotion/core';
-import { Card, Avatar, Theme, Typography, CardActions, Button } from '@material-ui/core';
+import { css } from '@emotion/react';
+import { Card, Avatar, Theme, Typography, CardActions, Button } from '@mui/material';
 import { Link } from 'common/styles';
 import { CardInfo } from './types';
 

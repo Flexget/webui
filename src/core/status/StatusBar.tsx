@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import SnackBar from '@material-ui/core/Snackbar';
+import SnackBar from '@mui/material/Snackbar';
 
 interface Props {
   message?: string;

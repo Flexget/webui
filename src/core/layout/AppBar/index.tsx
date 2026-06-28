@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useMemo } from 'react';
 import { useContainer } from 'unstated-next';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   AppBar as MUIAppBar,
   Toolbar,
@@ -8,17 +8,17 @@ import {
   Typography,
   Theme,
   Tooltip,
-} from '@material-ui/core';
+} from '@mui/material';
 import {
   EmojiObjects,
   EmojiObjectsOutlined,
   Menu as MenuIcon,
   Clear,
   Help,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import { Spacer } from 'common/styles';
 import LoadingBar from 'core/status/LoadingBar';
-import { SpeedDialIcon } from '@material-ui/lab';
+import { SpeedDialIcon } from '@mui/material';
 import { ThemeContainer } from 'core/theme';
 import { useOverlayState } from 'utils/hooks';
 import { AppBarContainer } from './hooks';

@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { CreateTwoTone } from '@material-ui/icons';
+import { CreateTwoTone } from '@mui/icons-material';
 import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>

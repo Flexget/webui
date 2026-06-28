@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useState, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowBackIos, CheckCircle, Error } from '@material-ui/icons';
+import { ArrowBackIos, CheckCircle, Error } from '@mui/icons-material';
 import { useInjectPageTitle, useSetAppBarIcon } from 'core/layout/AppBar/hooks';
 import { useGetTask, useGetTaskExecutions } from 'plugins/tasks/hooks';
 import { Direction } from 'utils/query';

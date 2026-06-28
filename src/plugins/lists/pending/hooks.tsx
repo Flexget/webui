@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useFlexgetAPI } from 'core/api';
 import { Method } from 'utils/fetch';
 import { useContainer } from 'unstated-next';
-import { DoneAll, ClearAll } from '@material-ui/icons';
+import { DoneAll, ClearAll } from '@mui/icons-material';
 import { PendingListEntry, Operation, SortBy } from './types';
 import { ActionsLeft, Actions } from './Card';
 import { createPluginContainer } from '../base/hooks/api';

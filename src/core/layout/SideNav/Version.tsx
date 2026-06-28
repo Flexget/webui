@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { gt } from 'semver';
-import { css } from '@emotion/core';
-import { IconButton, Theme } from '@material-ui/core';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import Typography from '@material-ui/core/Typography';
+import { css } from '@emotion/react';
+import { IconButton, Theme } from '@mui/material';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import Typography from '@mui/material/Typography';
 import { cleanFlexgetVersion } from 'utils/version';
 import { useVersion } from './hooks';
 

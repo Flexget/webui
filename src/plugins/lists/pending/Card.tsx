@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { Typography, Tooltip, IconButton } from '@material-ui/core';
-import { Check, Clear } from '@material-ui/icons';
+import { Typography, Tooltip, IconButton } from '@mui/material';
+import { Check, Clear } from '@mui/icons-material';
 import { PendingListEntry, Operation } from './types';
 import { useEntryOperation } from './hooks';
 

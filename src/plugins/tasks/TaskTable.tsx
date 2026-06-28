@@ -11,7 +11,7 @@ import {
   TablePagination,
   TableSortLabel,
   TableRowProps,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useDebounceFormikSubmit } from 'utils/hooks';
 import { Direction, DefaultOptions, toggleDirection } from 'utils/query';
 

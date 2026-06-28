@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Settings } from '@material-ui/icons';
+import { Settings } from '@mui/icons-material';
 import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>

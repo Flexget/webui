@@ -1,6 +1,6 @@
 import React, { FC, useMemo, useCallback, useState, ChangeEvent } from 'react';
-import { Drawer, Divider, Button, Theme, Typography } from '@material-ui/core';
-import { css } from '@emotion/core';
+import { Drawer, Divider, Button, Theme, Typography } from '@mui/material';
+import { css } from '@emotion/react';
 import SelectField from 'common/inputs/SelectField';
 import { useGetPlugins, useDBOperation } from './hooks';
 import { DatabaseOperation } from './types';

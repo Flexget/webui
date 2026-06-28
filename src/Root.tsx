@@ -1,7 +1,7 @@
 import React, { Suspense, FC, lazy } from 'react';
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline } from '@mui/material';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { Global, css } from '@emotion/core';
+import { Global, css } from '@emotion/react';
 import PrivateRoute from 'core/routes/PrivateRoute';
 import Layout from 'core/layout/Layout';
 import AppRoutes from 'core/routes/Routes';

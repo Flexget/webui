@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import { useInjectPageTitle, useSetAppBarIcon } from 'core/layout/AppBar/hooks';
 import { Direction } from 'utils/query';
 import { useMergeState } from 'utils/hooks';
-import { ArrowBackIos } from '@material-ui/icons';
+import { ArrowBackIos } from '@mui/icons-material';
 import { EpisodeContainer } from '../hooks/episodes';
 import { GetEpisodeOptions } from '../types';
 import Header from './Header';

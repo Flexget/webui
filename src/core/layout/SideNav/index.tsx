@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useMemo, useState } from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   Drawer,
   List,
@@ -8,8 +8,8 @@ import {
   useMediaQuery,
   useTheme,
   Divider,
-} from '@material-ui/core';
-import { Settings } from '@material-ui/icons';
+} from '@mui/material';
+import { Settings } from '@mui/icons-material';
 
 import { useNavigate } from 'react-router-dom';
 import { Route } from 'core/routes/types';

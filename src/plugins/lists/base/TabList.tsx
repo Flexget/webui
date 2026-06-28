@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Tabs, Tab } from '@material-ui/core';
+import { Tabs, Tab } from '@mui/material';
 import { List } from './types';
 
 interface Props {

@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import LoadingSpinner from 'common/LoadingSpinner';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { useGetHomeCards } from './hooks';

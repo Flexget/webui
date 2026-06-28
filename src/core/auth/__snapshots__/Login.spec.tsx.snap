@@ -10,7 +10,6 @@ exports[`core/auth/Login renders correctly when logged out 1`] = `
   <div
     css={
       {
-        "map": undefined,
         "name": "1kz9hf7",
         "next": undefined,
         "styles": "
@@ -20,7 +19,6 @@ exports[`core/auth/Login renders correctly when logged out 1`] = `
   text-align: center;
   font-size: 1rem;
 ",
-        "toString": [Function],
       }
     }
   >

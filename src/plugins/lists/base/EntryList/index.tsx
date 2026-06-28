@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, FC } from 'react';
-import { Grid } from '@material-ui/core';
-import { Repeat, Delete } from '@material-ui/icons';
+import { Grid } from '@mui/material';
+import { Repeat, Delete } from '@mui/icons-material';
 import { useContainer } from 'unstated-next';
 import { useContextualAppBar, ContextualProps } from 'core/layout/AppBar/hooks';
 import { usePluginContainer } from '../hooks/api';

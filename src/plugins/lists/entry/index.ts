@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { ViewList } from '@material-ui/icons';
+import { ViewList } from '@mui/icons-material';
 import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>

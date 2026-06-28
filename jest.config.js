@@ -33,7 +33,7 @@ module.exports = {
     'monaco-editor': '<rootDir>/node_modules/react-monaco-editor',
     '^worker-loader!': '<rootDir>/src/__mocks__/worker.ts',
   },
-  snapshotSerializers: ['jest-emotion'],
+  snapshotSerializers: ['@emotion/jest/serializer'],
   setupFiles: ['<rootDir>/src/utils/tests/setupFiles.ts'],
   setupFilesAfterEnv: ['@testing-library/jest-dom', 'jest-extended/all'],
   testEnvironment: 'jsdom',

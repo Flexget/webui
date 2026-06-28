@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { css } from '@emotion/core';
-import { Theme } from '@material-ui/core';
-import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@material-ui/lab';
-import { PostAdd, PlaylistAdd } from '@material-ui/icons';
+import { css } from '@emotion/react';
+import { Theme } from '@mui/material';
+import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
+import { PostAdd, PlaylistAdd } from '@mui/icons-material';
 import { useOverlayState } from 'utils/hooks';
 import AddEntryDialog from './AddEntryDialog';
 import AddListDialog from './AddListDialog';

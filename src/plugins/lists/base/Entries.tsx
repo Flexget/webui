@@ -3,7 +3,7 @@ import { useContainer } from 'unstated-next';
 import { Direction } from 'utils/query';
 import { useInjectContent, useSetMenuProps } from 'core/layout/AppBar/hooks';
 import { useMergeState, useOverlayState } from 'utils/hooks';
-import { Delete } from '@material-ui/icons';
+import { Delete } from '@mui/icons-material';
 import { OverflowMenuProps } from 'core/layout/AppBar/OverflowMenu';
 import { Formik } from 'formik';
 import EntryList from './EntryList';

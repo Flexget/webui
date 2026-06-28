@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { MovieOutlined } from '@material-ui/icons';
+import { MovieOutlined } from '@mui/icons-material';
 import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>

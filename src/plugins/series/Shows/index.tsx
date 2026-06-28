@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from 'react';
-import { css } from '@emotion/core';
-import { Fab, Theme } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
+import { css } from '@emotion/react';
+import { Fab, Theme } from '@mui/material';
+import { Add } from '@mui/icons-material';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { Direction } from 'utils/query';
 import { useMergeState, useOverlayState } from 'utils/hooks';

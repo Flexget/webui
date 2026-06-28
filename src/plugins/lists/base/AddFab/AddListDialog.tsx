@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   Button,
   Dialog,
@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogContentText,
   Theme,
-} from '@material-ui/core';
+} from '@mui/material';
 import TextField from 'common/inputs/formik/TextField';
 import { Formik, Form } from 'formik';
 import { AddListRequest } from '../types';

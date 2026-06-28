@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { Typography, Theme } from '@material-ui/core';
-import { css } from '@emotion/core';
+import { Typography, Theme } from '@mui/material';
+import { css } from '@emotion/react';
 import BaseCard from 'core/entry/cards/BaseCard';
-import { StarRate } from '@material-ui/icons';
+import { StarRate } from '@mui/icons-material';
 import { SeriesEntry, TraktFields, TVDBFields, TVMazeFields } from '../fields/series';
 import { Bullet, titleArea, ratingLine, selectableType } from './styles';
 import LinkDropdown from './LinkDropdown';

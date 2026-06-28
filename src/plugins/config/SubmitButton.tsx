@@ -1,6 +1,6 @@
 import React, { useEffect, FC } from 'react';
 import { useFormikContext } from 'formik';
-import { Button, ButtonProps } from '@material-ui/core';
+import { Button, ButtonProps } from '@mui/material';
 import { FormState } from './types';
 
 interface SubmitProps extends ButtonProps {

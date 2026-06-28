@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   IconButton,
   CardActions,
@@ -10,8 +10,8 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-} from '@material-ui/core';
-import { GitHub, ForumOutlined, Home, Chat } from '@material-ui/icons';
+} from '@mui/material';
+import { GitHub, ForumOutlined, Home, Chat } from '@mui/icons-material';
 import YAML from 'yaml';
 
 const bold = css`

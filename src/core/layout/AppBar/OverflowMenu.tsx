@@ -10,8 +10,8 @@ import {
   Tooltip,
   IconButtonProps,
   MenuItemProps,
-} from '@material-ui/core';
-import { MoreVert } from '@material-ui/icons';
+} from '@mui/material';
+import { MoreVert } from '@mui/icons-material';
 
 export type OverflowMenuProps = Omit<
   IconButtonProps &

@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect } from 'react';
 import { useField } from 'formik';
-import { useTheme } from '@material-ui/core';
+import { useTheme } from '@mui/material';
 // ponytail: cast bridges react-monaco-editor / React 18 JSX type gap; replaced in Phase 7
 import MonacoEditor_ from 'react-monaco-editor';
 const MonacoEditor = MonacoEditor_ as unknown as React.FC<any>;
@@ -60,7 +60,7 @@ const Editor: FC<Props> = ({ name, schemas }) => {
   return (
     <MonacoEditor
       language="yaml"
-      theme={theme.palette.type}
+      theme={theme.palette.mode}
       options={options}
       value={value}
       onChange={handleChange}

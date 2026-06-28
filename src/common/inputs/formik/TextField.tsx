@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import BaseTextField, { TextFieldProps } from '@material-ui/core/TextField';
+import BaseTextField, { TextFieldProps } from '@mui/material/TextField';
 import { useField } from 'formik';
 
 export type Props = TextFieldProps & {
