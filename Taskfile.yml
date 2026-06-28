@@ -2,34 +2,20 @@ version: '3'
 
 dotenv: ['.env']
 
-vars:
-  # Source nvm and activate .nvmrc version before running any node command.
-  # nvm use --silent is a no-op if the version isn't installed yet (falls
-  # back to whatever node is in PATH).
-  NODE: bash -c '. "$HOME/.nvm/nvm.sh" 2>/dev/null; nvm use --silent 2>/dev/null || true; exec'
-
 tasks:
   setup:
-    desc: Install correct Node.js version via nvm and project dependencies
+    desc: Install project dependencies (run `nvm use` first to activate the correct Node)
+    preconditions:
+      - sh: which npm
+        msg: "npm not found in PATH. Activate the correct Node version first (e.g. 'nvm use')."
     cmds:
-      - |
-        bash -c '
-          . "$HOME/.nvm/nvm.sh" || { echo "Error: nvm not found at $HOME/.nvm"; exit 1; }
-          nvm install || {
-            echo ""
-            echo "Error: nvm install failed (network issue or missing mirror?)"
-            echo "Fix: ensure nodejs.org is reachable, then re-run task setup."
-            echo "Or install Node 20 via your OS and run: task install"
-            exit 1
-          }
-          which yarn || npm install -g yarn
-        '
-      - task: install
+      - npm install -g yarn
+      - yarn install
 
   install:
     desc: Install project dependencies
     cmds:
-      - '{{.NODE}} yarn install'
+      - yarn install
     sources:
       - package.json
       - yarn.lock
@@ -39,42 +25,42 @@ tasks:
   dev:
     desc: Start development server
     cmds:
-      - '{{.NODE}} yarn start'
+      - yarn start
 
   build:
     desc: Build for production
     cmds:
-      - '{{.NODE}} yarn build'
+      - yarn build
 
   test:
     desc: Run test suite
     cmds:
-      - '{{.NODE}} yarn test'
+      - yarn test
 
   test:watch:
     desc: Run tests in watch mode
     cmds:
-      - '{{.NODE}} yarn test:watch'
+      - yarn test:watch
 
   test:coverage:
     desc: Run tests with coverage report
     cmds:
-      - '{{.NODE}} yarn test --coverage'
+      - yarn test --coverage
 
   lint:
     desc: Run ESLint
     cmds:
-      - '{{.NODE}} yarn lint'
+      - yarn lint
 
   lint:fix:
     desc: Fix auto-fixable ESLint errors
     cmds:
-      - '{{.NODE}} yarn lint --fix'
+      - yarn lint --fix
 
   typecheck:
     desc: Type-check without emitting
     cmds:
-      - '{{.NODE}} ./node_modules/.bin/tsc --noEmit'
+      - ./node_modules/.bin/tsc --noEmit
 
   clean:
     desc: Remove build output
