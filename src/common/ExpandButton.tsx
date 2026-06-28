@@ -1,4 +1,4 @@
-import React, { useCallback, forwardRef } from 'react';
+import { useCallback, forwardRef } from 'react';
 import { css } from '@emotion/react';
 import { ExpandMore } from '@mui/icons-material';
 import { IconButton, IconButtonProps, Theme } from '@mui/material';

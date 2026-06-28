@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import { useContainer } from 'unstated-next';
 import { Menu, MenuItem, ListItemIcon } from '@mui/material';
 import { Sync, Storage, ExitToApp, PowerSettingsNew } from '@mui/icons-material';

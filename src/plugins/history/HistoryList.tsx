@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { Theme, ListItemText, ListItem, ListSubheader, List } from '@mui/material';
 import InfiniteScroll from 'react-infinite-scroller';
 import { GroupByFields, GetHistoryOptions, HistoryItem } from 'plugins/history/types';

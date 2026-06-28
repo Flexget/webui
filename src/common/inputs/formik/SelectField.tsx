@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { MenuItem, useMediaQuery, useTheme } from '@mui/material';
 import TextField, { Props as TextFieldProps } from './TextField';
 

@@ -1,4 +1,4 @@
-import React, { Suspense, FC, lazy } from 'react';
+import { Suspense, FC, lazy } from 'react';
 import { CssBaseline } from '@mui/material';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { Global, css } from '@emotion/react';

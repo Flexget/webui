@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import { CardActions, Button } from '@mui/material';
 import { Sync, Storage, PowerSettingsNew } from '@mui/icons-material';
 

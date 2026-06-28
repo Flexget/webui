@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { css } from '@emotion/react';
 import { Theme } from '@mui/material';
 import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
@@ -9,8 +9,8 @@ import AddListDialog from './AddListDialog';
 
 const speedDialCss = (theme: Theme) => css`
   position: absolute;
-  bottom: ${theme.typography.pxToRem(theme.spacing(2))};
-  right: ${theme.typography.pxToRem(theme.spacing(2))};
+  bottom: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
+  right: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
 `;
 
 const AddFab: FC = () => {

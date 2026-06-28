@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { MenuItem, useTheme, useMediaQuery, TextField, TextFieldProps } from '@mui/material';
 
 export interface Option {

@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent } from 'react';
+import { FC, ChangeEvent } from 'react';
 import { FormControl, TablePagination, Theme } from '@mui/material';
 import { css, ClassNames } from '@emotion/react';
 import SelectField from 'common/inputs/formik/SelectField';
@@ -17,7 +17,7 @@ interface Props {
 const wrapper = (theme: Theme) => css`
   display: flex;
   justify-content: space-between;
-  padding-bottom: ${theme.typography.pxToRem(theme.spacing(2))};
+  padding-bottom: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
   align-items: center;
 `;
 
@@ -28,8 +28,8 @@ const container = css`
 `;
 
 const item = (theme: Theme) => css`
-  margin-left: ${theme.typography.pxToRem(theme.spacing(2))};
-  margin-right: ${theme.typography.pxToRem(theme.spacing(2))};
+  margin-left: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
+  margin-right: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
 `;
 
 const input = css`
@@ -97,8 +97,8 @@ const EntryListHeader: FC<Props> = ({ options: { page, perPage } }) => {
               count={totalCount}
               rowsPerPage={perPage}
               page={page}
-              onChangePage={handleChangePage}
-              onChangeRowsPerPage={handleChangePerPage}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangePerPage}
               component="div"
             />
           </div>

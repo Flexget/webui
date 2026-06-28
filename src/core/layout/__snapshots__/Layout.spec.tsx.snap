@@ -2,12 +2,51 @@
 
 exports[`common/layout renders correctly 1`] = `
 .emotion-0 {
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr 0;
+  grid-template-rows: auto 1fr 0;
+  grid-template-areas: 'sidebar header header' 'sidebar content content' 'sidebar content content';
+  height: 100vh;
+  width: 100vw;
 }
 
 .emotion-1 {
+  overflow-y: auto;
+  grid-area: sidebar;
+}
+
+.emotion-2 {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  background-color: #37474f;
+  width: 0;
+  height: 100%;
+  white-space: nowrap;
+  -webkit-transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,opacity 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,background-size 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+  transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,opacity 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,background-size 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+}
+
+.emotion-2 .MuiDrawer-paper {
+  width: inherit;
+  background-color: inherit;
+  border-right: none!important;
+  position: relative;
+}
+
+@media (min-width:600px) {
+  .emotion-2 {
+    width: 6rem;
+  }
+}
+
+@media (min-width:600px) {
+  .emotion-2 {
+    width: 6rem;
+  }
+}
+
+.emotion-3 {
   background-color: #fff;
   color: rgba(55,71,79,0.87);
   -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -34,7 +73,36 @@ exports[`common/layout renders correctly 1`] = `
   border-right: 1px solid rgba(55,71,79,0.12);
 }
 
-.emotion-2 {
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  color: #b0bec5;
+}
+
+.emotion-5 {
+  background: #37474f url(test-file-stub) no-repeat center;
+  -webkit-background-size: 17.5rem;
+  background-size: 17.5rem;
+  height: 100%;
+  min-height: 5rem;
+  -webkit-transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,opacity 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,background-size 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+  transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,opacity 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,background-size 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+}
+
+@media (min-width:600px) {
+  .emotion-5 {
+    width: 6rem;
+    -webkit-background-size: 25rem;
+    background-size: 25rem;
+  }
+}
+
+.emotion-6 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -81,38 +149,38 @@ exports[`common/layout renders correctly 1`] = `
   color: inherit;
 }
 
-.emotion-2::-moz-focus-inner {
+.emotion-6::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-2.Mui-disabled {
+.emotion-6.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-2 {
+  .emotion-6 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-2:hover {
+.emotion-6:hover {
   background-color: rgba(55, 71, 79, 0.08);
 }
 
 @media (hover: none) {
-  .emotion-2:hover {
+  .emotion-6:hover {
     background-color: transparent;
   }
 }
 
-.emotion-2.Mui-disabled {
+.emotion-6.Mui-disabled {
   background-color: transparent;
   color: rgba(55,71,79,0.26);
 }
 
-.emotion-3 {
+.emotion-7 {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -129,7 +197,7 @@ exports[`common/layout renders correctly 1`] = `
   font-size: 2.4rem;
 }
 
-.emotion-4 {
+.emotion-8 {
   overflow: hidden;
   pointer-events: none;
   position: absolute;
@@ -141,16 +209,32 @@ exports[`common/layout renders correctly 1`] = `
   border-radius: inherit;
 }
 
-.emotion-5 {
+.emotion-9 {
+  width: inherit;
+  height: inherit;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.emotion-10 {
   list-style: none;
   margin: 0;
   padding: 0;
   position: relative;
   padding-top: 8px;
   padding-bottom: 8px;
+  width: inherit;
 }
 
-.emotion-6 {
+.emotion-11 {
   margin: 0;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
@@ -159,9 +243,20 @@ exports[`common/layout renders correctly 1`] = `
   border-style: solid;
   border-color: rgba(55,71,79,0.12);
   border-bottom-width: thin;
+  background-color: rgba(176,190,197,0.15);
+  border-bottom-color: #b0bec5;
 }
 
-.emotion-7 {
+.emotion-12 {
+  color: #ef6c00;
+  opacity: 1;
+  padding: 1.6rem;
+  opacity: 0;
+  -webkit-transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,opacity 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,background-size 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+  transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,opacity 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,background-size 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+}
+
+.emotion-13 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -170,7 +265,11 @@ exports[`common/layout renders correctly 1`] = `
   letter-spacing: 0.00938em;
 }
 
-.emotion-11 {
+.emotion-17 {
+  grid-area: header;
+}
+
+.emotion-18 {
   background-color: #fff;
   color: rgba(55,71,79,0.87);
   -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -190,9 +289,14 @@ exports[`common/layout renders correctly 1`] = `
   flex-shrink: 0;
   position: static;
   color: inherit;
+  background-color: #ef6c00;
+  color: #fff;
+  min-height: 5rem;
+  -webkit-transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,opacity 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,background-size 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+  transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,opacity 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,background-size 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
 }
 
-.emotion-12 {
+.emotion-19 {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -208,22 +312,22 @@ exports[`common/layout renders correctly 1`] = `
 }
 
 @media (min-width:600px) {
-  .emotion-12 {
+  .emotion-19 {
     padding-left: 24px;
     padding-right: 24px;
   }
 }
 
-.emotion-14 {
+.emotion-21 {
   height: 24px;
 }
 
-.emotion-14 .MuiSpeedDialIcon-icon {
+.emotion-21 .MuiSpeedDialIcon-icon {
   -webkit-transition: -webkit-transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.emotion-14 .MuiSpeedDialIcon-openIcon {
+.emotion-21 .MuiSpeedDialIcon-openIcon {
   position: absolute;
   -webkit-transition: -webkit-transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -234,7 +338,7 @@ exports[`common/layout renders correctly 1`] = `
   transform: rotate(-45deg);
 }
 
-.emotion-18 {
+.emotion-25 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 500;
@@ -247,64 +351,58 @@ exports[`common/layout renders correctly 1`] = `
   color: inherit;
 }
 
-.emotion-19 {
+.emotion-26 {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
-<div
-  css={
-    {
-      "name": "9ff2ry",
-      "next": undefined,
-      "styles": "
-  display: grid;
-  grid-template-columns: auto 1fr 0;
-  grid-template-rows: auto 1fr 0;
-  grid-template-areas:
-    'sidebar header header'
-    'sidebar content content'
-    'sidebar content content';
-  height: 100vh;
-  width: 100vw;
-",
-    }
+.emotion-33 {
+  grid-area: content;
+  position: relative;
+}
+
+.emotion-34 {
+  overflow-y: auto;
+  padding: 1.6rem;
+  height: 100%;
+  -webkit-transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,opacity 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,background-size 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+  transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,opacity 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,background-size 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+}
+
+@media (min-width:600px) {
+  .emotion-34 {
+    padding: 1.6rem;
   }
+}
+
+<div
+  className="emotion-0"
 >
   <aside
-    css={
-      {
-        "name": "9bboz",
-        "next": undefined,
-        "styles": "
-  overflow-y: auto;
-  grid-area: sidebar;
-",
-      }
-    }
+    className="emotion-1"
   >
     <div
-      className="MuiDrawer-root MuiDrawer-docked emotion-0"
+      className="MuiDrawer-root MuiDrawer-docked emotion-2"
     >
       <div
-        className="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft emotion-1"
+        className="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft emotion-3"
       >
         <div
-          css={[Function]}
+          className="emotion-4"
         >
           <a
             href="/"
             onClick={[Function]}
           >
             <div
-              css={[Function]}
+              className="emotion-5"
             />
           </a>
           <button
             aria-label="Manage"
             aria-labelledby={null}
-            className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeMedium emotion-2"
+            className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeMedium emotion-6"
             data-mui-internal-clone-element={true}
             disabled={false}
             onBlur={[Function]}
@@ -326,7 +424,7 @@ exports[`common/layout renders correctly 1`] = `
           >
             <svg
               aria-hidden={true}
-              className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-3"
+              className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-7"
               data-testid="SettingsIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -336,52 +434,40 @@ exports[`common/layout renders correctly 1`] = `
               />
             </svg>
             <span
-              className="MuiTouchRipple-root emotion-4"
+              className="MuiTouchRipple-root emotion-8"
             />
           </button>
         </div>
         <div
-          css={
-            {
-              "name": "mrqyz6",
-              "next": undefined,
-              "styles": "
-  width: inherit;
-  height: inherit;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-",
-            }
-          }
+          className="emotion-9"
         >
           <nav
-            className="MuiList-root MuiList-padding emotion-5"
+            className="MuiList-root MuiList-padding emotion-10"
           />
           <div>
             <hr
-              className="MuiDivider-root MuiDivider-fullWidth emotion-6"
+              className="MuiDivider-root MuiDivider-fullWidth emotion-11"
             />
             <div
-              css={[Function]}
+              className="emotion-12"
             >
               <p
-                className="MuiTypography-root MuiTypography-body1 emotion-7"
+                className="MuiTypography-root MuiTypography-body1 emotion-13"
               >
                 Version Info
               </p>
               <p
-                className="MuiTypography-root MuiTypography-body1 emotion-7"
+                className="MuiTypography-root MuiTypography-body1 emotion-13"
               >
                 Flexget: 2.10.60 
               </p>
               <p
-                className="MuiTypography-root MuiTypography-body1 emotion-7"
+                className="MuiTypography-root MuiTypography-body1 emotion-13"
               >
                 Web UI: 2.0.28
               </p>
               <p
-                className="MuiTypography-root MuiTypography-body1 emotion-7"
+                className="MuiTypography-root MuiTypography-body1 emotion-13"
               >
                 API: 1.1.2
               </p>
@@ -392,25 +478,17 @@ exports[`common/layout renders correctly 1`] = `
     </div>
   </aside>
   <header
-    css={
-      {
-        "name": "1osrr34",
-        "next": undefined,
-        "styles": "
-  grid-area: header;
-",
-      }
-    }
+    className="emotion-17"
   >
     <header
-      className="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorInherit MuiAppBar-positionStatic emotion-11"
+      className="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorInherit MuiAppBar-positionStatic emotion-18"
     >
       <div
-        className="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular emotion-12"
+        className="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular emotion-19"
       >
         <button
           aria-label="toggle sidebar"
-          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeMedium emotion-2"
+          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeMedium emotion-6"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -429,11 +507,11 @@ exports[`common/layout renders correctly 1`] = `
           type="button"
         >
           <span
-            className="MuiSpeedDialIcon-root emotion-14"
+            className="MuiSpeedDialIcon-root emotion-21"
           >
             <svg
               aria-hidden={true}
-              className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSpeedDialIcon-openIcon emotion-3"
+              className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSpeedDialIcon-openIcon emotion-7"
               data-testid="ClearIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -444,7 +522,7 @@ exports[`common/layout renders correctly 1`] = `
             </svg>
             <svg
               aria-hidden={true}
-              className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSpeedDialIcon-icon emotion-3"
+              className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSpeedDialIcon-icon emotion-7"
               data-testid="MenuIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -455,21 +533,21 @@ exports[`common/layout renders correctly 1`] = `
             </svg>
           </span>
           <span
-            className="MuiTouchRipple-root emotion-4"
+            className="MuiTouchRipple-root emotion-8"
           />
         </button>
         <h6
-          className="MuiTypography-root MuiTypography-h6 MuiTypography-noWrap emotion-18"
+          className="MuiTypography-root MuiTypography-h6 MuiTypography-noWrap emotion-25"
         >
           Flexget Manager
         </h6>
         <div
-          className="emotion-19"
+          className="emotion-26"
         />
         <button
           aria-label="toggle mode"
           aria-labelledby={null}
-          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeMedium emotion-2"
+          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeMedium emotion-6"
           data-mui-internal-clone-element={true}
           disabled={false}
           onBlur={[Function]}
@@ -491,7 +569,7 @@ exports[`common/layout renders correctly 1`] = `
         >
           <svg
             aria-hidden={true}
-            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-3"
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-7"
             data-testid="EmojiObjectsIcon"
             focusable="false"
             viewBox="0 0 24 24"
@@ -501,13 +579,13 @@ exports[`common/layout renders correctly 1`] = `
             />
           </svg>
           <span
-            className="MuiTouchRipple-root emotion-4"
+            className="MuiTouchRipple-root emotion-8"
           />
         </button>
         <button
           aria-label="more info"
           aria-labelledby={null}
-          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeMedium emotion-2"
+          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeMedium emotion-6"
           data-mui-internal-clone-element={true}
           disabled={false}
           onBlur={[Function]}
@@ -529,7 +607,7 @@ exports[`common/layout renders correctly 1`] = `
         >
           <svg
             aria-hidden={true}
-            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-3"
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-7"
             data-testid="HelpIcon"
             focusable="false"
             viewBox="0 0 24 24"
@@ -539,49 +617,17 @@ exports[`common/layout renders correctly 1`] = `
             />
           </svg>
           <span
-            className="MuiTouchRipple-root emotion-4"
+            className="MuiTouchRipple-root emotion-8"
           />
         </button>
       </div>
     </header>
   </header>
   <main
-    css={
-      {
-        "name": "pzpbsp",
-        "next": undefined,
-        "styles": "
-  grid-area: content;
-  position: relative;
-",
-      }
-    }
+    className="emotion-33"
   >
     <section
-      css={
-        [
-          {
-            "name": "1w0qb2q",
-            "next": undefined,
-            "styles": "
-  overflow-y: auto;
-  padding: NaNrem;
-  height: 100%;
-
-  @media (min-width:600px) {
-    padding: NaNrem;
-  }
-",
-          },
-          {
-            "name": "17b3u5p",
-            "next": undefined,
-            "styles": "
-  transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,opacity 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,background-size 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
-",
-          },
-        ]
-      }
+      className="emotion-34"
     >
       <div />
     </section>

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import SnackBar from '@mui/material/Snackbar';
 
 interface Props {

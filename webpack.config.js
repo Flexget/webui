@@ -100,6 +100,10 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.m?js$/,
+        resolve: { fullySpecified: false },
+      },
+      {
         test: /\.(t|j)sx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,

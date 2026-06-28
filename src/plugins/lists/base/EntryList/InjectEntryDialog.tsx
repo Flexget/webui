@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useContainer } from 'unstated-next';
 import { css } from '@emotion/react';
 import {

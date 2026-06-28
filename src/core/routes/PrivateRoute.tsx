@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useContainer } from 'unstated-next';
 import { AuthContainer } from 'core/auth/hooks';

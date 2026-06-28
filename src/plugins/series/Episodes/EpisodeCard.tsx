@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { css } from '@emotion/react';
 import { Card, CardActions, Theme, Collapse, Button } from '@mui/material';
 import Entry from 'core/entry/cards';
@@ -30,7 +30,7 @@ const entryCard = css`
 `;
 
 const cardActions = (theme: Theme) => css`
-  padding-left: ${theme.typography.pxToRem(theme.spacing(3))};
+  padding-left: ${theme.typography.pxToRem(parseFloat(theme.spacing(3)))};
   justify-content: space-between;
 `;
 

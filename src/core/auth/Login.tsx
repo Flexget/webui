@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useContainer } from 'unstated-next';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContainer } from 'core/auth/hooks';

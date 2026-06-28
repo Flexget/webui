@@ -1,39 +1,188 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`pages/splash renders correctly 1`] = `
-<div>
-  <div
-    css={[Function]}
-  />
-  <div
-    css={
-      {
-        "name": "1kz9hf7",
-        "next": undefined,
-        "styles": "
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -moz-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -moz-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -moz-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -moz-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -moz-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -moz-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -moz-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -moz-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -moz-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -moz-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+.emotion-0 {
+  background: transparent url(test-file-stub) no-repeat center;
+  min-height: 9rem;
+  -webkit-background-size: 100% auto;
+  background-size: 100% auto;
+  margin: 0 1rem;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    -webkit-background-size: auto;
+    background-size: auto;
+  }
+}
+
+.emotion-1 {
   margin: 10rem auto;
   width: 5rem;
   height: 4rem;
   text-align: center;
   font-size: 1rem;
-",
-      }
-    }
+}
+
+.emotion-2 {
+  background-color: #ef6c00;
+  height: 100%;
+  width: 0.6rem;
+  display: inline-block;
+  margin: 0.1rem;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
+}
+
+.emotion-3 {
+  background-color: #ef6c00;
+  height: 100%;
+  width: 0.6rem;
+  display: inline-block;
+  margin: 0.1rem;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.emotion-4 {
+  background-color: #ef6c00;
+  height: 100%;
+  width: 0.6rem;
+  display: inline-block;
+  margin: 0.1rem;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+
+.emotion-5 {
+  background-color: #ef6c00;
+  height: 100%;
+  width: 0.6rem;
+  display: inline-block;
+  margin: 0.1rem;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.emotion-6 {
+  background-color: #ef6c00;
+  height: 100%;
+  width: 0.6rem;
+  display: inline-block;
+  margin: 0.1rem;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+<div>
+  <div
+    className="emotion-0"
+  />
+  <div
+    className="emotion-1"
   >
     <div
-      css={[Function]}
+      className="emotion-2"
     />
     <div
-      css={[Function]}
+      className="emotion-3"
     />
     <div
-      css={[Function]}
+      className="emotion-4"
     />
     <div
-      css={[Function]}
+      className="emotion-5"
     />
     <div
-      css={[Function]}
+      className="emotion-6"
     />
   </div>
 </div>

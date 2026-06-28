@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import ManagedList from '../base';
 import { PendingListContainer } from './hooks';
 

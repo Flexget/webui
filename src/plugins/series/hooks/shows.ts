@@ -6,7 +6,7 @@ import { snakeCase, Method } from 'utils/fetch';
 import { useFlexgetAPI } from 'core/api';
 import { Show, GetShowOptions, ShowRequest } from '../types';
 
-export const enum Constants {
+export enum Constants {
   GET_SHOWS = '@flexget/series/GET_SHOWS',
   ADD_SHOW = '@flexget/series/ADD_SHOW',
   REMOVE_SHOW = '@flexget/series/REMOVE_SHOW',

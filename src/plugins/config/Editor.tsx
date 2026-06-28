@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useField } from 'formik';
 import { useTheme } from '@mui/material';
 import MonacoEditor, { useMonaco } from '@monaco-editor/react';
@@ -27,7 +27,7 @@ const Editor: FC<Props> = ({ name, schemas }) => {
     if (!monaco) return;
     const { dispose } = configureMonacoYaml(monaco, {
       validate: true,
-      schemas,
+      schemas: schemas?.filter((s): s is Required<typeof s> => !!s.fileMatch),
       enableSchemaRequest: true,
       hover: true,
       completion: true,

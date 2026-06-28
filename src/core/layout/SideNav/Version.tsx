@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { gt } from 'semver';
 import { css } from '@emotion/react';
 import { IconButton, Theme } from '@mui/material';
@@ -14,7 +14,7 @@ interface Props {
 const wrapper = (theme: Theme) => css`
   color: ${theme.palette.primary.main};
   opacity: 1;
-  padding: ${theme.typography.pxToRem(theme.spacing(2))};
+  padding: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
 `;
 
 const Version: FC<Props> = ({ className }) => {

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Toolbar, Tooltip } from '@mui/material';
 import { css } from '@emotion/react';
 import SelectField from 'common/inputs/formik/SelectField';

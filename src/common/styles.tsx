@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Link as RouterLink, LinkProps } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
@@ -21,14 +21,14 @@ export const Spacer = styled.div`
 `;
 
 export const NoPaddingWrapper = styled.div`
-  height: calc(100% + ${({ theme }) => theme.typography.pxToRem(theme.spacing(2))});
-  margin: -${({ theme }) => theme.typography.pxToRem(theme.spacing(1))};
+  height: calc(100% + ${({ theme }) => theme.typography.pxToRem(parseFloat(theme.spacing(2)))});
+  margin: -${({ theme }) => theme.typography.pxToRem(parseFloat(theme.spacing(1)))};
   display: flex;
   flex-direction: column;
 
   ${({ theme }) => theme.breakpoints.up('sm')} {
-    height: calc(100% + ${({ theme }) => theme.typography.pxToRem(theme.spacing(4))});
-    margin: -${({ theme }) => theme.typography.pxToRem(theme.spacing(2))};
+    height: calc(100% + ${({ theme }) => theme.typography.pxToRem(parseFloat(theme.spacing(4)))});
+    margin: -${({ theme }) => theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
   }
 `;
 

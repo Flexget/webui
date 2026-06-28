@@ -20,8 +20,8 @@ const image = css`
 const poster = (theme: Theme) => css`
   width: 55%;
   float: left;
-  padding-right: ${theme.typography.pxToRem(theme.spacing(2))};
-  padding-bottom: ${theme.typography.pxToRem(theme.spacing(2))};
+  padding-right: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
+  padding-bottom: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
   ${theme.breakpoints.up('sm')} {
     width: 40%;
   }
@@ -46,12 +46,12 @@ const text = css`
 const summary = (theme: Theme) => css`
   height: 1.4rem;
   width: 25%;
-  margin: ${theme.typography.pxToRem(theme.spacing(2))} 0;
+  margin: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))} 0;
 `;
 
 const header = (theme: Theme) => css`
   width: 70%;
-  margin-bottom: ${theme.typography.pxToRem(theme.spacing(1))};
+  margin-bottom: ${theme.typography.pxToRem(parseFloat(theme.spacing(1)))};
 `;
 
 const BaseCard: FC<Props> = ({
@@ -80,7 +80,7 @@ const BaseCard: FC<Props> = ({
   return (
     <div className={className}>
       {loading ? (
-        <Skeleton variant="rect" css={imageCss} />
+        <Skeleton variant="rectangular" css={imageCss} />
       ) : (
         !!imageUrl && (
           <CardMedia

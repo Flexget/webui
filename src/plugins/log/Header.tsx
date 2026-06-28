@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback, MouseEvent, useMemo, ComponentType } from 'react';
+import { FC, useState, useCallback, MouseEvent, useMemo, ComponentType } from 'react';
 import {
   Theme,
   Typography,

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, FC } from 'react';
+import { useCallback, useMemo, FC } from 'react';
 import { useContainer } from 'unstated-next';
 import { Direction } from 'utils/query';
 import { useInjectContent, useSetMenuProps } from 'core/layout/AppBar/hooks';

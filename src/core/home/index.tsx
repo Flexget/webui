@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { Grid } from '@mui/material';
 import LoadingSpinner from 'common/LoadingSpinner';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';

@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, ChangeEvent } from 'react';
+import { forwardRef, useCallback, ChangeEvent } from 'react';
 import { Checkbox as BaseCheckbox, CheckboxProps } from '@mui/material';
 import { useField } from 'formik';
 

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { CardContent, Typography } from '@mui/material';
 import { BaseEntry } from '../types';
 

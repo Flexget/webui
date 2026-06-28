@@ -18,14 +18,14 @@ interface Props {
 const summary = (theme: Theme) => css`
   font-size: 1.5rem;
   font-weight: 500;
-  margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
+  margin-top: ${theme.typography.pxToRem(parseFloat(theme.spacing(0.5)))};
 `;
 
 const originalTitle = (theme: Theme) => css`
   font-size: 2.2rem;
   font-weight: 400;
   font-style: oblique;
-  margin-bottom: ${theme.typography.pxToRem(theme.spacing(0.5))};
+  margin-bottom: ${theme.typography.pxToRem(parseFloat(theme.spacing(0.5)))};
 `;
 
 const MovieCard: FC<Props> = ({ entry, className, children }) => {

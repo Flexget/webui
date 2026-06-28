@@ -116,8 +116,8 @@ const TaskTable = <T extends {}>({ total, headers, rows }: Props<T>) => {
         count={total}
         rowsPerPage={perPage}
         page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangePerPage}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangePerPage}
       />
     </Paper>
   );

@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import { css } from '@emotion/react';
 import { Fab, Theme } from '@mui/material';
 import { Add } from '@mui/icons-material';
@@ -14,8 +14,8 @@ import AddShowDialog from './AddShowDialog';
 
 const speedDialCss = (theme: Theme) => css`
   position: absolute;
-  bottom: ${theme.typography.pxToRem(theme.spacing(2))};
-  right: ${theme.typography.pxToRem(theme.spacing(2))};
+  bottom: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
+  right: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
 `;
 
 const ShowPage: FC = () => {

@@ -17,7 +17,7 @@ interface Props {
 const summary = (theme: Theme) => css`
   font-size: 1.5rem;
   font-weight: 500;
-  margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
+  margin-top: ${theme.typography.pxToRem(parseFloat(theme.spacing(0.5)))};
 `;
 
 const SeriesCard: FC<Props> = ({ entry, className, children }) => {

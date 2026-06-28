@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import {
   Button,
   Dialog,
@@ -31,7 +31,7 @@ const group = css`
 `;
 
 const control = (theme: Theme) => css`
-  margin: ${theme.typography.pxToRem(theme.spacing(2))} 0;
+  margin: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))} 0;
 `;
 
 const ExecuteDialog: FC<Props> = ({ readyState, open, close, tasks }) => {

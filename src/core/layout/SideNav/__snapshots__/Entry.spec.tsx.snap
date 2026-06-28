@@ -24,6 +24,9 @@ exports[`core/layout/SideNavEntry renders correctly with link 1`] = `
   padding-bottom: 8px;
   padding-left: 16px;
   padding-right: 16px;
+  color: #b0bec5;
+  border-left: 3px solid transparent;
+  cursor: pointer;
 }
 
 .emotion-0.Mui-focusVisible {
@@ -42,6 +45,10 @@ exports[`core/layout/SideNavEntry renders correctly with link 1`] = `
   opacity: 0.38;
 }
 
+.emotion-0:hover {
+  border-left: 3px solid #ef6c00;
+}
+
 .emotion-1 {
   min-width: 56px;
   color: rgba(55,71,79,0.54);
@@ -52,6 +59,7 @@ exports[`core/layout/SideNavEntry renders correctly with link 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  color: #b0bec5;
 }
 
 .emotion-2 {
@@ -78,6 +86,7 @@ exports[`core/layout/SideNavEntry renders correctly with link 1`] = `
   min-width: 0;
   margin-top: 4px;
   margin-bottom: 4px;
+  color: #b0bec5;
 }
 
 <a
@@ -131,6 +140,9 @@ exports[`core/layout/SideNavEntry renders correctly without link 1`] = `
   padding-bottom: 8px;
   padding-left: 16px;
   padding-right: 16px;
+  color: #b0bec5;
+  border-left: 3px solid transparent;
+  cursor: pointer;
 }
 
 .emotion-0.Mui-focusVisible {
@@ -149,6 +161,10 @@ exports[`core/layout/SideNavEntry renders correctly without link 1`] = `
   opacity: 0.38;
 }
 
+.emotion-0:hover {
+  border-left: 3px solid #ef6c00;
+}
+
 .emotion-1 {
   min-width: 56px;
   color: rgba(55,71,79,0.54);
@@ -159,6 +175,7 @@ exports[`core/layout/SideNavEntry renders correctly without link 1`] = `
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  color: #b0bec5;
 }
 
 .emotion-2 {
@@ -185,6 +202,7 @@ exports[`core/layout/SideNavEntry renders correctly without link 1`] = `
   min-width: 0;
   margin-top: 4px;
   margin-bottom: 4px;
+  color: #b0bec5;
 }
 
 <li

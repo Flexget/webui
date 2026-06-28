@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement, FC } from 'react';
+import { ReactNode, ReactElement, FC } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { AuthContainer } from 'core/auth/hooks';

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { css } from '@emotion/react';
 import { Theme } from '@mui/material';
 import headerImage from 'images/header.png';

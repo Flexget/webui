@@ -9,7 +9,7 @@ export class StatusError extends Error {
   }
 }
 
-export const enum Method {
+export enum Method {
   Get = 'get',
   Post = 'post',
   Put = 'put',

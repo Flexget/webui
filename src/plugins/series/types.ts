@@ -9,12 +9,12 @@ export interface Show {
   latestEntity?: Episode;
 }
 
-export const enum SortByShow {
+export enum SortByShow {
   ShowName = 'show_name',
   LastDownloadDate = 'last_download_date',
 }
 
-export const enum ConfigState {
+export enum ConfigState {
   Configured = 'configured',
   Unconfigured = 'unconfigured',
   All = 'all',
@@ -44,7 +44,7 @@ export interface Release {
   title: string;
 }
 
-export const enum SortByRelease {
+export enum SortByRelease {
   FirstSeen = 'first_seen',
   Downoaded = 'downloaded',
   ProperCount = 'proper_count',
@@ -58,7 +58,7 @@ export interface GetReleaseOptions {
   sortBy: SortByRelease;
 }
 
-export const enum IdentifiedBy {
+export enum IdentifiedBy {
   Ep = 'ep',
   Sequence = 'sequence',
   Date = 'date',

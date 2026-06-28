@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect, useCallback } from 'react';
+import { FC, useRef, useEffect, useCallback } from 'react';
 import { findDOMNode } from 'react-dom';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { NoPaddingWrapper } from 'common/styles';

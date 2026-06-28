@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Shows from './Shows';
 import Episodes from './Episodes';

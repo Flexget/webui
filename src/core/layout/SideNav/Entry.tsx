@@ -1,4 +1,4 @@
-import React, { ComponentType, FC } from 'react';
+import { ComponentType, FC } from 'react';
 import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import { ListItem, ListItemText, ListItemIcon, Theme } from '@mui/material';

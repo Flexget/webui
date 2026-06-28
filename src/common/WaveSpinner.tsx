@@ -1,4 +1,3 @@
-import React from 'react';
 import { keyframes, css } from '@emotion/react';
 import { Theme } from '@mui/material';
 

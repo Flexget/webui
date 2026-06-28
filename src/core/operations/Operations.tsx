@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useCallback, useState, ChangeEvent } from 'react';
+import { FC, useMemo, useCallback, useState, ChangeEvent } from 'react';
 import { Drawer, Divider, Button, Theme, Typography } from '@mui/material';
 import { css } from '@emotion/react';
 import SelectField from 'common/inputs/SelectField';
@@ -15,19 +15,19 @@ const innerDrawer = css`
 `;
 
 const drawerSection = (theme: Theme) => css`
-  padding: ${theme.typography.pxToRem(theme.spacing(3))};
+  padding: ${theme.typography.pxToRem(parseFloat(theme.spacing(3)))};
   display: flex;
   flex-direction: column;
 `;
 
 const button = (theme: Theme) => css`
-  margin-top: ${theme.typography.pxToRem(theme.spacing(2))};
+  margin-top: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
 `;
 
 const header = (theme: Theme) => css`
   background-color: ${theme.palette.primary.main};
   color: ${theme.palette.getContrastText(theme.palette.primary.main)};
-  padding: ${theme.typography.pxToRem(theme.spacing(3))};
+  padding: ${theme.typography.pxToRem(parseFloat(theme.spacing(3)))};
 `;
 
 const Operations: FC<Props> = ({ open = false, onClose }) => {

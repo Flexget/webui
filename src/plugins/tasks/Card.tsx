@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { CardContent, Typography } from '@mui/material';
 import LoadingSpinner from 'common/LoadingSpinner';
 import { SortByStatus } from './types';

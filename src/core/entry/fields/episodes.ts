@@ -8,7 +8,7 @@ export enum EpisodeFieldNames {
   ID = 'episodeId',
 }
 
-export const enum TVDBFields {
+export enum TVDBFields {
   Name = 'tvdbEpName',
   Image = 'tvdbEpImage',
   Description = 'tvdbEpOverview',
@@ -16,13 +16,13 @@ export const enum TVDBFields {
   Url = 'tvdbUrl',
 }
 
-export const enum TraktFields {
+export enum TraktFields {
   Name = 'traktEpName',
   Description = 'traktEpOverview',
   ID = 'traktEpId',
 }
 
-export const enum TVMazeFields {
+export enum TVMazeFields {
   Name = 'tvmazeEpisodeName',
   Image = 'tvmazeEpisodeOriginalImage',
   Description = 'tvmazeEpisodeSummary',

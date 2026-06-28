@@ -1,4 +1,4 @@
-import React, { useEffect, FC } from 'react';
+import { useEffect, FC } from 'react';
 import { useContainer } from 'unstated-next';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { StatusContainer, actions } from 'core/status/hooks';

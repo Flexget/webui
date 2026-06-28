@@ -3,7 +3,7 @@ import { createContainer, useContainer } from 'unstated-next';
 import uuid from 'uuid/v4';
 import { action } from 'utils/hooks/actions';
 
-const enum Constants {
+enum Constants {
   SET_LOADING = '@flexget/status/SET_LOADING',
   PUSH_ERROR = '@flexget/status/PUSH_ERROR',
   POP_ERROR = '@flexget/status/POP_ERROR',

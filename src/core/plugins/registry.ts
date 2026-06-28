@@ -1,6 +1,6 @@
 import { PluginEvent, Plugin, PluginMap, SubscribeHandler } from './types';
 
-const enum Events {
+enum Events {
   RegisterPlugin = 'register',
   UnregisterPlugin = 'unregister',
   Update = 'update',

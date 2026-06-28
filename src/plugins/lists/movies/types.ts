@@ -1,6 +1,6 @@
 import { Entry } from '../base/types';
 
-export const enum SortBy {
+export enum SortBy {
   Added = 'added',
   Title = 'title',
   URL = 'original_url',
@@ -11,7 +11,7 @@ export interface Movie extends Entry {
   moviesListIds: MovieListId[];
 }
 
-export const enum MovieIds {
+export enum MovieIds {
   Trakt = 'trakt_movie_id',
   TMDB = 'tmdb_id',
   IMDB = 'imdb_id',

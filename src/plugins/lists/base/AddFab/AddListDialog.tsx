@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { css } from '@emotion/react';
 import {
   Button,
@@ -22,7 +22,7 @@ interface Props {
 const errorStyle = (theme: Theme) => css`
   color: ${theme.palette.error.main};
   text-align: center;
-  padding: ${theme.typography.pxToRem(theme.spacing(1))};
+  padding: ${theme.typography.pxToRem(parseFloat(theme.spacing(1)))};
 `;
 
 const AddListDialog: FC<Props> = ({ open = false, onClose }) => {

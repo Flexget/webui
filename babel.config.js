@@ -1,4 +1,5 @@
 module.exports = function config(api) {
+  api.cache(true);
   const presets = [
     [
       '@babel/preset-env',
@@ -8,7 +9,8 @@ module.exports = function config(api) {
         modules: false,
       },
     ],
-    '@babel/preset-react',
+    ['@babel/preset-react', { runtime: 'automatic', importSource: '@emotion/react' }],
+    '@babel/preset-typescript',
   ];
   const plugins = [
     '@emotion/babel-plugin',

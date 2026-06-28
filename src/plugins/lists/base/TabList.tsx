@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Tabs, Tab } from '@mui/material';
 import { List } from './types';
 
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const TabList: FC<Props> = ({ listId, lists, handleChange }) => (
-  <Tabs value={listId} variant="scrollable" scrollButtons="on" onChange={handleChange}>
+  <Tabs value={listId} variant="scrollable" scrollButtons onChange={handleChange}>
     {lists.map(({ name, id }) => (
       <Tab label={name} value={id} key={id} />
     ))}

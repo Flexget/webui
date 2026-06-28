@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Theme } from '@mui/material';
 import { css } from '@emotion/react';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
@@ -9,10 +9,10 @@ import Entries from './Entries';
 export const content = (theme: Theme) => css`
   flex: 1;
   overflow-y: auto;
-  padding: ${theme.typography.pxToRem(theme.spacing(1))};
+  padding: ${theme.typography.pxToRem(parseFloat(theme.spacing(1)))};
 
   ${theme.breakpoints.up('sm')} {
-    padding: ${theme.typography.pxToRem(theme.spacing(2))};
+    padding: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
   }
 `;
 

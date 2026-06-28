@@ -14,7 +14,7 @@ export enum SeriesFieldNames {
   ID = 'seriesId',
 }
 
-export const enum TVDBFields {
+export enum TVDBFields {
   Genres = 'tvdbGenres',
   Posters = 'tvdbPosters',
   Backdrops = 'tvdbBanner',
@@ -27,7 +27,7 @@ export const enum TVDBFields {
   ID = 'tvdbId',
 }
 
-export const enum TraktFields {
+export enum TraktFields {
   Genres = 'traktGenres',
   Rating = 'traktSeriesRating',
   Description = 'traktSeriesOverview',
@@ -39,7 +39,7 @@ export const enum TraktFields {
   ID = 'traktId',
 }
 
-export const enum TVMazeFields {
+export enum TVMazeFields {
   Genres = 'tvmazeGenres',
   Posters = 'tvmazeSeriesOriginalImage',
   Description = 'tvmazeSeriesSummary',

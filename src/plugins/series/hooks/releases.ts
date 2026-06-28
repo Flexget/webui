@@ -6,7 +6,7 @@ import { snakeCase, Method } from 'utils/fetch';
 import { useFlexgetAPI } from 'core/api';
 import { Release, GetReleaseOptions } from '../types';
 
-export const enum Constants {
+export enum Constants {
   GET_RELEASES = '@flexget/series/GET_RELEASES',
   UPDATE_RELEASE = '@flexget/series/UPDATE_RELEASE',
   UPDATE_RELEASES = '@flexget/series/UPDATE_RELEASES',

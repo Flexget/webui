@@ -1,4 +1,4 @@
-import React, { FC, FormEvent } from 'react';
+import { FC, FormEvent } from 'react';
 import {
   Button,
   Dialog,

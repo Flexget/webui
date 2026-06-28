@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Typography, Tooltip, IconButton } from '@mui/material';
 import { Check, Clear } from '@mui/icons-material';
 import { PendingListEntry, Operation } from './types';
