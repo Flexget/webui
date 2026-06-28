@@ -67,6 +67,7 @@ const devServer = {
     {
       context: ['/api'],
       target: process.env.SERVER || 'http://localhost:5050',
+      changeOrigin: true,
     },
   ],
 };
