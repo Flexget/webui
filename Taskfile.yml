@@ -1,5 +1,7 @@
 version: '3'
 
+dotenv: ['.env']
+
 tasks:
   setup:
     desc: Install Node.js via nvm and project dependencies
