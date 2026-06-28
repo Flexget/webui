@@ -21,16 +21,11 @@ module.exports = {
   globals: {
     __DEV__: false,
     __VERSION__: '2.0.28',
-    'ts-jest': {
-      tsConfig: 'tsconfig.jest.json',
-      babelConfig: true,
-      diagnostics: {
-        warnOnly: true,
-      },
-    },
+  },
+  transform: {
+    '^.+\\.tsx?$': ['ts-jest', { tsconfig: 'tsconfig.jest.json', diagnostics: { warnOnly: true } }],
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  preset: 'ts-jest',
   moduleDirectories: ['node_modules', 'src'],
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
@@ -38,8 +33,9 @@ module.exports = {
     'monaco-editor': '<rootDir>/node_modules/react-monaco-editor',
     '^worker-loader!': '<rootDir>/src/__mocks__/worker.ts',
   },
-  snapshotSerializers: ['enzyme-to-json/serializer', 'jest-emotion'],
-  setupFiles: ['raf/polyfill', '<rootDir>/src/utils/tests/setupFiles.ts'],
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect', 'jest-extended'],
-  testURL: 'http://localhost/',
+  snapshotSerializers: ['jest-emotion'],
+  setupFiles: ['<rootDir>/src/utils/tests/setupFiles.ts'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom', 'jest-extended/all'],
+  testEnvironment: 'jsdom',
+  testEnvironmentOptions: { url: 'http://localhost/' },
 };

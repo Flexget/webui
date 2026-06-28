@@ -1,6 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "jsx": "react"
+    "jsx": "react",
+    "module": "commonjs",
+    "types": ["jest", "@testing-library/jest-dom", "jest-extended"]
   }
 }

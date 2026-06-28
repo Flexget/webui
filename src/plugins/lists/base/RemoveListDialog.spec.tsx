@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react';
 import { useContainer } from 'unstated-next';
-import { cleanup, render, fireEvent, within, wait } from '@testing-library/react';
+import { cleanup, render, fireEvent, waitFor } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
-import * as fetchMock from 'fetch-mock';
+import fetchMock from 'fetch-mock';
 import RemoveListDialog from './RemoveListDialog';
 import { ListContainer, actions } from './hooks/list';
 import { PendingListContainer } from '../pending/hooks';
@@ -60,21 +60,17 @@ describe('plugins/lists/base/EntryListHeader/RemoveListDialog', () => {
     it('should call fetch when pressing remove', async () => {
       const { getByRole } = render(component, { wrapper });
 
-      const submitButton = getByRole(
-        (content, element) => content === 'button' && !!within(element).queryByText('Remove'),
-      );
+      const submitButton = getByRole('button', { name: 'Remove' });
 
       fireEvent.click(submitButton);
       expect(fetchMock.called(`/api/${prefix}/1`)).toBeTrue();
-      await wait(() => expect(handleClose).toHaveBeenCalled());
+      await waitFor(() => expect(handleClose).toHaveBeenCalled());
     });
 
     it('should call close when pressing cancel', () => {
       const { getByRole } = render(component, { wrapper });
 
-      const submitButton = getByRole(
-        (content, element) => content === 'button' && !!within(element).queryByText('Cancel'),
-      );
+      const submitButton = getByRole('button', { name: 'Cancel' });
 
       fireEvent.click(submitButton);
       expect(fetchMock.called(`/api/${prefix}/1`)).toBeFalse();

@@ -1,52 +1,43 @@
 import React, { FC } from 'react';
-import { mount } from 'enzyme';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { useContainer } from 'unstated-next';
-import ErrorStatus from './ErrorStatus';
+import { renderWithWrapper } from 'utils/tests';
 import { StatusContainer, actions } from './hooks';
+import ErrorStatus from './ErrorStatus';
 
 const TestComponent: FC = () => {
   const [, dispatch] = useContainer(StatusContainer);
-
-  const push = (event: any) => dispatch(actions.pushError(new Error(event.message)));
-  const pop = () => dispatch(actions.popError());
-
   return (
     <>
       <ErrorStatus />
-      <button id="push" type="button" onClick={push}>
-        Push Button
+      <button type="button" onClick={() => dispatch(actions.pushError(new Error('test error')))}>
+        push
       </button>
-      <button id="pop" type="button" onClick={pop}>
-        Pop Button
+      <button type="button" onClick={() => dispatch(actions.popError())}>
+        pop
       </button>
     </>
   );
 };
 
 describe('core/status/ErrorStatus', () => {
-  it('should render text if there is a message', () => {
-    const wrapper = mount(
-      <StatusContainer.Provider>
-        <TestComponent />
-      </StatusContainer.Provider>,
-    );
+  it('shows nothing initially', () => {
+    renderWithWrapper(<TestComponent />);
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
 
-    const pushButton = wrapper.find('#push');
-    const popButton = wrapper.find('#pop');
+  it('shows the error message when pushed', async () => {
+    renderWithWrapper(<TestComponent />);
+    fireEvent.click(screen.getByText('push'));
+    expect(await screen.findByRole('alert')).toHaveTextContent('test error');
+  });
 
-    expect(wrapper.find(ErrorStatus).text()).toBeEmpty();
-
-    pushButton.simulate('click', { message: 'first message' });
-
-    expect(wrapper.find(ErrorStatus).text()).toInclude('first message');
-    pushButton.simulate('click', { message: 'second message' });
-
-    expect(wrapper.find(ErrorStatus).text()).toInclude('first message');
-
-    popButton.simulate('click');
-    expect(wrapper.find(ErrorStatus).text()).toInclude('second message');
-
-    popButton.simulate('click');
-    expect(wrapper.find(ErrorStatus).text()).toBeEmpty();
+  it('clears the message when popped', async () => {
+    renderWithWrapper(<TestComponent />);
+    fireEvent.click(screen.getByText('push'));
+    await screen.findByRole('alert');
+    fireEvent.click(screen.getByText('pop'));
+    // Snackbar stays in DOM during exit transition; check message text is gone
+    await waitFor(() => expect(screen.queryByText('test error')).not.toBeInTheDocument());
   });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import * as fetchMock from 'fetch-mock';
+import fetchMock from 'fetch-mock';
 import { cleanup } from '@testing-library/react';
 import { renderWithWrapper } from 'utils/tests';
 import Card from './Card';

@@ -1,4 +1,4 @@
-import { random, internet, image, date, lorem } from 'faker';
+import { faker } from '@faker-js/faker';
 import { RawEntry } from './types';
 import { IMDBFields, TraktFields, TMDBFields, RawMovieEntry } from './fields/movies';
 import {
@@ -15,121 +15,121 @@ import {
 } from './fields/series';
 
 export const makeRawEntry = (): RawEntry => ({
-  originalUrl: internet.url(),
-  title: random.words(),
-  quality: random.words(),
+  originalUrl: faker.internet.url(),
+  title: faker.word.words(),
+  quality: faker.word.words(),
 });
 
 export const withMovieRawEntry = (e: RawEntry) => ({
   ...e,
-  movieName: random.words(),
-  movieYear: date.past().getFullYear(),
+  movieName: faker.word.words(),
+  movieYear: faker.date.past().getFullYear(),
 });
 
 export const withIMDBFields = (e: RawMovieEntry) => ({
   ...e,
-  [IMDBFields.Genres]: random.words().split(' '),
-  [IMDBFields.Posters]: image.imageUrl(),
-  [IMDBFields.Rating]: random.number(10),
-  [IMDBFields.Votes]: random.number(100),
-  [IMDBFields.Description]: lorem.paragraph(),
-  [IMDBFields.Url]: internet.url(),
-  [IMDBFields.Runtime]: random.number(150),
-  [IMDBFields.ID]: random.word(),
+  [IMDBFields.Genres]: faker.word.words().split(' '),
+  [IMDBFields.Posters]: faker.image.url(),
+  [IMDBFields.Rating]: faker.number.int({ max: 10 }),
+  [IMDBFields.Votes]: faker.number.int({ max: 100 }),
+  [IMDBFields.Description]: faker.lorem.paragraph(),
+  [IMDBFields.Url]: faker.internet.url(),
+  [IMDBFields.Runtime]: faker.number.int({ max: 150 }),
+  [IMDBFields.ID]: faker.word.sample(),
 });
 
 export const withTraktFields = (e: RawMovieEntry) => ({
   ...e,
-  [TraktFields.Genres]: random.words().split(' '),
-  [TraktFields.Rating]: random.number(10),
-  [TraktFields.Votes]: random.number(100),
-  [TraktFields.Description]: lorem.paragraph(),
-  [TraktFields.Url]: internet.url(),
-  [TraktFields.ID]: random.word(),
-  [TraktFields.Runtime]: random.number(150),
+  [TraktFields.Genres]: faker.word.words().split(' '),
+  [TraktFields.Rating]: faker.number.int({ max: 10 }),
+  [TraktFields.Votes]: faker.number.int({ max: 100 }),
+  [TraktFields.Description]: faker.lorem.paragraph(),
+  [TraktFields.Url]: faker.internet.url(),
+  [TraktFields.ID]: faker.word.sample(),
+  [TraktFields.Runtime]: faker.number.int({ max: 150 }),
 });
 
 export const withTMDBFields = (e: RawMovieEntry) => ({
   ...e,
-  [TMDBFields.Genres]: random.words().split(' '),
-  [TMDBFields.Posters]: image.imageUrl(),
-  [TMDBFields.Backdrops]: image.imageUrl(),
-  [TMDBFields.Runtime]: random.number(150),
-  [TMDBFields.Rating]: random.number(10),
-  [TMDBFields.Votes]: random.number(100),
-  [TMDBFields.Url]: internet.url(),
-  [TMDBFields.ID]: random.word(),
+  [TMDBFields.Genres]: faker.word.words().split(' '),
+  [TMDBFields.Posters]: faker.image.url(),
+  [TMDBFields.Backdrops]: faker.image.url(),
+  [TMDBFields.Runtime]: faker.number.int({ max: 150 }),
+  [TMDBFields.Rating]: faker.number.int({ max: 10 }),
+  [TMDBFields.Votes]: faker.number.int({ max: 100 }),
+  [TMDBFields.Url]: faker.internet.url(),
+  [TMDBFields.ID]: faker.word.sample(),
 });
 
 export const withEpisodeRawEntry = (e: RawEntry): RawEpisodeEntry => ({
   ...e,
   seriesEpisode: 1,
   seriesSeason: 2,
-  seriesName: random.word(),
+  seriesName: faker.word.sample(),
   seriesId: 'S02E01',
 });
 
 export const withTraktEpisodeFields = (e: RawEpisodeEntry) => ({
   ...e,
-  [TraktEpisodeFields.Name]: random.words(),
-  [TraktEpisodeFields.Description]: lorem.paragraph(),
-  [TraktEpisodeFields.ID]: random.word(),
+  [TraktEpisodeFields.Name]: faker.word.words(),
+  [TraktEpisodeFields.Description]: faker.lorem.paragraph(),
+  [TraktEpisodeFields.ID]: faker.word.sample(),
 });
 
 export const withTVDBEpisodeFields = (e: RawEpisodeEntry) => ({
   ...e,
-  [TVDBEpisodeFields.Image]: image.imageUrl(),
-  [TVDBEpisodeFields.Description]: lorem.paragraph(),
-  [TVDBEpisodeFields.ID]: random.word(),
+  [TVDBEpisodeFields.Image]: faker.image.url(),
+  [TVDBEpisodeFields.Description]: faker.lorem.paragraph(),
+  [TVDBEpisodeFields.ID]: faker.word.sample(),
 });
 
 export const withTVMazeEpisodeFields = (e: RawEpisodeEntry) => ({
   ...e,
-  [TVMazeEpisodeFields.Name]: random.words(),
-  [TVMazeEpisodeFields.Image]: image.imageUrl(),
-  [TVMazeEpisodeFields.Description]: lorem.paragraph(),
-  [TVMazeEpisodeFields.Url]: internet.url(),
-  [TVMazeEpisodeFields.ID]: random.word(),
+  [TVMazeEpisodeFields.Name]: faker.word.words(),
+  [TVMazeEpisodeFields.Image]: faker.image.url(),
+  [TVMazeEpisodeFields.Description]: faker.lorem.paragraph(),
+  [TVMazeEpisodeFields.Url]: faker.internet.url(),
+  [TVMazeEpisodeFields.ID]: faker.word.sample(),
 });
 
 export const withSeriesRawEntry = (e: RawEntry) => ({
   ...e,
-  seriesName: random.word(),
-  seriesYear: date.past().getFullYear(),
+  seriesName: faker.word.sample(),
+  seriesYear: faker.date.past().getFullYear(),
 });
 
 export const withTraktSeriesFields = (e: RawSeriesEntry) => ({
   ...e,
-  [TraktSeriesFields.Genres]: random.words().split(' '),
-  [TraktSeriesFields.Rating]: random.number(10),
-  [TraktSeriesFields.Votes]: random.number(100),
-  [TraktSeriesFields.Description]: lorem.paragraph(),
-  [TraktSeriesFields.ID]: random.word(),
-  [TraktSeriesFields.ContentRating]: random.words(),
-  [TraktSeriesFields.Url]: internet.url(),
-  [TraktSeriesFields.Network]: random.words(),
+  [TraktSeriesFields.Genres]: faker.word.words().split(' '),
+  [TraktSeriesFields.Rating]: faker.number.int({ max: 10 }),
+  [TraktSeriesFields.Votes]: faker.number.int({ max: 100 }),
+  [TraktSeriesFields.Description]: faker.lorem.paragraph(),
+  [TraktSeriesFields.ID]: faker.word.sample(),
+  [TraktSeriesFields.ContentRating]: faker.word.words(),
+  [TraktSeriesFields.Url]: faker.internet.url(),
+  [TraktSeriesFields.Network]: faker.word.words(),
 });
 
 export const withTVDBSeriesFields = (e: RawSeriesEntry) => ({
   ...e,
-  [TVDBSeriesFields.Genres]: random.words().split(' '),
-  [TVDBSeriesFields.Posters]: image.imageUrl(),
-  [TVDBSeriesFields.Rating]: random.number(10),
-  [TVDBSeriesFields.Description]: lorem.paragraph(),
-  [TVDBSeriesFields.Url]: internet.url(),
-  [TVDBSeriesFields.Backdrops]: image.imageUrl(),
-  [TVDBSeriesFields.ContentRating]: random.words(),
-  [TVDBSeriesFields.Network]: random.words(),
-  [TVDBSeriesFields.ID]: random.word(),
+  [TVDBSeriesFields.Genres]: faker.word.words().split(' '),
+  [TVDBSeriesFields.Posters]: faker.image.url(),
+  [TVDBSeriesFields.Rating]: faker.number.int({ max: 10 }),
+  [TVDBSeriesFields.Description]: faker.lorem.paragraph(),
+  [TVDBSeriesFields.Url]: faker.internet.url(),
+  [TVDBSeriesFields.Backdrops]: faker.image.url(),
+  [TVDBSeriesFields.ContentRating]: faker.word.words(),
+  [TVDBSeriesFields.Network]: faker.word.words(),
+  [TVDBSeriesFields.ID]: faker.word.sample(),
 });
 
 export const withTVMazeSeriesFields = (e: RawSeriesEntry) => ({
   ...e,
-  [TVMazeSeriesFields.Genres]: random.words().split(' '),
-  [TVMazeSeriesFields.Posters]: image.imageUrl(),
-  [TVMazeSeriesFields.Rating]: random.number(10),
-  [TVMazeSeriesFields.Description]: lorem.paragraph(),
-  [TVMazeSeriesFields.Url]: internet.url(),
-  [TVMazeSeriesFields.Network]: random.words(),
-  [TVMazeSeriesFields.ID]: random.word(),
+  [TVMazeSeriesFields.Genres]: faker.word.words().split(' '),
+  [TVMazeSeriesFields.Posters]: faker.image.url(),
+  [TVMazeSeriesFields.Rating]: faker.number.int({ max: 10 }),
+  [TVMazeSeriesFields.Description]: faker.lorem.paragraph(),
+  [TVMazeSeriesFields.Url]: faker.internet.url(),
+  [TVMazeSeriesFields.Network]: faker.word.words(),
+  [TVMazeSeriesFields.ID]: faker.word.sample(),
 });

@@ -1,6 +1,6 @@
 import React from 'react';
-import { cleanup, fireEvent } from '@testing-library/react';
-import * as fetchMock from 'fetch-mock';
+import { cleanup, fireEvent, screen, waitFor } from '@testing-library/react';
+import fetchMock from 'fetch-mock';
 import { AuthContainer } from 'core/auth/hooks';
 import { renderWithWrapper } from 'utils/tests';
 import LoginCard from './LoginCard';
@@ -27,11 +27,12 @@ describe('core/Login/LoginCard', () => {
   });
 
   it('should call handleSubmit on submit', async () => {
-    const { findByLabelText, getByRole } = renderWithWrapper(<TestLogin />);
-    expect(await findByLabelText('login-state')).toHaveTextContent('false');
+    const { container } = renderWithWrapper(<TestLogin />);
+    expect(screen.getByLabelText('login-state')).toHaveTextContent('false');
 
-    const form = getByRole('form');
+    // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
+    const form = container.querySelector('form')!;
     fireEvent.submit(form);
-    expect(await findByLabelText('login-state')).toHaveTextContent('true');
+    await waitFor(() => expect(screen.getByLabelText('login-state')).toHaveTextContent('true'));
   });
 });

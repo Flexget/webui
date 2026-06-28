@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup } from '@testing-library/react';
-import * as fetchMock from 'fetch-mock';
+import fetchMock from 'fetch-mock';
 import { compose } from 'utils';
 import { normalizeMinutes } from 'utils/time';
 import { renderWithWrapper } from 'utils/tests';

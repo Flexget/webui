@@ -9,7 +9,7 @@ exports[`common/layout renders correctly 1`] = `
 
 <div
   css={
-    Object {
+    {
       "map": undefined,
       "name": "9ff2ry",
       "next": undefined,
@@ -30,7 +30,7 @@ exports[`common/layout renders correctly 1`] = `
 >
   <aside
     css={
-      Object {
+      {
         "map": undefined,
         "name": "9bboz",
         "next": undefined,
@@ -45,8 +45,8 @@ exports[`common/layout renders correctly 1`] = `
     <div
       className="MuiDrawer-root MuiDrawer-docked"
       css={
-        Array [
-          Object {
+        [
+          {
             "map": undefined,
             "name": "133kp33",
             "next": undefined,
@@ -69,7 +69,7 @@ exports[`common/layout renders correctly 1`] = `
 ",
             "toString": [Function],
           },
-          Object {
+          {
             "map": undefined,
             "name": "17ocdyw",
             "next": undefined,
@@ -147,7 +147,7 @@ exports[`common/layout renders correctly 1`] = `
         </div>
         <div
           css={
-            Object {
+            {
               "map": undefined,
               "name": "mrqyz6",
               "next": undefined,
@@ -165,7 +165,7 @@ exports[`common/layout renders correctly 1`] = `
           <nav
             className="MuiList-root MuiList-padding"
             css={
-              Object {
+              {
                 "map": undefined,
                 "name": "1nxb9gk",
                 "next": undefined,
@@ -212,7 +212,7 @@ exports[`common/layout renders correctly 1`] = `
   </aside>
   <header
     css={
-      Object {
+      {
         "map": undefined,
         "name": "1osrr34",
         "next": undefined,
@@ -378,7 +378,7 @@ exports[`common/layout renders correctly 1`] = `
   </header>
   <main
     css={
-      Object {
+      {
         "map": undefined,
         "name": "pzpbsp",
         "next": undefined,
@@ -392,8 +392,8 @@ exports[`common/layout renders correctly 1`] = `
   >
     <section
       css={
-        Array [
-          Object {
+        [
+          {
             "map": undefined,
             "name": "1a7v7et",
             "next": undefined,
@@ -408,7 +408,7 @@ exports[`common/layout renders correctly 1`] = `
 ",
             "toString": [Function],
           },
-          Object {
+          {
             "map": undefined,
             "name": "17b3u5p",
             "next": undefined,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup } from '@testing-library/react';
-import * as fetchMock from 'fetch-mock';
+import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import { Direction } from 'utils/query';
 import HistoryList from './HistoryList';

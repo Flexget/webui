@@ -1,23 +1,26 @@
 import React, { FC } from 'react';
-import { mount } from 'enzyme';
+import { fireEvent, screen } from '@testing-library/react';
 import { useContainer } from 'unstated-next';
+import { renderWithWrapper } from 'utils/tests';
 import { StatusContainer, actions } from './hooks';
 import LoadingBar from './LoadingBar';
 
 const TestComponent: FC = () => {
   const [, dispatch] = useContainer(StatusContainer);
-
-  const start = (event: any) => dispatch(actions.setLoading(event.id, true));
-  const stop = (event: any) => dispatch(actions.setLoading(event.id, false));
-
   return (
     <>
       <LoadingBar />
-      <button id="start" type="button" onClick={start}>
-        Start Button
+      <button type="button" onClick={() => dispatch(actions.setLoading('first', true))}>
+        start first
       </button>
-      <button id="stop" type="button" onClick={stop}>
-        Stop Button
+      <button type="button" onClick={() => dispatch(actions.setLoading('second', true))}>
+        start second
+      </button>
+      <button type="button" onClick={() => dispatch(actions.setLoading('first', false))}>
+        stop first
+      </button>
+      <button type="button" onClick={() => dispatch(actions.setLoading('second', false))}>
+        stop second
       </button>
     </>
   );
@@ -25,28 +28,20 @@ const TestComponent: FC = () => {
 
 describe('core/status/LoadingBar', () => {
   it('should render the loading bar if loading', () => {
-    const wrapper = mount(
-      <StatusContainer.Provider>
-        <TestComponent />
-      </StatusContainer.Provider>,
-    );
+    renderWithWrapper(<TestComponent />);
 
-    const startButton = wrapper.find('#start');
-    const stopButton = wrapper.find('#stop');
+    expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
 
-    expect(wrapper.find(LoadingBar).text()).toBeEmpty();
+    fireEvent.click(screen.getByText('start first'));
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
 
-    startButton.simulate('click', { id: 'first' });
-    expect(wrapper.find(LoadingBar).html()).not.toBeEmpty();
-    startButton.simulate('click', { id: 'second' });
-    expect(wrapper.find(LoadingBar).html()).not.toBeEmpty();
+    fireEvent.click(screen.getByText('start second'));
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
 
-    stopButton.simulate('click', { id: 'first' });
+    fireEvent.click(screen.getByText('stop first'));
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
 
-    expect(wrapper.find(LoadingBar).html()).not.toBeEmpty();
-
-    stopButton.simulate('click', { id: 'second' });
-
-    expect(wrapper.find(LoadingBar).html()).toBeNil();
+    fireEvent.click(screen.getByText('stop second'));
+    expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
   });
 });

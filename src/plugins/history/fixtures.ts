@@ -1,11 +1,11 @@
-import { random, internet, system } from 'faker';
+import { faker } from '@faker-js/faker';
 
 export const makeItem = (time: string, task: string) => ({
   time,
   task,
-  title: random.words(),
-  url: internet.url(),
-  filename: system.fileName(),
-  details: random.words(),
-  id: random.number(),
+  title: faker.word.words(),
+  url: faker.internet.url(),
+  filename: faker.system.fileName(),
+  details: faker.word.words(),
+  id: faker.number.int(),
 });

@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { useNavigate, Routes, Route } from 'react-router-dom';
-import { cleanup, fireEvent, getNodeText, wait } from '@testing-library/react';
-import * as fetchMock from 'fetch-mock';
+import { cleanup, fireEvent, getNodeText, waitFor } from '@testing-library/react';
+import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
 import Episodes from './index';
@@ -36,7 +36,7 @@ describe('plugins/series/episodes', () => {
   it('should get series details', async () => {
     renderWithWrapper(<TestEpisodes />);
 
-    await wait(() => expect(fetchMock.called('/api/series/1')).toBeTrue());
+    await waitFor(() => expect(fetchMock.called('/api/series/1')).toBeTrue());
   });
 
   describe('Header', () => {

@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react';
 import { useContainer } from 'unstated-next';
-import { cleanup, render, fireEvent, within, wait } from '@testing-library/react';
+import { cleanup, render, fireEvent, waitFor } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
-import * as fetchMock from 'fetch-mock';
+import fetchMock from 'fetch-mock';
 import { PendingListContainer } from 'plugins/lists/pending/hooks';
 import { EntryListContainer } from 'plugins/lists/entry/hooks';
 import { MovieListContainer } from 'plugins/lists/movies/hooks';
@@ -60,12 +60,10 @@ describe('plugins/lists/base/AddFab/AddListDialog', () => {
     it('should call fetch when pressing add', async () => {
       const { getByRole } = render(component, { wrapper });
 
-      const submitButton = getByRole(
-        (content, element) => content === 'button' && !!within(element).queryByText('Add'),
-      );
+      const submitButton = getByRole('button', { name: 'Add' });
 
       fireEvent.click(submitButton);
-      await wait(() => {
+      await waitFor(() => {
         expect(fetchMock.called(`/api/${prefix}`)).toBeTrue();
         expect(handleClose).toHaveBeenCalled();
       });
@@ -74,9 +72,7 @@ describe('plugins/lists/base/AddFab/AddListDialog', () => {
     it('should call close when pressing cancel', () => {
       const { getByRole } = render(component, { wrapper });
 
-      const cancelButton = getByRole(
-        (content, element) => content === 'button' && !!within(element).queryByText('Cancel'),
-      );
+      const cancelButton = getByRole('button', { name: 'Cancel' });
 
       fireEvent.click(cancelButton);
       expect(fetchMock.called(`/api/${prefix}`)).toBeFalse();

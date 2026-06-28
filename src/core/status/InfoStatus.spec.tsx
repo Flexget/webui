@@ -1,52 +1,42 @@
 import React, { FC } from 'react';
-import { mount } from 'enzyme';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { useContainer } from 'unstated-next';
-import InfoStatus from './InfoStatus';
+import { renderWithWrapper } from 'utils/tests';
 import { StatusContainer, actions } from './hooks';
+import InfoStatus from './InfoStatus';
 
 const TestComponent: FC = () => {
   const [, dispatch] = useContainer(StatusContainer);
-
-  const push = (event: any) => dispatch(actions.pushInfo(event.message));
-  const pop = () => dispatch(actions.popInfo());
-
   return (
     <>
       <InfoStatus />
-      <button id="push" type="button" onClick={push}>
-        Push Button
+      <button type="button" onClick={() => dispatch(actions.pushInfo('test info'))}>
+        push
       </button>
-      <button id="pop" type="button" onClick={pop}>
-        Pop Button
+      <button type="button" onClick={() => dispatch(actions.popInfo())}>
+        pop
       </button>
     </>
   );
 };
 
-describe('core/status/ErrorStatus', () => {
-  it('should render text if there is a message', () => {
-    const wrapper = mount(
-      <StatusContainer.Provider>
-        <TestComponent />
-      </StatusContainer.Provider>,
-    );
+describe('core/status/InfoStatus', () => {
+  it('shows nothing initially', () => {
+    renderWithWrapper(<TestComponent />);
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
 
-    const pushButton = wrapper.find('#push');
-    const popButton = wrapper.find('#pop');
+  it('shows the info message when pushed', async () => {
+    renderWithWrapper(<TestComponent />);
+    fireEvent.click(screen.getByText('push'));
+    expect(await screen.findByRole('alert')).toHaveTextContent('test info');
+  });
 
-    expect(wrapper.find(InfoStatus).text()).toBeEmpty();
-
-    pushButton.simulate('click', { message: 'first message' });
-
-    expect(wrapper.find(InfoStatus).text()).toInclude('first message');
-    pushButton.simulate('click', { message: 'second message' });
-
-    expect(wrapper.find(InfoStatus).text()).toInclude('first message');
-
-    popButton.simulate('click');
-    expect(wrapper.find(InfoStatus).text()).toInclude('second message');
-
-    popButton.simulate('click');
-    expect(wrapper.find(InfoStatus).text()).toBeEmpty();
+  it('clears the message when popped', async () => {
+    renderWithWrapper(<TestComponent />);
+    fireEvent.click(screen.getByText('push'));
+    await screen.findByRole('alert');
+    fireEvent.click(screen.getByText('pop'));
+    await waitFor(() => expect(screen.queryByText('test info')).not.toBeInTheDocument());
   });
 });

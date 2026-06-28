@@ -1,9 +1,9 @@
 import React, { FC, useEffect } from 'react';
 import { useContainer } from 'unstated-next';
-import { cleanup, render, fireEvent, within, wait } from '@testing-library/react';
+import { cleanup, render, fireEvent, waitFor } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
 import { makeRawEntry } from 'core/entry/fixtures';
-import * as fetchMock from 'fetch-mock';
+import fetchMock from 'fetch-mock';
 import { PendingListContainer } from 'plugins/lists/pending/hooks';
 import { EntryListContainer } from 'plugins/lists/entry/hooks';
 import { MovieListContainer } from 'plugins/lists/movies/hooks';
@@ -87,12 +87,10 @@ describe('plugins/lists/base/EntryList/InjectEntryDialog', () => {
     it('should call fetch when pressing inject', async () => {
       const { getByRole } = render(component, { wrapper });
 
-      const submitButton = getByRole(
-        (content, element) => content === 'button' && !!within(element).queryByText('Inject'),
-      );
+      const submitButton = getByRole('button', { name: 'Inject' });
 
       fireEvent.click(submitButton);
-      await wait(() => {
+      await waitFor(() => {
         expect(fetchMock.called(`/api/${prefix}/1/${itemPrefix}/1`)).toBeTrue();
         expect(fetchMock.called('/api/tasks/execute')).toBeTrue();
         expect(handleClose).toHaveBeenCalled();
@@ -102,9 +100,7 @@ describe('plugins/lists/base/EntryList/InjectEntryDialog', () => {
     it('should call close when pressing cancel', () => {
       const { getByRole } = render(component, { wrapper });
 
-      const submitButton = getByRole(
-        (content, element) => content === 'button' && !!within(element).queryByText('Cancel'),
-      );
+      const submitButton = getByRole('button', { name: 'Cancel' });
 
       fireEvent.click(submitButton);
       expect(fetchMock.called(`/api/${prefix}/1/${itemPrefix}/1`)).toBeFalse();

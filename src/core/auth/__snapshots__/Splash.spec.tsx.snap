@@ -7,7 +7,7 @@ exports[`pages/splash renders correctly 1`] = `
   />
   <div
     css={
-      Object {
+      {
         "map": undefined,
         "name": "1kz9hf7",
         "next": undefined,

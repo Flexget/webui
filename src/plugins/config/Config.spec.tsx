@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import * as fetchMock from 'fetch-mock';
-import { cleanup, fireEvent, wait } from '@testing-library/react';
+import fetchMock from 'fetch-mock';
+import { cleanup, fireEvent, waitFor } from '@testing-library/react';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
 import { Method } from 'utils/fetch';
@@ -59,9 +59,7 @@ describe('plugins/config/Config', () => {
   it('clicking save config to call api', async () => {
     const { findByText } = renderWithWrapper(<TestConfig />);
 
-    await wait(() => {
-      return fetchMock.called('/api/server/rawConfig');
-    });
+    await waitFor(() => expect(fetchMock.called('/api/server/raw_config')).toBeTrue());
 
     const buttonText = await findByText('Save Config');
     const saveButton = buttonText.closest('button');
@@ -70,18 +68,16 @@ describe('plugins/config/Config', () => {
       fireEvent.click(saveButton);
     }
 
-    await wait(() => expect(fetchMock.called('/api/tasks')).toBeTrue());
+    await waitFor(() => expect(fetchMock.called('/api/tasks')).toBeTrue());
     expect(fetchMock.called('/api/server/raw_config', { method: Method.Post })).toBeTrue();
   });
 
   it('clicking load variables should switch to variables mode', async () => {
-    const { getByText, findByText } = renderWithWrapper(<TestConfig />);
+    const { findByText } = renderWithWrapper(<TestConfig />);
 
-    await wait(() => {
-      return fetchMock.called('/api/server/rawConfig');
-    });
+    await waitFor(() => expect(fetchMock.called('/api/server/raw_config')).toBeTrue());
 
-    const loadButton = getByText('Load Variables').closest('button');
+    const loadButton = (await findByText('Load Variables')).closest('button');
     if (loadButton) {
       fireEvent.click(loadButton);
     }
@@ -91,13 +87,11 @@ describe('plugins/config/Config', () => {
   });
 
   it('clicking save variables should call api', async () => {
-    const { getByText, findByText } = renderWithWrapper(<TestConfig />);
+    const { findByText } = renderWithWrapper(<TestConfig />);
 
-    await wait(() => {
-      return fetchMock.called('/api/server/rawConfig');
-    });
+    await waitFor(() => expect(fetchMock.called('/api/server/raw_config')).toBeTrue());
 
-    const loadButton = getByText('Load Variables').closest('button');
+    const loadButton = (await findByText('Load Variables')).closest('button');
     if (loadButton) {
       fireEvent.click(loadButton);
     }
@@ -109,6 +103,6 @@ describe('plugins/config/Config', () => {
       fireEvent.click(saveButton);
     }
 
-    await wait(() => expect(fetchMock.called('/api/variables', { method: Method.Put })).toBeTrue());
+    await waitFor(() => expect(fetchMock.called('/api/variables', { method: Method.Put })).toBeTrue());
   });
 });

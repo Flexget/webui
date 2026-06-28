@@ -1,6 +1,6 @@
 import React from 'react';
-import { cleanup, fireEvent, within, wait } from '@testing-library/react';
-import * as fetchMock from 'fetch-mock';
+import { cleanup, fireEvent, waitFor } from '@testing-library/react';
+import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import RemoveDialog from './RemoveDialog';
 import { EpisodeContainer, useRemoveEpisode } from './hooks/episodes';
@@ -52,12 +52,10 @@ describe('plugins/series/RemoveDialog', () => {
     it('should call request and close when pressing remove', async () => {
       const { getByRole } = renderWithWrapper(component);
 
-      const submitButton = getByRole(
-        (content, element) => content === 'button' && !!within(element).queryByText('Remove'),
-      );
+      const submitButton = getByRole('button', { name: 'Remove' });
 
       fireEvent.click(submitButton);
-      await wait(() => {
+      await waitFor(() => {
         expect(fetchMock.called(`/api/series${path}`)).toBeTrue();
         expect(handleClose).toHaveBeenCalled();
       });
@@ -66,12 +64,10 @@ describe('plugins/series/RemoveDialog', () => {
     it('should only call close when pressing cancel', async () => {
       const { getByRole } = renderWithWrapper(component);
 
-      const submitButton = getByRole(
-        (content, element) => content === 'button' && !!within(element).queryByText('Cancel'),
-      );
+      const submitButton = getByRole('button', { name: 'Cancel' });
 
       fireEvent.click(submitButton);
-      await wait(() => {
+      await waitFor(() => {
         expect(fetchMock.called(`/api/series${path}`)).toBeFalse();
         expect(handleClose).toHaveBeenCalled();
       });
