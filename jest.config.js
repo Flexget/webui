@@ -30,8 +30,9 @@ module.exports = {
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy',
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/__mocks__/fileMock.ts',
-    'monaco-editor': '<rootDir>/node_modules/react-monaco-editor',
-    '^worker-loader!': '<rootDir>/src/__mocks__/worker.ts',
+    '^@monaco-editor/react$': '<rootDir>/src/__mocks__/monacoEditor.tsx',
+    '^monaco-editor(/.*)?$': '<rootDir>/src/__mocks__/monaco-editor.ts',
+    '^monaco-yaml$': '<rootDir>/src/__mocks__/monacoYaml.ts',
   },
   snapshotSerializers: ['@emotion/jest/serializer'],
   setupFiles: ['<rootDir>/src/utils/tests/setupFiles.ts'],

@@ -3,6 +3,8 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const MonacoEditorWebpackPlugin = require('monaco-editor-webpack-plugin');
 const webpack = require('webpack');
 const cfg = require('./package.json');
 
@@ -40,25 +42,34 @@ const plugins = [
     __VERSION__: JSON.stringify(__VERSION__),
   }),
   new ForkTsCheckerWebpackPlugin({
-    tsconfig: path.resolve('tsconfig.json'),
+    typescript: {
+      configFile: path.resolve('tsconfig.json'),
+    },
   }),
   new HtmlWebpackPlugin(htmlConfig),
+  new MonacoEditorWebpackPlugin({ languages: ['yaml'] }),
   ...(__DEV__
-    ? [new webpack.HotModuleReplacementPlugin()]
+    ? [new ReactRefreshWebpackPlugin()]
     : [
         new MiniCssExtractPlugin({
           filename: '[name].[chunkhash].css',
-          allChunks: true,
         }),
       ]),
   ...(__DEBUG__
-    ? [
-        new BundleAnalyzerPlugin({
-          analyzerMode: 'server',
-        }),
-      ]
+    ? [new BundleAnalyzerPlugin({ analyzerMode: 'server' })]
     : []),
 ];
+
+const devServer = {
+  hot: true,
+  historyApiFallback: true,
+  proxy: [
+    {
+      context: ['/api'],
+      target: process.env.SERVER || 'http://localhost:5050',
+    },
+  ],
+};
 
 const config = {
   mode,
@@ -90,42 +101,27 @@ const config = {
     rules: [
       {
         test: /\.(t|j)sx?$/,
-        loaders: [
-          'babel-loader',
-          {
-            loader: 'ts-loader',
-            options: {
-              transpileOnly: true,
-              happyPackMode: true,
-            },
-          },
-        ],
+        loader: 'babel-loader',
         exclude: /node_modules/,
       },
       {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+        test: /\.(woff2?|ttf|eot|svg|otf)(\?.*)?$/,
+        type: 'asset/resource',
       },
       {
-        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader',
-      },
-      {
-        test: /\.(gif|png|jpg|jpeg)(\?[a-z0-9]+)?$/,
-        loader: 'url-loader?limit=8192',
+        test: /\.(gif|png|jpe?g)(\?.*)?$/,
+        type: 'asset',
+        parser: { dataUrlCondition: { maxSize: 8192 } },
       },
       {
         test: /\.css$/,
-
         use: [
           ...(__DEV__
             ? ['style-loader']
             : [
                 {
                   loader: MiniCssExtractPlugin.loader,
-                  options: {
-                    publicPath: '',
-                  },
+                  options: { publicPath: '' },
                 },
               ]),
           'css-loader',
@@ -133,6 +129,7 @@ const config = {
       },
     ],
   },
+  ...(__DEV__ ? { devServer } : {}),
 };
 
 module.exports = config;

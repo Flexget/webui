@@ -13,14 +13,3 @@ declare module '*.otf';
 
 // videos
 declare module '*.mp4';
-
-// workers
-declare module 'worker-loader!*' {
-  class WebpackWorker extends Worker {
-    constructor() {
-      super('any string');
-    }
-  }
-
-  export default WebpackWorker;
-}
