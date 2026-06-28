@@ -2,6 +2,12 @@ version: '3'
 
 dotenv: ['.env']
 
+vars:
+  # Source nvm and activate .nvmrc version before running any node command.
+  # nvm use --silent is a no-op if the version isn't installed yet (falls
+  # back to whatever node is in PATH).
+  NODE: bash -c '. "$HOME/.nvm/nvm.sh" 2>/dev/null; nvm use --silent 2>/dev/null || true; exec'
+
 tasks:
   setup:
     desc: Install correct Node.js version via nvm and project dependencies
@@ -23,7 +29,7 @@ tasks:
   install:
     desc: Install project dependencies
     cmds:
-      - fish -c 'yarn install'
+      - '{{.NODE}} yarn install'
     sources:
       - package.json
       - yarn.lock
@@ -33,42 +39,42 @@ tasks:
   dev:
     desc: Start development server
     cmds:
-      - fish -c 'yarn start'
+      - '{{.NODE}} yarn start'
 
   build:
     desc: Build for production
     cmds:
-      - fish -c 'yarn build'
+      - '{{.NODE}} yarn build'
 
   test:
     desc: Run test suite
     cmds:
-      - fish -c 'yarn test'
+      - '{{.NODE}} yarn test'
 
   test:watch:
     desc: Run tests in watch mode
     cmds:
-      - fish -c 'yarn test:watch'
+      - '{{.NODE}} yarn test:watch'
 
   test:coverage:
     desc: Run tests with coverage report
     cmds:
-      - fish -c 'yarn test --coverage'
+      - '{{.NODE}} yarn test --coverage'
 
   lint:
     desc: Run ESLint
     cmds:
-      - fish -c 'yarn lint'
+      - '{{.NODE}} yarn lint'
 
   lint:fix:
     desc: Fix auto-fixable ESLint errors
     cmds:
-      - fish -c 'yarn lint --fix'
+      - '{{.NODE}} yarn lint --fix'
 
   typecheck:
     desc: Type-check without emitting
     cmds:
-      - fish -c './node_modules/.bin/tsc --noEmit'
+      - '{{.NODE}} ./node_modules/.bin/tsc --noEmit'
 
   clean:
     desc: Remove build output
