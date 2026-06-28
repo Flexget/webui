@@ -4,16 +4,26 @@ dotenv: ['.env']
 
 tasks:
   setup:
-    desc: Install Node.js via nvm and project dependencies
+    desc: Install correct Node.js version via nvm and project dependencies
     cmds:
-      - bash -c '. "$HOME/.nvm/nvm.sh" && nvm install'
-      - bash -c '. "$HOME/.nvm/nvm.sh" && nvm use && npm install -g yarn'
+      - |
+        bash -c '
+          . "$HOME/.nvm/nvm.sh" || { echo "Error: nvm not found at $HOME/.nvm"; exit 1; }
+          nvm install || {
+            echo ""
+            echo "Error: nvm install failed (network issue or missing mirror?)"
+            echo "Fix: ensure nodejs.org is reachable, then re-run task setup."
+            echo "Or install Node 20 via your OS and run: task install"
+            exit 1
+          }
+          which yarn || npm install -g yarn
+        '
       - task: install
 
   install:
     desc: Install project dependencies
     cmds:
-      - yarn install
+      - fish -c 'yarn install'
     sources:
       - package.json
       - yarn.lock
@@ -23,42 +33,42 @@ tasks:
   dev:
     desc: Start development server
     cmds:
-      - yarn start
+      - fish -c 'yarn start'
 
   build:
     desc: Build for production
     cmds:
-      - yarn build
+      - fish -c 'yarn build'
 
   test:
     desc: Run test suite
     cmds:
-      - yarn test
+      - fish -c 'yarn test'
 
   test:watch:
     desc: Run tests in watch mode
     cmds:
-      - yarn test:watch
+      - fish -c 'yarn test:watch'
 
   test:coverage:
     desc: Run tests with coverage report
     cmds:
-      - yarn test --coverage
+      - fish -c 'yarn test --coverage'
 
   lint:
     desc: Run ESLint
     cmds:
-      - yarn lint
+      - fish -c 'yarn lint'
 
   lint:fix:
     desc: Fix auto-fixable ESLint errors
     cmds:
-      - yarn lint --fix
+      - fish -c 'yarn lint --fix'
 
   typecheck:
     desc: Type-check without emitting
     cmds:
-      - ./node_modules/.bin/tsc --noEmit
+      - fish -c './node_modules/.bin/tsc --noEmit'
 
   clean:
     desc: Remove build output
