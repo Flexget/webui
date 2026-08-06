@@ -14,7 +14,7 @@ const mode = __DEV__ ? 'development' : 'production';
 const __VERSION__ = process.env.VERSION || cfg.version;
 
 const entry = {
-  main: ['whatwg-fetch', './src/app.tsx'],
+  main: ['core-js/stable', 'regenerator-runtime/runtime', 'whatwg-fetch', './src/app.tsx'],
 };
 
 const output = {
