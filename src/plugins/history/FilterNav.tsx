@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Toolbar, Tooltip } from '@mui/material';
+import { Toolbar, Tooltip, Theme } from '@mui/material';
 import { css } from '@emotion/react';
 import SelectField from 'common/inputs/formik/SelectField';
 import { Spacer } from 'common/styles';
@@ -9,12 +9,20 @@ import { TaskContainer } from 'plugins/tasks/hooks';
 import { useContainer } from 'unstated-next';
 import { GroupByFields, SortByFields } from './types';
 
+// Toolbar owns the top/bottom padding for the whole row (matching the
+// theme.spacing(2) convention every other NoPaddingWrapper page re-applies)
+// so individual fields don't each need their own vertical padding.
+const toolbar = (theme: Theme) => css`
+  padding-top: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
+  padding-bottom: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
+`;
+
 const fieldWrapper = css`
-  padding: 0.5rem 2rem 0.5rem;
+  padding: 0 2rem;
 `;
 
 const textField = css`
-  width: 7.5rem;
+  min-width: 11rem;
 `;
 
 const selectField = css`
@@ -68,10 +76,11 @@ const FilterNav: FC = () => {
   useDebounceFormikSubmit();
 
   return (
-    <Toolbar>
+    <Toolbar css={toolbar}>
       <div css={fieldWrapper}>
         <SelectField
           css={selectField}
+          size="small"
           autoFocus
           id="task"
           label="Task Name"
@@ -81,10 +90,18 @@ const FilterNav: FC = () => {
       </div>
       <Spacer />
       <div css={fieldWrapper}>
-        <SelectField id="sort" name="sort" label="Sort By" options={sortByFields} css={textField} />
-      </div>
-      <div>
         <SelectField
+          size="small"
+          id="sort"
+          name="sort"
+          label="Sort By"
+          options={sortByFields}
+          css={textField}
+        />
+      </div>
+      <div css={fieldWrapper}>
+        <SelectField
+          size="small"
           id="grouping"
           label="Group By"
           name="grouping"
