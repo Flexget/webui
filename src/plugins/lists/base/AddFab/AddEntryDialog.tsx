@@ -11,6 +11,7 @@ import {
   Theme,
 } from '@mui/material';
 import { Form, Formik } from 'formik';
+import { dialogFields } from 'common/styles';
 import { useAddEntry } from '../hooks/entry';
 import { usePluginContainer } from '../hooks/api';
 
@@ -50,7 +51,7 @@ const AddEntryDialog: FC<Props> = ({ open = false, onClose }) => {
         }}
       >
         <Form>
-          <DialogContent>
+          <DialogContent css={dialogFields}>
             {error && <DialogContentText css={errorStyle}>{error.message}</DialogContentText>}
             {addEntryProps.map(({ name, label, type }, index) => (
               <TextField

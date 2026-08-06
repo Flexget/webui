@@ -29,6 +29,12 @@ export const NoPaddingWrapper = styled.div`
   }
 `;
 
+export const dialogFields = css`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
 export const backgroundColor = (theme: Theme, color: string) => css`
   background-color: ${color};
   color: ${theme.palette.getContrastText(color)};

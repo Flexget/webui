@@ -11,6 +11,7 @@ import {
   Theme,
 } from '@mui/material';
 import { Form, Formik } from 'formik';
+import { dialogFields } from 'common/styles';
 import { useAddShow } from '../hooks/shows';
 import { ShowRequest } from '../types';
 
@@ -46,7 +47,7 @@ const AddShowDialog: FC<Props> = ({ open = false, onClose }) => {
         }}
       >
         <Form>
-          <DialogContent>
+          <DialogContent css={dialogFields}>
             {error && <DialogContentText css={errorStyle}>{error.message}</DialogContentText>}
             <TextField id="name" label="Name" fullWidth name="name" autoFocus />
             <TextField id="beginEpisode" label="Begin Episode" fullWidth name="beginEpisode" />
