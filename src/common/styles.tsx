@@ -11,9 +11,6 @@ export const PaperWrapper = styled(Paper)<{ elevation?: number }>`
   height: 100%;
   box-sizing: border-box;
   flex-direction: column;
-  ${({ theme }) => theme.breakpoints.up('sm')} {
-    padding-top: 0;
-  }
 `;
 
 export const Spacer = styled.div`

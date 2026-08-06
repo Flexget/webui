@@ -17,6 +17,7 @@ import { useDebounceFormikSubmit } from 'utils/hooks';
 
 export const wrapper = (theme: Theme) => css`
   display: block;
+  padding-bottom: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
   ${theme.breakpoints.up('sm')} {
     display: flex;
     align-items: baseline;
@@ -31,6 +32,13 @@ export const filterWrapper = css`
 export const filterField = css`
   margin-left: 1rem;
   margin-right: 1rem;
+`;
+
+// TextField's helperText sits below the input and pulls the flex row's
+// align-items: center down with it; nudge the icons back up to the
+// input box's own center.
+export const filterIcon = css`
+  margin-top: -2.4rem;
 `;
 
 interface Props {
@@ -95,15 +103,16 @@ const Header: FC<Props> = ({ readyState, connect, disconnect, clear }) => {
       </div>
       <Spacer />
       <div css={filterWrapper}>
-        <FilterList />
+        <FilterList css={filterIcon} />
         <TextField
           css={filterField}
+          size="small"
           id="query"
           name="query"
           label="Filter"
           helperText={helperText}
         />
-        <IconButton onClick={handleMenuOpen}>
+        <IconButton css={filterIcon} onClick={handleMenuOpen}>
           <MoreVert />
         </IconButton>
       </div>
