@@ -9,7 +9,14 @@ interface Props {
 }
 
 const TabList: FC<Props> = ({ listId, lists, handleChange }) => (
-  <Tabs value={listId} variant="scrollable" scrollButtons onChange={handleChange}>
+  <Tabs
+    value={listId}
+    variant="scrollable"
+    scrollButtons
+    onChange={handleChange}
+    textColor="inherit"
+    indicatorColor="secondary"
+  >
     {lists.map(({ name, id }) => (
       <Tab label={name} value={id} key={id} />
     ))}
