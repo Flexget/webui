@@ -75,6 +75,10 @@ const plugins = [
 const devServer = {
   hot: true,
   historyApiFallback: true,
+  // compression buffers output before flushing, which breaks the chunked
+  // /api/server/log stream (oboe never sees a first byte, log page hangs
+  // at "Connecting" forever)
+  compress: false,
   proxy: [
     {
       context: ['/api'],
