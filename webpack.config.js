@@ -47,7 +47,19 @@ const plugins = [
     },
   }),
   new HtmlWebpackPlugin(htmlConfig),
-  new MonacoEditorWebpackPlugin({ languages: ['yaml'] }),
+  new MonacoEditorWebpackPlugin({
+    languages: ['yaml'],
+    customLanguages: [
+      {
+        label: 'yaml',
+        entry: 'monaco-yaml',
+        worker: {
+          id: 'monaco-yaml/yamlWorker',
+          entry: 'monaco-yaml/yaml.worker',
+        },
+      },
+    ],
+  }),
   ...(__DEV__
     ? [new ReactRefreshWebpackPlugin()]
     : [

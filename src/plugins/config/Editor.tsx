@@ -1,9 +1,14 @@
 import { FC, useEffect } from 'react';
 import { useField } from 'formik';
 import { useTheme } from '@mui/material';
-import MonacoEditor, { useMonaco } from '@monaco-editor/react';
+import MonacoEditor, { loader, useMonaco } from '@monaco-editor/react';
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import { configureMonacoYaml } from 'monaco-yaml';
 import { Schema } from './types';
+
+// @monaco-editor/react defaults to fetching monaco from a CDN, bypassing the
+// locally webpack-bundled monaco-editor (and its yaml worker setup below).
+loader.config({ monaco });
 
 interface Props {
   name: string;
