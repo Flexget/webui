@@ -61,7 +61,7 @@ const SeriesCard: FC<Props> = ({ entry, className, children }) => {
         <LinkDropdown options={options} />
       </div>
       <Typography variant="h6" color="textPrimary" css={ratingLine}>
-        <StarRate color="primary" /> {rating}
+        <StarRate color="primary" /> {typeof rating === 'number' ? rating.toFixed(1) : rating}
       </Typography>
       <Typography variant="overline" color="textSecondary">
         {network}

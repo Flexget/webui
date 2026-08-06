@@ -76,7 +76,8 @@ const MovieCard: FC<Props> = ({ entry, className, children }) => {
           </Typography>
         )}
         <Typography variant="h6" color="textPrimary" css={ratingLine}>
-          <StarRate color="primary" /> {rating} ({votes})
+          <StarRate color="primary" /> {typeof rating === 'number' ? rating.toFixed(1) : rating} (
+          {votes})
         </Typography>
         <Typography variant="overline" color="textSecondary">
           {quality}
