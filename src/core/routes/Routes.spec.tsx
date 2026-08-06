@@ -1,11 +1,11 @@
 import React, { FC, useEffect } from 'react';
 import { cleanup } from '@testing-library/react';
 import { AuthContainer } from 'core/auth/hooks';
-import { MemoryRouter, Route, Switch, useHistory } from 'react-router';
-import { Home, PowerSettingsNew } from '@material-ui/icons';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Home, PowerSettingsNew } from '@mui/icons-material';
 import { useContainer } from 'unstated-next';
 import { renderWithWrapper } from 'utils/tests';
-import Routes from './Routes';
+import AppRoutes from './Routes';
 import { registerPlugin } from '../plugins/registry';
 
 const LoginPage: FC = () => <div>Login Page</div>;
@@ -35,17 +35,17 @@ const TestRoutes: FC<Props> = ({ loggedIn = false }) => {
     setAuth(loggedIn);
   }, [loggedIn, setAuth]);
 
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    push('/home');
-  }, [push]);
+    navigate('/home'); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <Switch>
-      <Route path="/login" component={LoginPage} />
-      <Route component={Routes} />
-    </Switch>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="*" element={<AppRoutes />} />
+    </Routes>
   );
 };
 
@@ -55,25 +55,13 @@ describe('core/routes/PrivateRoute', () => {
   });
 
   it('renders correctly when logged in', async () => {
-    const { findByText } = renderWithWrapper(
-      <MemoryRouter>
-        <Route>
-          <TestRoutes loggedIn />
-        </Route>
-      </MemoryRouter>,
-    );
+    const { findByText } = renderWithWrapper(<TestRoutes loggedIn />);
 
     expect(await findByText('Private Page')).toBeInTheDocument();
   });
 
   it('renders correctly when logged out', async () => {
-    const { findByText } = renderWithWrapper(
-      <MemoryRouter>
-        <Route>
-          <TestRoutes />
-        </Route>
-      </MemoryRouter>,
-    );
+    const { findByText } = renderWithWrapper(<TestRoutes />);
     expect(await findByText('Login Page')).toBeInTheDocument();
   });
 });

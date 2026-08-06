@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useContainer } from 'unstated-next';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   Button,
   Dialog,
@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogContentText,
   Theme,
-} from '@material-ui/core';
+} from '@mui/material';
 import { Formik, Form } from 'formik';
 import SelectField from 'common/inputs/formik/SelectField';
 import { TaskContainer } from 'plugins/tasks/hooks';

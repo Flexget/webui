@@ -1,9 +1,10 @@
-import React, { forwardRef, useMemo } from 'react';
-import { Theme, ListItemText, ListItem, ListSubheader, List } from '@material-ui/core';
+import { forwardRef, useMemo } from 'react';
+import { Theme, ListItemText, ListItem, ListSubheader, List, Typography } from '@mui/material';
+import { SearchOff } from '@mui/icons-material';
 import InfiniteScroll from 'react-infinite-scroller';
 import { GroupByFields, GetHistoryOptions, HistoryItem } from 'plugins/history/types';
 import LoadingSpinner from 'common/LoadingSpinner';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { getGroupedHistory } from 'plugins/history/utils';
 import { useHistoryPlugin } from './hooks';
 
@@ -16,6 +17,14 @@ const wrapper = css`
   flex: 1;
 `;
 
+const empty = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 0;
+  gap: 1rem;
+`;
+
 interface Props {
   options: GetHistoryOptions;
   loadMore: (page: number) => void;
@@ -23,10 +32,19 @@ interface Props {
 
 const HistoryList = forwardRef<InfiniteScroll, Props>(({ options, loadMore }, scrollRef) => {
   const { items, total, loading } = useHistoryPlugin(options);
-  const history = useMemo(() => getGroupedHistory(items, options.grouping), [
-    items,
-    options.grouping,
-  ]);
+  const history = useMemo(
+    () => getGroupedHistory(items, options.grouping),
+    [items, options.grouping],
+  );
+
+  if (!loading && items.length === 0) {
+    return (
+      <div css={empty}>
+        <SearchOff color="disabled" fontSize="large" />
+        <Typography color="text.secondary">No history found</Typography>
+      </div>
+    );
+  }
 
   return (
     <div css={wrapper}>

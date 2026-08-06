@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { css } from '@emotion/core';
+import { FC } from 'react';
+import { css } from '@emotion/react';
 import {
   Button,
   Dialog,
@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogContentText,
   Theme,
-} from '@material-ui/core';
+} from '@mui/material';
 import TextField from 'common/inputs/formik/TextField';
 import { Formik, Form } from 'formik';
 import { AddListRequest } from '../types';
@@ -22,7 +22,7 @@ interface Props {
 const errorStyle = (theme: Theme) => css`
   color: ${theme.palette.error.main};
   text-align: center;
-  padding: ${theme.typography.pxToRem(theme.spacing(1))};
+  padding: ${theme.typography.pxToRem(parseFloat(theme.spacing(1)))};
 `;
 
 const AddListDialog: FC<Props> = ({ open = false, onClose }) => {

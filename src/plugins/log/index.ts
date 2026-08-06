@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import ListAltIcon from '@material-ui/icons/ListAlt';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>

@@ -1,6 +1,4 @@
-import { Mixins } from '@material-ui/core/styles/createMixins';
-
-declare module '@material-ui/core/styles/createMixins' {
+declare module '@mui/material/styles' {
   interface Mixins {
     appBar: {
       minHeight: number;
@@ -13,3 +11,5 @@ declare module '@material-ui/core/styles/createMixins' {
     };
   }
 }
+
+export {};

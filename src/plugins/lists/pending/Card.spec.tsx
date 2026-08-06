@@ -20,7 +20,7 @@ const TestEntryCard: typeof EntryCard = props => {
   return <EntryCard {...props} />;
 };
 
-const wrapper: FC = ({ children }) => (
+const wrapper: FC<{ children?: React.ReactNode }> = ({ children }) => (
   <BaseProviders>
     <PendingListContainer.Provider>
       <ListContainer.Provider>

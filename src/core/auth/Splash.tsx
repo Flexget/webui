@@ -1,4 +1,3 @@
-import React from 'react';
 import WaveSpinner from 'common/WaveSpinner';
 import Logo from './Logo';
 

@@ -1,6 +1,6 @@
-import React, { FC, useState, useCallback } from 'react';
+import { FC, useState, useCallback } from 'react';
 import { useContainer } from 'unstated-next';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import RemoveDialog from '../RemoveDialog';
 import { useGetShows, ShowContainer, useRemoveShow } from '../hooks/shows';
 import { GetShowOptions } from '../types';

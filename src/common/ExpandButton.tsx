@@ -1,7 +1,7 @@
-import React, { useCallback, forwardRef } from 'react';
-import { css } from '@emotion/core';
-import { ExpandMore } from '@material-ui/icons';
-import { IconButton, IconButtonProps, Theme } from '@material-ui/core';
+import { useCallback, forwardRef } from 'react';
+import { css } from '@emotion/react';
+import { ExpandMore } from '@mui/icons-material';
+import { IconButton, IconButtonProps, Theme } from '@mui/material';
 
 export type Props = IconButtonProps & {
   open: boolean;

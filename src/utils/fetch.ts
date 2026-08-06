@@ -9,7 +9,7 @@ export class StatusError extends Error {
   }
 }
 
-export const enum Method {
+export enum Method {
   Get = 'get',
   Post = 'post',
   Put = 'put',
@@ -51,7 +51,7 @@ const status = async <T>(r: Response, skipCamelize = false): Promise<APIResponse
   const response = r as APIResponse<T>;
   try {
     response.data = await response.json();
-  } catch (err) {
+  } catch {
     // do nothing for nwo;
   }
 

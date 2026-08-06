@@ -1,4 +1,4 @@
-export const enum LogLevel {
+export enum LogLevel {
   Trace = 'TRACE',
   Debug = 'DEBUG',
   Info = 'INFO',

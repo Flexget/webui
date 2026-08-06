@@ -11,7 +11,7 @@ import {
   TablePagination,
   TableSortLabel,
   TableRowProps,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useDebounceFormikSubmit } from 'utils/hooks';
 import { Direction, DefaultOptions, toggleDirection } from 'utils/query';
 
@@ -101,7 +101,7 @@ const TaskTable = <T extends {}>({ total, headers, rows }: Props<T>) => {
               <TableRow key={key} {...props}>
                 {headers.map(({ id, numeric }) => (
                   <TableCell key={id} align={numeric ? 'right' : 'left'}>
-                    {data[id]}
+                    {data[id] as React.ReactNode}
                   </TableCell>
                 ))}
               </TableRow>
@@ -116,8 +116,8 @@ const TaskTable = <T extends {}>({ total, headers, rows }: Props<T>) => {
         count={total}
         rowsPerPage={perPage}
         page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangePerPage}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangePerPage}
       />
     </Paper>
   );

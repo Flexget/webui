@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { CircularProgress } from '@material-ui/core';
-import { css } from '@emotion/core';
+import { CircularProgress } from '@mui/material';
+import { css } from '@emotion/react';
 
 const spinner = css`
   margin: 0 auto;
@@ -15,6 +15,7 @@ const wrapper = css`
 
 interface Props {
   loading?: boolean;
+  children?: React.ReactNode;
 }
 
 const LoadingSpinner: FC<Props> = ({ loading = true, children }) => {

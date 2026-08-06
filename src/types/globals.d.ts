@@ -15,10 +15,9 @@ declare global {
 
   type SetState<T> = Dispatch<SetStateAction<T>>;
 
-  type OptionalProps<T, K extends keyof T> = Omit<T, K> &
-    {
-      [P in K]?: T[P];
-    };
+  type OptionalProps<T, K extends keyof T> = Omit<T, K> & {
+    [P in K]?: T[P];
+  };
 
   type PropReturnType<T extends Record<string, Function>> = ReturnType<T[keyof T]>;
 }

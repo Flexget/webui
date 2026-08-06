@@ -1,16 +1,12 @@
-import React, { FC, useCallback, useState, useMemo } from 'react';
-import { useHistory, useParams } from 'react-router';
-import { ArrowBackIos, CheckCircle, Error } from '@material-ui/icons';
+import { FC, useCallback, useState, useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ArrowBackIos, CheckCircle, Error } from '@mui/icons-material';
 import { useInjectPageTitle, useSetAppBarIcon } from 'core/layout/AppBar/hooks';
 import { useGetTask, useGetTaskExecutions } from 'plugins/tasks/hooks';
 import { Direction } from 'utils/query';
 import { TaskExecutionOptions, SortByStatus } from 'plugins/tasks/types';
 import { Formik } from 'formik';
 import TaskTable from 'plugins/tasks/TaskTable';
-
-interface Match {
-  taskId: string;
-}
 
 const headers = [
   {
@@ -60,7 +56,7 @@ const headers = [
 ];
 
 const TaskExecutions: FC = () => {
-  const taskId = parseInt(useParams<Match>().taskId, 10);
+  const taskId = parseInt(useParams().taskId!, 10);
   const [options, setOptions] = useState<TaskExecutionOptions>({
     page: 0,
     perPage: 10,
@@ -71,11 +67,11 @@ const TaskExecutions: FC = () => {
   const { task } = useGetTask(taskId);
   const { executions, total } = useGetTaskExecutions(taskId, options);
 
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
   const onClick = useCallback(() => {
-    push('/tasks');
-  }, [push]);
+    navigate('/tasks');
+  }, [navigate]);
 
   const icon = useMemo(
     () => ({

@@ -9,7 +9,7 @@ import { usePluginContainer } from './api';
 import { ListContainer } from './list';
 import { Entry, Options } from '../types';
 
-export const enum Constants {
+export enum Constants {
   GET_ENTRIES = '@flexget/list/GET_ENTRIES',
   ADD_ENTRY = '@flexget/list/ADD_ENTRY',
   UPDATE_ENTRY = '@flexget/list/UPDATE_ENTRY',
@@ -275,9 +275,10 @@ export const useEntryBulkSelect = () => {
   const [{ selectedIds }, dispatch] = useContainer(EntryContainer);
 
   const selectEntry = useCallback((id: number) => dispatch(actions.selectEntry(id)), [dispatch]);
-  const unselectEntry = useCallback((id: number) => dispatch(actions.unselectEntry(id)), [
-    dispatch,
-  ]);
+  const unselectEntry = useCallback(
+    (id: number) => dispatch(actions.unselectEntry(id)),
+    [dispatch],
+  );
 
   const clearSelected = useCallback(() => dispatch(actions.clearSelected()), [dispatch]);
 

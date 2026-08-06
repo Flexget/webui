@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { cleanup, fireEvent, within, getNodeText, wait } from '@testing-library/react';
+import { cleanup, fireEvent, within, getNodeText, waitFor } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
@@ -98,7 +98,7 @@ describe('plugins/lists/base/entries', () => {
         expect(dropdown).toHaveTextContent(getNodeText(options[0]));
         fireEvent.click(options[1]);
         expect(dropdown).toHaveTextContent(getNodeText(options[1]));
-        await wait(() =>
+        await waitFor(() =>
           expect(
             fetchMock.called(
               `glob:/api/${prefix}/1/${itemPrefix}?*order=${options[1].getAttribute(
@@ -119,7 +119,7 @@ describe('plugins/lists/base/entries', () => {
         expect(dropdown).toHaveTextContent(getNodeText(options[0]));
         fireEvent.click(options[1]);
         expect(dropdown).toHaveTextContent(getNodeText(options[1]));
-        await wait(() =>
+        await waitFor(() =>
           expect(
             fetchMock.called(
               `glob:/api/${prefix}/1/${itemPrefix}?*sort_by=${options[1].getAttribute(

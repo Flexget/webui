@@ -50,7 +50,7 @@ export interface TaskQueueEntry extends Task {
   currentPlugin: string;
 }
 
-export const enum SortByStatus {
+export enum SortByStatus {
   LastExecutionTime = 'last_execution_time',
   ID = 'id',
   Name = 'name',
@@ -76,7 +76,7 @@ export interface TaskExecutionOptions extends DefaultOptions {
   succeeded?: boolean;
 }
 
-export const enum EventTypes {
+export enum EventTypes {
   Tasks = 'tasks',
   Progress = 'progress',
   EntryDump = 'entry_dump',
@@ -85,13 +85,13 @@ export const enum EventTypes {
   SetTask = 'setTask',
 }
 
-export const enum Status {
+export enum Status {
   Pending = 'pending',
   Running = 'running',
   Complete = 'complete',
 }
 
-export const enum Phase {
+export enum Phase {
   Input = 'input',
   Metainfo = 'metainfo',
   Filter = 'filter',

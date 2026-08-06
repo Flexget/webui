@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useContainer } from 'unstated-next';
 import StatusBar from './StatusBar';
 import { actions, StatusContainer } from './hooks';

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import ErrorStatus from 'core/status/ErrorStatus';
 import InfoStatus from 'core/status/InfoStatus';
-import { useTheme } from '@material-ui/core';
+import { useTheme } from '@mui/material';
 import { useOverlayState } from 'utils/hooks';
 
 import AppBar from './AppBar';
@@ -17,7 +17,7 @@ import {
 } from './styles';
 import { AppBarContainer } from './AppBar/hooks';
 
-const Layout: React.FC = ({ children }) => {
+const Layout: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
   const theme = useTheme();
   const matches = window.matchMedia && !window.matchMedia('(max-width: 600px)').matches;
   const [sidebarOpen, { close, toggle }] = useOverlayState(matches);
@@ -25,10 +25,10 @@ const Layout: React.FC = ({ children }) => {
   const sideTransition = sidebarOpen ? enterTransition : leavingTransition;
   const mainTransition = sidebarOpen ? leavingTransition : enterTransition;
 
-  const contentCss = useMemo(() => [content(theme), mainTransition(theme)], [
-    mainTransition,
-    theme,
-  ]);
+  const contentCss = useMemo(
+    () => [content(theme), mainTransition(theme)],
+    [mainTransition, theme],
+  );
 
   return (
     <AppBarContainer.Provider>

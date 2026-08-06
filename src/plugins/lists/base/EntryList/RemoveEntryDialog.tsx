@@ -1,4 +1,4 @@
-import React, { FC, FormEvent } from 'react';
+import { FC, FormEvent } from 'react';
 import {
   Button,
   Dialog,
@@ -7,8 +7,8 @@ import {
   DialogTitle,
   DialogContentText,
   Theme,
-} from '@material-ui/core';
-import { css } from '@emotion/core';
+} from '@mui/material';
+import { css } from '@emotion/react';
 import { useRemoveEntry } from '../hooks/entry';
 
 interface Props {

@@ -1,8 +1,8 @@
 import React, { FC, useCallback } from 'react';
-import { css } from '@emotion/core';
-import { CardMedia, Theme, CardContent } from '@material-ui/core';
+import { css } from '@emotion/react';
+import { CardMedia, Theme, CardContent } from '@mui/material';
 import { getCachedUrl } from 'utils/image';
-import { Skeleton } from '@material-ui/lab';
+import { Skeleton } from '@mui/material';
 
 interface Props {
   images?: string[] | string;
@@ -10,6 +10,7 @@ interface Props {
   className?: string;
   label: string;
   loading?: boolean;
+  children?: React.ReactNode;
 }
 
 const image = css`
@@ -19,8 +20,8 @@ const image = css`
 const poster = (theme: Theme) => css`
   width: 55%;
   float: left;
-  padding-right: ${theme.typography.pxToRem(theme.spacing(2))};
-  padding-bottom: ${theme.typography.pxToRem(theme.spacing(2))};
+  padding-right: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
+  padding-bottom: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
   ${theme.breakpoints.up('sm')} {
     width: 40%;
   }
@@ -45,12 +46,12 @@ const text = css`
 const summary = (theme: Theme) => css`
   height: 1.4rem;
   width: 25%;
-  margin: ${theme.typography.pxToRem(theme.spacing(2))} 0;
+  margin: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))} 0;
 `;
 
 const header = (theme: Theme) => css`
   width: 70%;
-  margin-bottom: ${theme.typography.pxToRem(theme.spacing(1))};
+  margin-bottom: ${theme.typography.pxToRem(parseFloat(theme.spacing(1)))};
 `;
 
 const BaseCard: FC<Props> = ({
@@ -62,9 +63,10 @@ const BaseCard: FC<Props> = ({
   loading = false,
 }) => {
   const imageCss = useCallback((theme: Theme) => [image, isPoster && poster(theme)], [isPoster]);
-  const textCss = useCallback((theme: Theme) => [text, isPoster && posterSkeletonWrapper(theme)], [
-    isPoster,
-  ]);
+  const textCss = useCallback(
+    (theme: Theme) => [text, isPoster && posterSkeletonWrapper(theme)],
+    [isPoster],
+  );
   const summaryCss = useCallback(
     (theme: Theme) => [summary(theme), isPoster && posterSkeletonWrapper(theme)],
     [isPoster],
@@ -78,7 +80,7 @@ const BaseCard: FC<Props> = ({
   return (
     <div className={className}>
       {loading ? (
-        <Skeleton variant="rect" css={imageCss} />
+        <Skeleton variant="rectangular" css={imageCss} />
       ) : (
         !!imageUrl && (
           <CardMedia

@@ -1,6 +1,6 @@
-import React, { FC, useCallback } from 'react';
-import { CardActions, Button } from '@material-ui/core';
-import { Sync, Storage, PowerSettingsNew } from '@material-ui/icons';
+import { FC, useCallback } from 'react';
+import { CardActions, Button } from '@mui/material';
+import { Sync, Storage, PowerSettingsNew } from '@mui/icons-material';
 
 import { useGlobalStatus } from 'core/status/hooks';
 import ShutdownDialog from 'core/operations/ShutdownDialog';

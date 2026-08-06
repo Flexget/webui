@@ -1,7 +1,7 @@
-import React, { FC, useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import { useContainer } from 'unstated-next';
-import { Menu, MenuItem, ListItemIcon } from '@material-ui/core';
-import { Sync, Storage, ExitToApp, PowerSettingsNew } from '@material-ui/icons';
+import { Menu, MenuItem, ListItemIcon } from '@mui/material';
+import { Sync, Storage, ExitToApp, PowerSettingsNew } from '@mui/icons-material';
 
 import { AuthContainer } from 'core/auth/hooks';
 import { useFlexgetAPI } from 'core/api';

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { cleanup, fireEvent, getNodeText, wait } from '@testing-library/react';
+import { cleanup, fireEvent, getNodeText, waitFor } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
@@ -36,7 +36,7 @@ describe('plugins/series/shows', () => {
       expect(dropdown).toHaveTextContent(getNodeText(options[0]));
       fireEvent.click(options[1]);
       expect(dropdown).toHaveTextContent(getNodeText(options[1]));
-      await wait(() =>
+      await waitFor(() =>
         expect(
           fetchMock.called(`glob:/api/series?*order=${options[1].getAttribute('data-value')}*`),
         ).toBeTrue(),
@@ -54,7 +54,7 @@ describe('plugins/series/shows', () => {
       expect(dropdown).toHaveTextContent(getNodeText(options[0]));
       fireEvent.click(options[1]);
       expect(dropdown).toHaveTextContent(getNodeText(options[1]));
-      await wait(() =>
+      await waitFor(() =>
         expect(
           fetchMock.called(`glob:/api/series?*in_config=${options[1].getAttribute('data-value')}*`),
         ).toBeTrue(),
@@ -72,7 +72,7 @@ describe('plugins/series/shows', () => {
       expect(dropdown).toHaveTextContent(getNodeText(options[0]));
       fireEvent.click(options[1]);
       expect(dropdown).toHaveTextContent(getNodeText(options[1]));
-      await wait(() =>
+      await waitFor(() =>
         expect(
           fetchMock.called(`glob:/api/series?*sort_by=${options[1].getAttribute('data-value')}*`),
         ).toBeTrue(),

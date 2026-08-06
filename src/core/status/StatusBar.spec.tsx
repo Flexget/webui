@@ -1,16 +1,16 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { themed } from 'utils/tests';
 import StatusBar from './StatusBar';
 
 describe('core/status/StatusBar', () => {
   it('should render nothing if no message', () => {
-    const wrapper = mount(themed(<StatusBar clearStatus={jest.fn()} />));
-    expect(wrapper.html()).toBeEmpty();
+    render(themed(<StatusBar clearStatus={jest.fn()} />));
+    expect(screen.queryByText(/./)).not.toBeInTheDocument();
   });
 
   it('should render text if there is a message', () => {
-    const wrapper = mount(themed(<StatusBar clearStatus={jest.fn()} message="I'm open" />));
-    expect(wrapper.text()).toInclude("I'm open");
+    render(themed(<StatusBar clearStatus={jest.fn()} message="I'm open" />));
+    expect(screen.getByText("I'm open")).toBeInTheDocument();
   });
 });

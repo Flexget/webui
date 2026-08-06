@@ -1,11 +1,11 @@
 import { Direction } from 'utils/query';
 
-export const enum GroupByFields {
+export enum GroupByFields {
   Task = 'task',
   Time = 'time',
 }
 
-export const enum SortByFields {
+export enum SortByFields {
   Task = 'task',
   Time = 'time',
   Url = 'url',

@@ -21,7 +21,7 @@ type ArrayPairs<U extends string, T extends ReadonlyArray<FieldMapping<U>>> = {
 export type Fields<
   U extends string,
   T extends ReadonlyArray<FieldMapping<U>>,
-  W extends Partial<Record<U, unknown>>
+  W extends Partial<Record<U, unknown>>,
 > = {
   readonly [P in Extract<ArrayPairs<U, T>[1], string>]?: W[Extract<ArrayPairs<U, T>, [any, P]>[0]];
 };

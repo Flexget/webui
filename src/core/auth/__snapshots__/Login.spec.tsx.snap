@@ -1,193 +1,191 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`core/auth/Login renders correctly when logged in 1`] = `
-<div>
-  <div
-    css={[Function]}
-  />
-  <div
-    css={
-      Object {
-        "map": undefined,
-        "name": "1kz9hf7",
-        "next": undefined,
-        "styles": "
+exports[`core/auth/Login renders correctly when logged in 1`] = `null`;
+
+exports[`core/auth/Login renders correctly when logged out 1`] = `
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -moz-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -moz-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -moz-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -moz-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -moz-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -moz-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -moz-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -moz-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+@keyframes animation-0 {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+    -moz-transform: scaleY(0.4);
+    -ms-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0);
+    -moz-transform: scaleY(1.0);
+    -ms-transform: scaleY(1.0);
+    transform: scaleY(1.0);
+  }
+}
+
+.emotion-0 {
+  background: transparent url(test-file-stub) no-repeat center;
+  min-height: 9rem;
+  -webkit-background-size: 100% auto;
+  background-size: 100% auto;
+  margin: 0 1rem;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    -webkit-background-size: auto;
+    background-size: auto;
+  }
+}
+
+.emotion-1 {
   margin: 10rem auto;
   width: 5rem;
   height: 4rem;
   text-align: center;
   font-size: 1rem;
-",
-        "toString": [Function],
-      }
-    }
-  >
-    <div
-      css={[Function]}
-    />
-    <div
-      css={[Function]}
-    />
-    <div
-      css={[Function]}
-    />
-    <div
-      css={[Function]}
-    />
-    <div
-      css={[Function]}
-    />
-  </div>
-</div>
-`;
+}
 
-exports[`core/auth/Login renders correctly when logged out 1`] = `
+.emotion-2 {
+  background-color: #ef6c00;
+  height: 100%;
+  width: 0.6rem;
+  display: inline-block;
+  margin: 0.1rem;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
+}
+
+.emotion-3 {
+  background-color: #ef6c00;
+  height: 100%;
+  width: 0.6rem;
+  display: inline-block;
+  margin: 0.1rem;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.emotion-4 {
+  background-color: #ef6c00;
+  height: 100%;
+  width: 0.6rem;
+  display: inline-block;
+  margin: 0.1rem;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+
+.emotion-5 {
+  background-color: #ef6c00;
+  height: 100%;
+  width: 0.6rem;
+  display: inline-block;
+  margin: 0.1rem;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.emotion-6 {
+  background-color: #ef6c00;
+  height: 100%;
+  width: 0.6rem;
+  display: inline-block;
+  margin: 0.1rem;
+  -webkit-animation: animation-0 1.2s infinite ease-in-out;
+  animation: animation-0 1.2s infinite ease-in-out;
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
 <div>
   <div
-    css={[Function]}
+    className="emotion-0"
   />
   <div
-    className="MuiPaper-root MuiCard-root MuiPaper-elevation1"
-    css={[Function]}
+    className="emotion-1"
   >
-    <form
-      action="#"
-      onReset={[Function]}
-      onSubmit={[Function]}
-    >
-      <div
-        className="MuiCardContent-root"
-        css={
-          Object {
-            "map": undefined,
-            "name": "1iyoj2o",
-            "next": undefined,
-            "styles": "
-  display: flex;
-  flex-direction: column;
-",
-            "toString": [Function],
-          }
-        }
-      >
-        <div
-          css={[Function]}
-        />
-        <div
-          className="MuiFormControl-root MuiTextField-root"
-          css={
-            Object {
-              "map": undefined,
-              "name": "1hq8d8z",
-              "next": undefined,
-              "styles": "
-  padding-bottom: 1rem;
-",
-              "toString": [Function],
-            }
-          }
-        >
-          <label
-            className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
-            data-shrink={true}
-            htmlFor="username"
-            id="username-label"
-          >
-            Username
-          </label>
-          <div
-            className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-            onClick={[Function]}
-          >
-            <input
-              aria-invalid={false}
-              autoFocus={true}
-              className="MuiInputBase-input MuiInput-input"
-              disabled={false}
-              id="username"
-              name="username"
-              onAnimationStart={[Function]}
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              required={false}
-              type="text"
-              value="flexget"
-            />
-          </div>
-        </div>
-        <div
-          className="MuiFormControl-root MuiTextField-root"
-          css={
-            Object {
-              "map": undefined,
-              "name": "1hq8d8z",
-              "next": undefined,
-              "styles": "
-  padding-bottom: 1rem;
-",
-              "toString": [Function],
-            }
-          }
-        >
-          <label
-            className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-            data-shrink={false}
-            htmlFor="password"
-            id="password-label"
-          >
-            Password
-          </label>
-          <div
-            className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-            onClick={[Function]}
-          >
-            <input
-              aria-invalid={false}
-              autoFocus={false}
-              className="MuiInputBase-input MuiInput-input"
-              disabled={false}
-              id="password"
-              name="password"
-              onAnimationStart={[Function]}
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              required={false}
-              type="Password"
-              value=""
-            />
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiCardActions-root MuiCardActions-spacing"
-      >
-        <button
-          className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-fullWidth"
-          disabled={false}
-          onBlur={[Function]}
-          onDragLeave={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          onKeyUp={[Function]}
-          onMouseDown={[Function]}
-          onMouseLeave={[Function]}
-          onMouseUp={[Function]}
-          onTouchEnd={[Function]}
-          onTouchMove={[Function]}
-          onTouchStart={[Function]}
-          tabIndex={0}
-          type="submit"
-        >
-          <span
-            className="MuiButton-label"
-          >
-            Login
-          </span>
-        </button>
-      </div>
-    </form>
+    <div
+      className="emotion-2"
+    />
+    <div
+      className="emotion-3"
+    />
+    <div
+      className="emotion-4"
+    />
+    <div
+      className="emotion-5"
+    />
+    <div
+      className="emotion-6"
+    />
   </div>
 </div>
 `;

@@ -1,12 +1,16 @@
 import React, { FC } from 'react';
-import { AutoSizer, Column, Table } from 'react-virtualized';
+// ponytail: casts bridge react-virtualized / React 18 JSX type gap; remove when lib upgrades or replaced
+import { AutoSizer as AutoSizer_, Column as Column_, Table as Table_ } from 'react-virtualized';
+const AutoSizer = AutoSizer_ as unknown as React.FC<any>;
+const Table = Table_ as unknown as React.FC<any>;
+const Column = Column_ as unknown as React.FC<any>;
 import 'react-virtualized/styles.css';
-import { css, ClassNames } from '@emotion/core';
-import { Theme, useTheme } from '@material-ui/core';
+import { css, ClassNames } from '@emotion/react';
+import { Theme, useTheme } from '@mui/material';
 import { LogMessage, LogLevel } from 'plugins/log/types';
 
 const color = (theme: Theme, hex: string) =>
-  theme.palette.type === 'light'
+  theme.palette.mode === 'light'
     ? css`
         background-color: ${hex};
       `

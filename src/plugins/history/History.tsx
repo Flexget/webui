@@ -1,6 +1,5 @@
-import React, { FC, useRef, useEffect, useCallback } from 'react';
+import { FC, useRef, useEffect, useCallback } from 'react';
 import { findDOMNode } from 'react-dom';
-import { hot } from 'react-hot-loader/root';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { NoPaddingWrapper } from 'common/styles';
 import { useMergeState } from 'utils/hooks';
@@ -53,4 +52,4 @@ const History: FC = () => {
   );
 };
 
-export default hot(History);
+export default History;

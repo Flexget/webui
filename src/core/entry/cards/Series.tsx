@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { Typography, Theme } from '@material-ui/core';
-import { css } from '@emotion/core';
+import { Typography, Theme } from '@mui/material';
+import { css } from '@emotion/react';
 import BaseCard from 'core/entry/cards/BaseCard';
-import { StarRate } from '@material-ui/icons';
+import { StarRate } from '@mui/icons-material';
 import { SeriesEntry, TraktFields, TVDBFields, TVMazeFields } from '../fields/series';
 import { Bullet, titleArea, ratingLine, selectableType } from './styles';
 import LinkDropdown from './LinkDropdown';
@@ -11,12 +11,13 @@ import { useSeriesLookup } from '../lookup/series';
 interface Props {
   entry: SeriesEntry;
   className?: string;
+  children?: React.ReactNode;
 }
 
 const summary = (theme: Theme) => css`
   font-size: 1.5rem;
   font-weight: 500;
-  margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
+  margin-top: ${theme.typography.pxToRem(parseFloat(theme.spacing(0.5)))};
 `;
 
 const SeriesCard: FC<Props> = ({ entry, className, children }) => {
@@ -60,7 +61,7 @@ const SeriesCard: FC<Props> = ({ entry, className, children }) => {
         <LinkDropdown options={options} />
       </div>
       <Typography variant="h6" color="textPrimary" css={ratingLine}>
-        <StarRate color="primary" /> {rating}
+        <StarRate color="primary" /> {typeof rating === 'number' ? rating.toFixed(1) : rating}
       </Typography>
       <Typography variant="overline" color="textSecondary">
         {network}

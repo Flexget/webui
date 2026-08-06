@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import CheckIcon from '@material-ui/icons/Check';
+import CheckIcon from '@mui/icons-material/Check';
 import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>

@@ -49,7 +49,7 @@ const tmdbToFields = (movie: TMDBMovie): RawMovieFields => ({
   [TMDBFields.Backdrops]: movie.backdrops?.map(({ urls }) => urls.original),
   [TMDBFields.Rating]: movie.rating,
   [TMDBFields.Votes]: movie.votes,
-  [TMDBFields.Url]: movie.homepage,
+  [TMDBFields.Url]: `https://www.themoviedb.org/movie/${movie.id}`,
   [TMDBFields.Runtime]: movie.runtime,
   [TMDBFields.ID]: movie.id,
   [TMDBFields.Description]: movie.overview,
@@ -125,7 +125,8 @@ interface TraktMovie {
   homepage: string;
   imdbId: string;
   tmdbId: string;
-  name: string;
+  slug: string;
+  title: string;
   year: number;
   runtime: number;
   overview: string;
@@ -135,24 +136,24 @@ interface TraktMovie {
 }
 
 const traktToFields = (movie: TraktMovie): RawMovieFields => ({
-  movieName: movie.name,
+  movieName: movie.title,
   movieYear: movie.year,
   [TraktFields.Genres]: movie.genres,
   [TraktFields.Rating]: movie.rating,
   [TraktFields.Votes]: movie.votes,
-  [TraktFields.Url]: movie.homepage,
+  [TraktFields.Url]: movie.slug ? `https://trakt.tv/movies/${movie.slug}` : undefined,
   [TraktFields.Runtime]: movie.runtime,
   [TraktFields.ID]: movie.id,
   [TraktFields.Description]: movie.overview,
   [IMDBFields.ID]: movie.imdbId,
-  [TraktFields.ID]: movie.tmdbId,
+  [TMDBFields.ID]: movie.tmdbId,
 });
 
 export const useTraktLookup = (options: TraktOptions) => {
   const query = stringify(snakeCase(options));
   const [entry, setEntry] = useState<RawMovieFields>();
 
-  const [state, request] = useFlexgetAPI<TraktMovie>(`/tmdb/movies?${query}`);
+  const [state, request] = useFlexgetAPI<TraktMovie>(`/trakt/movies?${query}`);
 
   useEffect(() => {
     const fn = async () => {

@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { useContainer } from 'unstated-next';
-import { cleanup, render, fireEvent, within, wait } from '@testing-library/react';
+import { cleanup, render, fireEvent, waitFor } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
 import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
@@ -30,7 +30,7 @@ describe('plugins/lists/base/EntryList/InjectEntryDialog', () => {
     ${'entry'}   | ${'entry_list'}   | ${'entries'} | ${EntryListContainer.Provider}
     ${'movie'}   | ${'movie_list'}   | ${'movies'}  | ${MovieListContainer.Provider}
   `('$name', ({ prefix, Provider, itemPrefix }) => {
-    const wrapper: FC = ({ children }) => (
+    const wrapper: FC<{ children?: React.ReactNode }> = ({ children }) => (
       <BaseProviders>
         <TaskContainer.Provider>
           <Provider>
@@ -87,12 +87,10 @@ describe('plugins/lists/base/EntryList/InjectEntryDialog', () => {
     it('should call fetch when pressing inject', async () => {
       const { getByRole } = render(component, { wrapper });
 
-      const submitButton = getByRole(
-        (content, element) => content === 'button' && !!within(element).queryByText('Inject'),
-      );
+      const submitButton = getByRole('button', { name: 'Inject' });
 
       fireEvent.click(submitButton);
-      await wait(() => {
+      await waitFor(() => {
         expect(fetchMock.called(`/api/${prefix}/1/${itemPrefix}/1`)).toBeTrue();
         expect(fetchMock.called('/api/tasks/execute')).toBeTrue();
         expect(handleClose).toHaveBeenCalled();
@@ -102,9 +100,7 @@ describe('plugins/lists/base/EntryList/InjectEntryDialog', () => {
     it('should call close when pressing cancel', () => {
       const { getByRole } = render(component, { wrapper });
 
-      const submitButton = getByRole(
-        (content, element) => content === 'button' && !!within(element).queryByText('Cancel'),
-      );
+      const submitButton = getByRole('button', { name: 'Cancel' });
 
       fireEvent.click(submitButton);
       expect(fetchMock.called(`/api/${prefix}/1/${itemPrefix}/1`)).toBeFalse();

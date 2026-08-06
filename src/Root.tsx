@@ -1,12 +1,10 @@
-import React, { Suspense, FC, lazy } from 'react';
-import { hot } from 'react-hot-loader/root';
-import { StylesProvider } from '@material-ui/styles';
-import { CssBaseline } from '@material-ui/core';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import { Global, css } from '@emotion/core';
+import { Suspense, FC, lazy } from 'react';
+import { CssBaseline } from '@mui/material';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Global, css } from '@emotion/react';
 import PrivateRoute from 'core/routes/PrivateRoute';
 import Layout from 'core/layout/Layout';
-import Routes from 'core/routes/Routes';
+import AppRoutes from 'core/routes/Routes';
 import registerHistory from 'plugins/history';
 import registerLog from 'plugins/log';
 import registerTasks from 'plugins/tasks';
@@ -61,36 +59,35 @@ const Root: FC = () => (
   <ThemeProvider>
     <Global styles={globals} />
     <CssBaseline />
-    <StylesProvider injectFirst>
-      <StatusContainer.Provider>
-        <AuthContainer.Provider>
-          <BrowserRouter basename={basename}>
-            <Suspense fallback={LoadingSpinner}>
-              <Switch>
-                <Route path="/login" exact component={Login} />
-                <Route
-                  render={() => (
-                    <PluginContainer.Provider>
-                      <TaskContainer.Provider>
-                        <Layout>
-                          <Suspense fallback={LoadingSpinner}>
-                            <Switch>
-                              <PrivateRoute path="/" exact component={Home} />
-                              <Route component={Routes} />
-                            </Switch>
-                          </Suspense>
-                        </Layout>
-                      </TaskContainer.Provider>
-                    </PluginContainer.Provider>
-                  )}
-                />
-              </Switch>
-            </Suspense>
-          </BrowserRouter>
-        </AuthContainer.Provider>
-      </StatusContainer.Provider>
-    </StylesProvider>
+    <StatusContainer.Provider>
+      <AuthContainer.Provider>
+        <BrowserRouter basename={basename}>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="*"
+                element={
+                  <PluginContainer.Provider>
+                    <TaskContainer.Provider>
+                      <Layout>
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <Routes>
+                            <Route path="/" element={<PrivateRoute element={<Home />} />} />
+                            <Route path="*" element={<AppRoutes />} />
+                          </Routes>
+                        </Suspense>
+                      </Layout>
+                    </TaskContainer.Provider>
+                  </PluginContainer.Provider>
+                }
+              />
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </AuthContainer.Provider>
+    </StatusContainer.Provider>
   </ThemeProvider>
 );
 
-export default hot(Root);
+export default Root;

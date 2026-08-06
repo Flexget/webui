@@ -1,5 +1,5 @@
-import { css } from '@emotion/core';
-import { Theme } from '@material-ui/core';
+import { css } from '@emotion/react';
+import { Theme } from '@mui/material';
 
 export const wrapper = css`
   display: grid;
@@ -43,10 +43,10 @@ export const leavingTransition = (theme: Theme) => css`
 
 export const content = (theme: Theme) => css`
   overflow-y: auto;
-  padding: ${theme.typography.pxToRem(theme.spacing(2))};
+  padding: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
   height: 100%;
 
   ${theme.breakpoints.up('sm')} {
-    padding: ${theme.typography.pxToRem(theme.spacing(2))};
+    padding: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
   }
 `;

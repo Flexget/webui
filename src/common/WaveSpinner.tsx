@@ -1,6 +1,5 @@
-import React from 'react';
-import { keyframes, css } from '@emotion/core';
-import { Theme } from '@material-ui/core';
+import { keyframes, css } from '@emotion/react';
+import { Theme } from '@mui/material';
 
 const stretchDelay = keyframes`
   0%, 40%, 100% {

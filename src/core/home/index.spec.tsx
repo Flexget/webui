@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { cleanup } from '@testing-library/react';
 import AppBar from 'core/layout/AppBar';
 import { renderWithWrapper } from 'utils/tests';
-import { Home, Tv, Movie } from '@material-ui/icons';
+import { Home, Tv, Movie } from '@mui/icons-material';
 import { registerPlugin } from 'core/plugins/registry';
 import HomePage from './index';
 

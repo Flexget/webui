@@ -1,40 +1,29 @@
 import React, { FC, useEffect } from 'react';
-import { mount } from 'enzyme';
-import { IconButton } from '@material-ui/core';
-import { Check } from '@material-ui/icons';
-import { BaseProviders } from 'utils/tests';
-import AppBar from './index';
+import { Check } from '@mui/icons-material';
+import { fireEvent, screen } from '@testing-library/react';
+import { renderWithWrapper } from 'utils/tests';
 import {
   useInjectPageTitle,
   useInjectContent,
   useContextualAppBar,
   ContextualProps,
 } from './hooks';
+import AppBar from './index';
 
 describe('core/layout/AppBar', () => {
   it('calls toggle when the hamburger button is pressed', () => {
     const toggle = jest.fn();
-    const wrapper = mount(
-      <BaseProviders>
-        <AppBar toggleSidebar={toggle} />
-      </BaseProviders>,
-    );
+    renderWithWrapper(<AppBar toggleSidebar={toggle} />);
 
-    wrapper
-      .findWhere(el => el.props()['aria-label'] === 'toggle sidebar' && el.type() === IconButton)
-      .simulate('click');
+    fireEvent.click(screen.getByRole('button', { name: 'toggle sidebar' }));
 
     expect(toggle).toHaveBeenCalled();
   });
 
   it('renders correct title', () => {
-    const wrapper = mount(
-      <BaseProviders>
-        <AppBar toggleSidebar={jest.fn()} />
-      </BaseProviders>,
-    );
+    renderWithWrapper(<AppBar toggleSidebar={jest.fn()} />);
 
-    expect(wrapper.text()).toBe('Flexget Manager');
+    expect(screen.getByText('Flexget Manager')).toBeInTheDocument();
   });
 
   describe('injectable app bar', () => {
@@ -44,31 +33,31 @@ describe('core/layout/AppBar', () => {
         return null;
       };
 
-      const wrapper = mount(
-        <BaseProviders>
+      renderWithWrapper(
+        <>
           <AppBar toggleSidebar={jest.fn()} />
           <OverrideTitle />
-        </BaseProviders>,
+        </>,
       );
 
-      expect(wrapper.text()).toBe('New Title');
+      expect(screen.getByText('New Title')).toBeInTheDocument();
     });
 
-    it('will render additonal content', () => {
-      const content = <div>Hello</div>;
+    it('will render additional content', () => {
+      const injectedContent = <div>Hello</div>;
       const OverrideContent: FC = () => {
-        useInjectContent(content);
+        useInjectContent(injectedContent);
         return null;
       };
 
-      const wrapper = mount(
-        <BaseProviders>
+      renderWithWrapper(
+        <>
           <AppBar toggleSidebar={jest.fn()} />
           <OverrideContent />
-        </BaseProviders>,
+        </>,
       );
 
-      expect(wrapper.text()).toInclude('Hello');
+      expect(screen.getByText('Hello')).toBeInTheDocument();
     });
   });
 
@@ -102,71 +91,55 @@ describe('core/layout/AppBar', () => {
 
     describe('enabled', () => {
       it('calls closeFn when the button is pressed', () => {
-        const wrapper = mount(
-          <BaseProviders>
+        renderWithWrapper(
+          <>
             <AppBar toggleSidebar={jest.fn()} />
             <Contextual enabled contextualProps={contextualProps} />
-          </BaseProviders>,
+          </>,
         );
 
-        wrapper
-          .findWhere(el => el.props()['aria-label'] === 'close context' && el.type() === IconButton)
-          .simulate('click');
+        fireEvent.click(screen.getByRole('button', { name: 'close context' }));
 
         expect(onClose).toHaveBeenCalled();
       });
 
       it('renders normal content when no contextualProps are specified', () => {
-        const wrapper = mount(
-          <BaseProviders>
+        renderWithWrapper(
+          <>
             <AppBar toggleSidebar={jest.fn()} />
             <Contextual enabled />
-          </BaseProviders>,
+          </>,
         );
 
-        expect(wrapper.text()).toInclude('Flexget Manager');
-        expect(
-          wrapper
-            .findWhere(el => el.props()['aria-label'] === 'My Icon' && el.type() === IconButton)
-            .exists(),
-        ).toBeFalse();
+        expect(screen.getByText('Flexget Manager')).toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: 'My Icon' })).not.toBeInTheDocument();
       });
     });
+
     describe('not enabled', () => {
       it('renders normal content when not enabled', () => {
-        const wrapper = mount(
-          <BaseProviders>
+        renderWithWrapper(
+          <>
             <AppBar toggleSidebar={jest.fn()} />
             <Contextual contextualProps={contextualProps} />
-          </BaseProviders>,
+          </>,
         );
-        expect(wrapper.text()).toInclude('Flexget Manager');
-        expect(
-          wrapper
-            .findWhere(el => el.props()['aria-label'] === 'My Icon' && el.type() === IconButton)
-            .exists(),
-        ).toBeFalse();
+
+        expect(screen.getByText('Flexget Manager')).toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: 'My Icon' })).not.toBeInTheDocument();
       });
     });
 
-    it('render contextual content when enabled', () => {
-      const wrapper = mount(
-        <BaseProviders>
+    it('renders contextual content when enabled', () => {
+      renderWithWrapper(
+        <>
           <AppBar toggleSidebar={jest.fn()} />
           <Contextual enabled contextualProps={contextualProps} />
-        </BaseProviders>,
+        </>,
       );
 
-      expect(
-        wrapper
-          .findWhere(el => el.props()['aria-label'] === 'My Icon' && el.type() === IconButton)
-          .exists(),
-      ).toBeTrue();
-      expect(
-        wrapper
-          .findWhere(el => el.props()['aria-label'] === 'config editor' && el.type() === IconButton)
-          .exists(),
-      ).toBeFalse();
+      expect(screen.getByRole('button', { name: 'My Icon' })).toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: 'config editor' })).not.toBeInTheDocument();
     });
   });
 });

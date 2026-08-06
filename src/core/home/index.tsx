@@ -1,6 +1,5 @@
-import React, { Suspense } from 'react';
-import { hot } from 'react-hot-loader/root';
-import { Grid } from '@material-ui/core';
+import { Suspense } from 'react';
+import { Grid } from '@mui/material';
 import LoadingSpinner from 'common/LoadingSpinner';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { useGetHomeCards } from './hooks';
@@ -22,4 +21,4 @@ const Home = () => {
   );
 };
 
-export default hot(Home);
+export default Home;

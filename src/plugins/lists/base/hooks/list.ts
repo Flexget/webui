@@ -4,7 +4,7 @@ import { createContainer, useContainer } from 'unstated-next';
 import { usePluginContainer } from './api';
 import { List, AddListRequest } from '../types';
 
-export const enum Constants {
+export enum Constants {
   GET_LISTS = '@flexget/list/GET_LISTS',
   ADD_LIST = '@flexget/list/ADD_LIST',
   REMOVE_LIST = '@flexget/list/REMOVE_LIST',

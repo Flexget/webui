@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { Typography, Theme } from '@material-ui/core';
+import { Typography, Theme } from '@mui/material';
 import { normalizeMinutes } from 'utils/time';
-import { css } from '@emotion/core';
-import { StarRate } from '@material-ui/icons';
+import { css } from '@emotion/react';
+import { StarRate } from '@mui/icons-material';
 import { MovieEntry, IMDBFields, TMDBFields, TraktFields } from '../fields/movies';
 import { Bullet, titleArea, ratingLine, selectableType } from './styles';
 import BaseCard from './BaseCard';
@@ -12,19 +12,20 @@ import { useMovieLookup } from '../lookup/movies';
 interface Props {
   entry: MovieEntry;
   className?: string;
+  children?: React.ReactNode;
 }
 
 const summary = (theme: Theme) => css`
   font-size: 1.5rem;
   font-weight: 500;
-  margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
+  margin-top: ${theme.typography.pxToRem(parseFloat(theme.spacing(0.5)))};
 `;
 
 const originalTitle = (theme: Theme) => css`
   font-size: 2.2rem;
   font-weight: 400;
   font-style: oblique;
-  margin-bottom: ${theme.typography.pxToRem(theme.spacing(0.5))};
+  margin-bottom: ${theme.typography.pxToRem(parseFloat(theme.spacing(0.5)))};
 `;
 
 const MovieCard: FC<Props> = ({ entry, className, children }) => {
@@ -75,7 +76,8 @@ const MovieCard: FC<Props> = ({ entry, className, children }) => {
           </Typography>
         )}
         <Typography variant="h6" color="textPrimary" css={ratingLine}>
-          <StarRate color="primary" /> {rating} ({votes})
+          <StarRate color="primary" /> {typeof rating === 'number' ? rating.toFixed(1) : rating} (
+          {votes})
         </Typography>
         <Typography variant="overline" color="textSecondary">
           {quality}

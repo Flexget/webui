@@ -1,7 +1,7 @@
-import React, { useCallback, FC } from 'react';
-import { css } from '@emotion/core';
-import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@material-ui/core';
-import { Repeat, CheckCircle, Delete } from '@material-ui/icons';
+import { useCallback, FC } from 'react';
+import { css } from '@emotion/react';
+import { Card, CardActionArea, CardActions, IconButton, Tooltip, Theme } from '@mui/material';
+import { Repeat, CheckCircle, Delete } from '@mui/icons-material';
 import Entry from 'core/entry/cards';
 import { usePluginContainer } from '../hooks/api';
 import { Entry as EntryType } from '../types';
@@ -34,7 +34,7 @@ const entryCard = css`
 `;
 
 const cardActions = (theme: Theme) => css`
-  padding-left: ${theme.typography.pxToRem(theme.spacing(3))};
+  padding-left: ${theme.typography.pxToRem(parseFloat(theme.spacing(3)))};
   justify-content: space-between;
 `;
 
@@ -58,7 +58,7 @@ const circleIcon = (theme: Theme) => css`
   top: 0;
   right: 0;
   color: #fff;
-  margin: ${theme.typography.pxToRem(theme.spacing(2))};
+  margin: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
   opacity: 0;
   transition: ${theme.transitions.create('opacity')};
   z-index: 2;
@@ -76,12 +76,10 @@ const EntryCard: FC<Props> = ({ entry, onInjectClick, onRemoveClick }) => {
 
   const selected = selectedIds.has(entry.id);
 
-  const toggle = useCallback(() => (selected ? unselectEntry(entry.id) : selectEntry(entry.id)), [
-    entry.id,
-    selectEntry,
-    selected,
-    unselectEntry,
-  ]);
+  const toggle = useCallback(
+    () => (selected ? unselectEntry(entry.id) : selectEntry(entry.id)),
+    [entry.id, selectEntry, selected, unselectEntry],
+  );
 
   const checkCircleStyles = useCallback(
     (theme: Theme) => [circleIcon(theme), selected && circleIconVisible],

@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Formik } from 'formik';
-import { Button, Theme, Tabs, Tab, CircularProgress, Typography } from '@material-ui/core';
+import { Button, Theme, Tabs, Tab, CircularProgress, Typography } from '@mui/material';
 import { useOverlayState } from 'utils/hooks';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { ReadyState } from 'core/api';
 import { ExecuteTaskRequest, Phase, TaskExecuteState, Task } from './types';
 import { useExecuteTaskStream } from './hooks';
@@ -30,7 +30,7 @@ const getDescription = (phase?: string) =>
 
 const executeWrapper = (theme: Theme) => css`
   display: flex;
-  margin-top: ${theme.typography.pxToRem(theme.spacing(2))};
+  margin-top: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
 `;
 
 const tabSection = css`
@@ -50,7 +50,7 @@ const list = css`
 `;
 
 const listItem = (theme: Theme) => css`
-  margin-right: ${theme.typography.pxToRem(theme.spacing(2))};
+  margin-right: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
   &:last-child {
     margin-right: 0;
   }
@@ -85,10 +85,10 @@ const Execute: FC<Props> = ({ tasks: taskStatuses }) => {
                 onChange={setTask}
                 aria-label="Task Tabs"
                 variant="scrollable"
-                scrollButtons="on"
+                scrollButtons
               >
                 {Object.values(tasks).map(({ id, name }) => (
-                  <Tab key={id} value={id} fullWidth wrapped label={name} />
+                  <Tab key={id} value={id} label={name} />
                 ))}
               </Tabs>
               <div css={infoSection}>

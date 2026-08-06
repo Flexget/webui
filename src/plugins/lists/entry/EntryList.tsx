@@ -1,5 +1,4 @@
-import React, { FC } from 'react';
-import { hot } from 'react-hot-loader/root';
+import { FC } from 'react';
 import ManagedList from '../base';
 import { EntryListContainer } from './hooks';
 
@@ -11,4 +10,4 @@ const PendingList: FC = () => {
   );
 };
 
-export default hot(PendingList);
+export default PendingList;

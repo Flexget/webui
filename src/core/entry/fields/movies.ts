@@ -13,7 +13,7 @@ export enum MovieFieldNames {
   OriginalName = 'originalName',
 }
 
-export const enum IMDBFields {
+export enum IMDBFields {
   Genres = 'imdbGenres',
   Posters = 'imdbPhoto',
   Rating = 'imdbScore',
@@ -24,7 +24,7 @@ export const enum IMDBFields {
   ID = 'imdbId',
 }
 
-export const enum TraktFields {
+export enum TraktFields {
   Genres = 'traktGenres',
   Rating = 'traktRating',
   Votes = 'traktVotes',
@@ -34,7 +34,7 @@ export const enum TraktFields {
   ID = 'traktMovieId',
 }
 
-export const enum TMDBFields {
+export enum TMDBFields {
   Genres = 'tmdbGenres',
   Posters = 'tmdbPosters',
   Backdrops = 'tmdbBackdrops',

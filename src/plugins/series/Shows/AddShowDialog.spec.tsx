@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup, fireEvent, within, wait } from '@testing-library/react';
+import { cleanup, fireEvent, waitFor } from '@testing-library/react';
 import { renderWithWrapper } from 'utils/tests';
 import fetchMock from 'fetch-mock';
 import AddShowDialog from './AddShowDialog';
@@ -48,12 +48,10 @@ describe('plugins/series/Shows/AddShowDialog', () => {
   it('should call fetch when pressing add', async () => {
     const { getByRole } = renderWithWrapper(component);
 
-    const submitButton = getByRole(
-      (content, element) => content === 'button' && !!within(element).queryByText('Add'),
-    );
+    const submitButton = getByRole('button', { name: 'Add' });
 
     fireEvent.click(submitButton);
-    await wait(() => {
+    await waitFor(() => {
       expect(fetchMock.called('/api/series')).toBeTrue();
       expect(handleClose).toHaveBeenCalled();
     });
@@ -62,9 +60,7 @@ describe('plugins/series/Shows/AddShowDialog', () => {
   it('should call close when pressing cancel', () => {
     const { getByRole } = renderWithWrapper(component);
 
-    const cancelButton = getByRole(
-      (content, element) => content === 'button' && !!within(element).queryByText('Cancel'),
-    );
+    const cancelButton = getByRole('button', { name: 'Cancel' });
 
     fireEvent.click(cancelButton);
     expect(fetchMock.called('/api/series')).toBeFalse();

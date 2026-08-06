@@ -1,7 +1,7 @@
-import React, { FC, useCallback } from 'react';
-import { css } from '@emotion/core';
-import { Fab, Theme } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
+import { FC, useCallback } from 'react';
+import { css } from '@emotion/react';
+import { Fab, Theme } from '@mui/material';
+import { Add } from '@mui/icons-material';
 import { useInjectPageTitle } from 'core/layout/AppBar/hooks';
 import { Direction } from 'utils/query';
 import { useMergeState, useOverlayState } from 'utils/hooks';
@@ -14,8 +14,8 @@ import AddShowDialog from './AddShowDialog';
 
 const speedDialCss = (theme: Theme) => css`
   position: absolute;
-  bottom: ${theme.typography.pxToRem(theme.spacing(2))};
-  right: ${theme.typography.pxToRem(theme.spacing(2))};
+  bottom: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
+  right: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
 `;
 
 const ShowPage: FC = () => {

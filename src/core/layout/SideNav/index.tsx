@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useMemo, useState } from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   Drawer,
   List,
@@ -8,10 +8,10 @@ import {
   useMediaQuery,
   useTheme,
   Divider,
-} from '@material-ui/core';
-import { Settings } from '@material-ui/icons';
+} from '@mui/material';
+import { Settings } from '@mui/icons-material';
 
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { Route } from 'core/routes/types';
 import { useGetRoutes } from 'core/routes/hooks';
 
@@ -37,25 +37,26 @@ interface Props {
 
 const SideNav: FC<Props> = ({ sidebarOpen = false, onClose, className }) => {
   const { routes } = useGetRoutes();
-  const history = useHistory();
+  const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
 
-  const drawerCss = useMemo(() => (sidebarOpen ? drawerOpen(theme) : drawerClose(theme)), [
-    sidebarOpen,
-    theme,
-  ]);
+  const drawerCss = useMemo(
+    () => (sidebarOpen ? drawerOpen(theme) : drawerClose(theme)),
+    [sidebarOpen, theme],
+  );
 
   const drawerRootCss = useMemo(() => [drawer(theme), drawerCss], [drawerCss, theme]);
 
   const handleClick = useCallback(
-    ({ path }: Route) => () => {
-      if (isMobile) {
-        onClose();
-      }
-      history.push(path);
-    },
-    [history, isMobile, onClose],
+    ({ path }: Route) =>
+      () => {
+        if (isMobile) {
+          onClose();
+        }
+        navigate(path);
+      },
+    [navigate, isMobile, onClose],
   );
 
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement>();

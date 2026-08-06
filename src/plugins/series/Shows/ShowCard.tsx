@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-import { useRouteMatch } from 'react-router';
-import { css } from '@emotion/core';
+import { FC } from 'react';
+import { useHref } from 'react-router-dom';
+import { css } from '@emotion/react';
 import {
   Card,
   CardActionArea,
@@ -9,8 +9,8 @@ import {
   Tooltip,
   Theme,
   Typography,
-} from '@material-ui/core';
-import { Delete } from '@material-ui/icons';
+} from '@mui/material';
+import { Delete } from '@mui/icons-material';
 import Entry from 'core/entry/cards';
 import { Link } from 'common/styles';
 import { Show } from '../types';
@@ -46,15 +46,15 @@ const entryCard = css`
 `;
 
 const cardActions = (theme: Theme) => css`
-  padding-left: ${theme.typography.pxToRem(theme.spacing(3))};
+  padding-left: ${theme.typography.pxToRem(parseFloat(theme.spacing(3)))};
   justify-content: space-between;
 `;
 
 const ShowCard: FC<Props> = ({ show, onRemoveClick }) => {
-  const { url } = useRouteMatch();
+  const basePath = useHref('.');
   return (
     <Card css={cardCss}>
-      <CardActionArea css={actionArea} component={Link} to={`${url}/${show.id}`}>
+      <CardActionArea css={actionArea} component={Link} to={`${basePath}/${show.id}`}>
         <Entry entry={showToEntry(show)} css={entryCard}>
           {!!show.beginEpisode && (
             <Typography variant="body2" color="textSecondary">

@@ -1,18 +1,13 @@
-import React, { FC } from 'react';
-import { hot } from 'react-hot-loader/root';
-import { useRouteMatch, Switch, Route } from 'react-router';
+import { FC } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Latest from './Latest';
 import TaskExecutions from './TaskExecutions';
 
-const Task: FC = () => {
-  const { path } = useRouteMatch();
+const Task: FC = () => (
+  <Routes>
+    <Route index element={<Latest />} />
+    <Route path=":taskId" element={<TaskExecutions />} />
+  </Routes>
+);
 
-  return (
-    <Switch>
-      <Route exact path={path} component={Latest} />
-      <Route exact path={`${path}/:taskId`} component={TaskExecutions} />
-    </Switch>
-  );
-};
-
-export default hot(Task);
+export default Task;

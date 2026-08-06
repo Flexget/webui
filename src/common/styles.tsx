@@ -1,21 +1,16 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Link as RouterLink, LinkProps } from 'react-router-dom';
-import st, { CreateStyled } from '@emotion/styled';
-import { css } from '@emotion/core';
-import { Paper, Theme } from '@material-ui/core';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { Paper, Theme } from '@mui/material';
 
-const styled = st as CreateStyled<Theme>;
-
-export const PaperWrapper = styled(Paper)`
+export const PaperWrapper = styled(Paper)<{ elevation?: number }>`
   padding: 2.4rem;
   display: flex;
   flex: 1;
   height: 100%;
   box-sizing: border-box;
   flex-direction: column;
-  ${({ theme }) => theme.breakpoints.up('sm')} {
-    padding-top: 0;
-  }
 `;
 
 export const Spacer = styled.div`
@@ -23,15 +18,21 @@ export const Spacer = styled.div`
 `;
 
 export const NoPaddingWrapper = styled.div`
-  height: calc(100% + ${({ theme }) => theme.typography.pxToRem(theme.spacing(2))});
-  margin: -${({ theme }) => theme.typography.pxToRem(theme.spacing(1))};
+  height: calc(100% + ${({ theme }) => theme.typography.pxToRem(parseFloat(theme.spacing(2)))});
+  margin: -${({ theme }) => theme.typography.pxToRem(parseFloat(theme.spacing(1)))};
   display: flex;
   flex-direction: column;
 
   ${({ theme }) => theme.breakpoints.up('sm')} {
-    height: calc(100% + ${({ theme }) => theme.typography.pxToRem(theme.spacing(4))});
-    margin: -${({ theme }) => theme.typography.pxToRem(theme.spacing(2))};
+    height: calc(100% + ${({ theme }) => theme.typography.pxToRem(parseFloat(theme.spacing(4)))});
+    margin: -${({ theme }) => theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
   }
+`;
+
+export const dialogFields = css`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 export const backgroundColor = (theme: Theme, color: string) => css`
@@ -40,5 +41,5 @@ export const backgroundColor = (theme: Theme, color: string) => css`
 `;
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
-  <RouterLink innerRef={ref} {...props} />
+  <RouterLink ref={ref} {...props} />
 ));

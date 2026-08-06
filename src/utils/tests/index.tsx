@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement, FC } from 'react';
+import { ReactNode, ReactElement, FC } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { AuthContainer } from 'core/auth/hooks';
@@ -11,7 +11,7 @@ export const themed = (component: ReactNode) => <ThemeProvider>{component}</Them
 
 export const router = (component: ReactNode) => <MemoryRouter>{component}</MemoryRouter>;
 
-export const BaseProviders: FC = ({ children }) => {
+export const BaseProviders: FC<{ children?: ReactNode }> = ({ children }) => {
   return (
     <StatusContainer.Provider>
       <AuthContainer.Provider>

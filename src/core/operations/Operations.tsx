@@ -1,6 +1,6 @@
-import React, { FC, useMemo, useCallback, useState, ChangeEvent } from 'react';
-import { Drawer, Divider, Button, Theme, Typography } from '@material-ui/core';
-import { css } from '@emotion/core';
+import { FC, useMemo, useCallback, useState, ChangeEvent } from 'react';
+import { Drawer, Divider, Button, Theme, Typography } from '@mui/material';
+import { css } from '@emotion/react';
 import SelectField from 'common/inputs/SelectField';
 import { useGetPlugins, useDBOperation } from './hooks';
 import { DatabaseOperation } from './types';
@@ -15,19 +15,19 @@ const innerDrawer = css`
 `;
 
 const drawerSection = (theme: Theme) => css`
-  padding: ${theme.typography.pxToRem(theme.spacing(3))};
+  padding: ${theme.typography.pxToRem(parseFloat(theme.spacing(3)))};
   display: flex;
   flex-direction: column;
 `;
 
 const button = (theme: Theme) => css`
-  margin-top: ${theme.typography.pxToRem(theme.spacing(2))};
+  margin-top: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))};
 `;
 
 const header = (theme: Theme) => css`
   background-color: ${theme.palette.primary.main};
   color: ${theme.palette.getContrastText(theme.palette.primary.main)};
-  padding: ${theme.typography.pxToRem(theme.spacing(3))};
+  padding: ${theme.typography.pxToRem(parseFloat(theme.spacing(3)))};
 `;
 
 const Operations: FC<Props> = ({ open = false, onClose }) => {
@@ -35,17 +35,20 @@ const Operations: FC<Props> = ({ open = false, onClose }) => {
   const { loading: pluginsLoading, plugins } = useGetPlugins();
   const [pluginName, setPluginName] = useState('');
 
-  const options = useMemo(() => plugins.map(plugin => ({ label: plugin, value: plugin })), [
-    plugins,
-  ]);
+  const options = useMemo(
+    () => plugins.map(plugin => ({ label: plugin, value: plugin })),
+    [plugins],
+  );
 
-  const vacuum = useCallback(() => performOperation({ operation: DatabaseOperation.Vacuum }), [
-    performOperation,
-  ]);
+  const vacuum = useCallback(
+    () => performOperation({ operation: DatabaseOperation.Vacuum }),
+    [performOperation],
+  );
 
-  const cleanup = useCallback(() => performOperation({ operation: DatabaseOperation.Cleanup }), [
-    performOperation,
-  ]);
+  const cleanup = useCallback(
+    () => performOperation({ operation: DatabaseOperation.Cleanup }),
+    [performOperation],
+  );
 
   const resetPLugin = useCallback(
     () => performOperation({ operation: DatabaseOperation.PluginReset, pluginName }),

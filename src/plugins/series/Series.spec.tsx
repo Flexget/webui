@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { cleanup } from '@testing-library/react';
-import { useHistory, Route, Switch } from 'react-router';
+import { useNavigate, Routes, Route } from 'react-router-dom';
 import fetchMock from 'fetch-mock';
 import { renderWithWrapper } from 'utils/tests';
 import AppBar from 'core/layout/AppBar';
@@ -11,18 +11,16 @@ interface Props {
 }
 
 const TestSeries: FC<Props> = ({ path }) => {
-  const { push } = useHistory();
+  const navigate = useNavigate();
   useEffect(() => {
-    push(path);
-  }, [path, push]);
+    navigate(path);
+  }, [path, navigate]);
   return (
     <>
       <AppBar toggleSidebar={jest.fn()} />
-      <Switch>
-        <Route path="/series">
-          <Series />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/series/*" element={<Series />} />
+      </Routes>
     </>
   );
 };

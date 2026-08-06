@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { Typography, Theme } from '@material-ui/core';
-import { css } from '@emotion/core';
+import { Typography, Theme } from '@mui/material';
+import { css } from '@emotion/react';
 import LinkDropdown from 'core/entry/cards/LinkDropdown';
 import { useEpisodeLookup } from 'core/entry/lookup/episodes';
 import { EpisodeEntry, TVMazeFields, TVDBFields } from '../fields/episodes';
@@ -12,12 +12,13 @@ interface Props {
   series: SeriesEntry;
   entry: EpisodeEntry;
   className?: string;
+  children?: React.ReactNode;
 }
 
 const summary = (theme: Theme) => css`
   font-size: 1.5rem;
   font-weight: 500;
-  margin-top: ${theme.typography.pxToRem(theme.spacing(0.5))};
+  margin-top: ${theme.typography.pxToRem(parseFloat(theme.spacing(0.5)))};
 `;
 
 const EpisodeCard: FC<Props> = ({ series: rawSeries, entry: rawEpisode, className, children }) => {

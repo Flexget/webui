@@ -20,7 +20,7 @@ import {
   TaskQueueEntry,
 } from './types';
 
-export const enum Constants {
+export enum Constants {
   GET_TASKS = '@flexget/tasks/GET_TASKS',
 }
 

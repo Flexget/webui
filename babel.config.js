@@ -1,4 +1,5 @@
 module.exports = function config(api) {
+  api.cache(true);
   const presets = [
     [
       '@babel/preset-env',
@@ -8,18 +9,16 @@ module.exports = function config(api) {
         modules: false,
       },
     ],
-    '@babel/preset-react',
-    ...(api.env() !== 'test'
-      ? ['@emotion/babel-preset-css-prop', { sourceMap: api.env() !== 'test' }]
-      : []),
+    ['@babel/preset-react', { runtime: 'automatic', importSource: '@emotion/react' }],
+    '@babel/preset-typescript',
   ];
   const plugins = [
+    '@emotion/babel-plugin',
     '@babel/plugin-syntax-dynamic-import',
     '@babel/plugin-proposal-nullish-coalescing-operator',
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-class-properties',
     'babel-plugin-polished',
-    'react-hot-loader/babel',
   ];
 
   return {

@@ -5,12 +5,12 @@ export interface OperationDisplay {
   name: string;
 }
 
-export const enum ServerOperation {
+export enum ServerOperation {
   Reload = 'reload',
   Shutdown = 'shutdown',
 }
 
-export const enum DatabaseOperation {
+export enum DatabaseOperation {
   Cleanup = 'cleanup',
   Vacuum = 'vacuum',
   PluginReset = 'plugin_reset',

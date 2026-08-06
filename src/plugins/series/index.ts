@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import LiveTvIcon from '@material-ui/icons/LiveTv';
+import LiveTvIcon from '@mui/icons-material/LiveTv';
 import { registerPlugin } from 'core/plugins/registry';
 
 export default () =>

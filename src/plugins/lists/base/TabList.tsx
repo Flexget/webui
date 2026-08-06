@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { Tabs, Tab } from '@material-ui/core';
+import { FC } from 'react';
+import { Tabs, Tab } from '@mui/material';
 import { List } from './types';
 
 interface Props {
@@ -9,7 +9,14 @@ interface Props {
 }
 
 const TabList: FC<Props> = ({ listId, lists, handleChange }) => (
-  <Tabs value={listId} variant="scrollable" scrollButtons="on" onChange={handleChange}>
+  <Tabs
+    value={listId}
+    variant="scrollable"
+    scrollButtons
+    onChange={handleChange}
+    textColor="inherit"
+    indicatorColor="secondary"
+  >
     {lists.map(({ name, id }) => (
       <Tab label={name} value={id} key={id} />
     ))}

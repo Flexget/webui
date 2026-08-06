@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { themed, router } from 'utils/tests';
-import SVGIcon from '@material-ui/core/SvgIcon';
+import SVGIcon from '@mui/material/SvgIcon';
 import Entry from './Entry';
 
 describe('core/layout/SideNavEntry', () => {

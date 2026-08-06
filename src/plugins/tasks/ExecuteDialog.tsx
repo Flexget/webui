@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import {
   Button,
   Dialog,
@@ -10,13 +10,13 @@ import {
   FormGroup,
   Theme,
   Tooltip,
-} from '@material-ui/core';
+} from '@mui/material';
 import { Form, useFormikContext } from 'formik';
 import Autocomplete from 'common/inputs/formik/Autocomplete';
 import Checkbox from 'common/inputs/formik/Checkbox';
 import { ReadyState } from 'core/api';
 import { ExecuteTaskRequest, Task } from 'plugins/tasks/types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 interface Props {
   readyState: ReadyState;
@@ -31,7 +31,7 @@ const group = css`
 `;
 
 const control = (theme: Theme) => css`
-  margin: ${theme.typography.pxToRem(theme.spacing(2))} 0;
+  margin: ${theme.typography.pxToRem(parseFloat(theme.spacing(2)))} 0;
 `;
 
 const ExecuteDialog: FC<Props> = ({ readyState, open, close, tasks }) => {

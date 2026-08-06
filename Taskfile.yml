@@ -1,0 +1,68 @@
+version: '3'
+
+dotenv: ['.env']
+
+tasks:
+  setup:
+    desc: Install project dependencies (run `nvm use` first to activate the correct Node)
+    preconditions:
+      - sh: which npm
+        msg: "npm not found in PATH. Activate the correct Node version first (e.g. 'nvm use')."
+    cmds:
+      - npm install -g yarn
+      - yarn install
+
+  install:
+    desc: Install project dependencies
+    cmds:
+      - yarn install
+    sources:
+      - package.json
+      - yarn.lock
+    generates:
+      - node_modules/.yarn-integrity
+
+  dev:
+    desc: Start development server
+    cmds:
+      - yarn start
+
+  build:
+    desc: Build for production
+    cmds:
+      - yarn build
+
+  test:
+    desc: Run test suite
+    cmds:
+      - yarn test
+
+  test:watch:
+    desc: Run tests in watch mode
+    cmds:
+      - yarn test:watch
+
+  test:coverage:
+    desc: Run tests with coverage report
+    cmds:
+      - yarn test --coverage
+
+  lint:
+    desc: Run ESLint
+    cmds:
+      - yarn lint
+
+  lint:fix:
+    desc: Fix auto-fixable ESLint errors
+    cmds:
+      - yarn lint --fix
+
+  typecheck:
+    desc: Type-check without emitting
+    cmds:
+      - ./node_modules/.bin/tsc --noEmit
+
+  clean:
+    desc: Remove build output
+    cmds:
+      - rm -rf dist/

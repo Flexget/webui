@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { useContainer } from 'unstated-next';
-import { cleanup, render, fireEvent, within, wait } from '@testing-library/react';
+import { cleanup, render, fireEvent, waitFor } from '@testing-library/react';
 import { BaseProviders } from 'utils/tests';
 import { makeRawEntry } from 'core/entry/fixtures';
 import fetchMock from 'fetch-mock';
@@ -29,7 +29,7 @@ describe('plugins/lists/base/AddFab/AddEntryDialog', () => {
     ${'entry'}   | ${'entry_list'}   | ${'entries'} | ${EntryListContainer.Provider}
     ${'movie'}   | ${'movie_list'}   | ${'movies'}  | ${MovieListContainer.Provider}
   `('$name', ({ prefix, Provider, itemPrefix }) => {
-    const wrapper: FC = ({ children }) => (
+    const wrapper: FC<{ children?: React.ReactNode }> = ({ children }) => (
       <BaseProviders>
         <Provider>
           <ListContainer.Provider>
@@ -73,12 +73,10 @@ describe('plugins/lists/base/AddFab/AddEntryDialog', () => {
     it('should call fetch when pressing add', async () => {
       const { getByRole } = render(component, { wrapper });
 
-      const submitButton = getByRole(
-        (content, element) => content === 'button' && !!within(element).queryByText('Add'),
-      );
+      const submitButton = getByRole('button', { name: 'Add' });
 
       fireEvent.click(submitButton);
-      await wait(() => {
+      await waitFor(() => {
         expect(fetchMock.called(`/api/${prefix}/1/${itemPrefix}`)).toBeTrue();
         expect(handleClose).toHaveBeenCalled();
       });
@@ -87,9 +85,7 @@ describe('plugins/lists/base/AddFab/AddEntryDialog', () => {
     it('should call close when pressing cancel', () => {
       const { getByRole } = render(component, { wrapper });
 
-      const cancelButton = getByRole(
-        (content, element) => content === 'button' && !!within(element).queryByText('Cancel'),
-      );
+      const cancelButton = getByRole('button', { name: 'Cancel' });
 
       fireEvent.click(cancelButton);
       expect(fetchMock.called(`/api/${prefix}/1/${itemPrefix}`)).toBeFalse();
